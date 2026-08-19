@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::PostProcessBase Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::PostProcessBase Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_post_process_base.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="postprocessbase-class-reference">
+<h1>PostProcessBase Class Reference<a class="headerlink" href="#postprocessbase-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::PostProcessBase Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_post_process_base.html">PostProcessBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_post_process_base-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::PostProcessBase Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_post_processing_8_h_source.html">PostProcessing.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::PostProcessBase:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_post_process_base__inherit__graph.svg" width="274" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::PostProcessBase:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_post_process_base__coll__graph.svg" width="274" height="291"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:acee8b67bae6f255916dd5edb6771701f" id="r_acee8b67bae6f255916dd5edb6771701f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acee8b67bae6f255916dd5edb6771701f">~PostProcessBase</a> () override=default</td></tr>
+<tr class="memitem:a0fa81d31603a9f9ab3c4a48d03ee40a5" id="r_a0fa81d31603a9f9ab3c4a48d03ee40a5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fa81d31603a9f9ab3c4a48d03ee40a5">pre_init_actions</a> ()=0</td></tr>
+<tr class="memitem:a77a46e1c41f2cd6ac7a7cea5b7b729a3" id="r_a77a46e1c41f2cd6ac7a7cea5b7b729a3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a46e1c41f2cd6ac7a7cea5b7b729a3">initialize</a> ()=0</td></tr>
+<tr class="memitem:a955ed9331e5e2469d091afe670b69b4c" id="r_a955ed9331e5e2469d091afe670b69b4c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a955ed9331e5e2469d091afe670b69b4c">post_advance_work</a> ()=0</td></tr>
+<tr class="memitem:a39946d5d4040ccbe994d94bcabdeca6f" id="r_a39946d5d4040ccbe994d94bcabdeca6f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39946d5d4040ccbe994d94bcabdeca6f">output_actions</a> ()=0</td></tr>
+<tr class="memitem:a87f29b7e8171b867daf00951b5d8fd89" id="r_a87f29b7e8171b867daf00951b5d8fd89"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f29b7e8171b867daf00951b5d8fd89">post_regrid_actions</a> ()=0</td></tr>
+<tr class="memdesc:a87f29b7e8171b867daf00951b5d8fd89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions to perform post regrid.  <br /></td></tr>
+<tr class="memitem:a22588cbc6bb8d4a8d5f10895a5f93e39" id="r_a22588cbc6bb8d4a8d5f10895a5f93e39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22588cbc6bb8d4a8d5f10895a5f93e39">populate_output_parameters</a> (amrex::ParmParse &amp;pp)</td></tr>
+<tr class="memitem:a44b3f9e42dc2ccffbe2ad09b21aa6723" id="r_a44b3f9e42dc2ccffbe2ad09b21aa6723"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44b3f9e42dc2ccffbe2ad09b21aa6723">do_output_now</a> (const int ntime, const int ntime0_in, const amrex::Real time, const amrex::Real time0_in, const amrex::Real dt, amrex::Real tol) const</td></tr>
+<tr class="memdesc:a44b3f9e42dc2ccffbe2ad09b21aa6723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if output will happen this time step.  <br /></td></tr>
+<tr class="memitem:a216ade5106462248378dd37ae93d9970" id="r_a216ade5106462248378dd37ae93d9970"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a216ade5106462248378dd37ae93d9970">output_time_interval</a> () const</td></tr>
+<tr class="memitem:a28930586928f094b85d40845774ae587" id="r_a28930586928f094b85d40845774ae587"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28930586928f094b85d40845774ae587">output_time_delay</a> () const</td></tr>
+<tr class="memitem:a2aaed191fc498b23f5578a38a13c94cb" id="r_a2aaed191fc498b23f5578a38a13c94cb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2aaed191fc498b23f5578a38a13c94cb">enforce_dt_tolerance</a> () const</td></tr>
+<tr class="memitem:ac8f8f472cd6c82ef8f755f4f1700ed42" id="r_ac8f8f472cd6c82ef8f755f4f1700ed42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8f8f472cd6c82ef8f755f4f1700ed42">enforce_dt</a> () const</td></tr>
+<tr class="memitem:ae5c8789121d46341d23fa9fa9ddbe5ca" id="r_ae5c8789121d46341d23fa9fa9ddbe5ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5c8789121d46341d23fa9fa9ddbe5ca">do_final_output</a> () const</td></tr>
+<tr class="inherit_header pub_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; PostProcessBase, CFDSim &amp;, const std::string &amp; &gt;</a></td></tr>
+<tr class="memitem:ac34efe50a093c87b829083168775bc5f inherit pub_methods_structkynema__sgf_1_1_factory" id="r_ac34efe50a093c87b829083168775bc5f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#ac34efe50a093c87b829083168775bc5f">~Factory</a> ()=default</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a3f6577c645bca20f388f053f0d643270" id="r_a3f6577c645bca20f388f053f0d643270"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f6577c645bca20f388f053f0d643270">base_identifier</a> ()</td></tr>
+<tr class="inherit_header pub_static_methods_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; PostProcessBase, CFDSim &amp;, const std::string &amp; &gt;</a></td></tr>
+<tr class="memitem:aa73d3b8dc6633292bb32e05d3b8e7120 inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_aa73d3b8dc6633292bb32e05d3b8e7120"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_post_process_base.html">PostProcessBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#aa73d3b8dc6633292bb32e05d3b8e7120">create</a> (const std::string &amp;key, Args... args)</td></tr>
+<tr class="memitem:a5e56671505c53a0862e25adeddea669f inherit pub_static_methods_structkynema__sgf_1_1_factory" id="r_a5e56671505c53a0862e25adeddea669f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a5e56671505c53a0862e25adeddea669f">print</a> (std::ostream &amp;os)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ab07ac1561ea1af8f1b6d7f3fadbb99d5" id="r_ab07ac1561ea1af8f1b6d7f3fadbb99d5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab07ac1561ea1af8f1b6d7f3fadbb99d5">m_out_interval</a> {10}</td></tr>
+<tr class="memdesc:ab07ac1561ea1af8f1b6d7f3fadbb99d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step interval for output.  <br /></td></tr>
+<tr class="memitem:a0e6135a891826e0308ebf9a904309c9c" id="r_a0e6135a891826e0308ebf9a904309c9c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e6135a891826e0308ebf9a904309c9c">m_out_time_interval</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a0e6135a891826e0308ebf9a904309c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time interval for output.  <br /></td></tr>
+<tr class="memitem:affc954ec3c4ce4f3141cab27acbfb4b8" id="r_affc954ec3c4ce4f3141cab27acbfb4b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affc954ec3c4ce4f3141cab27acbfb4b8">m_out_delay</a> {0}</td></tr>
+<tr class="memdesc:affc954ec3c4ce4f3141cab27acbfb4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step delay for output.  <br /></td></tr>
+<tr class="memitem:ad8408d9ffaaaf07399b01d131e164413" id="r_ad8408d9ffaaaf07399b01d131e164413"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8408d9ffaaaf07399b01d131e164413">m_out_time_delay</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ad8408d9ffaaaf07399b01d131e164413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time delay for output.  <br /></td></tr>
+<tr class="memitem:a1bfe4e712e6604f0eb95a4f76c520619" id="r_a1bfe4e712e6604f0eb95a4f76c520619"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bfe4e712e6604f0eb95a4f76c520619">m_out_from_restart</a> {false}</td></tr>
+<tr class="memdesc:a1bfe4e712e6604f0eb95a4f76c520619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always consider restart time for calculating output.  <br /></td></tr>
+<tr class="memitem:abc596487aa1e6b32b37d7196c3cf09cc" id="r_abc596487aa1e6b32b37d7196c3cf09cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc596487aa1e6b32b37d7196c3cf09cc">m_out_start_index</a> {-1}</td></tr>
+<tr class="memdesc:abc596487aa1e6b32b37d7196c3cf09cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time step start for calculating step interval (restarts)  <br /></td></tr>
+<tr class="memitem:a130bef4e3b15b242d4003e2014a5fc7c" id="r_a130bef4e3b15b242d4003e2014a5fc7c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a130bef4e3b15b242d4003e2014a5fc7c">m_out_start_time</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a130bef4e3b15b242d4003e2014a5fc7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time start for calculating time interval (restarts)  <br /></td></tr>
+<tr class="memitem:ae01af1ea6fd6ad4e1093eae3e8836724" id="r_ae01af1ea6fd6ad4e1093eae3e8836724"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae01af1ea6fd6ad4e1093eae3e8836724">m_out_time_tol</a> {1.0e-2_rt}</td></tr>
+<tr class="memdesc:ae01af1ea6fd6ad4e1093eae3e8836724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative (to dt) tolerance for time interval output.  <br /></td></tr>
+<tr class="memitem:af3e08074303ca82b328e3ad14a6c2d66" id="r_af3e08074303ca82b328e3ad14a6c2d66"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3e08074303ca82b328e3ad14a6c2d66">m_enforce_dt_tol</a> {1.0e-3_rt}</td></tr>
+<tr class="memdesc:af3e08074303ca82b328e3ad14a6c2d66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative (to m_out_time_interval) tolerance for enforcing dt.  <br /></td></tr>
+<tr class="memitem:afbc4df0d8cdf815e0720dafa280c5a43" id="r_afbc4df0d8cdf815e0720dafa280c5a43"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbc4df0d8cdf815e0720dafa280c5a43">m_enforce_dt</a> {false}</td></tr>
+<tr class="memdesc:afbc4df0d8cdf815e0720dafa280c5a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for enforcing time step based on output time.  <br /></td></tr>
+<tr class="memitem:a742f567bf7d20c15f866994584a24e29" id="r_a742f567bf7d20c15f866994584a24e29"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a742f567bf7d20c15f866994584a24e29">m_do_final_output</a> {false}</td></tr>
+<tr class="memdesc:a742f567bf7d20c15f866994584a24e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for output at simulation end - off by default.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_structkynema__sgf_1_1_factory"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_attribs_structkynema__sgf_1_1_factory')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Attributes inherited from <a class="el" href="structkynema__sgf_1_1_factory.html">kynema_sgf::Factory&lt; PostProcessBase, CFDSim &amp;, const std::string &amp; &gt;</a></td></tr>
+<tr class="memitem:a3f41ef21adfa37f9abb5c8cc52769974 inherit pub_attribs_structkynema__sgf_1_1_factory" id="r_a3f41ef21adfa37f9abb5c8cc52769974"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1_factory.html#a3f41ef21adfa37f9abb5c8cc52769974">Base</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Abstract representation of a post-processing utility</p>
+<p>Provides an interface for a runtime-selectable post-processing action (e.g., data sampling, volume/surface integration, etc.) with the main solver.</p>
+<p>All post-processing utilities must derive from this class. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="acee8b67bae6f255916dd5edb6771701f" name="acee8b67bae6f255916dd5edb6771701f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee8b67bae6f255916dd5edb6771701f">&#9670;&#160;</a></span>~PostProcessBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::PostProcessBase::~PostProcessBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a3f6577c645bca20f388f053f0d643270" name="a3f6577c645bca20f388f053f0d643270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f6577c645bca20f388f053f0d643270">&#9670;&#160;</a></span>base_identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::PostProcessBase::base_identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5c8789121d46341d23fa9fa9ddbe5ca" name="ae5c8789121d46341d23fa9fa9ddbe5ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c8789121d46341d23fa9fa9ddbe5ca">&#9670;&#160;</a></span>do_final_output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::PostProcessBase::do_final_output </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44b3f9e42dc2ccffbe2ad09b21aa6723" name="a44b3f9e42dc2ccffbe2ad09b21aa6723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b3f9e42dc2ccffbe2ad09b21aa6723">&#9670;&#160;</a></span>do_output_now()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::PostProcessBase::do_output_now </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ntime</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ntime0_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time0_in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>tol</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determine if output will happen this time step. </p>
+
+</div>
+</div>
+<a id="ac8f8f472cd6c82ef8f755f4f1700ed42" name="ac8f8f472cd6c82ef8f755f4f1700ed42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8f8f472cd6c82ef8f755f4f1700ed42">&#9670;&#160;</a></span>enforce_dt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::PostProcessBase::enforce_dt </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2aaed191fc498b23f5578a38a13c94cb" name="a2aaed191fc498b23f5578a38a13c94cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aaed191fc498b23f5578a38a13c94cb">&#9670;&#160;</a></span>enforce_dt_tolerance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::enforce_dt_tolerance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a77a46e1c41f2cd6ac7a7cea5b7b729a3" name="a77a46e1c41f2cd6ac7a7cea5b7b729a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a46e1c41f2cd6ac7a7cea5b7b729a3">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::PostProcessBase::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the post-processing utility</p>
+<p>When this method is called, the mesh and the solution fields are fully initialized </p>
+
+</div>
+</div>
+<a id="a39946d5d4040ccbe994d94bcabdeca6f" name="a39946d5d4040ccbe994d94bcabdeca6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39946d5d4040ccbe994d94bcabdeca6f">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::PostProcessBase::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Perform output routine </p>
+
+</div>
+</div>
+<a id="a28930586928f094b85d40845774ae587" name="a28930586928f094b85d40845774ae587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28930586928f094b85d40845774ae587">&#9670;&#160;</a></span>output_time_delay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::output_time_delay </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a216ade5106462248378dd37ae93d9970" name="a216ade5106462248378dd37ae93d9970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216ade5106462248378dd37ae93d9970">&#9670;&#160;</a></span>output_time_interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::output_time_interval </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22588cbc6bb8d4a8d5f10895a5f93e39" name="a22588cbc6bb8d4a8d5f10895a5f93e39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22588cbc6bb8d4a8d5f10895a5f93e39">&#9670;&#160;</a></span>populate_output_parameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::PostProcessBase::populate_output_parameters </td>
+          <td>(</td>
+          <td class="paramtype">amrex::ParmParse &amp;</td>          <td class="paramname"><span class="paramname"><em>pp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a955ed9331e5e2469d091afe670b69b4c" name="a955ed9331e5e2469d091afe670b69b4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955ed9331e5e2469d091afe670b69b4c">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::PostProcessBase::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Perform actions at the end of each timestep </p>
+
+</div>
+</div>
+<a id="a87f29b7e8171b867daf00951b5d8fd89" name="a87f29b7e8171b867daf00951b5d8fd89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87f29b7e8171b867daf00951b5d8fd89">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::PostProcessBase::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actions to perform post regrid. </p>
+
+</div>
+</div>
+<a id="a0fa81d31603a9f9ab3c4a48d03ee40a5" name="a0fa81d31603a9f9ab3c4a48d03ee40a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fa81d31603a9f9ab3c4a48d03ee40a5">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void kynema_sgf::PostProcessBase::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a742f567bf7d20c15f866994584a24e29" name="a742f567bf7d20c15f866994584a24e29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a742f567bf7d20c15f866994584a24e29">&#9670;&#160;</a></span>m_do_final_output</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::PostProcessBase::m_do_final_output {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag for output at simulation end - off by default. </p>
+
+</div>
+</div>
+<a id="afbc4df0d8cdf815e0720dafa280c5a43" name="afbc4df0d8cdf815e0720dafa280c5a43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbc4df0d8cdf815e0720dafa280c5a43">&#9670;&#160;</a></span>m_enforce_dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::PostProcessBase::m_enforce_dt {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag for enforcing time step based on output time. </p>
+
+</div>
+</div>
+<a id="af3e08074303ca82b328e3ad14a6c2d66" name="af3e08074303ca82b328e3ad14a6c2d66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e08074303ca82b328e3ad14a6c2d66">&#9670;&#160;</a></span>m_enforce_dt_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::m_enforce_dt_tol {1.0e-3_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative (to m_out_time_interval) tolerance for enforcing dt. </p>
+
+</div>
+</div>
+<a id="affc954ec3c4ce4f3141cab27acbfb4b8" name="affc954ec3c4ce4f3141cab27acbfb4b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc954ec3c4ce4f3141cab27acbfb4b8">&#9670;&#160;</a></span>m_out_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::PostProcessBase::m_out_delay {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step delay for output. </p>
+
+</div>
+</div>
+<a id="a1bfe4e712e6604f0eb95a4f76c520619" name="a1bfe4e712e6604f0eb95a4f76c520619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bfe4e712e6604f0eb95a4f76c520619">&#9670;&#160;</a></span>m_out_from_restart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::PostProcessBase::m_out_from_restart {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Always consider restart time for calculating output. </p>
+
+</div>
+</div>
+<a id="ab07ac1561ea1af8f1b6d7f3fadbb99d5" name="ab07ac1561ea1af8f1b6d7f3fadbb99d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab07ac1561ea1af8f1b6d7f3fadbb99d5">&#9670;&#160;</a></span>m_out_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::PostProcessBase::m_out_interval {10}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step interval for output. </p>
+
+</div>
+</div>
+<a id="abc596487aa1e6b32b37d7196c3cf09cc" name="abc596487aa1e6b32b37d7196c3cf09cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc596487aa1e6b32b37d7196c3cf09cc">&#9670;&#160;</a></span>m_out_start_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::PostProcessBase::m_out_start_index {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time step start for calculating step interval (restarts) </p>
+
+</div>
+</div>
+<a id="a130bef4e3b15b242d4003e2014a5fc7c" name="a130bef4e3b15b242d4003e2014a5fc7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130bef4e3b15b242d4003e2014a5fc7c">&#9670;&#160;</a></span>m_out_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::m_out_start_time {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time start for calculating time interval (restarts) </p>
+
+</div>
+</div>
+<a id="ad8408d9ffaaaf07399b01d131e164413" name="ad8408d9ffaaaf07399b01d131e164413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8408d9ffaaaf07399b01d131e164413">&#9670;&#160;</a></span>m_out_time_delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::m_out_time_delay {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time delay for output. </p>
+
+</div>
+</div>
+<a id="a0e6135a891826e0308ebf9a904309c9c" name="a0e6135a891826e0308ebf9a904309c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e6135a891826e0308ebf9a904309c9c">&#9670;&#160;</a></span>m_out_time_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::m_out_time_interval {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time interval for output. </p>
+
+</div>
+</div>
+<a id="ae01af1ea6fd6ad4e1093eae3e8836724" name="ae01af1ea6fd6ad4e1093eae3e8836724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae01af1ea6fd6ad4e1093eae3e8836724">&#9670;&#160;</a></span>m_out_time_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::PostProcessBase::m_out_time_tol {1.0e-2_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative (to dt) tolerance for time interval output. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_post_processing_8_h_source.html">PostProcessing.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::EkmanSpiral Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::EkmanSpiral Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_ekman_spiral.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ekmanspiral-class-reference">
+<h1>EkmanSpiral Class Reference<a class="headerlink" href="#ekmanspiral-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::EkmanSpiral Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_ekman_spiral.html">EkmanSpiral</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_ekman_spiral-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::EkmanSpiral Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_ekman_spiral_8_h_source.html">EkmanSpiral.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::EkmanSpiral:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_ekman_spiral__inherit__graph.svg" width="202" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::EkmanSpiral:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_ekman_spiral__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:afcdd46c7951abf761b69db1a0cbcbe17" id="r_afcdd46c7951abf761b69db1a0cbcbe17"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcdd46c7951abf761b69db1a0cbcbe17">EkmanSpiral</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a99352ce6b0bf9d2f3abc1d2873dbffd4" id="r_a99352ce6b0bf9d2f3abc1d2873dbffd4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99352ce6b0bf9d2f3abc1d2873dbffd4">~EkmanSpiral</a> () override=default</td></tr>
+<tr class="memitem:a58c9ce464c11bb8539ad6a9c994d924c" id="r_a58c9ce464c11bb8539ad6a9c994d924c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58c9ce464c11bb8539ad6a9c994d924c">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:a626803f06dca4a28cfe4dbb7d423fc3e" id="r_a626803f06dca4a28cfe4dbb7d423fc3e"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a626803f06dca4a28cfe4dbb7d423fc3e template"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a626803f06dca4a28cfe4dbb7d423fc3e">compute_error</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;)</td></tr>
+<tr class="memitem:ae2f51fcfcf775147d402fffa50cffbf9" id="r_ae2f51fcfcf775147d402fffa50cffbf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2f51fcfcf775147d402fffa50cffbf9">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a63132ed480b0b1c9cddfbb629ff41c62" id="r_a63132ed480b0b1c9cddfbb629ff41c62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63132ed480b0b1c9cddfbb629ff41c62">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a820d568e2b3ba2a99eb010e68c1d6425" id="r_a820d568e2b3ba2a99eb010e68c1d6425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a820d568e2b3ba2a99eb010e68c1d6425">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a3965b1dd8f184e97e46a2024f582e3cf" id="r_a3965b1dd8f184e97e46a2024f582e3cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3965b1dd8f184e97e46a2024f582e3cf">post_advance_work</a> () override</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a1a57e3497d2f94c94bd94e05b4c05a27" id="r_a1a57e3497d2f94c94bd94e05b4c05a27"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a57e3497d2f94c94bd94e05b4c05a27">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a8000e56cb2419fcc6ef1fcbaab818fc3" id="r_a8000e56cb2419fcc6ef1fcbaab818fc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8000e56cb2419fcc6ef1fcbaab818fc3">output_error</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a4ad202fc46891dfe0f9f0d0d0a85a3eb" id="r_a4ad202fc46891dfe0f9f0d0d0a85a3eb"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ad202fc46891dfe0f9f0d0d0a85a3eb">m_time</a></td></tr>
+<tr class="memitem:acc46a6991cdca673208e9c291d7f86a8" id="r_acc46a6991cdca673208e9c291d7f86a8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc46a6991cdca673208e9c291d7f86a8">m_repo</a></td></tr>
+<tr class="memitem:aa91d5c7f8322883736dd3e1b6f1936d9" id="r_aa91d5c7f8322883736dd3e1b6f1936d9"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa91d5c7f8322883736dd3e1b6f1936d9">m_mesh</a></td></tr>
+<tr class="memitem:a305d2fac83d2b62c147ae7d3c02e4b9e" id="r_a305d2fac83d2b62c147ae7d3c02e4b9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a305d2fac83d2b62c147ae7d3c02e4b9e">m_velocity</a></td></tr>
+<tr class="memitem:a8168bd6f9bff1247fbbed276988a1e01" id="r_a8168bd6f9bff1247fbbed276988a1e01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8168bd6f9bff1247fbbed276988a1e01">m_density</a></td></tr>
+<tr class="memitem:ad3a2d84eb69806e86d05f7f67bba79bb" id="r_ad3a2d84eb69806e86d05f7f67bba79bb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3a2d84eb69806e86d05f7f67bba79bb">m_rho</a> {1.0_rt}</td></tr>
+<tr class="memdesc:ad3a2d84eb69806e86d05f7f67bba79bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">initial density value  <br /></td></tr>
+<tr class="memitem:abe1d83b528ec0f1cb4bbed43f092cddf" id="r_abe1d83b528ec0f1cb4bbed43f092cddf"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe1d83b528ec0f1cb4bbed43f092cddf">m_DE</a> {0.0_rt}</td></tr>
+<tr class="memdesc:abe1d83b528ec0f1cb4bbed43f092cddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ekman depth.  <br /></td></tr>
+<tr class="memitem:a9bdbcc243f701c443453bf1475d0b61c" id="r_a9bdbcc243f701c443453bf1475d0b61c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bdbcc243f701c443453bf1475d0b61c">m_vel</a> {15.0_rt}</td></tr>
+<tr class="memdesc:a9bdbcc243f701c443453bf1475d0b61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">velocity magnitude x-direction only  <br /></td></tr>
+<tr class="memitem:a97bfa842ce5c9b15b3c3afe40bd64414" id="r_a97bfa842ce5c9b15b3c3afe40bd64414"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97bfa842ce5c9b15b3c3afe40bd64414">m_w</a> {18}</td></tr>
+<tr class="memdesc:a97bfa842ce5c9b15b3c3afe40bd64414"><td class="mdescLeft">&#160;</td><td class="mdescRight">output precision  <br /></td></tr>
+<tr class="memitem:a000b1ba02e524c30b3ce58e4f55f4a64" id="r_a000b1ba02e524c30b3ce58e4f55f4a64"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a000b1ba02e524c30b3ce58e4f55f4a64">m_output_fname</a> {&quot;ekman_spiral.log&quot;}</td></tr>
+<tr class="memdesc:a000b1ba02e524c30b3ce58e4f55f4a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">error log file  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Ekman Spiral physics </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afcdd46c7951abf761b69db1a0cbcbe17" name="afcdd46c7951abf761b69db1a0cbcbe17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcdd46c7951abf761b69db1a0cbcbe17">&#9670;&#160;</a></span>EkmanSpiral()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::EkmanSpiral::EkmanSpiral </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99352ce6b0bf9d2f3abc1d2873dbffd4" name="a99352ce6b0bf9d2f3abc1d2873dbffd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99352ce6b0bf9d2f3abc1d2873dbffd4">&#9670;&#160;</a></span>~EkmanSpiral()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::EkmanSpiral::~EkmanSpiral </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a626803f06dca4a28cfe4dbb7d423fc3e" name="a626803f06dca4a28cfe4dbb7d423fc3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a626803f06dca4a28cfe4dbb7d423fc3e">&#9670;&#160;</a></span>compute_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::EkmanSpiral::compute_error </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a57e3497d2f94c94bd94e05b4c05a27" name="a1a57e3497d2f94c94bd94e05b4c05a27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a57e3497d2f94c94bd94e05b4c05a27">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::EkmanSpiral::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58c9ce464c11bb8539ad6a9c994d924c" name="a58c9ce464c11bb8539ad6a9c994d924c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58c9ce464c11bb8539ad6a9c994d924c">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::EkmanSpiral::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the velocity and density fields at the beginning of the simulation. </p>
+
+</div>
+</div>
+<a id="a8000e56cb2419fcc6ef1fcbaab818fc3" name="a8000e56cb2419fcc6ef1fcbaab818fc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8000e56cb2419fcc6ef1fcbaab818fc3">&#9670;&#160;</a></span>output_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::EkmanSpiral::output_error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3965b1dd8f184e97e46a2024f582e3cf" name="a3965b1dd8f184e97e46a2024f582e3cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3965b1dd8f184e97e46a2024f582e3cf">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::EkmanSpiral::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2f51fcfcf775147d402fffa50cffbf9" name="ae2f51fcfcf775147d402fffa50cffbf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f51fcfcf775147d402fffa50cffbf9">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::EkmanSpiral::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63132ed480b0b1c9cddfbb629ff41c62" name="a63132ed480b0b1c9cddfbb629ff41c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63132ed480b0b1c9cddfbb629ff41c62">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::EkmanSpiral::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a820d568e2b3ba2a99eb010e68c1d6425" name="a820d568e2b3ba2a99eb010e68c1d6425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a820d568e2b3ba2a99eb010e68c1d6425">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::EkmanSpiral::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="abe1d83b528ec0f1cb4bbed43f092cddf" name="abe1d83b528ec0f1cb4bbed43f092cddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe1d83b528ec0f1cb4bbed43f092cddf">&#9670;&#160;</a></span>m_DE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::EkmanSpiral::m_DE {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ekman depth. </p>
+
+</div>
+</div>
+<a id="a8168bd6f9bff1247fbbed276988a1e01" name="a8168bd6f9bff1247fbbed276988a1e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8168bd6f9bff1247fbbed276988a1e01">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::EkmanSpiral::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa91d5c7f8322883736dd3e1b6f1936d9" name="aa91d5c7f8322883736dd3e1b6f1936d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa91d5c7f8322883736dd3e1b6f1936d9">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::EkmanSpiral::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a000b1ba02e524c30b3ce58e4f55f4a64" name="a000b1ba02e524c30b3ce58e4f55f4a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a000b1ba02e524c30b3ce58e4f55f4a64">&#9670;&#160;</a></span>m_output_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::EkmanSpiral::m_output_fname {&quot;ekman_spiral.log&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>error log file </p>
+
+</div>
+</div>
+<a id="acc46a6991cdca673208e9c291d7f86a8" name="acc46a6991cdca673208e9c291d7f86a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc46a6991cdca673208e9c291d7f86a8">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::EkmanSpiral::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3a2d84eb69806e86d05f7f67bba79bb" name="ad3a2d84eb69806e86d05f7f67bba79bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3a2d84eb69806e86d05f7f67bba79bb">&#9670;&#160;</a></span>m_rho</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::EkmanSpiral::m_rho {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initial density value </p>
+
+</div>
+</div>
+<a id="a4ad202fc46891dfe0f9f0d0d0a85a3eb" name="a4ad202fc46891dfe0f9f0d0d0a85a3eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad202fc46891dfe0f9f0d0d0a85a3eb">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::EkmanSpiral::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9bdbcc243f701c443453bf1475d0b61c" name="a9bdbcc243f701c443453bf1475d0b61c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bdbcc243f701c443453bf1475d0b61c">&#9670;&#160;</a></span>m_vel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::EkmanSpiral::m_vel {15.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>velocity magnitude x-direction only </p>
+
+</div>
+</div>
+<a id="a305d2fac83d2b62c147ae7d3c02e4b9e" name="a305d2fac83d2b62c147ae7d3c02e4b9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a305d2fac83d2b62c147ae7d3c02e4b9e">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::EkmanSpiral::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97bfa842ce5c9b15b3c3afe40bd64414" name="a97bfa842ce5c9b15b3c3afe40bd64414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97bfa842ce5c9b15b3c3afe40bd64414">&#9670;&#160;</a></span>m_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::EkmanSpiral::m_w {18}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>output precision </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_ekman_spiral_8_h_source.html">EkmanSpiral.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_ekman_spiral_8cpp.html">EkmanSpiral.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

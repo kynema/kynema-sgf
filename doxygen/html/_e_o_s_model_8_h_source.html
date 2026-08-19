@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/eos_models/EOSModel.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/eos_models/EOSModel.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_e_o_s_model_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-eos-models-eosmodel-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/eos_models/EOSModel.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-eos-models-eosmodel-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/eos_models/EOSModel.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_cbd4003b455befb405e079ec3ab58bea.html">eos_models</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">EOSModel.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_e_o_s_model_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef EOSMODEL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define EOSMODEL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8_h.html">src/utilities/constants.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1eos.html">    9</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1eos.html">kynema_sgf::eos</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html">   23</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a993161783206428290d4fd98e45cd41a">GammaLaw</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aa056be71aca1ae300e74300b2ff16904">   25</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aa056be71aca1ae300e74300b2ff16904">eos_type</a> = <a class="code hl_function" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a993161783206428290d4fd98e45cd41a">GammaLaw</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a2390ae432476d011a6bfa1e228425637">   26</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a2390ae432476d011a6bfa1e228425637">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;GammaLaw&quot;</span>; }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a38b3bb60c1c54a643c80ba6af0171138">   36</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real <a class="code hl_function" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a38b3bb60c1c54a643c80ba6af0171138">p_rth</a>(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">const</span> amrex::Real rho,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">const</span> amrex::Real theta,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">const</span> amrex::Real qv = 0.0_rt)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">const</span> <span class="keyword">auto</span> rhotheta = rho * theta;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#abac22927b8f9f32a47d89da2d355762b">m_p0</a> * std::pow(</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                          <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">m_air_gas_constant</a> * rhotheta *</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                              (1.0_rt + (<a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ac6a9758852ec1836b5be96a915d591a5">m_water_vapor_gas_constant</a> /</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                                         <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">m_air_gas_constant</a>) *</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                                            qv) *</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                              <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ae0261fe43a9e32b8d73151b950611489">m_ip0</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                          <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">m_gamma</a>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a6f9b8fe4efc548a4c905ba8fb0f95cf6">   59</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real <a class="code hl_function" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a6f9b8fe4efc548a4c905ba8fb0f95cf6">dp_constanttheta</a>(</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keyword">const</span> amrex::Real rho,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keyword">const</span> amrex::Real theta,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">const</span> amrex::Real qv = 0.0_rt)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">m_gamma</a> * <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#abac22927b8f9f32a47d89da2d355762b">m_p0</a> *</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>               std::pow(</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                   (<a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">m_air_gas_constant</a> * theta *</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                    (1.0_rt +</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                     <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ac6a9758852ec1836b5be96a915d591a5">m_water_vapor_gas_constant</a> / <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">m_air_gas_constant</a> * qv) *</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                    <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ae0261fe43a9e32b8d73151b950611489">m_ip0</a>),</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                   <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">m_gamma</a>) *</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>               std::pow(rho, <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">m_gamma</a> - 1.0_rt);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span>... Args&gt;</div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a993161783206428290d4fd98e45cd41a">   75</a></span>    AMREX_GPU_HOST_DEVICE <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a993161783206428290d4fd98e45cd41a">GammaLaw</a>(<span class="keyword">const</span> amrex::Real p0 = 1.0e-5_rt)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#abac22927b8f9f32a47d89da2d355762b">m_p0</a>{p0}, <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ae0261fe43a9e32b8d73151b950611489">m_ip0</a>{1.0_rt / p0}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    {}</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">   79</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">m_gamma</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#ac31275da4bfd7cfde55e8150442f2c2a">constants::HEAT_CAPACITY_RATIO</a>};</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#abac22927b8f9f32a47d89da2d355762b">   80</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#abac22927b8f9f32a47d89da2d355762b">m_p0</a>{1.0e5_rt};</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ae0261fe43a9e32b8d73151b950611489">   81</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ae0261fe43a9e32b8d73151b950611489">m_ip0</a>{1.0e-5_rt};</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">   82</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">m_air_gas_constant</a>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a1913af16a1efb8033b4f186e4c104c63">constants::UNIVERSAL_GAS_CONSTANT</a> / <a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a8f6668f43e0f9155f3c7ed86815f28d5">constants::MOLAR_MASS_AIR</a>};</div>
+</div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ac6a9758852ec1836b5be96a915d591a5">   84</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ac6a9758852ec1836b5be96a915d591a5">m_water_vapor_gas_constant</a>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a1913af16a1efb8033b4f186e4c104c63">constants::UNIVERSAL_GAS_CONSTANT</a> / <a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#acc7e10e41e85fea7565e8d2fad7693c6">constants::MOLAR_MASS_WATER_VAPOR</a>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>} <span class="comment">// namespace kynema_sgf::eos</span></div>
+</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif </span><span class="comment">/* EOSMODEL_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aconstants_8_h_html"><div class="ttname"><a href="constants_8_h.html">constants.H</a></div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_a1913af16a1efb8033b4f186e4c104c63"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#a1913af16a1efb8033b4f186e4c104c63">kynema_sgf::constants::UNIVERSAL_GAS_CONSTANT</a></div><div class="ttdeci">static constexpr amrex::Real UNIVERSAL_GAS_CONSTANT</div><div class="ttdoc">Universal gas constant (J/K mol)</div><div class="ttdef"><b>Definition</b> constants.H:46</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_a8f6668f43e0f9155f3c7ed86815f28d5"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#a8f6668f43e0f9155f3c7ed86815f28d5">kynema_sgf::constants::MOLAR_MASS_AIR</a></div><div class="ttdeci">static constexpr amrex::Real MOLAR_MASS_AIR</div><div class="ttdoc">Molar mass of air (kg/mol)</div><div class="ttdef"><b>Definition</b> constants.H:53</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_ac31275da4bfd7cfde55e8150442f2c2a"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#ac31275da4bfd7cfde55e8150442f2c2a">kynema_sgf::constants::HEAT_CAPACITY_RATIO</a></div><div class="ttdeci">static constexpr amrex::Real HEAT_CAPACITY_RATIO</div><div class="ttdoc">Heat capacity ratio.</div><div class="ttdef"><b>Definition</b> constants.H:50</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_acc7e10e41e85fea7565e8d2fad7693c6"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#acc7e10e41e85fea7565e8d2fad7693c6">kynema_sgf::constants::MOLAR_MASS_WATER_VAPOR</a></div><div class="ttdeci">static constexpr amrex::Real MOLAR_MASS_WATER_VAPOR</div><div class="ttdoc">Molar mass of water vapor (kg/mol)</div><div class="ttdef"><b>Definition</b> constants.H:56</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1eos_html"><div class="ttname"><a href="namespacekynema__sgf_1_1eos.html">kynema_sgf::eos</a></div><div class="ttdef"><b>Definition</b> EOSModel.H:9</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_a08a4aba0fa578d1a279e9af33a025848"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a08a4aba0fa578d1a279e9af33a025848">kynema_sgf::eos::GammaLaw::m_air_gas_constant</a></div><div class="ttdeci">const amrex::Real m_air_gas_constant</div><div class="ttdef"><b>Definition</b> EOSModel.H:82</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_a2390ae432476d011a6bfa1e228425637"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a2390ae432476d011a6bfa1e228425637">kynema_sgf::eos::GammaLaw::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> EOSModel.H:26</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_a38b3bb60c1c54a643c80ba6af0171138"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a38b3bb60c1c54a643c80ba6af0171138">kynema_sgf::eos::GammaLaw::p_rth</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real p_rth(const amrex::Real rho, const amrex::Real theta, const amrex::Real qv=0.0_rt) const</div><div class="ttdef"><b>Definition</b> EOSModel.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_a6f9b8fe4efc548a4c905ba8fb0f95cf6"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a6f9b8fe4efc548a4c905ba8fb0f95cf6">kynema_sgf::eos::GammaLaw::dp_constanttheta</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real dp_constanttheta(const amrex::Real rho, const amrex::Real theta, const amrex::Real qv=0.0_rt) const</div><div class="ttdef"><b>Definition</b> EOSModel.H:59</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_a993161783206428290d4fd98e45cd41a"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#a993161783206428290d4fd98e45cd41a">kynema_sgf::eos::GammaLaw::GammaLaw</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE GammaLaw(const amrex::Real p0=1.0e-5_rt)</div><div class="ttdef"><b>Definition</b> EOSModel.H:75</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_aa056be71aca1ae300e74300b2ff16904"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aa056be71aca1ae300e74300b2ff16904">kynema_sgf::eos::GammaLaw::eos_type</a></div><div class="ttdeci">GammaLaw eos_type</div><div class="ttdef"><b>Definition</b> EOSModel.H:25</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_abac22927b8f9f32a47d89da2d355762b"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#abac22927b8f9f32a47d89da2d355762b">kynema_sgf::eos::GammaLaw::m_p0</a></div><div class="ttdeci">const amrex::Real m_p0</div><div class="ttdef"><b>Definition</b> EOSModel.H:80</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_ac6a9758852ec1836b5be96a915d591a5"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ac6a9758852ec1836b5be96a915d591a5">kynema_sgf::eos::GammaLaw::m_water_vapor_gas_constant</a></div><div class="ttdeci">const amrex::Real m_water_vapor_gas_constant</div><div class="ttdef"><b>Definition</b> EOSModel.H:84</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_ae0261fe43a9e32b8d73151b950611489"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#ae0261fe43a9e32b8d73151b950611489">kynema_sgf::eos::GammaLaw::m_ip0</a></div><div class="ttdeci">const amrex::Real m_ip0</div><div class="ttdef"><b>Definition</b> EOSModel.H:81</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1eos_1_1_gamma_law_html_aefe3d4db037c7c7be50e4a53be207d03"><div class="ttname"><a href="structkynema__sgf_1_1eos_1_1_gamma_law.html#aefe3d4db037c7c7be50e4a53be207d03">kynema_sgf::eos::GammaLaw::m_gamma</a></div><div class="ttdeci">const amrex::Real m_gamma</div><div class="ttdef"><b>Definition</b> EOSModel.H:79</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

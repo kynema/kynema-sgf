@@ -1,0 +1,845 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::MOData Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::MOData Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1_m_o_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modata-struct-reference">
+<h1>MOData Struct Reference<a class="headerlink" href="#modata-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::MOData Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="structkynema__sgf_1_1_m_o_data.html">MOData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1_m_o_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::MOData Struct Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_m_o_data_8_h_source.html">MOData.H</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a69d9b59d216e8f5cb4ad6887e975f847" id="r_a69d9b59d216e8f5cb4ad6887e975f847"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847">ThetaCalcType</a> : std::uint8_t { <a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226">HEAT_FLUX</a> = 0
+, <a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847a317cef85d14b4909f1d76becb00dc0f1">SURFACE_TEMPERATURE</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a00e8fe0a236e690a0c0881c16284816c" id="r_a00e8fe0a236e690a0c0881c16284816c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00e8fe0a236e690a0c0881c16284816c">phi_m</a> () const</td></tr>
+<tr class="memitem:a15929f27f339e37742465c11fbf4c821" id="r_a15929f27f339e37742465c11fbf4c821"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15929f27f339e37742465c11fbf4c821">phi_m</a> (amrex::Real z) const</td></tr>
+<tr class="memitem:ad5e93e251d8e0404568a0653688c5dec" id="r_ad5e93e251d8e0404568a0653688c5dec"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e93e251d8e0404568a0653688c5dec">phi_h</a> () const</td></tr>
+<tr class="memitem:a681c726d7ed5b5c049b2ed0de46ee687" id="r_a681c726d7ed5b5c049b2ed0de46ee687"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a681c726d7ed5b5c049b2ed0de46ee687">phi_h</a> (amrex::Real z) const</td></tr>
+<tr class="memitem:aa80a651140a2c9c7166800d60aca4afa" id="r_aa80a651140a2c9c7166800d60aca4afa"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa80a651140a2c9c7166800d60aca4afa">calc_psi_m</a> (amrex::Real zeta) const</td></tr>
+<tr class="memitem:a17912338160c7ed270b7351ea23b7f7a" id="r_a17912338160c7ed270b7351ea23b7f7a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17912338160c7ed270b7351ea23b7f7a">calc_psi_h</a> (amrex::Real zeta) const</td></tr>
+<tr class="memitem:ab8db65d23a6ba6ca521cbfaaa1a17654" id="r_ab8db65d23a6ba6ca521cbfaaa1a17654"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8db65d23a6ba6ca521cbfaaa1a17654">update_fluxes</a> (int max_iters=25)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a82ba5977304a9f5d3af8ec4384eb533b" id="r_a82ba5977304a9f5d3af8ec4384eb533b"><td class="memItemLeft" align="right" valign="top">static amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82ba5977304a9f5d3af8ec4384eb533b">calc_psi_m</a> (amrex::Real zeta, amrex::Real <a class="el" href="#aef39ff93f49a2cda9cde046e0086b9d3">beta_m</a>, amrex::Real <a class="el" href="#ae92b6d278f02ce82bccd38679dfc0eec">gamma_m</a>)</td></tr>
+<tr class="memitem:a8105ea44cb162a0089b6d62813d226b3" id="r_a8105ea44cb162a0089b6d62813d226b3"><td class="memItemLeft" align="right" valign="top">static amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8105ea44cb162a0089b6d62813d226b3">calc_psi_h</a> (amrex::Real zeta, amrex::Real <a class="el" href="#a0cc98e9fa507ea5813e922c77903a99f">beta_h</a>, amrex::Real <a class="el" href="#a3900d66d4e4c1798d080b863ebf63af2">gamma_h</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ab3e7793373e270c388415a015aad9a12" id="r_ab3e7793373e270c388415a015aad9a12"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3e7793373e270c388415a015aad9a12">zref</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ab3e7793373e270c388415a015aad9a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference height (m)  <br /></td></tr>
+<tr class="memitem:a1f6c5e325d051da0cf162d2009389305" id="r_a1f6c5e325d051da0cf162d2009389305"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f6c5e325d051da0cf162d2009389305">z0</a> {0.1_rt}</td></tr>
+<tr class="memdesc:a1f6c5e325d051da0cf162d2009389305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aerodynamic roughness height (m)  <br /></td></tr>
+<tr class="memitem:a1210df5aac99b472aa900c20cc060468" id="r_a1210df5aac99b472aa900c20cc060468"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1210df5aac99b472aa900c20cc060468">z0t</a> {<a class="el" href="#a1f6c5e325d051da0cf162d2009389305">z0</a>}</td></tr>
+<tr class="memdesc:a1210df5aac99b472aa900c20cc060468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thermal roughness height (m)  <br /></td></tr>
+<tr class="memitem:adf6db24fe2e7198a48421e10e768c4d1" id="r_adf6db24fe2e7198a48421e10e768c4d1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf6db24fe2e7198a48421e10e768c4d1">utau</a></td></tr>
+<tr class="memdesc:adf6db24fe2e7198a48421e10e768c4d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Friction velocity (m/s)  <br /></td></tr>
+<tr class="memitem:a506239b51d3fce81f5fccf3635780846" id="r_a506239b51d3fce81f5fccf3635780846"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a506239b51d3fce81f5fccf3635780846">kappa</a> {0.41_rt}</td></tr>
+<tr class="memdesc:a506239b51d3fce81f5fccf3635780846"><td class="mdescLeft">&#160;</td><td class="mdescRight">von Karman constant  <br /></td></tr>
+<tr class="memitem:a6982b8dd8919143cf0b10983ccfb83da" id="r_a6982b8dd8919143cf0b10983ccfb83da"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6982b8dd8919143cf0b10983ccfb83da">gravity</a> {9.81_rt}</td></tr>
+<tr class="memdesc:a6982b8dd8919143cf0b10983ccfb83da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acceleration due to gravity (m/s^2)  <br /></td></tr>
+<tr class="memitem:a6f9bda6cea2e8fff7a586ce12834afff" id="r_a6f9bda6cea2e8fff7a586ce12834afff"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f9bda6cea2e8fff7a586ce12834afff">obukhov_len</a> {1.0e16_rt}</td></tr>
+<tr class="memdesc:a6f9bda6cea2e8fff7a586ce12834afff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-dimensional Obukhov length.  <br /></td></tr>
+<tr class="memitem:a7fabf5e6fec035056e6ebcf666e4fb68" id="r_a7fabf5e6fec035056e6ebcf666e4fb68"><td class="memItemLeft" align="right" valign="top">amrex::RealArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fabf5e6fec035056e6ebcf666e4fb68">vel_mean</a></td></tr>
+<tr class="memdesc:a7fabf5e6fec035056e6ebcf666e4fb68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean velocity (at zref)  <br /></td></tr>
+<tr class="memitem:af5efd4d4a6e5b9623df25e858441c883" id="r_af5efd4d4a6e5b9623df25e858441c883"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5efd4d4a6e5b9623df25e858441c883">vmag_mean</a></td></tr>
+<tr class="memdesc:af5efd4d4a6e5b9623df25e858441c883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean wind speed (at zref)  <br /></td></tr>
+<tr class="memitem:aef20ac065c6913fca1ac81baa6aa0bfc" id="r_aef20ac065c6913fca1ac81baa6aa0bfc"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef20ac065c6913fca1ac81baa6aa0bfc">Su_mean</a></td></tr>
+<tr class="memdesc:aef20ac065c6913fca1ac81baa6aa0bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean wind speed times x-velocity (at zref)  <br /></td></tr>
+<tr class="memitem:a8ad4cb6a30a0b9d6fe9d0e337ac3ef81" id="r_a8ad4cb6a30a0b9d6fe9d0e337ac3ef81"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ad4cb6a30a0b9d6fe9d0e337ac3ef81">Sv_mean</a></td></tr>
+<tr class="memdesc:a8ad4cb6a30a0b9d6fe9d0e337ac3ef81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean wind speed times y-velocity (at zref)  <br /></td></tr>
+<tr class="memitem:ab53a41a9f20731d562497fbcf6e774d4" id="r_ab53a41a9f20731d562497fbcf6e774d4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab53a41a9f20731d562497fbcf6e774d4">theta_mean</a></td></tr>
+<tr class="memdesc:ab53a41a9f20731d562497fbcf6e774d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean potential temperature.  <br /></td></tr>
+<tr class="memitem:a5d253d9a38978887479dda30760a2e6e" id="r_a5d253d9a38978887479dda30760a2e6e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d253d9a38978887479dda30760a2e6e">surf_temp_flux</a> {0.0_rt}</td></tr>
+<tr class="memdesc:a5d253d9a38978887479dda30760a2e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heat flux.  <br /></td></tr>
+<tr class="memitem:a34e24ad6726d00e862f3a882f9099863" id="r_a34e24ad6726d00e862f3a882f9099863"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34e24ad6726d00e862f3a882f9099863">surf_temp</a></td></tr>
+<tr class="memdesc:a34e24ad6726d00e862f3a882f9099863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantaneous surface temperature.  <br /></td></tr>
+<tr class="memitem:ae92b6d278f02ce82bccd38679dfc0eec" id="r_ae92b6d278f02ce82bccd38679dfc0eec"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae92b6d278f02ce82bccd38679dfc0eec">gamma_m</a> {5.0_rt}</td></tr>
+<tr class="memitem:a3900d66d4e4c1798d080b863ebf63af2" id="r_a3900d66d4e4c1798d080b863ebf63af2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3900d66d4e4c1798d080b863ebf63af2">gamma_h</a> {5.0_rt}</td></tr>
+<tr class="memitem:aef39ff93f49a2cda9cde046e0086b9d3" id="r_aef39ff93f49a2cda9cde046e0086b9d3"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef39ff93f49a2cda9cde046e0086b9d3">beta_m</a> {16.0_rt}</td></tr>
+<tr class="memitem:a0cc98e9fa507ea5813e922c77903a99f" id="r_a0cc98e9fa507ea5813e922c77903a99f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cc98e9fa507ea5813e922c77903a99f">beta_h</a> {16.0_rt}</td></tr>
+<tr class="memitem:a8b46b91589868bc2d23a9dbc587ced1d" id="r_a8b46b91589868bc2d23a9dbc587ced1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847">ThetaCalcType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b46b91589868bc2d23a9dbc587ced1d">alg_type</a> {<a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226">ThetaCalcType::HEAT_FLUX</a>}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Monin-Obukhov surface layer profile</p>
+<p>van der Laan, P., Kelly, M. C., &amp; Sørensen, N. N. (2017). A new k-epsilon model consistent with Monin-Obukhov similarity theory. Wind Energy, 20(3), 479–489. <a href="https://doi.org/10.1002/we.2017">https://doi.org/10.1002/we.2017</a></p>
+<p>Consistent with Dyer (1974) formulation from page 57, Chapter 2, Modeling the vertical <a class="el" href="classkynema__sgf_1_1_a_b_l.html">ABL</a> structure in Modelling of Atmospheric Flow Fields, Demetri P Lalas and Corrado F Ratto, January 1996, <a href="https://doi.org/10.1142/2975">https://doi.org/10.1142/2975</a>. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a69d9b59d216e8f5cb4ad6887e975f847" name="a69d9b59d216e8f5cb4ad6887e975f847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d9b59d216e8f5cb4ad6887e975f847">&#9670;&#160;</a></span>ThetaCalcType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847">kynema_sgf::MOData::ThetaCalcType</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226" name="a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226"></a>HEAT_FLUX&#160;</td><td class="fielddoc"><p>Heat-flux specified. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a69d9b59d216e8f5cb4ad6887e975f847a317cef85d14b4909f1d76becb00dc0f1" name="a69d9b59d216e8f5cb4ad6887e975f847a317cef85d14b4909f1d76becb00dc0f1"></a>SURFACE_TEMPERATURE&#160;</td><td class="fielddoc"><p>Surface temperature specified. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a17912338160c7ed270b7351ea23b7f7a" name="a17912338160c7ed270b7351ea23b7f7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17912338160c7ed270b7351ea23b7f7a">&#9670;&#160;</a></span>calc_psi_h() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::calc_psi_h </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>zeta</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8105ea44cb162a0089b6d62813d226b3" name="a8105ea44cb162a0089b6d62813d226b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8105ea44cb162a0089b6d62813d226b3">&#9670;&#160;</a></span>calc_psi_h() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::calc_psi_h </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>zeta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>beta_h</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>gamma_h</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa80a651140a2c9c7166800d60aca4afa" name="aa80a651140a2c9c7166800d60aca4afa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa80a651140a2c9c7166800d60aca4afa">&#9670;&#160;</a></span>calc_psi_m() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::calc_psi_m </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>zeta</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82ba5977304a9f5d3af8ec4384eb533b" name="a82ba5977304a9f5d3af8ec4384eb533b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ba5977304a9f5d3af8ec4384eb533b">&#9670;&#160;</a></span>calc_psi_m() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::calc_psi_m </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>zeta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>beta_m</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>gamma_m</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5e93e251d8e0404568a0653688c5dec" name="ad5e93e251d8e0404568a0653688c5dec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e93e251d8e0404568a0653688c5dec">&#9670;&#160;</a></span>phi_h() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::phi_h </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a681c726d7ed5b5c049b2ed0de46ee687" name="a681c726d7ed5b5c049b2ed0de46ee687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a681c726d7ed5b5c049b2ed0de46ee687">&#9670;&#160;</a></span>phi_h() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::phi_h </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>z</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00e8fe0a236e690a0c0881c16284816c" name="a00e8fe0a236e690a0c0881c16284816c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e8fe0a236e690a0c0881c16284816c">&#9670;&#160;</a></span>phi_m() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::phi_m </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15929f27f339e37742465c11fbf4c821" name="a15929f27f339e37742465c11fbf4c821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15929f27f339e37742465c11fbf4c821">&#9670;&#160;</a></span>phi_m() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::phi_m </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>z</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab8db65d23a6ba6ca521cbfaaa1a17654" name="ab8db65d23a6ba6ca521cbfaaa1a17654"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8db65d23a6ba6ca521cbfaaa1a17654">&#9670;&#160;</a></span>update_fluxes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::MOData::update_fluxes </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>max_iters</em></span><span class="paramdefsep"> = </span><span class="paramdefval">25</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a8b46b91589868bc2d23a9dbc587ced1d" name="a8b46b91589868bc2d23a9dbc587ced1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b46b91589868bc2d23a9dbc587ced1d">&#9670;&#160;</a></span>alg_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847">ThetaCalcType</a> kynema_sgf::MOData::alg_type {<a class="el" href="#a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226">ThetaCalcType::HEAT_FLUX</a>}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0cc98e9fa507ea5813e922c77903a99f" name="a0cc98e9fa507ea5813e922c77903a99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cc98e9fa507ea5813e922c77903a99f">&#9670;&#160;</a></span>beta_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::beta_h {16.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef39ff93f49a2cda9cde046e0086b9d3" name="aef39ff93f49a2cda9cde046e0086b9d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef39ff93f49a2cda9cde046e0086b9d3">&#9670;&#160;</a></span>beta_m</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::beta_m {16.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3900d66d4e4c1798d080b863ebf63af2" name="a3900d66d4e4c1798d080b863ebf63af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3900d66d4e4c1798d080b863ebf63af2">&#9670;&#160;</a></span>gamma_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::gamma_h {5.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae92b6d278f02ce82bccd38679dfc0eec" name="ae92b6d278f02ce82bccd38679dfc0eec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae92b6d278f02ce82bccd38679dfc0eec">&#9670;&#160;</a></span>gamma_m</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::gamma_m {5.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6982b8dd8919143cf0b10983ccfb83da" name="a6982b8dd8919143cf0b10983ccfb83da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6982b8dd8919143cf0b10983ccfb83da">&#9670;&#160;</a></span>gravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::gravity {9.81_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Acceleration due to gravity (m/s^2) </p>
+
+</div>
+</div>
+<a id="a506239b51d3fce81f5fccf3635780846" name="a506239b51d3fce81f5fccf3635780846"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a506239b51d3fce81f5fccf3635780846">&#9670;&#160;</a></span>kappa</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::kappa {0.41_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>von Karman constant </p>
+
+</div>
+</div>
+<a id="a6f9bda6cea2e8fff7a586ce12834afff" name="a6f9bda6cea2e8fff7a586ce12834afff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f9bda6cea2e8fff7a586ce12834afff">&#9670;&#160;</a></span>obukhov_len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::obukhov_len {1.0e16_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Non-dimensional Obukhov length. </p>
+
+</div>
+</div>
+<a id="aef20ac065c6913fca1ac81baa6aa0bfc" name="aef20ac065c6913fca1ac81baa6aa0bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef20ac065c6913fca1ac81baa6aa0bfc">&#9670;&#160;</a></span>Su_mean</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::Su_mean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mean wind speed times x-velocity (at zref) </p>
+
+</div>
+</div>
+<a id="a34e24ad6726d00e862f3a882f9099863" name="a34e24ad6726d00e862f3a882f9099863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34e24ad6726d00e862f3a882f9099863">&#9670;&#160;</a></span>surf_temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::surf_temp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantaneous surface temperature. </p>
+
+</div>
+</div>
+<a id="a5d253d9a38978887479dda30760a2e6e" name="a5d253d9a38978887479dda30760a2e6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d253d9a38978887479dda30760a2e6e">&#9670;&#160;</a></span>surf_temp_flux</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::surf_temp_flux {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Heat flux. </p>
+
+</div>
+</div>
+<a id="a8ad4cb6a30a0b9d6fe9d0e337ac3ef81" name="a8ad4cb6a30a0b9d6fe9d0e337ac3ef81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ad4cb6a30a0b9d6fe9d0e337ac3ef81">&#9670;&#160;</a></span>Sv_mean</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::Sv_mean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mean wind speed times y-velocity (at zref) </p>
+
+</div>
+</div>
+<a id="ab53a41a9f20731d562497fbcf6e774d4" name="ab53a41a9f20731d562497fbcf6e774d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab53a41a9f20731d562497fbcf6e774d4">&#9670;&#160;</a></span>theta_mean</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::theta_mean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mean potential temperature. </p>
+
+</div>
+</div>
+<a id="adf6db24fe2e7198a48421e10e768c4d1" name="adf6db24fe2e7198a48421e10e768c4d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf6db24fe2e7198a48421e10e768c4d1">&#9670;&#160;</a></span>utau</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::utau</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Friction velocity (m/s) </p>
+
+</div>
+</div>
+<a id="a7fabf5e6fec035056e6ebcf666e4fb68" name="a7fabf5e6fec035056e6ebcf666e4fb68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fabf5e6fec035056e6ebcf666e4fb68">&#9670;&#160;</a></span>vel_mean</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::RealArray kynema_sgf::MOData::vel_mean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mean velocity (at zref) </p>
+
+</div>
+</div>
+<a id="af5efd4d4a6e5b9623df25e858441c883" name="af5efd4d4a6e5b9623df25e858441c883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5efd4d4a6e5b9623df25e858441c883">&#9670;&#160;</a></span>vmag_mean</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::vmag_mean</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mean wind speed (at zref) </p>
+
+</div>
+</div>
+<a id="a1f6c5e325d051da0cf162d2009389305" name="a1f6c5e325d051da0cf162d2009389305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f6c5e325d051da0cf162d2009389305">&#9670;&#160;</a></span>z0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::z0 {0.1_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aerodynamic roughness height (m) </p>
+
+</div>
+</div>
+<a id="a1210df5aac99b472aa900c20cc060468" name="a1210df5aac99b472aa900c20cc060468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1210df5aac99b472aa900c20cc060468">&#9670;&#160;</a></span>z0t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::z0t {<a class="el" href="#a1f6c5e325d051da0cf162d2009389305">z0</a>}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Thermal roughness height (m) </p>
+
+</div>
+</div>
+<a id="ab3e7793373e270c388415a015aad9a12" name="ab3e7793373e270c388415a015aad9a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3e7793373e270c388415a015aad9a12">&#9670;&#160;</a></span>zref</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::MOData::zref {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reference height (m) </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_m_o_data_8_h_source.html">MOData.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_m_o_data_8cpp.html">MOData.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

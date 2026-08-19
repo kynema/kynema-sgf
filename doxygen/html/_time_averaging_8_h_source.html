@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/TimeAveraging.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/TimeAveraging.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_time_averaging_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-averaging-timeaveraging-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/TimeAveraging.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-averaging-timeaveraging-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/averaging/TimeAveraging.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_e4d5b79ef26780d1cda81af5a58fc77c.html">averaging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">TimeAveraging.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_time_averaging_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef TIMEAVERAGING_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define TIMEAVERAGING_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_factory_8_h.html">src/core/Factory.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_post_processing_8_h.html">src/utilities/PostProcessing.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8_h.html">src/utilities/constants.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1averaging.html">averaging</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">FieldTimeAverage</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    : <span class="keyword">public</span> <a class="code hl_function" href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">Factory</a>&lt;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>          FieldTimeAverage,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>          CFDSim&amp;,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>          const std::string&amp;,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>          const std::string&amp;&gt;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a1272d9f99aa70ad386198861b2f2d454">   38</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a1272d9f99aa70ad386198861b2f2d454">base_identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;FieldTimeAverage&quot;</span>; }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a9ccd5da8c313c2b9cfe662d02b30292a">   40</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a9ccd5da8c313c2b9cfe662d02b30292a">~FieldTimeAverage</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a6199d96ff763998b4d58d1fc3482b2ae">   49</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a6199d96ff763998b4d58d1fc3482b2ae">operator()</a>(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; time,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        amrex::Real filter_width,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        amrex::Real avg_time_interval,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        amrex::Real elapsed_time) = 0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a40f6ebba4d6ace608b133688c0c180f4">   55</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a40f6ebba4d6ace608b133688c0c180f4">average_field_name</a>() = 0;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html">   60</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#abd2d01c048d580f0969a161c5f0911ec">TimeAveraging</a> : <span class="keyword">public</span> PostProcessBase::Register&lt;TimeAveraging&gt;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aefcb3ab0c7389b36847da5041d0e136a">   63</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aefcb3ab0c7389b36847da5041d0e136a">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;TimeAveraging&quot;</span>; }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#abd2d01c048d580f0969a161c5f0911ec">TimeAveraging</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>, std::string <span class="comment">/*label*/</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ac56c184ac1f1b5cb40420922948c8a34">   67</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ac56c184ac1f1b5cb40420922948c8a34">~TimeAveraging</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ae73801e94e9bfe85884834441cee61c3">pre_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a1d019dc5b326c08a41a666437bab3677">initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ac218c1d2f6d18ba8a65b51d88c900525">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aadfe220e96430945ddc67e43c0f77372">   76</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aadfe220e96430945ddc67e43c0f77372">output_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a3ea9d14699152c18d9d9c7de6ee8a7cc">   78</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a3ea9d14699152c18d9d9c7de6ee8a7cc">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ae7c5bb11919e51c3b94510cad7da897e">add_averaging</a>(</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keyword">const</span> std::string&amp; field_name,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">const</span> std::string&amp; avg_type = <span class="stringliteral">&quot;ReAveraging&quot;</span>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a2434a438ad8fe9037bc6833af8641893">   85</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a2434a438ad8fe9037bc6833af8641893">m_sim</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a51e580fa26d8bc261d73227dbf0e4e59">   87</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a51e580fa26d8bc261d73227dbf0e4e59">m_label</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a9db56d8ee6fd7165361f1106a7f674df">   90</a></span>    amrex::Vector&lt;std::unique_ptr&lt;FieldTimeAverage&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a9db56d8ee6fd7165361f1106a7f674df">m_averages</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a31b09e8b1636e141b52c010e57cf328a">   93</a></span>    std::map&lt;std::string, FieldTimeAverage*&gt; <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a31b09e8b1636e141b52c010e57cf328a">m_registered</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#abd87613376d721716b587bb82d96a65c">   96</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#abd87613376d721716b587bb82d96a65c">m_start_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aca64bb0134d0a2214fddc51aa0a02b2e">   99</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aca64bb0134d0a2214fddc51aa0a02b2e">m_stop_time</a>{std::numeric_limits&lt;amrex::Real&gt;::max()};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a95d15afac47c1cc48e4bccf6ed008a62">  102</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a95d15afac47c1cc48e4bccf6ed008a62">m_filter</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a>};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a7b8f036aede5b6ea2d7561ba59b46cd7">  105</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a7b8f036aede5b6ea2d7561ba59b46cd7">m_time_interval</a>{-1.};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ab6e4e110442439747a0942fa05947a34">  108</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ab6e4e110442439747a0942fa05947a34">m_accumulated_avg_time_interval</a>{0.};</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>};</div>
+</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>} <span class="comment">// namespace averaging</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif </span><span class="comment">/* TIMEAVERAGING_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_factory_8_h_html"><div class="ttname"><a href="_factory_8_h.html">Factory.H</a></div></div>
+<div class="ttc" id="a_post_processing_8_h_html"><div class="ttname"><a href="_post_processing_8_h.html">PostProcessing.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_field_time_average_html"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_field_time_average.html">kynema_sgf::averaging::FieldTimeAverage</a></div><div class="ttdef"><b>Definition</b> TimeAveraging.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_field_time_average_html_a1272d9f99aa70ad386198861b2f2d454"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a1272d9f99aa70ad386198861b2f2d454">kynema_sgf::averaging::FieldTimeAverage::base_identifier</a></div><div class="ttdeci">static std::string base_identifier()</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_field_time_average_html_a40f6ebba4d6ace608b133688c0c180f4"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a40f6ebba4d6ace608b133688c0c180f4">kynema_sgf::averaging::FieldTimeAverage::average_field_name</a></div><div class="ttdeci">virtual const std::string &amp; average_field_name()=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_field_time_average_html_a6199d96ff763998b4d58d1fc3482b2ae"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a6199d96ff763998b4d58d1fc3482b2ae">kynema_sgf::averaging::FieldTimeAverage::operator()</a></div><div class="ttdeci">virtual void operator()(const SimTime &amp;time, amrex::Real filter_width, amrex::Real avg_time_interval, amrex::Real elapsed_time)=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_field_time_average_html_a9ccd5da8c313c2b9cfe662d02b30292a"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_field_time_average.html#a9ccd5da8c313c2b9cfe662d02b30292a">kynema_sgf::averaging::FieldTimeAverage::~FieldTimeAverage</a></div><div class="ttdeci">~FieldTimeAverage() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a1d019dc5b326c08a41a666437bab3677"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a1d019dc5b326c08a41a666437bab3677">kynema_sgf::averaging::TimeAveraging::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdef"><b>Definition</b> TimeAveraging.cpp:64</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a2434a438ad8fe9037bc6833af8641893"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a2434a438ad8fe9037bc6833af8641893">kynema_sgf::averaging::TimeAveraging::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:85</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a31b09e8b1636e141b52c010e57cf328a"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a31b09e8b1636e141b52c010e57cf328a">kynema_sgf::averaging::TimeAveraging::m_registered</a></div><div class="ttdeci">std::map&lt; std::string, FieldTimeAverage * &gt; m_registered</div><div class="ttdoc">Fields registered so far to avoid duplication.</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:93</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a3ea9d14699152c18d9d9c7de6ee8a7cc"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a3ea9d14699152c18d9d9c7de6ee8a7cc">kynema_sgf::averaging::TimeAveraging::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:78</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a51e580fa26d8bc261d73227dbf0e4e59"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a51e580fa26d8bc261d73227dbf0e4e59">kynema_sgf::averaging::TimeAveraging::m_label</a></div><div class="ttdeci">const std::string m_label</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:87</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a7b8f036aede5b6ea2d7561ba59b46cd7"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a7b8f036aede5b6ea2d7561ba59b46cd7">kynema_sgf::averaging::TimeAveraging::m_time_interval</a></div><div class="ttdeci">amrex::Real m_time_interval</div><div class="ttdoc">Time averaging time interval (in seconds)</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:105</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a95d15afac47c1cc48e4bccf6ed008a62"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a95d15afac47c1cc48e4bccf6ed008a62">kynema_sgf::averaging::TimeAveraging::m_filter</a></div><div class="ttdeci">amrex::Real m_filter</div><div class="ttdoc">Time averaging window (in seconds)</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:102</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_a9db56d8ee6fd7165361f1106a7f674df"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#a9db56d8ee6fd7165361f1106a7f674df">kynema_sgf::averaging::TimeAveraging::m_averages</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; FieldTimeAverage &gt; &gt; m_averages</div><div class="ttdoc">Vector containing all registered field averagers.</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:90</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_aadfe220e96430945ddc67e43c0f77372"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aadfe220e96430945ddc67e43c0f77372">kynema_sgf::averaging::TimeAveraging::output_actions</a></div><div class="ttdeci">void output_actions() override</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_ab6e4e110442439747a0942fa05947a34"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ab6e4e110442439747a0942fa05947a34">kynema_sgf::averaging::TimeAveraging::m_accumulated_avg_time_interval</a></div><div class="ttdeci">amrex::Real m_accumulated_avg_time_interval</div><div class="ttdoc">Accumulated averaging time interval.</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:108</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_abd2d01c048d580f0969a161c5f0911ec"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#abd2d01c048d580f0969a161c5f0911ec">kynema_sgf::averaging::TimeAveraging::TimeAveraging</a></div><div class="ttdeci">TimeAveraging(CFDSim &amp;, std::string)</div><div class="ttdef"><b>Definition</b> TimeAveraging.cpp:12</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_abd87613376d721716b587bb82d96a65c"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#abd87613376d721716b587bb82d96a65c">kynema_sgf::averaging::TimeAveraging::m_start_time</a></div><div class="ttdeci">amrex::Real m_start_time</div><div class="ttdoc">Time to start averaging the fields.</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:96</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_ac218c1d2f6d18ba8a65b51d88c900525"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ac218c1d2f6d18ba8a65b51d88c900525">kynema_sgf::averaging::TimeAveraging::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> TimeAveraging.cpp:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_ac56c184ac1f1b5cb40420922948c8a34"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ac56c184ac1f1b5cb40420922948c8a34">kynema_sgf::averaging::TimeAveraging::~TimeAveraging</a></div><div class="ttdeci">~TimeAveraging() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_aca64bb0134d0a2214fddc51aa0a02b2e"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aca64bb0134d0a2214fddc51aa0a02b2e">kynema_sgf::averaging::TimeAveraging::m_stop_time</a></div><div class="ttdeci">amrex::Real m_stop_time</div><div class="ttdoc">Time to stop averaging the fields.</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:99</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_ae73801e94e9bfe85884834441cee61c3"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ae73801e94e9bfe85884834441cee61c3">kynema_sgf::averaging::TimeAveraging::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdoc">Perform actions before mesh is created.</div><div class="ttdef"><b>Definition</b> TimeAveraging.cpp:18</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_ae7c5bb11919e51c3b94510cad7da897e"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#ae7c5bb11919e51c3b94510cad7da897e">kynema_sgf::averaging::TimeAveraging::add_averaging</a></div><div class="ttdeci">const std::string &amp; add_averaging(const std::string &amp;field_name, const std::string &amp;avg_type=&quot;ReAveraging&quot;)</div><div class="ttdef"><b>Definition</b> TimeAveraging.cpp:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1averaging_1_1_time_averaging_html_aefcb3ab0c7389b36847da5041d0e136a"><div class="ttname"><a href="classkynema__sgf_1_1averaging_1_1_time_averaging.html#aefcb3ab0c7389b36847da5041d0e136a">kynema_sgf::averaging::TimeAveraging::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> TimeAveraging.H:63</div></div>
+<div class="ttc" id="aconstants_8_h_html"><div class="ttname"><a href="constants_8_h.html">constants.H</a></div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1averaging_html"><div class="ttname"><a href="namespacekynema__sgf_1_1averaging.html">kynema_sgf::averaging</a></div><div class="ttdef"><b>Definition</b> ReAveraging.cpp:10</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_a522e4cd8367efc48dae9370906ea304f"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#a522e4cd8367efc48dae9370906ea304f">kynema_sgf::constants::LARGE_NUM</a></div><div class="ttdeci">static constexpr amrex::Real LARGE_NUM</div><div class="ttdoc">A large positive number.</div><div class="ttdef"><b>Definition</b> constants.H:29</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_html_a91304216d59ae6834fc0da187ec512c6"><div class="ttname"><a href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">kynema_sgf::Factory&lt; FieldTimeAverage, CFDSim &amp;, const std::string &amp;, const std::string &amp; &gt;::Factory</a></div><div class="ttdeci">Factory()=default</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

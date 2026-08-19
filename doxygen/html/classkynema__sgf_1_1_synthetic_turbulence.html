@@ -1,0 +1,946 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::SyntheticTurbulence Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::SyntheticTurbulence Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_synthetic_turbulence.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="syntheticturbulence-class-reference">
+<h1>SyntheticTurbulence Class Reference<a class="headerlink" href="#syntheticturbulence-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::SyntheticTurbulence Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_synthetic_turbulence-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::SyntheticTurbulence Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_synthetic_turbulence_8_h_source.html">SyntheticTurbulence.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::SyntheticTurbulence:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_synthetic_turbulence__inherit__graph.svg" width="250" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::SyntheticTurbulence:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_synthetic_turbulence__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a289817af2559d7f4ae796e70c2341fa1" id="r_a289817af2559d7f4ae796e70c2341fa1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a289817af2559d7f4ae796e70c2341fa1">SyntheticTurbulence</a> (const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a01410bb59c897f5999fb778330cd38bc" id="r_a01410bb59c897f5999fb778330cd38bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01410bb59c897f5999fb778330cd38bc">SyntheticTurbulence</a> ()=delete</td></tr>
+<tr class="memitem:a5f000d3efe0c8b976bc981fc0f035874" id="r_a5f000d3efe0c8b976bc981fc0f035874"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f000d3efe0c8b976bc981fc0f035874">SyntheticTurbulence</a> (const <a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a> &amp;)=delete</td></tr>
+<tr class="memitem:a959ea66b7dabcc0100cdc1e1c07eda01" id="r_a959ea66b7dabcc0100cdc1e1c07eda01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a959ea66b7dabcc0100cdc1e1c07eda01">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a> &amp;)=delete</td></tr>
+<tr class="memitem:a11be08fffe7330f536d362852ff9f85a" id="r_a11be08fffe7330f536d362852ff9f85a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11be08fffe7330f536d362852ff9f85a">~SyntheticTurbulence</a> () override=default</td></tr>
+<tr class="memitem:af21da1aa0954fa6c0c6fe50ab958283a" id="r_af21da1aa0954fa6c0c6fe50ab958283a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af21da1aa0954fa6c0c6fe50ab958283a">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memitem:a4d5f0870be8f11a0390cd57e6264d33a" id="r_a4d5f0870be8f11a0390cd57e6264d33a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d5f0870be8f11a0390cd57e6264d33a">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a72a1785a0ef7eee6ac4ca89869b71691" id="r_a72a1785a0ef7eee6ac4ca89869b71691"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72a1785a0ef7eee6ac4ca89869b71691">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a55b1586efaa21331df4a8bfdbf511449" id="r_a55b1586efaa21331df4a8bfdbf511449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55b1586efaa21331df4a8bfdbf511449">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a91e852c131340164292f0c73854a68f9" id="r_a91e852c131340164292f0c73854a68f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91e852c131340164292f0c73854a68f9">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a03b781d4a2e8134fd4694d18c9a1bb4c" id="r_a03b781d4a2e8134fd4694d18c9a1bb4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03b781d4a2e8134fd4694d18c9a1bb4c">initialize</a> ()</td></tr>
+<tr class="memitem:aa29b3c39f210cdb2a277a199ef0e1e26" id="r_aa29b3c39f210cdb2a277a199ef0e1e26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa29b3c39f210cdb2a277a199ef0e1e26">update</a> ()</td></tr>
+<tr class="memitem:ae4f4f6b3a46f7ebfcb396bf961acdf54" id="r_ae4f4f6b3a46f7ebfcb396bf961acdf54"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a>&gt; </td></tr>
+<tr class="memitem:ae4f4f6b3a46f7ebfcb396bf961acdf54 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4f4f6b3a46f7ebfcb396bf961acdf54">update_impl</a> (const <a class="el" href="structkynema__sgf_1_1_synth_turb_device_data.html">SynthTurbDeviceData</a> &amp;, const <a class="el" href="structkynema__sgf_1_1_interp_weights.html">InterpWeights</a> &amp;, const <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a> &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aee20c22b1b46deeaedb5de8fd38d7ab0" id="r_aee20c22b1b46deeaedb5de8fd38d7ab0"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee20c22b1b46deeaedb5de8fd38d7ab0">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3a4c56a35ad37f552e4502f91399faf9" id="r_a3a4c56a35ad37f552e4502f91399faf9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a4c56a35ad37f552e4502f91399faf9">m_time</a></td></tr>
+<tr class="memitem:a91ff59d9f54e7c9227aeb014aa6593bc" id="r_a91ff59d9f54e7c9227aeb014aa6593bc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91ff59d9f54e7c9227aeb014aa6593bc">m_repo</a></td></tr>
+<tr class="memitem:addee2a74a94720bc77af748e5f3db745" id="r_addee2a74a94720bc77af748e5f3db745"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addee2a74a94720bc77af748e5f3db745">m_mesh</a></td></tr>
+<tr class="memitem:ad9ef7104bff58c2f6bcc948db05373bf" id="r_ad9ef7104bff58c2f6bcc948db05373bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9ef7104bff58c2f6bcc948db05373bf">m_velocity</a></td></tr>
+<tr class="memitem:af1c87d55a22a6d07eb5754348997fed2" id="r_af1c87d55a22a6d07eb5754348997fed2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1c87d55a22a6d07eb5754348997fed2">m_density</a></td></tr>
+<tr class="memitem:a6ff85de367884032e337838916b4ec6f" id="r_a6ff85de367884032e337838916b4ec6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ff85de367884032e337838916b4ec6f">m_turb_force</a></td></tr>
+<tr class="memitem:a1671ba59d766015f2f2dea71037173ef" id="r_a1671ba59d766015f2f2dea71037173ef"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1671ba59d766015f2f2dea71037173ef">m_turb_filename</a></td></tr>
+<tr class="memitem:a931265d39796c37389edda86408aa9ad" id="r_a931265d39796c37389edda86408aa9ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1_synth_turb_data.html">SynthTurbData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a931265d39796c37389edda86408aa9ad">m_turb_grid</a></td></tr>
+<tr class="memitem:a3c898c9ce2e2e7ece532c6b7f875e4ed" id="r_a3c898c9ce2e2e7ece532c6b7f875e4ed"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html">synth_turb::MeanProfile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c898c9ce2e2e7ece532c6b7f875e4ed">m_wind_profile</a></td></tr>
+<tr class="memitem:a133358ecaf85ba714e0d8e3331e7f10b" id="r_a133358ecaf85ba714e0d8e3331e7f10b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a133358ecaf85ba714e0d8e3331e7f10b">m_mean_wind_type</a> {&quot;ConstValue&quot;}</td></tr>
+<tr class="memitem:a33a3b28425cdb74882cb046702b6256d" id="r_a33a3b28425cdb74882cb046702b6256d"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33a3b28425cdb74882cb046702b6256d">m_epsilon</a></td></tr>
+<tr class="memitem:aa0bc82872d05485df8bf863ac10621f8" id="r_aa0bc82872d05485df8bf863ac10621f8"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0bc82872d05485df8bf863ac10621f8">m_gauss_scaling</a></td></tr>
+<tr class="memitem:a68d3e1cab06bb9c1580e61874466a3ad" id="r_a68d3e1cab06bb9c1580e61874466a3ad"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68d3e1cab06bb9c1580e61874466a3ad">m_time_offset</a> {0.0_rt}</td></tr>
+<tr class="memitem:a6328a2e4824e512a903b8eb1e61a4f0c" id="r_a6328a2e4824e512a903b8eb1e61a4f0c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6328a2e4824e512a903b8eb1e61a4f0c">m_duration</a> {-1}</td></tr>
+<tr class="memitem:a5de7e01413c9564cace5debe218289fd" id="r_a5de7e01413c9564cace5debe218289fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5de7e01413c9564cace5debe218289fd">m_is_init</a> {true}</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a289817af2559d7f4ae796e70c2341fa1" name="a289817af2559d7f4ae796e70c2341fa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a289817af2559d7f4ae796e70c2341fa1">&#9670;&#160;</a></span>SyntheticTurbulence() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SyntheticTurbulence::SyntheticTurbulence </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a01410bb59c897f5999fb778330cd38bc" name="a01410bb59c897f5999fb778330cd38bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01410bb59c897f5999fb778330cd38bc">&#9670;&#160;</a></span>SyntheticTurbulence() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SyntheticTurbulence::SyntheticTurbulence </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f000d3efe0c8b976bc981fc0f035874" name="a5f000d3efe0c8b976bc981fc0f035874"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f000d3efe0c8b976bc981fc0f035874">&#9670;&#160;</a></span>SyntheticTurbulence() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SyntheticTurbulence::SyntheticTurbulence </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11be08fffe7330f536d362852ff9f85a" name="a11be08fffe7330f536d362852ff9f85a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11be08fffe7330f536d362852ff9f85a">&#9670;&#160;</a></span>~SyntheticTurbulence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::SyntheticTurbulence::~SyntheticTurbulence </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aee20c22b1b46deeaedb5de8fd38d7ab0" name="aee20c22b1b46deeaedb5de8fd38d7ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee20c22b1b46deeaedb5de8fd38d7ab0">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::SyntheticTurbulence::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03b781d4a2e8134fd4694d18c9a1bb4c" name="a03b781d4a2e8134fd4694d18c9a1bb4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b781d4a2e8134fd4694d18c9a1bb4c">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af21da1aa0954fa6c0c6fe50ab958283a" name="af21da1aa0954fa6c0c6fe50ab958283a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af21da1aa0954fa6c0c6fe50ab958283a">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a959ea66b7dabcc0100cdc1e1c07eda01" name="a959ea66b7dabcc0100cdc1e1c07eda01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a959ea66b7dabcc0100cdc1e1c07eda01">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a> &amp; kynema_sgf::SyntheticTurbulence::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_synthetic_turbulence.html">SyntheticTurbulence</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91e852c131340164292f0c73854a68f9" name="a91e852c131340164292f0c73854a68f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91e852c131340164292f0c73854a68f9">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4d5f0870be8f11a0390cd57e6264d33a" name="a4d5f0870be8f11a0390cd57e6264d33a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5f0870be8f11a0390cd57e6264d33a">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72a1785a0ef7eee6ac4ca89869b71691" name="a72a1785a0ef7eee6ac4ca89869b71691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72a1785a0ef7eee6ac4ca89869b71691">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55b1586efaa21331df4a8bfdbf511449" name="a55b1586efaa21331df4a8bfdbf511449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55b1586efaa21331df4a8bfdbf511449">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa29b3c39f210cdb2a277a199ef0e1e26" name="aa29b3c39f210cdb2a277a199ef0e1e26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29b3c39f210cdb2a277a199ef0e1e26">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4f4f6b3a46f7ebfcb396bf961acdf54" name="ae4f4f6b3a46f7ebfcb396bf961acdf54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f4f6b3a46f7ebfcb396bf961acdf54">&#9670;&#160;</a></span>update_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a>&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::SyntheticTurbulence::update_impl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1_synth_turb_device_data.html">SynthTurbDeviceData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>turb_grid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1_interp_weights.html">InterpWeights</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weights</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>velfunc</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="af1c87d55a22a6d07eb5754348997fed2" name="af1c87d55a22a6d07eb5754348997fed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c87d55a22a6d07eb5754348997fed2">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::SyntheticTurbulence::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6328a2e4824e512a903b8eb1e61a4f0c" name="a6328a2e4824e512a903b8eb1e61a4f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6328a2e4824e512a903b8eb1e61a4f0c">&#9670;&#160;</a></span>m_duration</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SyntheticTurbulence::m_duration {-1}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33a3b28425cdb74882cb046702b6256d" name="a33a3b28425cdb74882cb046702b6256d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33a3b28425cdb74882cb046702b6256d">&#9670;&#160;</a></span>m_epsilon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SyntheticTurbulence::m_epsilon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0bc82872d05485df8bf863ac10621f8" name="aa0bc82872d05485df8bf863ac10621f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0bc82872d05485df8bf863ac10621f8">&#9670;&#160;</a></span>m_gauss_scaling</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SyntheticTurbulence::m_gauss_scaling</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5de7e01413c9564cace5debe218289fd" name="a5de7e01413c9564cace5debe218289fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de7e01413c9564cace5debe218289fd">&#9670;&#160;</a></span>m_is_init</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::SyntheticTurbulence::m_is_init {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a133358ecaf85ba714e0d8e3331e7f10b" name="a133358ecaf85ba714e0d8e3331e7f10b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a133358ecaf85ba714e0d8e3331e7f10b">&#9670;&#160;</a></span>m_mean_wind_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::SyntheticTurbulence::m_mean_wind_type {&quot;ConstValue&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addee2a74a94720bc77af748e5f3db745" name="addee2a74a94720bc77af748e5f3db745"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addee2a74a94720bc77af748e5f3db745">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::SyntheticTurbulence::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91ff59d9f54e7c9227aeb014aa6593bc" name="a91ff59d9f54e7c9227aeb014aa6593bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91ff59d9f54e7c9227aeb014aa6593bc">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::SyntheticTurbulence::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a4c56a35ad37f552e4502f91399faf9" name="a3a4c56a35ad37f552e4502f91399faf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a4c56a35ad37f552e4502f91399faf9">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::SyntheticTurbulence::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a68d3e1cab06bb9c1580e61874466a3ad" name="a68d3e1cab06bb9c1580e61874466a3ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68d3e1cab06bb9c1580e61874466a3ad">&#9670;&#160;</a></span>m_time_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::SyntheticTurbulence::m_time_offset {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1671ba59d766015f2f2dea71037173ef" name="a1671ba59d766015f2f2dea71037173ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1671ba59d766015f2f2dea71037173ef">&#9670;&#160;</a></span>m_turb_filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::SyntheticTurbulence::m_turb_filename</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ff85de367884032e337838916b4ec6f" name="a6ff85de367884032e337838916b4ec6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ff85de367884032e337838916b4ec6f">&#9670;&#160;</a></span>m_turb_force</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::SyntheticTurbulence::m_turb_force</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a931265d39796c37389edda86408aa9ad" name="a931265d39796c37389edda86408aa9ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931265d39796c37389edda86408aa9ad">&#9670;&#160;</a></span>m_turb_grid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1_synth_turb_data.html">SynthTurbData</a> kynema_sgf::SyntheticTurbulence::m_turb_grid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9ef7104bff58c2f6bcc948db05373bf" name="ad9ef7104bff58c2f6bcc948db05373bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9ef7104bff58c2f6bcc948db05373bf">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::SyntheticTurbulence::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c898c9ce2e2e7ece532c6b7f875e4ed" name="a3c898c9ce2e2e7ece532c6b7f875e4ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c898c9ce2e2e7ece532c6b7f875e4ed">&#9670;&#160;</a></span>m_wind_profile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html">synth_turb::MeanProfile</a>&gt; kynema_sgf::SyntheticTurbulence::m_wind_profile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_synthetic_turbulence_8_h_source.html">SyntheticTurbulence.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_synthetic_turbulence_8cpp.html">SyntheticTurbulence.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

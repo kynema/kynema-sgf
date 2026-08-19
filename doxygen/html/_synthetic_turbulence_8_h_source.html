@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/SyntheticTurbulence.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/SyntheticTurbulence.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_synthetic_turbulence_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-syntheticturbulence-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/SyntheticTurbulence.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-syntheticturbulence-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/SyntheticTurbulence.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">SyntheticTurbulence.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_synthetic_turbulence_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SYNTHETICTURBULENCE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SYNTHETICTURBULENCE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="vector__space_8_h.html">src/core/vs/vector_space.H</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1synth__turb.html">synth_turb</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html">   20</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html">MeanVelOp</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#afb286a83db7746d05ee57cda5f3c69d5">   23</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#afb286a83db7746d05ee57cda5f3c69d5">operator()</a>(amrex::Real <span class="comment">/* height */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#a38bff4f68b44df514af4f51d86293171">m_ref_vel</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#a38bff4f68b44df514af4f51d86293171">   28</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#a38bff4f68b44df514af4f51d86293171">m_ref_vel</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html">   31</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a5d59c2df15540bd1bc66c49b94eeebae">MeanProfile</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a5d59c2df15540bd1bc66c49b94eeebae">   34</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a5d59c2df15540bd1bc66c49b94eeebae">MeanProfile</a>(amrex::Real ref_vel, <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#abe8673d7a8013500d3179cfe4a653ba2">shear_dir</a> = 2)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        : <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a373006514c5f2642bf3e292c6f302ede">m_op</a>{ref_vel}, <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#ae3bfab37e8918efe5acd6c0539af7cae">m_ref_vel</a>(ref_vel), <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#aca362d0c2cc4cc1c1974b4f9b5c52e83">m_shear_dir</a>(<a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#abe8673d7a8013500d3179cfe4a653ba2">shear_dir</a>)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {}</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a528b8c6e31df1952e40c8b2f13dfba8f">   38</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a528b8c6e31df1952e40c8b2f13dfba8f">~MeanProfile</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a4e9680a001336310ceefc323841cdfa1">   40</a></span>    [[nodiscard]] amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a4e9680a001336310ceefc323841cdfa1">reference_velocity</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#ae3bfab37e8918efe5acd6c0539af7cae">m_ref_vel</a>; }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#abe8673d7a8013500d3179cfe4a653ba2">   42</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#abe8673d7a8013500d3179cfe4a653ba2">shear_dir</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#aca362d0c2cc4cc1c1974b4f9b5c52e83">m_shear_dir</a>; }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a63654914a636c5530f6e484a9f7ebd25">   44</a></span>    [[nodiscard]] <a class="code hl_struct" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html">MeanVelOp</a> <a class="code hl_function" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a63654914a636c5530f6e484a9f7ebd25">device_instance</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a373006514c5f2642bf3e292c6f302ede">m_op</a>; }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a373006514c5f2642bf3e292c6f302ede">   47</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html">MeanVelOp</a> <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a373006514c5f2642bf3e292c6f302ede">m_op</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#ae3bfab37e8918efe5acd6c0539af7cae">   49</a></span>    <span class="keyword">const</span> amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#ae3bfab37e8918efe5acd6c0539af7cae">m_ref_vel</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#aca362d0c2cc4cc1c1974b4f9b5c52e83">   50</a></span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#aca362d0c2cc4cc1c1974b4f9b5c52e83">m_shear_dir</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <span class="comment">// namespace synth_turb</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html">   55</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1_synth_turb_data.html">SynthTurbData</a></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// Dimensions of the box</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a5212f48fce20e540b186809d15dd0a56">   58</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_vector_t.html">vs::VectorT&lt;int&gt;</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a5212f48fce20e540b186809d15dd0a56">box_dims</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// Length of the boxes in each direction</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#ab1ff64fd1357a75d8a4f770d77e0a175">   61</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#ab1ff64fd1357a75d8a4f770d77e0a175">box_len</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a28f73ddbbd6b0d361d73f6886f429651">   63</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a28f73ddbbd6b0d361d73f6886f429651">dx</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Reference point for the turbulence box. Reference is the mid-point of the</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// turbulence grid at the plane where it is injected into the CFD flow</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// field.</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a9b7adc18bd3e4b88703e6d0f5d27f063">   68</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a9b7adc18bd3e4b88703e6d0f5d27f063">origin</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Transformation matrix to convert from global coordinate system to local</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// coordinate system</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a29495baa323e5f34ffa572556c113702">   72</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a29495baa323e5f34ffa572556c113702">tr_mat</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Perturbation velocities (2, ny, nz)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a40c337bfc3f5e8ad9d6175cba4121f52">   75</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a40c337bfc3f5e8ad9d6175cba4121f52">uvel</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a34ef2d21f571d7a9cfca675f1d59fb7a">   76</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a34ef2d21f571d7a9cfca675f1d59fb7a">vvel</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#afa3f268df62cd020bfa15d995d25fd33">   77</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#afa3f268df62cd020bfa15d995d25fd33">wvel</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a529a1a142931bfe57808f5a008c07dfa">   79</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a529a1a142931bfe57808f5a008c07dfa">uvel_d</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#ae4d402a62d26b3f7353a7a0361ddd385">   80</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#ae4d402a62d26b3f7353a7a0361ddd385">vvel_d</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a623cf3df09e69f729fc3e86da01fecf6">   81</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a623cf3df09e69f729fc3e86da01fecf6">wvel_d</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Indices of the two planes stored in the data arrays</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#aebefe3b27806d3b8b03f1de9eb8407ce">   84</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#aebefe3b27806d3b8b03f1de9eb8407ce">ileft</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_data.html#a5f457da6dfe8c135202809cc9f684a70">   85</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_data.html#a5f457da6dfe8c135202809cc9f684a70">iright</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="};">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html">   88</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1_synth_turb_device_data.html#ae493ed9f733656e4f539ed01698f2aca">SynthTurbDeviceData</a></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// Dimensions of the box</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0e6924aad44e0830ddb2edfbcb6bde1a">   91</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1vs_1_1_vector_t.html">vs::VectorT&lt;int&gt;</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0e6924aad44e0830ddb2edfbcb6bde1a">box_dims</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// Length of the boxes in each direction</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0322c6909c1ccc32a1d3c7f080980e91">   94</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0322c6909c1ccc32a1d3c7f080980e91">box_len</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a058cdda562e50880caced76654ef2676">   96</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a058cdda562e50880caced76654ef2676">dx</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// Reference point for the turbulence box. Reference is the mid-point of the</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// turbulence grid at the plane where it is injected into the CFD flow</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// field.</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a872c42e4e4495de3aedb6d6b93df016b">  101</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a872c42e4e4495de3aedb6d6b93df016b">origin</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// Transformation matrix to convert from global coordinate system to local</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// coordinate system</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a990f9cd3f3efa9d2e81a1b57e8061ca7">  105</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a990f9cd3f3efa9d2e81a1b57e8061ca7">tr_mat</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#acb69bd11fcb03eaf4326d587dbc21b01">  107</a></span>    amrex::Real* <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#acb69bd11fcb03eaf4326d587dbc21b01">uvel</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4c88de4961fcd801a141c230fc40c7b8">  108</a></span>    amrex::Real* <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4c88de4961fcd801a141c230fc40c7b8">vvel</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a20a4a00267c5cfd61cfba7baa3ead069">  109</a></span>    amrex::Real* <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a20a4a00267c5cfd61cfba7baa3ead069">wvel</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="comment">// Indices of the two planes stored in the data arrays</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4fec7f10287d71d363a04a908eb361b8">  112</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4fec7f10287d71d363a04a908eb361b8">ileft</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#a86e26e11a63a450682ca72e120b18120">  113</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a86e26e11a63a450682ca72e120b18120">iright</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_synth_turb_device_data.html#ae493ed9f733656e4f539ed01698f2aca">  115</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1_synth_turb_device_data.html#ae493ed9f733656e4f539ed01698f2aca">SynthTurbDeviceData</a>(<a class="code hl_struct" href="structkynema__sgf_1_1_synth_turb_data.html">SynthTurbData</a>&amp; hdata)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0e6924aad44e0830ddb2edfbcb6bde1a">box_dims</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0e6924aad44e0830ddb2edfbcb6bde1a">box_dims</a>)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0322c6909c1ccc32a1d3c7f080980e91">box_len</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a0322c6909c1ccc32a1d3c7f080980e91">box_len</a>)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a058cdda562e50880caced76654ef2676">dx</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a058cdda562e50880caced76654ef2676">dx</a>)</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a872c42e4e4495de3aedb6d6b93df016b">origin</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a872c42e4e4495de3aedb6d6b93df016b">origin</a>)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a990f9cd3f3efa9d2e81a1b57e8061ca7">tr_mat</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a990f9cd3f3efa9d2e81a1b57e8061ca7">tr_mat</a>)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#acb69bd11fcb03eaf4326d587dbc21b01">uvel</a>(hdata.uvel_d.data())</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4c88de4961fcd801a141c230fc40c7b8">vvel</a>(hdata.vvel_d.data())</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a20a4a00267c5cfd61cfba7baa3ead069">wvel</a>(hdata.wvel_d.data())</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4fec7f10287d71d363a04a908eb361b8">ileft</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a4fec7f10287d71d363a04a908eb361b8">ileft</a>)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a86e26e11a63a450682ca72e120b18120">iright</a>(hdata.<a class="code hl_variable" href="structkynema__sgf_1_1_synth_turb_device_data.html#a86e26e11a63a450682ca72e120b18120">iright</a>)</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    {}</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="};">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_interp_weights.html">  132</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1_interp_weights.html">InterpWeights</a></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>{</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_interp_weights.html#acc8566695ac610704189c0edd939f145">  134</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#acc8566695ac610704189c0edd939f145">il</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#af6a66612e059bdccb70e665b098a26a1">ir</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#a2a10c6de9e6a92f15c888b6d434dff64">jl</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#a628f41f02282398f66e7dcd8c6b23fad">jr</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#ab05e42734407c1aed9f0fa47e30c08d9">kl</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#ad5715f9fc76e56907afaf8871fe676cc">kr</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_interp_weights.html#a8a37d180af90b4e0786689112cb351fc">  135</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#a8a37d180af90b4e0786689112cb351fc">xl</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#abddfc54abcbc9e777997d1a8f6cf6d33">xr</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#af85db5ae1e52095b0820b02e6e7de1b8">yl</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#a93fb45bd789c159c51e34682b380987e">yr</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#a2350f2a4dc37e12166fb73b9396a0db3">zl</a>, <a class="code hl_variable" href="structkynema__sgf_1_1_interp_weights.html#a77d9337aac56d6724baf71c472ecbdf4">zr</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>};</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="};">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html">  150</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a289817af2559d7f4ae796e70c2341fa1">SyntheticTurbulence</a> : <span class="keyword">public</span> Physics::Register&lt;SyntheticTurbulence&gt;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>{</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#aee20c22b1b46deeaedb5de8fd38d7ab0">  153</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#aee20c22b1b46deeaedb5de8fd38d7ab0">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;SyntheticTurbulence&quot;</span>; }</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a01410bb59c897f5999fb778330cd38bc">SyntheticTurbulence</a>(<span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a01410bb59c897f5999fb778330cd38bc">  157</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a01410bb59c897f5999fb778330cd38bc">SyntheticTurbulence</a>() = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a5f000d3efe0c8b976bc981fc0f035874">  158</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a5f000d3efe0c8b976bc981fc0f035874">SyntheticTurbulence</a>(<span class="keyword">const</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a289817af2559d7f4ae796e70c2341fa1">SyntheticTurbulence</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a959ea66b7dabcc0100cdc1e1c07eda01">  159</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a289817af2559d7f4ae796e70c2341fa1">SyntheticTurbulence</a>&amp; <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a959ea66b7dabcc0100cdc1e1c07eda01">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a289817af2559d7f4ae796e70c2341fa1">SyntheticTurbulence</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a11be08fffe7330f536d362852ff9f85a">  161</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a11be08fffe7330f536d362852ff9f85a">~SyntheticTurbulence</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#af21da1aa0954fa6c0c6fe50ab958283a">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a4d5f0870be8f11a0390cd57e6264d33a">  165</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a4d5f0870be8f11a0390cd57e6264d33a">post_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a72a1785a0ef7eee6ac4ca89869b71691">  167</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a72a1785a0ef7eee6ac4ca89869b71691">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a55b1586efaa21331df4a8bfdbf511449">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a91e852c131340164292f0c73854a68f9">  171</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a91e852c131340164292f0c73854a68f9">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#a03b781d4a2e8134fd4694d18c9a1bb4c">initialize</a>();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#aa29b3c39f210cdb2a277a199ef0e1e26">update</a>();</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_synthetic_turbulence.html#ae4f4f6b3a46f7ebfcb396bf961acdf54">update_impl</a>(</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_synth_turb_device_data.html">SynthTurbDeviceData</a>&amp; <span class="comment">/*turb_grid*/</span>,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_interp_weights.html">InterpWeights</a>&amp; <span class="comment">/*weights*/</span>,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keyword">const</span> T&amp; <span class="comment">/*velfunc*/</span>);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a3a4c56a35ad37f552e4502f91399faf9">  184</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a3a4c56a35ad37f552e4502f91399faf9">m_time</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a91ff59d9f54e7c9227aeb014aa6593bc">  185</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a91ff59d9f54e7c9227aeb014aa6593bc">m_repo</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#addee2a74a94720bc77af748e5f3db745">  186</a></span>    <span class="keyword">const</span> amrex::AmrCore&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#addee2a74a94720bc77af748e5f3db745">m_mesh</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#ad9ef7104bff58c2f6bcc948db05373bf">  187</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#ad9ef7104bff58c2f6bcc948db05373bf">m_velocity</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#af1c87d55a22a6d07eb5754348997fed2">  188</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#af1c87d55a22a6d07eb5754348997fed2">m_density</a>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a6ff85de367884032e337838916b4ec6f">  189</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a6ff85de367884032e337838916b4ec6f">m_turb_force</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// Turbulence file name</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a1671ba59d766015f2f2dea71037173ef">  192</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a1671ba59d766015f2f2dea71037173ef">m_turb_filename</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="comment">// Turbulence box data</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a931265d39796c37389edda86408aa9ad">  195</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1_synth_turb_data.html">SynthTurbData</a> <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a931265d39796c37389edda86408aa9ad">m_turb_grid</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a3c898c9ce2e2e7ece532c6b7f875e4ed">  197</a></span>    std::unique_ptr&lt;synth_turb::MeanProfile&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a3c898c9ce2e2e7ece532c6b7f875e4ed">m_wind_profile</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a133358ecaf85ba714e0d8e3331e7f10b">  199</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a133358ecaf85ba714e0d8e3331e7f10b">m_mean_wind_type</a>{<span class="stringliteral">&quot;ConstValue&quot;</span>};</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a33a3b28425cdb74882cb046702b6256d">  200</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a33a3b28425cdb74882cb046702b6256d">m_epsilon</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#aa0bc82872d05485df8bf863ac10621f8">  201</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#aa0bc82872d05485df8bf863ac10621f8">m_gauss_scaling</a>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a68d3e1cab06bb9c1580e61874466a3ad">  203</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a68d3e1cab06bb9c1580e61874466a3ad">m_time_offset</a>{0.0_rt};</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="comment">// Duration of the synthetic turbulence injection. Unused if &lt; 0</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a6328a2e4824e512a903b8eb1e61a4f0c">  205</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a6328a2e4824e512a903b8eb1e61a4f0c">m_duration</a>{-1};</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_synthetic_turbulence.html#a5de7e01413c9564cace5debe218289fd">  207</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_synthetic_turbulence.html#a5de7e01413c9564cace5debe218289fd">m_is_init</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>};</div>
+</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#endif </span><span class="comment">/* SyntheticTurbulence_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_repo_html"><div class="ttname"><a href="classkynema__sgf_1_1_field_repo.html">kynema_sgf::FieldRepo</a></div><div class="ttdef"><b>Definition</b> FieldRepo.H:86</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_sim_time_html"><div class="ttname"><a href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a></div><div class="ttdef"><b>Definition</b> SimTime.H:33</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a01410bb59c897f5999fb778330cd38bc"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a01410bb59c897f5999fb778330cd38bc">kynema_sgf::SyntheticTurbulence::SyntheticTurbulence</a></div><div class="ttdeci">SyntheticTurbulence()=delete</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a03b781d4a2e8134fd4694d18c9a1bb4c"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a03b781d4a2e8134fd4694d18c9a1bb4c">kynema_sgf::SyntheticTurbulence::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:505</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a11be08fffe7330f536d362852ff9f85a"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a11be08fffe7330f536d362852ff9f85a">kynema_sgf::SyntheticTurbulence::~SyntheticTurbulence</a></div><div class="ttdeci">~SyntheticTurbulence() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a133358ecaf85ba714e0d8e3331e7f10b"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a133358ecaf85ba714e0d8e3331e7f10b">kynema_sgf::SyntheticTurbulence::m_mean_wind_type</a></div><div class="ttdeci">std::string m_mean_wind_type</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:199</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a1671ba59d766015f2f2dea71037173ef"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a1671ba59d766015f2f2dea71037173ef">kynema_sgf::SyntheticTurbulence::m_turb_filename</a></div><div class="ttdeci">std::string m_turb_filename</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:192</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a289817af2559d7f4ae796e70c2341fa1"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a289817af2559d7f4ae796e70c2341fa1">kynema_sgf::SyntheticTurbulence::SyntheticTurbulence</a></div><div class="ttdeci">SyntheticTurbulence(const CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:366</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a33a3b28425cdb74882cb046702b6256d"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a33a3b28425cdb74882cb046702b6256d">kynema_sgf::SyntheticTurbulence::m_epsilon</a></div><div class="ttdeci">amrex::Real m_epsilon</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:200</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a3a4c56a35ad37f552e4502f91399faf9"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a3a4c56a35ad37f552e4502f91399faf9">kynema_sgf::SyntheticTurbulence::m_time</a></div><div class="ttdeci">const kynema_sgf::SimTime &amp; m_time</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:184</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a3c898c9ce2e2e7ece532c6b7f875e4ed"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a3c898c9ce2e2e7ece532c6b7f875e4ed">kynema_sgf::SyntheticTurbulence::m_wind_profile</a></div><div class="ttdeci">std::unique_ptr&lt; synth_turb::MeanProfile &gt; m_wind_profile</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:197</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a4d5f0870be8f11a0390cd57e6264d33a"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a4d5f0870be8f11a0390cd57e6264d33a">kynema_sgf::SyntheticTurbulence::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:165</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a55b1586efaa21331df4a8bfdbf511449"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a55b1586efaa21331df4a8bfdbf511449">kynema_sgf::SyntheticTurbulence::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:496</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a5de7e01413c9564cace5debe218289fd"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a5de7e01413c9564cace5debe218289fd">kynema_sgf::SyntheticTurbulence::m_is_init</a></div><div class="ttdeci">bool m_is_init</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:207</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a5f000d3efe0c8b976bc981fc0f035874"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a5f000d3efe0c8b976bc981fc0f035874">kynema_sgf::SyntheticTurbulence::SyntheticTurbulence</a></div><div class="ttdeci">SyntheticTurbulence(const SyntheticTurbulence &amp;)=delete</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a6328a2e4824e512a903b8eb1e61a4f0c"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a6328a2e4824e512a903b8eb1e61a4f0c">kynema_sgf::SyntheticTurbulence::m_duration</a></div><div class="ttdeci">amrex::Real m_duration</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:205</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a68d3e1cab06bb9c1580e61874466a3ad"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a68d3e1cab06bb9c1580e61874466a3ad">kynema_sgf::SyntheticTurbulence::m_time_offset</a></div><div class="ttdeci">amrex::Real m_time_offset</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:203</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a6ff85de367884032e337838916b4ec6f"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a6ff85de367884032e337838916b4ec6f">kynema_sgf::SyntheticTurbulence::m_turb_force</a></div><div class="ttdeci">Field &amp; m_turb_force</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:189</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a72a1785a0ef7eee6ac4ca89869b71691"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a72a1785a0ef7eee6ac4ca89869b71691">kynema_sgf::SyntheticTurbulence::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:167</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a91e852c131340164292f0c73854a68f9"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a91e852c131340164292f0c73854a68f9">kynema_sgf::SyntheticTurbulence::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:171</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a91ff59d9f54e7c9227aeb014aa6593bc"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a91ff59d9f54e7c9227aeb014aa6593bc">kynema_sgf::SyntheticTurbulence::m_repo</a></div><div class="ttdeci">const FieldRepo &amp; m_repo</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:185</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a931265d39796c37389edda86408aa9ad"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a931265d39796c37389edda86408aa9ad">kynema_sgf::SyntheticTurbulence::m_turb_grid</a></div><div class="ttdeci">SynthTurbData m_turb_grid</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:195</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_a959ea66b7dabcc0100cdc1e1c07eda01"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#a959ea66b7dabcc0100cdc1e1c07eda01">kynema_sgf::SyntheticTurbulence::operator=</a></div><div class="ttdeci">SyntheticTurbulence &amp; operator=(const SyntheticTurbulence &amp;)=delete</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_aa0bc82872d05485df8bf863ac10621f8"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#aa0bc82872d05485df8bf863ac10621f8">kynema_sgf::SyntheticTurbulence::m_gauss_scaling</a></div><div class="ttdeci">amrex::Real m_gauss_scaling</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:201</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_aa29b3c39f210cdb2a277a199ef0e1e26"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#aa29b3c39f210cdb2a277a199ef0e1e26">kynema_sgf::SyntheticTurbulence::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:519</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_ad9ef7104bff58c2f6bcc948db05373bf"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#ad9ef7104bff58c2f6bcc948db05373bf">kynema_sgf::SyntheticTurbulence::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:187</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_addee2a74a94720bc77af748e5f3db745"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#addee2a74a94720bc77af748e5f3db745">kynema_sgf::SyntheticTurbulence::m_mesh</a></div><div class="ttdeci">const amrex::AmrCore &amp; m_mesh</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:186</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_ae4f4f6b3a46f7ebfcb396bf961acdf54"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#ae4f4f6b3a46f7ebfcb396bf961acdf54">kynema_sgf::SyntheticTurbulence::update_impl</a></div><div class="ttdeci">void update_impl(const SynthTurbDeviceData &amp;, const InterpWeights &amp;, const T &amp;)</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:566</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_aee20c22b1b46deeaedb5de8fd38d7ab0"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#aee20c22b1b46deeaedb5de8fd38d7ab0">kynema_sgf::SyntheticTurbulence::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:153</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_af1c87d55a22a6d07eb5754348997fed2"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#af1c87d55a22a6d07eb5754348997fed2">kynema_sgf::SyntheticTurbulence::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:188</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_synthetic_turbulence_html_af21da1aa0954fa6c0c6fe50ab958283a"><div class="ttname"><a href="classkynema__sgf_1_1_synthetic_turbulence.html#af21da1aa0954fa6c0c6fe50ab958283a">kynema_sgf::SyntheticTurbulence::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:492</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_a373006514c5f2642bf3e292c6f302ede"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a373006514c5f2642bf3e292c6f302ede">kynema_sgf::synth_turb::MeanProfile::m_op</a></div><div class="ttdeci">MeanVelOp m_op</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:47</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_a4e9680a001336310ceefc323841cdfa1"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a4e9680a001336310ceefc323841cdfa1">kynema_sgf::synth_turb::MeanProfile::reference_velocity</a></div><div class="ttdeci">amrex::Real reference_velocity() const</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:40</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_a528b8c6e31df1952e40c8b2f13dfba8f"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a528b8c6e31df1952e40c8b2f13dfba8f">kynema_sgf::synth_turb::MeanProfile::~MeanProfile</a></div><div class="ttdeci">virtual ~MeanProfile()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_a5d59c2df15540bd1bc66c49b94eeebae"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a5d59c2df15540bd1bc66c49b94eeebae">kynema_sgf::synth_turb::MeanProfile::MeanProfile</a></div><div class="ttdeci">MeanProfile(amrex::Real ref_vel, int shear_dir=2)</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:34</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_a63654914a636c5530f6e484a9f7ebd25"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#a63654914a636c5530f6e484a9f7ebd25">kynema_sgf::synth_turb::MeanProfile::device_instance</a></div><div class="ttdeci">MeanVelOp device_instance() const</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_abe8673d7a8013500d3179cfe4a653ba2"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#abe8673d7a8013500d3179cfe4a653ba2">kynema_sgf::synth_turb::MeanProfile::shear_dir</a></div><div class="ttdeci">int shear_dir() const</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:42</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_aca362d0c2cc4cc1c1974b4f9b5c52e83"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#aca362d0c2cc4cc1c1974b4f9b5c52e83">kynema_sgf::synth_turb::MeanProfile::m_shear_dir</a></div><div class="ttdeci">const int m_shear_dir</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1synth__turb_1_1_mean_profile_html_ae3bfab37e8918efe5acd6c0539af7cae"><div class="ttname"><a href="classkynema__sgf_1_1synth__turb_1_1_mean_profile.html#ae3bfab37e8918efe5acd6c0539af7cae">kynema_sgf::synth_turb::MeanProfile::m_ref_vel</a></div><div class="ttdeci">const amrex::Real m_ref_vel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:49</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1synth__turb_html"><div class="ttname"><a href="namespacekynema__sgf_1_1synth__turb.html">kynema_sgf::synth_turb</a></div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.cpp:17</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a8b5875515cfa717dbeb39c7f4186ce50"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a></div><div class="ttdeci">VectorT&lt; amrex::Real &gt; Vector</div><div class="ttdef"><b>Definition</b> vector.H:145</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a93db93fdfb70125c5abd8a72ac76efd1"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a></div><div class="ttdeci">TensorT&lt; amrex::Real &gt; Tensor</div><div class="ttdef"><b>Definition</b> tensor.H:158</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html">kynema_sgf::InterpWeights</a></div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:133</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_a2350f2a4dc37e12166fb73b9396a0db3"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#a2350f2a4dc37e12166fb73b9396a0db3">kynema_sgf::InterpWeights::zl</a></div><div class="ttdeci">amrex::Real zl</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_a2a10c6de9e6a92f15c888b6d434dff64"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#a2a10c6de9e6a92f15c888b6d434dff64">kynema_sgf::InterpWeights::jl</a></div><div class="ttdeci">int jl</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_a628f41f02282398f66e7dcd8c6b23fad"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#a628f41f02282398f66e7dcd8c6b23fad">kynema_sgf::InterpWeights::jr</a></div><div class="ttdeci">int jr</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_a77d9337aac56d6724baf71c472ecbdf4"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#a77d9337aac56d6724baf71c472ecbdf4">kynema_sgf::InterpWeights::zr</a></div><div class="ttdeci">amrex::Real zr</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_a8a37d180af90b4e0786689112cb351fc"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#a8a37d180af90b4e0786689112cb351fc">kynema_sgf::InterpWeights::xl</a></div><div class="ttdeci">amrex::Real xl</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_a93fb45bd789c159c51e34682b380987e"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#a93fb45bd789c159c51e34682b380987e">kynema_sgf::InterpWeights::yr</a></div><div class="ttdeci">amrex::Real yr</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_ab05e42734407c1aed9f0fa47e30c08d9"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#ab05e42734407c1aed9f0fa47e30c08d9">kynema_sgf::InterpWeights::kl</a></div><div class="ttdeci">int kl</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_abddfc54abcbc9e777997d1a8f6cf6d33"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#abddfc54abcbc9e777997d1a8f6cf6d33">kynema_sgf::InterpWeights::xr</a></div><div class="ttdeci">amrex::Real xr</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_acc8566695ac610704189c0edd939f145"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#acc8566695ac610704189c0edd939f145">kynema_sgf::InterpWeights::il</a></div><div class="ttdeci">int il</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_ad5715f9fc76e56907afaf8871fe676cc"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#ad5715f9fc76e56907afaf8871fe676cc">kynema_sgf::InterpWeights::kr</a></div><div class="ttdeci">int kr</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_af6a66612e059bdccb70e665b098a26a1"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#af6a66612e059bdccb70e665b098a26a1">kynema_sgf::InterpWeights::ir</a></div><div class="ttdeci">int ir</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:134</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_interp_weights_html_af85db5ae1e52095b0820b02e6e7de1b8"><div class="ttname"><a href="structkynema__sgf_1_1_interp_weights.html#af85db5ae1e52095b0820b02e6e7de1b8">kynema_sgf::InterpWeights::yl</a></div><div class="ttdeci">amrex::Real yl</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:135</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html">kynema_sgf::SynthTurbData</a></div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:56</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a28f73ddbbd6b0d361d73f6886f429651"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a28f73ddbbd6b0d361d73f6886f429651">kynema_sgf::SynthTurbData::dx</a></div><div class="ttdeci">vs::Vector dx</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:63</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a29495baa323e5f34ffa572556c113702"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a29495baa323e5f34ffa572556c113702">kynema_sgf::SynthTurbData::tr_mat</a></div><div class="ttdeci">vs::Tensor tr_mat</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:72</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a34ef2d21f571d7a9cfca675f1d59fb7a"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a34ef2d21f571d7a9cfca675f1d59fb7a">kynema_sgf::SynthTurbData::vvel</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; vvel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:76</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a40c337bfc3f5e8ad9d6175cba4121f52"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a40c337bfc3f5e8ad9d6175cba4121f52">kynema_sgf::SynthTurbData::uvel</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; uvel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:75</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a5212f48fce20e540b186809d15dd0a56"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a5212f48fce20e540b186809d15dd0a56">kynema_sgf::SynthTurbData::box_dims</a></div><div class="ttdeci">vs::VectorT&lt; int &gt; box_dims</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a529a1a142931bfe57808f5a008c07dfa"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a529a1a142931bfe57808f5a008c07dfa">kynema_sgf::SynthTurbData::uvel_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; uvel_d</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:79</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a5f457da6dfe8c135202809cc9f684a70"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a5f457da6dfe8c135202809cc9f684a70">kynema_sgf::SynthTurbData::iright</a></div><div class="ttdeci">int iright</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:85</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a623cf3df09e69f729fc3e86da01fecf6"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a623cf3df09e69f729fc3e86da01fecf6">kynema_sgf::SynthTurbData::wvel_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; wvel_d</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:81</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_a9b7adc18bd3e4b88703e6d0f5d27f063"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#a9b7adc18bd3e4b88703e6d0f5d27f063">kynema_sgf::SynthTurbData::origin</a></div><div class="ttdeci">vs::Vector origin</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:68</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_ab1ff64fd1357a75d8a4f770d77e0a175"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#ab1ff64fd1357a75d8a4f770d77e0a175">kynema_sgf::SynthTurbData::box_len</a></div><div class="ttdeci">vs::Vector box_len</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:61</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_ae4d402a62d26b3f7353a7a0361ddd385"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#ae4d402a62d26b3f7353a7a0361ddd385">kynema_sgf::SynthTurbData::vvel_d</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; vvel_d</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:80</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_aebefe3b27806d3b8b03f1de9eb8407ce"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#aebefe3b27806d3b8b03f1de9eb8407ce">kynema_sgf::SynthTurbData::ileft</a></div><div class="ttdeci">int ileft</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:84</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_data_html_afa3f268df62cd020bfa15d995d25fd33"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_data.html#afa3f268df62cd020bfa15d995d25fd33">kynema_sgf::SynthTurbData::wvel</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; wvel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:77</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html">kynema_sgf::SynthTurbDeviceData</a></div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:89</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a0322c6909c1ccc32a1d3c7f080980e91"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a0322c6909c1ccc32a1d3c7f080980e91">kynema_sgf::SynthTurbDeviceData::box_len</a></div><div class="ttdeci">vs::Vector box_len</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:94</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a058cdda562e50880caced76654ef2676"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a058cdda562e50880caced76654ef2676">kynema_sgf::SynthTurbDeviceData::dx</a></div><div class="ttdeci">vs::Vector dx</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:96</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a0e6924aad44e0830ddb2edfbcb6bde1a"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a0e6924aad44e0830ddb2edfbcb6bde1a">kynema_sgf::SynthTurbDeviceData::box_dims</a></div><div class="ttdeci">vs::VectorT&lt; int &gt; box_dims</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:91</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a20a4a00267c5cfd61cfba7baa3ead069"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a20a4a00267c5cfd61cfba7baa3ead069">kynema_sgf::SynthTurbDeviceData::wvel</a></div><div class="ttdeci">amrex::Real * wvel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:109</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a4c88de4961fcd801a141c230fc40c7b8"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a4c88de4961fcd801a141c230fc40c7b8">kynema_sgf::SynthTurbDeviceData::vvel</a></div><div class="ttdeci">amrex::Real * vvel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:108</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a4fec7f10287d71d363a04a908eb361b8"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a4fec7f10287d71d363a04a908eb361b8">kynema_sgf::SynthTurbDeviceData::ileft</a></div><div class="ttdeci">int ileft</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:112</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a86e26e11a63a450682ca72e120b18120"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a86e26e11a63a450682ca72e120b18120">kynema_sgf::SynthTurbDeviceData::iright</a></div><div class="ttdeci">int iright</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:113</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a872c42e4e4495de3aedb6d6b93df016b"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a872c42e4e4495de3aedb6d6b93df016b">kynema_sgf::SynthTurbDeviceData::origin</a></div><div class="ttdeci">vs::Vector origin</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:101</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_a990f9cd3f3efa9d2e81a1b57e8061ca7"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#a990f9cd3f3efa9d2e81a1b57e8061ca7">kynema_sgf::SynthTurbDeviceData::tr_mat</a></div><div class="ttdeci">vs::Tensor tr_mat</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:105</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_acb69bd11fcb03eaf4326d587dbc21b01"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#acb69bd11fcb03eaf4326d587dbc21b01">kynema_sgf::SynthTurbDeviceData::uvel</a></div><div class="ttdeci">amrex::Real * uvel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:107</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_synth_turb_device_data_html_ae493ed9f733656e4f539ed01698f2aca"><div class="ttname"><a href="structkynema__sgf_1_1_synth_turb_device_data.html#ae493ed9f733656e4f539ed01698f2aca">kynema_sgf::SynthTurbDeviceData::SynthTurbDeviceData</a></div><div class="ttdeci">SynthTurbDeviceData(SynthTurbData &amp;hdata)</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:115</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1synth__turb_1_1_mean_vel_op_html"><div class="ttname"><a href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html">kynema_sgf::synth_turb::MeanVelOp</a></div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1synth__turb_1_1_mean_vel_op_html_a38bff4f68b44df514af4f51d86293171"><div class="ttname"><a href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#a38bff4f68b44df514af4f51d86293171">kynema_sgf::synth_turb::MeanVelOp::m_ref_vel</a></div><div class="ttdeci">const amrex::Real m_ref_vel</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1synth__turb_1_1_mean_vel_op_html_afb286a83db7746d05ee57cda5f3c69d5"><div class="ttname"><a href="structkynema__sgf_1_1synth__turb_1_1_mean_vel_op.html#afb286a83db7746d05ee57cda5f3c69d5">kynema_sgf::synth_turb::MeanVelOp::operator()</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real operator()(amrex::Real) const</div><div class="ttdef"><b>Definition</b> SyntheticTurbulence.H:23</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html">kynema_sgf::vs::VectorT</a></div><div class="ttdef"><b>Definition</b> vector.H:13</div></div>
+<div class="ttc" id="avector__space_8_h_html"><div class="ttname"><a href="vector__space_8_h.html">vector_space.H</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

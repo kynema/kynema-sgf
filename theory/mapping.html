@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapping definition &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer Documentation" href="../developer/index.html" />
+    <link rel="prev" title="Theory Manual" href="theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="theory.html">Theory Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="theory.html#governing-equations">Governing equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#discretization">Discretization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="theory.html#solving-physics-on-a-stretched-amrex-mesh">Solving physics on a stretched AMReX mesh</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Mapping definition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#handy-identities">Handy identities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#governing-equations-in-stretched-mesh-space">Governing equations in stretched mesh space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mac-projection">MAC Projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nodal-projection">Nodal Projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initial-conditions-computing-the-timestep">Initial conditions &amp; computing the timestep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exceptions-to-the-current-implementation">Exceptions to the current implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#multiphase-flow-modeling">Multiphase flow modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#source-terms">Source terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#turbulence-models">Turbulence Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#wall-models">Wall models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#terrain-model">Terrain Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#forest-model">Forest Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#turbine-models">Turbine models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="theory.html">Theory Manual</a></li>
+      <li class="breadcrumb-item active">Mapping definition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/theory/mapping.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mapping-definition">
+<span id="mapping"></span><h1>Mapping definition<a class="headerlink" href="#mapping-definition" title="Link to this heading"></a></h1>
+<p>Let the mapping of stretched mesh to uniform mesh be defined by <span class="math notranslate nohighlight">\({\mathbf X} = \Phi (\Xi) = (x(\chi), y(\eta), z(\xi))\)</span>. For demonstration purposes, we assume mapping only in the <span class="math notranslate nohighlight">\(z\)</span>-direction. Note that
+the normals to faces continue to be aligned with the grid axes.</p>
+<p>We define the velocity</p>
+<div class="math notranslate nohighlight">
+\[\overline{U} = T U\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[T = J [\nabla_\Xi \Phi]^{-1}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[J = {\rm det} [\nabla_\Xi \Phi]\]</div>
+<p>In our case <span class="math notranslate nohighlight">\(T\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+z_\xi &amp; 0 &amp; 0 \\
+0 &amp; z_\xi &amp; 0\\
+0 &amp; 0 &amp; 1 \\
+\end{bmatrix},
+\hspace{0.5in} J = ( z_\xi),
+\hspace{0.5in} \overline{U}  = (z_\xi u, \; z_\xi  v, \; w).\end{split}\]</div>
+<p>We can write the mesh spacing in <span class="math notranslate nohighlight">\({\mathbf X}\)</span>-space as</p>
+<div class="math notranslate nohighlight">
+\[( x_\chi dx, y_\eta dy, z_\xi dz) =  ( dx, dy, z_\xi dz)\]</div>
+<p>where <span class="math notranslate nohighlight">\((dx,dy,dz)\)</span> are the mesh spacings in
+<span class="math notranslate nohighlight">\({\mathbf \Xi}\)</span>-space.</p>
+<section id="handy-identities">
+<h2>Handy identities<a class="headerlink" href="#handy-identities" title="Link to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[\nabla_X = \frac{1}{J} T^T \nabla_\Xi\]</div>
+<div class="math notranslate nohighlight">
+\[\nabla_X \cdot A = \frac{1}{J} \nabla_\Xi \cdot (T A) = \frac{1}{J} \nabla_\Xi \cdot (\overline{A})\]</div>
+<p>for any vector field <span class="math notranslate nohighlight">\(A\)</span></p>
+</section>
+<section id="governing-equations-in-stretched-mesh-space">
+<h2>Governing equations in stretched mesh space<a class="headerlink" href="#governing-equations-in-stretched-mesh-space" title="Link to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[JU_t + (\overline{U^{MAC}}\cdot \nabla_\Xi) \; U =
+ J(F_b -\frac{1}{\rho} \frac{T^{T}}{J} \nabla_\Xi \; p) + \frac{\mu}{\rho} \nabla_\Xi \cdot (\frac{1}{J} T T^T \nabla_\Xi U) ,\]</div>
+<div class="math notranslate nohighlight">
+\[J \rho_t + \nabla_\Xi \cdot (\rho \overline{U^{MAC}}) = 0,\]</div>
+<div class="math notranslate nohighlight">
+\[J (\rho s)_t +  \nabla_\Xi \cdot (\rho s \overline{U^{MAC}}) = S,\]</div>
+<div class="math notranslate nohighlight">
+\[\nabla_\Xi  \cdot \overline{U}= 0   \;\;\;,\]</div>
+</section>
+<section id="mac-projection">
+<h2>MAC Projection<a class="headerlink" href="#mac-projection" title="Link to this heading"></a></h2>
+<p>In the MAC projection we want to solve</p>
+<div class="math notranslate nohighlight">
+\[\nabla_X  \cdot (\frac{1}{\rho} \; \nabla_X p) = \nabla_X \cdot U^{pred}\]</div>
+<p>then set</p>
+<div class="math notranslate nohighlight">
+\[U^{MAC} = U^{pred} - \frac{1}{\rho} \nabla_X \; p\]</div>
+<p>Mapping the above to uniform coordinates yields</p>
+<div class="math notranslate nohighlight">
+\[\nabla_\Xi  \cdot (\frac{1}{J \rho} T T^T \nabla_\Xi \; p) = \nabla_\Xi \cdot \overline{U^{pred}}\]</div>
+<p>The MAC projection from AMReX will then return</p>
+<div class="math notranslate nohighlight">
+\[\overline{U^{MAC}} = \overline{U^{pred}} - \frac{1}{\rho} T (\frac{1}{J} T^T \nabla_\Xi p) = \overline{U^{pred}} - \frac{1}{J \rho} T T^T \nabla_\Xi \; p\]</div>
+</section>
+<section id="nodal-projection">
+<h2>Nodal Projection<a class="headerlink" href="#nodal-projection" title="Link to this heading"></a></h2>
+<p>Analogously to the MAC projection we want to solve</p>
+<div class="math notranslate nohighlight">
+\[\nabla_\Xi  \cdot (\frac{1}{J \rho} T T^T \nabla_\Xi \; p) = T^T \nabla_\Xi \cdot ( U^{n+1,*} + \frac{1}{J} T^T \nabla_\Xi p^{n-1/2} ) = \nabla_\Xi \overline{U}^{n+1,*}\]</div>
+<p>where here <span class="math notranslate nohighlight">\(\overline{U}^{n+1,*} = T U^{n+1,*}\)</span> is cell-centered
+with
+<span class="math notranslate nohighlight">\(U^{n+1,*} = U^{n+1,*} + \frac{1}{J} T^T \nabla_\Xi p^{n-1/2}\)</span>.
+Note, although <span class="math notranslate nohighlight">\(p\)</span> is defined on the nodes, <span class="math notranslate nohighlight">\(\nabla p\)</span> is
+cell-centered.</p>
+<p>We construct the divergence and gradient operators with a finite element
+approach, so the mapping enters in here via integrals over cell volumes.
+Thus we will only need <span class="math notranslate nohighlight">\(z_\xi\)</span> at cell centers; this is the same
+metric term used in the MAC projector.</p>
+<p>As with the MAC projection we want to create
+<span class="math notranslate nohighlight">\(\overline{U}^{n+1,*} = T U^{n+1,*}\)</span>
+as the velocity field we will send in to the nodal projector.</p>
+<p>The nodal projection will return</p>
+<div class="math notranslate nohighlight">
+\[\overline{U}^{n+1} = \overline{U}^{n+1,*} - \frac{1}{J \rho} T T^T \nabla_\Xi \; p\]</div>
+<p>Note that – unlike in the MAC projection – we want <span class="math notranslate nohighlight">\(U^{n+1}\)</span>
+rather than <span class="math notranslate nohighlight">\(\overline{U}^{n+1},\)</span> so after the projection we must
+define</p>
+<div class="math notranslate nohighlight">
+\[U = T^{-1} \overline{U}\]</div>
+</section>
+<section id="initial-conditions-computing-the-timestep">
+<h2>Initial conditions &amp; computing the timestep<a class="headerlink" href="#initial-conditions-computing-the-timestep" title="Link to this heading"></a></h2>
+<p>The initial conditions for any problem as well as any other global computations
+such as evaluating the CFL or the adaptive timestep size should be done so in the
+stretched coordinates.</p>
+</section>
+<section id="exceptions-to-the-current-implementation">
+<h2>Exceptions to the current implementation<a class="headerlink" href="#exceptions-to-the-current-implementation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>As a first pass, the stretched mesh capability is implemented only for the MOL scheme.</p></li>
+<li><p>The stretched mesh capability has been tested and verified only for single-level AMR meshes.</p></li>
+<li><p>The mesh stretching capability requires the use of multi-component velocity solves by setting <code class="docutils literal notranslate"><span class="pre">velocity_diffusion.use_tensor_operator</span> <span class="pre">=</span> <span class="pre">false</span></code></p></li>
+<li><p>Efforts are underway to extend the capability beyond laminar physics.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="theory.html" class="btn btn-neutral float-left" title="Theory Manual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../developer/index.html" class="btn btn-neutral float-right" title="Developer Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
