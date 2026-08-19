@@ -129,6 +129,12 @@ void Sampling::initialize()
         m_samplers.emplace_back(std::move(obj));
     }
 
+    m_defer_particle_redistribution =
+        std::ranges::any_of(m_samplers, [](const auto& obj) {
+            return obj->sampletype() == "MovingPlaneSampler" ||
+                   obj->sampletype() == "MovingVolumeSampler";
+        });
+
     update_container();
 
 #ifdef KYNEMA_SGF_USE_NETCDF
@@ -169,6 +175,7 @@ void Sampling::update_container()
 
     m_scontainer->num_sampling_particles() =
         static_cast<int>(m_total_particles);
+    m_particle_redistribution_pending = false;
 }
 
 void Sampling::update_sampling_locations()
@@ -192,7 +199,11 @@ void Sampling::update_sampling_locations()
             update_container();
         } else {
             m_scontainer->update_positions(m_samplers, updated_position);
+            m_particle_redistribution_pending = false;
         }
+    } else if (m_particle_redistribution_pending) {
+        m_scontainer->Redistribute();
+        m_particle_redistribution_pending = false;
     }
 }
 
@@ -252,7 +263,11 @@ void Sampling::post_regrid_actions()
         obj->post_regrid_actions();
     }
 
-    m_scontainer->Redistribute();
+    if (m_defer_particle_redistribution) {
+        m_particle_redistribution_pending = true;
+    } else {
+        m_scontainer->Redistribute();
+    }
 }
 
 void Sampling::convert_velocity_lineofsight()

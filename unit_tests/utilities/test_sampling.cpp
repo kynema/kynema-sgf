@@ -114,11 +114,28 @@ public:
     }
 };
 
+class RepartitionMesh : public AmrTestMesh
+{
+public:
+    void repartition(const int max_grid_size)
+    {
+        amrex::BoxArray ba(Geom(0).Domain());
+        ba.maxSize(max_grid_size);
+        const amrex::DistributionMapping dm(ba);
+        RemakeLevel(0, 0.0_rt, ba, dm);
+    }
+};
+
 } // namespace
 
 class SamplingTest : public MeshTest
 {
 protected:
+    void create_mesh_instance() override
+    {
+        MeshTest::create_mesh_instance<RepartitionMesh>();
+    }
+
     void populate_parameters() override
     {
         MeshTest::populate_parameters();
@@ -418,6 +435,8 @@ TEST_F(SamplingTest, update_particle_positions)
 
     const amrex::RealVect displacement{1.3_rt, -0.7_rt, 2.1_rt};
     moving_sampler->translate(displacement);
+    mesh<RepartitionMesh>()->repartition(8);
+    init_field(density);
     container.update_positions(samplers, {true});
     container.interpolate_fields(
         amrex::Vector<kynema_sgf::Field*>{&density}, 0);

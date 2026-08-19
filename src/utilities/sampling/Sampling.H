@@ -191,6 +191,12 @@ private:
 
     //! Number of sampling container particles:
     size_t m_total_particles{0};
+
+    //! Defer redistribution across regrids for in-place moving samplers
+    bool m_defer_particle_redistribution{false};
+
+    //! The mesh changed since the particles were last redistributed
+    bool m_particle_redistribution_pending{false};
 };
 
 } // namespace kynema_sgf::sampling
