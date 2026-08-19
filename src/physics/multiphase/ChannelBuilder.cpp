@@ -166,16 +166,16 @@ transform_to_local_coordinates(
 }
 
 ChannelBuilder::ChannelBuilder(CFDSim& sim)
-    : m_sim(sim)
-    , m_repo(sim.repo())
-    , m_mesh(sim.mesh())
-    , m_terrain_blank(sim.repo().declare_int_field("terrain_blank", 1, 1, 1))
+    : m_sim(sim), m_repo(sim.repo()), m_mesh(sim.mesh())
 {
-
-    m_sim.io_manager().register_output_int_var("terrain_blank");
 
     amrex::Vector<std::string> labels;
     amrex::ParmParse pp(identifier());
+    pp.query("initialize_terrain", m_initialize_terrain);
+    if (m_initialize_terrain) {
+        m_sim.repo().declare_int_field("terrain_blank", 1, 1, 1);
+        m_sim.io_manager().register_output_int_var("terrain_blank");
+    }
     m_is_multiphase = pp.contains("water_level");
     if (m_is_multiphase) {
         pp.get("water_level", m_water_level);
@@ -194,7 +194,7 @@ ChannelBuilder::ChannelBuilder(CFDSim& sim)
 
     pp.query("initialize_drag_cells", m_initialize_drag);
     if (m_initialize_drag) {
-        sim.repo().declare_int_field("terrain_drag", 1, 1, 1);
+        m_sim.repo().declare_int_field("terrain_drag", 1, 1, 1);
         m_sim.io_manager().register_output_int_var("terrain_drag");
     }
     pp.getarr("segment_labels", labels);
@@ -370,7 +370,8 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const auto& prob_lo = geom.ProbLoArray();
     auto& velocity = m_repo.get_field("velocity");
     auto vel_arrs = velocity(level).arrays();
-    auto& blank_mfab = m_terrain_blank(level);
+    auto& terrain_blank = m_repo.get_int_field("terrain_blank");
+    auto& blank_mfab = terrain_blank(level);
     auto blank_arrs = blank_mfab.arrays();
 
     const int nseg = static_cast<int>(m_type.size());
@@ -386,6 +387,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     const ChannelVelocityProfile* velocity_profile_ptr =
         m_velocity_profile.data();
     const amrex::Real* flow_speed_ptr = m_flow_speed.data();
+    const bool initialize_terrain = m_initialize_terrain;
     const bool initialize_velocity = m_initialize_velocity;
     const bool multiphase = m_is_multiphase;
     const amrex::Real land_level = m_land_level;
@@ -409,7 +411,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
         multiphase ? levelset_lev->arrays() : amrex::MultiArray4<amrex::Real>();
 
     amrex::ParallelFor(
-        blank_mfab, m_terrain_blank.num_grow(),
+        blank_mfab, terrain_blank.num_grow(),
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
             const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
@@ -566,7 +568,9 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                 outside_channel = (z > land_level) ? false : outside_channel;
             }
 
-            blank_arrs[nbx](i, j, k) = static_cast<int>(outside_channel);
+            if (initialize_terrain) {
+                blank_arrs[nbx](i, j, k) = static_cast<int>(outside_channel);
+            }
         });
     amrex::Gpu::streamSynchronize();
 
@@ -593,7 +597,7 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
     if (!initialize_velocity && m_zero_blanked_velocity) {
         // If not initializing velocity, set velocity to 0 in blanked cells
         amrex::ParallelFor(
-            blank_mfab, m_terrain_blank.num_grow(),
+            blank_mfab, terrain_blank.num_grow(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 if (blank_arrs[nbx](i, j, k) == 1) {
                     vel_arrs[nbx](i, j, k, 0) = 0.0_rt;

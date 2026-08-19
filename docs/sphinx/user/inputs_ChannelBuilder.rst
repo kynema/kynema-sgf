@@ -25,12 +25,24 @@ must be used in the momentum forcing in order to actually affect the flow.
 Currently, this is done by including the `DragForcing` source term in
 :input_param:`ICNS.source_terms`.
 
+.. input_param:: ChannelBuilder.initialize_terrain
+
+   **type:** Bool, optional, default = true
+
+   Controls whether the channel builder initializes the terrain blank field from
+   the segment definitions. Setting this to ``false`` is necessary for cases 
+   where a different physics module is used to initialize the terrain blank field,
+   such as TerrainDrag, but ChannelBuilder is still used for setting up the initial
+   velocity field.
+
 .. input_param:: ChannelBuilder.initialize_velocity
 
    **type:** Bool, optional, default = true
 
    Controls whether the channel builder initializes the velocity field from
-   the segment definitions and velocity profiles.
+   the segment definitions and velocity profiles. This is ideal for cases
+   where a different physics module is used to initialize the velocity field,
+   but the terrain blank field should still be set up according to the channel geometry.
 
    - If ``true``, the velocity field is first set to zero and then populated in
      cells that are inside channel segments.

@@ -23,7 +23,8 @@ public:
     virtual void operator()(
         const amrex::Box&,
         const amrex::Geometry& geom,
-        const amrex::Array4<amrex::TagBox::TagType>& tags) const = 0;
+        const amrex::Array4<amrex::TagBox::TagType>& tags,
+        const tagging::TaggingOperator& op) const = 0;
 
     [[nodiscard]] virtual const amrex::RealBox& bound_box() const = 0;
 };
