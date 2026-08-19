@@ -144,57 +144,6 @@ void SamplingContainer::initialize_particles(
     }
 }
 
-void SamplingContainer::update_positions(
-    const amrex::Vector<std::unique_ptr<SamplerBase>>& samplers,
-    const amrex::Vector<bool>& updated)
-{
-    BL_PROFILE("kynema-sgf::SamplingContainer::update_positions");
-    AMREX_ALWAYS_ASSERT(updated.size() == samplers.size());
-
-    for (int isampler = 0; isampler < static_cast<int>(samplers.size());
-         ++isampler) {
-        if (!updated[isampler]) {
-            continue;
-        }
-
-        const auto& sampler = samplers[isampler];
-        SampleLocType sample_locs;
-        sampler->sampling_locations(sample_locs);
-        const auto& locations = sample_locs.locations();
-        AMREX_ALWAYS_ASSERT(
-            static_cast<amrex::Long>(locations.size()) ==
-            sampler->num_points());
-        amrex::Gpu::DeviceVector<amrex::RealVect> device_positions(
-            locations.size());
-        amrex::Gpu::copy(
-            amrex::Gpu::hostToDevice, locations.begin(), locations.end(),
-            device_positions.begin());
-        const auto* position_ptr = device_positions.data();
-        const int sampler_id = sampler->id();
-
-        const int nlevels = m_mesh.finestLevel() + 1;
-        for (int lev = 0; lev < nlevels; ++lev) {
-            for (ParIterType pti(*this, lev); pti.isValid(); ++pti) {
-                const int np = pti.numParticles();
-                auto* pstruct = pti.GetArrayOfStructs()().data();
-                amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
-                    auto& particle = pstruct[ip];
-                    if (particle.idata(IIx::sid) == sampler_id) {
-                        const int nid = particle.idata(IIx::nid);
-                        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-                            particle.pos(d) = position_ptr[nid][d];
-                        }
-                    }
-                });
-            }
-        }
-        amrex::Gpu::streamSynchronize();
-    }
-
-    Redistribute();
-    AMREX_ALWAYS_ASSERT(m_total_particles == TotalNumberOfParticles(false));
-}
-
 void SamplingContainer::interpolate_derived_fields(
     const DerivedQtyMgr& derived_mgr, const FieldRepo& repo, const int scomp)
 {

@@ -129,12 +129,6 @@ void Sampling::initialize()
         m_samplers.emplace_back(std::move(obj));
     }
 
-    m_defer_particle_redistribution =
-        std::ranges::any_of(m_samplers, [](const auto& obj) {
-            return obj->sampletype() == "MovingPlaneSampler" ||
-                   obj->sampletype() == "MovingVolumeSampler";
-        });
-
     update_container();
 
 #ifdef KYNEMA_SGF_USE_NETCDF
@@ -172,6 +166,10 @@ void Sampling::update_container()
 
     // Redistribute particles to appropriate boxes/MPI ranks
     m_scontainer->Redistribute();
+    AMREX_ALWAYS_ASSERT(m_scontainer->OK());
+    AMREX_ALWAYS_ASSERT(
+        static_cast<amrex::Long>(m_total_particles) ==
+        m_scontainer->TotalNumberOfParticles(false));
 
     m_scontainer->num_sampling_particles() =
         static_cast<int>(m_total_particles);
@@ -182,28 +180,12 @@ void Sampling::update_sampling_locations()
 {
     BL_PROFILE("kynema-sgf::Sampling::update_sampling_locations");
 
-    amrex::Vector<bool> updated_position;
-    bool rebuild_container = false;
+    bool updated_position = false;
     for (const auto& obj : m_samplers) {
-        const bool updated_pos = obj->update_sampling_locations();
-        updated_position.push_back(updated_pos);
-        rebuild_container =
-            rebuild_container ||
-            (updated_pos && obj->sampletype() != "MovingPlaneSampler" &&
-             obj->sampletype() != "MovingVolumeSampler");
+        updated_position = obj->update_sampling_locations() || updated_position;
     }
 
-    if (std::ranges::any_of(
-            updated_position, [](const auto& v) { return v; })) {
-        // Rebuild against the current mesh after a regrid. Particle ownership
-        // from an earlier layout is not safe to update in place.
-        if (rebuild_container || m_particle_redistribution_pending) {
-            update_container();
-        } else {
-            m_scontainer->update_positions(m_samplers, updated_position);
-            m_particle_redistribution_pending = false;
-        }
-    } else if (m_particle_redistribution_pending) {
+    if (updated_position || m_particle_redistribution_pending) {
         update_container();
     }
 }
@@ -264,11 +246,9 @@ void Sampling::post_regrid_actions()
         obj->post_regrid_actions();
     }
 
-    if (m_defer_particle_redistribution) {
-        m_particle_redistribution_pending = true;
-    } else {
-        m_scontainer->Redistribute();
-    }
+    // The particle container still references the previous mesh layout.
+    // Rebuild it against the current layout at the next sampling event.
+    m_particle_redistribution_pending = true;
 }
 
 void Sampling::convert_velocity_lineofsight()

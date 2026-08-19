@@ -86,16 +86,6 @@ public:
     void initialize_particles(
         const amrex::Vector<std::unique_ptr<SamplerBase>>& /*samplers*/);
 
-    /** Update existing particle positions from the sampler definitions.
-     *
-     *  Particle identifiers and sampled-data storage are preserved. After the
-     *  positions are updated, particles are redistributed to the finest AMR
-     *  level and grid containing their new locations.
-     */
-    void update_positions(
-        const amrex::Vector<std::unique_ptr<SamplerBase>>& /*samplers*/,
-        const amrex::Vector<bool>& /*updated*/);
-
     //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
     void set_interpolation_order(const int order)
     {

@@ -5,6 +5,7 @@
 #include "src/wind_energy/actuator/ActuatorModel.H"
 #include "src/utilities/sampling/MovingPlaneSampler.H"
 #include "src/utilities/sampling/MovingVolumeSampler.H"
+#include "src/utilities/sampling/Sampling.H"
 #include "src/utilities/constants.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "ks_test_utils/MeshTest.H"
@@ -150,6 +151,67 @@ public:
 protected:
     void prepare_outputs() override {}
 };
+
+class RepartitionDroneMesh : public AmrTestMesh
+{
+public:
+    void repartition(const int max_grid_size)
+    {
+        amrex::BoxArray ba(Geom(0).Domain());
+        ba.maxSize(max_grid_size);
+        const amrex::DistributionMapping dm(ba);
+        RemakeLevel(0, 0.0_rt, ba, dm);
+    }
+};
+
+class DroneSamplingTest : public DroneActuatorTest
+{
+protected:
+    void create_mesh_instance() override
+    {
+        MeshTest::create_mesh_instance<RepartitionDroneMesh>();
+    }
+};
+
+class SamplingCapture : public kynema_sgf::sampling::Sampling
+{
+public:
+    SamplingCapture(kynema_sgf::CFDSim& sim, const std::string& label)
+        : Sampling(sim, label)
+    {}
+
+    std::vector<amrex::Real> values;
+
+protected:
+    void prepare_netcdf_file() override {}
+    void process_output() override
+    {
+        values.assign(num_total_particles() * var_names().size(), 0.0_rt);
+        sampling_container().populate_buffer(values);
+    }
+};
+
+void initialize_solid_body_rotation(kynema_sgf::Field& velocity)
+{
+    const auto& mesh = velocity.repo().mesh();
+    const int nlevels = velocity.repo().num_active_levels();
+
+    for (int lev = 0; lev < nlevels; ++lev) {
+        const auto dx = mesh.Geom(lev).CellSizeArray();
+        const auto problo = mesh.Geom(lev).ProbLoArray();
+        const auto arrays = velocity(lev).arrays();
+        amrex::ParallelFor(
+            velocity(lev), velocity.num_grow(),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+                arrays[nbx](i, j, k, 0) = 10.0_rt - y;
+                arrays[nbx](i, j, k, 1) = 20.0_rt + x;
+                arrays[nbx](i, j, k, 2) = 30.0_rt;
+            });
+    }
+    amrex::Gpu::streamSynchronize();
+}
 
 TEST(DroneGeometry, plus_layout)
 {
@@ -360,6 +422,98 @@ TEST_F(DroneActuatorTest, actuator_attached_volume)
         updated_locations.locations()[0][1], expected_updated.y(), test_tol);
     EXPECT_NEAR(
         updated_locations.locations()[0][2], expected_updated.z(), test_tol);
+
+    remove(m_airfoil_file.c_str());
+}
+
+TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
+{
+    write_airfoil();
+    initialize_domain();
+    populate_inputs();
+
+    amrex::ParmParse pp_drone("Actuator.D1");
+    pp_drone.addarr(
+        "body_orientation_degrees",
+        amrex::Vector<amrex::Real>{10.0_rt, 20.0_rt, 30.0_rt});
+
+    auto& physics = sim().physics_manager().create("Actuator", sim());
+    auto& actuator = dynamic_cast<kynema_sgf::actuator::Actuator&>(physics);
+    actuator.pre_init_actions();
+
+    amrex::ParmParse pp_sampling("sampling_test");
+    pp_sampling.add("output_interval", 1);
+    pp_sampling.addarr(
+        "labels", amrex::Vector<std::string>{"moving_volume", "moving_plane"});
+    pp_sampling.addarr("fields", amrex::Vector<std::string>{"velocity"});
+    pp_sampling.addarr(
+        "derived_fields", amrex::Vector<std::string>{"q_criterion"});
+
+    amrex::ParmParse pp_volume("sampling_test.moving_volume");
+    pp_volume.add("type", std::string("MovingVolumeSampler"));
+    pp_volume.add("actuator_label", std::string("D1"));
+    pp_volume.addarr(
+        "lo", amrex::Vector<amrex::Real>{-0.04_rt, -0.04_rt, -0.02_rt});
+    pp_volume.addarr(
+        "hi", amrex::Vector<amrex::Real>{0.04_rt, 0.04_rt, 0.02_rt});
+    pp_volume.addarr("num_points", amrex::Vector<int>{9, 8, 7});
+
+    amrex::ParmParse pp_plane("sampling_test.moving_plane");
+    pp_plane.add("type", std::string("MovingPlaneSampler"));
+    pp_plane.add("actuator_label", std::string("D1"));
+    pp_plane.addarr(
+        "origin", amrex::Vector<amrex::Real>{-0.04_rt, -0.04_rt, 0.01_rt});
+    pp_plane.addarr(
+        "axis1", amrex::Vector<amrex::Real>{0.08_rt, 0.0_rt, 0.0_rt});
+    pp_plane.addarr(
+        "axis2", amrex::Vector<amrex::Real>{0.0_rt, 0.08_rt, 0.0_rt});
+    pp_plane.addarr("num_points", amrex::Vector<int>{9, 8});
+
+    SamplingCapture sampling(sim(), "sampling_test");
+    sampling.initialize();
+
+    sim().time().delta_t() = 0.01_rt;
+    sim().time().advance_time();
+    mesh<RepartitionDroneMesh>()->repartition(8);
+    initialize_solid_body_rotation(sim().repo().get_field("velocity"));
+    sampling.post_regrid_actions();
+    sampling.output_actions();
+
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        kynema_sgf::sampling::MovingVolumeSampler volume_reference(sim());
+        volume_reference.initialize("sampling_test.moving_volume");
+        volume_reference.update_sampling_locations();
+        kynema_sgf::sampling::SampleLocType volume_locations;
+        volume_reference.sampling_locations(volume_locations);
+
+        kynema_sgf::sampling::MovingPlaneSampler plane_reference(sim());
+        plane_reference.initialize("sampling_test.moving_plane");
+        plane_reference.update_sampling_locations();
+        kynema_sgf::sampling::SampleLocType plane_locations;
+        plane_reference.sampling_locations(plane_locations);
+
+        const auto nvolume = volume_reference.num_points();
+        const auto nplane = plane_reference.num_points();
+        const auto ntotal = nvolume + nplane;
+        ASSERT_EQ(sampling.values.size(), static_cast<size_t>(4 * ntotal));
+        constexpr amrex::Real tol = 1.0e-12_rt;
+        const auto check_samples = [&](const auto& points,
+                                       const amrex::Long offset) {
+            for (amrex::Long ip = 0; ip < points.size(); ++ip) {
+                EXPECT_NEAR(
+                    sampling.values[offset + ip], 10.0_rt - points[ip][1], tol);
+                EXPECT_NEAR(
+                    sampling.values[ntotal + offset + ip],
+                    20.0_rt + points[ip][0], tol);
+                EXPECT_NEAR(
+                    sampling.values[(2 * ntotal) + offset + ip], 30.0_rt, tol);
+                EXPECT_NEAR(
+                    sampling.values[(3 * ntotal) + offset + ip], 1.0_rt, tol);
+            }
+        };
+        check_samples(volume_locations.locations(), 0);
+        check_samples(plane_locations.locations(), nvolume);
+    }
 
     remove(m_airfoil_file.c_str());
 }

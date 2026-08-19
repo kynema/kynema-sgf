@@ -99,21 +99,6 @@ protected:
     }
 };
 
-class TranslatingPlaneSampler : public kynema_sgf::sampling::PlaneSampler
-{
-public:
-    explicit TranslatingPlaneSampler(const kynema_sgf::CFDSim& sim)
-        : PlaneSampler(sim)
-    {}
-
-    void translate(const amrex::RealVect& displacement)
-    {
-        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-            m_origin[d] += displacement[d];
-        }
-    }
-};
-
 } // namespace
 
 class SamplingTest : public MeshTest
@@ -387,54 +372,6 @@ TEST_F(SamplingTest, interpolation_order)
     EXPECT_NEAR(interp_val, x + y + z, tol);
     EXPECT_NEAR(nearest_val, xcc + ycc + zcc, tol);
     EXPECT_GT(amrex::Math::abs(nearest_val - interp_val), 1.0_rt);
-}
-
-TEST_F(SamplingTest, update_particle_positions)
-{
-    initialize_mesh();
-    auto& density = sim().repo().declare_field("density", 1, 2);
-    init_field(density);
-
-    amrex::ParmParse pp("moving_plane");
-    pp.addarr("origin", amrex::Vector<amrex::Real>{10.2_rt, 20.3_rt, 30.4_rt});
-    pp.addarr("axis1", amrex::Vector<amrex::Real>{8.0_rt, 0.0_rt, 0.0_rt});
-    pp.addarr("axis2", amrex::Vector<amrex::Real>{0.0_rt, 8.0_rt, 0.0_rt});
-    pp.addarr("num_points", amrex::Vector<int>{5, 5});
-
-    amrex::Vector<std::unique_ptr<kynema_sgf::sampling::SamplerBase>> samplers;
-    auto sampler = std::make_unique<TranslatingPlaneSampler>(sim());
-    sampler->id() = 0;
-    sampler->initialize("moving_plane");
-    auto* moving_sampler = sampler.get();
-    const auto num_points = sampler->num_points();
-    samplers.emplace_back(std::move(sampler));
-
-    kynema_sgf::sampling::SamplingContainer container(mesh());
-    container.setup_container(1);
-    container.set_interpolation_order(1);
-    container.initialize_particles(samplers);
-    container.Redistribute();
-    container.num_sampling_particles() = num_points;
-
-    const amrex::RealVect displacement{1.3_rt, -0.7_rt, 2.1_rt};
-    moving_sampler->translate(displacement);
-    container.update_positions(samplers, {true});
-    container.interpolate_fields(
-        amrex::Vector<kynema_sgf::Field*>{&density}, 0);
-
-    std::vector<amrex::Real> sampled_values(num_points, 0.0_rt);
-    container.populate_buffer(sampled_values);
-    if (amrex::ParallelDescriptor::IOProcessor()) {
-        kynema_sgf::sampling::SampleLocType locations;
-        moving_sampler->sampling_locations(locations);
-        const auto& points = locations.locations();
-        constexpr amrex::Real tol =
-            std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
-        for (int i = 0; i < num_points; ++i) {
-            const auto expected = points[i][0] + points[i][1] + points[i][2];
-            EXPECT_NEAR(sampled_values[i], expected, tol);
-        }
-    }
 }
 
 TEST_F(SamplingTest, probe_sampler)
