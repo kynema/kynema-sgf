@@ -195,15 +195,16 @@ void Sampling::update_sampling_locations()
 
     if (std::ranges::any_of(
             updated_position, [](const auto& v) { return v; })) {
-        if (rebuild_container) {
+        // Rebuild against the current mesh after a regrid. Particle ownership
+        // from an earlier layout is not safe to update in place.
+        if (rebuild_container || m_particle_redistribution_pending) {
             update_container();
         } else {
             m_scontainer->update_positions(m_samplers, updated_position);
             m_particle_redistribution_pending = false;
         }
     } else if (m_particle_redistribution_pending) {
-        m_scontainer->Redistribute();
-        m_particle_redistribution_pending = false;
+        update_container();
     }
 }
 

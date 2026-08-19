@@ -172,14 +172,11 @@ void SamplingContainer::update_positions(
         const auto* position_ptr = device_positions.data();
         const int sampler_id = sampler->id();
 
-        // After a mesh regrid, stored particle-tile keys can refer to the
-        // previous layout until Redistribute is called. Iterate those stored
-        // tiles directly so no particle is skipped while updating positions.
-        for (auto& particle_level : GetParticles()) {
-            for (auto& item : particle_level) {
-                auto& particle_tile = item.second;
-                const int np = particle_tile.numParticles();
-                auto* pstruct = particle_tile.GetArrayOfStructs()().data();
+        const int nlevels = m_mesh.finestLevel() + 1;
+        for (int lev = 0; lev < nlevels; ++lev) {
+            for (ParIterType pti(*this, lev); pti.isValid(); ++pti) {
+                const int np = pti.numParticles();
+                auto* pstruct = pti.GetArrayOfStructs()().data();
                 amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(const int ip) {
                     auto& particle = pstruct[ip];
                     if (particle.idata(IIx::sid) == sampler_id) {
