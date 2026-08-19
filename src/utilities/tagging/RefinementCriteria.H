@@ -49,7 +49,7 @@ AMREX_FORCE_INLINE TaggingOperator string_to_operator(const std::string& op)
     return TaggingOperator::AND;
 }
 
-AMREX_FORCE_INLINE amrex::TagBox::TagVal tag_val(
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::TagBox::TagVal tag_val(
     const bool previous_val, const bool current_val, const TaggingOperator& op)
 {
     switch (op) {
