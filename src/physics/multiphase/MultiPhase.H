@@ -53,11 +53,16 @@ public:
     void set_density_via_vof(
         kynema_sgf::FieldState fstate = kynema_sgf::FieldState::New);
 
+    void set_density_via_vof(
+        int lev, kynema_sgf::FieldState fstate = kynema_sgf::FieldState::New);
+
     void set_nph_density();
 
     void calculate_advected_facedensity();
 
     void levelset2vof();
+
+    void levelset2vof(int lev);
 
     void levelset2vof(const IntField& iblank_cell, ScratchField& vof_scr);
 

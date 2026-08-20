@@ -160,8 +160,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
             const amrex::Real terrainHt = interp::bilinear(
                 xterrain_ptr, xterrain_ptr + xterrain_size, yterrain_ptr,
                 yterrain_ptr + yterrain_size, zterrain_ptr, x, y);
-            levelBlanking[nbx](i, j, k, 0) =
-                static_cast<int>((z <= terrainHt) && (z > prob_lo[2]));
+            levelBlanking[nbx](i, j, k, 0) = static_cast<int>(z <= terrainHt);
             levelheight[nbx](i, j, k, 0) = terrainHt;
 
             if (xrough_size > 0) {
