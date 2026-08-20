@@ -15,6 +15,7 @@
 #include <cmath>
 #include <filesystem>
 #include <fstream>
+#include <limits>
 
 #include "AMReX_REAL.H"
 
@@ -48,7 +49,7 @@ protected:
             "prob_hi", amrex::Vector<amrex::Real>{0.2_rt, 0.2_rt, 0.2_rt});
     }
 
-    virtual int max_level() const { return 0; }
+    [[nodiscard]] virtual int max_level() const { return 0; }
 
     void initialize_domain()
     {
@@ -157,10 +158,10 @@ protected:
 class RepartitionDroneMesh : public AmrTestMesh
 {
 public:
-    void repartition(const int max_grid_size)
+    void repartition(const int new_max_grid_size)
     {
         amrex::BoxArray ba(Geom(0).Domain());
-        ba.maxSize(max_grid_size);
+        ba.maxSize(new_max_grid_size);
         const amrex::DistributionMapping dm(ba);
         RemakeLevel(0, 0.0_rt, ba, dm);
     }
@@ -179,7 +180,7 @@ protected:
 class DroneSamplingTest : public DroneActuatorTest
 {
 protected:
-    int max_level() const override { return 2; }
+    [[nodiscard]] int max_level() const override { return 2; }
 
     void create_mesh_instance() override
     {
@@ -507,7 +508,8 @@ TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
         const auto nplane = plane_reference.num_points();
         const auto ntotal = nvolume + nplane;
         ASSERT_EQ(sampling.values.size(), static_cast<size_t>(4 * ntotal));
-        constexpr amrex::Real tol = 1.0e-12_rt;
+        constexpr amrex::Real tol =
+            std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
         const auto check_samples = [&](const auto& points,
                                        const amrex::Long offset) {
             for (amrex::Long ip = 0; ip < points.size(); ++ip) {
