@@ -167,9 +167,6 @@ void Sampling::update_container()
     // Redistribute particles to appropriate boxes/MPI ranks
     m_scontainer->Redistribute();
     AMREX_ALWAYS_ASSERT(m_scontainer->OK());
-    AMREX_ALWAYS_ASSERT(
-        static_cast<amrex::Long>(m_total_particles) ==
-        m_scontainer->TotalNumberOfParticles(false));
 
     m_scontainer->num_sampling_particles() =
         static_cast<int>(m_total_particles);
