@@ -39,6 +39,7 @@ MultiPhase.density_fluid2=1.225
 
 ICNS.source_terms = GravityForcing DragForcing
 ICNS.use_perturb_pressure = 1
+DragForcing.terrain_use_original_implementation    = 1
 DragForcing.is_laminar    = 1
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#

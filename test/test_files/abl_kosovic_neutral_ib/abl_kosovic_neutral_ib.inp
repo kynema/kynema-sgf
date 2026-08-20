@@ -61,6 +61,7 @@ ABL.surface_temp_flux                       = 0.0
 ICNS.source_terms                           = BoussinesqBuoyancy CoriolisForcing GeostrophicForcing RayleighDamping NonLinearSGSTerm DragForcing
 Temperature.source_terms = DragTempForcing
 RayleighDamping.force_coord_directions= 0 0 1
+DragForcing.terrain_use_original_implementation    = 1
 DragForcing.sponge_strength=0
 #CoriolisForcing.east_vector                 = 1.0 0.0 0.0
 #CoriolisForcing.latitude                    = 45.0

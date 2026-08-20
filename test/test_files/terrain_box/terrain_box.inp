@@ -33,6 +33,7 @@ turbulence.model = Laminar
 io.int_outputs = terrain_blank terrain_drag
 incflo.physics = FreeStream TerrainDrag
 ICNS.source_terms                        = DragForcing
+DragForcing.terrain_use_original_implementation    = 1
 DragForcing.is_laminar = 1
 TerrainDrag.terrain_file = "terrain.amrwind"
 amr.n_cell              =  56 56 104    # Grid cells at coarsest AMRlevel

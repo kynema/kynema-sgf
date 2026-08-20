@@ -27,6 +27,7 @@ turbulence.model                         = Kosovic
 Kosovic.monin_obukhov_length                   = -1e30
 incflo.physics = ABL OceanWaves TerrainDrag
 ICNS.source_terms = BoussinesqBuoyancy CoriolisForcing GeostrophicForcing NonLinearSGSTerm DragForcing
+DragForcing.terrain_use_original_implementation    = 1
 BoussinesqBuoyancy.reference_temperature = 263.5
 CoriolisForcing.east_vector = 1.0 0.0 0.0
 CoriolisForcing.north_vector = 0.0 1.0 0.0

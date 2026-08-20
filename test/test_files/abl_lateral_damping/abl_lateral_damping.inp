@@ -73,6 +73,7 @@ ABL.bndry_var_names                                = velocity temperature tke
 ABL.bndry_output_format                            = native
 # Source
 ICNS.source_terms                                  = RayleighDamping ABLMeanBoussinesq BoussinesqBuoyancy  CoriolisForcing  GeostrophicForcing  DragForcing 
+DragForcing.terrain_use_original_implementation    = 1
 GeostrophicForcing.geostrophic_wind                = 13.5014 -6.09201 0
 TerrainDrag.terrain_file                           = "terrain.amrwind.new" 
 Temperature.source_terms                           = DragTempForcing

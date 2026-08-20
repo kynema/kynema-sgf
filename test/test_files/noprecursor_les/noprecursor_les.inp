@@ -50,6 +50,7 @@ ICNS.source_terms                                  = VelocityFreeAtmosphereForci
 GeostrophicForcing.geostrophic_wind                = 13.4617 0.451346 0
 TerrainDrag.terrain_file                           = "terrain.amrwind" 
 Temperature.source_terms                           = TemperatureFreeAtmosphereForcing  DragTempForcing 
+DragForcing.terrain_use_original_implementation    = 1
 DragForcing.sponge_west                            = 1
 DragForcing.sponge_east                            = 1
 DragForcing.sponge_north                           = 1

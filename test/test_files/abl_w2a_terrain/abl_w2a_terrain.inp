@@ -38,6 +38,7 @@ CoriolisForcing.north_vector = 0.0 1.0 0.0
 CoriolisForcing.latitude = 90.0
 CoriolisForcing.rotational_time_period = 125663.706143592
 GeostrophicForcing.geostrophic_wind = 10.0 0.0 0.0
+DragForcing.terrain_use_original_implementation = 1
 DragForcing.sponge_strength = 0
 
 temperature.source_terms = DragTempForcing

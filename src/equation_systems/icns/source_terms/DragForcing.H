@@ -49,7 +49,8 @@ private:
     amrex::Real m_drag_coefficient{10.0_rt};
     amrex::Real m_sponge_strength{1.0_rt};
     amrex::Real m_sponge_density{1.0_rt};
-    amrex::Real m_forcing_time_factor{5.0_rt};
+    amrex::Real m_terrain_time_factor{1.0_rt};
+    amrex::Real m_bc_time_factor{5.0_rt};
     amrex::Real m_sponge_distance_west{0.0_rt};
     amrex::Real m_sponge_distance_east{0.0_rt};
     amrex::Real m_sponge_distance_south{0.0_rt};
@@ -64,8 +65,9 @@ private:
     bool m_is_laminar{false};
     bool m_terrain_is_waves{false};
     bool m_apply_MOSD{false};
-    bool m_limit_drag{true};
-    bool m_limit_drag_temporal{false};
+    bool m_limit_terrain_original{false};
+    bool m_limit_terrain_temporal{false};
+    bool m_do_original_terrain{false};
     std::string m_wall_het_model{"none"};
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
     amrex::Real m_kappa{0.41_rt};

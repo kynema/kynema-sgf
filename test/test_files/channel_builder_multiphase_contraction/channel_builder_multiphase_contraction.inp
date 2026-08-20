@@ -36,6 +36,7 @@ incflo.physics = MultiPhase ChannelBuilder
 MultiPhase.density_fluid1 = 1000.
 MultiPhase.density_fluid2 = 1.225
 ICNS.source_terms = GravityForcing DragForcing
+DragForcing.terrain_use_original_implementation    = 1
 ICNS.use_perturb_pressure = true
 ChannelBuilder.segment_labels = s1 s2
 
