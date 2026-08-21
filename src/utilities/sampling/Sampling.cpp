@@ -166,23 +166,23 @@ void Sampling::update_container()
 
     // Redistribute particles to appropriate boxes/MPI ranks
     m_scontainer->Redistribute();
-    AMREX_ALWAYS_ASSERT(m_scontainer->OK());
 
     m_scontainer->num_sampling_particles() =
         static_cast<int>(m_total_particles);
-    m_particle_redistribution_pending = false;
 }
 
 void Sampling::update_sampling_locations()
 {
     BL_PROFILE("kynema-sgf::Sampling::update_sampling_locations");
 
-    bool updated_position = false;
+    amrex::Vector<bool> updated_position;
     for (const auto& obj : m_samplers) {
-        updated_position = obj->update_sampling_locations() || updated_position;
+        const bool updated_pos = obj->update_sampling_locations();
+        updated_position.push_back(updated_pos);
     }
 
-    if (updated_position || m_particle_redistribution_pending) {
+    if (std::ranges::any_of(
+            updated_position, [](const auto& v) { return v; })) {
         update_container();
     }
 }
@@ -243,9 +243,7 @@ void Sampling::post_regrid_actions()
         obj->post_regrid_actions();
     }
 
-    // The particle container still references the previous mesh layout.
-    // Rebuild it against the current layout at the next sampling event.
-    m_particle_redistribution_pending = true;
+    m_scontainer->Redistribute();
 }
 
 void Sampling::convert_velocity_lineofsight()
