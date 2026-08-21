@@ -217,7 +217,9 @@ public:
 protected:
     void process_output() override
     {
+#ifdef KYNEMA_SGF_USE_NETCDF
         Sampling::process_output();
+#endif
         values.assign(num_total_particles() * var_names().size(), 0.0_rt);
         sampling_container().populate_buffer(values);
     }
@@ -491,7 +493,9 @@ TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
 
     amrex::ParmParse pp_sampling("sampling_test");
     pp_sampling.add("output_interval", 1);
+#ifdef KYNEMA_SGF_USE_NETCDF
     pp_sampling.add("output_format", std::string("netcdf"));
+#endif
     pp_sampling.addarr(
         "labels", amrex::Vector<std::string>{
                       "moving_volume", "moving_plane", "static_volume"});
@@ -527,10 +531,12 @@ TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
         "hi", amrex::Vector<amrex::Real>{0.18_rt, 0.18_rt, 0.18_rt});
     pp_static_volume.addarr("num_points", amrex::Vector<int>{24, 38, 23});
 
+#ifdef KYNEMA_SGF_USE_NETCDF
     if (amrex::ParallelDescriptor::IOProcessor()) {
         std::filesystem::create_directories("post_processing");
     }
     amrex::ParallelDescriptor::Barrier();
+#endif
 
     SamplingCapture sampling(sim(), "sampling_test");
     sampling.initialize();
@@ -582,6 +588,7 @@ TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
         check_samples(plane_locations.locations(), nvolume);
         check_samples(static_volume_locations.locations(), nvolume + nplane);
 
+#ifdef KYNEMA_SGF_USE_NETCDF
         auto ncf =
             ncutils::NCFile::open("post_processing/sampling_test00000.nc");
         const auto static_group = ncf.group("static_volume");
@@ -594,6 +601,7 @@ TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
             EXPECT_NEAR(value, 1.0_rt, tol);
         }
         ncf.close();
+#endif
     };
 
     using SamplingParticle =
@@ -622,9 +630,11 @@ TEST_F(DroneSamplingTest, moving_samplers_after_mesh_repartition)
     }
 
     remove(m_airfoil_file.c_str());
+#ifdef KYNEMA_SGF_USE_NETCDF
     if (amrex::ParallelDescriptor::IOProcessor()) {
         remove("post_processing/sampling_test00000.nc");
     }
+#endif
 }
 
 TEST_F(DroneActuatorTest, matches_equivalent_standalone_sectors)
