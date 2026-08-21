@@ -263,6 +263,11 @@ vs::Vector RigidBodyMotion::angular_velocity(const amrex::Real time) const
     return m_constant_angular_velocity;
 }
 
+RigidTransform RigidBodyMotion::pose(const amrex::Real time) const
+{
+    return {position(time), orientation(time)};
+}
+
 bool RigidBodyMotion::moves() const
 {
     return !m_position_table.empty() || !m_velocity_table.empty() ||
