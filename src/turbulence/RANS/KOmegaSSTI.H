@@ -37,8 +37,9 @@ KOmegaSST<Transport>::KOmegaSST(CFDSim& sim)
         sim.pde_manager().register_transport_pde(pde::SDR::pde_name());
     m_sdr = &(sdr_eqn.fields().field);
 
-    // TKE source term to be added to PDE
+    // TKE and SDR source terms to be added to PDEs
     turb_utils::inject_turbulence_src_terms(pde::TKE::pde_name(), {"KwSSTSrc"});
+    turb_utils::inject_turbulence_src_terms(pde::SDR::pde_name(), {"SDRSrc"});
 }
 
 template <typename Transport>
