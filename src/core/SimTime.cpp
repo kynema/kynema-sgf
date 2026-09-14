@@ -345,6 +345,10 @@ bool SimTime::continue_simulation() const
         return stop_simulation;
     }
 
+    if (m_stop_requested) {
+        return stop_simulation;
+    }
+
     return !(stop_simulation);
 }
 
