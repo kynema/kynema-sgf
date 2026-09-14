@@ -498,9 +498,17 @@ void Flather::set_velocity(
                 const amrex::Real c = std::sqrt(grav_z * interior_h);
 
                 // Calculation of Flather formula. "val" = velocity * h
-                const auto Flather_val =
+                auto Flather_val =
                     boundary_val + (ori.isLow() ? -1.0_rt : 1.0_rt) * c *
                                        (interior_h - boundary_h);
+
+                // Prevent Flather_val from changing signs
+                if (boundary_val > 0.0_rt) {
+                    Flather_val = amrex::max<amrex::Real>(Flather_val, 0.0_rt);
+                }
+                if (boundary_val < 0.0_rt) {
+                    Flather_val = amrex::min<amrex::Real>(Flather_val, 0.0_rt);
+                }
 
                 // Use external (prescribed) velocity if inflow:
                 // - Assesses inflow by the whole column, not the local value
