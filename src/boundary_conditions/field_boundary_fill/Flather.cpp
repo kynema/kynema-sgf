@@ -579,7 +579,8 @@ void Flather::set_velocity(
                 if (prescribed_inflow || override_interior) {
                     local_vel = arr(iv, fcomp);
                     auto scale_exterior = (Flather_val / boundary_val);
-                    scale_exterior = amrex::min<amrex::Real>(scale_exterior, vscale_max);
+                    scale_exterior =
+                        amrex::min<amrex::Real>(scale_exterior, vscale_max);
                     // minimum scale is 0, enforced by sign guard
                     scaled_vel = local_vel * scale_exterior;
                 } else {
