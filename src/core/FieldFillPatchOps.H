@@ -212,6 +212,11 @@ public:
         Field& field,
         const amrex::AmrCore& mesh,
         const SimTime& time,
+        // Nearly every operator is plain data a hundred or so bytes wide, which
+        // is passed by reference rather than by value however it is copied
+        // afterwards. Only an operator owning device memory, such as the
+        // tabulated inflow profile, would rather be moved in.
+        // NOLINTNEXTLINE(modernize-pass-by-value)
         const BCOpCreator& bc_op,
         FieldInterpolator itype = FieldInterpolator::CellConsLinear,
         FieldInterpolator face_itype = FieldInterpolator::FaceDivFree)

@@ -1,0 +1,99 @@
+# Veering inflow read from a tabulated profile.
+#
+# The wind turns with height, so the normal component reverses partway up the
+# column and every lateral face is an inflow over part of its height and an
+# outflow over the rest. All four are mass_inflow_outflow for that reason.
+
+# Geometry
+geometry.prob_lo                            = 0.0 0.0 0.0
+geometry.prob_hi                            = 1000.0 1000.0 1000.0
+geometry.is_periodic                        = 0 0 0
+# Grid
+amr.n_cell                                  = 32 32 32
+amr.max_level                               = 0
+# Simulation control parameters
+time.max_step                               = 10
+time.initial_dt                             = 0.5
+time.cfl                                    = 0.5
+time.init_shrink                            = 0.1
+time.regrid_interval                        = -1
+time.plot_interval                          = 10
+time.checkpoint_interval                    = -1
+# incflo
+incflo.physics                              = ABL
+incflo.density                              = 1.0
+incflo.gravity                              = 0.0 0.0 -9.81
+incflo.velocity                             = 8.0 -1.0 0.0
+incflo.verbose                              = 0
+incflo.initial_iterations                   = 3
+incflo.do_initial_proj                      = true
+incflo.constant_density                     = true
+incflo.use_godunov                          = true
+incflo.godunov_type                         = "ppm"
+incflo.diffusion_type                       = 2
+# transport equation parameters
+transport.model                             = ConstTransport
+transport.viscosity                         = 1.0e-5
+transport.laminar_prandtl                   = 0.7
+transport.turbulent_prandtl                 = 0.3333
+transport.reference_temperature             = 300.0
+# turbulence equation parameters
+turbulence.model                            = KLAxell
+TKE.source_terms                            = KransAxell
+# Atmospheric boundary layer
+ABL.kappa                                   = 0.41
+ABL.normal_direction                        = 2
+ABL.surface_roughness_z0                    = 0.1
+ABL.surface_temp_flux                       = 0.0
+ABL.wall_shear_stress_type                  = local
+ABL.perturb_velocity                        = false
+ABL.perturb_temperature                     = false
+ABL.stats_output_frequency                  = 10
+# KLAxell drives the TKE equation through KransAxell, which needs its own
+# 1-D profile. That file is the older z u v w tke layout, with w in the fourth
+# column where the inflow profile below carries temperature, so the two
+# describe the same atmosphere but cannot be read the same way.
+ABL.rans_1dprofile_file                     = "rans_1d.info"
+ABL.temperature_heights                     = 0.0 600.0 1000.0
+ABL.temperature_values                      = 300.0 302.0 308.0
+# Source
+ICNS.source_terms                           = BoussinesqBuoyancy
+BoussinesqBuoyancy.reference_temperature    = 300.0
+# Boundary conditions
+#
+# The profile supplies velocity, temperature and tke on every lateral face.
+# Density is not tabulated and is set to the constant reference value.
+TabulatedProfile.filename                   = inflow_profile.txt
+
+xlo.type                                    = "mass_inflow_outflow"
+xlo.density                                 = 1.0
+xlo.velocity.inflow_outflow_type            = TabulatedProfile
+xlo.temperature.inflow_outflow_type         = TabulatedProfile
+xlo.tke.inflow_outflow_type                 = TabulatedProfile
+
+xhi.type                                    = "mass_inflow_outflow"
+xhi.density                                 = 1.0
+xhi.velocity.inflow_outflow_type            = TabulatedProfile
+xhi.temperature.inflow_outflow_type         = TabulatedProfile
+xhi.tke.inflow_outflow_type                 = TabulatedProfile
+
+ylo.type                                    = "mass_inflow_outflow"
+ylo.density                                 = 1.0
+ylo.velocity.inflow_outflow_type            = TabulatedProfile
+ylo.temperature.inflow_outflow_type         = TabulatedProfile
+ylo.tke.inflow_outflow_type                 = TabulatedProfile
+
+yhi.type                                    = "mass_inflow_outflow"
+yhi.density                                 = 1.0
+yhi.velocity.inflow_outflow_type            = TabulatedProfile
+yhi.temperature.inflow_outflow_type         = TabulatedProfile
+yhi.tke.inflow_outflow_type                 = TabulatedProfile
+
+zlo.type                                    = "wall_model"
+zlo.tke_type                                = "fixed_gradient"
+zlo.tke                                     = 0.0
+zhi.type                                    = "slip_wall"
+zhi.temperature_type                        = "fixed_gradient"
+zhi.temperature                             = 0.015
+zhi.tke_type                                = "fixed_gradient"
+zhi.tke                                     = 0.0

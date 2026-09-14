@@ -11,6 +11,7 @@
 #include "src/physics/udfs/Rankine.H"
 #include "src/physics/udfs/CustomVelocity.H"
 #include "src/physics/udfs/TwoLayer.H"
+#include "src/physics/udfs/TabulatedProfile.H"
 
 namespace kynema_sgf::vel_bc {
 
@@ -43,6 +44,10 @@ void register_inflow_vel_dirichlet(
             mesh, time, InflowOp(field));
     } else if (inflow_udf == "TwoLayer") {
         using InflowOp = BCOpCreator<udf::TwoLayer, WallOp>;
+        field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
+            mesh, time, InflowOp(field));
+    } else if (inflow_udf == "TabulatedProfile") {
+        using InflowOp = BCOpCreator<udf::TabulatedProfile, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
             mesh, time, InflowOp(field));
     } else {

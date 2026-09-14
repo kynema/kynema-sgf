@@ -106,8 +106,10 @@ void BCIface::set_bcfuncs()
             m_field.register_custom_bc<FixedGradientBC>(ori);
         }
 
+        // Transported quantities need the outflow part of an inflow-outflow
+        // face filled by extrapolation rather than left at the inflow value
         if (((m_field.name() == "velocity") ||
-             (m_field.name() == "temperature")) &&
+             (m_field.name() == "temperature") || (m_field.name() == "tke")) &&
             (bct == BC::mass_inflow_outflow)) {
 
             m_field.register_custom_bc<MassInflowOutflowBC>(ori);
