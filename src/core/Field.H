@@ -71,7 +71,7 @@ struct FieldInfo
     amrex::Vector<Field*> m_states;
 
     //! Function that handles filling patch and physics BC data for this field
-    std::unique_ptr<FieldFillPatchOpsBase> m_fillpatch_op;
+    amrex::Vector<std::unique_ptr<FieldFillPatchOpsBase>> m_fillpatch_ops;
 
     //! Custom boundary condition actions for this field
     amrex::Vector<std::unique_ptr<FieldBCIface>> m_bc_func;
@@ -222,7 +222,7 @@ public:
     //! Return a flag indicating whether a fillpatch Op has been registered
     [[nodiscard]] bool has_fillpatch_op() const
     {
-        return static_cast<bool>(m_info->m_fillpatch_op);
+        return !m_info->m_fillpatch_ops.empty();
     }
 
     /** Setup default BC conditions for fillpatch operations
@@ -312,7 +312,25 @@ public:
     template <typename T, class... Args>
     void register_fill_patch_op(Args&&... args)
     {
-        m_info->m_fillpatch_op.reset(new T(*this, std::forward<Args>(args)...));
+        if (m_info->m_fillpatch_ops.empty()) {
+            m_info->m_fillpatch_ops.emplace_back(
+                new T(*this, std::forward<Args>(args)...));
+        } else if (m_info->m_fillpatch_ops.size() == 1) {
+            m_info->m_fillpatch_ops[0].reset(
+                new T(*this, std::forward<Args>(args)...));
+        } else {
+            amrex::Abort(
+                "register_fill_patch_op: More than one fillpatch op already "
+                "registered. register_fill_patch_op cannot be called after "
+                "add_fill_patch_op");
+        }
+    }
+
+    template <typename T, class... Args>
+    void add_fill_patch_op(Args&&... args)
+    {
+        m_info->m_fillpatch_ops.emplace_back(
+            new T(*this, std::forward<Args>(args)...));
     }
 
     /** Register a custom boundary conditions class

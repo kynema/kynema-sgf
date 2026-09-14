@@ -71,8 +71,8 @@ ModulatedPowerLaw::ModulatedPowerLaw(CFDSim& sim)
 
 void ModulatedPowerLaw::post_init_actions()
 {
-    m_velocity.register_fill_patch_op<FillMPL>(m_mesh, m_time, *this);
-    m_temperature.register_fill_patch_op<FillMPL>(m_mesh, m_time, *this);
+    m_velocity.add_fill_patch_op<FillMPL>(m_mesh, m_time, *this);
+    m_temperature.add_fill_patch_op<FillMPL>(m_mesh, m_time, *this);
 }
 
 void ModulatedPowerLaw::pre_advance_work()

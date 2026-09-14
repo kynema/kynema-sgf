@@ -173,11 +173,12 @@ void Field::fillpatch(
     const amrex::IntVect& nghost)
 {
     BL_PROFILE("kynema-sgf::Field::fillpatch 2");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
 
-    fop.fillpatch(lev, time, mfab, nghost, field_state());
+    for (const auto& fop : m_info->m_fillpatch_ops) {
+        fop->fillpatch(lev, time, mfab, nghost, field_state());
+    }
 }
 
 void Field::fillpatch_from_coarse(
@@ -187,23 +188,24 @@ void Field::fillpatch_from_coarse(
     const amrex::IntVect& nghost)
 {
     BL_PROFILE("kynema-sgf::Field::fillpatch_from_coarse");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
-
-    fop.fillpatch_from_coarse(lev, time, mfab, nghost, field_state());
+    for (const auto& fop : m_info->m_fillpatch_ops) {
+        fop->fillpatch_from_coarse(lev, time, mfab, nghost, field_state());
+    }
 }
 
 void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng)
 {
     BL_PROFILE("kynema-sgf::Field::fillpatch");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
     const int nlevels = m_repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
-        fop.fillpatch(
-            lev, time, m_repo.get_multifab(m_id, lev), ng, field_state());
+        for (const auto& fop : m_info->m_fillpatch_ops) {
+            fop->fillpatch(
+                lev, time, m_repo.get_multifab(m_id, lev), ng, field_state());
+        }
     }
 }
 
@@ -215,10 +217,9 @@ void Field::fillpatch_sibling_fields(
     amrex::Array<Field*, AMREX_SPACEDIM>& fields) const
 {
     BL_PROFILE("kynema-sgf::Field::fillpatch array");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
     BL_ASSERT(m_info->m_ncomp == static_cast<int>(fields.size()));
-    auto& fop = *(m_info->m_fillpatch_op);
     const int nlevels = m_repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs = {AMREX_D_DECL(
@@ -230,9 +231,11 @@ void Field::fillpatch_sibling_fields(
             }
         }
 
-        fop.fillpatch_sibling_fields(
-            lev, time, mfabs, mfabs, cfabs, ng, m_info->m_bcrec,
-            m_info->m_bcrec, field_state());
+        for (const auto& fop : m_info->m_fillpatch_ops) {
+            fop->fillpatch_sibling_fields(
+                lev, time, mfabs, mfabs, cfabs, ng, m_info->m_bcrec,
+                m_info->m_bcrec, field_state());
+        }
     }
 }
 
@@ -243,22 +246,24 @@ void Field::fillphysbc(
     const amrex::IntVect& ng)
 {
     BL_PROFILE("kynema-sgf::Field::fillphysbc");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
-    fop.fillphysbc(lev, time, mfab, ng, field_state());
+    for (const auto& fop : m_info->m_fillpatch_ops) {
+        fop->fillphysbc(lev, time, mfab, ng, field_state());
+    }
 }
 
 void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng)
 {
     BL_PROFILE("kynema-sgf::Field::fillphysbc");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
     const int nlevels = m_repo.num_active_levels();
     for (int lev = 0; lev < nlevels; ++lev) {
-        fop.fillphysbc(
-            lev, time, m_repo.get_multifab(m_id, lev), ng, field_state());
+        for (const auto& fop : m_info->m_fillpatch_ops) {
+            fop->fillphysbc(
+                lev, time, m_repo.get_multifab(m_id, lev), ng, field_state());
+        }
     }
 }
 
@@ -268,17 +273,18 @@ void Field::fillphysbc_type(
     const amrex::Real time, const amrex::BCType::mathematicalBndryTypes bctype)
 {
     BL_PROFILE("kynema-sgf::Field::fillphysbc_type");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     // BC does not need to be initialized to fill BCs with a specified type, but
     // it does need to be copied to device (e.g., if requested type needs data)
     BL_ASSERT(m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
     const int nlevels = m_repo.num_active_levels();
     const auto ng = num_grow();
     for (int lev = 0; lev < nlevels; ++lev) {
-        fop.fillphysbc_type(
-            lev, time, bctype, m_repo.get_multifab(m_id, lev), ng,
-            field_state());
+        for (const auto& fop : m_info->m_fillpatch_ops) {
+            fop->fillphysbc_type(
+                lev, time, bctype, m_repo.get_multifab(m_id, lev), ng,
+                field_state());
+        }
     }
 }
 
@@ -297,10 +303,11 @@ void Field::set_inflow(
     const amrex::IntVect& ng)
 {
     BL_PROFILE("kynema-sgf::Field::set_inflow");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
-    fop.set_inflow(lev, time, mfab, ng, field_state());
+    for (const auto& fop : m_info->m_fillpatch_ops) {
+        fop->set_inflow(lev, time, mfab, ng, field_state());
+    }
 }
 
 void Field::set_inflow_sibling_fields(
@@ -309,10 +316,11 @@ void Field::set_inflow_sibling_fields(
     const amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs)
 {
     BL_PROFILE("kynema-sgf::Field::set_inflow_sibling_fields");
-    BL_ASSERT(m_info->m_fillpatch_op);
+    BL_ASSERT(!m_info->m_fillpatch_ops.empty());
     BL_ASSERT(m_info->bc_initialized() && m_info->m_bc_copied_to_device);
-    auto& fop = *(m_info->m_fillpatch_op);
-    fop.set_inflow_sibling_fields(lev, time, mfabs);
+    for (const auto& fop : m_info->m_fillpatch_ops) {
+        fop->set_inflow_sibling_fields(lev, time, mfabs);
+    }
 }
 
 void Field::advance_states()
@@ -396,7 +404,7 @@ void Field::set_default_fillpatch_bc(
         bc_op();
     }
 
-    if (!m_info->m_fillpatch_op) {
+    if (m_info->m_fillpatch_ops.empty()) {
         register_fill_patch_op<FieldFillPatchOps<FieldBCNoOp>>(
             repo().mesh(), time);
     }

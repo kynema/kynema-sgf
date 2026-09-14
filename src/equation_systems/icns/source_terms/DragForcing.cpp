@@ -96,12 +96,15 @@ DragForcing::DragForcing(const CFDSim& sim)
 {
     amrex::ParmParse pp("DragForcing");
     pp.query("drag_coefficient", m_drag_coefficient);
-    pp.query("use_original_drag_limiter", m_limit_drag);
-    pp.query("use_temporal_drag_limiter", m_limit_drag_temporal);
+    pp.query("terrain_use_original_implementation", m_do_original_terrain);
+    m_limit_terrain_original = m_do_original_terrain;
+    pp.query("terrain_use_original_limiter", m_limit_terrain_original);
+    pp.query("terrain_use_temporal_limiter", m_limit_terrain_temporal);
     pp.query("max_drag_coefficient", m_cd_max);
     pp.query("minimum_z0", m_min_z0);
     pp.query("sponge_strength", m_sponge_strength);
-    pp.query("bc_forcing_time_factor", m_forcing_time_factor);
+    pp.query("terrain_forcing_time_factor", m_terrain_time_factor);
+    pp.query("bc_forcing_time_factor", m_bc_time_factor);
     pp.query("sponge_density", m_sponge_density);
     pp.query("sponge_west", m_sponge_west);
     pp.query("sponge_east", m_sponge_east);
@@ -189,59 +192,56 @@ DragForcing::~DragForcing() = default;
 void DragForcing::operator()(
     const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {
+    const auto& geom = m_mesh.Geom(lev);
+
     auto const& src_arrs = src_term.arrays();
     auto const& vel_arrs =
         m_velocity.state(field_impl::dof_state(fstate))(lev).const_arrays();
 
-    const int is_terrain =
-        this->m_sim.repo().int_field_exists("terrain_blank") ? 1 : 0;
-    if (is_terrain == 0) {
+    if (!this->m_sim.repo().int_field_exists("terrain_blank")) {
         amrex::Abort("Need terrain blanking variable to use this source term");
     }
+
+    auto const& terrainz0_arrs =
+        this->m_sim.repo().field_exists("terrainz0")
+            ? this->m_sim.repo().get_field("terrainz0")(lev).const_arrays()
+            : amrex::MultiArray4<amrex::Real const>();
+    auto const& damping_arrs =
+        this->m_sim.repo().field_exists("terrain_damping")
+            ? this->m_sim.repo()
+                  .get_field("terrain_damping")(lev)
+                  .const_arrays()
+            : amrex::MultiArray4<amrex::Real const>();
+    auto const& terrain_height_arrs =
+        this->m_sim.repo().field_exists("terrain_height")
+            ? this->m_sim.repo().get_field("terrain_height")(lev).const_arrays()
+            : amrex::MultiArray4<amrex::Real const>();
+
+    auto const& target_vel_arrs = m_terrain_is_waves
+                                      ? (*m_target_vel)(lev).const_arrays()
+                                      : amrex::MultiArray4<amrex::Real const>();
+    auto const& target_lvs_arrs = m_terrain_is_waves
+                                      ? (*m_target_levelset)(lev).const_arrays()
+                                      : amrex::MultiArray4<amrex::Real const>();
+
     auto const& blank_arrs =
         this->m_sim.repo().get_int_field("terrain_blank")(lev).const_arrays();
 
-    const int has_terrain_drag =
-        this->m_sim.repo().int_field_exists("terrain_drag") ? 1 : 0;
-    const int has_terrainz0 =
-        this->m_sim.repo().field_exists("terrainz0") ? 1 : 0;
-    const int has_terrain_damping =
-        this->m_sim.repo().field_exists("terrain_damping") ? 1 : 0;
-    const int has_terrain_height =
-        this->m_sim.repo().field_exists("terrain_height") ? 1 : 0;
-
-    auto const& drag_arrs = has_terrain_drag != 0
+    auto const& drag_arrs = this->m_sim.repo().int_field_exists("terrain_drag")
                                 ? this->m_sim.repo()
                                       .get_int_field("terrain_drag")(lev)
                                       .const_arrays()
                                 : amrex::MultiArray4<int const>();
-    auto const& terrainz0_arrs =
-        has_terrainz0 != 0
-            ? this->m_sim.repo().get_field("terrainz0")(lev).const_arrays()
-            : amrex::MultiArray4<amrex::Real const>();
-    auto const& damping_arrs = has_terrain_damping != 0
-                                   ? this->m_sim.repo()
-                                         .get_field("terrain_damping")(lev)
-                                         .const_arrays()
-                                   : amrex::MultiArray4<amrex::Real const>();
-    auto const& terrain_height_arrs =
-        has_terrain_height != 0
-            ? this->m_sim.repo().get_field("terrain_height")(lev).const_arrays()
-            : amrex::MultiArray4<amrex::Real const>();
 
-    const int is_waves = m_terrain_is_waves ? 1 : 0;
-    const int model_form_drag = m_apply_MOSD ? 1 : 0;
-    auto const& target_vel_arrs = is_waves != 0
-                                      ? (*m_target_vel)(lev).const_arrays()
-                                      : amrex::MultiArray4<amrex::Real const>();
-    auto const& target_lvs_arrs = is_waves != 0
-                                      ? (*m_target_levelset)(lev).const_arrays()
-                                      : amrex::MultiArray4<amrex::Real const>();
-
-    const auto& geom = m_mesh.Geom(lev);
     const auto& dx = geom.CellSizeArray();
     const auto& prob_lo = geom.ProbLoArray();
     const auto& prob_hi = geom.ProbHiArray();
+
+    const amrex::Real* windh = m_windht_d.data();
+    const amrex::Real* uu = m_prof_u_d.data();
+    const amrex::Real* vv = m_prof_v_d.data();
+    const amrex::Real* ww = m_prof_w_d.data();
+
     const amrex::Real drag_coefficient = m_drag_coefficient;
     const amrex::Real sponge_strength = m_sponge_strength;
     const amrex::Real sponge_density = m_sponge_density;
@@ -253,24 +253,21 @@ void DragForcing::operator()(
     const amrex::Real sdist_west = m_sponge_distance_west;
     const amrex::Real sdist_north = m_sponge_distance_north;
     const amrex::Real sdist_south = m_sponge_distance_south;
-    const int sponge_east = m_sponge_east ? 1 : 0;
-    const int sponge_west = m_sponge_west ? 1 : 0;
-    const int sponge_south = m_sponge_south ? 1 : 0;
-    const int sponge_north = m_sponge_north ? 1 : 0;
 
-    const auto& dt = m_time.delta_t();
-    const int is_laminar = m_is_laminar ? 1 : 0;
-    const bool limit_drag_temporal = m_limit_drag_temporal;
-    const amrex::Real time_factor = m_forcing_time_factor;
+    const amrex::Real dt = m_time.delta_t();
+    const amrex::Real terrain_time_factor = m_terrain_time_factor;
+    const amrex::Real bc_time_factor = m_bc_time_factor;
     const amrex::Real min_z = m_min_z;
     const amrex::Real min_z0 = m_min_z0;
     const amrex::Real scale_factor =
-        (m_limit_drag && dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
-    const amrex::Real Cd = (m_limit_drag && is_laminar != 0 && dx[2] < 1)
-                               ? drag_coefficient
-                               : drag_coefficient / dx[2];
+        (m_limit_terrain_original && dx[2] < 1.0_rt) ? 1.0_rt : 1.0_rt / dx[2];
+    const amrex::Real Cd =
+        (m_limit_terrain_original && m_is_laminar && dx[2] < 1.0_rt)
+            ? drag_coefficient
+            : drag_coefficient / dx[2];
     const amrex::Real kappa = m_kappa;
-    const amrex::Real cd_max = m_limit_drag ? m_cd_max : constants::LARGE_NUM;
+    const amrex::Real cd_max =
+        m_limit_terrain_original ? m_cd_max : constants::LARGE_NUM;
 
     const amrex::Real non_neutral_neighbour =
         (m_wall_het_model == "mol")
@@ -282,14 +279,32 @@ void DragForcing::operator()(
             ? MOData::calc_psi_m(
                   0.5_rt * dx[2] / m_monin_obukhov_length, m_beta_m, m_gamma_m)
             : 0.0_rt;
+
     const int nwvals = static_cast<int>(m_wind_heights.size());
-    const amrex::Real* windh = m_windht_d.data();
-    const amrex::Real* uu = m_prof_u_d.data();
-    const amrex::Real* vv = m_prof_v_d.data();
-    const amrex::Real* ww = m_prof_w_d.data();
+
+    const int has_terrain_drag =
+        this->m_sim.repo().int_field_exists("terrain_drag") ? 1 : 0;
+    const int has_terrainz0 =
+        this->m_sim.repo().field_exists("terrainz0") ? 1 : 0;
+    const int has_terrain_damping =
+        this->m_sim.repo().field_exists("terrain_damping") ? 1 : 0;
+    const int has_terrain_height =
+        this->m_sim.repo().field_exists("terrain_height") ? 1 : 0;
+
+    const int is_waves = m_terrain_is_waves ? 1 : 0;
+    const int model_form_drag = m_apply_MOSD ? 1 : 0;
+    const int sponge_east = m_sponge_east ? 1 : 0;
+    const int sponge_west = m_sponge_west ? 1 : 0;
+    const int sponge_south = m_sponge_south ? 1 : 0;
+    const int sponge_north = m_sponge_north ? 1 : 0;
+
+    const int is_laminar = m_is_laminar ? 1 : 0;
+    const int limit_terrain_temporal = m_limit_terrain_temporal ? 1 : 0;
+    const int do_original_terrain = m_do_original_terrain ? 1 : 0;
 
     amrex::ParallelFor(
         src_term, amrex::IntVect(0), AMREX_SPACEDIM,
+        // NOLINTNEXTLINE(clang-analyzer-optin.performance.Padding)
         [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
             const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
             const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
@@ -306,8 +321,10 @@ void DragForcing::operator()(
                 (std::abs(sdist_west) > kynema_sgf::constants::EPS)
                     ? (start_west - x) / (-sdist_west)
                     : 0.0_rt;
-            xi_start = sponge_west * amrex::max<amrex::Real>(xi_start, 0.0_rt);
-            xi_end = sponge_east * amrex::max<amrex::Real>(xi_end, 0.0_rt);
+            xi_start = static_cast<amrex::Real>(sponge_west) *
+                       amrex::max<amrex::Real>(xi_start, 0.0_rt);
+            xi_end = static_cast<amrex::Real>(sponge_east) *
+                     amrex::max<amrex::Real>(xi_end, 0.0_rt);
             const amrex::Real xstart_damping =
                 sponge_strength * xi_start * xi_start;
             const amrex::Real xend_damping = sponge_strength * xi_end * xi_end;
@@ -319,8 +336,10 @@ void DragForcing::operator()(
                 (std::abs(sdist_south) > kynema_sgf::constants::EPS)
                     ? (start_south - y) / (-sdist_south)
                     : 0.0_rt;
-            yi_start = sponge_south * amrex::max<amrex::Real>(yi_start, 0.0_rt);
-            yi_end = sponge_north * amrex::max<amrex::Real>(yi_end, 0.0_rt);
+            yi_start = static_cast<amrex::Real>(sponge_south) *
+                       amrex::max<amrex::Real>(yi_start, 0.0_rt);
+            yi_end = static_cast<amrex::Real>(sponge_north) *
+                     amrex::max<amrex::Real>(yi_end, 0.0_rt);
             const amrex::Real ystart_damping =
                 sponge_strength * yi_start * yi_start;
             const amrex::Real yend_damping = sponge_strength * yi_end * yi_end;
@@ -391,8 +410,8 @@ void DragForcing::operator()(
                     uTarget * uy2r /
                     (kynema_sgf::constants::EPS +
                      std::sqrt((ux2r * ux2r) + (uy2r * uy2r)));
-                bc_forcing_x = -(uxTarget - ux1) / (time_factor * dt);
-                bc_forcing_y = -(uyTarget - uy1) / (time_factor * dt);
+                bc_forcing_x = -(uxTarget - ux1) / (bc_time_factor * dt);
+                bc_forcing_y = -(uyTarget - uy1) / (bc_time_factor * dt);
             }
             amrex::Real target_u = 0.0_rt;
             amrex::Real target_v = 0.0_rt;
@@ -402,18 +421,22 @@ void DragForcing::operator()(
                 target_v = target_vel_arrs[nbx](i, j, k, 1);
                 target_w = target_vel_arrs[nbx](i, j, k, 2);
             }
-            const amrex::Real CdM = amrex::min<amrex::Real>(
-                Cd / (m + kynema_sgf::constants::EPS), cd_max / scale_factor);
+            // Default is temporal implementation
+            amrex::Real CdM_m = 1.0_rt / (terrain_time_factor * dt);
+            if (do_original_terrain != 0) {
+                const amrex::Real CdM = amrex::min<amrex::Real>(
+                    Cd / (m + kynema_sgf::constants::EPS),
+                    cd_max / scale_factor);
+                CdM_m = CdM * m;
+                if (limit_terrain_temporal != 0) {
+                    CdM_m = amrex::min<amrex::Real>(CdM_m, 1.0_rt / dt);
+                }
+            }
 
             const amrex::Real vel_n = vel_arrs[nbx](i, j, k, n);
             const amrex::Real target_n = (n == 0)   ? target_u
                                          : (n == 1) ? target_v
                                                     : target_w;
-
-            amrex::Real CdM_m = CdM * m;
-            if (limit_drag_temporal) {
-                CdM_m = amrex::min<amrex::Real>(CdM_m, 1.0_rt / dt);
-            }
 
             src_arrs[nbx](i, j, k, n) -=
                 (CdM_m * (vel_n - target_n) * blank_arrs[nbx](i, j, k));

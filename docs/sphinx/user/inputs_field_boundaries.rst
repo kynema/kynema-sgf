@@ -94,6 +94,56 @@ but instead allows the user to specify variable names.
    the specified phase is present. As a result, the vof variable must be present for this capability, which 
    means the MultiPhase physics class must be active.
 
+**Flather**
+
+This type of field boundary applies a Flather (radiation-type) open boundary
+condition for velocity at lateral boundaries of free-surface flows. It permits
+surface gravity waves generated within the domain to exit through the boundary
+while still driving the flow toward an externally specified state, which reduces
+the spurious wave reflection that occurs with a simple extrapolation outflow.
+
+This field boundary requires the vof field, and therefore the
+:ref:`MultiPhase <inputs_multiphase>` physics class must be active. It applies to
+boundaries designated as ``mass_inflow`` or ``mass_inflow_outflow`` and is intended
+for the lateral (x and y) boundaries of the domain. The externally specified state
+in the boundary cells is expected to be supplied by another field boundary, such as
+OceanWavesBoundary or BoundaryPlane, or by the
+boundary condition values in the input file; the Flather boundary then modifies the
+velocity based on that state.
+
+The condition is formulated in terms of depth-integrated quantities, so the liquid
+height and the depth-integrated normal velocity are accumulated along each column
+of cells at the boundary. These sums are gathered across all levels of the mesh
+hierarchy, making the result independent of the grid decomposition and of local
+refinement. Rather than imposing a uniform velocity, the interior velocity profile
+is rescaled so that its depth integral matches the target flux, and only fully
+liquid cells are rescaled. When terrain is present, the velocity is set to zero in
+blanked cells and those cells are excluded from the column integrals. The boundary
+condition is applied to both the cell-centered velocity and the face-centered (MAC)
+velocities. For the mathematical formulation and the treatment of edge cases, see
+:ref:`the Flather boundary condition theory documentation <flather_boundary>`.
+
+The magnitude of the vertical component of :input_param:`incflo.gravity` is used as
+the gravitational constant when computing the wave speed.
+
+.. input_param:: Flather.max_velocity_scale_factor
+
+   **type:** Real, optional, default = 2.0
+
+   Upper bound on the factor used to rescale the interior velocity profile. If the
+   computed scaling factor exceeds this value, the externally specified profile is
+   used instead of the rescaled interior profile. This limit prevents overly
+   aggressive acceleration of the flow, which is most likely to occur during
+   startup or when the interior and exterior states differ substantially.
+
+.. input_param:: Flather.min_velocity_scale_factor
+
+   **type:** Real, optional, default = 0.25
+
+   Lower bound on the factor used to rescale the interior velocity profile. If the
+   computed scaling factor falls below this value, the externally specified profile
+   is used instead of the rescaled interior profile.
+
 **ModulatedPowerLaw**
 
 This type of field boundary applies a modulated power law profile for velocity

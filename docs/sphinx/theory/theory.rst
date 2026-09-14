@@ -9,6 +9,8 @@ Theory Manual
 
 .. include:: include/multiphase.rst
 
+.. include:: include/flather_boundary.rst
+
 .. include:: include/source_terms.rst
 
 .. include:: include/turbulence.rst

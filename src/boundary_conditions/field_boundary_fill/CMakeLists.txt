@@ -4,6 +4,8 @@ target_sources(${kynema_sgf_lib_name}
   OceanWavesBoundary.cpp
   PlaneFillInflow.cpp
   BoundaryPlane.cpp
+  FillFlather.cpp
+  Flather.cpp
   FillMPL.cpp
   ModulatedPowerLaw.cpp
   )

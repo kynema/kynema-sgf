@@ -23,7 +23,7 @@ incflo.gravity        =  0.0  0.0 -9.81  # Gravitational force (3D)
 transport.model = TwoPhaseTransport
 turbulence.model = Laminar
 
-incflo.field_boundaries = BoundaryPlane
+incflo.field_boundaries = BoundaryPlane Flather
 BoundaryPlane.planes =  xlo
 BoundaryPlane.file = bndry_plane
 BoundaryPlane.var_names = velocity vof density

@@ -499,8 +499,7 @@ void BoundaryPlane::initialize_data()
         if (m_repo.field_exists(fname)) {
             auto& fld = m_repo.get_field(fname);
             if (m_io_mode == io_mode::input) {
-                fld.register_fill_patch_op<PlaneFillInflow>(
-                    m_mesh, m_time, *this);
+                fld.add_fill_patch_op<PlaneFillInflow>(m_mesh, m_time, *this);
             }
             m_fields.emplace_back(&fld);
         } else {

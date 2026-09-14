@@ -183,29 +183,43 @@ Section: Momentum Sources
    in drag cells (i.e., immediately above or below the terrain). The forcing of lateral velocity components in drag
    cells are affected by :input_param:`DragForcing.bc_forcing_time_factor` and :input_param:`DragForcing.minimum_z0`.
 
-.. input_param:: DragForcing.use_original_drag_limiter
-
-   **type:** Boolean, optional, default = true
-
-   Enables or disables the original drag limiter logic used in DragForcing.
-   When enabled, drag magnitude is limited using
-   :input_param:`DragForcing.max_drag_coefficient` as well as other conditionals dependent on
-   the vertical mesh resolution and :input_param:`DragForcing.is_laminar`.
-
-.. input_param:: DragForcing.use_temporal_drag_limiter
+.. input_param:: DragForcing.terrain_use_original_implementation
 
    **type:** Boolean, optional, default = false
 
-   Enables a temporal limiter on the drag update so the overall drag coefficient
-   does not exceed :math:`1/\Delta t` within a timestep.
+   Enables the original terrain drag implementation. When enabled, the terrain
+   drag magnitude is limited using :input_param:`DragForcing.max_drag_coefficient`
+   and the vertical mesh resolution.
+
+.. input_param:: DragForcing.terrain_use_original_limiter
+
+   **type:** Boolean, optional, default follows terrain_use_original_implementation
+
+   Enables the original terrain drag limiter. The default value is the value of
+   :input_param:`DragForcing.terrain_use_original_implementation`.
+
+.. input_param:: DragForcing.terrain_use_temporal_limiter
+
+   **type:** Boolean, optional, default = false
+
+   Enables a temporal limiter on the original terrain drag update so the overall
+   drag coefficient does not exceed :math:`1/\Delta t` within a timestep.
 
 .. input_param:: DragForcing.max_drag_coefficient
 
    **type:** Real, optional, default = 1000.0
 
    Maximum allowed drag coefficient when
-   :input_param:`DragForcing.use_original_drag_limiter` is enabled (which is on by default).
-   This value caps the effective drag response used in the source term.
+   :input_param:`DragForcing.terrain_use_original_limiter` is enabled. This value
+   caps the effective drag response used in the original terrain implementation.
+
+.. input_param:: DragForcing.terrain_forcing_time_factor
+
+   **type:** Real, optional, default = 1.0
+
+   Time-scale factor for the temporal terrain forcing applied in blanked cells.
+   The forcing coefficient is :math:`1/(\text{terrain_forcing_time_factor}\,\Delta t)`
+   when :input_param:`DragForcing.terrain_use_original_implementation` is disabled.
 
 .. input_param:: DragForcing.minimum_z0
 

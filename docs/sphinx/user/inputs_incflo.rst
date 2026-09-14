@@ -25,8 +25,9 @@ as initial conditions and discretization options.
 
    Specify a string or a list of strings for each type of field boundary to initialize and use during a simulation.
    Though more than one can be specified, typically only a single field boundary type is used at a time.
-   Currently, there are three implemented field boundary types: BoundaryPlane, ModulatedPowerLaw, and OceanWavesBoundary.
-   OceanWavesBoundary relies on OceanWaves physics, but the other field boundaries can be used independently of particular
+   Currently, there are four implemented field boundary types: BoundaryPlane, Flather, ModulatedPowerLaw, and OceanWavesBoundary.
+   OceanWavesBoundary relies on OceanWaves physics, and Flather relies on MultiPhase physics, but the other field boundaries can be
+   used independently of particular
    physics classes. Refer to the :ref:`Field Boundaries documentation <inputs_field_boundaries>` for more details on each field boundary type. 
    
 .. input_param:: incflo.density
