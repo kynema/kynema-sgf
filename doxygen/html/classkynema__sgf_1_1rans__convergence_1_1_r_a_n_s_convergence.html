@@ -1,0 +1,1734 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::rans_convergence::RANSConvergence Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::rans_convergence::RANSConvergence Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ransconvergence-class-reference">
+<h1>RANSConvergence Class Reference<a class="headerlink" href="#ransconvergence-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::rans_convergence::RANSConvergence Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1rans__convergence.html">rans_convergence</a></li><li class="navelem"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html">RANSConvergence</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::rans_convergence::RANSConvergence Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a> &raquo; <a class="el" href="group__output__quantities.html">Output quantities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_r_a_n_s_convergence_8_h_source.html">RANSConvergence.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::rans_convergence::RANSConvergence:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence__inherit__graph.svg" width="238" height="168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::rans_convergence::RANSConvergence:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa7732c813911514ffbb70219f39515f3" id="r_aa7732c813911514ffbb70219f39515f3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7732c813911514ffbb70219f39515f3">RANSConvergence</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;, std::string)</td></tr>
+<tr class="memitem:a337ea6f9b818b49bca720c0c3db7868e" id="r_a337ea6f9b818b49bca720c0c3db7868e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a337ea6f9b818b49bca720c0c3db7868e">~RANSConvergence</a> () override</td></tr>
+<tr class="memitem:ad0fdffa3d5e2577f6c980368d990eb8c" id="r_ad0fdffa3d5e2577f6c980368d990eb8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0fdffa3d5e2577f6c980368d990eb8c">pre_init_actions</a> () override</td></tr>
+<tr class="memdesc:ad0fdffa3d5e2577f6c980368d990eb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform actions before mesh is created.  <br /></td></tr>
+<tr class="memitem:ae09075af4b02be927d3e55057e19a18f" id="r_ae09075af4b02be927d3e55057e19a18f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae09075af4b02be927d3e55057e19a18f">initialize</a> () override</td></tr>
+<tr class="memdesc:ae09075af4b02be927d3e55057e19a18f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read user inputs, build the monitor points and validate them.  <br /></td></tr>
+<tr class="memitem:a15e39f7d43699c1eb1c286aa7feebba9" id="r_a15e39f7d43699c1eb1c286aa7feebba9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15e39f7d43699c1eb1c286aa7feebba9">post_advance_work</a> () override</td></tr>
+<tr class="memdesc:a15e39f7d43699c1eb1c286aa7feebba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample the monitor points and test for convergence.  <br /></td></tr>
+<tr class="memitem:ab9947fe99a914f6d8e549ffe033d8064" id="r_ab9947fe99a914f6d8e549ffe033d8064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9947fe99a914f6d8e549ffe033d8064">output_actions</a> () override</td></tr>
+<tr class="memdesc:ab9947fe99a914f6d8e549ffe033d8064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output is driven internally by the sampling cadence.  <br /></td></tr>
+<tr class="memitem:ae2c4913d41148038c237d4493967e3c7" id="r_ae2c4913d41148038c237d4493967e3c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2c4913d41148038c237d4493967e3c7">post_regrid_actions</a> () override</td></tr>
+<tr class="memdesc:ae2c4913d41148038c237d4493967e3c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redistribute the monitor points after the mesh changes.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a021d61678a527f0b069f2e04de618a9e" id="r_a021d61678a527f0b069f2e04de618a9e"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a021d61678a527f0b069f2e04de618a9e">identifier</a> ()</td></tr>
+<tr class="memitem:a7da8446c67ae27a1c27d14a2b5085871" id="r_a7da8446c67ae27a1c27d14a2b5085871"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html">EnvelopeFit</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7da8446c67ae27a1c27d14a2b5085871">fit_envelope_decay</a> (const amrex::Vector&lt; amrex::Real &gt; &amp;times, const amrex::Vector&lt; amrex::Real &gt; &amp;spreads, amrex::Real threshold, int min_samples)</td></tr>
+<tr class="memitem:a5fb604509c0054cdade2f5264ad05767" id="r_a5fb604509c0054cdade2f5264ad05767"><td class="memItemLeft" align="right" valign="top">static amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fb604509c0054cdade2f5264ad05767">effective_tolerance</a> (const amrex::Real mean, const amrex::Real abs_tol, const amrex::Real rel_tol)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a7906f1bb5f3030b73282b1224a813a2f" id="r_a7906f1bb5f3030b73282b1224a813a2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7906f1bb5f3030b73282b1224a813a2f">check_turbulence_model</a> () const</td></tr>
+<tr class="memdesc:a7906f1bb5f3030b73282b1224a813a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort unless the active turbulence model is KLAxell.  <br /></td></tr>
+<tr class="memitem:a8a657018b0d44c66c80b1a0c1e628093" id="r_a8a657018b0d44c66c80b1a0c1e628093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a657018b0d44c66c80b1a0c1e628093">setup_container</a> ()</td></tr>
+<tr class="memdesc:a8a657018b0d44c66c80b1a0c1e628093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the probe sampler and the particle container.  <br /></td></tr>
+<tr class="memitem:ae753ef9c625db46c2ae1d5b082478ed1" id="r_ae753ef9c625db46c2ae1d5b082478ed1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae753ef9c625db46c2ae1d5b082478ed1">reject_terrain_points</a> ()</td></tr>
+<tr class="memdesc:ae753ef9c625db46c2ae1d5b082478ed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort if any monitor point lies inside the immersed terrain.  <br /></td></tr>
+<tr class="memitem:ad41e44853f6876801f54b040011e2fed" id="r_ad41e44853f6876801f54b040011e2fed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad41e44853f6876801f54b040011e2fed">take_sample</a> ()</td></tr>
+<tr class="memdesc:ad41e44853f6876801f54b040011e2fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate the monitored fields and append them to the window.  <br /></td></tr>
+<tr class="memitem:a1da0638711a18fb024f51e4496aae36b" id="r_a1da0638711a18fb024f51e4496aae36b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1da0638711a18fb024f51e4496aae36b">evaluate_convergence</a> ()</td></tr>
+<tr class="memdesc:a1da0638711a18fb024f51e4496aae36b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test every point against tolerance and report.  <br /></td></tr>
+<tr class="memitem:ae70c1ef18bc5e3459315c93e9225d590" id="r_ae70c1ef18bc5e3459315c93e9225d590"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae70c1ef18bc5e3459315c93e9225d590">prepare_ascii_file</a> ()</td></tr>
+<tr class="memdesc:ae70c1ef18bc5e3459315c93e9225d590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare the ASCII output file and write its header.  <br /></td></tr>
+<tr class="memitem:af6a28f83ada46237eab0a3a5c125299f" id="r_af6a28f83ada46237eab0a3a5c125299f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6a28f83ada46237eab0a3a5c125299f">write_ascii</a> (int num_samples, bool window_full, amrex::Real hold_elapsed, int num_converged, int worst_vel_point, amrex::Real worst_vel_spread, amrex::Real worst_vel_tol, int worst_tke_point, amrex::Real worst_tke_spread, amrex::Real worst_tke_tol, amrex::Real eta)</td></tr>
+<tr class="memdesc:af6a28f83ada46237eab0a3a5c125299f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append one line of convergence diagnostics.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a599e28fbecda1ef0227abf20d3bf92ca" id="r_a599e28fbecda1ef0227abf20d3bf92ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a599e28fbecda1ef0227abf20d3bf92ca">m_sim</a></td></tr>
+<tr class="memdesc:a599e28fbecda1ef0227abf20d3bf92ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the CFD simulation.  <br /></td></tr>
+<tr class="memitem:a22a656b4848173d411cd06f1e6710271" id="r_a22a656b4848173d411cd06f1e6710271"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22a656b4848173d411cd06f1e6710271">m_label</a></td></tr>
+<tr class="memdesc:a22a656b4848173d411cd06f1e6710271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this post-processing object, used to read its inputs.  <br /></td></tr>
+<tr class="memitem:a818e1f647495281894de2983004e6647" id="r_a818e1f647495281894de2983004e6647"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1sampling_1_1_sampler_base.html">sampling::SamplerBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a818e1f647495281894de2983004e6647">m_sampler</a></td></tr>
+<tr class="memdesc:a818e1f647495281894de2983004e6647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Probe sampler holding the monitor point locations.  <br /></td></tr>
+<tr class="memitem:af5dc4d8017d27bb4686d6f09598b7e5c" id="r_af5dc4d8017d27bb4686d6f09598b7e5c"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1sampling_1_1_sampling_container.html">sampling::SamplingContainer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5dc4d8017d27bb4686d6f09598b7e5c">m_scontainer</a></td></tr>
+<tr class="memdesc:af5dc4d8017d27bb4686d6f09598b7e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Particle container performing the interpolation.  <br /></td></tr>
+<tr class="memitem:ab77366a30a278a7a4db221e207fa5003" id="r_ab77366a30a278a7a4db221e207fa5003"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab77366a30a278a7a4db221e207fa5003">m_fields</a></td></tr>
+<tr class="memdesc:ab77366a30a278a7a4db221e207fa5003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fields interpolated at the monitor points: velocity and tke.  <br /></td></tr>
+<tr class="memitem:af66c12a3b3a50e5a27d81e5077a543d8" id="r_af66c12a3b3a50e5a27d81e5077a543d8"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af66c12a3b3a50e5a27d81e5077a543d8">m_point_coords</a></td></tr>
+<tr class="memdesc:af66c12a3b3a50e5a27d81e5077a543d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordinates of the monitor points, gathered once at initialization.  <br /></td></tr>
+<tr class="memitem:a0abbee6d3c135f97ae5622e56327305b" id="r_a0abbee6d3c135f97ae5622e56327305b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0abbee6d3c135f97ae5622e56327305b">m_npts</a> {0}</td></tr>
+<tr class="memdesc:a0abbee6d3c135f97ae5622e56327305b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of monitor points.  <br /></td></tr>
+<tr class="memitem:af8559bad61a6a91635155ed16c6fad4f" id="r_af8559bad61a6a91635155ed16c6fad4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8559bad61a6a91635155ed16c6fad4f">m_ncomp_total</a> {0}</td></tr>
+<tr class="memdesc:af8559bad61a6a91635155ed16c6fad4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of real components carried by the particle container.  <br /></td></tr>
+<tr class="memitem:ad6892399f4829d945709862dae638758" id="r_ad6892399f4829d945709862dae638758"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6892399f4829d945709862dae638758">m_has_terrain</a> {false}</td></tr>
+<tr class="memdesc:ad6892399f4829d945709862dae638758"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when a terrain height field is available for point validation.  <br /></td></tr>
+<tr class="memitem:aa6f9362638c0289d7ef1229776cbc244" id="r_aa6f9362638c0289d7ef1229776cbc244"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6f9362638c0289d7ef1229776cbc244">m_sample_buf</a></td></tr>
+<tr class="memdesc:aa6f9362638c0289d7ef1229776cbc244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer receiving the interpolated values, valid on the IO rank only.  <br /></td></tr>
+<tr class="memitem:a9361e588dda852c8f74cb40a79d37eb8" id="r_a9361e588dda852c8f74cb40a79d37eb8"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9361e588dda852c8f74cb40a79d37eb8">m_start_time</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a9361e588dda852c8f74cb40a79d37eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation time at which monitoring begins.  <br /></td></tr>
+<tr class="memitem:a120d2b7eb94d816dab7c6e6d269d3236" id="r_a120d2b7eb94d816dab7c6e6d269d3236"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a120d2b7eb94d816dab7c6e6d269d3236">m_sample_interval</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a120d2b7eb94d816dab7c6e6d269d3236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical time between samples.  <br /></td></tr>
+<tr class="memitem:a5a9bb21ab6a4340c645d4d67052c84d9" id="r_a5a9bb21ab6a4340c645d4d67052c84d9"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a9bb21ab6a4340c645d4d67052c84d9">m_window</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a5a9bb21ab6a4340c645d4d67052c84d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width of the trailing window over which the envelope is measured.  <br /></td></tr>
+<tr class="memitem:a219c785721dc0445b7ea48669eb23f86" id="r_a219c785721dc0445b7ea48669eb23f86"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a219c785721dc0445b7ea48669eb23f86">m_vel_abs_tol</a> {0.01_rt}</td></tr>
+<tr class="memdesc:a219c785721dc0445b7ea48669eb23f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute tolerance on the horizontal wind speed envelope.  <br /></td></tr>
+<tr class="memitem:a4ed1a2d15d6ef642be949b9480a444af" id="r_a4ed1a2d15d6ef642be949b9480a444af"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ed1a2d15d6ef642be949b9480a444af">m_vel_rel_tol</a> {0.001_rt}</td></tr>
+<tr class="memdesc:a4ed1a2d15d6ef642be949b9480a444af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative tolerance on the horizontal wind speed envelope.  <br /></td></tr>
+<tr class="memitem:a4e64f4af738319adef664fe087b17466" id="r_a4e64f4af738319adef664fe087b17466"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e64f4af738319adef664fe087b17466">m_tke_abs_tol</a> {0.001_rt}</td></tr>
+<tr class="memdesc:a4e64f4af738319adef664fe087b17466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute tolerance on the turbulent kinetic energy envelope.  <br /></td></tr>
+<tr class="memitem:a3d25be943f3907c478b38a67abc73d98" id="r_a3d25be943f3907c478b38a67abc73d98"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d25be943f3907c478b38a67abc73d98">m_tke_rel_tol</a> {0.01_rt}</td></tr>
+<tr class="memdesc:a3d25be943f3907c478b38a67abc73d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relative tolerance on the turbulent kinetic energy envelope.  <br /></td></tr>
+<tr class="memitem:a40c6c61638038b80c7e59c81b6584a9a" id="r_a40c6c61638038b80c7e59c81b6584a9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40c6c61638038b80c7e59c81b6584a9a">m_min_samples</a> {4}</td></tr>
+<tr class="memdesc:a40c6c61638038b80c7e59c81b6584a9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fewest samples in the window before convergence may be declared.  <br /></td></tr>
+<tr class="memitem:a5fca1aee92826e5b2077b2a79e7c62d3" id="r_a5fca1aee92826e5b2077b2a79e7c62d3"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fca1aee92826e5b2077b2a79e7c62d3">m_hold_time</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a5fca1aee92826e5b2077b2a79e7c62d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">How long every point must stay within tolerance before the run stops.  <br /></td></tr>
+<tr class="memitem:a84c6bf328c8cba30b12f1978d3cffbb6" id="r_a84c6bf328c8cba30b12f1978d3cffbb6"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84c6bf328c8cba30b12f1978d3cffbb6">m_converged_since</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:a84c6bf328c8cba30b12f1978d3cffbb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time at which all points most recently began passing, or -1 if not.  <br /></td></tr>
+<tr class="memitem:a574ed43089ab7574b3be7421ab3512b4" id="r_a574ed43089ab7574b3be7421ab3512b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a574ed43089ab7574b3be7421ab3512b4">m_stop_on_convergence</a> {true}</td></tr>
+<tr class="memdesc:a574ed43089ab7574b3be7421ab3512b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the time integrator to stop once every point has converged.  <br /></td></tr>
+<tr class="memitem:a0e3810fdd66a9aab6b3245055bfbf640" id="r_a0e3810fdd66a9aab6b3245055bfbf640"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e3810fdd66a9aab6b3245055bfbf640">m_report_eta</a> {true}</td></tr>
+<tr class="memdesc:a0e3810fdd66a9aab6b3245055bfbf640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report an estimated time to convergence from an exponential fit.  <br /></td></tr>
+<tr class="memitem:ab96221ac0634d581ae3f42034dc81852" id="r_ab96221ac0634d581ae3f42034dc81852"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab96221ac0634d581ae3f42034dc81852">m_eta_fit_window</a> {-1.0_rt}</td></tr>
+<tr class="memdesc:ab96221ac0634d581ae3f42034dc81852"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trailing span of envelope history used for the exponential fit.  <br /></td></tr>
+<tr class="memitem:a7822ee290cb5d28acf8c4a3ba6d92868" id="r_a7822ee290cb5d28acf8c4a3ba6d92868"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7822ee290cb5d28acf8c4a3ba6d92868">m_eta_min_samples</a> {5}</td></tr>
+<tr class="memdesc:a7822ee290cb5d28acf8c4a3ba6d92868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fewest envelope samples that will be fitted.  <br /></td></tr>
+<tr class="memitem:a446e75a61d0d4dfc1858b2774135adfb" id="r_a446e75a61d0d4dfc1858b2774135adfb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a446e75a61d0d4dfc1858b2774135adfb">m_eta_min_rsq</a> {0.5_rt}</td></tr>
+<tr class="memdesc:a446e75a61d0d4dfc1858b2774135adfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smallest coefficient of determination for a reported estimate.  <br /></td></tr>
+<tr class="memitem:ad1a27dc97f933c126e1b241a5f2a529e" id="r_ad1a27dc97f933c126e1b241a5f2a529e"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1a27dc97f933c126e1b241a5f2a529e">m_next_sample_time</a> {0.0_rt}</td></tr>
+<tr class="memdesc:ad1a27dc97f933c126e1b241a5f2a529e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Next simulation time at which a sample will be taken.  <br /></td></tr>
+<tr class="memitem:a5a38126035f69dcaa8dad7c6a6469ae2" id="r_a5a38126035f69dcaa8dad7c6a6469ae2"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a38126035f69dcaa8dad7c6a6469ae2">m_times</a></td></tr>
+<tr class="memdesc:a5a38126035f69dcaa8dad7c6a6469ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample times currently held in the window.  <br /></td></tr>
+<tr class="memitem:acc19d1932b5a924fdab4b3a6f1151bee" id="r_acc19d1932b5a924fdab4b3a6f1151bee"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Vector&lt; amrex::Real &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc19d1932b5a924fdab4b3a6f1151bee">m_samples</a></td></tr>
+<tr class="memdesc:acc19d1932b5a924fdab4b3a6f1151bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sampled values, three per point per entry: u, v and tke.  <br /></td></tr>
+<tr class="memitem:ab9293dfbf959b84edf7401f654db2a27" id="r_ab9293dfbf959b84edf7401f654db2a27"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9293dfbf959b84edf7401f654db2a27">m_eta_times</a></td></tr>
+<tr class="memdesc:ab9293dfbf959b84edf7401f654db2a27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Times at which envelope spreads were recorded, for the exponential fit.  <br /></td></tr>
+<tr class="memitem:ac6b1037f89c27edaf22008fca1c12058" id="r_ac6b1037f89c27edaf22008fca1c12058"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6b1037f89c27edaf22008fca1c12058">m_eta_vel_ratio</a></td></tr>
+<tr class="memdesc:ac6b1037f89c27edaf22008fca1c12058"><td class="mdescLeft">&#160;</td><td class="mdescRight">History of the largest wind speed spread over all points, normalized by each point's own tolerance so that convergence is a spread of one.  <br /></td></tr>
+<tr class="memitem:a35a32fe174f91d38c9541061253ebbdb" id="r_a35a32fe174f91d38c9541061253ebbdb"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35a32fe174f91d38c9541061253ebbdb">m_eta_tke_ratio</a></td></tr>
+<tr class="memdesc:a35a32fe174f91d38c9541061253ebbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">History of the largest tke spread over all points, normalized by each point's own tolerance so that convergence is a spread of one.  <br /></td></tr>
+<tr class="memitem:ae5886a1bb4b66ff22ce458adc6f9b52d" id="r_ae5886a1bb4b66ff22ce458adc6f9b52d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5886a1bb4b66ff22ce458adc6f9b52d">m_converged</a> {false}</td></tr>
+<tr class="memdesc:ae5886a1bb4b66ff22ce458adc6f9b52d"><td class="mdescLeft">&#160;</td><td class="mdescRight">True once every point has satisfied both tolerances.  <br /></td></tr>
+<tr class="memitem:a4cc689594c06ec9655e6b1017ad079b9" id="r_a4cc689594c06ec9655e6b1017ad079b9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cc689594c06ec9655e6b1017ad079b9">m_out_fname</a></td></tr>
+<tr class="memdesc:a4cc689594c06ec9655e6b1017ad079b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the ASCII diagnostics file.  <br /></td></tr>
+<tr class="memitem:a6823871db448172cf7bb313d16384444" id="r_a6823871db448172cf7bb313d16384444"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6823871db448172cf7bb313d16384444">m_width</a> {18}</td></tr>
+<tr class="memdesc:a6823871db448172cf7bb313d16384444"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> width in the ASCII output.  <br /></td></tr>
+<tr class="memitem:a8dd16a3a334dd0a06badbf4b45618744" id="r_a8dd16a3a334dd0a06badbf4b45618744"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dd16a3a334dd0a06badbf4b45618744">m_precision</a> {10}</td></tr>
+<tr class="memdesc:a8dd16a3a334dd0a06badbf4b45618744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precision in the ASCII output.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Pseudo-steady convergence monitor for KLAxell RANS runs</p>
+<p>Tracks horizontal wind speed and turbulent kinetic energy at a user-supplied cloud of monitor points. A point is considered converged when the peak-to-trough spread of both quantities over a trailing time window falls below tolerance. Once every point has converged the monitor can ask the time integrator to stop, which triggers a final checkpoint and plotfile.</p>
+<p>The spread over a window is used in preference to a difference between successive samples because an atmospheric boundary layer under Coriolis and geostrophic forcing approaches its steady state through a damped inertial oscillation. A difference between successive samples vanishes at every turning point of that oscillation and would report convergence long before the oscillation has decayed.</p>
+<p>This utility is restricted to the KLAxell turbulence model. The criterion is a drift test on an instantaneous value, which is only meaningful when that value approaches a limit; a large eddy simulation has no such limit. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa7732c813911514ffbb70219f39515f3" name="aa7732c813911514ffbb70219f39515f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7732c813911514ffbb70219f39515f3">&#9670;&#160;</a></span>RANSConvergence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::rans_convergence::RANSConvergence::RANSConvergence </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>label</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a337ea6f9b818b49bca720c0c3db7868e" name="a337ea6f9b818b49bca720c0c3db7868e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a337ea6f9b818b49bca720c0c3db7868e">&#9670;&#160;</a></span>~RANSConvergence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::rans_convergence::RANSConvergence::~RANSConvergence </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7906f1bb5f3030b73282b1224a813a2f" name="a7906f1bb5f3030b73282b1224a813a2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7906f1bb5f3030b73282b1224a813a2f">&#9670;&#160;</a></span>check_turbulence_model()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::check_turbulence_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abort unless the active turbulence model is KLAxell. </p>
+
+</div>
+</div>
+<a id="a5fb604509c0054cdade2f5264ad05767" name="a5fb604509c0054cdade2f5264ad05767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fb604509c0054cdade2f5264ad05767">&#9670;&#160;</a></span>effective_tolerance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::effective_tolerance </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>mean</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>abs_tol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>rel_tol</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Tolerance actually applied to an envelope spread</p>
+<p>Combines an absolute floor with a relative term so that the test stays meaningful both where the monitored quantity is small and where it is large.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mean</td><td>Mean of the monitored quantity over the window </td></tr>
+    <tr><td class="paramname">abs_tol</td><td>Absolute tolerance floor </td></tr>
+    <tr><td class="paramname">rel_tol</td><td>Relative tolerance applied to <code class="param">mean</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The larger of the absolute floor and the relative tolerance </dd></dl>
+
+</div>
+</div>
+<a id="a1da0638711a18fb024f51e4496aae36b" name="a1da0638711a18fb024f51e4496aae36b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1da0638711a18fb024f51e4496aae36b">&#9670;&#160;</a></span>evaluate_convergence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::evaluate_convergence </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test every point against tolerance and report. </p>
+
+</div>
+</div>
+<a id="a7da8446c67ae27a1c27d14a2b5085871" name="a7da8446c67ae27a1c27d14a2b5085871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7da8446c67ae27a1c27d14a2b5085871">&#9670;&#160;</a></span>fit_envelope_decay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html">EnvelopeFit</a> kynema_sgf::rans_convergence::RANSConvergence::fit_envelope_decay </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>times</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>spreads</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>threshold</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>min_samples</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fit an exponential decay to an envelope history and extrapolate</p>
+<p>Performs an ordinary least-squares fit of \(\ln s\) against \(t\), which corresponds to the model \(s(t) = A e^{-rt}\), and solves for the time at which the fitted curve reaches <code class="param">threshold</code>.</p>
+<p>The fit is reported as invalid when there are too few samples, when any sample is not positive, when the fitted envelope is not decaying, or when the threshold has already been reached.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">times</td><td>Sample times in seconds, in increasing order </td></tr>
+    <tr><td class="paramname">spreads</td><td>Envelope spread at each sample time </td></tr>
+    <tr><td class="paramname">threshold</td><td>Value the extrapolation is solved for </td></tr>
+    <tr><td class="paramname">min_samples</td><td>Fewest samples that will be fitted </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Fit coefficients and the extrapolated time to the threshold </dd></dl>
+
+</div>
+</div>
+<a id="a021d61678a527f0b069f2e04de618a9e" name="a021d61678a527f0b069f2e04de618a9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a021d61678a527f0b069f2e04de618a9e">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::rans_convergence::RANSConvergence::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae09075af4b02be927d3e55057e19a18f" name="ae09075af4b02be927d3e55057e19a18f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae09075af4b02be927d3e55057e19a18f">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read user inputs, build the monitor points and validate them. </p>
+
+</div>
+</div>
+<a id="ab9947fe99a914f6d8e549ffe033d8064" name="ab9947fe99a914f6d8e549ffe033d8064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9947fe99a914f6d8e549ffe033d8064">&#9670;&#160;</a></span>output_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::output_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output is driven internally by the sampling cadence. </p>
+
+</div>
+</div>
+<a id="a15e39f7d43699c1eb1c286aa7feebba9" name="a15e39f7d43699c1eb1c286aa7feebba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e39f7d43699c1eb1c286aa7feebba9">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sample the monitor points and test for convergence. </p>
+
+</div>
+</div>
+<a id="ae2c4913d41148038c237d4493967e3c7" name="ae2c4913d41148038c237d4493967e3c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2c4913d41148038c237d4493967e3c7">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Redistribute the monitor points after the mesh changes. </p>
+
+</div>
+</div>
+<a id="ad0fdffa3d5e2577f6c980368d990eb8c" name="ad0fdffa3d5e2577f6c980368d990eb8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0fdffa3d5e2577f6c980368d990eb8c">&#9670;&#160;</a></span>pre_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::pre_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform actions before mesh is created. </p>
+
+</div>
+</div>
+<a id="ae70c1ef18bc5e3459315c93e9225d590" name="ae70c1ef18bc5e3459315c93e9225d590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae70c1ef18bc5e3459315c93e9225d590">&#9670;&#160;</a></span>prepare_ascii_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::prepare_ascii_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prepare the ASCII output file and write its header. </p>
+
+</div>
+</div>
+<a id="ae753ef9c625db46c2ae1d5b082478ed1" name="ae753ef9c625db46c2ae1d5b082478ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae753ef9c625db46c2ae1d5b082478ed1">&#9670;&#160;</a></span>reject_terrain_points()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::reject_terrain_points </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abort if any monitor point lies inside the immersed terrain. </p>
+
+</div>
+</div>
+<a id="a8a657018b0d44c66c80b1a0c1e628093" name="a8a657018b0d44c66c80b1a0c1e628093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a657018b0d44c66c80b1a0c1e628093">&#9670;&#160;</a></span>setup_container()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::setup_container </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build the probe sampler and the particle container. </p>
+
+</div>
+</div>
+<a id="ad41e44853f6876801f54b040011e2fed" name="ad41e44853f6876801f54b040011e2fed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41e44853f6876801f54b040011e2fed">&#9670;&#160;</a></span>take_sample()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::take_sample </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interpolate the monitored fields and append them to the window. </p>
+
+</div>
+</div>
+<a id="af6a28f83ada46237eab0a3a5c125299f" name="af6a28f83ada46237eab0a3a5c125299f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6a28f83ada46237eab0a3a5c125299f">&#9670;&#160;</a></span>write_ascii()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::rans_convergence::RANSConvergence::write_ascii </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num_samples</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>window_full</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>hold_elapsed</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num_converged</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>worst_vel_point</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>worst_vel_spread</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>worst_vel_tol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>worst_tke_point</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>worst_tke_spread</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>worst_tke_tol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>eta</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Append one line of convergence diagnostics. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ae5886a1bb4b66ff22ce458adc6f9b52d" name="ae5886a1bb4b66ff22ce458adc6f9b52d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5886a1bb4b66ff22ce458adc6f9b52d">&#9670;&#160;</a></span>m_converged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::rans_convergence::RANSConvergence::m_converged {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True once every point has satisfied both tolerances. </p>
+
+</div>
+</div>
+<a id="a84c6bf328c8cba30b12f1978d3cffbb6" name="a84c6bf328c8cba30b12f1978d3cffbb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c6bf328c8cba30b12f1978d3cffbb6">&#9670;&#160;</a></span>m_converged_since</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_converged_since {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time at which all points most recently began passing, or -1 if not. </p>
+
+</div>
+</div>
+<a id="ab96221ac0634d581ae3f42034dc81852" name="ab96221ac0634d581ae3f42034dc81852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab96221ac0634d581ae3f42034dc81852">&#9670;&#160;</a></span>m_eta_fit_window</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_eta_fit_window {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trailing span of envelope history used for the exponential fit. </p>
+
+</div>
+</div>
+<a id="a446e75a61d0d4dfc1858b2774135adfb" name="a446e75a61d0d4dfc1858b2774135adfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a446e75a61d0d4dfc1858b2774135adfb">&#9670;&#160;</a></span>m_eta_min_rsq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_eta_min_rsq {0.5_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Smallest coefficient of determination for a reported estimate. </p>
+
+</div>
+</div>
+<a id="a7822ee290cb5d28acf8c4a3ba6d92868" name="a7822ee290cb5d28acf8c4a3ba6d92868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7822ee290cb5d28acf8c4a3ba6d92868">&#9670;&#160;</a></span>m_eta_min_samples</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::rans_convergence::RANSConvergence::m_eta_min_samples {5}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fewest envelope samples that will be fitted. </p>
+
+</div>
+</div>
+<a id="ab9293dfbf959b84edf7401f654db2a27" name="ab9293dfbf959b84edf7401f654db2a27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9293dfbf959b84edf7401f654db2a27">&#9670;&#160;</a></span>m_eta_times</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::rans_convergence::RANSConvergence::m_eta_times</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Times at which envelope spreads were recorded, for the exponential fit. </p>
+
+</div>
+</div>
+<a id="a35a32fe174f91d38c9541061253ebbdb" name="a35a32fe174f91d38c9541061253ebbdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a32fe174f91d38c9541061253ebbdb">&#9670;&#160;</a></span>m_eta_tke_ratio</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::rans_convergence::RANSConvergence::m_eta_tke_ratio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>History of the largest tke spread over all points, normalized by each point's own tolerance so that convergence is a spread of one. </p>
+
+</div>
+</div>
+<a id="ac6b1037f89c27edaf22008fca1c12058" name="ac6b1037f89c27edaf22008fca1c12058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6b1037f89c27edaf22008fca1c12058">&#9670;&#160;</a></span>m_eta_vel_ratio</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::rans_convergence::RANSConvergence::m_eta_vel_ratio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>History of the largest wind speed spread over all points, normalized by each point's own tolerance so that convergence is a spread of one. </p>
+
+</div>
+</div>
+<a id="ab77366a30a278a7a4db221e207fa5003" name="ab77366a30a278a7a4db221e207fa5003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab77366a30a278a7a4db221e207fa5003">&#9670;&#160;</a></span>m_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>*&gt; kynema_sgf::rans_convergence::RANSConvergence::m_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fields interpolated at the monitor points: velocity and tke. </p>
+
+</div>
+</div>
+<a id="ad6892399f4829d945709862dae638758" name="ad6892399f4829d945709862dae638758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6892399f4829d945709862dae638758">&#9670;&#160;</a></span>m_has_terrain</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::rans_convergence::RANSConvergence::m_has_terrain {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True when a terrain height field is available for point validation. </p>
+
+</div>
+</div>
+<a id="a5fca1aee92826e5b2077b2a79e7c62d3" name="a5fca1aee92826e5b2077b2a79e7c62d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fca1aee92826e5b2077b2a79e7c62d3">&#9670;&#160;</a></span>m_hold_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_hold_time {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>How long every point must stay within tolerance before the run stops. </p>
+
+</div>
+</div>
+<a id="a22a656b4848173d411cd06f1e6710271" name="a22a656b4848173d411cd06f1e6710271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22a656b4848173d411cd06f1e6710271">&#9670;&#160;</a></span>m_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string kynema_sgf::rans_convergence::RANSConvergence::m_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of this post-processing object, used to read its inputs. </p>
+
+</div>
+</div>
+<a id="a40c6c61638038b80c7e59c81b6584a9a" name="a40c6c61638038b80c7e59c81b6584a9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c6c61638038b80c7e59c81b6584a9a">&#9670;&#160;</a></span>m_min_samples</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::rans_convergence::RANSConvergence::m_min_samples {4}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fewest samples in the window before convergence may be declared. </p>
+
+</div>
+</div>
+<a id="af8559bad61a6a91635155ed16c6fad4f" name="af8559bad61a6a91635155ed16c6fad4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8559bad61a6a91635155ed16c6fad4f">&#9670;&#160;</a></span>m_ncomp_total</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::rans_convergence::RANSConvergence::m_ncomp_total {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of real components carried by the particle container. </p>
+
+</div>
+</div>
+<a id="ad1a27dc97f933c126e1b241a5f2a529e" name="ad1a27dc97f933c126e1b241a5f2a529e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1a27dc97f933c126e1b241a5f2a529e">&#9670;&#160;</a></span>m_next_sample_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_next_sample_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Next simulation time at which a sample will be taken. </p>
+
+</div>
+</div>
+<a id="a0abbee6d3c135f97ae5622e56327305b" name="a0abbee6d3c135f97ae5622e56327305b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0abbee6d3c135f97ae5622e56327305b">&#9670;&#160;</a></span>m_npts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::rans_convergence::RANSConvergence::m_npts {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of monitor points. </p>
+
+</div>
+</div>
+<a id="a4cc689594c06ec9655e6b1017ad079b9" name="a4cc689594c06ec9655e6b1017ad079b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cc689594c06ec9655e6b1017ad079b9">&#9670;&#160;</a></span>m_out_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::rans_convergence::RANSConvergence::m_out_fname</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of the ASCII diagnostics file. </p>
+
+</div>
+</div>
+<a id="af66c12a3b3a50e5a27d81e5077a543d8" name="af66c12a3b3a50e5a27d81e5077a543d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66c12a3b3a50e5a27d81e5077a543d8">&#9670;&#160;</a></span>m_point_coords</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::rans_convergence::RANSConvergence::m_point_coords</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Coordinates of the monitor points, gathered once at initialization. </p>
+
+</div>
+</div>
+<a id="a8dd16a3a334dd0a06badbf4b45618744" name="a8dd16a3a334dd0a06badbf4b45618744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd16a3a334dd0a06badbf4b45618744">&#9670;&#160;</a></span>m_precision</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::rans_convergence::RANSConvergence::m_precision {10}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Precision in the ASCII output. </p>
+
+</div>
+</div>
+<a id="a0e3810fdd66a9aab6b3245055bfbf640" name="a0e3810fdd66a9aab6b3245055bfbf640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3810fdd66a9aab6b3245055bfbf640">&#9670;&#160;</a></span>m_report_eta</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::rans_convergence::RANSConvergence::m_report_eta {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Report an estimated time to convergence from an exponential fit. </p>
+
+</div>
+</div>
+<a id="aa6f9362638c0289d7ef1229776cbc244" name="aa6f9362638c0289d7ef1229776cbc244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6f9362638c0289d7ef1229776cbc244">&#9670;&#160;</a></span>m_sample_buf</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::rans_convergence::RANSConvergence::m_sample_buf</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Buffer receiving the interpolated values, valid on the IO rank only. </p>
+
+</div>
+</div>
+<a id="a120d2b7eb94d816dab7c6e6d269d3236" name="a120d2b7eb94d816dab7c6e6d269d3236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a120d2b7eb94d816dab7c6e6d269d3236">&#9670;&#160;</a></span>m_sample_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_sample_interval {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Physical time between samples. </p>
+
+</div>
+</div>
+<a id="a818e1f647495281894de2983004e6647" name="a818e1f647495281894de2983004e6647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a818e1f647495281894de2983004e6647">&#9670;&#160;</a></span>m_sampler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1sampling_1_1_sampler_base.html">sampling::SamplerBase</a>&gt; kynema_sgf::rans_convergence::RANSConvergence::m_sampler</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Probe sampler holding the monitor point locations. </p>
+
+</div>
+</div>
+<a id="acc19d1932b5a924fdab4b3a6f1151bee" name="acc19d1932b5a924fdab4b3a6f1151bee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc19d1932b5a924fdab4b3a6f1151bee">&#9670;&#160;</a></span>m_samples</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Vector&lt;amrex::Real&gt; &gt; kynema_sgf::rans_convergence::RANSConvergence::m_samples</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sampled values, three per point per entry: u, v and tke. </p>
+
+</div>
+</div>
+<a id="af5dc4d8017d27bb4686d6f09598b7e5c" name="af5dc4d8017d27bb4686d6f09598b7e5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5dc4d8017d27bb4686d6f09598b7e5c">&#9670;&#160;</a></span>m_scontainer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1sampling_1_1_sampling_container.html">sampling::SamplingContainer</a>&gt; kynema_sgf::rans_convergence::RANSConvergence::m_scontainer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Particle container performing the interpolation. </p>
+
+</div>
+</div>
+<a id="a599e28fbecda1ef0227abf20d3bf92ca" name="a599e28fbecda1ef0227abf20d3bf92ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a599e28fbecda1ef0227abf20d3bf92ca">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::rans_convergence::RANSConvergence::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the CFD simulation. </p>
+
+</div>
+</div>
+<a id="a9361e588dda852c8f74cb40a79d37eb8" name="a9361e588dda852c8f74cb40a79d37eb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9361e588dda852c8f74cb40a79d37eb8">&#9670;&#160;</a></span>m_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_start_time {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Simulation time at which monitoring begins. </p>
+
+</div>
+</div>
+<a id="a574ed43089ab7574b3be7421ab3512b4" name="a574ed43089ab7574b3be7421ab3512b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a574ed43089ab7574b3be7421ab3512b4">&#9670;&#160;</a></span>m_stop_on_convergence</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::rans_convergence::RANSConvergence::m_stop_on_convergence {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ask the time integrator to stop once every point has converged. </p>
+
+</div>
+</div>
+<a id="a5a38126035f69dcaa8dad7c6a6469ae2" name="a5a38126035f69dcaa8dad7c6a6469ae2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a38126035f69dcaa8dad7c6a6469ae2">&#9670;&#160;</a></span>m_times</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::rans_convergence::RANSConvergence::m_times</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sample times currently held in the window. </p>
+
+</div>
+</div>
+<a id="a4e64f4af738319adef664fe087b17466" name="a4e64f4af738319adef664fe087b17466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e64f4af738319adef664fe087b17466">&#9670;&#160;</a></span>m_tke_abs_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_tke_abs_tol {0.001_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Absolute tolerance on the turbulent kinetic energy envelope. </p>
+
+</div>
+</div>
+<a id="a3d25be943f3907c478b38a67abc73d98" name="a3d25be943f3907c478b38a67abc73d98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d25be943f3907c478b38a67abc73d98">&#9670;&#160;</a></span>m_tke_rel_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_tke_rel_tol {0.01_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative tolerance on the turbulent kinetic energy envelope. </p>
+
+</div>
+</div>
+<a id="a219c785721dc0445b7ea48669eb23f86" name="a219c785721dc0445b7ea48669eb23f86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a219c785721dc0445b7ea48669eb23f86">&#9670;&#160;</a></span>m_vel_abs_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_vel_abs_tol {0.01_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Absolute tolerance on the horizontal wind speed envelope. </p>
+
+</div>
+</div>
+<a id="a4ed1a2d15d6ef642be949b9480a444af" name="a4ed1a2d15d6ef642be949b9480a444af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed1a2d15d6ef642be949b9480a444af">&#9670;&#160;</a></span>m_vel_rel_tol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_vel_rel_tol {0.001_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relative tolerance on the horizontal wind speed envelope. </p>
+
+</div>
+</div>
+<a id="a6823871db448172cf7bb313d16384444" name="a6823871db448172cf7bb313d16384444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6823871db448172cf7bb313d16384444">&#9670;&#160;</a></span>m_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::rans_convergence::RANSConvergence::m_width {18}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> width in the ASCII output. </p>
+
+</div>
+</div>
+<a id="a5a9bb21ab6a4340c645d4d67052c84d9" name="a5a9bb21ab6a4340c645d4d67052c84d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a9bb21ab6a4340c645d4d67052c84d9">&#9670;&#160;</a></span>m_window</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::rans_convergence::RANSConvergence::m_window {-1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Width of the trailing window over which the envelope is measured. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/output_quantities/<a class="el" href="_r_a_n_s_convergence_8_h_source.html">RANSConvergence.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/output_quantities/<a class="el" href="_r_a_n_s_convergence_8cpp.html">RANSConvergence.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

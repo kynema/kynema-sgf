@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/ForestDrag.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/ForestDrag.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_forest_drag_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-forestdrag-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/ForestDrag.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-forestdrag-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/ForestDrag.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ForestDrag.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_forest_drag_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FORESTDRAG_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FORESTDRAG_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="index__operations_8_h.html">src/utilities/index_operations.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="integrals_8_h.html">src/utilities/integrals.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8_h.html">src/utilities/constants.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1forestdrag.html">kynema_sgf::forestdrag</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// One precomputed inward-facing half-space edge for convex hull tests.</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html">   17</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html">ForestHullEdge</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a16fb9cd5365d5fa6598716fe4df79ca1">   19</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a16fb9cd5365d5fa6598716fe4df79ca1">m_nx</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#aa17377216e3ab4688479e23f0482d375">   20</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#aa17377216e3ab4688479e23f0482d375">m_ny</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a991c74141b0b27dca1562d574f500cd1">   21</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a991c74141b0b27dca1562d574f500cd1">m_d</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a4199d14616921763479897d9850a79c0">   22</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a4199d14616921763479897d9850a79c0">m_tol_scale</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
+</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// Per-forest descriptor consumed by host logic and device kernels.</span></div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html">   26</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1forestdrag_1_1_forest.html">Forest</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// Forest identifier written to forest_id field.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aebb7a5416cc69c253dd46169e4006204">   29</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aebb7a5416cc69c253dd46169e4006204">m_id</a>{-1};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// 0 = legacy cylindrical forest, 1 = point-cloud forest.</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a223848ee41c404e905755dfdd6675f38">   31</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a223848ee41c404e905755dfdd6675f38">m_drag_mode</a>{0};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Point-cloud storage slice [offset, offset + count) in flattened point</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// array.</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afb0c0521ca93c747559792271503ac8c">   35</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afb0c0521ca93c747559792271503ac8c">m_cloud_point_offset</a>{0};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a81bfa6875e11c0ec9422575e114ea88b">   36</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a81bfa6875e11c0ec9422575e114ea88b">m_cloud_point_count</a>{0};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// Convex hull half-space storage slice in flattened edge array.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aefa151991dd7a710e2abcbd1df3629d1">   39</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aefa151991dd7a710e2abcbd1df3629d1">m_hull_edge_offset</a>{0};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a65c16c14f82dd29323680d0b694fdd95">   40</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a65c16c14f82dd29323680d0b694fdd95">m_hull_edge_count</a>{0};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// Legacy cylindrical/model parameters.</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a63e319e79d4d5414837f275c19219439">   43</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a63e319e79d4d5414837f275c19219439">m_type_forest</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ace2dae5551eb0b2041ac678cf9b0fbd9">   44</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ace2dae5551eb0b2041ac678cf9b0fbd9">m_x_forest</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9def217fc06d1c429b47ba5bb9523732">   45</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9def217fc06d1c429b47ba5bb9523732">m_y_forest</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">   46</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9c59c3783ee711b8250818a7c09e0eeb">   47</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9c59c3783ee711b8250818a7c09e0eeb">m_diameter_forest</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ac9a685c581f5628aeefbff6e3cbadf2f">   48</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ac9a685c581f5628aeefbff6e3cbadf2f">m_cd_forest</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a3b209f03e1ebe81023bced091837260f">   49</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a3b209f03e1ebe81023bced091837260f">m_lai_forest</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a91df2738f16f9ec595a8173af889b839">   50</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a91df2738f16f9ec595a8173af889b839">m_laimax_forest</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// Axis-aligned bounding box used for coarse spatial pruning.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ad50e3c14dfeaf7e36faeb67384687d4d">   53</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ad50e3c14dfeaf7e36faeb67384687d4d">m_bbox_xlo</a>{0.0_rt};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afdb9581d475fc4f2a621e96262b825ea">   54</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afdb9581d475fc4f2a621e96262b825ea">m_bbox_ylo</a>{0.0_rt};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a849b1d9c4a5c3d0e15cb51e2bdd3a89c">   55</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a849b1d9c4a5c3d0e15cb51e2bdd3a89c">m_bbox_zlo</a>{0.0_rt};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a468f5ef6d26e39a56df2668ddc068851">   56</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a468f5ef6d26e39a56df2668ddc068851">m_bbox_xhi</a>{0.0_rt};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a36f5e2e43ce4c40fd580585e56169913">   57</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a36f5e2e43ce4c40fd580585e56169913">m_bbox_yhi</a>{0.0_rt};</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1c9dcafdc9da439ff09102c7c9b8ff06">   58</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1c9dcafdc9da439ff09102c7c9b8ff06">m_bbox_zhi</a>{0.0_rt};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// Compute the type-2 peak LAD scaling factor from integrated LAI.</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1bc9eb8c7b9ea4bf7e895fb8b777925c">   61</a></span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real <a class="code hl_function" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1bc9eb8c7b9ea4bf7e895fb8b777925c">lm</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        amrex::Real treelaimax = 0.0_rt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a63e319e79d4d5414837f275c19219439">m_type_forest</a> == 2) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keyword">const</span> amrex::Real captured_height_forest = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">const</span> amrex::Real treeZm = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a91df2738f16f9ec595a8173af889b839">m_laimax_forest</a> * captured_height_forest;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> n = 100;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keyword">const</span> amrex::Real int_0_fh = <a class="code hl_function" href="namespacekynema__sgf_1_1utils.html#a320ca6363a87996730806fd419bf3b04">kynema_sgf::utils::trapz</a>(</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                0, captured_height_forest - <a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#ace37b85b889ecd41876f33fe50138f1b">constants::TIGHT_TOL</a>, n,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                [=](<span class="keyword">const</span> amrex::Real x) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                    <span class="keyword">const</span> amrex::Real ratio =</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                        (captured_height_forest - treeZm) /</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                        (captured_height_forest - x);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                    <span class="keyword">const</span> <span class="keyword">auto</span> exponent = (x &lt; treeZm) ? 6.0_rt : 0.5_rt;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                    <span class="keywordflow">return</span> std::pow(ratio, exponent) *</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                           std::exp(exponent * (1 - ratio));</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                });</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            treelaimax = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a3b209f03e1ebe81023bced091837260f">m_lai_forest</a> / int_0_fh;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">return</span> treelaimax;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Vertical LAD profile used by legacy cylindrical forests.</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a69e4036928a079d85bc4d9b188409c50">   85</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a69e4036928a079d85bc4d9b188409c50">area_fraction</a>(<span class="keyword">const</span> amrex::Real z, <span class="keyword">const</span> amrex::Real treelaimax)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        amrex::Real af = 0.0_rt;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a63e319e79d4d5414837f275c19219439">m_type_forest</a> == 1) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            af = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a3b209f03e1ebe81023bced091837260f">m_lai_forest</a> / <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a63e319e79d4d5414837f275c19219439">m_type_forest</a> == 2) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keyword">const</span> <span class="keyword">auto</span> treeZm = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a91df2738f16f9ec595a8173af889b839">m_laimax_forest</a> * <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <span class="keyword">const</span> <span class="keyword">auto</span> ratio =</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a> - treeZm) / (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a> - z);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keyword">const</span> <span class="keyword">auto</span> exponent = (z &lt; treeZm) ? 6.0_rt : 0.5_rt;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            af = treelaimax * std::pow(ratio, exponent) *</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                 std::exp(exponent * (1 - ratio));</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">return</span> af;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// Convex-hull half-space test (boundary-inclusive) using precomputed</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// inward edge normals.</span></div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1659a6245f194c19de9fea11f7ec8d6c">  103</a></span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE <span class="keywordtype">bool</span> <a class="code hl_function" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1659a6245f194c19de9fea11f7ec8d6c">point_in_on_hull</a>(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">const</span> amrex::Real px,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keyword">const</span> amrex::Real py,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html">ForestHullEdge</a>* hull_edges)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a65c16c14f82dd29323680d0b694fdd95">m_hull_edge_count</a> &lt;= 0) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a65c16c14f82dd29323680d0b694fdd95">m_hull_edge_count</a>; ++i) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; e = hull_edges[<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aefa151991dd7a710e2abcbd1df3629d1">m_hull_edge_offset</a> + i];</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <span class="keyword">const</span> amrex::Real signed_dist =</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                (e.m_nx * px) + (e.m_ny * py) - e.<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a991c74141b0b27dca1562d574f500cd1">m_d</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keywordflow">if</span> (signed_dist &lt; -<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#ace37b85b889ecd41876f33fe50138f1b">constants::TIGHT_TOL</a> * e.m_tol_scale) {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Return real-space bounds for either point-cloud or cylindrical mode.</span></div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="}">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#adf237033a2d712e7a1b4b3487bb0def5">  123</a></span>    AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::RealBox <a class="code hl_function" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#adf237033a2d712e7a1b4b3487bb0def5">real_bounding_box</a>(</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">const</span> amrex::GpuArray&lt;amrex::Real, AMREX_SPACEDIM&gt;&amp; prob_lo)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a223848ee41c404e905755dfdd6675f38">m_drag_mode</a> == 1) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">return</span> {<a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ad50e3c14dfeaf7e36faeb67384687d4d">m_bbox_xlo</a>, <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afdb9581d475fc4f2a621e96262b825ea">m_bbox_ylo</a>, <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a849b1d9c4a5c3d0e15cb51e2bdd3a89c">m_bbox_zlo</a>,</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                    <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a468f5ef6d26e39a56df2668ddc068851">m_bbox_xhi</a>, <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a36f5e2e43ce4c40fd580585e56169913">m_bbox_yhi</a>, <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1c9dcafdc9da439ff09102c7c9b8ff06">m_bbox_zhi</a>};</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keyword">const</span> amrex::Real search_tol = 1.1_rt;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keyword">const</span> amrex::Real search_radius =</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            0.5_rt * search_tol * <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9c59c3783ee711b8250818a7c09e0eeb">m_diameter_forest</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keyword">const</span> <span class="keyword">auto</span> x0 = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ace2dae5551eb0b2041ac678cf9b0fbd9">m_x_forest</a> - search_radius;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keyword">const</span> <span class="keyword">auto</span> y0 = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9def217fc06d1c429b47ba5bb9523732">m_y_forest</a> - search_radius;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keyword">const</span> <span class="keyword">auto</span> z0 = prob_lo[2];</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="keyword">const</span> <span class="keyword">auto</span> x1 = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ace2dae5551eb0b2041ac678cf9b0fbd9">m_x_forest</a> + search_radius;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keyword">const</span> <span class="keyword">auto</span> y1 = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9def217fc06d1c429b47ba5bb9523732">m_y_forest</a> + search_radius;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keyword">const</span> <span class="keyword">auto</span> z1 = <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">m_height_forest</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">return</span> {x0, y0, z0, x1, y1, z1};</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// Integer box used for tile intersection tests before launching kernels.</span></div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a08b4b006e438310b2632c500ce589c55">  144</a></span>    [[nodiscard]] amrex::Box <a class="code hl_function" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a08b4b006e438310b2632c500ce589c55">bounding_box</a>(<span class="keyword">const</span> amrex::Geometry&amp; geom)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacekynema__sgf_1_1utils.html#acf5d69603806c14c1145feaf0e12fe09">utils::realbox_to_box</a>(</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <a class="code hl_function" href="structkynema__sgf_1_1forestdrag_1_1_forest.html#adf237033a2d712e7a1b4b3487bb0def5">real_bounding_box</a>(geom.ProbLoArray()), geom);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>};</div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">// A single LAD sample for point-cloud forests.</span></div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="};">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html">  152</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html">ForestPoint</a></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#acfadb24d8433974fc77d038a37e1882a">  154</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#acfadb24d8433974fc77d038a37e1882a">m_x</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#aea9aa01e154a2e1b3eb2a84cdf111a3b">  155</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#aea9aa01e154a2e1b3eb2a84cdf111a3b">m_y</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#acadc63c8229535eceb8d72e637a1901f">  156</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#acadc63c8229535eceb8d72e637a1901f">m_z</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#a737ce6ea1e708885caf64cba52fd81a8">  157</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#a737ce6ea1e708885caf64cba52fd81a8">m_lad</a>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>};</div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="foldopen" id="foldopen00164" data-start="{" data-end="};">
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html">  164</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a537eacd9bbcbdb459348161317529bd0">ForestDrag</a> : <span class="keyword">public</span> Physics::Register&lt;ForestDrag&gt;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ac92fd08f1d763410d37c8a6729eb18cf">  167</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ac92fd08f1d763410d37c8a6729eb18cf">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;ForestDrag&quot;</span>; }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a537eacd9bbcbdb459348161317529bd0">ForestDrag</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a31e30b6ab7c717eada34a8f56feb2911">  171</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a31e30b6ab7c717eada34a8f56feb2911">~ForestDrag</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a519c15bc289d9cad0f6be71ef7393e38">initialize_fields</a>(<span class="keywordtype">int</span> <span class="comment">/*level*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ac7293f21c4eb37cbddc76fa220e2a2b6">  176</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ac7293f21c4eb37cbddc76fa220e2a2b6">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ad1a326f9a5f3e5e4c43eab63537fc7bd">  178</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ad1a326f9a5f3e5e4c43eab63537fc7bd">post_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a33654a4ad1094de37a1e34888724ce19">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a1dcea59e02ab97be4e34bfde648b31f9">  182</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a1dcea59e02ab97be4e34bfde648b31f9">pre_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a61fe10fa6c9d5dac94fb2bfe3bac56d0">  184</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a61fe10fa6c9d5dac94fb2bfe3bac56d0">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// Parse legacy cylindrical forest file for a specific AMR level.</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    [[nodiscard]] amrex::Vector&lt;Forest&gt; <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#adb365731c8835f5b6ae33008b25da06e">read_cylinder_forests</a>(<span class="keywordtype">int</span> level) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">// Parse point-cloud forests, flatten points/hull-edges, and build forest</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// descriptors.</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    [[nodiscard]] amrex::Vector&lt;Forest&gt; <a class="code hl_function" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ae93d22d5bdecefe89f2f2e57a775000d">read_point_cloud_forests</a>(</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordtype">int</span> level,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        amrex::Vector&lt;ForestPoint&gt;&amp; points,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        amrex::Vector&lt;ForestHullEdge&gt;&amp; hull_edges) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a21a225bf9fbd60d9d90ab7a63752d26c">  197</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a21a225bf9fbd60d9d90ab7a63752d26c">m_sim</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// Output fields populated by this physics source.</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a1d614b8c5fd3b94d37f97d1dc0c4a444">  199</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a1d614b8c5fd3b94d37f97d1dc0c4a444">m_forest_drag</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a75d0cc5dc228467d8d17cb5193222886">  200</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a75d0cc5dc228467d8d17cb5193222886">m_forest_id</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// Input configuration for legacy and point-cloud modes.</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a74590da8c0e0466ad60964f3b4ac33d3">  203</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a74590da8c0e0466ad60964f3b4ac33d3">m_forest_file</a>{<span class="stringliteral">&quot;forest.amrwind&quot;</span>};</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a7e2bea40e933f5fb4d038fc13803b2df">  204</a></span>    amrex::Vector&lt;std::string&gt; <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a7e2bea40e933f5fb4d038fc13803b2df">m_point_cloud_files</a>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a317174c19a59d1011407b3136fa2e2e5">  205</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a317174c19a59d1011407b3136fa2e2e5">m_forest_cd</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// Point-cloud interpolation controls.</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a2b34b41eeb7e5b368a366f20dd8f08cc">  208</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a2b34b41eeb7e5b368a366f20dd8f08cc">m_point_neighbors</a>{4};</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a970454ab720e72ae94cc8b71e7e5b7ec">  209</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a970454ab720e72ae94cc8b71e7e5b7ec">m_point_interp_eps</a>{<a class="code hl_variable" href="namespacekynema__sgf_1_1constants.html#ace37b85b889ecd41876f33fe50138f1b">constants::TIGHT_TOL</a>};</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>};</div>
+</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>} <span class="comment">// namespace kynema_sgf::forestdrag</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a1d614b8c5fd3b94d37f97d1dc0c4a444"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a1d614b8c5fd3b94d37f97d1dc0c4a444">kynema_sgf::forestdrag::ForestDrag::m_forest_drag</a></div><div class="ttdeci">Field &amp; m_forest_drag</div><div class="ttdef"><b>Definition</b> ForestDrag.H:199</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a1dcea59e02ab97be4e34bfde648b31f9"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a1dcea59e02ab97be4e34bfde648b31f9">kynema_sgf::forestdrag::ForestDrag::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> ForestDrag.H:182</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a21a225bf9fbd60d9d90ab7a63752d26c"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a21a225bf9fbd60d9d90ab7a63752d26c">kynema_sgf::forestdrag::ForestDrag::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> ForestDrag.H:197</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a2b34b41eeb7e5b368a366f20dd8f08cc"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a2b34b41eeb7e5b368a366f20dd8f08cc">kynema_sgf::forestdrag::ForestDrag::m_point_neighbors</a></div><div class="ttdeci">int m_point_neighbors</div><div class="ttdef"><b>Definition</b> ForestDrag.H:208</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a317174c19a59d1011407b3136fa2e2e5"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a317174c19a59d1011407b3136fa2e2e5">kynema_sgf::forestdrag::ForestDrag::m_forest_cd</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_forest_cd</div><div class="ttdef"><b>Definition</b> ForestDrag.H:205</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a31e30b6ab7c717eada34a8f56feb2911"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a31e30b6ab7c717eada34a8f56feb2911">kynema_sgf::forestdrag::ForestDrag::~ForestDrag</a></div><div class="ttdeci">~ForestDrag() override=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a33654a4ad1094de37a1e34888724ce19"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a33654a4ad1094de37a1e34888724ce19">kynema_sgf::forestdrag::ForestDrag::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> ForestDrag.cpp:307</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a519c15bc289d9cad0f6be71ef7393e38"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a519c15bc289d9cad0f6be71ef7393e38">kynema_sgf::forestdrag::ForestDrag::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int, const amrex::Geometry &amp;) override</div><div class="ttdef"><b>Definition</b> ForestDrag.cpp:131</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a537eacd9bbcbdb459348161317529bd0"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a537eacd9bbcbdb459348161317529bd0">kynema_sgf::forestdrag::ForestDrag::ForestDrag</a></div><div class="ttdeci">ForestDrag(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> ForestDrag.cpp:90</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a61fe10fa6c9d5dac94fb2bfe3bac56d0"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a61fe10fa6c9d5dac94fb2bfe3bac56d0">kynema_sgf::forestdrag::ForestDrag::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> ForestDrag.H:184</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a74590da8c0e0466ad60964f3b4ac33d3"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a74590da8c0e0466ad60964f3b4ac33d3">kynema_sgf::forestdrag::ForestDrag::m_forest_file</a></div><div class="ttdeci">std::string m_forest_file</div><div class="ttdef"><b>Definition</b> ForestDrag.H:203</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a75d0cc5dc228467d8d17cb5193222886"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a75d0cc5dc228467d8d17cb5193222886">kynema_sgf::forestdrag::ForestDrag::m_forest_id</a></div><div class="ttdeci">Field &amp; m_forest_id</div><div class="ttdef"><b>Definition</b> ForestDrag.H:200</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a7e2bea40e933f5fb4d038fc13803b2df"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a7e2bea40e933f5fb4d038fc13803b2df">kynema_sgf::forestdrag::ForestDrag::m_point_cloud_files</a></div><div class="ttdeci">amrex::Vector&lt; std::string &gt; m_point_cloud_files</div><div class="ttdef"><b>Definition</b> ForestDrag.H:204</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_a970454ab720e72ae94cc8b71e7e5b7ec"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#a970454ab720e72ae94cc8b71e7e5b7ec">kynema_sgf::forestdrag::ForestDrag::m_point_interp_eps</a></div><div class="ttdeci">amrex::Real m_point_interp_eps</div><div class="ttdef"><b>Definition</b> ForestDrag.H:209</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_ac7293f21c4eb37cbddc76fa220e2a2b6"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ac7293f21c4eb37cbddc76fa220e2a2b6">kynema_sgf::forestdrag::ForestDrag::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdef"><b>Definition</b> ForestDrag.H:176</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_ac92fd08f1d763410d37c8a6729eb18cf"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ac92fd08f1d763410d37c8a6729eb18cf">kynema_sgf::forestdrag::ForestDrag::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> ForestDrag.H:167</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_ad1a326f9a5f3e5e4c43eab63537fc7bd"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ad1a326f9a5f3e5e4c43eab63537fc7bd">kynema_sgf::forestdrag::ForestDrag::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> ForestDrag.H:178</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_adb365731c8835f5b6ae33008b25da06e"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#adb365731c8835f5b6ae33008b25da06e">kynema_sgf::forestdrag::ForestDrag::read_cylinder_forests</a></div><div class="ttdeci">amrex::Vector&lt; Forest &gt; read_cylinder_forests(int level) const</div><div class="ttdef"><b>Definition</b> ForestDrag.cpp:316</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1forestdrag_1_1_forest_drag_html_ae93d22d5bdecefe89f2f2e57a775000d"><div class="ttname"><a href="classkynema__sgf_1_1forestdrag_1_1_forest_drag.html#ae93d22d5bdecefe89f2f2e57a775000d">kynema_sgf::forestdrag::ForestDrag::read_point_cloud_forests</a></div><div class="ttdeci">amrex::Vector&lt; Forest &gt; read_point_cloud_forests(int level, amrex::Vector&lt; ForestPoint &gt; &amp;points, amrex::Vector&lt; ForestHullEdge &gt; &amp;hull_edges) const</div><div class="ttdef"><b>Definition</b> ForestDrag.cpp:356</div></div>
+<div class="ttc" id="aconstants_8_h_html"><div class="ttname"><a href="constants_8_h.html">constants.H</a></div></div>
+<div class="ttc" id="aindex__operations_8_h_html"><div class="ttname"><a href="index__operations_8_h.html">index_operations.H</a></div></div>
+<div class="ttc" id="aintegrals_8_h_html"><div class="ttname"><a href="integrals_8_h.html">integrals.H</a></div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1constants_html_ace37b85b889ecd41876f33fe50138f1b"><div class="ttname"><a href="namespacekynema__sgf_1_1constants.html#ace37b85b889ecd41876f33fe50138f1b">kynema_sgf::constants::TIGHT_TOL</a></div><div class="ttdeci">static constexpr amrex::Real TIGHT_TOL</div><div class="ttdoc">A tight tolerance.</div><div class="ttdef"><b>Definition</b> constants.H:17</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1forestdrag_html"><div class="ttname"><a href="namespacekynema__sgf_1_1forestdrag.html">kynema_sgf::forestdrag</a></div><div class="ttdef"><b>Definition</b> ForestDrag.cpp:20</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1utils_html_a320ca6363a87996730806fd419bf3b04"><div class="ttname"><a href="namespacekynema__sgf_1_1utils.html#a320ca6363a87996730806fd419bf3b04">kynema_sgf::utils::trapz</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real trapz(const amrex::Real xa, const amrex::Real xb, const int n, const Function &amp;f)</div><div class="ttdef"><b>Definition</b> integrals.H:14</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1utils_html_acf5d69603806c14c1145feaf0e12fe09"><div class="ttname"><a href="namespacekynema__sgf_1_1utils.html#acf5d69603806c14c1145feaf0e12fe09">kynema_sgf::utils::realbox_to_box</a></div><div class="ttdeci">amrex::Box realbox_to_box(const amrex::RealBox &amp;rbx, const amrex::Geometry &amp;geom)</div><div class="ttdef"><b>Definition</b> index_operations.cpp:5</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html">kynema_sgf::forestdrag::Forest</a></div><div class="ttdef"><b>Definition</b> ForestDrag.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a08b4b006e438310b2632c500ce589c55"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a08b4b006e438310b2632c500ce589c55">kynema_sgf::forestdrag::Forest::bounding_box</a></div><div class="ttdeci">amrex::Box bounding_box(const amrex::Geometry &amp;geom) const</div><div class="ttdef"><b>Definition</b> ForestDrag.H:144</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a1659a6245f194c19de9fea11f7ec8d6c"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1659a6245f194c19de9fea11f7ec8d6c">kynema_sgf::forestdrag::Forest::point_in_on_hull</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool point_in_on_hull(const amrex::Real px, const amrex::Real py, const ForestHullEdge *hull_edges) const</div><div class="ttdef"><b>Definition</b> ForestDrag.H:103</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a1bc9eb8c7b9ea4bf7e895fb8b777925c"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1bc9eb8c7b9ea4bf7e895fb8b777925c">kynema_sgf::forestdrag::Forest::lm</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real lm() const</div><div class="ttdef"><b>Definition</b> ForestDrag.H:61</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a1c9dcafdc9da439ff09102c7c9b8ff06"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a1c9dcafdc9da439ff09102c7c9b8ff06">kynema_sgf::forestdrag::Forest::m_bbox_zhi</a></div><div class="ttdeci">amrex::Real m_bbox_zhi</div><div class="ttdef"><b>Definition</b> ForestDrag.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a223848ee41c404e905755dfdd6675f38"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a223848ee41c404e905755dfdd6675f38">kynema_sgf::forestdrag::Forest::m_drag_mode</a></div><div class="ttdeci">int m_drag_mode</div><div class="ttdef"><b>Definition</b> ForestDrag.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a24c146a4b5aaa67700e3ea10eed94dd4"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a24c146a4b5aaa67700e3ea10eed94dd4">kynema_sgf::forestdrag::Forest::m_height_forest</a></div><div class="ttdeci">amrex::Real m_height_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:46</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a36f5e2e43ce4c40fd580585e56169913"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a36f5e2e43ce4c40fd580585e56169913">kynema_sgf::forestdrag::Forest::m_bbox_yhi</a></div><div class="ttdeci">amrex::Real m_bbox_yhi</div><div class="ttdef"><b>Definition</b> ForestDrag.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a3b209f03e1ebe81023bced091837260f"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a3b209f03e1ebe81023bced091837260f">kynema_sgf::forestdrag::Forest::m_lai_forest</a></div><div class="ttdeci">amrex::Real m_lai_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:49</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a468f5ef6d26e39a56df2668ddc068851"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a468f5ef6d26e39a56df2668ddc068851">kynema_sgf::forestdrag::Forest::m_bbox_xhi</a></div><div class="ttdeci">amrex::Real m_bbox_xhi</div><div class="ttdef"><b>Definition</b> ForestDrag.H:56</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a63e319e79d4d5414837f275c19219439"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a63e319e79d4d5414837f275c19219439">kynema_sgf::forestdrag::Forest::m_type_forest</a></div><div class="ttdeci">amrex::Real m_type_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:43</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a65c16c14f82dd29323680d0b694fdd95"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a65c16c14f82dd29323680d0b694fdd95">kynema_sgf::forestdrag::Forest::m_hull_edge_count</a></div><div class="ttdeci">int m_hull_edge_count</div><div class="ttdef"><b>Definition</b> ForestDrag.H:40</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a69e4036928a079d85bc4d9b188409c50"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a69e4036928a079d85bc4d9b188409c50">kynema_sgf::forestdrag::Forest::area_fraction</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real area_fraction(const amrex::Real z, const amrex::Real treelaimax) const</div><div class="ttdef"><b>Definition</b> ForestDrag.H:85</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a81bfa6875e11c0ec9422575e114ea88b"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a81bfa6875e11c0ec9422575e114ea88b">kynema_sgf::forestdrag::Forest::m_cloud_point_count</a></div><div class="ttdeci">int m_cloud_point_count</div><div class="ttdef"><b>Definition</b> ForestDrag.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a849b1d9c4a5c3d0e15cb51e2bdd3a89c"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a849b1d9c4a5c3d0e15cb51e2bdd3a89c">kynema_sgf::forestdrag::Forest::m_bbox_zlo</a></div><div class="ttdeci">amrex::Real m_bbox_zlo</div><div class="ttdef"><b>Definition</b> ForestDrag.H:55</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a91df2738f16f9ec595a8173af889b839"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a91df2738f16f9ec595a8173af889b839">kynema_sgf::forestdrag::Forest::m_laimax_forest</a></div><div class="ttdeci">amrex::Real m_laimax_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:50</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a9c59c3783ee711b8250818a7c09e0eeb"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9c59c3783ee711b8250818a7c09e0eeb">kynema_sgf::forestdrag::Forest::m_diameter_forest</a></div><div class="ttdeci">amrex::Real m_diameter_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:47</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_a9def217fc06d1c429b47ba5bb9523732"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#a9def217fc06d1c429b47ba5bb9523732">kynema_sgf::forestdrag::Forest::m_y_forest</a></div><div class="ttdeci">amrex::Real m_y_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:45</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_ac9a685c581f5628aeefbff6e3cbadf2f"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ac9a685c581f5628aeefbff6e3cbadf2f">kynema_sgf::forestdrag::Forest::m_cd_forest</a></div><div class="ttdeci">amrex::Real m_cd_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:48</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_ace2dae5551eb0b2041ac678cf9b0fbd9"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ace2dae5551eb0b2041ac678cf9b0fbd9">kynema_sgf::forestdrag::Forest::m_x_forest</a></div><div class="ttdeci">amrex::Real m_x_forest</div><div class="ttdef"><b>Definition</b> ForestDrag.H:44</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_ad50e3c14dfeaf7e36faeb67384687d4d"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#ad50e3c14dfeaf7e36faeb67384687d4d">kynema_sgf::forestdrag::Forest::m_bbox_xlo</a></div><div class="ttdeci">amrex::Real m_bbox_xlo</div><div class="ttdef"><b>Definition</b> ForestDrag.H:53</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_adf237033a2d712e7a1b4b3487bb0def5"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#adf237033a2d712e7a1b4b3487bb0def5">kynema_sgf::forestdrag::Forest::real_bounding_box</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::RealBox real_bounding_box(const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;prob_lo) const</div><div class="ttdef"><b>Definition</b> ForestDrag.H:123</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_aebb7a5416cc69c253dd46169e4006204"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aebb7a5416cc69c253dd46169e4006204">kynema_sgf::forestdrag::Forest::m_id</a></div><div class="ttdeci">int m_id</div><div class="ttdef"><b>Definition</b> ForestDrag.H:29</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_aefa151991dd7a710e2abcbd1df3629d1"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#aefa151991dd7a710e2abcbd1df3629d1">kynema_sgf::forestdrag::Forest::m_hull_edge_offset</a></div><div class="ttdeci">int m_hull_edge_offset</div><div class="ttdef"><b>Definition</b> ForestDrag.H:39</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_afb0c0521ca93c747559792271503ac8c"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afb0c0521ca93c747559792271503ac8c">kynema_sgf::forestdrag::Forest::m_cloud_point_offset</a></div><div class="ttdeci">int m_cloud_point_offset</div><div class="ttdef"><b>Definition</b> ForestDrag.H:35</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_html_afdb9581d475fc4f2a621e96262b825ea"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest.html#afdb9581d475fc4f2a621e96262b825ea">kynema_sgf::forestdrag::Forest::m_bbox_ylo</a></div><div class="ttdeci">amrex::Real m_bbox_ylo</div><div class="ttdef"><b>Definition</b> ForestDrag.H:54</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_hull_edge_html"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html">kynema_sgf::forestdrag::ForestHullEdge</a></div><div class="ttdef"><b>Definition</b> ForestDrag.H:18</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_hull_edge_html_a16fb9cd5365d5fa6598716fe4df79ca1"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a16fb9cd5365d5fa6598716fe4df79ca1">kynema_sgf::forestdrag::ForestHullEdge::m_nx</a></div><div class="ttdeci">amrex::Real m_nx</div><div class="ttdef"><b>Definition</b> ForestDrag.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_hull_edge_html_a4199d14616921763479897d9850a79c0"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a4199d14616921763479897d9850a79c0">kynema_sgf::forestdrag::ForestHullEdge::m_tol_scale</a></div><div class="ttdeci">amrex::Real m_tol_scale</div><div class="ttdef"><b>Definition</b> ForestDrag.H:22</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_hull_edge_html_a991c74141b0b27dca1562d574f500cd1"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#a991c74141b0b27dca1562d574f500cd1">kynema_sgf::forestdrag::ForestHullEdge::m_d</a></div><div class="ttdeci">amrex::Real m_d</div><div class="ttdef"><b>Definition</b> ForestDrag.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_hull_edge_html_aa17377216e3ab4688479e23f0482d375"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_hull_edge.html#aa17377216e3ab4688479e23f0482d375">kynema_sgf::forestdrag::ForestHullEdge::m_ny</a></div><div class="ttdeci">amrex::Real m_ny</div><div class="ttdef"><b>Definition</b> ForestDrag.H:20</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_point_html"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html">kynema_sgf::forestdrag::ForestPoint</a></div><div class="ttdef"><b>Definition</b> ForestDrag.H:153</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_point_html_a737ce6ea1e708885caf64cba52fd81a8"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#a737ce6ea1e708885caf64cba52fd81a8">kynema_sgf::forestdrag::ForestPoint::m_lad</a></div><div class="ttdeci">amrex::Real m_lad</div><div class="ttdef"><b>Definition</b> ForestDrag.H:157</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_point_html_acadc63c8229535eceb8d72e637a1901f"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#acadc63c8229535eceb8d72e637a1901f">kynema_sgf::forestdrag::ForestPoint::m_z</a></div><div class="ttdeci">amrex::Real m_z</div><div class="ttdef"><b>Definition</b> ForestDrag.H:156</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_point_html_acfadb24d8433974fc77d038a37e1882a"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#acfadb24d8433974fc77d038a37e1882a">kynema_sgf::forestdrag::ForestPoint::m_x</a></div><div class="ttdeci">amrex::Real m_x</div><div class="ttdef"><b>Definition</b> ForestDrag.H:154</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1forestdrag_1_1_forest_point_html_aea9aa01e154a2e1b3eb2a84cdf111a3b"><div class="ttname"><a href="structkynema__sgf_1_1forestdrag_1_1_forest_point.html#aea9aa01e154a2e1b3eb2a84cdf111a3b">kynema_sgf::forestdrag::ForestPoint::m_y</a></div><div class="ttdeci">amrex::Real m_y</div><div class="ttdef"><b>Definition</b> ForestDrag.H:155</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/output_quantities/RANSConvergence.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/output_quantities/RANSConvergence.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_r_a_n_s_convergence_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-output-quantities-ransconvergence-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/output_quantities/RANSConvergence.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-output-quantities-ransconvergence-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/output_quantities/RANSConvergence.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_def6e6dc83f95506a4894d266c747a82.html">output_quantities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">RANSConvergence.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_r_a_n_s_convergence_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef RANSCONVERGENCE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define RANSCONVERGENCE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_c_f_d_sim_8_h.html">src/CFDSim.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_post_processing_8_h.html">src/utilities/PostProcessing.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="_sampler_base_8_h.html">src/utilities/sampling/SamplerBase.H</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_sampling_container_8_h.html">src/utilities/sampling/SamplingContainer.H</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;AMReX_Vector.H&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1rans__convergence.html">kynema_sgf::rans_convergence</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html">EnvelopeFit</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a0c586e68881ba3d31de926207a67cc52">   28</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a0c586e68881ba3d31de926207a67cc52">valid</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a34c9345b69f797ef092ac3647d821feb">   31</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a34c9345b69f797ef092ac3647d821feb">rate</a>{0.0_rt};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a8d519a0403461e7f59eb44924cc35be4">   34</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a8d519a0403461e7f59eb44924cc35be4">amplitude</a>{0.0_rt};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#af844d0f6adde4215bab7d9748cb7cabd">   37</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#af844d0f6adde4215bab7d9748cb7cabd">rsq</a>{0.0_rt};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a7a4683d701f8b01796ca79122bd4af6d">   40</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a7a4683d701f8b01796ca79122bd4af6d">time_to_threshold</a>{-1.0_rt};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html">   64</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#aa7732c813911514ffbb70219f39515f3">RANSConvergence</a> : <span class="keyword">public</span> PostProcessBase::Register&lt;RANSConvergence&gt;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a021d61678a527f0b069f2e04de618a9e">   67</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a021d61678a527f0b069f2e04de618a9e">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;RANSConvergence&quot;</span>; }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#aa7732c813911514ffbb70219f39515f3">RANSConvergence</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>, std::string <span class="comment">/*label*/</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a337ea6f9b818b49bca720c0c3db7868e">   71</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a337ea6f9b818b49bca720c0c3db7868e">~RANSConvergence</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad0fdffa3d5e2577f6c980368d990eb8c">   74</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad0fdffa3d5e2577f6c980368d990eb8c">pre_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae09075af4b02be927d3e55057e19a18f">initialize</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a15e39f7d43699c1eb1c286aa7feebba9">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab9947fe99a914f6d8e549ffe033d8064">   83</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab9947fe99a914f6d8e549ffe033d8064">output_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae2c4913d41148038c237d4493967e3c7">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">static</span> <a class="code hl_struct" href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html">EnvelopeFit</a> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7da8446c67ae27a1c27d14a2b5085871">fit_envelope_decay</a>(</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; times,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keyword">const</span> amrex::Vector&lt;amrex::Real&gt;&amp; spreads,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        amrex::Real threshold,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordtype">int</span> min_samples);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="}">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5fb604509c0054cdade2f5264ad05767">  121</a></span>    <span class="keyword">static</span> amrex::Real <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5fb604509c0054cdade2f5264ad05767">effective_tolerance</a>(</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keyword">const</span> amrex::Real mean,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keyword">const</span> amrex::Real abs_tol,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">const</span> amrex::Real rel_tol)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">return</span> amrex::max&lt;amrex::Real&gt;(abs_tol, rel_tol * std::abs(mean));</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7906f1bb5f3030b73282b1224a813a2f">check_turbulence_model</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a8a657018b0d44c66c80b1a0c1e628093">setup_container</a>();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae753ef9c625db46c2ae1d5b082478ed1">reject_terrain_points</a>();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad41e44853f6876801f54b040011e2fed">take_sample</a>();</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a1da0638711a18fb024f51e4496aae36b">evaluate_convergence</a>();</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae70c1ef18bc5e3459315c93e9225d590">prepare_ascii_file</a>();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af6a28f83ada46237eab0a3a5c125299f">write_ascii</a>(</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordtype">int</span> num_samples,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordtype">bool</span> window_full,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        amrex::Real hold_elapsed,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordtype">int</span> num_converged,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordtype">int</span> worst_vel_point,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        amrex::Real worst_vel_spread,</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        amrex::Real worst_vel_tol,</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordtype">int</span> worst_tke_point,</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        amrex::Real worst_tke_spread,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        amrex::Real worst_tke_tol,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        amrex::Real eta);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a599e28fbecda1ef0227abf20d3bf92ca">  163</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a599e28fbecda1ef0227abf20d3bf92ca">m_sim</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a22a656b4848173d411cd06f1e6710271">  166</a></span>    <span class="keyword">const</span> std::string <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a22a656b4848173d411cd06f1e6710271">m_label</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a818e1f647495281894de2983004e6647">  169</a></span>    std::unique_ptr&lt;sampling::SamplerBase&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a818e1f647495281894de2983004e6647">m_sampler</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af5dc4d8017d27bb4686d6f09598b7e5c">  172</a></span>    std::unique_ptr&lt;sampling::SamplingContainer&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af5dc4d8017d27bb4686d6f09598b7e5c">m_scontainer</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab77366a30a278a7a4db221e207fa5003">  175</a></span>    amrex::Vector&lt;Field*&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab77366a30a278a7a4db221e207fa5003">m_fields</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af66c12a3b3a50e5a27d81e5077a543d8">  178</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af66c12a3b3a50e5a27d81e5077a543d8">m_point_coords</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a0abbee6d3c135f97ae5622e56327305b">  181</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a0abbee6d3c135f97ae5622e56327305b">m_npts</a>{0};</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af8559bad61a6a91635155ed16c6fad4f">  184</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af8559bad61a6a91635155ed16c6fad4f">m_ncomp_total</a>{0};</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad6892399f4829d945709862dae638758">  187</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad6892399f4829d945709862dae638758">m_has_terrain</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#aa6f9362638c0289d7ef1229776cbc244">  190</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#aa6f9362638c0289d7ef1229776cbc244">m_sample_buf</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a9361e588dda852c8f74cb40a79d37eb8">  193</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a9361e588dda852c8f74cb40a79d37eb8">m_start_time</a>{-1.0_rt};</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a120d2b7eb94d816dab7c6e6d269d3236">  196</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a120d2b7eb94d816dab7c6e6d269d3236">m_sample_interval</a>{-1.0_rt};</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5a9bb21ab6a4340c645d4d67052c84d9">  199</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5a9bb21ab6a4340c645d4d67052c84d9">m_window</a>{-1.0_rt};</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a219c785721dc0445b7ea48669eb23f86">  202</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a219c785721dc0445b7ea48669eb23f86">m_vel_abs_tol</a>{0.01_rt};</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4ed1a2d15d6ef642be949b9480a444af">  205</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4ed1a2d15d6ef642be949b9480a444af">m_vel_rel_tol</a>{0.001_rt};</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4e64f4af738319adef664fe087b17466">  208</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4e64f4af738319adef664fe087b17466">m_tke_abs_tol</a>{0.001_rt};</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a3d25be943f3907c478b38a67abc73d98">  211</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a3d25be943f3907c478b38a67abc73d98">m_tke_rel_tol</a>{0.01_rt};</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a40c6c61638038b80c7e59c81b6584a9a">  214</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a40c6c61638038b80c7e59c81b6584a9a">m_min_samples</a>{4};</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5fca1aee92826e5b2077b2a79e7c62d3">  217</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5fca1aee92826e5b2077b2a79e7c62d3">m_hold_time</a>{-1.0_rt};</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a84c6bf328c8cba30b12f1978d3cffbb6">  220</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a84c6bf328c8cba30b12f1978d3cffbb6">m_converged_since</a>{-1.0_rt};</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a574ed43089ab7574b3be7421ab3512b4">  223</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a574ed43089ab7574b3be7421ab3512b4">m_stop_on_convergence</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a0e3810fdd66a9aab6b3245055bfbf640">  226</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a0e3810fdd66a9aab6b3245055bfbf640">m_report_eta</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab96221ac0634d581ae3f42034dc81852">  229</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab96221ac0634d581ae3f42034dc81852">m_eta_fit_window</a>{-1.0_rt};</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7822ee290cb5d28acf8c4a3ba6d92868">  232</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7822ee290cb5d28acf8c4a3ba6d92868">m_eta_min_samples</a>{5};</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a446e75a61d0d4dfc1858b2774135adfb">  235</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a446e75a61d0d4dfc1858b2774135adfb">m_eta_min_rsq</a>{0.5_rt};</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad1a27dc97f933c126e1b241a5f2a529e">  238</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad1a27dc97f933c126e1b241a5f2a529e">m_next_sample_time</a>{0.0_rt};</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5a38126035f69dcaa8dad7c6a6469ae2">  241</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5a38126035f69dcaa8dad7c6a6469ae2">m_times</a>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#acc19d1932b5a924fdab4b3a6f1151bee">  244</a></span>    amrex::Vector&lt;amrex::Vector&lt;amrex::Real&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#acc19d1932b5a924fdab4b3a6f1151bee">m_samples</a>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab9293dfbf959b84edf7401f654db2a27">  247</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab9293dfbf959b84edf7401f654db2a27">m_eta_times</a>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ac6b1037f89c27edaf22008fca1c12058">  251</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ac6b1037f89c27edaf22008fca1c12058">m_eta_vel_ratio</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a35a32fe174f91d38c9541061253ebbdb">  255</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a35a32fe174f91d38c9541061253ebbdb">m_eta_tke_ratio</a>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae5886a1bb4b66ff22ce458adc6f9b52d">  258</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae5886a1bb4b66ff22ce458adc6f9b52d">m_converged</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4cc689594c06ec9655e6b1017ad079b9">  261</a></span>    std::string <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4cc689594c06ec9655e6b1017ad079b9">m_out_fname</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a6823871db448172cf7bb313d16384444">  264</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a6823871db448172cf7bb313d16384444">m_width</a>{18};</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a8dd16a3a334dd0a06badbf4b45618744">  267</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a8dd16a3a334dd0a06badbf4b45618744">m_precision</a>{10};</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>};</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>} <span class="comment">// namespace kynema_sgf::rans_convergence</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="preprocessor">#endif </span><span class="comment">/* RANSCONVERGENCE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_c_f_d_sim_8_h_html"><div class="ttname"><a href="_c_f_d_sim_8_h.html">CFDSim.H</a></div></div>
+<div class="ttc" id="a_post_processing_8_h_html"><div class="ttname"><a href="_post_processing_8_h.html">PostProcessing.H</a></div></div>
+<div class="ttc" id="a_sampler_base_8_h_html"><div class="ttname"><a href="_sampler_base_8_h.html">SamplerBase.H</a></div></div>
+<div class="ttc" id="a_sampling_container_8_h_html"><div class="ttname"><a href="_sampling_container_8_h.html">SamplingContainer.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a021d61678a527f0b069f2e04de618a9e"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a021d61678a527f0b069f2e04de618a9e">kynema_sgf::rans_convergence::RANSConvergence::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:67</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a0abbee6d3c135f97ae5622e56327305b"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a0abbee6d3c135f97ae5622e56327305b">kynema_sgf::rans_convergence::RANSConvergence::m_npts</a></div><div class="ttdeci">int m_npts</div><div class="ttdoc">Number of monitor points.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:181</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a0e3810fdd66a9aab6b3245055bfbf640"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a0e3810fdd66a9aab6b3245055bfbf640">kynema_sgf::rans_convergence::RANSConvergence::m_report_eta</a></div><div class="ttdeci">bool m_report_eta</div><div class="ttdoc">Report an estimated time to convergence from an exponential fit.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:226</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a120d2b7eb94d816dab7c6e6d269d3236"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a120d2b7eb94d816dab7c6e6d269d3236">kynema_sgf::rans_convergence::RANSConvergence::m_sample_interval</a></div><div class="ttdeci">amrex::Real m_sample_interval</div><div class="ttdoc">Physical time between samples.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:196</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a15e39f7d43699c1eb1c286aa7feebba9"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a15e39f7d43699c1eb1c286aa7feebba9">kynema_sgf::rans_convergence::RANSConvergence::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdoc">Sample the monitor points and test for convergence.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:262</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a1da0638711a18fb024f51e4496aae36b"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a1da0638711a18fb024f51e4496aae36b">kynema_sgf::rans_convergence::RANSConvergence::evaluate_convergence</a></div><div class="ttdeci">void evaluate_convergence()</div><div class="ttdoc">Test every point against tolerance and report.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:399</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a219c785721dc0445b7ea48669eb23f86"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a219c785721dc0445b7ea48669eb23f86">kynema_sgf::rans_convergence::RANSConvergence::m_vel_abs_tol</a></div><div class="ttdeci">amrex::Real m_vel_abs_tol</div><div class="ttdoc">Absolute tolerance on the horizontal wind speed envelope.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:202</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a22a656b4848173d411cd06f1e6710271"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a22a656b4848173d411cd06f1e6710271">kynema_sgf::rans_convergence::RANSConvergence::m_label</a></div><div class="ttdeci">const std::string m_label</div><div class="ttdoc">Name of this post-processing object, used to read its inputs.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:166</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a337ea6f9b818b49bca720c0c3db7868e"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a337ea6f9b818b49bca720c0c3db7868e">kynema_sgf::rans_convergence::RANSConvergence::~RANSConvergence</a></div><div class="ttdeci">~RANSConvergence() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a35a32fe174f91d38c9541061253ebbdb"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a35a32fe174f91d38c9541061253ebbdb">kynema_sgf::rans_convergence::RANSConvergence::m_eta_tke_ratio</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_eta_tke_ratio</div><div class="ttdoc">History of the largest tke spread over all points, normalized by each point&#39;s own tolerance so that c...</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:255</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a3d25be943f3907c478b38a67abc73d98"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a3d25be943f3907c478b38a67abc73d98">kynema_sgf::rans_convergence::RANSConvergence::m_tke_rel_tol</a></div><div class="ttdeci">amrex::Real m_tke_rel_tol</div><div class="ttdoc">Relative tolerance on the turbulent kinetic energy envelope.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:211</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a40c6c61638038b80c7e59c81b6584a9a"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a40c6c61638038b80c7e59c81b6584a9a">kynema_sgf::rans_convergence::RANSConvergence::m_min_samples</a></div><div class="ttdeci">int m_min_samples</div><div class="ttdoc">Fewest samples in the window before convergence may be declared.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:214</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a446e75a61d0d4dfc1858b2774135adfb"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a446e75a61d0d4dfc1858b2774135adfb">kynema_sgf::rans_convergence::RANSConvergence::m_eta_min_rsq</a></div><div class="ttdeci">amrex::Real m_eta_min_rsq</div><div class="ttdoc">Smallest coefficient of determination for a reported estimate.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:235</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a4cc689594c06ec9655e6b1017ad079b9"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4cc689594c06ec9655e6b1017ad079b9">kynema_sgf::rans_convergence::RANSConvergence::m_out_fname</a></div><div class="ttdeci">std::string m_out_fname</div><div class="ttdoc">Name of the ASCII diagnostics file.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:261</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a4e64f4af738319adef664fe087b17466"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4e64f4af738319adef664fe087b17466">kynema_sgf::rans_convergence::RANSConvergence::m_tke_abs_tol</a></div><div class="ttdeci">amrex::Real m_tke_abs_tol</div><div class="ttdoc">Absolute tolerance on the turbulent kinetic energy envelope.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:208</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a4ed1a2d15d6ef642be949b9480a444af"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a4ed1a2d15d6ef642be949b9480a444af">kynema_sgf::rans_convergence::RANSConvergence::m_vel_rel_tol</a></div><div class="ttdeci">amrex::Real m_vel_rel_tol</div><div class="ttdoc">Relative tolerance on the horizontal wind speed envelope.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:205</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a574ed43089ab7574b3be7421ab3512b4"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a574ed43089ab7574b3be7421ab3512b4">kynema_sgf::rans_convergence::RANSConvergence::m_stop_on_convergence</a></div><div class="ttdeci">bool m_stop_on_convergence</div><div class="ttdoc">Ask the time integrator to stop once every point has converged.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:223</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a599e28fbecda1ef0227abf20d3bf92ca"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a599e28fbecda1ef0227abf20d3bf92ca">kynema_sgf::rans_convergence::RANSConvergence::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdoc">Reference to the CFD simulation.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:163</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a5a38126035f69dcaa8dad7c6a6469ae2"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5a38126035f69dcaa8dad7c6a6469ae2">kynema_sgf::rans_convergence::RANSConvergence::m_times</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_times</div><div class="ttdoc">Sample times currently held in the window.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:241</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a5a9bb21ab6a4340c645d4d67052c84d9"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5a9bb21ab6a4340c645d4d67052c84d9">kynema_sgf::rans_convergence::RANSConvergence::m_window</a></div><div class="ttdeci">amrex::Real m_window</div><div class="ttdoc">Width of the trailing window over which the envelope is measured.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:199</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a5fb604509c0054cdade2f5264ad05767"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5fb604509c0054cdade2f5264ad05767">kynema_sgf::rans_convergence::RANSConvergence::effective_tolerance</a></div><div class="ttdeci">static amrex::Real effective_tolerance(const amrex::Real mean, const amrex::Real abs_tol, const amrex::Real rel_tol)</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:121</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a5fca1aee92826e5b2077b2a79e7c62d3"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a5fca1aee92826e5b2077b2a79e7c62d3">kynema_sgf::rans_convergence::RANSConvergence::m_hold_time</a></div><div class="ttdeci">amrex::Real m_hold_time</div><div class="ttdoc">How long every point must stay within tolerance before the run stops.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:217</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a6823871db448172cf7bb313d16384444"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a6823871db448172cf7bb313d16384444">kynema_sgf::rans_convergence::RANSConvergence::m_width</a></div><div class="ttdeci">int m_width</div><div class="ttdoc">Field width in the ASCII output.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:264</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a7822ee290cb5d28acf8c4a3ba6d92868"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7822ee290cb5d28acf8c4a3ba6d92868">kynema_sgf::rans_convergence::RANSConvergence::m_eta_min_samples</a></div><div class="ttdeci">int m_eta_min_samples</div><div class="ttdoc">Fewest envelope samples that will be fitted.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:232</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a7906f1bb5f3030b73282b1224a813a2f"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7906f1bb5f3030b73282b1224a813a2f">kynema_sgf::rans_convergence::RANSConvergence::check_turbulence_model</a></div><div class="ttdeci">void check_turbulence_model() const</div><div class="ttdoc">Abort unless the active turbulence model is KLAxell.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a7da8446c67ae27a1c27d14a2b5085871"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a7da8446c67ae27a1c27d14a2b5085871">kynema_sgf::rans_convergence::RANSConvergence::fit_envelope_decay</a></div><div class="ttdeci">static EnvelopeFit fit_envelope_decay(const amrex::Vector&lt; amrex::Real &gt; &amp;times, const amrex::Vector&lt; amrex::Real &gt; &amp;spreads, amrex::Real threshold, int min_samples)</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:323</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a818e1f647495281894de2983004e6647"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a818e1f647495281894de2983004e6647">kynema_sgf::rans_convergence::RANSConvergence::m_sampler</a></div><div class="ttdeci">std::unique_ptr&lt; sampling::SamplerBase &gt; m_sampler</div><div class="ttdoc">Probe sampler holding the monitor point locations.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:169</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a84c6bf328c8cba30b12f1978d3cffbb6"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a84c6bf328c8cba30b12f1978d3cffbb6">kynema_sgf::rans_convergence::RANSConvergence::m_converged_since</a></div><div class="ttdeci">amrex::Real m_converged_since</div><div class="ttdoc">Time at which all points most recently began passing, or -1 if not.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:220</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a8a657018b0d44c66c80b1a0c1e628093"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a8a657018b0d44c66c80b1a0c1e628093">kynema_sgf::rans_convergence::RANSConvergence::setup_container</a></div><div class="ttdeci">void setup_container()</div><div class="ttdoc">Build the probe sampler and the particle container.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:157</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a8dd16a3a334dd0a06badbf4b45618744"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a8dd16a3a334dd0a06badbf4b45618744">kynema_sgf::rans_convergence::RANSConvergence::m_precision</a></div><div class="ttdeci">int m_precision</div><div class="ttdoc">Precision in the ASCII output.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:267</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_a9361e588dda852c8f74cb40a79d37eb8"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#a9361e588dda852c8f74cb40a79d37eb8">kynema_sgf::rans_convergence::RANSConvergence::m_start_time</a></div><div class="ttdeci">amrex::Real m_start_time</div><div class="ttdoc">Simulation time at which monitoring begins.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:193</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_aa6f9362638c0289d7ef1229776cbc244"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#aa6f9362638c0289d7ef1229776cbc244">kynema_sgf::rans_convergence::RANSConvergence::m_sample_buf</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_sample_buf</div><div class="ttdoc">Buffer receiving the interpolated values, valid on the IO rank only.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:190</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_aa7732c813911514ffbb70219f39515f3"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#aa7732c813911514ffbb70219f39515f3">kynema_sgf::rans_convergence::RANSConvergence::RANSConvergence</a></div><div class="ttdeci">RANSConvergence(CFDSim &amp;, std::string)</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ab77366a30a278a7a4db221e207fa5003"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab77366a30a278a7a4db221e207fa5003">kynema_sgf::rans_convergence::RANSConvergence::m_fields</a></div><div class="ttdeci">amrex::Vector&lt; Field * &gt; m_fields</div><div class="ttdoc">Fields interpolated at the monitor points: velocity and tke.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:175</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ab9293dfbf959b84edf7401f654db2a27"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab9293dfbf959b84edf7401f654db2a27">kynema_sgf::rans_convergence::RANSConvergence::m_eta_times</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_eta_times</div><div class="ttdoc">Times at which envelope spreads were recorded, for the exponential fit.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:247</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ab96221ac0634d581ae3f42034dc81852"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab96221ac0634d581ae3f42034dc81852">kynema_sgf::rans_convergence::RANSConvergence::m_eta_fit_window</a></div><div class="ttdeci">amrex::Real m_eta_fit_window</div><div class="ttdoc">Trailing span of envelope history used for the exponential fit.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:229</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ab9947fe99a914f6d8e549ffe033d8064"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ab9947fe99a914f6d8e549ffe033d8064">kynema_sgf::rans_convergence::RANSConvergence::output_actions</a></div><div class="ttdeci">void output_actions() override</div><div class="ttdoc">Output is driven internally by the sampling cadence.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:83</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ac6b1037f89c27edaf22008fca1c12058"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ac6b1037f89c27edaf22008fca1c12058">kynema_sgf::rans_convergence::RANSConvergence::m_eta_vel_ratio</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_eta_vel_ratio</div><div class="ttdoc">History of the largest wind speed spread over all points, normalized by each point&#39;s own tolerance so...</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:251</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_acc19d1932b5a924fdab4b3a6f1151bee"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#acc19d1932b5a924fdab4b3a6f1151bee">kynema_sgf::rans_convergence::RANSConvergence::m_samples</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Vector&lt; amrex::Real &gt; &gt; m_samples</div><div class="ttdoc">Sampled values, three per point per entry: u, v and tke.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:244</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ad0fdffa3d5e2577f6c980368d990eb8c"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad0fdffa3d5e2577f6c980368d990eb8c">kynema_sgf::rans_convergence::RANSConvergence::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdoc">Perform actions before mesh is created.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ad1a27dc97f933c126e1b241a5f2a529e"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad1a27dc97f933c126e1b241a5f2a529e">kynema_sgf::rans_convergence::RANSConvergence::m_next_sample_time</a></div><div class="ttdeci">amrex::Real m_next_sample_time</div><div class="ttdoc">Next simulation time at which a sample will be taken.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:238</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ad41e44853f6876801f54b040011e2fed"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad41e44853f6876801f54b040011e2fed">kynema_sgf::rans_convergence::RANSConvergence::take_sample</a></div><div class="ttdeci">void take_sample()</div><div class="ttdoc">Interpolate the monitored fields and append them to the window.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:286</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ad6892399f4829d945709862dae638758"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ad6892399f4829d945709862dae638758">kynema_sgf::rans_convergence::RANSConvergence::m_has_terrain</a></div><div class="ttdeci">bool m_has_terrain</div><div class="ttdoc">True when a terrain height field is available for point validation.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:187</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ae09075af4b02be927d3e55057e19a18f"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae09075af4b02be927d3e55057e19a18f">kynema_sgf::rans_convergence::RANSConvergence::initialize</a></div><div class="ttdeci">void initialize() override</div><div class="ttdoc">Read user inputs, build the monitor points and validate them.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:51</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ae2c4913d41148038c237d4493967e3c7"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae2c4913d41148038c237d4493967e3c7">kynema_sgf::rans_convergence::RANSConvergence::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdoc">Redistribute the monitor points after the mesh changes.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:254</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ae5886a1bb4b66ff22ce458adc6f9b52d"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae5886a1bb4b66ff22ce458adc6f9b52d">kynema_sgf::rans_convergence::RANSConvergence::m_converged</a></div><div class="ttdeci">bool m_converged</div><div class="ttdoc">True once every point has satisfied both tolerances.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:258</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ae70c1ef18bc5e3459315c93e9225d590"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae70c1ef18bc5e3459315c93e9225d590">kynema_sgf::rans_convergence::RANSConvergence::prepare_ascii_file</a></div><div class="ttdeci">void prepare_ascii_file()</div><div class="ttdoc">Prepare the ASCII output file and write its header.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:599</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_ae753ef9c625db46c2ae1d5b082478ed1"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#ae753ef9c625db46c2ae1d5b082478ed1">kynema_sgf::rans_convergence::RANSConvergence::reject_terrain_points</a></div><div class="ttdeci">void reject_terrain_points()</div><div class="ttdoc">Abort if any monitor point lies inside the immersed terrain.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:210</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_af5dc4d8017d27bb4686d6f09598b7e5c"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af5dc4d8017d27bb4686d6f09598b7e5c">kynema_sgf::rans_convergence::RANSConvergence::m_scontainer</a></div><div class="ttdeci">std::unique_ptr&lt; sampling::SamplingContainer &gt; m_scontainer</div><div class="ttdoc">Particle container performing the interpolation.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:172</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_af66c12a3b3a50e5a27d81e5077a543d8"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af66c12a3b3a50e5a27d81e5077a543d8">kynema_sgf::rans_convergence::RANSConvergence::m_point_coords</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; m_point_coords</div><div class="ttdoc">Coordinates of the monitor points, gathered once at initialization.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:178</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_af6a28f83ada46237eab0a3a5c125299f"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af6a28f83ada46237eab0a3a5c125299f">kynema_sgf::rans_convergence::RANSConvergence::write_ascii</a></div><div class="ttdeci">void write_ascii(int num_samples, bool window_full, amrex::Real hold_elapsed, int num_converged, int worst_vel_point, amrex::Real worst_vel_spread, amrex::Real worst_vel_tol, int worst_tke_point, amrex::Real worst_tke_spread, amrex::Real worst_tke_tol, amrex::Real eta)</div><div class="ttdoc">Append one line of convergence diagnostics.</div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:623</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence_html_af8559bad61a6a91635155ed16c6fad4f"><div class="ttname"><a href="classkynema__sgf_1_1rans__convergence_1_1_r_a_n_s_convergence.html#af8559bad61a6a91635155ed16c6fad4f">kynema_sgf::rans_convergence::RANSConvergence::m_ncomp_total</a></div><div class="ttdeci">int m_ncomp_total</div><div class="ttdoc">Number of real components carried by the particle container.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:184</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1rans__convergence_html"><div class="ttname"><a href="namespacekynema__sgf_1_1rans__convergence.html">kynema_sgf::rans_convergence</a></div><div class="ttdef"><b>Definition</b> RANSConvergence.cpp:18</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1rans__convergence_1_1_envelope_fit_html"><div class="ttname"><a href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html">kynema_sgf::rans_convergence::EnvelopeFit</a></div><div class="ttdef"><b>Definition</b> RANSConvergence.H:26</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1rans__convergence_1_1_envelope_fit_html_a0c586e68881ba3d31de926207a67cc52"><div class="ttname"><a href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a0c586e68881ba3d31de926207a67cc52">kynema_sgf::rans_convergence::EnvelopeFit::valid</a></div><div class="ttdeci">bool valid</div><div class="ttdoc">True if the fit succeeded and the extrapolation is usable.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1rans__convergence_1_1_envelope_fit_html_a34c9345b69f797ef092ac3647d821feb"><div class="ttname"><a href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a34c9345b69f797ef092ac3647d821feb">kynema_sgf::rans_convergence::EnvelopeFit::rate</a></div><div class="ttdeci">amrex::Real rate</div><div class="ttdoc">Decay rate  in 1/s; positive means the envelope is shrinking.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1rans__convergence_1_1_envelope_fit_html_a7a4683d701f8b01796ca79122bd4af6d"><div class="ttname"><a href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a7a4683d701f8b01796ca79122bd4af6d">kynema_sgf::rans_convergence::EnvelopeFit::time_to_threshold</a></div><div class="ttdeci">amrex::Real time_to_threshold</div><div class="ttdoc">Estimated seconds from the last sample until the threshold is reached.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:40</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1rans__convergence_1_1_envelope_fit_html_a8d519a0403461e7f59eb44924cc35be4"><div class="ttname"><a href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#a8d519a0403461e7f59eb44924cc35be4">kynema_sgf::rans_convergence::EnvelopeFit::amplitude</a></div><div class="ttdeci">amrex::Real amplitude</div><div class="ttdoc">Amplitude  of the fitted exponential.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:34</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1rans__convergence_1_1_envelope_fit_html_af844d0f6adde4215bab7d9748cb7cabd"><div class="ttname"><a href="structkynema__sgf_1_1rans__convergence_1_1_envelope_fit.html#af844d0f6adde4215bab7d9748cb7cabd">kynema_sgf::rans_convergence::EnvelopeFit::rsq</a></div><div class="ttdeci">amrex::Real rsq</div><div class="ttdoc">Coefficient of determination of the fit, computed in log space.</div><div class="ttdef"><b>Definition</b> RANSConvergence.H:37</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::zds::ZalesakDiskScalarVel Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::zds::ZalesakDiskScalarVel Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="zalesakdiskscalarvel-class-reference">
+<h1>ZalesakDiskScalarVel Class Reference<a class="headerlink" href="#zalesakdiskscalarvel-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::zds::ZalesakDiskScalarVel Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1zds.html">zds</a></li><li class="navelem"><a href="classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel.html">ZalesakDiskScalarVel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::zds::ZalesakDiskScalarVel Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_zalesak_disk_scalar_vel_8_h_source.html">ZalesakDiskScalarVel.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::zds::ZalesakDiskScalarVel:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel__inherit__graph.svg" width="202" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::zds::ZalesakDiskScalarVel:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abc0453f7747da3ed7ebaf74dd43fabdd" id="r_abc0453f7747da3ed7ebaf74dd43fabdd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc0453f7747da3ed7ebaf74dd43fabdd">ZalesakDiskScalarVel</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:a533a576e186320c4b11ca71b3ddd6a62" id="r_a533a576e186320c4b11ca71b3ddd6a62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a533a576e186320c4b11ca71b3ddd6a62">~ZalesakDiskScalarVel</a> () override=default</td></tr>
+<tr class="memitem:a5acb8e6d53d083b4e15c4ec26fcd8542" id="r_a5acb8e6d53d083b4e15c4ec26fcd8542"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5acb8e6d53d083b4e15c4ec26fcd8542">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memdesc:a5acb8e6d53d083b4e15c4ec26fcd8542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the levelset and velocity fields for Vortex Patch simulations.  <br /></td></tr>
+<tr class="memitem:a8c0bdf31d9e9f014601b92b8e9807f16" id="r_a8c0bdf31d9e9f014601b92b8e9807f16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c0bdf31d9e9f014601b92b8e9807f16">post_init_actions</a> () override</td></tr>
+<tr class="memitem:aeca8c5f285315ccc2ce2273973476ddb" id="r_aeca8c5f285315ccc2ce2273973476ddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeca8c5f285315ccc2ce2273973476ddb">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:a917df12adcbfa4a65054591f57505c06" id="r_a917df12adcbfa4a65054591f57505c06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a917df12adcbfa4a65054591f57505c06">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:a4010e4f36de4cdc12f0b1ab46ccee35d" id="r_a4010e4f36de4cdc12f0b1ab46ccee35d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4010e4f36de4cdc12f0b1ab46ccee35d">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a2ca7a5aeca0c4c430e3c7946ca4d52d9" id="r_a2ca7a5aeca0c4c430e3c7946ca4d52d9"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a>&gt; </td></tr>
+<tr class="memitem:a2ca7a5aeca0c4c430e3c7946ca4d52d9 template"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ca7a5aeca0c4c430e3c7946ca4d52d9">compute_error</a> (const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a6e133557e0b3fb1d76fcdb7aa814b965" id="r_a6e133557e0b3fb1d76fcdb7aa814b965"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e133557e0b3fb1d76fcdb7aa814b965">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a1990993a58038fdd375095e9d6ce698e" id="r_a1990993a58038fdd375095e9d6ce698e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1990993a58038fdd375095e9d6ce698e">output_error</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abe00096bfb1071d92fd396f86dac34d2" id="r_abe00096bfb1071d92fd396f86dac34d2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe00096bfb1071d92fd396f86dac34d2">m_sim</a></td></tr>
+<tr class="memitem:aeb15c84fc8e32ae9209d45e72ce4acc8" id="r_aeb15c84fc8e32ae9209d45e72ce4acc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb15c84fc8e32ae9209d45e72ce4acc8">m_velocity</a></td></tr>
+<tr class="memitem:a3ea8d27a5df9516c71400bdd513de08e" id="r_a3ea8d27a5df9516c71400bdd513de08e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ea8d27a5df9516c71400bdd513de08e">m_levelset</a></td></tr>
+<tr class="memitem:ad4ff05459aadd5592f94685e6ea5b9b0" id="r_ad4ff05459aadd5592f94685e6ea5b9b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4ff05459aadd5592f94685e6ea5b9b0">m_density</a></td></tr>
+<tr class="memitem:abb5f064505ef07f6f4c8cc064703e5e5" id="r_abb5f064505ef07f6f4c8cc064703e5e5"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb5f064505ef07f6f4c8cc064703e5e5">m_loc</a> {0.5_rt, 0.72_rt, 0.24_rt}</td></tr>
+<tr class="memdesc:abb5f064505ef07f6f4c8cc064703e5e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial <a class="el" href="classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel.html">ZalesakDiskScalarVel</a> location.  <br /></td></tr>
+<tr class="memitem:ad1e85e7b8f022ef8c9984ce0eb1d310f" id="r_ad1e85e7b8f022ef8c9984ce0eb1d310f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1e85e7b8f022ef8c9984ce0eb1d310f">m_radius</a> {0.16_rt}</td></tr>
+<tr class="memdesc:ad1e85e7b8f022ef8c9984ce0eb1d310f"><td class="mdescLeft">&#160;</td><td class="mdescRight">sphere radius value  <br /></td></tr>
+<tr class="memitem:a8597941dd815237abff9025955e84ab2" id="r_a8597941dd815237abff9025955e84ab2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8597941dd815237abff9025955e84ab2">m_halfwidth</a> {0.04_rt}</td></tr>
+<tr class="memdesc:a8597941dd815237abff9025955e84ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">slot half-width value  <br /></td></tr>
+<tr class="memitem:ad70648c7f9fb9a1844f7696524a51614" id="r_ad70648c7f9fb9a1844f7696524a51614"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad70648c7f9fb9a1844f7696524a51614">m_depth</a> {0.2_rt}</td></tr>
+<tr class="memdesc:ad70648c7f9fb9a1844f7696524a51614"><td class="mdescLeft">&#160;</td><td class="mdescRight">slot depth  <br /></td></tr>
+<tr class="memitem:a7389e972d20d6b9b709ec130edb7f47b" id="r_a7389e972d20d6b9b709ec130edb7f47b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7389e972d20d6b9b709ec130edb7f47b">m_TT</a> {6.0_rt}</td></tr>
+<tr class="memdesc:a7389e972d20d6b9b709ec130edb7f47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">prescribed velocity period  <br /></td></tr>
+<tr class="memitem:a604a1445b92bb277dd257309e238014b" id="r_a604a1445b92bb277dd257309e238014b"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a604a1445b92bb277dd257309e238014b">m_w</a> {18}</td></tr>
+<tr class="memdesc:a604a1445b92bb277dd257309e238014b"><td class="mdescLeft">&#160;</td><td class="mdescRight">output precision  <br /></td></tr>
+<tr class="memitem:ac0b81a3242b056a8efb55ad85681ffad" id="r_ac0b81a3242b056a8efb55ad85681ffad"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0b81a3242b056a8efb55ad85681ffad">m_output_fname</a> {&quot;zds.log&quot;}</td></tr>
+<tr class="memdesc:ac0b81a3242b056a8efb55ad85681ffad"><td class="mdescLeft">&#160;</td><td class="mdescRight">error log file  <br /></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abc0453f7747da3ed7ebaf74dd43fabdd" name="abc0453f7747da3ed7ebaf74dd43fabdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0453f7747da3ed7ebaf74dd43fabdd">&#9670;&#160;</a></span>ZalesakDiskScalarVel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::zds::ZalesakDiskScalarVel::ZalesakDiskScalarVel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a533a576e186320c4b11ca71b3ddd6a62" name="a533a576e186320c4b11ca71b3ddd6a62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a533a576e186320c4b11ca71b3ddd6a62">&#9670;&#160;</a></span>~ZalesakDiskScalarVel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::zds::ZalesakDiskScalarVel::~ZalesakDiskScalarVel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a2ca7a5aeca0c4c430e3c7946ca4d52d9" name="a2ca7a5aeca0c4c430e3c7946ca4d52d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ca7a5aeca0c4c430e3c7946ca4d52d9">&#9670;&#160;</a></span>compute_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename <a class="el" href="structkynema__sgf_1_1_factory_1_1_register.html#ae14171979850a3421c4794e501775f20">T</a>&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::zds::ZalesakDiskScalarVel::compute_error </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>field</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6e133557e0b3fb1d76fcdb7aa814b965" name="a6e133557e0b3fb1d76fcdb7aa814b965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e133557e0b3fb1d76fcdb7aa814b965">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::zds::ZalesakDiskScalarVel::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5acb8e6d53d083b4e15c4ec26fcd8542" name="a5acb8e6d53d083b4e15c4ec26fcd8542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5acb8e6d53d083b4e15c4ec26fcd8542">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::zds::ZalesakDiskScalarVel::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the levelset and velocity fields for Vortex Patch simulations. </p>
+<p>Initialize the velocity and levelset fields at the beginning of the simulation.</p>
+<dl class="section see"><dt>See also</dt><dd>kynema_sgf::ZalesakDiskScalarVelFieldInit </dd></dl>
+
+</div>
+</div>
+<a id="a1990993a58038fdd375095e9d6ce698e" name="a1990993a58038fdd375095e9d6ce698e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1990993a58038fdd375095e9d6ce698e">&#9670;&#160;</a></span>output_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::zds::ZalesakDiskScalarVel::output_error </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4010e4f36de4cdc12f0b1ab46ccee35d" name="a4010e4f36de4cdc12f0b1ab46ccee35d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4010e4f36de4cdc12f0b1ab46ccee35d">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::zds::ZalesakDiskScalarVel::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c0bdf31d9e9f014601b92b8e9807f16" name="a8c0bdf31d9e9f014601b92b8e9807f16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c0bdf31d9e9f014601b92b8e9807f16">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::zds::ZalesakDiskScalarVel::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeca8c5f285315ccc2ce2273973476ddb" name="aeca8c5f285315ccc2ce2273973476ddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca8c5f285315ccc2ce2273973476ddb">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::zds::ZalesakDiskScalarVel::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a917df12adcbfa4a65054591f57505c06" name="a917df12adcbfa4a65054591f57505c06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a917df12adcbfa4a65054591f57505c06">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::zds::ZalesakDiskScalarVel::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ad4ff05459aadd5592f94685e6ea5b9b0" name="ad4ff05459aadd5592f94685e6ea5b9b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ff05459aadd5592f94685e6ea5b9b0">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::zds::ZalesakDiskScalarVel::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad70648c7f9fb9a1844f7696524a51614" name="ad70648c7f9fb9a1844f7696524a51614"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad70648c7f9fb9a1844f7696524a51614">&#9670;&#160;</a></span>m_depth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::zds::ZalesakDiskScalarVel::m_depth {0.2_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>slot depth </p>
+
+</div>
+</div>
+<a id="a8597941dd815237abff9025955e84ab2" name="a8597941dd815237abff9025955e84ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8597941dd815237abff9025955e84ab2">&#9670;&#160;</a></span>m_halfwidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::zds::ZalesakDiskScalarVel::m_halfwidth {0.04_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>slot half-width value </p>
+
+</div>
+</div>
+<a id="a3ea8d27a5df9516c71400bdd513de08e" name="a3ea8d27a5df9516c71400bdd513de08e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea8d27a5df9516c71400bdd513de08e">&#9670;&#160;</a></span>m_levelset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::zds::ZalesakDiskScalarVel::m_levelset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb5f064505ef07f6f4c8cc064703e5e5" name="abb5f064505ef07f6f4c8cc064703e5e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb5f064505ef07f6f4c8cc064703e5e5">&#9670;&#160;</a></span>m_loc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::zds::ZalesakDiskScalarVel::m_loc {0.5_rt, 0.72_rt, 0.24_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial <a class="el" href="classkynema__sgf_1_1zds_1_1_zalesak_disk_scalar_vel.html">ZalesakDiskScalarVel</a> location. </p>
+
+</div>
+</div>
+<a id="ac0b81a3242b056a8efb55ad85681ffad" name="ac0b81a3242b056a8efb55ad85681ffad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b81a3242b056a8efb55ad85681ffad">&#9670;&#160;</a></span>m_output_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::zds::ZalesakDiskScalarVel::m_output_fname {&quot;zds.log&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>error log file </p>
+
+</div>
+</div>
+<a id="ad1e85e7b8f022ef8c9984ce0eb1d310f" name="ad1e85e7b8f022ef8c9984ce0eb1d310f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e85e7b8f022ef8c9984ce0eb1d310f">&#9670;&#160;</a></span>m_radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::zds::ZalesakDiskScalarVel::m_radius {0.16_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>sphere radius value </p>
+
+</div>
+</div>
+<a id="abe00096bfb1071d92fd396f86dac34d2" name="abe00096bfb1071d92fd396f86dac34d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe00096bfb1071d92fd396f86dac34d2">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::zds::ZalesakDiskScalarVel::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7389e972d20d6b9b709ec130edb7f47b" name="a7389e972d20d6b9b709ec130edb7f47b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7389e972d20d6b9b709ec130edb7f47b">&#9670;&#160;</a></span>m_TT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::zds::ZalesakDiskScalarVel::m_TT {6.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>prescribed velocity period </p>
+
+</div>
+</div>
+<a id="aeb15c84fc8e32ae9209d45e72ce4acc8" name="aeb15c84fc8e32ae9209d45e72ce4acc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb15c84fc8e32ae9209d45e72ce4acc8">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::zds::ZalesakDiskScalarVel::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a604a1445b92bb277dd257309e238014b" name="a604a1445b92bb277dd257309e238014b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a604a1445b92bb277dd257309e238014b">&#9670;&#160;</a></span>m_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::zds::ZalesakDiskScalarVel::m_w {18}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>output precision </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/<a class="el" href="_zalesak_disk_scalar_vel_8_h_source.html">ZalesakDiskScalarVel.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/<a class="el" href="_zalesak_disk_scalar_vel_8cpp.html">ZalesakDiskScalarVel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

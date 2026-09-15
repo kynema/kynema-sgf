@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::motion::TimeTable Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::motion::TimeTable Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="timetable-class-reference">
+<h1>TimeTable Class Reference<a class="headerlink" href="#timetable-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::motion::TimeTable Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator_1_1motion.html">motion</a></li><li class="navelem"><a href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::motion::TimeTable Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_time_table_8_h_source.html">TimeTable.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::actuator::motion::TimeTable:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table__coll__graph.svg" width="178" height="236"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a34fb02abf2aacb3e771013a856ae6d7f" id="r_a34fb02abf2aacb3e771013a856ae6d7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34fb02abf2aacb3e771013a856ae6d7f">read</a> (const std::string &amp;filename, int <a class="el" href="#a4ba93c7978f23a3b1c1eb51d9ee95b28">num_values</a>, const std::string &amp;extrapolation=&quot;hold&quot;)</td></tr>
+<tr class="memitem:af178136cf03fb7b54ced66e8f53a28ff" id="r_af178136cf03fb7b54ced66e8f53a28ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af178136cf03fb7b54ced66e8f53a28ff">empty</a> () const</td></tr>
+<tr class="memitem:a4ba93c7978f23a3b1c1eb51d9ee95b28" id="r_a4ba93c7978f23a3b1c1eb51d9ee95b28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ba93c7978f23a3b1c1eb51d9ee95b28">num_values</a> () const</td></tr>
+<tr class="memitem:a218f4c292c3b53370ce396356e4b0b9d" id="r_a218f4c292c3b53370ce396356e4b0b9d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a218f4c292c3b53370ce396356e4b0b9d">times</a> () const</td></tr>
+<tr class="memitem:a229f32119b6f21e2e3f0edb2359f7e73" id="r_a229f32119b6f21e2e3f0edb2359f7e73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a229f32119b6f21e2e3f0edb2359f7e73">row</a> (int index) const</td></tr>
+<tr class="memitem:a4accf07bf6fc1c048e279689ac1551b4" id="r_a4accf07bf6fc1c048e279689ac1551b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4accf07bf6fc1c048e279689ac1551b4">value</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:a2a15e261dabc4cfec5d3d5b38ab2bc65" id="r_a2a15e261dabc4cfec5d3d5b38ab2bc65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a15e261dabc4cfec5d3d5b38ab2bc65">derivative</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:a83d22c06a651e3bc50fe2e006ab83a68" id="r_a83d22c06a651e3bc50fe2e006ab83a68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83d22c06a651e3bc50fe2e006ab83a68">integral</a> (amrex::Real time) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab66462f47c7e50fe179d8f3ec687547a" id="r_ab66462f47c7e50fe179d8f3ec687547a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab66462f47c7e50fe179d8f3ec687547a">interval</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:af0455b3e2dde6d9e3b05e9a793708cd0" id="r_af0455b3e2dde6d9e3b05e9a793708cd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0455b3e2dde6d9e3b05e9a793708cd0">warn_hold</a> (amrex::Real time) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ad6177b21c0ca50ff0c0cc9913cf14d7c" id="r_ad6177b21c0ca50ff0c0cc9913cf14d7c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6177b21c0ca50ff0c0cc9913cf14d7c">m_filename</a></td></tr>
+<tr class="memitem:ae5274a940018e5b1b311518037c278b7" id="r_ae5274a940018e5b1b311518037c278b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5274a940018e5b1b311518037c278b7">m_num_values</a> {0}</td></tr>
+<tr class="memitem:a7522217ea971111dcf1cab0d3664938b" id="r_a7522217ea971111dcf1cab0d3664938b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7522217ea971111dcf1cab0d3664938b">m_time</a></td></tr>
+<tr class="memitem:a223f490d47496236c945bcb7c88604d6" id="r_a223f490d47496236c945bcb7c88604d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a223f490d47496236c945bcb7c88604d6">m_values</a></td></tr>
+<tr class="memdesc:a223f490d47496236c945bcb7c88604d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Row-major values used directly by <a class="el" href="namespacekynema__sgf_1_1interp.html#a07559a548d527f576e9c24e302ed8ba5">interp::linear</a>'s ncomp interface.  <br /></td></tr>
+<tr class="memitem:a2ccfe22cf5034d67e5b08393c984e26e" id="r_a2ccfe22cf5034d67e5b08393c984e26e"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ccfe22cf5034d67e5b08393c984e26e">m_prefix_integral</a></td></tr>
+<tr class="memdesc:a2ccfe22cf5034d67e5b08393c984e26e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exact trapezoidal integral of each completed interpolation interval.  <br /></td></tr>
+<tr class="memitem:ac09bc6472085aca5a7a08a36293fd6ae" id="r_ac09bc6472085aca5a7a08a36293fd6ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac09bc6472085aca5a7a08a36293fd6ae">m_warned_below</a> {false}</td></tr>
+<tr class="memitem:ab1c1cfe52324b842f24d879d9f577626" id="r_ab1c1cfe52324b842f24d879d9f577626"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1c1cfe52324b842f24d879d9f577626">m_warned_above</a> {false}</td></tr>
+<tr class="memitem:a690402b6ad6da386df3f5cbf5477720f" id="r_a690402b6ad6da386df3f5cbf5477720f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a690402b6ad6da386df3f5cbf5477720f">m_error_on_extrapolation</a> {false}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Piecewise-linear, multi-component time history.</p>
+<p>Values, derivatives, and integrals use the same interpolation intervals so that motion reconstructed from a velocity history remains consistent. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a2a15e261dabc4cfec5d3d5b38ab2bc65" name="a2a15e261dabc4cfec5d3d5b38ab2bc65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a15e261dabc4cfec5d3d5b38ab2bc65">&#9670;&#160;</a></span>derivative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::motion::TimeTable::derivative </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af178136cf03fb7b54ced66e8f53a28ff" name="af178136cf03fb7b54ced66e8f53a28ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af178136cf03fb7b54ced66e8f53a28ff">&#9670;&#160;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::actuator::motion::TimeTable::empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83d22c06a651e3bc50fe2e006ab83a68" name="a83d22c06a651e3bc50fe2e006ab83a68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83d22c06a651e3bc50fe2e006ab83a68">&#9670;&#160;</a></span>integral()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::motion::TimeTable::integral </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab66462f47c7e50fe179d8f3ec687547a" name="ab66462f47c7e50fe179d8f3ec687547a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66462f47c7e50fe179d8f3ec687547a">&#9670;&#160;</a></span>interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::motion::TimeTable::interval </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ba93c7978f23a3b1c1eb51d9ee95b28" name="a4ba93c7978f23a3b1c1eb51d9ee95b28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba93c7978f23a3b1c1eb51d9ee95b28">&#9670;&#160;</a></span>num_values()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::motion::TimeTable::num_values </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34fb02abf2aacb3e771013a856ae6d7f" name="a34fb02abf2aacb3e771013a856ae6d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34fb02abf2aacb3e771013a856ae6d7f">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::actuator::motion::TimeTable::read </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>num_values</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>extrapolation</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;hold&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a229f32119b6f21e2e3f0edb2359f7e73" name="a229f32119b6f21e2e3f0edb2359f7e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a229f32119b6f21e2e3f0edb2359f7e73">&#9670;&#160;</a></span>row()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::motion::TimeTable::row </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a218f4c292c3b53370ce396356e4b0b9d" name="a218f4c292c3b53370ce396356e4b0b9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a218f4c292c3b53370ce396356e4b0b9d">&#9670;&#160;</a></span>times()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> &amp; kynema_sgf::actuator::motion::TimeTable::times </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4accf07bf6fc1c048e279689ac1551b4" name="a4accf07bf6fc1c048e279689ac1551b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4accf07bf6fc1c048e279689ac1551b4">&#9670;&#160;</a></span>value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::motion::TimeTable::value </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0455b3e2dde6d9e3b05e9a793708cd0" name="af0455b3e2dde6d9e3b05e9a793708cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0455b3e2dde6d9e3b05e9a793708cd0">&#9670;&#160;</a></span>warn_hold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::actuator::motion::TimeTable::warn_hold </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a690402b6ad6da386df3f5cbf5477720f" name="a690402b6ad6da386df3f5cbf5477720f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a690402b6ad6da386df3f5cbf5477720f">&#9670;&#160;</a></span>m_error_on_extrapolation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::actuator::motion::TimeTable::m_error_on_extrapolation {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6177b21c0ca50ff0c0cc9913cf14d7c" name="ad6177b21c0ca50ff0c0cc9913cf14d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6177b21c0ca50ff0c0cc9913cf14d7c">&#9670;&#160;</a></span>m_filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::actuator::motion::TimeTable::m_filename</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5274a940018e5b1b311518037c278b7" name="ae5274a940018e5b1b311518037c278b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5274a940018e5b1b311518037c278b7">&#9670;&#160;</a></span>m_num_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::motion::TimeTable::m_num_values {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ccfe22cf5034d67e5b08393c984e26e" name="a2ccfe22cf5034d67e5b08393c984e26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ccfe22cf5034d67e5b08393c984e26e">&#9670;&#160;</a></span>m_prefix_integral</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&gt; kynema_sgf::actuator::motion::TimeTable::m_prefix_integral</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exact trapezoidal integral of each completed interpolation interval. </p>
+
+</div>
+</div>
+<a id="a7522217ea971111dcf1cab0d3664938b" name="a7522217ea971111dcf1cab0d3664938b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7522217ea971111dcf1cab0d3664938b">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::motion::TimeTable::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a223f490d47496236c945bcb7c88604d6" name="a223f490d47496236c945bcb7c88604d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a223f490d47496236c945bcb7c88604d6">&#9670;&#160;</a></span>m_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::motion::TimeTable::m_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Row-major values used directly by <a class="el" href="namespacekynema__sgf_1_1interp.html#a07559a548d527f576e9c24e302ed8ba5">interp::linear</a>'s ncomp interface. </p>
+
+</div>
+</div>
+<a id="ab1c1cfe52324b842f24d879d9f577626" name="ab1c1cfe52324b842f24d879d9f577626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1c1cfe52324b842f24d879d9f577626">&#9670;&#160;</a></span>m_warned_above</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::actuator::motion::TimeTable::m_warned_above {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel mutable">mutable</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac09bc6472085aca5a7a08a36293fd6ae" name="ac09bc6472085aca5a7a08a36293fd6ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac09bc6472085aca5a7a08a36293fd6ae">&#9670;&#160;</a></span>m_warned_below</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::actuator::motion::TimeTable::m_warned_below {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel mutable">mutable</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/motion/<a class="el" href="_time_table_8_h_source.html">TimeTable.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/motion/<a class="el" href="_time_table_8cpp.html">TimeTable.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

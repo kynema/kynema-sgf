@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::motion::RigidBodyMotion Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::motion::RigidBodyMotion Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rigidbodymotion-class-reference">
+<h1>RigidBodyMotion Class Reference<a class="headerlink" href="#rigidbodymotion-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::motion::RigidBodyMotion Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator_1_1motion.html">motion</a></li><li class="navelem"><a href="classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion.html">RigidBodyMotion</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::motion::RigidBodyMotion Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_rigid_body_motion_8_h_source.html">RigidBodyMotion.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::actuator::motion::RigidBodyMotion:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion__coll__graph.svg" width="248" height="427"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab888b05e3f1bdcb374a9430fb9211731" id="r_ab888b05e3f1bdcb374a9430fb9211731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab888b05e3f1bdcb374a9430fb9211731">read_inputs</a> (const <a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a> &amp;pp, const <a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> &amp;initial_position, const <a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> &amp;initial_orientation, const std::string &amp;angular_velocity_key=&quot;angular_velocity&quot;, const <a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> &amp;default_angular_velocity=<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>())</td></tr>
+<tr class="memitem:a38e6b136b730a81de3fef505ac4d5b22" id="r_a38e6b136b730a81de3fef505ac4d5b22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38e6b136b730a81de3fef505ac4d5b22">position</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:a99052a75082181c7ec08585889e89a8e" id="r_a99052a75082181c7ec08585889e89a8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99052a75082181c7ec08585889e89a8e">translation_velocity</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:a081245e22b820f51deaa48835cbf2f46" id="r_a081245e22b820f51deaa48835cbf2f46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a081245e22b820f51deaa48835cbf2f46">orientation</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:aa66a141429f9b6640d5965c097f3f49f" id="r_aa66a141429f9b6640d5965c097f3f49f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa66a141429f9b6640d5965c097f3f49f">angular_velocity</a> (amrex::Real time) const</td></tr>
+<tr class="memitem:a26d33f918df92cc31a7c0c04bb7687cc" id="r_a26d33f918df92cc31a7c0c04bb7687cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26d33f918df92cc31a7c0c04bb7687cc">moves</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a0221aed42b7e1ba53745677f29be9e57" id="r_a0221aed42b7e1ba53745677f29be9e57"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0221aed42b7e1ba53745677f29be9e57">OrientationFormat</a> : std::uint8_t { <a class="el" href="#a0221aed42b7e1ba53745677f29be9e57a9c8356d201178c5aada697556252b4ed">RollPitchYaw</a>
+, <a class="el" href="#a0221aed42b7e1ba53745677f29be9e57a3743af167c53361d795405561faac2b2">Quaternion</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a739bf6685472b2b6546bf036324f3dad" id="r_a739bf6685472b2b6546bf036324f3dad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1vs_1_1_quaternion.html">vs::Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a739bf6685472b2b6546bf036324f3dad">orientation_quaternion</a> (int row) const</td></tr>
+<tr class="memitem:acab857f27f3c9dafd56a897d67dbf5b1" id="r_acab857f27f3c9dafd56a897d67dbf5b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acab857f27f3c9dafd56a897d67dbf5b1">warn_ambiguous_orientation_intervals</a> (const std::string &amp;filename) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a39618aa0fa75d8641a1fdbd17b950178" id="r_a39618aa0fa75d8641a1fdbd17b950178"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39618aa0fa75d8641a1fdbd17b950178">m_initial_position</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:aae2f2211c5b1083eb22e7f83df6ef998" id="r_aae2f2211c5b1083eb22e7f83df6ef998"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae2f2211c5b1083eb22e7f83df6ef998">m_constant_velocity</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:acb88b436a6d29061f147ca15742e70b1" id="r_acb88b436a6d29061f147ca15742e70b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb88b436a6d29061f147ca15742e70b1">m_initial_orientation</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_tensor_t.html#a9a14bb3c8afac3c74a350b5bbeb94807">vs::Tensor::identity</a>()}</td></tr>
+<tr class="memitem:a19006f8aa15fefac29b0372cb0b041a9" id="r_a19006f8aa15fefac29b0372cb0b041a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19006f8aa15fefac29b0372cb0b041a9">m_constant_angular_velocity</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:af5a5803d0837a5c728e60b7f5acb13c8" id="r_af5a5803d0837a5c728e60b7f5acb13c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5a5803d0837a5c728e60b7f5acb13c8">m_position_table</a></td></tr>
+<tr class="memitem:af165863928763fde737a8d73ecf1ab29" id="r_af165863928763fde737a8d73ecf1ab29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af165863928763fde737a8d73ecf1ab29">m_velocity_table</a></td></tr>
+<tr class="memitem:a067bb60a88a2f37d5bd69a3f876e16cf" id="r_a067bb60a88a2f37d5bd69a3f876e16cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a067bb60a88a2f37d5bd69a3f876e16cf">m_orientation_table</a></td></tr>
+<tr class="memitem:a8226c57de068860054569092edf0b11f" id="r_a8226c57de068860054569092edf0b11f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8226c57de068860054569092edf0b11f">m_angular_velocity_table</a></td></tr>
+<tr class="memitem:a17bbd4a4aba2a2d40eb932080e743886" id="r_a17bbd4a4aba2a2d40eb932080e743886"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a0221aed42b7e1ba53745677f29be9e57">OrientationFormat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17bbd4a4aba2a2d40eb932080e743886">m_orientation_format</a> {<a class="el" href="#a0221aed42b7e1ba53745677f29be9e57a9c8356d201178c5aada697556252b4ed">OrientationFormat::RollPitchYaw</a>}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Prescribed translation and orientation of a rigid body.</p>
+<p>Positions and velocities are in the global CFD frame. The orientation is the active rotation that maps body-frame vectors into that frame. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="a0221aed42b7e1ba53745677f29be9e57" name="a0221aed42b7e1ba53745677f29be9e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0221aed42b7e1ba53745677f29be9e57">&#9670;&#160;</a></span>OrientationFormat</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a0221aed42b7e1ba53745677f29be9e57">kynema_sgf::actuator::motion::RigidBodyMotion::OrientationFormat</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0221aed42b7e1ba53745677f29be9e57a9c8356d201178c5aada697556252b4ed" name="a0221aed42b7e1ba53745677f29be9e57a9c8356d201178c5aada697556252b4ed"></a>RollPitchYaw&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0221aed42b7e1ba53745677f29be9e57a3743af167c53361d795405561faac2b2" name="a0221aed42b7e1ba53745677f29be9e57a3743af167c53361d795405561faac2b2"></a>Quaternion&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="aa66a141429f9b6640d5965c097f3f49f" name="aa66a141429f9b6640d5965c097f3f49f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa66a141429f9b6640d5965c097f3f49f">&#9670;&#160;</a></span>angular_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::motion::RigidBodyMotion::angular_velocity </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a26d33f918df92cc31a7c0c04bb7687cc" name="a26d33f918df92cc31a7c0c04bb7687cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d33f918df92cc31a7c0c04bb7687cc">&#9670;&#160;</a></span>moves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::actuator::motion::RigidBodyMotion::moves </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a081245e22b820f51deaa48835cbf2f46" name="a081245e22b820f51deaa48835cbf2f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a081245e22b820f51deaa48835cbf2f46">&#9670;&#160;</a></span>orientation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> kynema_sgf::actuator::motion::RigidBodyMotion::orientation </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a739bf6685472b2b6546bf036324f3dad" name="a739bf6685472b2b6546bf036324f3dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a739bf6685472b2b6546bf036324f3dad">&#9670;&#160;</a></span>orientation_quaternion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1vs_1_1_quaternion.html">vs::Quaternion</a> kynema_sgf::actuator::motion::RigidBodyMotion::orientation_quaternion </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>row</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38e6b136b730a81de3fef505ac4d5b22" name="a38e6b136b730a81de3fef505ac4d5b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38e6b136b730a81de3fef505ac4d5b22">&#9670;&#160;</a></span>position()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::motion::RigidBodyMotion::position </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab888b05e3f1bdcb374a9430fb9211731" name="ab888b05e3f1bdcb374a9430fb9211731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab888b05e3f1bdcb374a9430fb9211731">&#9670;&#160;</a></span>read_inputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::actuator::motion::RigidBodyMotion::read_inputs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1actuator_1_1utils.html#a09555b2d7d3bf73e8f36553f7f5aa3ac">utils::ActParser</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>initial_position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>initial_orientation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>angular_velocity_key</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;angular_velocity&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>default_angular_velocity</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99052a75082181c7ec08585889e89a8e" name="a99052a75082181c7ec08585889e89a8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99052a75082181c7ec08585889e89a8e">&#9670;&#160;</a></span>translation_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::motion::RigidBodyMotion::translation_velocity </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acab857f27f3c9dafd56a897d67dbf5b1" name="acab857f27f3c9dafd56a897d67dbf5b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab857f27f3c9dafd56a897d67dbf5b1">&#9670;&#160;</a></span>warn_ambiguous_orientation_intervals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::actuator::motion::RigidBodyMotion::warn_ambiguous_orientation_intervals </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a8226c57de068860054569092edf0b11f" name="a8226c57de068860054569092edf0b11f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8226c57de068860054569092edf0b11f">&#9670;&#160;</a></span>m_angular_velocity_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_angular_velocity_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a19006f8aa15fefac29b0372cb0b041a9" name="a19006f8aa15fefac29b0372cb0b041a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19006f8aa15fefac29b0372cb0b041a9">&#9670;&#160;</a></span>m_constant_angular_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_constant_angular_velocity {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae2f2211c5b1083eb22e7f83df6ef998" name="aae2f2211c5b1083eb22e7f83df6ef998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae2f2211c5b1083eb22e7f83df6ef998">&#9670;&#160;</a></span>m_constant_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_constant_velocity {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb88b436a6d29061f147ca15742e70b1" name="acb88b436a6d29061f147ca15742e70b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb88b436a6d29061f147ca15742e70b1">&#9670;&#160;</a></span>m_initial_orientation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_initial_orientation {<a class="el" href="structkynema__sgf_1_1vs_1_1_tensor_t.html#a9a14bb3c8afac3c74a350b5bbeb94807">vs::Tensor::identity</a>()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39618aa0fa75d8641a1fdbd17b950178" name="a39618aa0fa75d8641a1fdbd17b950178"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39618aa0fa75d8641a1fdbd17b950178">&#9670;&#160;</a></span>m_initial_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_initial_position {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17bbd4a4aba2a2d40eb932080e743886" name="a17bbd4a4aba2a2d40eb932080e743886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17bbd4a4aba2a2d40eb932080e743886">&#9670;&#160;</a></span>m_orientation_format</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a0221aed42b7e1ba53745677f29be9e57">OrientationFormat</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_orientation_format {<a class="el" href="#a0221aed42b7e1ba53745677f29be9e57a9c8356d201178c5aada697556252b4ed">OrientationFormat::RollPitchYaw</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a067bb60a88a2f37d5bd69a3f876e16cf" name="a067bb60a88a2f37d5bd69a3f876e16cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a067bb60a88a2f37d5bd69a3f876e16cf">&#9670;&#160;</a></span>m_orientation_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_orientation_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5a5803d0837a5c728e60b7f5acb13c8" name="af5a5803d0837a5c728e60b7f5acb13c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a5803d0837a5c728e60b7f5acb13c8">&#9670;&#160;</a></span>m_position_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_position_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af165863928763fde737a8d73ecf1ab29" name="af165863928763fde737a8d73ecf1ab29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af165863928763fde737a8d73ecf1ab29">&#9670;&#160;</a></span>m_velocity_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html">TimeTable</a> kynema_sgf::actuator::motion::RigidBodyMotion::m_velocity_table</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/motion/<a class="el" href="_rigid_body_motion_8_h_source.html">RigidBodyMotion.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/motion/<a class="el" href="_rigid_body_motion_8cpp.html">RigidBodyMotion.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

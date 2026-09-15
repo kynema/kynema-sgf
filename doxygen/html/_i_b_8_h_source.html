@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/immersed_boundary/IB.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/immersed_boundary/IB.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_i_b_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-immersed-boundary-ib-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/immersed_boundary/IB.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-immersed-boundary-ib-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/immersed_boundary/IB.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_8df9cb77d300c308ef77110bfd428b49.html">immersed_boundary</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">IB.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_i_b_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef IB_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define IB_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_field_repo_8_h.html">src/core/FieldRepo.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1ib.html">ib</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">class </span><a class="code hl_class" href="classkynema__sgf_1_1ib_1_1_immersed_boundary_model.html">ImmersedBoundaryModel</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html">   27</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a85616ddd7d96e73884ae441c9498165b">IB</a> : <span class="keyword">public</span> Physics::Register&lt;IB&gt;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#a74dbf201bd2847747929af3012d44a6e">   30</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a74dbf201bd2847747929af3012d44a6e">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;IB&quot;</span>; }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a85616ddd7d96e73884ae441c9498165b">IB</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <span class="comment">/*sim*/</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#a1c1fe5b18755837c5b30020622d6944b">   34</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a1c1fe5b18755837c5b30020622d6944b">~IB</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span></div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#ae84cc9242c7902c4dc9b2f6f3a191ea8">   37</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#ae84cc9242c7902c4dc9b2f6f3a191ea8">initialize_fields</a>(<span class="keywordtype">int</span> <span class="comment">/*level*/</span>, <span class="keyword">const</span> amrex::Geometry&amp; <span class="comment">/*geom*/</span>)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">    </span>{}</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#ab822bf96d45228750c85c7af570e3078">pre_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a82110ac27f1cc0c58000b8a1d3fe7280">post_init_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a12d89b5b892f517cd7c6fb4bd78dbb8f">post_regrid_actions</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#af7c760f73c3d2b8f9ccc89dec2792af0">pre_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#aec20dbc4dcf76977334e6a90dd2d1259">post_advance_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a5cda30eeef592b0b64e031ee8868d0ee">pre_pressure_correction_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#ae2ebe7a68f77a304fe282fc591e332df">post_pressure_correction_work</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#a893d5e61d3787c53b8e28d8531b13152">   57</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a893d5e61d3787c53b8e28d8531b13152">num_ibs</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classkynema__sgf_1_1ib_1_1_i_b.html#af047572ef87e6b2add5cee277ccad477">m_ibs</a>.size()); }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#aeda9167e286339da2bed11fcfc983f5c">prepare_outputs</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a3e7d0f345bef9a148d3f96a8de4793de">update_positions</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a709ffde86dc412b33b9e0db9339e8acf">update_velocities</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1ib_1_1_i_b.html#a8721f47c22f5419e2dca4c300bd8cbcd">compute_forces</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#a2048c8698ea3fc1354b10a596f62d0e0">   68</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1ib_1_1_i_b.html#a2048c8698ea3fc1354b10a596f62d0e0">m_sim</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#af047572ef87e6b2add5cee277ccad477">   70</a></span>    std::vector&lt;std::unique_ptr&lt;ImmersedBoundaryModel&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1ib_1_1_i_b.html#af047572ef87e6b2add5cee277ccad477">m_ibs</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#a113bbc59f456ac50a192596e7022dcf7">   73</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1ib_1_1_i_b.html#a113bbc59f456ac50a192596e7022dcf7">m_ib_levelset</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1ib_1_1_i_b.html#a73c0f5327e605869b0b68de408dba433">   76</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1ib_1_1_i_b.html#a73c0f5327e605869b0b68de408dba433">m_ib_normal</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>} <span class="comment">// namespace ib</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif </span><span class="comment">/* IB_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_repo_8_h_html"><div class="ttname"><a href="_field_repo_8_h.html">FieldRepo.H</a></div></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a113bbc59f456ac50a192596e7022dcf7"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a113bbc59f456ac50a192596e7022dcf7">kynema_sgf::ib::IB::m_ib_levelset</a></div><div class="ttdeci">Field &amp; m_ib_levelset</div><div class="ttdoc">Immersed boundary levelset for cell-centers.</div><div class="ttdef"><b>Definition</b> IB.H:73</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a12d89b5b892f517cd7c6fb4bd78dbb8f"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a12d89b5b892f517cd7c6fb4bd78dbb8f">kynema_sgf::ib::IB::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> IB.cpp:69</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a1c1fe5b18755837c5b30020622d6944b"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a1c1fe5b18755837c5b30020622d6944b">kynema_sgf::ib::IB::~IB</a></div><div class="ttdeci">~IB() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a2048c8698ea3fc1354b10a596f62d0e0"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a2048c8698ea3fc1354b10a596f62d0e0">kynema_sgf::ib::IB::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> IB.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a3e7d0f345bef9a148d3f96a8de4793de"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a3e7d0f345bef9a148d3f96a8de4793de">kynema_sgf::ib::IB::update_positions</a></div><div class="ttdeci">static void update_positions()</div><div class="ttdef"><b>Definition</b> IB.cpp:95</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a5cda30eeef592b0b64e031ee8868d0ee"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a5cda30eeef592b0b64e031ee8868d0ee">kynema_sgf::ib::IB::pre_pressure_correction_work</a></div><div class="ttdeci">void pre_pressure_correction_work() override</div><div class="ttdef"><b>Definition</b> IB.cpp:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a709ffde86dc412b33b9e0db9339e8acf"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a709ffde86dc412b33b9e0db9339e8acf">kynema_sgf::ib::IB::update_velocities</a></div><div class="ttdeci">void update_velocities()</div><div class="ttdef"><b>Definition</b> IB.cpp:104</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a73c0f5327e605869b0b68de408dba433"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a73c0f5327e605869b0b68de408dba433">kynema_sgf::ib::IB::m_ib_normal</a></div><div class="ttdeci">Field &amp; m_ib_normal</div><div class="ttdoc">Immersed boundary normal vector defined on cell-centers.</div><div class="ttdef"><b>Definition</b> IB.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a74dbf201bd2847747929af3012d44a6e"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a74dbf201bd2847747929af3012d44a6e">kynema_sgf::ib::IB::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> IB.H:30</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a82110ac27f1cc0c58000b8a1d3fe7280"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a82110ac27f1cc0c58000b8a1d3fe7280">kynema_sgf::ib::IB::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> IB.cpp:59</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a85616ddd7d96e73884ae441c9498165b"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a85616ddd7d96e73884ae441c9498165b">kynema_sgf::ib::IB::IB</a></div><div class="ttdeci">IB(CFDSim &amp;)</div><div class="ttdef"><b>Definition</b> IB.cpp:15</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a8721f47c22f5419e2dca4c300bd8cbcd"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a8721f47c22f5419e2dca4c300bd8cbcd">kynema_sgf::ib::IB::compute_forces</a></div><div class="ttdeci">void compute_forces()</div><div class="ttdef"><b>Definition</b> IB.cpp:114</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_a893d5e61d3787c53b8e28d8531b13152"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#a893d5e61d3787c53b8e28d8531b13152">kynema_sgf::ib::IB::num_ibs</a></div><div class="ttdeci">int num_ibs() const</div><div class="ttdoc">Total number of immersed boundaries.</div><div class="ttdef"><b>Definition</b> IB.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_ab822bf96d45228750c85c7af570e3078"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#ab822bf96d45228750c85c7af570e3078">kynema_sgf::ib::IB::pre_init_actions</a></div><div class="ttdeci">void pre_init_actions() override</div><div class="ttdef"><b>Definition</b> IB.cpp:26</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_ae2ebe7a68f77a304fe282fc591e332df"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#ae2ebe7a68f77a304fe282fc591e332df">kynema_sgf::ib::IB::post_pressure_correction_work</a></div><div class="ttdeci">void post_pressure_correction_work() override</div><div class="ttdef"><b>Definition</b> IB.cpp:82</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_ae84cc9242c7902c4dc9b2f6f3a191ea8"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#ae84cc9242c7902c4dc9b2f6f3a191ea8">kynema_sgf::ib::IB::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int, const amrex::Geometry &amp;) override</div><div class="ttdef"><b>Definition</b> IB.H:37</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_aec20dbc4dcf76977334e6a90dd2d1259"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#aec20dbc4dcf76977334e6a90dd2d1259">kynema_sgf::ib::IB::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> IB.cpp:136</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_aeda9167e286339da2bed11fcfc983f5c"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#aeda9167e286339da2bed11fcfc983f5c">kynema_sgf::ib::IB::prepare_outputs</a></div><div class="ttdeci">virtual void prepare_outputs()</div><div class="ttdef"><b>Definition</b> IB.cpp:122</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_af047572ef87e6b2add5cee277ccad477"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#af047572ef87e6b2add5cee277ccad477">kynema_sgf::ib::IB::m_ibs</a></div><div class="ttdeci">std::vector&lt; std::unique_ptr&lt; ImmersedBoundaryModel &gt; &gt; m_ibs</div><div class="ttdef"><b>Definition</b> IB.H:70</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_i_b_html_af7c760f73c3d2b8f9ccc89dec2792af0"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_i_b.html#af7c760f73c3d2b8f9ccc89dec2792af0">kynema_sgf::ib::IB::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> IB.cpp:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ib_1_1_immersed_boundary_model_html"><div class="ttname"><a href="classkynema__sgf_1_1ib_1_1_immersed_boundary_model.html">kynema_sgf::ib::ImmersedBoundaryModel</a></div><div class="ttdef"><b>Definition</b> IBModel.H:31</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1ib_html"><div class="ttname"><a href="namespacekynema__sgf_1_1ib.html">kynema_sgf::ib</a></div><div class="ttdef"><b>Definition</b> bluff_body_ops.cpp:18</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

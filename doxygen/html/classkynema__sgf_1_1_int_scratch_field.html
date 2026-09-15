@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::IntScratchField Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::IntScratchField Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_int_scratch_field.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intscratchfield-class-reference">
+<h1>IntScratchField Class Reference<a class="headerlink" href="#intscratchfield-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::IntScratchField Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classkynema__sgf_1_1_int_scratch_field-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::IntScratchField Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_int_scratch_field_8_h_source.html">IntScratchField.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::IntScratchField:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_int_scratch_field__coll__graph.svg" width="378" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa49c93b03b90cb5dff9293d86d3c9e00" id="r_aa49c93b03b90cb5dff9293d86d3c9e00"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa49c93b03b90cb5dff9293d86d3c9e00">IntScratchField</a> (const <a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a> &amp;)=delete</td></tr>
+<tr class="memitem:aad8b53647ad3c3780079f141c19c470c" id="r_aad8b53647ad3c3780079f141c19c470c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad8b53647ad3c3780079f141c19c470c">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a> &amp;)=delete</td></tr>
+<tr class="memitem:a36d81e5ccd1a91867afe06bfd0a0ccd6" id="r_a36d81e5ccd1a91867afe06bfd0a0ccd6"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36d81e5ccd1a91867afe06bfd0a0ccd6">name</a> () const</td></tr>
+<tr class="memdesc:a36d81e5ccd1a91867afe06bfd0a0ccd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name if available for this scratch field.  <br /></td></tr>
+<tr class="memitem:a7004cfa1a62ad274ef770bdb6fbea7d2" id="r_a7004cfa1a62ad274ef770bdb6fbea7d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7004cfa1a62ad274ef770bdb6fbea7d2">num_comp</a> () const</td></tr>
+<tr class="memdesc:a7004cfa1a62ad274ef770bdb6fbea7d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of components for this field.  <br /></td></tr>
+<tr class="memitem:a5f41d24ebc733401f17790804d29f476" id="r_a5f41d24ebc733401f17790804d29f476"><td class="memItemLeft" align="right" valign="top">const amrex::IntVect &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f41d24ebc733401f17790804d29f476">num_grow</a> () const</td></tr>
+<tr class="memdesc:a5f41d24ebc733401f17790804d29f476"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ghost cells.  <br /></td></tr>
+<tr class="memitem:a7c48f730bbf7d16b5706fe71efc5854d" id="r_a7c48f730bbf7d16b5706fe71efc5854d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c48f730bbf7d16b5706fe71efc5854d">field_location</a> () const</td></tr>
+<tr class="memdesc:a7c48f730bbf7d16b5706fe71efc5854d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cell, node, face where the field is stored.  <br /></td></tr>
+<tr class="memitem:aae6605c3cefd2b8d0a5317c51c589580" id="r_aae6605c3cefd2b8d0a5317c51c589580"><td class="memItemLeft" align="right" valign="top">amrex::iMultiFab &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae6605c3cefd2b8d0a5317c51c589580">operator()</a> (int lev)</td></tr>
+<tr class="memdesc:aae6605c3cefd2b8d0a5317c51c589580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the field data for a given level.  <br /></td></tr>
+<tr class="memitem:a03b46613975a572306f1d82edc047aa6" id="r_a03b46613975a572306f1d82edc047aa6"><td class="memItemLeft" align="right" valign="top">const amrex::iMultiFab &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03b46613975a572306f1d82edc047aa6">operator()</a> (int lev) const</td></tr>
+<tr class="memitem:ac114470acd358392e5e4a664a43f6be8" id="r_ac114470acd358392e5e4a664a43f6be8"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::iMultiFab * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac114470acd358392e5e4a664a43f6be8">vec_ptrs</a> ()</td></tr>
+<tr class="memitem:a15dba3849b8500b45dbc91d3ab53fc78" id="r_a15dba3849b8500b45dbc91d3ab53fc78"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; const amrex::iMultiFab * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15dba3849b8500b45dbc91d3ab53fc78">vec_const_ptrs</a> () const</td></tr>
+<tr class="memitem:ab12186183fc2ed8664c6a72abc1b149a" id="r_ab12186183fc2ed8664c6a72abc1b149a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab12186183fc2ed8664c6a72abc1b149a">repo</a> () const</td></tr>
+<tr class="memdesc:ab12186183fc2ed8664c6a72abc1b149a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a reference to the field repository that created this field.  <br /></td></tr>
+<tr class="memitem:afaff85899c3cd8bf4a3661407a907b94" id="r_afaff85899c3cd8bf4a3661407a907b94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaff85899c3cd8bf4a3661407a907b94">setVal</a> (int value)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:aa47a20a6273fe95edf845e454d808919" id="r_aa47a20a6273fe95edf845e454d808919"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa47a20a6273fe95edf845e454d808919">IntScratchField</a> (const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;<a class="el" href="#ab12186183fc2ed8664c6a72abc1b149a">repo</a>, std::string <a class="el" href="#a36d81e5ccd1a91867afe06bfd0a0ccd6">name</a>, const int ncomp=1, const int ngrow=1, const <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> floc=<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a4af52538be2a2aa7059844a3c76cd8b5" id="r_a4af52538be2a2aa7059844a3c76cd8b5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4af52538be2a2aa7059844a3c76cd8b5">m_repo</a></td></tr>
+<tr class="memitem:a39d633e164583e3eac0c580aa1bba8e7" id="r_a39d633e164583e3eac0c580aa1bba8e7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39d633e164583e3eac0c580aa1bba8e7">m_name</a></td></tr>
+<tr class="memitem:ae61f0da06a5e93def670f5de580e6192" id="r_ae61f0da06a5e93def670f5de580e6192"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae61f0da06a5e93def670f5de580e6192">m_ncomp</a></td></tr>
+<tr class="memitem:a76d129a74031cdcfa4fe8c1280bf5384" id="r_a76d129a74031cdcfa4fe8c1280bf5384"><td class="memItemLeft" align="right" valign="top">amrex::IntVect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76d129a74031cdcfa4fe8c1280bf5384">m_ngrow</a></td></tr>
+<tr class="memitem:aeaf220c04db0efad5fd3e50e3328fe5b" id="r_aeaf220c04db0efad5fd3e50e3328fe5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeaf220c04db0efad5fd3e50e3328fe5b">m_floc</a></td></tr>
+<tr class="memitem:aff5a9685f90f1828f532da61a05063d9" id="r_aff5a9685f90f1828f532da61a05063d9"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::iMultiFab &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff5a9685f90f1828f532da61a05063d9">m_data</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a966868e1abbfd5558376d359c07c6611" id="r_a966868e1abbfd5558376d359c07c6611"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a966868e1abbfd5558376d359c07c6611">FieldRepo</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Integer version of <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> that works with iMultiFab </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa49c93b03b90cb5dff9293d86d3c9e00" name="aa49c93b03b90cb5dff9293d86d3c9e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49c93b03b90cb5dff9293d86d3c9e00">&#9670;&#160;</a></span>IntScratchField() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::IntScratchField::IntScratchField </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa47a20a6273fe95edf845e454d808919" name="aa47a20a6273fe95edf845e454d808919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa47a20a6273fe95edf845e454d808919">&#9670;&#160;</a></span>IntScratchField() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::IntScratchField::IntScratchField </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>repo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ngrow</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a></td>          <td class="paramname"><span class="paramname"><em>floc</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7c48f730bbf7d16b5706fe71efc5854d" name="a7c48f730bbf7d16b5706fe71efc5854d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c48f730bbf7d16b5706fe71efc5854d">&#9670;&#160;</a></span>field_location()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> kynema_sgf::IntScratchField::field_location </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cell, node, face where the field is stored. </p>
+
+</div>
+</div>
+<a id="a36d81e5ccd1a91867afe06bfd0a0ccd6" name="a36d81e5ccd1a91867afe06bfd0a0ccd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36d81e5ccd1a91867afe06bfd0a0ccd6">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; kynema_sgf::IntScratchField::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name if available for this scratch field. </p>
+
+</div>
+</div>
+<a id="a7004cfa1a62ad274ef770bdb6fbea7d2" name="a7004cfa1a62ad274ef770bdb6fbea7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7004cfa1a62ad274ef770bdb6fbea7d2">&#9670;&#160;</a></span>num_comp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::IntScratchField::num_comp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of components for this field. </p>
+
+</div>
+</div>
+<a id="a5f41d24ebc733401f17790804d29f476" name="a5f41d24ebc733401f17790804d29f476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f41d24ebc733401f17790804d29f476">&#9670;&#160;</a></span>num_grow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::IntVect &amp; kynema_sgf::IntScratchField::num_grow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ghost cells. </p>
+
+</div>
+</div>
+<a id="aae6605c3cefd2b8d0a5317c51c589580" name="aae6605c3cefd2b8d0a5317c51c589580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae6605c3cefd2b8d0a5317c51c589580">&#9670;&#160;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::iMultiFab &amp; kynema_sgf::IntScratchField::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the field data for a given level. </p>
+
+</div>
+</div>
+<a id="a03b46613975a572306f1d82edc047aa6" name="a03b46613975a572306f1d82edc047aa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b46613975a572306f1d82edc047aa6">&#9670;&#160;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::iMultiFab &amp; kynema_sgf::IntScratchField::operator() </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad8b53647ad3c3780079f141c19c470c" name="aad8b53647ad3c3780079f141c19c470c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad8b53647ad3c3780079f141c19c470c">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a> &amp; kynema_sgf::IntScratchField::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_int_scratch_field.html">IntScratchField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab12186183fc2ed8664c6a72abc1b149a" name="ab12186183fc2ed8664c6a72abc1b149a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab12186183fc2ed8664c6a72abc1b149a">&#9670;&#160;</a></span>repo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp; kynema_sgf::IntScratchField::repo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a reference to the field repository that created this field. </p>
+
+</div>
+</div>
+<a id="afaff85899c3cd8bf4a3661407a907b94" name="afaff85899c3cd8bf4a3661407a907b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaff85899c3cd8bf4a3661407a907b94">&#9670;&#160;</a></span>setVal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IntScratchField::setVal </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15dba3849b8500b45dbc91d3ab53fc78" name="a15dba3849b8500b45dbc91d3ab53fc78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15dba3849b8500b45dbc91d3ab53fc78">&#9670;&#160;</a></span>vec_const_ptrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; const amrex::iMultiFab * &gt; kynema_sgf::IntScratchField::vec_const_ptrs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac114470acd358392e5e4a664a43f6be8" name="ac114470acd358392e5e4a664a43f6be8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac114470acd358392e5e4a664a43f6be8">&#9670;&#160;</a></span>vec_ptrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::iMultiFab * &gt; kynema_sgf::IntScratchField::vec_ptrs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a966868e1abbfd5558376d359c07c6611" name="a966868e1abbfd5558376d359c07c6611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a966868e1abbfd5558376d359c07c6611">&#9670;&#160;</a></span>FieldRepo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aff5a9685f90f1828f532da61a05063d9" name="aff5a9685f90f1828f532da61a05063d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff5a9685f90f1828f532da61a05063d9">&#9670;&#160;</a></span>m_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::iMultiFab&gt; kynema_sgf::IntScratchField::m_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeaf220c04db0efad5fd3e50e3328fe5b" name="aeaf220c04db0efad5fd3e50e3328fe5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaf220c04db0efad5fd3e50e3328fe5b">&#9670;&#160;</a></span>m_floc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__fields.html#ga6012c66c4b909364fdfaa58954157f75">FieldLoc</a> kynema_sgf::IntScratchField::m_floc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39d633e164583e3eac0c580aa1bba8e7" name="a39d633e164583e3eac0c580aa1bba8e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d633e164583e3eac0c580aa1bba8e7">&#9670;&#160;</a></span>m_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::IntScratchField::m_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae61f0da06a5e93def670f5de580e6192" name="ae61f0da06a5e93def670f5de580e6192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae61f0da06a5e93def670f5de580e6192">&#9670;&#160;</a></span>m_ncomp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::IntScratchField::m_ncomp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76d129a74031cdcfa4fe8c1280bf5384" name="a76d129a74031cdcfa4fe8c1280bf5384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d129a74031cdcfa4fe8c1280bf5384">&#9670;&#160;</a></span>m_ngrow</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::IntVect kynema_sgf::IntScratchField::m_ngrow</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4af52538be2a2aa7059844a3c76cd8b5" name="a4af52538be2a2aa7059844a3c76cd8b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4af52538be2a2aa7059844a3c76cd8b5">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::IntScratchField::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_int_scratch_field_8_h_source.html">IntScratchField.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_int_scratch_field_8cpp.html">IntScratchField.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::channelbuilder Namespace Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::channelbuilder Namespace Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/namespacekynema__sgf_1_1channelbuilder.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="channelbuilder-namespace-reference">
+<h1>channelbuilder Namespace Reference<a class="headerlink" href="#channelbuilder-namespace-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::channelbuilder Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1channelbuilder.html">channelbuilder</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::channelbuilder Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ChannelBuilder" id="r_ChannelBuilder"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1channelbuilder_1_1_channel_builder.html">ChannelBuilder</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a984b0757f032376e418a7781e787ac67" id="r_a984b0757f032376e418a7781e787ac67"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a984b0757f032376e418a7781e787ac67">ChannelSegmentType</a> : std::uint8_t { <a class="el" href="#a984b0757f032376e418a7781e787ac67a119518c2134c46108179369f0ce81fa2">Ellipse</a>
+, <a class="el" href="#a984b0757f032376e418a7781e787ac67a7e7dd435b4cc7ba2b020d5a97856dc80">Trapezoid</a>
+ }</td></tr>
+<tr class="memitem:a6454f4ca7b57e6c7a2d6139e3fe1a1f3" id="r_a6454f4ca7b57e6c7a2d6139e3fe1a1f3"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6454f4ca7b57e6c7a2d6139e3fe1a1f3">ChannelVelocityProfile</a> : std::uint8_t { <a class="el" href="#a6454f4ca7b57e6c7a2d6139e3fe1a1f3af19516d11f2946f894070e92fcb56b6d">Uniform</a>
+, <a class="el" href="#a6454f4ca7b57e6c7a2d6139e3fe1a1f3a32a843da6ea40ab3b17a3421ccdf671b">Linear</a>
+, <a class="el" href="#a6454f4ca7b57e6c7a2d6139e3fe1a1f3a49aa9675a92a9829bf26742941c9ab00">Parabolic</a>
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a46a27e7e28c9db83238fc39c86fb1794" id="r_a46a27e7e28c9db83238fc39c86fb1794"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46a27e7e28c9db83238fc39c86fb1794">trapezoid</a> (const amrex::Real &amp;top, const amrex::Real &amp;bottom, const amrex::Real &amp;height, const amrex::Real &amp;hcoord, const amrex::Real &amp;vcoord)</td></tr>
+<tr class="memitem:a86dd7bbba21a6e153fdda64890807f8d" id="r_a86dd7bbba21a6e153fdda64890807f8d"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86dd7bbba21a6e153fdda64890807f8d">ellipse</a> (const amrex::Real &amp;ax_horz, const amrex::Real &amp;ax_vert, const amrex::Real &amp;hcoord, const amrex::Real &amp;vcoord)</td></tr>
+<tr class="memitem:a0a4946f9f1b38b99beb04445028721db" id="r_a0a4946f9f1b38b99beb04445028721db"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a4946f9f1b38b99beb04445028721db">is_point_within_planes</a> (const amrex::Real &amp;x, const amrex::Real &amp;y, const amrex::Real &amp;z, const amrex::Real &amp;start_x, const amrex::Real &amp;start_y, const amrex::Real &amp;start_z, const amrex::Real &amp;end_x, const amrex::Real &amp;end_y, const amrex::Real &amp;end_z)</td></tr>
+<tr class="memitem:a04658912519a8912f8f46c00d1e747aa" id="r_a04658912519a8912f8f46c00d1e747aa"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt; amrex::Real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04658912519a8912f8f46c00d1e747aa">get_local_dimensions</a> (const amrex::Real &amp;x, const amrex::Real &amp;y, const amrex::Real &amp;z, const amrex::Real &amp;start_x, const amrex::Real &amp;start_y, const amrex::Real &amp;start_z, const amrex::Real &amp;end_x, const amrex::Real &amp;end_y, const amrex::Real &amp;end_z, const amrex::Real &amp;dim0_s, const amrex::Real &amp;dim1_s, const amrex::Real &amp;dim2_s, const amrex::Real &amp;dim0_e, const amrex::Real &amp;dim1_e, const amrex::Real &amp;dim2_e)</td></tr>
+<tr class="memitem:aa33c22374fdaf6f8c3bd4932a293f936" id="r_aa33c22374fdaf6f8c3bd4932a293f936"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt; amrex::Real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa33c22374fdaf6f8c3bd4932a293f936">transform_to_local_coordinates</a> (bool do_translation, bool is_active, const amrex::Real &amp;x, const amrex::Real &amp;y, const amrex::Real &amp;z, const amrex::Real &amp;start_x, const amrex::Real &amp;start_y, const amrex::Real &amp;start_z, const amrex::Real &amp;end_x, const amrex::Real &amp;end_y, const amrex::Real &amp;end_z)</td></tr>
+</table>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="a984b0757f032376e418a7781e787ac67" name="a984b0757f032376e418a7781e787ac67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a984b0757f032376e418a7781e787ac67">&#9670;&#160;</a></span>ChannelSegmentType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a984b0757f032376e418a7781e787ac67">kynema_sgf::channelbuilder::ChannelSegmentType</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a984b0757f032376e418a7781e787ac67a119518c2134c46108179369f0ce81fa2" name="a984b0757f032376e418a7781e787ac67a119518c2134c46108179369f0ce81fa2"></a>Ellipse&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a984b0757f032376e418a7781e787ac67a7e7dd435b4cc7ba2b020d5a97856dc80" name="a984b0757f032376e418a7781e787ac67a7e7dd435b4cc7ba2b020d5a97856dc80"></a>Trapezoid&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6454f4ca7b57e6c7a2d6139e3fe1a1f3" name="a6454f4ca7b57e6c7a2d6139e3fe1a1f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6454f4ca7b57e6c7a2d6139e3fe1a1f3">&#9670;&#160;</a></span>ChannelVelocityProfile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a6454f4ca7b57e6c7a2d6139e3fe1a1f3">kynema_sgf::channelbuilder::ChannelVelocityProfile</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6454f4ca7b57e6c7a2d6139e3fe1a1f3af19516d11f2946f894070e92fcb56b6d" name="a6454f4ca7b57e6c7a2d6139e3fe1a1f3af19516d11f2946f894070e92fcb56b6d"></a>Uniform&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6454f4ca7b57e6c7a2d6139e3fe1a1f3a32a843da6ea40ab3b17a3421ccdf671b" name="a6454f4ca7b57e6c7a2d6139e3fe1a1f3a32a843da6ea40ab3b17a3421ccdf671b"></a>Linear&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6454f4ca7b57e6c7a2d6139e3fe1a1f3a49aa9675a92a9829bf26742941c9ab00" name="a6454f4ca7b57e6c7a2d6139e3fe1a1f3a49aa9675a92a9829bf26742941c9ab00"></a>Parabolic&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a86dd7bbba21a6e153fdda64890807f8d" name="a86dd7bbba21a6e153fdda64890807f8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86dd7bbba21a6e153fdda64890807f8d">&#9670;&#160;</a></span>ellipse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE bool kynema_sgf::channelbuilder::ellipse </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>ax_horz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>ax_vert</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>hcoord</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>vcoord</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04658912519a8912f8f46c00d1e747aa" name="a04658912519a8912f8f46c00d1e747aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04658912519a8912f8f46c00d1e747aa">&#9670;&#160;</a></span>get_local_dimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt; amrex::Real, 3 &gt; kynema_sgf::channelbuilder::get_local_dimensions </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>dim0_s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>dim1_s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>dim2_s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>dim0_e</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>dim1_e</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>dim2_e</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculate local shape dimensions according to linear interpolation between start and end dimensions using length along segment. </p>
+
+</div>
+</div>
+<a id="a0a4946f9f1b38b99beb04445028721db" name="a0a4946f9f1b38b99beb04445028721db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a4946f9f1b38b99beb04445028721db">&#9670;&#160;</a></span>is_point_within_planes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE bool kynema_sgf::channelbuilder::is_point_within_planes </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_z</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if a point is within the bounding planes of a segment defined by start and end points. </p>
+
+</div>
+</div>
+<a id="aa33c22374fdaf6f8c3bd4932a293f936" name="aa33c22374fdaf6f8c3bd4932a293f936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa33c22374fdaf6f8c3bd4932a293f936">&#9670;&#160;</a></span>transform_to_local_coordinates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE amrex::GpuArray&lt; amrex::Real, 3 &gt; kynema_sgf::channelbuilder::transform_to_local_coordinates </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>do_translation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_active</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>start_z</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>end_z</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Transform global coordinates to local segment coordinates. Returns [xloc, yloc, zloc] where xloc is along segment, yloc is lateral/horizontal, zloc is vertical to segment. </p>
+
+</div>
+</div>
+<a id="a46a27e7e28c9db83238fc39c86fb1794" name="a46a27e7e28c9db83238fc39c86fb1794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46a27e7e28c9db83238fc39c86fb1794">&#9670;&#160;</a></span>trapezoid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE bool kynema_sgf::channelbuilder::trapezoid </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>top</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>bottom</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>hcoord</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>vcoord</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

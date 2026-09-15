@@ -1,0 +1,878 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::utils::Slice&amp;lt; T &amp;gt; Struct Template Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::utils::Slice&amp;lt; T &amp;gt; Struct Template Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1utils_1_1_slice.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="slice-lt-t-gt-struct-template-reference">
+<h1>Slice&amp;lt; T &amp;gt; Struct Template Reference<a class="headerlink" href="#slice-lt-t-gt-struct-template-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::utils::Slice&lt; T &gt; Struct Template Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1utils.html">utils</a></li><li class="navelem"><a href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1utils_1_1_slice-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::utils::Slice&lt; T &gt; Struct Template Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_slice_8_h_source.html">Slice.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::utils::Slice&lt; T &gt;:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1utils_1_1_slice__inherit__graph.svg" width="562" height="210"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af92d4addb2080f2f990990b8e28a9363" id="r_af92d4addb2080f2f990990b8e28a9363"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af92d4addb2080f2f990990b8e28a9363">value_type</a> = T</td></tr>
+<tr class="memitem:a226568ca8ac674a9de1c7a1b8b17428e" id="r_a226568ca8ac674a9de1c7a1b8b17428e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a226568ca8ac674a9de1c7a1b8b17428e">size_t</a> = std::size_t</td></tr>
+<tr class="memitem:ad8568bee933b5a19ffecea2631a347d2" id="r_ad8568bee933b5a19ffecea2631a347d2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8568bee933b5a19ffecea2631a347d2">size_type</a> = std::size_t</td></tr>
+<tr class="memitem:a478a44bd477c2882d51766f8143a2945" id="r_a478a44bd477c2882d51766f8143a2945"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a478a44bd477c2882d51766f8143a2945">difference_type</a> = std::ptrdiff_t</td></tr>
+<tr class="memitem:ad010dc04de224d9c352edf7107268047" id="r_ad010dc04de224d9c352edf7107268047"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad010dc04de224d9c352edf7107268047">reference</a> = T&amp;</td></tr>
+<tr class="memitem:a1e7ab319f030f350a54478762188028e" id="r_a1e7ab319f030f350a54478762188028e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a> = T*</td></tr>
+<tr class="memitem:a04d41e6f130f0fe620e1b1ca89780041" id="r_a04d41e6f130f0fe620e1b1ca89780041"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a> = T*</td></tr>
+<tr class="memitem:a4e28de31414b7f60395a64148f89fe9b" id="r_a4e28de31414b7f60395a64148f89fe9b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e28de31414b7f60395a64148f89fe9b">reverse_iterator</a> = std::reverse_iterator&lt;<a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a>&gt;</td></tr>
+<tr class="memitem:a42218fe7dc848d913bcc4bae324201d0" id="r_a42218fe7dc848d913bcc4bae324201d0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42218fe7dc848d913bcc4bae324201d0">const_reference</a> = const T&amp;</td></tr>
+<tr class="memitem:ae06fd91195de37bc6440fe74a409c76b" id="r_ae06fd91195de37bc6440fe74a409c76b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae06fd91195de37bc6440fe74a409c76b">const_pointer</a> = const T*</td></tr>
+<tr class="memitem:a60f7a67fda481287c2a191b11e76add3" id="r_a60f7a67fda481287c2a191b11e76add3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a> = const T*</td></tr>
+<tr class="memitem:a0e39b187a6564a23a2cdf5fff53c034f" id="r_a0e39b187a6564a23a2cdf5fff53c034f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e39b187a6564a23a2cdf5fff53c034f">const_reverse_iterator</a> = const std::reverse_iterator&lt;<a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a>&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:afe0b40163494f4194152d719bca58a5b" id="r_afe0b40163494f4194152d719bca58a5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe0b40163494f4194152d719bca58a5b">Slice</a> ()</td></tr>
+<tr class="memitem:af35358cdf6727ebfbe15d67f03f0a333" id="r_af35358cdf6727ebfbe15d67f03f0a333"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af35358cdf6727ebfbe15d67f03f0a333">Slice</a> (T *pbegin, const <a class="el" href="#a226568ca8ac674a9de1c7a1b8b17428e">size_t</a> n)</td></tr>
+<tr class="memitem:aeace0cd59796dab0dca55d3e915f86b4" id="r_aeace0cd59796dab0dca55d3e915f86b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeace0cd59796dab0dca55d3e915f86b4">Slice</a> (T *pbegin, T *pend)</td></tr>
+<tr class="memitem:a8d1d483442ded4b1ffd7af37657ffc20" id="r_a8d1d483442ded4b1ffd7af37657ffc20"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="#ad010dc04de224d9c352edf7107268047">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d1d483442ded4b1ffd7af37657ffc20">operator[]</a> (const <a class="el" href="#a226568ca8ac674a9de1c7a1b8b17428e">size_t</a> idx)</td></tr>
+<tr class="memitem:abe6d8fd892a1331092df2bd2017beff1" id="r_abe6d8fd892a1331092df2bd2017beff1"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="#a42218fe7dc848d913bcc4bae324201d0">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe6d8fd892a1331092df2bd2017beff1">operator[]</a> (const <a class="el" href="#ad8568bee933b5a19ffecea2631a347d2">size_type</a> idx) const</td></tr>
+<tr class="memitem:aeb67602c508ec232b76399626ca07a21" id="r_aeb67602c508ec232b76399626ca07a21"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#ad8568bee933b5a19ffecea2631a347d2">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb67602c508ec232b76399626ca07a21">size</a> () const</td></tr>
+<tr class="memitem:a333501f43c67957da46abaf66c486ab0" id="r_a333501f43c67957da46abaf66c486ab0"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a333501f43c67957da46abaf66c486ab0">data</a> ()</td></tr>
+<tr class="memitem:a29ca9b11a2d5ae69c7d8e06869a200d1" id="r_a29ca9b11a2d5ae69c7d8e06869a200d1"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29ca9b11a2d5ae69c7d8e06869a200d1">begin</a> ()</td></tr>
+<tr class="memitem:a11c787a22a188d0cd3b2e44aef1b2496" id="r_a11c787a22a188d0cd3b2e44aef1b2496"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11c787a22a188d0cd3b2e44aef1b2496">end</a> ()</td></tr>
+<tr class="memitem:a7f9c0e61d85c92385ca9ccdcb0e4950c" id="r_a7f9c0e61d85c92385ca9ccdcb0e4950c"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f9c0e61d85c92385ca9ccdcb0e4950c">data</a> () const</td></tr>
+<tr class="memitem:acb8bed3b94b67510bf1974f5f8f74767" id="r_acb8bed3b94b67510bf1974f5f8f74767"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb8bed3b94b67510bf1974f5f8f74767">begin</a> () const</td></tr>
+<tr class="memitem:afeb215aa291b09bb4f77394d0860cb07" id="r_afeb215aa291b09bb4f77394d0860cb07"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeb215aa291b09bb4f77394d0860cb07">end</a> () const</td></tr>
+<tr class="memitem:af1cf7af6400944b0339ee06a6ee19ea4" id="r_af1cf7af6400944b0339ee06a6ee19ea4"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1cf7af6400944b0339ee06a6ee19ea4">cbegin</a> () const</td></tr>
+<tr class="memitem:a34392cb6987534fca80e2f69f8df0aba" id="r_a34392cb6987534fca80e2f69f8df0aba"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34392cb6987534fca80e2f69f8df0aba">cend</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:af67e6b4f8fa97068ce36289849053bad" id="r_af67e6b4f8fa97068ce36289849053bad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af67e6b4f8fa97068ce36289849053bad">ptr_begin</a></td></tr>
+<tr class="memitem:af03ffb5d7b8b7e4ec0601bfb76fbfb49" id="r_af03ffb5d7b8b7e4ec0601bfb76fbfb49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af03ffb5d7b8b7e4ec0601bfb76fbfb49">ptr_end</a></td></tr>
+</table>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a60f7a67fda481287c2a191b11e76add3" name="a60f7a67fda481287c2a191b11e76add3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f7a67fda481287c2a191b11e76add3">&#9670;&#160;</a></span>const_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::const_iterator = const T*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae06fd91195de37bc6440fe74a409c76b" name="ae06fd91195de37bc6440fe74a409c76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae06fd91195de37bc6440fe74a409c76b">&#9670;&#160;</a></span>const_pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::const_pointer = const T*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a42218fe7dc848d913bcc4bae324201d0" name="a42218fe7dc848d913bcc4bae324201d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42218fe7dc848d913bcc4bae324201d0">&#9670;&#160;</a></span>const_reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::const_reference = const T&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e39b187a6564a23a2cdf5fff53c034f" name="a0e39b187a6564a23a2cdf5fff53c034f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e39b187a6564a23a2cdf5fff53c034f">&#9670;&#160;</a></span>const_reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::const_reverse_iterator = const std::reverse_iterator&lt;<a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a478a44bd477c2882d51766f8143a2945" name="a478a44bd477c2882d51766f8143a2945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a478a44bd477c2882d51766f8143a2945">&#9670;&#160;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::difference_type = std::ptrdiff_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04d41e6f130f0fe620e1b1ca89780041" name="a04d41e6f130f0fe620e1b1ca89780041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04d41e6f130f0fe620e1b1ca89780041">&#9670;&#160;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::iterator = T*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e7ab319f030f350a54478762188028e" name="a1e7ab319f030f350a54478762188028e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e7ab319f030f350a54478762188028e">&#9670;&#160;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::pointer = T*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad010dc04de224d9c352edf7107268047" name="ad010dc04de224d9c352edf7107268047"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad010dc04de224d9c352edf7107268047">&#9670;&#160;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::reference = T&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e28de31414b7f60395a64148f89fe9b" name="a4e28de31414b7f60395a64148f89fe9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e28de31414b7f60395a64148f89fe9b">&#9670;&#160;</a></span>reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::reverse_iterator = std::reverse_iterator&lt;<a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a226568ca8ac674a9de1c7a1b8b17428e" name="a226568ca8ac674a9de1c7a1b8b17428e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a226568ca8ac674a9de1c7a1b8b17428e">&#9670;&#160;</a></span>size_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::size_t = std::size_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8568bee933b5a19ffecea2631a347d2" name="ad8568bee933b5a19ffecea2631a347d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8568bee933b5a19ffecea2631a347d2">&#9670;&#160;</a></span>size_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::size_type = std::size_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af92d4addb2080f2f990990b8e28a9363" name="af92d4addb2080f2f990990b8e28a9363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af92d4addb2080f2f990990b8e28a9363">&#9670;&#160;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::value_type = T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afe0b40163494f4194152d719bca58a5b" name="afe0b40163494f4194152d719bca58a5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe0b40163494f4194152d719bca58a5b">&#9670;&#160;</a></span>Slice() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::Slice </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af35358cdf6727ebfbe15d67f03f0a333" name="af35358cdf6727ebfbe15d67f03f0a333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af35358cdf6727ebfbe15d67f03f0a333">&#9670;&#160;</a></span>Slice() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::Slice </td>
+          <td>(</td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>pbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a226568ca8ac674a9de1c7a1b8b17428e">size_t</a></td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeace0cd59796dab0dca55d3e915f86b4" name="aeace0cd59796dab0dca55d3e915f86b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeace0cd59796dab0dca55d3e915f86b4">&#9670;&#160;</a></span>Slice() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::Slice </td>
+          <td>(</td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>pbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>pend</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a29ca9b11a2d5ae69c7d8e06869a200d1" name="a29ca9b11a2d5ae69c7d8e06869a200d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ca9b11a2d5ae69c7d8e06869a200d1">&#9670;&#160;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb8bed3b94b67510bf1974f5f8f74767" name="acb8bed3b94b67510bf1974f5f8f74767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb8bed3b94b67510bf1974f5f8f74767">&#9670;&#160;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1cf7af6400944b0339ee06a6ee19ea4" name="af1cf7af6400944b0339ee06a6ee19ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1cf7af6400944b0339ee06a6ee19ea4">&#9670;&#160;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::cbegin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34392cb6987534fca80e2f69f8df0aba" name="a34392cb6987534fca80e2f69f8df0aba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34392cb6987534fca80e2f69f8df0aba">&#9670;&#160;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::cend </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a333501f43c67957da46abaf66c486ab0" name="a333501f43c67957da46abaf66c486ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a333501f43c67957da46abaf66c486ab0">&#9670;&#160;</a></span>data() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f9c0e61d85c92385ca9ccdcb0e4950c" name="a7f9c0e61d85c92385ca9ccdcb0e4950c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9c0e61d85c92385ca9ccdcb0e4950c">&#9670;&#160;</a></span>data() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11c787a22a188d0cd3b2e44aef1b2496" name="a11c787a22a188d0cd3b2e44aef1b2496"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c787a22a188d0cd3b2e44aef1b2496">&#9670;&#160;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a04d41e6f130f0fe620e1b1ca89780041">iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afeb215aa291b09bb4f77394d0860cb07" name="afeb215aa291b09bb4f77394d0860cb07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeb215aa291b09bb4f77394d0860cb07">&#9670;&#160;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#a60f7a67fda481287c2a191b11e76add3">const_iterator</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d1d483442ded4b1ffd7af37657ffc20" name="a8d1d483442ded4b1ffd7af37657ffc20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d1d483442ded4b1ffd7af37657ffc20">&#9670;&#160;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="#ad010dc04de224d9c352edf7107268047">reference</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a226568ca8ac674a9de1c7a1b8b17428e">size_t</a></td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe6d8fd892a1331092df2bd2017beff1" name="abe6d8fd892a1331092df2bd2017beff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe6d8fd892a1331092df2bd2017beff1">&#9670;&#160;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="#a42218fe7dc848d913bcc4bae324201d0">const_reference</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ad8568bee933b5a19ffecea2631a347d2">size_type</a></td>          <td class="paramname"><span class="paramname"><em>idx</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb67602c508ec232b76399626ca07a21" name="aeb67602c508ec232b76399626ca07a21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb67602c508ec232b76399626ca07a21">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE <a class="el" href="#ad8568bee933b5a19ffecea2631a347d2">size_type</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="af67e6b4f8fa97068ce36289849053bad" name="af67e6b4f8fa97068ce36289849053bad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af67e6b4f8fa97068ce36289849053bad">&#9670;&#160;</a></span>ptr_begin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::ptr_begin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af03ffb5d7b8b7e4ec0601bfb76fbfb49" name="af03ffb5d7b8b7e4ec0601bfb76fbfb49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03ffb5d7b8b7e4ec0601bfb76fbfb49">&#9670;&#160;</a></span>ptr_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a1e7ab319f030f350a54478762188028e">pointer</a> <a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">kynema_sgf::utils::Slice</a>&lt; T &gt;::ptr_end</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/core/<a class="el" href="_slice_8_h_source.html">Slice.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

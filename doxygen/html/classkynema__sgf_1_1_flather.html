@@ -1,0 +1,1321 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::Flather Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::Flather Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_flather.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="flather-class-reference">
+<h1>Flather Class Reference<a class="headerlink" href="#flather-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::Flather Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_flather.html">Flather</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_flather-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::Flather Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_flather_8_h_source.html">Flather.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::Flather:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_flather__inherit__graph.svg" width="212" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::Flather:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_flather__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:af9fc06d50d2ca55638a425840799cee1" id="r_af9fc06d50d2ca55638a425840799cee1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9fc06d50d2ca55638a425840799cee1">Flather</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:addf5af2752ac10729e6fccf04c736016" id="r_addf5af2752ac10729e6fccf04c736016"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addf5af2752ac10729e6fccf04c736016">post_init_actions</a> () override</td></tr>
+<tr class="memitem:afc277c8ece24cfea40cd81c49d8d569a" id="r_afc277c8ece24cfea40cd81c49d8d569a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc277c8ece24cfea40cd81c49d8d569a">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:aa7188c99a680620986c2ca085d82088c" id="r_aa7188c99a680620986c2ca085d82088c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7188c99a680620986c2ca085d82088c">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a94867a8039819082040b5cfa71a82b1b" id="r_a94867a8039819082040b5cfa71a82b1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94867a8039819082040b5cfa71a82b1b">set_velocity</a> (int lev, amrex::Real time, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;fld, amrex::MultiFab &amp;mfab, int dcomp=0, int orig_comp=0) const override</td></tr>
+<tr class="memitem:a1392c91a31811b1a4dd9dd79f75ca153" id="r_a1392c91a31811b1a4dd9dd79f75ca153"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1392c91a31811b1a4dd9dd79f75ca153">update_flather_variables</a> (const int lev, const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, const bool use_mac_fields=false)</td></tr>
+<tr class="memitem:a32c058e3ef87cea2a5a58940babe90d4" id="r_a32c058e3ef87cea2a5a58940babe90d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32c058e3ef87cea2a5a58940babe90d4">accumulate_boundary</a> (int current_level, int idir, int phase_switch, bool is_low, <a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> &amp;out_uvec, <a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> &amp;out_hvec, bool sample_boundary, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, bool use_mac_fields=false) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a9a67428d0f967710ff00716a781fb79e" id="r_a9a67428d0f967710ff00716a781fb79e"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a67428d0f967710ff00716a781fb79e">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad9cee9851e250a06fa7a36474bd6cbb7" id="r_ad9cee9851e250a06fa7a36474bd6cbb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9cee9851e250a06fa7a36474bd6cbb7">compute_internal_z_averages</a> ()</td></tr>
+<tr class="memitem:a88e465ef968f2a1cf3df6b5b53e15c0a" id="r_a88e465ef968f2a1cf3df6b5b53e15c0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88e465ef968f2a1cf3df6b5b53e15c0a">compute_boundary_z_averages</a> (int lev, <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a> fstate, bool use_mac_fields=false)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae5d29e11407c2c8e0b8811131db6843a" id="r_ae5d29e11407c2c8e0b8811131db6843a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5d29e11407c2c8e0b8811131db6843a">m_sim</a></td></tr>
+<tr class="memitem:a0814b7a7abd078cb7b30bf52424a89ca" id="r_a0814b7a7abd078cb7b30bf52424a89ca"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0814b7a7abd078cb7b30bf52424a89ca">m_time</a></td></tr>
+<tr class="memitem:a5a281fd0d9cf1aed97d21e5081de6d1e" id="r_a5a281fd0d9cf1aed97d21e5081de6d1e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a281fd0d9cf1aed97d21e5081de6d1e">m_repo</a></td></tr>
+<tr class="memitem:a40159395ce75c15a9bdb116dc603e67d" id="r_a40159395ce75c15a9bdb116dc603e67d"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40159395ce75c15a9bdb116dc603e67d">m_mesh</a></td></tr>
+<tr class="memitem:a3446c607679d2fabb71cc656c77b846d" id="r_a3446c607679d2fabb71cc656c77b846d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3446c607679d2fabb71cc656c77b846d">m_velocity</a></td></tr>
+<tr class="memitem:a4c87b37e828b12c7a86af18a5aea2481" id="r_a4c87b37e828b12c7a86af18a5aea2481"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c87b37e828b12c7a86af18a5aea2481">m_u_mac</a></td></tr>
+<tr class="memitem:a40a9f6e6810399e96ecf9ffdfae3e85b" id="r_a40a9f6e6810399e96ecf9ffdfae3e85b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40a9f6e6810399e96ecf9ffdfae3e85b">m_v_mac</a></td></tr>
+<tr class="memitem:afab9555b6eeea2aa175046bf6d41470e" id="r_afab9555b6eeea2aa175046bf6d41470e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afab9555b6eeea2aa175046bf6d41470e">m_vof</a></td></tr>
+<tr class="memitem:af98863452c8e595f4b0753754c349b2e" id="r_af98863452c8e595f4b0753754c349b2e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af98863452c8e595f4b0753754c349b2e">m_terrain_blank</a> {nullptr}</td></tr>
+<tr class="memitem:a2595137fb1c0073d4da1f5f05bcd8eff" id="r_a2595137fb1c0073d4da1f5f05bcd8eff"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2595137fb1c0073d4da1f5f05bcd8eff">m_gravity</a> {0.0_rt, 0.0_rt, -9.81_rt}</td></tr>
+<tr class="memitem:a04b31a578a52f48e7e8f989f6bc86f44" id="r_a04b31a578a52f48e7e8f989f6bc86f44"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04b31a578a52f48e7e8f989f6bc86f44">m_velocity_scale_factor_max</a> {2.0_rt}</td></tr>
+<tr class="memitem:a8556bea18a666510bfe11cc8a5071abb" id="r_a8556bea18a666510bfe11cc8a5071abb"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8556bea18a666510bfe11cc8a5071abb">m_velocity_scale_factor_min</a> {0.25_rt}</td></tr>
+<tr class="memitem:a7c519d54cfbeaf7ecec353a58436d242" id="r_a7c519d54cfbeaf7ecec353a58436d242"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c519d54cfbeaf7ecec353a58436d242">m_xlo_uhliq</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a0be9532a508ae4d18b802301202fc762" id="r_a0be9532a508ae4d18b802301202fc762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0be9532a508ae4d18b802301202fc762">m_xhi_uhliq</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:abd0ebd8be49443ce473936a51e805d12" id="r_abd0ebd8be49443ce473936a51e805d12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd0ebd8be49443ce473936a51e805d12">m_ylo_uhliq</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a265e2faec564a1804b906668cb335824" id="r_a265e2faec564a1804b906668cb335824"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a265e2faec564a1804b906668cb335824">m_yhi_uhliq</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:af73009e5219e7884cc005171e9c413fe" id="r_af73009e5219e7884cc005171e9c413fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af73009e5219e7884cc005171e9c413fe">m_xlo_uhmix</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a7fd3303db4195b5e90d23b7bf252ea7b" id="r_a7fd3303db4195b5e90d23b7bf252ea7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fd3303db4195b5e90d23b7bf252ea7b">m_xhi_uhmix</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a5a744ee81558dacc17a98e47de37683b" id="r_a5a744ee81558dacc17a98e47de37683b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a744ee81558dacc17a98e47de37683b">m_ylo_uhmix</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a08a7a192884d0220cf22cb05462aa5ff" id="r_a08a7a192884d0220cf22cb05462aa5ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08a7a192884d0220cf22cb05462aa5ff">m_yhi_uhmix</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a8a453052992ab9e96b00dcbb4da2cc37" id="r_a8a453052992ab9e96b00dcbb4da2cc37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a453052992ab9e96b00dcbb4da2cc37">m_xlo_bnd_uh</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:aad0dbc06f0f90f0c29827454a100497e" id="r_aad0dbc06f0f90f0c29827454a100497e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad0dbc06f0f90f0c29827454a100497e">m_xhi_bnd_uh</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a27616bb4395cacdc8008d0a3e1a589bb" id="r_a27616bb4395cacdc8008d0a3e1a589bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27616bb4395cacdc8008d0a3e1a589bb">m_ylo_bnd_uh</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a3d34e223b678891f0bb5b83f1a2b692e" id="r_a3d34e223b678891f0bb5b83f1a2b692e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d34e223b678891f0bb5b83f1a2b692e">m_yhi_bnd_uh</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a7b28df01806ee6ab234cb3ef506b9cbc" id="r_a7b28df01806ee6ab234cb3ef506b9cbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b28df01806ee6ab234cb3ef506b9cbc">m_xlo_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a57a27cb73fc0ffba3bbb56b5ce12f040" id="r_a57a27cb73fc0ffba3bbb56b5ce12f040"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57a27cb73fc0ffba3bbb56b5ce12f040">m_xhi_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a336e5f0bd2be277c361917ac2d82ab50" id="r_a336e5f0bd2be277c361917ac2d82ab50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a336e5f0bd2be277c361917ac2d82ab50">m_ylo_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a636dc5da6289ffb9e2793db08f6a8f7e" id="r_a636dc5da6289ffb9e2793db08f6a8f7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a636dc5da6289ffb9e2793db08f6a8f7e">m_yhi_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a32dccd3c07b4c4f270462656936d22ae" id="r_a32dccd3c07b4c4f270462656936d22ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32dccd3c07b4c4f270462656936d22ae">m_xlo_bnd_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a4407e4af64e75e99b0dc6c43561e8fd9" id="r_a4407e4af64e75e99b0dc6c43561e8fd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4407e4af64e75e99b0dc6c43561e8fd9">m_xhi_bnd_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:a038d8062d250df37b63e6e567a2dac05" id="r_a038d8062d250df37b63e6e567a2dac05"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a038d8062d250df37b63e6e567a2dac05">m_ylo_bnd_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+<tr class="memitem:ac79ff0633daa968144a58558f1d1c038" id="r_ac79ff0633daa968144a58558f1d1c038"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac79ff0633daa968144a58558f1d1c038">m_yhi_bnd_h</a> {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Flather-style open boundary for velocity</p>
+<p>This boundary reads current boundary ghost-cell values and adjacent interior values, computes a blended target, and writes updated boundary values. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af9fc06d50d2ca55638a425840799cee1" name="af9fc06d50d2ca55638a425840799cee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9fc06d50d2ca55638a425840799cee1">&#9670;&#160;</a></span>Flather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::Flather::Flather </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a32c058e3ef87cea2a5a58940babe90d4" name="a32c058e3ef87cea2a5a58940babe90d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c058e3ef87cea2a5a58940babe90d4">&#9670;&#160;</a></span>accumulate_boundary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::accumulate_boundary </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>current_level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>idir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>phase_switch</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_low</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out_uvec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out_hvec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>sample_boundary</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>use_mac_fields</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88e465ef968f2a1cf3df6b5b53e15c0a" name="a88e465ef968f2a1cf3df6b5b53e15c0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88e465ef968f2a1cf3df6b5b53e15c0a">&#9670;&#160;</a></span>compute_boundary_z_averages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::compute_boundary_z_averages </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>use_mac_fields</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9cee9851e250a06fa7a36474bd6cbb7" name="ad9cee9851e250a06fa7a36474bd6cbb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9cee9851e250a06fa7a36474bd6cbb7">&#9670;&#160;</a></span>compute_internal_z_averages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::compute_internal_z_averages </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a67428d0f967710ff00716a781fb79e" name="a9a67428d0f967710ff00716a781fb79e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a67428d0f967710ff00716a781fb79e">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::Flather::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7188c99a680620986c2ca085d82088c" name="aa7188c99a680620986c2ca085d82088c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7188c99a680620986c2ca085d82088c">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addf5af2752ac10729e6fccf04c736016" name="addf5af2752ac10729e6fccf04c736016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addf5af2752ac10729e6fccf04c736016">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc277c8ece24cfea40cd81c49d8d569a" name="afc277c8ece24cfea40cd81c49d8d569a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc277c8ece24cfea40cd81c49d8d569a">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94867a8039819082040b5cfa71a82b1b" name="a94867a8039819082040b5cfa71a82b1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94867a8039819082040b5cfa71a82b1b">&#9670;&#160;</a></span>set_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::set_velocity </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dcomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>orig_comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1392c91a31811b1a4dd9dd79f75ca153" name="a1392c91a31811b1a4dd9dd79f75ca153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1392c91a31811b1a4dd9dd79f75ca153">&#9670;&#160;</a></span>update_flather_variables()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::Flather::update_flather_variables </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__fields.html#ga73fcb43d320747f8ced022629f36af1f">FieldState</a></td>          <td class="paramname"><span class="paramname"><em>fstate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>use_mac_fields</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a2595137fb1c0073d4da1f5f05bcd8eff" name="a2595137fb1c0073d4da1f5f05bcd8eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2595137fb1c0073d4da1f5f05bcd8eff">&#9670;&#160;</a></span>m_gravity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::Flather::m_gravity {0.0_rt, 0.0_rt, -9.81_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40159395ce75c15a9bdb116dc603e67d" name="a40159395ce75c15a9bdb116dc603e67d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40159395ce75c15a9bdb116dc603e67d">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::Flather::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a281fd0d9cf1aed97d21e5081de6d1e" name="a5a281fd0d9cf1aed97d21e5081de6d1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a281fd0d9cf1aed97d21e5081de6d1e">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::Flather::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5d29e11407c2c8e0b8811131db6843a" name="ae5d29e11407c2c8e0b8811131db6843a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5d29e11407c2c8e0b8811131db6843a">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::Flather::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af98863452c8e595f4b0753754c349b2e" name="af98863452c8e595f4b0753754c349b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af98863452c8e595f4b0753754c349b2e">&#9670;&#160;</a></span>m_terrain_blank</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a>* kynema_sgf::Flather::m_terrain_blank {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0814b7a7abd078cb7b30bf52424a89ca" name="a0814b7a7abd078cb7b30bf52424a89ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0814b7a7abd078cb7b30bf52424a89ca">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::Flather::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c87b37e828b12c7a86af18a5aea2481" name="a4c87b37e828b12c7a86af18a5aea2481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c87b37e828b12c7a86af18a5aea2481">&#9670;&#160;</a></span>m_u_mac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::Flather::m_u_mac</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40a9f6e6810399e96ecf9ffdfae3e85b" name="a40a9f6e6810399e96ecf9ffdfae3e85b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a9f6e6810399e96ecf9ffdfae3e85b">&#9670;&#160;</a></span>m_v_mac</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::Flather::m_v_mac</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3446c607679d2fabb71cc656c77b846d" name="a3446c607679d2fabb71cc656c77b846d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3446c607679d2fabb71cc656c77b846d">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::Flather::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04b31a578a52f48e7e8f989f6bc86f44" name="a04b31a578a52f48e7e8f989f6bc86f44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b31a578a52f48e7e8f989f6bc86f44">&#9670;&#160;</a></span>m_velocity_scale_factor_max</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::Flather::m_velocity_scale_factor_max {2.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8556bea18a666510bfe11cc8a5071abb" name="a8556bea18a666510bfe11cc8a5071abb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8556bea18a666510bfe11cc8a5071abb">&#9670;&#160;</a></span>m_velocity_scale_factor_min</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::Flather::m_velocity_scale_factor_min {0.25_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afab9555b6eeea2aa175046bf6d41470e" name="afab9555b6eeea2aa175046bf6d41470e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab9555b6eeea2aa175046bf6d41470e">&#9670;&#160;</a></span>m_vof</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::Flather::m_vof</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4407e4af64e75e99b0dc6c43561e8fd9" name="a4407e4af64e75e99b0dc6c43561e8fd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4407e4af64e75e99b0dc6c43561e8fd9">&#9670;&#160;</a></span>m_xhi_bnd_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xhi_bnd_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aad0dbc06f0f90f0c29827454a100497e" name="aad0dbc06f0f90f0c29827454a100497e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad0dbc06f0f90f0c29827454a100497e">&#9670;&#160;</a></span>m_xhi_bnd_uh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xhi_bnd_uh {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57a27cb73fc0ffba3bbb56b5ce12f040" name="a57a27cb73fc0ffba3bbb56b5ce12f040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57a27cb73fc0ffba3bbb56b5ce12f040">&#9670;&#160;</a></span>m_xhi_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xhi_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0be9532a508ae4d18b802301202fc762" name="a0be9532a508ae4d18b802301202fc762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0be9532a508ae4d18b802301202fc762">&#9670;&#160;</a></span>m_xhi_uhliq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xhi_uhliq {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fd3303db4195b5e90d23b7bf252ea7b" name="a7fd3303db4195b5e90d23b7bf252ea7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fd3303db4195b5e90d23b7bf252ea7b">&#9670;&#160;</a></span>m_xhi_uhmix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xhi_uhmix {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32dccd3c07b4c4f270462656936d22ae" name="a32dccd3c07b4c4f270462656936d22ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32dccd3c07b4c4f270462656936d22ae">&#9670;&#160;</a></span>m_xlo_bnd_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xlo_bnd_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a453052992ab9e96b00dcbb4da2cc37" name="a8a453052992ab9e96b00dcbb4da2cc37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a453052992ab9e96b00dcbb4da2cc37">&#9670;&#160;</a></span>m_xlo_bnd_uh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xlo_bnd_uh {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b28df01806ee6ab234cb3ef506b9cbc" name="a7b28df01806ee6ab234cb3ef506b9cbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b28df01806ee6ab234cb3ef506b9cbc">&#9670;&#160;</a></span>m_xlo_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xlo_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c519d54cfbeaf7ecec353a58436d242" name="a7c519d54cfbeaf7ecec353a58436d242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c519d54cfbeaf7ecec353a58436d242">&#9670;&#160;</a></span>m_xlo_uhliq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xlo_uhliq {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af73009e5219e7884cc005171e9c413fe" name="af73009e5219e7884cc005171e9c413fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af73009e5219e7884cc005171e9c413fe">&#9670;&#160;</a></span>m_xlo_uhmix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_xlo_uhmix {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac79ff0633daa968144a58558f1d1c038" name="ac79ff0633daa968144a58558f1d1c038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac79ff0633daa968144a58558f1d1c038">&#9670;&#160;</a></span>m_yhi_bnd_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_yhi_bnd_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d34e223b678891f0bb5b83f1a2b692e" name="a3d34e223b678891f0bb5b83f1a2b692e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d34e223b678891f0bb5b83f1a2b692e">&#9670;&#160;</a></span>m_yhi_bnd_uh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_yhi_bnd_uh {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a636dc5da6289ffb9e2793db08f6a8f7e" name="a636dc5da6289ffb9e2793db08f6a8f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a636dc5da6289ffb9e2793db08f6a8f7e">&#9670;&#160;</a></span>m_yhi_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_yhi_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a265e2faec564a1804b906668cb335824" name="a265e2faec564a1804b906668cb335824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a265e2faec564a1804b906668cb335824">&#9670;&#160;</a></span>m_yhi_uhliq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_yhi_uhliq {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08a7a192884d0220cf22cb05462aa5ff" name="a08a7a192884d0220cf22cb05462aa5ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a7a192884d0220cf22cb05462aa5ff">&#9670;&#160;</a></span>m_yhi_uhmix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_yhi_uhmix {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a038d8062d250df37b63e6e567a2dac05" name="a038d8062d250df37b63e6e567a2dac05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a038d8062d250df37b63e6e567a2dac05">&#9670;&#160;</a></span>m_ylo_bnd_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_ylo_bnd_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27616bb4395cacdc8008d0a3e1a589bb" name="a27616bb4395cacdc8008d0a3e1a589bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27616bb4395cacdc8008d0a3e1a589bb">&#9670;&#160;</a></span>m_ylo_bnd_uh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_ylo_bnd_uh {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a336e5f0bd2be277c361917ac2d82ab50" name="a336e5f0bd2be277c361917ac2d82ab50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a336e5f0bd2be277c361917ac2d82ab50">&#9670;&#160;</a></span>m_ylo_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_ylo_h {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd0ebd8be49443ce473936a51e805d12" name="abd0ebd8be49443ce473936a51e805d12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd0ebd8be49443ce473936a51e805d12">&#9670;&#160;</a></span>m_ylo_uhliq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_ylo_uhliq {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a744ee81558dacc17a98e47de37683b" name="a5a744ee81558dacc17a98e47de37683b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a744ee81558dacc17a98e47de37683b">&#9670;&#160;</a></span>m_ylo_uhmix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_multi_level_vector.html">MultiLevelVector</a> kynema_sgf::Flather::m_ylo_uhmix {<a class="el" href="group__fields.html#gga6012c66c4b909364fdfaa58954157f75adeaa44e5e872be992b4109cf1fbfe41e">FieldLoc::CELL</a>}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_flather_8_h_source.html">Flather.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_flather_8cpp.html">Flather.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

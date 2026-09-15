@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: Finite-Volume Operators &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: Finite-Volume Operators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/group__fvm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finite-volume-operators">
+<h1>Finite-Volume Operators<a class="headerlink" href="#finite-volume-operators" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: Finite-Volume Operators</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Topics</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Finite-Volume Operators </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Collaboration diagram for Finite-Volume Operators:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="group__fvm.svg" width="386" height="51"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-groups" class="groupheader"><a id="groups" name="groups"></a>
+Topics</h2></td></tr>
+<tr class="memitem:NonLinearSGS" id="r_NonLinearSGS"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___non_linear_s_g_s.html">Non-linear Term for Kosovic Model</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3ACurvature_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3ACurvature_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_curvature.html">kynema_sgf::fvm::Curvature&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3ADivergence_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3ADivergence_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_divergence.html">kynema_sgf::fvm::Divergence&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3AFilter_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3AFilter_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_filter.html">kynema_sgf::fvm::Filter&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3AGradient_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3AGradient_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_gradient.html">kynema_sgf::fvm::Gradient&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3ALaplacian_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3ALaplacian_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_laplacian.html">kynema_sgf::fvm::Laplacian&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3AQcriterion_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3AQcriterion_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_qcriterion.html">kynema_sgf::fvm::Qcriterion&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3AStrainRate_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3AStrainRate_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_strain_rate.html">kynema_sgf::fvm::StrainRate&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3AVorticity_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3AVorticity_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_vorticity.html">kynema_sgf::fvm::Vorticity&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+<tr class="memitem:kynema_5Fsgf_3A_3Afvm_3A_3AVorticityMag_3C_20FTypeIn_2C_20FTypeOut_20_3E" id="r_kynema_5Fsgf_3A_3Afvm_3A_3AVorticityMag_3C_20FTypeIn_2C_20FTypeOut_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1fvm_1_1_vorticity_mag.html">kynema_sgf::fvm::VorticityMag&lt; FTypeIn, FTypeOut &gt;</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga4bf1cc2202b680bb1a36de211d898d56" id="r_ga4bf1cc2202b680bb1a36de211d898d56"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga4bf1cc2202b680bb1a36de211d898d56 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4bf1cc2202b680bb1a36de211d898d56">kynema_sgf::fvm::curvature</a> (FTypeOut &amp;curphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:gab210bfb8e4d17614b2eb64969ecd36d5" id="r_gab210bfb8e4d17614b2eb64969ecd36d5"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:gab210bfb8e4d17614b2eb64969ecd36d5 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab210bfb8e4d17614b2eb64969ecd36d5">kynema_sgf::fvm::curvature</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga1f595137ace0c6e3d6aaf39e4a154dd9" id="r_ga1f595137ace0c6e3d6aaf39e4a154dd9"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga1f595137ace0c6e3d6aaf39e4a154dd9 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1f595137ace0c6e3d6aaf39e4a154dd9">kynema_sgf::fvm::divergence</a> (FTypeOut &amp;divphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:gaf3c18bc5d529125444111b5f797a948e" id="r_gaf3c18bc5d529125444111b5f797a948e"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:gaf3c18bc5d529125444111b5f797a948e template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf3c18bc5d529125444111b5f797a948e">kynema_sgf::fvm::divergence</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:gaa902a794a87627b1f11918d1cfb63061" id="r_gaa902a794a87627b1f11918d1cfb63061"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:gaa902a794a87627b1f11918d1cfb63061 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa902a794a87627b1f11918d1cfb63061">kynema_sgf::fvm::filter</a> (FTypeOut &amp;filterphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:ga17fe1a7691a5e5124127fed24f04ec66" id="r_ga17fe1a7691a5e5124127fed24f04ec66"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga17fe1a7691a5e5124127fed24f04ec66 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga17fe1a7691a5e5124127fed24f04ec66">kynema_sgf::fvm::filter</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga1118258ad921122444c15779cc0d5248" id="r_ga1118258ad921122444c15779cc0d5248"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga1118258ad921122444c15779cc0d5248 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1118258ad921122444c15779cc0d5248">kynema_sgf::fvm::gradient</a> (FTypeOut &amp;gradphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:ga2689b12eb91da3065a027bdb904cda52" id="r_ga2689b12eb91da3065a027bdb904cda52"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga2689b12eb91da3065a027bdb904cda52 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2689b12eb91da3065a027bdb904cda52">kynema_sgf::fvm::gradient</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga07da45820fcd933eafcfa5b5af80497f" id="r_ga07da45820fcd933eafcfa5b5af80497f"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga07da45820fcd933eafcfa5b5af80497f template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga07da45820fcd933eafcfa5b5af80497f">kynema_sgf::fvm::laplacian</a> (FTypeOut &amp;lapphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:ga05c2ecb61db3b8414bfb2f5eee1fc534" id="r_ga05c2ecb61db3b8414bfb2f5eee1fc534"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga05c2ecb61db3b8414bfb2f5eee1fc534 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga05c2ecb61db3b8414bfb2f5eee1fc534">kynema_sgf::fvm::laplacian</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga43f6813fbab8232ba0a5de916b1f5fc8" id="r_ga43f6813fbab8232ba0a5de916b1f5fc8"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga43f6813fbab8232ba0a5de916b1f5fc8 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga43f6813fbab8232ba0a5de916b1f5fc8">kynema_sgf::fvm::nonlinearsum</a> (FTypeOut &amp;strphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:ga627916459dd721b2ff946381e2630473" id="r_ga627916459dd721b2ff946381e2630473"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga627916459dd721b2ff946381e2630473 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga627916459dd721b2ff946381e2630473">kynema_sgf::fvm::nonlinearsum</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga1dc7002dffa31fe236dcdc040c897e1f" id="r_ga1dc7002dffa31fe236dcdc040c897e1f"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga1dc7002dffa31fe236dcdc040c897e1f template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1dc7002dffa31fe236dcdc040c897e1f">kynema_sgf::fvm::q_criterion</a> (FTypeOut &amp;qcritphi, const FTypeIn &amp;phi, const bool nondim=false)</td></tr>
+<tr class="memitem:ga1416661ab64f0b2e4827ff0ffd281841" id="r_ga1416661ab64f0b2e4827ff0ffd281841"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga1416661ab64f0b2e4827ff0ffd281841 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga1416661ab64f0b2e4827ff0ffd281841">kynema_sgf::fvm::q_criterion</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:gaaf060ad5aaf04275e043af40b3e65512" id="r_gaaf060ad5aaf04275e043af40b3e65512"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:gaaf060ad5aaf04275e043af40b3e65512 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaaf060ad5aaf04275e043af40b3e65512">kynema_sgf::fvm::strainrate</a> (FTypeOut &amp;strphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:gae95c56f1e82b2be63072fd3561fea771" id="r_gae95c56f1e82b2be63072fd3561fea771"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:gae95c56f1e82b2be63072fd3561fea771 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae95c56f1e82b2be63072fd3561fea771">kynema_sgf::fvm::strainrate</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga0973cf31e962db1a70562553407736e6" id="r_ga0973cf31e962db1a70562553407736e6"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga0973cf31e962db1a70562553407736e6 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0973cf31e962db1a70562553407736e6">kynema_sgf::fvm::vorticity</a> (FTypeOut &amp;vortphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:ga7be6d6be3f56f649cacd9497616d0065" id="r_ga7be6d6be3f56f649cacd9497616d0065"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga7be6d6be3f56f649cacd9497616d0065 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7be6d6be3f56f649cacd9497616d0065">kynema_sgf::fvm::vorticity</a> (const FType &amp;phi)</td></tr>
+<tr class="memitem:ga668203fbd9a5219e7cc1a76e678ec5b2" id="r_ga668203fbd9a5219e7cc1a76e678ec5b2"><td class="memTemplParams" colspan="2">template&lt;typename FTypeIn, typename FTypeOut&gt; </td></tr>
+<tr class="memitem:ga668203fbd9a5219e7cc1a76e678ec5b2 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga668203fbd9a5219e7cc1a76e678ec5b2">kynema_sgf::fvm::vorticity_mag</a> (FTypeOut &amp;vortmagphi, const FTypeIn &amp;phi)</td></tr>
+<tr class="memitem:ga0be9869b9001e722755d745678157d38" id="r_ga0be9869b9001e722755d745678157d38"><td class="memTemplParams" colspan="2">template&lt;typename FType&gt; </td></tr>
+<tr class="memitem:ga0be9869b9001e722755d745678157d38 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0be9869b9001e722755d745678157d38">kynema_sgf::fvm::vorticity_mag</a> (const FType &amp;phi)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<p>Finite-Volume Operators</p>
+<p>The <span class="tt">fvm</span> namespace defines finite-volume stencils and associated operators (e.g., gradient, divergence, laplacian, etc.) that are commonly used when solving partial differential equations using finite volume methods. </p>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="gab210bfb8e4d17614b2eb64969ecd36d5" name="gab210bfb8e4d17614b2eb64969ecd36d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab210bfb8e4d17614b2eb64969ecd36d5">&#9670;&#160;</a></span>curvature() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::curvature </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute curvature </p>
+
+</div>
+</div>
+<a id="ga4bf1cc2202b680bb1a36de211d898d56" name="ga4bf1cc2202b680bb1a36de211d898d56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4bf1cc2202b680bb1a36de211d898d56">&#9670;&#160;</a></span>curvature() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::curvature </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>curphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute curvature </p>
+
+</div>
+</div>
+<a id="gaf3c18bc5d529125444111b5f797a948e" name="gaf3c18bc5d529125444111b5f797a948e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf3c18bc5d529125444111b5f797a948e">&#9670;&#160;</a></span>divergence() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::divergence </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the divergence of a vector field </p>
+
+</div>
+</div>
+<a id="ga1f595137ace0c6e3d6aaf39e4a154dd9" name="ga1f595137ace0c6e3d6aaf39e4a154dd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1f595137ace0c6e3d6aaf39e4a154dd9">&#9670;&#160;</a></span>divergence() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::divergence </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>divphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the divergence of a vector field </p>
+
+</div>
+</div>
+<a id="ga17fe1a7691a5e5124127fed24f04ec66" name="ga17fe1a7691a5e5124127fed24f04ec66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga17fe1a7691a5e5124127fed24f04ec66">&#9670;&#160;</a></span>filter() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::filter </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the filter of a given field and return it as <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> whose filter is computed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa902a794a87627b1f11918d1cfb63061" name="gaa902a794a87627b1f11918d1cfb63061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa902a794a87627b1f11918d1cfb63061">&#9670;&#160;</a></span>filter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::filter </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>filterphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the filtered value of a given field</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filterphi</td><td>[inout] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the filtered term is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> whose filter is computed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2689b12eb91da3065a027bdb904cda52" name="ga2689b12eb91da3065a027bdb904cda52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2689b12eb91da3065a027bdb904cda52">&#9670;&#160;</a></span>gradient() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::gradient </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the gradient of a given field and return it as <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> whose gradient is computed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1118258ad921122444c15779cc0d5248" name="ga1118258ad921122444c15779cc0d5248"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1118258ad921122444c15779cc0d5248">&#9670;&#160;</a></span>gradient() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::gradient </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>gradphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the gradient of a given field</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gradphi</td><td>[inout] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the gradient term is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> whose gradient is computed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga05c2ecb61db3b8414bfb2f5eee1fc534" name="ga05c2ecb61db3b8414bfb2f5eee1fc534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga05c2ecb61db3b8414bfb2f5eee1fc534">&#9670;&#160;</a></span>laplacian() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::laplacian </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the laplacian of a given field and return as <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> whose gradient is computed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga07da45820fcd933eafcfa5b5af80497f" name="ga07da45820fcd933eafcfa5b5af80497f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga07da45820fcd933eafcfa5b5af80497f">&#9670;&#160;</a></span>laplacian() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::laplacian </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>lapphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the laplacian of a given field</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lapphi</td><td>[inout] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the laplacian term is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> whose gradient is computed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga627916459dd721b2ff946381e2630473" name="ga627916459dd721b2ff946381e2630473"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga627916459dd721b2ff946381e2630473">&#9670;&#160;</a></span>nonlinearsum() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::nonlinearsum </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the non-linear term as a <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] The stress tensor field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga43f6813fbab8232ba0a5de916b1f5fc8" name="ga43f6813fbab8232ba0a5de916b1f5fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43f6813fbab8232ba0a5de916b1f5fc8">&#9670;&#160;</a></span>nonlinearsum() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::nonlinearsum </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>strphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the non-linear term for the Kosovic Sub-grid scale model</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strphi</td><td>[out] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the non-linear terms is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] The stress tensor field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1416661ab64f0b2e4827ff0ffd281841" name="ga1416661ab64f0b2e4827ff0ffd281841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1416661ab64f0b2e4827ff0ffd281841">&#9670;&#160;</a></span>q_criterion() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::q_criterion </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the Q-criterion return as a <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1dc7002dffa31fe236dcdc040c897e1f" name="ga1dc7002dffa31fe236dcdc040c897e1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1dc7002dffa31fe236dcdc040c897e1f">&#9670;&#160;</a></span>q_criterion() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::q_criterion </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>qcritphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>nondim</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the q-criterion</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qcritphi</td><td>[out] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the Q-criterion is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+    <tr><td class="paramname">nondim</td><td>[in] Flag for non-dimensional value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae95c56f1e82b2be63072fd3561fea771" name="gae95c56f1e82b2be63072fd3561fea771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae95c56f1e82b2be63072fd3561fea771">&#9670;&#160;</a></span>strainrate() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::strainrate </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the magnitude of strain rate return as a <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaaf060ad5aaf04275e043af40b3e65512" name="gaaf060ad5aaf04275e043af40b3e65512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaf060ad5aaf04275e043af40b3e65512">&#9670;&#160;</a></span>strainrate() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::strainrate </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>strphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the magnitude of strain rate</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">strphi</td><td>[out] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the strain rate magnitude is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7be6d6be3f56f649cacd9497616d0065" name="ga7be6d6be3f56f649cacd9497616d0065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7be6d6be3f56f649cacd9497616d0065">&#9670;&#160;</a></span>vorticity() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::vorticity </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the magnitude of vorticity return as a <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0973cf31e962db1a70562553407736e6" name="ga0973cf31e962db1a70562553407736e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0973cf31e962db1a70562553407736e6">&#9670;&#160;</a></span>vorticity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::vorticity </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>vortphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the magnitude of vorticity</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vortphi</td><td>[out] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the vorticity magnitude is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0be9869b9001e722755d745678157d38" name="ga0be9869b9001e722755d745678157d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0be9869b9001e722755d745678157d38">&#9670;&#160;</a></span>vorticity_mag() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a> &gt; kynema_sgf::fvm::vorticity_mag </td>
+          <td>(</td>
+          <td class="paramtype">const FType &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the magnitude of vorticity return as a <a class="el" href="classkynema__sgf_1_1_scratch_field.html">ScratchField</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga668203fbd9a5219e7cc1a76e678ec5b2" name="ga668203fbd9a5219e7cc1a76e678ec5b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga668203fbd9a5219e7cc1a76e678ec5b2">&#9670;&#160;</a></span>vorticity_mag() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename FTypeIn, typename FTypeOut&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::fvm::vorticity_mag </td>
+          <td>(</td>
+          <td class="paramtype">FTypeOut &amp;</td>          <td class="paramname"><span class="paramname"><em>vortmagphi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTypeIn &amp;</td>          <td class="paramname"><span class="paramname"><em>phi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the magnitude of vorticity</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vortmagphi</td><td>[out] <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> where the vorticity magnitude is populated </td></tr>
+    <tr><td class="paramname">phi</td><td>[in] The velocity vector field </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

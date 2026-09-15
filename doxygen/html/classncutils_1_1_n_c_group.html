@@ -1,0 +1,1126 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: ncutils::NCGroup Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: ncutils::NCGroup Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classncutils_1_1_n_c_group.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ncgroup-class-reference">
+<h1>NCGroup Class Reference<a class="headerlink" href="#ncgroup-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: ncutils::NCGroup Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacencutils.html">ncutils</a></li><li class="navelem"><a href="classncutils_1_1_n_c_group.html">NCGroup</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classncutils_1_1_n_c_group-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ncutils::NCGroup Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Representation of a NetCDF group.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nc__interface_8_h_source.html">nc_interface.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ncutils::NCGroup:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classncutils_1_1_n_c_group__inherit__graph.svg" width="142" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ncutils::NCGroup:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classncutils_1_1_n_c_group__coll__graph.svg" width="236" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae5c17dd9f2962cbbd14397548450e5c1" id="r_ae5c17dd9f2962cbbd14397548450e5c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5c17dd9f2962cbbd14397548450e5c1">is_root</a> () const</td></tr>
+<tr class="memdesc:ae5c17dd9f2962cbbd14397548450e5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this the NetCDF file (root group)?  <br /></td></tr>
+<tr class="memitem:a8000fed2418124c83570eb6aa782e998" id="r_a8000fed2418124c83570eb6aa782e998"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8000fed2418124c83570eb6aa782e998">parent</a> () const</td></tr>
+<tr class="memdesc:a8000fed2418124c83570eb6aa782e998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return parent group, for root it just returns itself.  <br /></td></tr>
+<tr class="memitem:a128ba0309d89f74751daf42f7477a60c" id="r_a128ba0309d89f74751daf42f7477a60c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a128ba0309d89f74751daf42f7477a60c">root</a> () const</td></tr>
+<tr class="memdesc:a128ba0309d89f74751daf42f7477a60c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the root (file instance)  <br /></td></tr>
+<tr class="memitem:a3d53c2f625cc6fc286e76c9137b5b1b0" id="r_a3d53c2f625cc6fc286e76c9137b5b1b0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a> () const</td></tr>
+<tr class="memdesc:a3d53c2f625cc6fc286e76c9137b5b1b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this group.  <br /></td></tr>
+<tr class="memitem:a56f4429492300eabd16fa0d4bd55b8c7" id="r_a56f4429492300eabd16fa0d4bd55b8c7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56f4429492300eabd16fa0d4bd55b8c7">full_name</a> () const</td></tr>
+<tr class="memdesc:a56f4429492300eabd16fa0d4bd55b8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full name for this group.  <br /></td></tr>
+<tr class="memitem:a4efddc44f72cc32a58849982bb7e8bce" id="r_a4efddc44f72cc32a58849982bb7e8bce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4efddc44f72cc32a58849982bb7e8bce">num_groups</a> () const</td></tr>
+<tr class="memdesc:a4efddc44f72cc32a58849982bb7e8bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of sub-groups within this group.  <br /></td></tr>
+<tr class="memitem:a44b1b3b0a86df383ffa6ab4e68a7dea6" id="r_a44b1b3b0a86df383ffa6ab4e68a7dea6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44b1b3b0a86df383ffa6ab4e68a7dea6">num_dimensions</a> () const</td></tr>
+<tr class="memdesc:a44b1b3b0a86df383ffa6ab4e68a7dea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of dimensions in this group.  <br /></td></tr>
+<tr class="memitem:a4721cc36bd0f188be0250112329d3ba1" id="r_a4721cc36bd0f188be0250112329d3ba1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4721cc36bd0f188be0250112329d3ba1">num_variables</a> () const</td></tr>
+<tr class="memdesc:a4721cc36bd0f188be0250112329d3ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of variables within this group.  <br /></td></tr>
+<tr class="memitem:af7847ff27ccb8499814b7f21559e2e84" id="r_af7847ff27ccb8499814b7f21559e2e84"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7847ff27ccb8499814b7f21559e2e84">num_attributes</a> () const</td></tr>
+<tr class="memdesc:af7847ff27ccb8499814b7f21559e2e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of attributes within this group.  <br /></td></tr>
+<tr class="memitem:a00ea1ccd06adafc43396239ec842b23f" id="r_a00ea1ccd06adafc43396239ec842b23f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00ea1ccd06adafc43396239ec842b23f">has_group</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:a00ea1ccd06adafc43396239ec842b23f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a group exists.  <br /></td></tr>
+<tr class="memitem:ac233f0c14bd6b340fcd5a14da53b5042" id="r_ac233f0c14bd6b340fcd5a14da53b5042"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac233f0c14bd6b340fcd5a14da53b5042">has_dim</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:ac233f0c14bd6b340fcd5a14da53b5042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a dimension exists by name.  <br /></td></tr>
+<tr class="memitem:aaad218c7ea51b515386d5f1ce8a90192" id="r_aaad218c7ea51b515386d5f1ce8a90192"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaad218c7ea51b515386d5f1ce8a90192">has_var</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:aaad218c7ea51b515386d5f1ce8a90192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a variable exists by name.  <br /></td></tr>
+<tr class="memitem:a1bfb961e66e7c635ae92cee3f8cdeeac" id="r_a1bfb961e66e7c635ae92cee3f8cdeeac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bfb961e66e7c635ae92cee3f8cdeeac">has_attr</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:a1bfb961e66e7c635ae92cee3f8cdeeac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if an attribute exists.  <br /></td></tr>
+<tr class="memitem:a757c592cddc2272a86033fe888232333" id="r_a757c592cddc2272a86033fe888232333"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a757c592cddc2272a86033fe888232333">group</a> (const std::string &amp;) const</td></tr>
+<tr class="memitem:addc8bbac9a2cfa8d9c49497b7da0310f" id="r_addc8bbac9a2cfa8d9c49497b7da0310f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structncutils_1_1_n_c_dim.html">NCDim</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addc8bbac9a2cfa8d9c49497b7da0310f">dim</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:addc8bbac9a2cfa8d9c49497b7da0310f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the dimension instance by name.  <br /></td></tr>
+<tr class="memitem:a79bef315da5cff7bcf8bbcfbdd122115" id="r_a79bef315da5cff7bcf8bbcfbdd122115"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79bef315da5cff7bcf8bbcfbdd122115">var</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:a79bef315da5cff7bcf8bbcfbdd122115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the variable instance by name.  <br /></td></tr>
+<tr class="memitem:ac5c99d691660e36a00afffae6f0d6f71" id="r_ac5c99d691660e36a00afffae6f0d6f71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5c99d691660e36a00afffae6f0d6f71">def_group</a> (const std::string &amp;) const</td></tr>
+<tr class="memdesc:ac5c99d691660e36a00afffae6f0d6f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define new group.  <br /></td></tr>
+<tr class="memitem:ae0ecaad10c77614a283bd6e66d2dca41" id="r_ae0ecaad10c77614a283bd6e66d2dca41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structncutils_1_1_n_c_dim.html">NCDim</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0ecaad10c77614a283bd6e66d2dca41">def_dim</a> (const std::string &amp;, const size_t len) const</td></tr>
+<tr class="memdesc:ae0ecaad10c77614a283bd6e66d2dca41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define new dimension.  <br /></td></tr>
+<tr class="memitem:a43450deb9f15f2b0b805612d76145bbc" id="r_a43450deb9f15f2b0b805612d76145bbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43450deb9f15f2b0b805612d76145bbc">def_scalar</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const nc_type dtype) const</td></tr>
+<tr class="memdesc:a43450deb9f15f2b0b805612d76145bbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a scalar variable, i.e., 0-dimensional array.  <br /></td></tr>
+<tr class="memitem:acdfa4a8e44ca0f1901ea120a3946d1db" id="r_acdfa4a8e44ca0f1901ea120a3946d1db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdfa4a8e44ca0f1901ea120a3946d1db">def_array</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const nc_type dtype, const std::vector&lt; std::string &gt; &amp;) const</td></tr>
+<tr class="memdesc:acdfa4a8e44ca0f1901ea120a3946d1db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define an array.  <br /></td></tr>
+<tr class="memitem:aa049e7d6f5f7f88ad840fa2ced3c61b4" id="r_aa049e7d6f5f7f88ad840fa2ced3c61b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa049e7d6f5f7f88ad840fa2ced3c61b4">def_var</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const nc_type dtype, const std::vector&lt; std::string &gt; &amp;dnames) const</td></tr>
+<tr class="memdesc:aa049e7d6f5f7f88ad840fa2ced3c61b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a variable (wrapper for def_array)  <br /></td></tr>
+<tr class="memitem:acf73ea254afaf7d74596fa07523b322f" id="r_acf73ea254afaf7d74596fa07523b322f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf73ea254afaf7d74596fa07523b322f">put_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const std::string &amp;value) const</td></tr>
+<tr class="memitem:a49e65d3b8dddc5090f47dcc21a0f613a" id="r_a49e65d3b8dddc5090f47dcc21a0f613a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49e65d3b8dddc5090f47dcc21a0f613a">put_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const std::vector&lt; amrex::Real &gt; &amp;value) const</td></tr>
+<tr class="memitem:a39472c18d4e16cf47ba54bd1246220b6" id="r_a39472c18d4e16cf47ba54bd1246220b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39472c18d4e16cf47ba54bd1246220b6">put_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const std::vector&lt; float &gt; &amp;value) const</td></tr>
+<tr class="memitem:acf2801c26458fb99bd82733b1302285a" id="r_acf2801c26458fb99bd82733b1302285a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf2801c26458fb99bd82733b1302285a">put_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, const std::vector&lt; int &gt; &amp;value) const</td></tr>
+<tr class="memitem:a2f10bc405d66f794c4e8a8fd71dc718d" id="r_a2f10bc405d66f794c4e8a8fd71dc718d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f10bc405d66f794c4e8a8fd71dc718d">get_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>) const</td></tr>
+<tr class="memitem:a4ee336ed9375d01f18e93c2df2b94611" id="r_a4ee336ed9375d01f18e93c2df2b94611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ee336ed9375d01f18e93c2df2b94611">get_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, std::vector&lt; amrex::Real &gt; &amp;value) const</td></tr>
+<tr class="memitem:ac25f1ca78fc2cd66e7b80fdcc30f512f" id="r_ac25f1ca78fc2cd66e7b80fdcc30f512f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac25f1ca78fc2cd66e7b80fdcc30f512f">get_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, std::vector&lt; float &gt; &amp;value) const</td></tr>
+<tr class="memitem:ac5beadfdf8519b384504dc82f6bdecc5" id="r_ac5beadfdf8519b384504dc82f6bdecc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5beadfdf8519b384504dc82f6bdecc5">get_attr</a> (const std::string &amp;<a class="el" href="#a3d53c2f625cc6fc286e76c9137b5b1b0">name</a>, std::vector&lt; int &gt; &amp;value) const</td></tr>
+<tr class="memitem:a82a48643f27b33b27cdd87c60e63f5f5" id="r_a82a48643f27b33b27cdd87c60e63f5f5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82a48643f27b33b27cdd87c60e63f5f5">all_groups</a> () const</td></tr>
+<tr class="memdesc:a82a48643f27b33b27cdd87c60e63f5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of all groups defined in this group.  <br /></td></tr>
+<tr class="memitem:a8e01fe072fa48f4fa9c8be33a3a401b0" id="r_a8e01fe072fa48f4fa9c8be33a3a401b0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structncutils_1_1_n_c_dim.html">NCDim</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e01fe072fa48f4fa9c8be33a3a401b0">all_dims</a> () const</td></tr>
+<tr class="memdesc:a8e01fe072fa48f4fa9c8be33a3a401b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of all dimensions defined in this group.  <br /></td></tr>
+<tr class="memitem:affa2e62434110dd4fa47d093162e56cf" id="r_affa2e62434110dd4fa47d093162e56cf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affa2e62434110dd4fa47d093162e56cf">all_vars</a> () const</td></tr>
+<tr class="memdesc:affa2e62434110dd4fa47d093162e56cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of all variables defined in this group.  <br /></td></tr>
+<tr class="memitem:aef6b6e2be36e6179a001d9873e94df82" id="r_aef6b6e2be36e6179a001d9873e94df82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef6b6e2be36e6179a001d9873e94df82">enter_def_mode</a> () const</td></tr>
+<tr class="memdesc:aef6b6e2be36e6179a001d9873e94df82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter definition mode (not needed for NetCDF4 format)  <br /></td></tr>
+<tr class="memitem:a3a4ebd106195be96fb41bb3bfde83143" id="r_a3a4ebd106195be96fb41bb3bfde83143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a4ebd106195be96fb41bb3bfde83143">exit_def_mode</a> () const</td></tr>
+<tr class="memdesc:a3a4ebd106195be96fb41bb3bfde83143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit definition mode.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a860fe8aaf1cd7859541c67594fb8eabd" id="r_a860fe8aaf1cd7859541c67594fb8eabd"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a860fe8aaf1cd7859541c67594fb8eabd">ncid</a></td></tr>
+<tr class="memdesc:a860fe8aaf1cd7859541c67594fb8eabd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier used with NetCDF API calls.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a99e8b68dcdebf6a3df74c3575c3a3c65" id="r_a99e8b68dcdebf6a3df74c3575c3a3c65"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99e8b68dcdebf6a3df74c3575c3a3c65">NCGroup</a> (const int id)</td></tr>
+<tr class="memitem:adcb85f8db72ad6fb60b23031d995f298" id="r_adcb85f8db72ad6fb60b23031d995f298"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcb85f8db72ad6fb60b23031d995f298">NCGroup</a> (const int id, const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> *par)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a3822036e5896fcfc1f20673cc9bc7318" id="r_a3822036e5896fcfc1f20673cc9bc7318"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3822036e5896fcfc1f20673cc9bc7318">m_parent</a> {nullptr}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Representation of a NetCDF group. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a99e8b68dcdebf6a3df74c3575c3a3c65" name="a99e8b68dcdebf6a3df74c3575c3a3c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e8b68dcdebf6a3df74c3575c3a3c65">&#9670;&#160;</a></span>NCGroup() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ncutils::NCGroup::NCGroup </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adcb85f8db72ad6fb60b23031d995f298" name="adcb85f8db72ad6fb60b23031d995f298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcb85f8db72ad6fb60b23031d995f298">&#9670;&#160;</a></span>NCGroup() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ncutils::NCGroup::NCGroup </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> *</td>          <td class="paramname"><span class="paramname"><em>par</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8e01fe072fa48f4fa9c8be33a3a401b0" name="a8e01fe072fa48f4fa9c8be33a3a401b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e01fe072fa48f4fa9c8be33a3a401b0">&#9670;&#160;</a></span>all_dims()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structncutils_1_1_n_c_dim.html">NCDim</a> &gt; ncutils::NCGroup::all_dims </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a list of all dimensions defined in this group. </p>
+
+</div>
+</div>
+<a id="a82a48643f27b33b27cdd87c60e63f5f5" name="a82a48643f27b33b27cdd87c60e63f5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82a48643f27b33b27cdd87c60e63f5f5">&#9670;&#160;</a></span>all_groups()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> &gt; ncutils::NCGroup::all_groups </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a list of all groups defined in this group. </p>
+
+</div>
+</div>
+<a id="affa2e62434110dd4fa47d093162e56cf" name="affa2e62434110dd4fa47d093162e56cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa2e62434110dd4fa47d093162e56cf">&#9670;&#160;</a></span>all_vars()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a> &gt; ncutils::NCGroup::all_vars </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a list of all variables defined in this group. </p>
+
+</div>
+</div>
+<a id="acdfa4a8e44ca0f1901ea120a3946d1db" name="acdfa4a8e44ca0f1901ea120a3946d1db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdfa4a8e44ca0f1901ea120a3946d1db">&#9670;&#160;</a></span>def_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a> ncutils::NCGroup::def_array </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const nc_type</td>          <td class="paramname"><span class="paramname"><em>dtype</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dnames</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define an array. </p>
+
+</div>
+</div>
+<a id="ae0ecaad10c77614a283bd6e66d2dca41" name="ae0ecaad10c77614a283bd6e66d2dca41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0ecaad10c77614a283bd6e66d2dca41">&#9670;&#160;</a></span>def_dim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structncutils_1_1_n_c_dim.html">NCDim</a> ncutils::NCGroup::def_dim </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define new dimension. </p>
+
+</div>
+</div>
+<a id="ac5c99d691660e36a00afffae6f0d6f71" name="ac5c99d691660e36a00afffae6f0d6f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c99d691660e36a00afffae6f0d6f71">&#9670;&#160;</a></span>def_group()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> ncutils::NCGroup::def_group </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define new group. </p>
+
+</div>
+</div>
+<a id="a43450deb9f15f2b0b805612d76145bbc" name="a43450deb9f15f2b0b805612d76145bbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43450deb9f15f2b0b805612d76145bbc">&#9670;&#160;</a></span>def_scalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a> ncutils::NCGroup::def_scalar </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const nc_type</td>          <td class="paramname"><span class="paramname"><em>dtype</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a scalar variable, i.e., 0-dimensional array. </p>
+
+</div>
+</div>
+<a id="aa049e7d6f5f7f88ad840fa2ced3c61b4" name="aa049e7d6f5f7f88ad840fa2ced3c61b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa049e7d6f5f7f88ad840fa2ced3c61b4">&#9670;&#160;</a></span>def_var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a> ncutils::NCGroup::def_var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const nc_type</td>          <td class="paramname"><span class="paramname"><em>dtype</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dnames</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Define a variable (wrapper for def_array) </p>
+
+</div>
+</div>
+<a id="addc8bbac9a2cfa8d9c49497b7da0310f" name="addc8bbac9a2cfa8d9c49497b7da0310f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc8bbac9a2cfa8d9c49497b7da0310f">&#9670;&#160;</a></span>dim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structncutils_1_1_n_c_dim.html">NCDim</a> ncutils::NCGroup::dim </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the dimension instance by name. </p>
+
+</div>
+</div>
+<a id="aef6b6e2be36e6179a001d9873e94df82" name="aef6b6e2be36e6179a001d9873e94df82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef6b6e2be36e6179a001d9873e94df82">&#9670;&#160;</a></span>enter_def_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::enter_def_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enter definition mode (not needed for NetCDF4 format) </p>
+
+</div>
+</div>
+<a id="a3a4ebd106195be96fb41bb3bfde83143" name="a3a4ebd106195be96fb41bb3bfde83143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a4ebd106195be96fb41bb3bfde83143">&#9670;&#160;</a></span>exit_def_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::exit_def_mode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Exit definition mode. </p>
+
+</div>
+</div>
+<a id="a56f4429492300eabd16fa0d4bd55b8c7" name="a56f4429492300eabd16fa0d4bd55b8c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f4429492300eabd16fa0d4bd55b8c7">&#9670;&#160;</a></span>full_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ncutils::NCGroup::full_name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Full name for this group. </p>
+
+</div>
+</div>
+<a id="a2f10bc405d66f794c4e8a8fd71dc718d" name="a2f10bc405d66f794c4e8a8fd71dc718d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f10bc405d66f794c4e8a8fd71dc718d">&#9670;&#160;</a></span>get_attr() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ncutils::NCGroup::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ee336ed9375d01f18e93c2df2b94611" name="a4ee336ed9375d01f18e93c2df2b94611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee336ed9375d01f18e93c2df2b94611">&#9670;&#160;</a></span>get_attr() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac25f1ca78fc2cd66e7b80fdcc30f512f" name="ac25f1ca78fc2cd66e7b80fdcc30f512f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac25f1ca78fc2cd66e7b80fdcc30f512f">&#9670;&#160;</a></span>get_attr() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5beadfdf8519b384504dc82f6bdecc5" name="ac5beadfdf8519b384504dc82f6bdecc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5beadfdf8519b384504dc82f6bdecc5">&#9670;&#160;</a></span>get_attr() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a757c592cddc2272a86033fe888232333" name="a757c592cddc2272a86033fe888232333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757c592cddc2272a86033fe888232333">&#9670;&#160;</a></span>group()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> ncutils::NCGroup::group </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the group by name</p>
+<p>Throws error if the group doesn't exist, use <span class="tt">has_group</span> to check </p>
+
+</div>
+</div>
+<a id="a1bfb961e66e7c635ae92cee3f8cdeeac" name="a1bfb961e66e7c635ae92cee3f8cdeeac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bfb961e66e7c635ae92cee3f8cdeeac">&#9670;&#160;</a></span>has_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ncutils::NCGroup::has_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if an attribute exists. </p>
+
+</div>
+</div>
+<a id="ac233f0c14bd6b340fcd5a14da53b5042" name="ac233f0c14bd6b340fcd5a14da53b5042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac233f0c14bd6b340fcd5a14da53b5042">&#9670;&#160;</a></span>has_dim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ncutils::NCGroup::has_dim </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a dimension exists by name. </p>
+
+</div>
+</div>
+<a id="a00ea1ccd06adafc43396239ec842b23f" name="a00ea1ccd06adafc43396239ec842b23f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ea1ccd06adafc43396239ec842b23f">&#9670;&#160;</a></span>has_group()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ncutils::NCGroup::has_group </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a group exists. </p>
+
+</div>
+</div>
+<a id="aaad218c7ea51b515386d5f1ce8a90192" name="aaad218c7ea51b515386d5f1ce8a90192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaad218c7ea51b515386d5f1ce8a90192">&#9670;&#160;</a></span>has_var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ncutils::NCGroup::has_var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a variable exists by name. </p>
+
+</div>
+</div>
+<a id="ae5c17dd9f2962cbbd14397548450e5c1" name="ae5c17dd9f2962cbbd14397548450e5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c17dd9f2962cbbd14397548450e5c1">&#9670;&#160;</a></span>is_root()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ncutils::NCGroup::is_root </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Is this the NetCDF file (root group)? </p>
+
+</div>
+</div>
+<a id="a3d53c2f625cc6fc286e76c9137b5b1b0" name="a3d53c2f625cc6fc286e76c9137b5b1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d53c2f625cc6fc286e76c9137b5b1b0">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ncutils::NCGroup::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Name of this group. </p>
+
+</div>
+</div>
+<a id="af7847ff27ccb8499814b7f21559e2e84" name="af7847ff27ccb8499814b7f21559e2e84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7847ff27ccb8499814b7f21559e2e84">&#9670;&#160;</a></span>num_attributes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ncutils::NCGroup::num_attributes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of attributes within this group. </p>
+
+</div>
+</div>
+<a id="a44b1b3b0a86df383ffa6ab4e68a7dea6" name="a44b1b3b0a86df383ffa6ab4e68a7dea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b1b3b0a86df383ffa6ab4e68a7dea6">&#9670;&#160;</a></span>num_dimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ncutils::NCGroup::num_dimensions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of dimensions in this group. </p>
+
+</div>
+</div>
+<a id="a4efddc44f72cc32a58849982bb7e8bce" name="a4efddc44f72cc32a58849982bb7e8bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4efddc44f72cc32a58849982bb7e8bce">&#9670;&#160;</a></span>num_groups()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ncutils::NCGroup::num_groups </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of sub-groups within this group. </p>
+
+</div>
+</div>
+<a id="a4721cc36bd0f188be0250112329d3ba1" name="a4721cc36bd0f188be0250112329d3ba1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4721cc36bd0f188be0250112329d3ba1">&#9670;&#160;</a></span>num_variables()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ncutils::NCGroup::num_variables </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of variables within this group. </p>
+
+</div>
+</div>
+<a id="a8000fed2418124c83570eb6aa782e998" name="a8000fed2418124c83570eb6aa782e998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8000fed2418124c83570eb6aa782e998">&#9670;&#160;</a></span>parent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> &amp; ncutils::NCGroup::parent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return parent group, for root it just returns itself. </p>
+
+</div>
+</div>
+<a id="acf73ea254afaf7d74596fa07523b322f" name="acf73ea254afaf7d74596fa07523b322f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf73ea254afaf7d74596fa07523b322f">&#9670;&#160;</a></span>put_attr() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49e65d3b8dddc5090f47dcc21a0f613a" name="a49e65d3b8dddc5090f47dcc21a0f613a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49e65d3b8dddc5090f47dcc21a0f613a">&#9670;&#160;</a></span>put_attr() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39472c18d4e16cf47ba54bd1246220b6" name="a39472c18d4e16cf47ba54bd1246220b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39472c18d4e16cf47ba54bd1246220b6">&#9670;&#160;</a></span>put_attr() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf2801c26458fb99bd82733b1302285a" name="acf2801c26458fb99bd82733b1302285a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf2801c26458fb99bd82733b1302285a">&#9670;&#160;</a></span>put_attr() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCGroup::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a128ba0309d89f74751daf42f7477a60c" name="a128ba0309d89f74751daf42f7477a60c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a128ba0309d89f74751daf42f7477a60c">&#9670;&#160;</a></span>root()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a> &amp; ncutils::NCGroup::root </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the root (file instance) </p>
+
+</div>
+</div>
+<a id="a79bef315da5cff7bcf8bbcfbdd122115" name="a79bef315da5cff7bcf8bbcfbdd122115"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79bef315da5cff7bcf8bbcfbdd122115">&#9670;&#160;</a></span>var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structncutils_1_1_n_c_var.html">NCVar</a> ncutils::NCGroup::var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the variable instance by name. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a3822036e5896fcfc1f20673cc9bc7318" name="a3822036e5896fcfc1f20673cc9bc7318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3822036e5896fcfc1f20673cc9bc7318">&#9670;&#160;</a></span>m_parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classncutils_1_1_n_c_group.html">NCGroup</a>* ncutils::NCGroup::m_parent {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a860fe8aaf1cd7859541c67594fb8eabd" name="a860fe8aaf1cd7859541c67594fb8eabd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a860fe8aaf1cd7859541c67594fb8eabd">&#9670;&#160;</a></span>ncid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int ncutils::NCGroup::ncid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Identifier used with NetCDF API calls. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ncutils/<a class="el" href="nc__interface_8_h_source.html">nc_interface.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ncutils/<a class="el" href="nc__interface_8cpp.html">nc_interface.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

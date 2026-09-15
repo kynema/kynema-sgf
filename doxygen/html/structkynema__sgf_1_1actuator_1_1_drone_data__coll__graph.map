@@ -1,0 +1,23 @@
+<map id="kynema_sgf::actuator::DroneData" name="kynema_sgf::actuator::DroneData">
+<area shape="rect" id="Node000001" title="Composite actuator that gives all child rotors one rigid&#45;body motion." alt="" coords="1540,135,1703,175"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="1212,166,1399,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1412,182,1516,171,1539,167,1540,172,1516,176,1413,188"/>
+<area shape="rect" id="Node000003" href="$classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion.html" title=" " alt="" coords="764,100,959,140"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="972,107,1024,106,1079,109,1135,118,1189,134,1202,142,1214,152,1234,163,1232,168,1210,157,1199,147,1187,138,1134,123,1078,115,1024,111,972,112"/>
+<area shape="rect" id="Node000004" href="$classkynema__sgf_1_1actuator_1_1motion_1_1_time_table.html" title=" " alt="" coords="413,68,576,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="538,113,568,128,601,140,647,147,694,148,781,137,782,143,694,153,646,153,599,145,566,133,535,117"/>
+<area shape="rect" id="Node000010" href="$classkynema__sgf_1_1actuator_1_1motion_1_1_rotor_motion.html" title=" " alt="" coords="779,16,943,56"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="541,59,569,47,599,37,645,30,692,26,779,26,779,31,692,31,646,35,601,43,571,52,543,64"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="193,75,280,101"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="294,85,413,85,413,91,294,91"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,68,144,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="157,85,193,85,193,91,157,91"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="783,197,940,222"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="904,225,942,239,983,249,1041,259,1086,263,1131,260,1187,249,1226,236,1261,218,1263,223,1228,241,1189,255,1131,266,1086,268,1040,264,982,255,940,244,902,230"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1212,87,1399,142"/>
+<area shape="poly" id="edge11_Node000009_Node000007" title=" " alt="" coords="953,203,1096,195,1155,189,1187,182,1194,176,1198,169,1210,153,1230,140,1233,144,1214,157,1203,172,1198,179,1189,186,1156,194,1097,200,954,209"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="475,197,514,222"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="528,207,783,207,783,212,528,212"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1413,126,1540,142,1539,147,1412,131"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="957,43,1068,57,1189,79,1214,85,1213,90,1187,84,1068,63,957,48"/>
+</map>

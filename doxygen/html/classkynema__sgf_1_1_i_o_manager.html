@@ -1,0 +1,1195 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::IOManager Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::IOManager Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_i_o_manager.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="iomanager-class-reference">
+<h1>IOManager Class Reference<a class="headerlink" href="#iomanager-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::IOManager Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_i_o_manager-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::IOManager Class Reference<div class="ingroups"><a class="el" href="group__utilities.html">Utilities</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_i_o_manager_8_h_source.html">IOManager.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::IOManager:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_i_o_manager__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a08f19d7eb82fe25b0e2c19d8347b6c7f" id="r_a08f19d7eb82fe25b0e2c19d8347b6c7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08f19d7eb82fe25b0e2c19d8347b6c7f">IOManager</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:aff807d7ce9d81e23c8eb4223f915ff77" id="r_aff807d7ce9d81e23c8eb4223f915ff77"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff807d7ce9d81e23c8eb4223f915ff77">~IOManager</a> ()</td></tr>
+<tr class="memitem:a12c2820103b071f9f35be096633cbce6" id="r_a12c2820103b071f9f35be096633cbce6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12c2820103b071f9f35be096633cbce6">IOManager</a> (const <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;)=delete</td></tr>
+<tr class="memitem:aa82cbc14a0c9540d7e51e5a07ea1900d" id="r_aa82cbc14a0c9540d7e51e5a07ea1900d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa82cbc14a0c9540d7e51e5a07ea1900d">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;)=delete</td></tr>
+<tr class="memitem:a0a021a4fb58a205c2d64d18506a811ee" id="r_a0a021a4fb58a205c2d64d18506a811ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a021a4fb58a205c2d64d18506a811ee">initialize_io</a> ()</td></tr>
+<tr class="memdesc:a0a021a4fb58a205c2d64d18506a811ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process user inputs and perform one-time initialization tasks.  <br /></td></tr>
+<tr class="memitem:a3a8b1e24274051dcc539d27911d50036" id="r_a3a8b1e24274051dcc539d27911d50036"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a8b1e24274051dcc539d27911d50036">write_plot_file</a> ()</td></tr>
+<tr class="memdesc:a3a8b1e24274051dcc539d27911d50036"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all user-requested fields to disk.  <br /></td></tr>
+<tr class="memitem:a1463949594c7ddf33337c60663f80eb5" id="r_a1463949594c7ddf33337c60663f80eb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1463949594c7ddf33337c60663f80eb5">write_checkpoint_file</a> (int start_level=0, int end_level=-1)</td></tr>
+<tr class="memdesc:a1463949594c7ddf33337c60663f80eb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all necessary fields for restart.  <br /></td></tr>
+<tr class="memitem:a039fa73fa01eb24a890326ce5d28eb17" id="r_a039fa73fa01eb24a890326ce5d28eb17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a039fa73fa01eb24a890326ce5d28eb17">read_checkpoint_fields</a> (const std::string &amp;<a class="el" href="#ac91527e8a7a7f6612342728eea8d724c">restart_file</a>, const amrex::Vector&lt; amrex::BoxArray &gt; &amp;ba_chk, const amrex::Vector&lt; amrex::DistributionMapping &gt; &amp;dm_chk, const amrex::IntVect &amp;rep)</td></tr>
+<tr class="memdesc:a039fa73fa01eb24a890326ce5d28eb17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all necessary fields for a restart.  <br /></td></tr>
+<tr class="memitem:ac13056a8229064be591dc476bf67cea5" id="r_ac13056a8229064be591dc476bf67cea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac13056a8229064be591dc476bf67cea5">register_output_var</a> (const std::string &amp;fname)</td></tr>
+<tr class="memdesc:ac13056a8229064be591dc476bf67cea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a variable for output.  <br /></td></tr>
+<tr class="memitem:a494ef6d7c09665b9b3d9e5f0733b212e" id="r_a494ef6d7c09665b9b3d9e5f0733b212e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a494ef6d7c09665b9b3d9e5f0733b212e">register_output_int_var</a> (const std::string &amp;fname)</td></tr>
+<tr class="memitem:a7e85c6f39f404ce123a9c46680c6a143" id="r_a7e85c6f39f404ce123a9c46680c6a143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e85c6f39f404ce123a9c46680c6a143">register_restart_var</a> (const std::string &amp;fname)</td></tr>
+<tr class="memdesc:a7e85c6f39f404ce123a9c46680c6a143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a variable for restart file.  <br /></td></tr>
+<tr class="memitem:aa45f162b8457a3a9536904f117e344b9" id="r_aa45f162b8457a3a9536904f117e344b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa45f162b8457a3a9536904f117e344b9">register_io_var</a> (const std::string &amp;fname)</td></tr>
+<tr class="memdesc:aa45f162b8457a3a9536904f117e344b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to register a variable for both output and restart.  <br /></td></tr>
+<tr class="memitem:ac91527e8a7a7f6612342728eea8d724c" id="r_ac91527e8a7a7f6612342728eea8d724c"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac91527e8a7a7f6612342728eea8d724c">restart_file</a> ()</td></tr>
+<tr class="memdesc:ac91527e8a7a7f6612342728eea8d724c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the checkpoint file to be read during a restart.  <br /></td></tr>
+<tr class="memitem:a0f172f049061a4129f7f46d9d028d90c" id="r_a0f172f049061a4129f7f46d9d028d90c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f172f049061a4129f7f46d9d028d90c">is_restart</a> () const</td></tr>
+<tr class="memitem:a9443e5fb56bdd51a592239449ed4d33f" id="r_a9443e5fb56bdd51a592239449ed4d33f"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9443e5fb56bdd51a592239449ed4d33f">plot_fields</a> () const</td></tr>
+<tr class="memitem:ae01680fa8ae8dd003e92ffc3969d5b8a" id="r_ae01680fa8ae8dd003e92ffc3969d5b8a"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae01680fa8ae8dd003e92ffc3969d5b8a">checkpoint_fields</a> () const</td></tr>
+<tr class="memitem:a802e5c4d3afcdfebe1c6794cf17ce1a7" id="r_a802e5c4d3afcdfebe1c6794cf17ce1a7"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a802e5c4d3afcdfebe1c6794cf17ce1a7">post_processing_directory</a> ()</td></tr>
+<tr class="memdesc:a802e5c4d3afcdfebe1c6794cf17ce1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the post processing directory.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:addda6c3cdafad960c9b5c000080022a5" id="r_addda6c3cdafad960c9b5c000080022a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addda6c3cdafad960c9b5c000080022a5">write_header</a> (const std::string &amp;, int start_level, int end_level)</td></tr>
+<tr class="memitem:a569c7773c4e8a534ed692a60776efe4f" id="r_a569c7773c4e8a534ed692a60776efe4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a569c7773c4e8a534ed692a60776efe4f">write_info_file</a> (const std::string &amp;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aacd037fc631cbc86fc8ee38bbe05fe65" id="r_aacd037fc631cbc86fc8ee38bbe05fe65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacd037fc631cbc86fc8ee38bbe05fe65">m_sim</a></td></tr>
+<tr class="memitem:aae1bca84a20ff2fce0093757eb950fe4" id="r_aae1bca84a20ff2fce0093757eb950fe4"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae1bca84a20ff2fce0093757eb950fe4">m_derived_mgr</a></td></tr>
+<tr class="memitem:a3c2c8d0a5eb249621ad144c833e0c52c" id="r_a3c2c8d0a5eb249621ad144c833e0c52c"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c2c8d0a5eb249621ad144c833e0c52c">m_pltvars_default</a></td></tr>
+<tr class="memdesc:a3c2c8d0a5eb249621ad144c833e0c52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default output variables registered automatically in the code.  <br /></td></tr>
+<tr class="memitem:a90e4e93bcc66f5515922d19a84a50901" id="r_a90e4e93bcc66f5515922d19a84a50901"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90e4e93bcc66f5515922d19a84a50901">m_int_pltvars_default</a></td></tr>
+<tr class="memdesc:a90e4e93bcc66f5515922d19a84a50901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default output integer variables registered automatically in the code.  <br /></td></tr>
+<tr class="memitem:a1ca40694167928eb6f9980a804cb59bb" id="r_a1ca40694167928eb6f9980a804cb59bb"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ca40694167928eb6f9980a804cb59bb">m_chkvars</a></td></tr>
+<tr class="memdesc:a1ca40694167928eb6f9980a804cb59bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables for output in checkpoint/restart files.  <br /></td></tr>
+<tr class="memitem:a2798c31ffdc66ae876923ffb4aadd5ed" id="r_a2798c31ffdc66ae876923ffb4aadd5ed"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2798c31ffdc66ae876923ffb4aadd5ed">m_plt_fields</a></td></tr>
+<tr class="memdesc:a2798c31ffdc66ae876923ffb4aadd5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Final list of fields to be output.  <br /></td></tr>
+<tr class="memitem:a7b5cfd710c6ee036359f758b410b0a26" id="r_a7b5cfd710c6ee036359f758b410b0a26"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b5cfd710c6ee036359f758b410b0a26">m_int_plt_fields</a></td></tr>
+<tr class="memdesc:a7b5cfd710c6ee036359f758b410b0a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Final list of integer fields to be output.  <br /></td></tr>
+<tr class="memitem:ae05d715dc366bff47d07824ce88621a6" id="r_ae05d715dc366bff47d07824ce88621a6"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae05d715dc366bff47d07824ce88621a6">m_chk_fields</a></td></tr>
+<tr class="memdesc:ae05d715dc366bff47d07824ce88621a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Final list of fields for restart.  <br /></td></tr>
+<tr class="memitem:a2bf8ae7902034111bb177eb9769e58bb" id="r_a2bf8ae7902034111bb177eb9769e58bb"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bf8ae7902034111bb177eb9769e58bb">m_plt_var_names</a></td></tr>
+<tr class="memdesc:a2bf8ae7902034111bb177eb9769e58bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable names (including components) for output.  <br /></td></tr>
+<tr class="memitem:accdf5e483e2f001ec3408a7cc593dab6" id="r_accdf5e483e2f001ec3408a7cc593dab6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accdf5e483e2f001ec3408a7cc593dab6">m_plt_prefix</a> {&quot;plt&quot;}</td></tr>
+<tr class="memdesc:accdf5e483e2f001ec3408a7cc593dab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix used for the plot file directories.  <br /></td></tr>
+<tr class="memitem:a386ee702179a927c4d8294887b865711" id="r_a386ee702179a927c4d8294887b865711"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a386ee702179a927c4d8294887b865711">m_chk_prefix</a> {&quot;chk&quot;}</td></tr>
+<tr class="memdesc:a386ee702179a927c4d8294887b865711"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prefix used for the restart file directories.  <br /></td></tr>
+<tr class="memitem:ae74a9e1aa863f44cfb16efca7243a5c9" id="r_ae74a9e1aa863f44cfb16efca7243a5c9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae74a9e1aa863f44cfb16efca7243a5c9">m_post_dir</a> {&quot;post_processing&quot;}</td></tr>
+<tr class="memdesc:ae74a9e1aa863f44cfb16efca7243a5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name for the post_processing directory.  <br /></td></tr>
+<tr class="memitem:ace14e5d66a3b6c33faf1395662e52acb" id="r_ace14e5d66a3b6c33faf1395662e52acb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace14e5d66a3b6c33faf1395662e52acb">m_restart_file</a></td></tr>
+<tr class="memdesc:ace14e5d66a3b6c33faf1395662e52acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restart file name.  <br /></td></tr>
+<tr class="memitem:a79adc1d6d5b83043d57a9ba55cce4af7" id="r_a79adc1d6d5b83043d57a9ba55cce4af7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79adc1d6d5b83043d57a9ba55cce4af7">m_plt_num_comp</a> {0}</td></tr>
+<tr class="memdesc:a79adc1d6d5b83043d57a9ba55cce4af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of variables (including components) output to plot file.  <br /></td></tr>
+<tr class="memitem:a81ccbbef2e522243be542d14803c1d5e" id="r_a81ccbbef2e522243be542d14803c1d5e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81ccbbef2e522243be542d14803c1d5e">m_output_default_vars</a> {true}</td></tr>
+<tr class="memdesc:a81ccbbef2e522243be542d14803c1d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether default fields should be output.  <br /></td></tr>
+<tr class="memitem:a0a0d089ea3edc7561c0603e0e34a16f7" id="r_a0a0d089ea3edc7561c0603e0e34a16f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a0d089ea3edc7561c0603e0e34a16f7">m_allow_missing_restart_fields</a> {true}</td></tr>
+<tr class="memdesc:a0a0d089ea3edc7561c0603e0e34a16f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether we should allow missing restart fields.  <br /></td></tr>
+<tr class="memitem:a47abceabd9e47dc597ee1a82060acd08" id="r_a47abceabd9e47dc597ee1a82060acd08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47abceabd9e47dc597ee1a82060acd08">m_nfiles</a> {256}</td></tr>
+<tr class="memdesc:a47abceabd9e47dc597ee1a82060acd08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of plot and checkpoint data files per write.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Input/Output manager</p>
+<p>This class contains infrastructure to output solution fields during the simulation as well as code that reads a checkpoint file during a restarted simulation. By default the <a class="el" href="group__eqsys.html">Equation Systems</a> register the necessary fields during initialization and these fields are output into plot-file and checkpoint file formats based on output frequencies managed by <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>. The user can request additional fields be output by setting appropriate parameters in the input file. The class also provides the ability to override output of the default fields and output a subset of those fields. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a08f19d7eb82fe25b0e2c19d8347b6c7f" name="a08f19d7eb82fe25b0e2c19d8347b6c7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08f19d7eb82fe25b0e2c19d8347b6c7f">&#9670;&#160;</a></span>IOManager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::IOManager::IOManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aff807d7ce9d81e23c8eb4223f915ff77" name="aff807d7ce9d81e23c8eb4223f915ff77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff807d7ce9d81e23c8eb4223f915ff77">&#9670;&#160;</a></span>~IOManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::IOManager::~IOManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12c2820103b071f9f35be096633cbce6" name="a12c2820103b071f9f35be096633cbce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c2820103b071f9f35be096633cbce6">&#9670;&#160;</a></span>IOManager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::IOManager::IOManager </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ae01680fa8ae8dd003e92ffc3969d5b8a" name="ae01680fa8ae8dd003e92ffc3969d5b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae01680fa8ae8dd003e92ffc3969d5b8a">&#9670;&#160;</a></span>checkpoint_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt; &amp; kynema_sgf::IOManager::checkpoint_fields </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a021a4fb58a205c2d64d18506a811ee" name="a0a021a4fb58a205c2d64d18506a811ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a021a4fb58a205c2d64d18506a811ee">&#9670;&#160;</a></span>initialize_io()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::initialize_io </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process user inputs and perform one-time initialization tasks. </p>
+
+</div>
+</div>
+<a id="a0f172f049061a4129f7f46d9d028d90c" name="a0f172f049061a4129f7f46d9d028d90c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f172f049061a4129f7f46d9d028d90c">&#9670;&#160;</a></span>is_restart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::IOManager::is_restart </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa82cbc14a0c9540d7e51e5a07ea1900d" name="aa82cbc14a0c9540d7e51e5a07ea1900d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa82cbc14a0c9540d7e51e5a07ea1900d">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp; kynema_sgf::IOManager::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9443e5fb56bdd51a592239449ed4d33f" name="a9443e5fb56bdd51a592239449ed4d33f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9443e5fb56bdd51a592239449ed4d33f">&#9670;&#160;</a></span>plot_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> * &gt; &amp; kynema_sgf::IOManager::plot_fields </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a802e5c4d3afcdfebe1c6794cf17ce1a7" name="a802e5c4d3afcdfebe1c6794cf17ce1a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a802e5c4d3afcdfebe1c6794cf17ce1a7">&#9670;&#160;</a></span>post_processing_directory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; kynema_sgf::IOManager::post_processing_directory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of the post processing directory. </p>
+
+</div>
+</div>
+<a id="a039fa73fa01eb24a890326ce5d28eb17" name="a039fa73fa01eb24a890326ce5d28eb17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a039fa73fa01eb24a890326ce5d28eb17">&#9670;&#160;</a></span>read_checkpoint_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::read_checkpoint_fields </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>restart_file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::BoxArray &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ba_chk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::DistributionMapping &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dm_chk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>rep</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read all necessary fields for a restart. </p>
+
+</div>
+</div>
+<a id="aa45f162b8457a3a9536904f117e344b9" name="aa45f162b8457a3a9536904f117e344b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa45f162b8457a3a9536904f117e344b9">&#9670;&#160;</a></span>register_io_var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::register_io_var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fname</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convenience function to register a variable for both output and restart. </p>
+
+</div>
+</div>
+<a id="a494ef6d7c09665b9b3d9e5f0733b212e" name="a494ef6d7c09665b9b3d9e5f0733b212e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a494ef6d7c09665b9b3d9e5f0733b212e">&#9670;&#160;</a></span>register_output_int_var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::register_output_int_var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fname</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac13056a8229064be591dc476bf67cea5" name="ac13056a8229064be591dc476bf67cea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac13056a8229064be591dc476bf67cea5">&#9670;&#160;</a></span>register_output_var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::register_output_var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fname</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a variable for output. </p>
+
+</div>
+</div>
+<a id="a7e85c6f39f404ce123a9c46680c6a143" name="a7e85c6f39f404ce123a9c46680c6a143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e85c6f39f404ce123a9c46680c6a143">&#9670;&#160;</a></span>register_restart_var()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::register_restart_var </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>fname</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a variable for restart file. </p>
+
+</div>
+</div>
+<a id="ac91527e8a7a7f6612342728eea8d724c" name="ac91527e8a7a7f6612342728eea8d724c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac91527e8a7a7f6612342728eea8d724c">&#9670;&#160;</a></span>restart_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; kynema_sgf::IOManager::restart_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of the checkpoint file to be read during a restart. </p>
+
+</div>
+</div>
+<a id="a1463949594c7ddf33337c60663f80eb5" name="a1463949594c7ddf33337c60663f80eb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1463949594c7ddf33337c60663f80eb5">&#9670;&#160;</a></span>write_checkpoint_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::write_checkpoint_file </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>start_level</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>end_level</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write all necessary fields for restart. </p>
+
+</div>
+</div>
+<a id="addda6c3cdafad960c9b5c000080022a5" name="addda6c3cdafad960c9b5c000080022a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addda6c3cdafad960c9b5c000080022a5">&#9670;&#160;</a></span>write_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::write_header </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>chkname</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>start_level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>end_level</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a569c7773c4e8a534ed692a60776efe4f" name="a569c7773c4e8a534ed692a60776efe4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a569c7773c4e8a534ed692a60776efe4f">&#9670;&#160;</a></span>write_info_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::write_info_file </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a8b1e24274051dcc539d27911d50036" name="a3a8b1e24274051dcc539d27911d50036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a8b1e24274051dcc539d27911d50036">&#9670;&#160;</a></span>write_plot_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::IOManager::write_plot_file </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write all user-requested fields to disk. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a0a0d089ea3edc7561c0603e0e34a16f7" name="a0a0d089ea3edc7561c0603e0e34a16f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a0d089ea3edc7561c0603e0e34a16f7">&#9670;&#160;</a></span>m_allow_missing_restart_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::IOManager::m_allow_missing_restart_fields {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether we should allow missing restart fields. </p>
+
+</div>
+</div>
+<a id="ae05d715dc366bff47d07824ce88621a6" name="ae05d715dc366bff47d07824ce88621a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae05d715dc366bff47d07824ce88621a6">&#9670;&#160;</a></span>m_chk_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>*&gt; kynema_sgf::IOManager::m_chk_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Final list of fields for restart. </p>
+
+</div>
+</div>
+<a id="a386ee702179a927c4d8294887b865711" name="a386ee702179a927c4d8294887b865711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a386ee702179a927c4d8294887b865711">&#9670;&#160;</a></span>m_chk_prefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::IOManager::m_chk_prefix {&quot;chk&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prefix used for the restart file directories. </p>
+
+</div>
+</div>
+<a id="a1ca40694167928eb6f9980a804cb59bb" name="a1ca40694167928eb6f9980a804cb59bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca40694167928eb6f9980a804cb59bb">&#9670;&#160;</a></span>m_chkvars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;std::string&gt; kynema_sgf::IOManager::m_chkvars</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Variables for output in checkpoint/restart files. </p>
+
+</div>
+</div>
+<a id="aae1bca84a20ff2fce0093757eb950fe4" name="aae1bca84a20ff2fce0093757eb950fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae1bca84a20ff2fce0093757eb950fe4">&#9670;&#160;</a></span>m_derived_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_derived_qty_mgr.html">DerivedQtyMgr</a>&gt; kynema_sgf::IOManager::m_derived_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b5cfd710c6ee036359f758b410b0a26" name="a7b5cfd710c6ee036359f758b410b0a26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b5cfd710c6ee036359f758b410b0a26">&#9670;&#160;</a></span>m_int_plt_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_int_field.html">IntField</a>*&gt; kynema_sgf::IOManager::m_int_plt_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Final list of integer fields to be output. </p>
+
+</div>
+</div>
+<a id="a90e4e93bcc66f5515922d19a84a50901" name="a90e4e93bcc66f5515922d19a84a50901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90e4e93bcc66f5515922d19a84a50901">&#9670;&#160;</a></span>m_int_pltvars_default</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;std::string&gt; kynema_sgf::IOManager::m_int_pltvars_default</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default output integer variables registered automatically in the code. </p>
+
+</div>
+</div>
+<a id="a47abceabd9e47dc597ee1a82060acd08" name="a47abceabd9e47dc597ee1a82060acd08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47abceabd9e47dc597ee1a82060acd08">&#9670;&#160;</a></span>m_nfiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::IOManager::m_nfiles {256}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of plot and checkpoint data files per write. </p>
+
+</div>
+</div>
+<a id="a81ccbbef2e522243be542d14803c1d5e" name="a81ccbbef2e522243be542d14803c1d5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81ccbbef2e522243be542d14803c1d5e">&#9670;&#160;</a></span>m_output_default_vars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::IOManager::m_output_default_vars {true}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag indicating whether default fields should be output. </p>
+
+</div>
+</div>
+<a id="a2798c31ffdc66ae876923ffb4aadd5ed" name="a2798c31ffdc66ae876923ffb4aadd5ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2798c31ffdc66ae876923ffb4aadd5ed">&#9670;&#160;</a></span>m_plt_fields</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;<a class="el" href="classkynema__sgf_1_1_field.html">Field</a>*&gt; kynema_sgf::IOManager::m_plt_fields</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Final list of fields to be output. </p>
+
+</div>
+</div>
+<a id="a79adc1d6d5b83043d57a9ba55cce4af7" name="a79adc1d6d5b83043d57a9ba55cce4af7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79adc1d6d5b83043d57a9ba55cce4af7">&#9670;&#160;</a></span>m_plt_num_comp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::IOManager::m_plt_num_comp {0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Total number of variables (including components) output to plot file. </p>
+
+</div>
+</div>
+<a id="accdf5e483e2f001ec3408a7cc593dab6" name="accdf5e483e2f001ec3408a7cc593dab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accdf5e483e2f001ec3408a7cc593dab6">&#9670;&#160;</a></span>m_plt_prefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::IOManager::m_plt_prefix {&quot;plt&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prefix used for the plot file directories. </p>
+
+</div>
+</div>
+<a id="a2bf8ae7902034111bb177eb9769e58bb" name="a2bf8ae7902034111bb177eb9769e58bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bf8ae7902034111bb177eb9769e58bb">&#9670;&#160;</a></span>m_plt_var_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::string&gt; kynema_sgf::IOManager::m_plt_var_names</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Variable names (including components) for output. </p>
+
+</div>
+</div>
+<a id="a3c2c8d0a5eb249621ad144c833e0c52c" name="a3c2c8d0a5eb249621ad144c833e0c52c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2c8d0a5eb249621ad144c833e0c52c">&#9670;&#160;</a></span>m_pltvars_default</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;std::string&gt; kynema_sgf::IOManager::m_pltvars_default</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default output variables registered automatically in the code. </p>
+
+</div>
+</div>
+<a id="ae74a9e1aa863f44cfb16efca7243a5c9" name="ae74a9e1aa863f44cfb16efca7243a5c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae74a9e1aa863f44cfb16efca7243a5c9">&#9670;&#160;</a></span>m_post_dir</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::IOManager::m_post_dir {&quot;post_processing&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name for the post_processing directory. </p>
+
+</div>
+</div>
+<a id="ace14e5d66a3b6c33faf1395662e52acb" name="ace14e5d66a3b6c33faf1395662e52acb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace14e5d66a3b6c33faf1395662e52acb">&#9670;&#160;</a></span>m_restart_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::IOManager::m_restart_file</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restart file name. </p>
+
+</div>
+</div>
+<a id="aacd037fc631cbc86fc8ee38bbe05fe65" name="aacd037fc631cbc86fc8ee38bbe05fe65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd037fc631cbc86fc8ee38bbe05fe65">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::IOManager::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_i_o_manager_8_h_source.html">IOManager.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/<a class="el" href="_i_o_manager_8cpp.html">IOManager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
