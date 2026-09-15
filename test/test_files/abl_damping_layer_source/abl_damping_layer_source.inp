@@ -1,0 +1,131 @@
+# Regression test for DampingLayer + DampingLayerSource feature combinations
+
+# Simulation control
+time.stop_time = 22000.0
+time.max_step = 10
+
+time.fixed_dt = 0.5
+time.cfl = 0.95
+
+# Output
+# test/CMakeLists overrides plot/checkpoint controls for CI runs
+
+# Physics and numerics
+incflo.gravity = 0.0 0.0 -9.81
+incflo.density = 1.0
+
+incflo.use_godunov = 1
+incflo.diffusion_type = 1
+transport.viscosity = 1.0e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+transport.reference_temperature = 300.0
+
+incflo.physics = ABL DampingLayer
+ICNS.source_terms = BoussinesqBuoyancy DampingLayerSource
+Temperature.source_terms = DampingLayerSource
+
+incflo.post_processing = avg1
+avg1.type = TimeAveraging
+avg1.labels = means
+avg1.averaging_window = 10.0
+avg1.means.fields = velocity
+avg1.means.averaging_type = ReAveraging
+
+incflo.velocity = 6.0 2.0 0.0
+ABL.temperature_heights = 0.0 1000.0
+ABL.temperature_values = 300.0 304.0
+ABL.kappa = 0.41
+ABL.surface_roughness_z0 = 0.15
+
+# DampingLayer physics configuration
+DampingLayer.fields = velocity temperature
+
+DampingLayer.velocity.xlo.thickness = 200.0
+DampingLayer.velocity.xlo.blending_fraction = 0.25
+DampingLayer.velocity.xlo.blending_function_type = linear
+DampingLayer.velocity.xlo.minimum_height = 150.0
+DampingLayer.velocity.xlo.vertical_blending_thickness = 120.0
+DampingLayer.velocity.xlo.vertical_blending_function_type = cosine
+
+DampingLayer.velocity.xhi.thickness = 180.0
+DampingLayer.velocity.xhi.blending_fraction = 0.40
+DampingLayer.velocity.xhi.blending_function_type = quadratic
+
+DampingLayer.velocity.ylo.thickness = 150.0
+DampingLayer.velocity.ylo.blending_fraction = 0.50
+DampingLayer.velocity.ylo.blending_function_type = exponential
+
+DampingLayer.velocity.yhi.thickness = 150.0
+DampingLayer.velocity.yhi.blending_fraction = 0.35
+DampingLayer.velocity.yhi.blending_function_type = cosine
+DampingLayer.velocity.yhi.minimum_height = 120.0
+DampingLayer.velocity.yhi.vertical_blending_thickness = 100.0
+DampingLayer.velocity.yhi.vertical_blending_function_type = linear
+
+DampingLayer.velocity.zlo.thickness = 80.0
+DampingLayer.velocity.zlo.blending_fraction = 0.20
+DampingLayer.velocity.zlo.blending_function_type = cosine
+
+DampingLayer.velocity.zhi.thickness = 120.0
+DampingLayer.velocity.zhi.blending_fraction = 0.30
+DampingLayer.velocity.zhi.blending_function_type = cosine
+
+DampingLayer.temperature.xlo.thickness = 120.0
+DampingLayer.temperature.xlo.blending_fraction = 0.5
+DampingLayer.temperature.xlo.blending_function_type = linear
+
+DampingLayer.temperature.zhi.thickness = 140.0
+DampingLayer.temperature.zhi.blending_fraction = 0.4
+DampingLayer.temperature.zhi.blending_function_type = cosine
+
+# DampingLayerSource targets for velocity
+DampingLayer.velocity.xlo.target_type = constant
+DampingLayer.velocity.xlo.target_value = 8.0 1.0 0.0
+DampingLayer.velocity.xlo.damped_components = 1 1 0
+
+DampingLayer.velocity.xhi.target_type = function
+DampingLayer.velocity.xhi.target_function = "6.0 + 0.001*z + 0.2*n"
+
+DampingLayer.velocity.ylo.target_type = profile
+DampingLayer.velocity.ylo.target_profile_heights = 0.0 500.0 1000.0
+DampingLayer.velocity.ylo.target_profile_values_x = 5.5 6.0 6.5
+DampingLayer.velocity.ylo.target_profile_values_y = 0.5 1.0 1.5
+DampingLayer.velocity.ylo.target_profile_values_z = 0.0 0.0 0.0
+
+DampingLayer.velocity.yhi.target_type = field
+DampingLayer.velocity.yhi.target_field = velocity_mean_avg1
+
+DampingLayer.velocity.zlo.target_type = constant
+DampingLayer.velocity.zlo.target_value = 6.0 0.0 0.0
+DampingLayer.velocity.zlo.damped_components = 1 0 0
+
+DampingLayer.velocity.zhi.target_type = constant
+DampingLayer.velocity.zhi.target_value = 6.0 0.0 0.0
+DampingLayer.velocity.zhi.damped_components = 1 0 1
+
+# DampingLayerSource targets for temperature
+# Use legacy profile key to exercise compatibility path
+DampingLayer.temperature.xlo.target_type = profile
+DampingLayer.temperature.xlo.target_profile_heights = 0.0 500.0 1000.0
+DampingLayer.temperature.xlo.target_profile_values = 300.0 301.5 303.0
+
+DampingLayer.temperature.zhi.target_type = function
+DampingLayer.temperature.zhi.target_function = "300.0 + 0.003*z + 0.1*t"
+
+# Mesh
+amr.n_cell = 32 32 32
+amr.max_level = 0
+
+# Domain
+geometry.prob_lo = 0.0 0.0 0.0
+geometry.prob_hi = 1000.0 1000.0 1000.0
+geometry.is_periodic = 1 1 0
+
+# Boundary conditions
+zlo.type = wall_model
+zhi.type = slip_wall
+zhi.temperature_type = fixed_gradient
+zhi.temperature = 0.003
+
+incflo.verbose = 0
