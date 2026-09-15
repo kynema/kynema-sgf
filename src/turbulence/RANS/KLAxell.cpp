@@ -373,6 +373,12 @@ void KLAxell<Transport>::post_advance_work()
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::post_advance_work");
 }
 
+// KLAxellSeparation derives from these specializations in another translation
+// unit. Explicit instantiation emits every member, the constructor included,
+// even when a compiler inlines it into the factory registration.
+template class KLAxell<transport::ConstTransport>;
+template class KLAxell<transport::TwoPhaseTransport>;
+
 } // namespace turbulence
 
 INSTANTIATE_TURBULENCE_MODEL(KLAxell);

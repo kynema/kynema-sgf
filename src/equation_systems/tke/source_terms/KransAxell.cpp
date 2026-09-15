@@ -23,7 +23,9 @@ KransAxell::KransAxell(const CFDSim& sim)
     , m_velocity(sim.repo().get_field("velocity"))
     , m_transport(sim.transport_model())
 {
-    AMREX_ALWAYS_ASSERT(sim.turbulence_model().model_name() == "KLAxell");
+    const std::string model_name = sim.turbulence_model().model_name();
+    AMREX_ALWAYS_ASSERT(
+        model_name == "KLAxell" || model_name == "KLAxellSeparation");
     auto coeffs = sim.turbulence_model().model_coeffs();
     amrex::ParmParse pp("ABL");
     pp.query("Cmu", m_Cmu);
@@ -80,6 +82,33 @@ KransAxell::KransAxell(const CFDSim& sim)
     }
     if (m_sponge_north) {
         pp_drag.get("sponge_distance_north", m_sponge_distance_north);
+    }
+
+    if (model_name == "KLAxellSeparation") {
+        amrex::ParmParse pp_separation("KLAxellSeparation");
+        pp_separation.query("production_cap", m_production_cap);
+        pp_separation.query("destruction_boost", m_destruction_boost);
+        pp_separation.query("implicit_dissipation", m_implicit_dissipation);
+        if (m_implicit_dissipation) {
+            // The dissipation moves to the diagonal of the TKE diffusion
+            // solve, which the explicit diffusion type does not have. Same
+            // default diffusion type (Crank-Nicolson) as in init.cpp.
+            int diffusion_type = 1;
+            pp_incflo.query("diffusion_type", diffusion_type);
+            if (diffusion_type == 2) {
+                m_implicit_factor = 1.0_rt;
+            } else if (diffusion_type == 1) {
+                m_implicit_factor = 0.5_rt;
+            } else {
+                amrex::Abort(
+                    "KLAxellSeparation.implicit_dissipation requires "
+                    "incflo.diffusion_type = 1 (Crank-Nicolson) or 2 "
+                    "(implicit)");
+            }
+        }
+        // The model declares the gate field when the sensor is on and its
+        // relaxation time is positive (the default)
+        m_relaxed_gate = sim.repo().field_exists("separation_gate");
     }
 }
 
@@ -330,7 +359,187 @@ void KransAxell::operator()(
                 });
         }
     }
+    if (m_production_cap && m_relaxed_gate) {
+        production_cap_relaxed(lev, src_term);
+    } else if (m_production_cap) {
+        production_cap(lev, src_term);
+    }
+    if (m_destruction_boost && m_relaxed_gate) {
+        destruction_boost_relaxed(lev, src_term);
+    } else if (m_destruction_boost) {
+        destruction_boost(lev, src_term);
+    }
+    if (m_implicit_dissipation && (fstate == FieldState::Old)) {
+        // The old-time source is the Godunov forcing of the face states. It
+        // keeps the full dissipation, so the advective fluxes are those of the
+        // explicit treatment and the steady state stays unchanged; the
+        // diagonal is cleared so that a solve with this source stays explicit.
+        m_sim.repo().get_field("tke_lhs_src_term")(lev).setVal(0.0_rt);
+    } else if (m_implicit_dissipation) {
+        implicit_dissipation(lev, fstate, src_term);
+    }
     amrex::Gpu::streamSynchronize();
+}
+
+void KransAxell::production_cap(const int lev, amrex::MultiFab& src_term) const
+{
+    const auto coeffs = m_sim.turbulence_model().model_coeffs();
+    const amrex::Real ratio = coeffs.at("production_cap_ratio");
+    const amrex::Real threshold = coeffs.at("sensor_threshold");
+
+    auto const& src_arrs = src_term.arrays();
+    auto const& shear_prod_arrs = m_shear_prod(lev).const_arrays();
+    auto const& dissip_arrs = m_dissip(lev).const_arrays();
+    auto const& sensor_arrs =
+        m_sim.repo().get_field("pressure_gradient_sensor")(lev).const_arrays();
+
+    // Remove the shear production above ratio * dissipation where the sensor
+    // fires, with the ramp gate of the realizable Cmu limiter. The gate is
+    // exactly 0 below the threshold, so those cells keep the KLAxell source.
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            const amrex::Real gate = amrex::min<amrex::Real>(
+                amrex::max<amrex::Real>(
+                    (sensor_arrs[nbx](i, j, k) - threshold) / threshold,
+                    0.0_rt),
+                1.0_rt);
+            src_arrs[nbx](i, j, k) -=
+                gate * amrex::max<amrex::Real>(
+                           shear_prod_arrs[nbx](i, j, k) -
+                               (ratio * dissip_arrs[nbx](i, j, k)),
+                           0.0_rt);
+        });
+}
+
+void KransAxell::production_cap_relaxed(
+    const int lev, amrex::MultiFab& src_term) const
+{
+    const amrex::Real ratio =
+        m_sim.turbulence_model().model_coeffs().at("production_cap_ratio");
+
+    auto const& src_arrs = src_term.arrays();
+    auto const& shear_prod_arrs = m_shear_prod(lev).const_arrays();
+    auto const& dissip_arrs = m_dissip(lev).const_arrays();
+    auto const& gate_arrs =
+        m_sim.repo().get_field("separation_gate")(lev).const_arrays();
+
+    // Same cap as production_cap with the stored, time-relaxed gate
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            src_arrs[nbx](i, j, k) -=
+                gate_arrs[nbx](i, j, k) *
+                amrex::max<amrex::Real>(
+                    shear_prod_arrs[nbx](i, j, k) -
+                        (ratio * dissip_arrs[nbx](i, j, k)),
+                    0.0_rt);
+        });
+}
+
+void KransAxell::destruction_boost(
+    const int lev, amrex::MultiFab& src_term) const
+{
+    const auto coeffs = m_sim.turbulence_model().model_coeffs();
+    const amrex::Real extra = coeffs.at("destruction_boost_factor") - 1.0_rt;
+    const amrex::Real threshold = coeffs.at("sensor_threshold");
+
+    auto const& src_arrs = src_term.arrays();
+    auto const& dissip_arrs = m_dissip(lev).const_arrays();
+    auto const& sensor_arrs =
+        m_sim.repo().get_field("pressure_gradient_sensor")(lev).const_arrays();
+
+    // Remove (c_d - 1) eps where the sensor fires, with the ramp gate of the
+    // realizable Cmu limiter. The gate is exactly 0 below the threshold, so
+    // those cells keep the KLAxell source.
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            const amrex::Real gate = amrex::min<amrex::Real>(
+                amrex::max<amrex::Real>(
+                    (sensor_arrs[nbx](i, j, k) - threshold) / threshold,
+                    0.0_rt),
+                1.0_rt);
+            src_arrs[nbx](i, j, k) -= gate * extra * dissip_arrs[nbx](i, j, k);
+        });
+}
+
+void KransAxell::destruction_boost_relaxed(
+    const int lev, amrex::MultiFab& src_term) const
+{
+    const amrex::Real extra =
+        m_sim.turbulence_model().model_coeffs().at("destruction_boost_factor") -
+        1.0_rt;
+
+    auto const& src_arrs = src_term.arrays();
+    auto const& dissip_arrs = m_dissip(lev).const_arrays();
+    auto const& gate_arrs =
+        m_sim.repo().get_field("separation_gate")(lev).const_arrays();
+
+    // Same boost as destruction_boost with the stored, time-relaxed gate
+    amrex::ParallelFor(
+        src_term, amrex::IntVect(0), 1,
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+            src_arrs[nbx](i, j, k) -=
+                gate_arrs[nbx](i, j, k) * extra * dissip_arrs[nbx](i, j, k);
+        });
+}
+
+void KransAxell::implicit_dissipation(
+    const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
+{
+    const amrex::Real dt = m_time.delta_t();
+    const amrex::Real Cmu3 = utils::powi(m_Cmu, 3);
+    const amrex::Real factor = m_implicit_factor;
+
+    auto const& src_arrs = src_term.arrays();
+    auto const& dissip_arrs = m_dissip(lev).const_arrays();
+    auto const& tke_arrs = m_tke(lev).const_arrays();
+    auto const& tlscale_arrs = m_turb_lscale(lev).const_arrays();
+    auto const& lhs_arrs =
+        m_sim.repo().get_field("tke_lhs_src_term")(lev).arrays();
+    // Same density state as the multiplication of the source in SrcTermOp
+    auto const& rho_arrs = m_sim.repo()
+                               .get_field("density")
+                               .state(field_impl::phi_state(fstate))(lev)
+                               .const_arrays();
+
+    // With eps = (Cmu^3 sqrt(k) / L) k, factor * eps leaves the explicit
+    // source and factor * rho * dt * Cmu^3 sqrt(k) / L enters the diagonal of
+    // the diffusion solve, with the length scale floored as in the dissipation
+    // of the main kernel. For k^{n+1} = k^n the diagonal term equals the
+    // removed source, so steady states are unchanged.
+    if (m_sim.repo().int_field_exists("terrain_blank")) {
+        // Blanked terrain cells have no dissipation in the source
+        auto const& blank_arrs =
+            m_sim.repo().get_int_field("terrain_blank")(lev).const_arrays();
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                const amrex::Real fluid =
+                    1.0_rt - static_cast<amrex::Real>(blank_arrs[nbx](i, j, k));
+                src_arrs[nbx](i, j, k) +=
+                    fluid * factor * dissip_arrs[nbx](i, j, k);
+                lhs_arrs[nbx](i, j, k) =
+                    fluid * factor * rho_arrs[nbx](i, j, k) * dt * Cmu3 *
+                    std::sqrt(
+                        amrex::max<amrex::Real>(
+                            tke_arrs[nbx](i, j, k), 0.0_rt)) /
+                    (tlscale_arrs[nbx](i, j, k) + kynema_sgf::constants::EPS);
+            });
+    } else {
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                src_arrs[nbx](i, j, k) += factor * dissip_arrs[nbx](i, j, k);
+                lhs_arrs[nbx](i, j, k) =
+                    factor * rho_arrs[nbx](i, j, k) * dt * Cmu3 *
+                    std::sqrt(
+                        amrex::max<amrex::Real>(
+                            tke_arrs[nbx](i, j, k), 0.0_rt)) /
+                    (tlscale_arrs[nbx](i, j, k) + kynema_sgf::constants::EPS);
+            });
+    }
 }
 
 } // namespace kynema_sgf::pde::tke

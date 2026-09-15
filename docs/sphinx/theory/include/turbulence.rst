@@ -63,6 +63,97 @@ a check for near-wall distance from the surface of the terrain. The wall boundar
 above the lower surface and terrain. 
 
 
+Separation treatments for the Axell model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``KLAxellSeparation`` turbulence model is the Axell one-equation model
+above with optional treatments for boundary-layer flow that separates over
+terrain. With every treatment disabled it gives the same results as
+``KLAxell``, and on flat terrain the treatments that are gated by the sensor
+below leave the solution unchanged. The treatments are selected in the
+``KLAxellSeparation`` input section and tuned in
+``KLAxellSeparation_coeffs`` (see :ref:`inputs_turbulence`).
+
+**Sensor and gate.** The pressure-gradient sensor
+
+.. math::
+
+   s = \frac{\hat{u}_i \, \partial p / \partial x_i}
+            {\rho \, (k + c_u |\mathbf{u}|^2) / L}
+
+marks cells where the flow runs against an adverse pressure gradient. The
+treatments that depend on it act through a gate :math:`g` that ramps from 0 at
+the threshold :math:`s_T` to 1 at :math:`2 s_T`. By default the gate relaxes
+toward that ramp value with a time scale of 10 s
+(``KLAxellSeparation_coeffs.gate_relaxation_time``). An instantaneous gate lets
+the treatments, the pressure field and the sensor feed back on each other
+from one time step to the next, which produced grid-scale stripes in the eddy
+viscosity. A gate that is 0 stays exactly 0 while the sensor stays below the
+threshold. Once the relaxed gate has opened, it decays toward 0 with the time
+scale :math:`\tau` after the sensor falls below the threshold, so it stays
+positive for a while.
+
+**Treatments.**
+
+- ``realizable_cmu``: the eddy viscosity and the shear and buoyancy
+  production are divided by :math:`1 + c_s \, g \, \max(0, \Sigma / C_\mu - 1)`,
+  with :math:`\Sigma = L S / \sqrt{k}`, which equals :math:`C_\mu` in an
+  equilibrium log layer. This limits the eddy viscosity where the strain rate
+  is large compared with the turbulence, as in an adverse pressure gradient.
+- ``production_cap``: the shear production above :math:`C_P \varepsilon` is
+  removed where the gate is open. It acts as a safety limit at stagnation
+  points.
+- ``destruction_boost``: the dissipation in the source of the turbulent
+  kinetic energy is multiplied by :math:`1 + g (c_d - 1)`.
+- ``curvature_correction``: a streamline-curvature correction that is not
+  gated by the sensor and does nothing where the streamlines are straight. The
+  default ``richardson`` model adds a curvature Richardson number to
+  :math:`R_t`; the ``rotation_function`` model is also available.
+- ``implicit_dissipation``: a numerical option that treats the dissipation
+  implicitly in the diffusion solve. Converged solutions are unchanged; it
+  prevents the dissipation from driving the turbulent kinetic energy negative
+  with large time steps.
+
+**Recommended settings.** For flow over terrain where separation matters:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Input
+     - Recommendation
+   * - ``KLAxellSeparation.pressure_gradient_sensor`` and
+       ``KLAxellSeparation.realizable_cmu``
+     - ``true``; the main treatment.
+   * - ``KLAxellSeparation_coeffs.gate_relaxation_time``
+     - Keep the default of 10 s. A value of 0 gives the instantaneous gate.
+   * - ``KLAxellSeparation.curvature_correction``
+     - Optional; ``true`` adds the effect of streamline curvature, which also
+       changes the flow away from the separation region.
+   * - ``KLAxellSeparation.destruction_boost``,
+       ``KLAxellSeparation.production_cap``
+     - Optional; small effect with the default coefficients.
+   * - ``KLAxellSeparation.implicit_dissipation``
+     - Optional, for large time steps.
+   * - ``KLAxellSeparation.sensor_source``
+     - Keep ``pressure``. The ``velocity`` sensor concentrated the limiter in
+       a thin band at crest height.
+
+**Smooth-hill test.** A periodic two-dimensional hill of height 100 m and
+half-width 400 m in a neutral boundary layer (``TerrainDrag``, 4 m grid,
+300 s) separates on the lee slope with ``KLAxell``. The number of cells with
+reversed flow was 117 with ``KLAxell``, 135 with the sensor, the limiter and
+the relaxed gate, 157 with the curvature correction added, and 165 with all
+treatments on. The instantaneous gate gave the same separation as the relaxed
+gate but a cell-to-cell roughness of the eddy viscosity about 190 times that
+of ``KLAxell``; the relaxed gate reduced it to about 5 times, as one smooth
+region under the shear layer that leaves the crest. The same trend held on an
+8 m grid (11, 20 and 33 cells). Away from the hill the eddy viscosity changed
+by less than about 10 percent for most cells. These runs show the effect of the
+treatments; they are not a comparison with measurements.
+
+The shear production passed to the production cap carries the density of the
+eddy viscosity, so :math:`C_P` is measured against :math:`\rho \varepsilon`.
+
 LES models for subgrid scales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Smagorinsky model
