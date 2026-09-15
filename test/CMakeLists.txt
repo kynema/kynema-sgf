@@ -186,6 +186,10 @@ add_test_rd(abl_multiphase_laminar)
 add_test_rd(abl_sampling)
 add_test_rd(abl_specifiedmol_neutral)
 add_test_rd(act_fixed_wing)
+add_test_rd(act_drone_refinement)
+set_tests_properties(
+  act_drone_refinement
+  PROPERTIES PASS_REGULAR_EXPRESSION "Level 2")
 add_test_rd(boussinesq_bubble_godunov)
 add_test_rd(channel_builder_single_phase_periodic)
 add_test_rd(channel_godunov_laminar)

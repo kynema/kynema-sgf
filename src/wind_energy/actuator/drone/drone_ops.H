@@ -37,6 +37,20 @@ struct ComputeForceOp<Drone, ActSrcDrone>
 };
 
 template <>
+struct RefinementGeometryOp<Drone, ActSrcDrone>
+{
+    [[nodiscard]] amrex::Vector<ActuatorRefinementGeometry>
+    operator()(const Drone::DataType& data, amrex::Real time) const;
+};
+
+template <>
+struct ReferenceFrameOp<Drone, ActSrcDrone>
+{
+    [[nodiscard]] std::optional<motion::RigidTransform>
+    operator()(const Drone::DataType& data, amrex::Real time) const;
+};
+
+template <>
 struct ProcessOutputsOp<Drone, ActSrcDrone>
 {
     explicit ProcessOutputsOp(Drone::DataType& data) : m_data(data) {}

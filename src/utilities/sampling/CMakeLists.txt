@@ -9,7 +9,9 @@ target_sources(${kynema_sgf_lib_name}
   RadarSampler.cpp
   DTUSpinnerSampler.cpp
   PlaneSampler.cpp
+  MovingPlaneSampler.cpp
   ProbeSampler.cpp
   FreeSurfaceSampler.cpp
   VolumeSampler.cpp
+  MovingVolumeSampler.cpp
   )

@@ -313,6 +313,21 @@ void build_gaussian_table(ActuatorSectorData& meta)
     }
 }
 
+ActuatorRefinementGeometry refinement_geometry(
+    const ActuatorSectorData& meta,
+    const std::string& label,
+    const amrex::Real time)
+{
+    const auto orientation = meta.body_motion->orientation(time);
+    const auto center =
+        meta.body_motion->position(time) + (orientation & meta.body_offset);
+    auto normal = orientation & vs::Vector::khat();
+    normal /= vs::mag(normal);
+
+    const amrex::Real epsilon_max = local_epsilon(meta, max_interp_chord(meta));
+    return {label, center, normal, meta.rotor_radius, epsilon_max};
+}
+
 void prepare_netcdf_group(
     const ncutils::NCGroup& parent,
     const std::string& group_name,
@@ -687,6 +702,26 @@ void InitDataOp<ActuatorSector, ActSrcSector>::operator()(
         grid.density[ip] = 1.0_rt;
     }
     sector::update_midpoint_sample_points(data);
+}
+
+amrex::Vector<ActuatorRefinementGeometry>
+RefinementGeometryOp<ActuatorSector, ActSrcSector>::operator()(
+    const ActuatorSector::DataType& data, const amrex::Real time) const
+{
+    return {sector::refinement_geometry(data.meta(), data.info().label, time)};
+}
+
+std::optional<motion::RigidTransform>
+ReferenceFrameOp<ActuatorSector, ActSrcSector>::operator()(
+    const ActuatorSector::DataType& data, const amrex::Real time) const
+{
+    const auto& motion = data.meta().body_motion;
+    if (motion == nullptr) {
+        return std::nullopt;
+    }
+    auto pose = motion->pose(time);
+    pose.position = pose.apply_point(data.meta().body_offset);
+    return pose;
 }
 
 void UpdatePosOp<ActuatorSector, ActSrcSector>::operator()(
