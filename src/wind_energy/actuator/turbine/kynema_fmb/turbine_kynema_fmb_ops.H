@@ -168,9 +168,10 @@ struct ComputeLoadsAndUpdateStateOp<TurbineKynemaFMB, SrcTrait>
     void operator()(typename TurbineKynemaFMB::DataType& data)
     {
         BL_PROFILE(
-            "kynema-sgf::actuator::ComputeLoadsAndUpdateStateOp<TurbineKynemaFMB>");
-        advance_external_turbine_and_update_loads<
-            TurbineKynemaFMB::DataType>(data);
+            "kynema-sgf::actuator::ComputeLoadsAndUpdateStateOp<"
+            "TurbineKynemaFMB>");
+        advance_external_turbine_and_update_loads<TurbineKynemaFMB::DataType>(
+            data);
     }
 };
 

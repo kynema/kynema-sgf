@@ -163,7 +163,8 @@ struct ComputeLoadsAndUpdateStateOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
                 std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
                 << ", " << i;
         }
-        ComputeLoadsAndUpdateStateOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk>
+        ComputeLoadsAndUpdateStateOp<
+            ::kynema_sgf::actuator::Joukowsky, ActSrcDisk>
             actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
         for (int i = 0; i < meta.num_force_pts; ++i) {

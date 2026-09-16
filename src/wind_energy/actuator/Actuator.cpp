@@ -281,7 +281,8 @@ void Actuator::update_actuator_state_from_sampled_fields()
 void Actuator::compute_actuator_loads_and_update_state()
 {
     BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::compute_actuator_loads_and_update_state");
+        "kynema-sgf::actuator::Actuator::compute_actuator_loads_and_update_"
+        "state");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
             ac->compute_loads_and_update_state();
