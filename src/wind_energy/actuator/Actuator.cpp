@@ -234,7 +234,8 @@ void Actuator::setup_container()
 void Actuator::update_actuator_positions_and_sample_fields()
 {
     BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::update_actuator_positions_and_sample_fields");
+        "kynema-sgf::actuator::Actuator::update_actuator_positions_and_sample_"
+        "fields");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -258,7 +259,8 @@ void Actuator::update_actuator_positions_and_sample_fields()
 void Actuator::update_actuator_state_from_sampled_fields()
 {
     BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::update_actuator_state_from_sampled_fields");
+        "kynema-sgf::actuator::Actuator::update_actuator_state_from_sampled_"
+        "fields");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
