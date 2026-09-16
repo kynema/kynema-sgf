@@ -58,19 +58,29 @@ void LineSampler::check_bounds()
 
 void LineSampler::sampling_locations(SampleLocType& sample_locs) const
 {
-    AMREX_ALWAYS_ASSERT(sample_locs.locations().empty());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        sample_locs.locations().empty(),
+        "sample_locs.locations().size() = " +
+            std::to_string(sample_locs.locations().size()));
 
     const int lev = 0;
     const auto domain = m_sim.mesh().Geom(lev).Domain();
     sampling_locations(sample_locs, domain);
 
-    AMREX_ALWAYS_ASSERT(sample_locs.locations().size() == num_points());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        sample_locs.locations().size() == num_points(),
+        "sample_locs.locations().size() = " +
+            std::to_string(sample_locs.locations().size()) +
+            ", num_points() = " + std::to_string(num_points()));
 }
 
 void LineSampler::sampling_locations(
     SampleLocType& sample_locs, const amrex::Box& box) const
 {
-    AMREX_ALWAYS_ASSERT(sample_locs.locations().empty());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        sample_locs.locations().empty(),
+        "sample_locs.locations().size() = " +
+            std::to_string(sample_locs.locations().size()));
 
     const int lev = 0;
     const auto& dxinv = m_sim.mesh().Geom(lev).InvCellSizeArray();
