@@ -68,7 +68,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 // this will then be spread uniformly over that area in the
 // projection step
 template <>
-struct ComputeForceOp<UniformCt, ActSrcDisk>
+struct ComputeLoadsAndUpdateStateOp<UniformCt, ActSrcDisk>
 {
     void operator()(UniformCt::DataType& data)
     {

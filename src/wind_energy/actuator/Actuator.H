@@ -77,7 +77,7 @@ private:
 
     void update_actuator_state_from_sampled_fields();
 
-    void compute_actuator_forces();
+    void compute_actuator_loads_and_update_state();
 
     void accumulate_actuator_source_terms();
 

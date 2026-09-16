@@ -187,7 +187,7 @@ struct InitDataOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 };
 
 template <>
-struct ComputeForceOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
+struct ComputeLoadsAndUpdateStateOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
     void operator()(::kynema_sgf_tests::FixedWing::DataType& data)
     {
@@ -195,7 +195,8 @@ struct ComputeForceOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
             std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt;
         const auto& meta = data.meta();
         const auto& grid = data.grid();
-        ComputeForceOp<::kynema_sgf::actuator::FixedWing, ActSrcLine> actual_op;
+        ComputeLoadsAndUpdateStateOp<::kynema_sgf::actuator::FixedWing, ActSrcLine>
+            actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
         const auto time = data.sim().time().new_time();
         // Do checks for each case

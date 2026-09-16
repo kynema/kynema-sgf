@@ -114,7 +114,7 @@ void Actuator::post_init_actions()
     setup_container();
     update_actuator_positions_and_sample_fields();
     update_actuator_state_from_sampled_fields();
-    compute_actuator_forces();
+    compute_actuator_loads_and_update_state();
     accumulate_actuator_source_terms();
     prepare_outputs();
 }
@@ -152,7 +152,7 @@ void Actuator::pre_advance_work()
     m_container->reset_container();
     update_actuator_positions_and_sample_fields();
     update_actuator_state_from_sampled_fields();
-    compute_actuator_forces();
+    compute_actuator_loads_and_update_state();
     accumulate_actuator_source_terms();
     communicate_turbine_io();
 }
@@ -276,14 +276,15 @@ void Actuator::update_actuator_state_from_sampled_fields()
     }
 }
 
-/** Compute force contributions for all local actuator components.
+/** Compute loads and update state for all local actuator components.
  */
-void Actuator::compute_actuator_forces()
+void Actuator::compute_actuator_loads_and_update_state()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_actuator_forces");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::compute_actuator_loads_and_update_state");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
-            ac->compute_forces();
+            ac->compute_loads_and_update_state();
         }
     }
 }
