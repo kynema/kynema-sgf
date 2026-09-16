@@ -809,7 +809,9 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     // Determine the number of substeps for Kynema per CFD timestep
     fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
 
-    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fi.num_substeps > 0,
+        "fi.num_substeps = " + std::to_string(fi.num_substeps));
     // Check that the time step sizes are consistent and Kynema advances at an
     // integral multiple of CFD timestep
     amrex::Real dt_err =

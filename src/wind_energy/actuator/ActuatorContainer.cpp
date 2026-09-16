@@ -60,7 +60,10 @@ void ActuatorContainer::initialize_container()
         MPI_Allgather(
             &local_total_pts, 1, MPI_INT, pts_per_proc.data(), 1, MPI_INT,
             amrex::ParallelDescriptor::Communicator());
-        AMREX_ALWAYS_ASSERT(local_total_pts == total_pts);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            local_total_pts == total_pts,
+            "local_total_pts = " + std::to_string(local_total_pts) +
+                ", total_pts = " + std::to_string(total_pts));
 #else
         pts_per_proc.resize(nproc);
         pts_per_proc[0] = total_pts;
@@ -91,8 +94,8 @@ void ActuatorContainer::initialize_particles(const int total_pts)
     // from 1.
     ParticleType::NextID(1U);
     const auto id_start = ParticleType::NextID();
-    AMREX_ALWAYS_ASSERT(
-        id_start == 1U); // NOLINT(modernize-use-integer-sign-comparison)
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        id_start == 1U, "id_start = " + std::to_string(id_start));
     const int iproc = amrex::ParallelDescriptor::MyProc();
 
     // Flag indicating if a tile was found where all particles were deposited.
@@ -162,7 +165,11 @@ void ActuatorContainer::reset_container()
 void ActuatorContainer::update_positions()
 {
     BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::update_positions");
-    AMREX_ALWAYS_ASSERT(m_container_initialized && !m_is_scattered);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_container_initialized && !m_is_scattered,
+        "m_container_initialized = " +
+            std::to_string(m_container_initialized) + ", m_is_scattered = " +
+            std::to_string(m_is_scattered));
 
     const auto dpos = gpu::device_view(m_data.position);
     const auto* const dptr = dpos.data();
@@ -204,7 +211,11 @@ void ActuatorContainer::update_positions()
 void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
 {
     BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::sample_velocities");
-    AMREX_ALWAYS_ASSERT(m_container_initialized && m_is_scattered);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_container_initialized && m_is_scattered,
+        "m_container_initialized = " +
+            std::to_string(m_container_initialized) + ", m_is_scattered = " +
+            std::to_string(m_is_scattered));
 
     // Sample velocity field
     interpolate_fields(vel, density);

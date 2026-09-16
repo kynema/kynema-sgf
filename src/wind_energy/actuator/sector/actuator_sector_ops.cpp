@@ -80,7 +80,8 @@ void build_radial_grid(ActuatorSectorData& meta)
     RealList dense_r(dense_n);
     RealList metric(dense_n, 0.0_rt);
     const amrex::Real span = meta.rotor_radius - meta.root_radius;
-    AMREX_ALWAYS_ASSERT(span > 0.0_rt);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        span > 0.0_rt, "span = " + std::to_string(span));
 
     for (int i = 0; i < dense_n; ++i) {
         const amrex::Real xi =
@@ -589,18 +590,45 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
                "are both specified. Using constant 'epsilon'; "
                "'epsilon_chord' and 'epsilon_min' will be ignored.\n";
     }
-    AMREX_ALWAYS_ASSERT(meta.num_blades > 0);
-    AMREX_ALWAYS_ASSERT(meta.rotor_diameter > 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.epsilon >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.epsilon_chord >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.epsilon_min >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.num_blades > 0,
+        "meta.num_blades = " + std::to_string(meta.num_blades));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.rotor_diameter > 0.0_rt,
+        "meta.rotor_diameter = " + std::to_string(meta.rotor_diameter));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.epsilon >= 0.0_rt,
+        "meta.epsilon = " + std::to_string(meta.epsilon));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.epsilon_chord >= 0.0_rt,
+        "meta.epsilon_chord = " + std::to_string(meta.epsilon_chord));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.epsilon_min >= 0.0_rt,
+        "meta.epsilon_min = " + std::to_string(meta.epsilon_min));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         (meta.user_epsilon && (meta.epsilon > 0.0_rt)) ||
-        (!meta.user_epsilon && (meta.epsilon_chord > 0.0_rt)));
-    AMREX_ALWAYS_ASSERT(meta.root_radius_fraction >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.root_radius_fraction < 1.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.span_locs.size() == meta.chord_inp.size());
-    AMREX_ALWAYS_ASSERT(meta.span_locs.size() == meta.twist_inp.size());
+            (!meta.user_epsilon && (meta.epsilon_chord > 0.0_rt)),
+        "meta.user_epsilon = " + std::to_string(meta.user_epsilon) +
+            ", meta.epsilon = " + std::to_string(meta.epsilon) +
+            ", meta.epsilon_chord = " + std::to_string(meta.epsilon_chord));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.root_radius_fraction >= 0.0_rt,
+        "meta.root_radius_fraction = " +
+            std::to_string(meta.root_radius_fraction));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.root_radius_fraction < 1.0_rt,
+        "meta.root_radius_fraction = " +
+            std::to_string(meta.root_radius_fraction));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.span_locs.size() == meta.chord_inp.size(),
+        "meta.span_locs.size() = " + std::to_string(meta.span_locs.size()) +
+            ", meta.chord_inp.size() = " +
+            std::to_string(meta.chord_inp.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.span_locs.size() == meta.twist_inp.size(),
+        "meta.span_locs.size() = " + std::to_string(meta.span_locs.size()) +
+            ", meta.twist_inp.size() = " +
+            std::to_string(meta.twist_inp.size()));
 
     meta.rotor_radius = 0.5_rt * meta.rotor_diameter;
     meta.root_radius = meta.root_radius_fraction * meta.rotor_radius;

@@ -126,8 +126,14 @@ void ExtTurbIface<FastTurbine, FastSolverData>::init_solution(
     const int local_id)
 {
     BL_PROFILE("kynema-sgf::FastIface::init_solution");
-    AMREX_ALWAYS_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
-    AMREX_ALWAYS_ASSERT(m_is_initialized);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        local_id < static_cast<int>(m_turbine_data.size()),
+        "local_id = " + std::to_string(local_id) +
+            ", m_turbine_data.size() = " +
+            std::to_string(m_turbine_data.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_is_initialized,
+        "m_is_initialized = " + std::to_string(m_is_initialized));
 
     auto& fi = *m_turbine_data[local_id];
     fast_func(FAST_Solution0, &fi.tid_local);
@@ -341,7 +347,9 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
     // Determine the number of substeps for FAST per CFD timestep
     fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
 
-    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fi.num_substeps > 0,
+        "fi.num_substeps = " + std::to_string(fi.num_substeps));
     // Check that the time step sizes are consistent and FAST advances at an
     // integral multiple of CFD timestep
     amrex::Real dt_err =
@@ -400,7 +408,10 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
             fast_func(FAST_Step, &fi.tid_local);
         }
     }
-    AMREX_ALWAYS_ASSERT(fi.time_index == num_steps);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fi.time_index == num_steps,
+        "fi.time_index = " + std::to_string(fi.time_index) +
+            ", num_steps = " + std::to_string(num_steps));
 #else
     amrex::ignore_unused(fi);
     amrex::Abort(
@@ -460,7 +471,9 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
     // Determine the number of substeps for FAST per CFD timestep
     fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
 
-    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fi.num_substeps > 0,
+        "fi.num_substeps = " + std::to_string(fi.num_substeps));
     // Check that the time step sizes are consistent and FAST advances at an
     // integral multiple of CFD timestep
     amrex::Real dt_err =

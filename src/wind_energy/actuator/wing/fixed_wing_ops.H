@@ -46,8 +46,12 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
         amrex::Vector<int> force_coord_flags_query_inp;
         pp.queryarr("active_force_dirs", force_coord_flags_query_inp);
         if (!force_coord_flags_query_inp.empty()) {
-            AMREX_ALWAYS_ASSERT(
-                force_coord_flags_query_inp.size() == AMREX_SPACEDIM);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                force_coord_flags_query_inp.size() == AMREX_SPACEDIM,
+                "force_coord_flags_query_inp.size() = " +
+                    std::to_string(force_coord_flags_query_inp.size()) +
+                    ", AMREX_SPACEDIM = " +
+                    std::to_string(AMREX_SPACEDIM));
             wdata.force_coord_flags = force_coord_flags_query_inp;
         }
 
@@ -100,7 +104,12 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
                 "of 'epsilon' or 'epsilon_chord'");
         }
 
-        AMREX_ALWAYS_ASSERT(wdata.span_locs.size() == wdata.chord_inp.size());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            wdata.span_locs.size() == wdata.chord_inp.size(),
+            "wdata.span_locs.size() = " +
+                std::to_string(wdata.span_locs.size()) +
+                ", wdata.chord_inp.size() = " +
+                std::to_string(wdata.chord_inp.size()));
 
         amrex::Real max_chord = *std::ranges::max_element(wdata.chord_inp);
         amrex::Real max_eps = *std::ranges::max_element(wdata.eps_inp);

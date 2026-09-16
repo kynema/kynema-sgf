@@ -83,14 +83,20 @@ void RotorMotion::read_sector_inputs(
 
 amrex::Real RotorMotion::omega(const int rotor, const amrex::Real time) const
 {
-    AMREX_ALWAYS_ASSERT(rotor >= 0 && rotor < num_rotors());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        rotor >= 0 && rotor < num_rotors(),
+        "rotor = " + std::to_string(rotor) + ", num_rotors() = " +
+            std::to_string(num_rotors()));
     return m_speed_table.empty() ? m_constant_omegas[rotor]
                                  : m_speed_table.value(time)[rotor];
 }
 
 amrex::Real RotorMotion::azimuth(const int rotor, const amrex::Real time) const
 {
-    AMREX_ALWAYS_ASSERT(rotor >= 0 && rotor < num_rotors());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        rotor >= 0 && rotor < num_rotors(),
+        "rotor = " + std::to_string(rotor) + ", num_rotors() = " +
+            std::to_string(num_rotors()));
     // Integrating omega preserves phase when speed varies; omega(t) * time
     // would only be correct for a constant rotor speed.
     const amrex::Real angle = m_speed_table.empty()
