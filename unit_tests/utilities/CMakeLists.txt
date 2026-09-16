@@ -17,6 +17,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_post_processing_time.cpp
   test_time_averaging.cpp
   test_subvolume.cpp
+  test_rans_convergence.cpp
   )
 
 if (KYNEMA_SGF_ENABLE_NETCDF)

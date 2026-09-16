@@ -245,6 +245,14 @@ The second argument to ``add_test_re`` indicates the number of parallel
 processes used to run the test. Currently it is recommended that the tests be
 run using 4 MPI ranks.
 
+Every regression test is run with ``time.max_step=6`` appended to its input,
+and when gold files are saved or compared the plot file :file:`plt00006` is the
+one used. A test must therefore run to step 6 and write that plot file. A test
+of a feature that ends the run early, such as ``RANSConvergence``, has to be
+tuned so the stop lands on step 6; a test that stops sooner fails the
+gold-saving job with ``cp: cannot stat ... plt00006``, even though the run
+itself succeeded.
+
 Test outputs and troubleshooting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

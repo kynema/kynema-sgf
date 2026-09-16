@@ -5,7 +5,8 @@ Section: Post-processing
 
 This section controls post-processing routines supported within
 Kynema-SGF, which include Sampling, Subvolume, Reynolds Averaging (ReAveraging),
-ReynoldsStress, TimeAveraging, Enstrophy, FieldNorms, KineticEnergy, and WaveEnergy.
+ReynoldsStress, TimeAveraging, Enstrophy, FieldNorms, KineticEnergy, WaveEnergy,
+and RANSConvergence.
 
 Note that while the input parameters use the keyword ``postproc``, the
 actual keyword is determined by the labels provided to
