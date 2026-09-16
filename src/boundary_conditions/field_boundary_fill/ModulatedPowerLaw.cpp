@@ -56,7 +56,12 @@ ModulatedPowerLaw::ModulatedPowerLaw(CFDSim& sim)
     pp_abl.getarr("temperature_heights", m_theta_heights);
     pp_abl.getarr("temperature_values", m_theta_values);
 
-    AMREX_ALWAYS_ASSERT(m_theta_heights.size() == m_theta_values.size());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_theta_heights.size() == m_theta_values.size(),
+        "m_theta_heights.size() = " +
+            std::to_string(m_theta_heights.size()) +
+            ", m_theta_values.size() = " +
+            std::to_string(m_theta_values.size()));
     int num_theta_values = static_cast<int>(m_theta_heights.size());
     m_thht_d.resize(num_theta_values);
     m_thvv_d.resize(num_theta_values);

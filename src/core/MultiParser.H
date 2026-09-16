@@ -45,7 +45,11 @@ public:
     {
         amrex::Vector<vs::Vector::value_type> val;
         getarr(name, val);
-        AMREX_ALWAYS_ASSERT(val.size() == AMREX_SPACEDIM);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            val.size() == AMREX_SPACEDIM,
+            "name = " + name + ", val.size() = " +
+                std::to_string(val.size()) + ", AMREX_SPACEDIM = " +
+                std::to_string(AMREX_SPACEDIM));
         value.x() = val[0];
         value.y() = val[1];
         value.z() = val[2];
@@ -61,7 +65,11 @@ public:
         amrex::Vector<vs::Vector::value_type> val;
         queryarr(name, val);
         if (!val.empty()) {
-            AMREX_ALWAYS_ASSERT(val.size() == AMREX_SPACEDIM);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                val.size() == AMREX_SPACEDIM,
+                "name = " + name + ", val.size() = " +
+                    std::to_string(val.size()) + ", AMREX_SPACEDIM = " +
+                    std::to_string(AMREX_SPACEDIM));
             value.x() = val[0];
             value.y() = val[1];
             value.z() = val[2];
@@ -77,7 +85,11 @@ public:
     {
         amrex::Vector<vs::Vector::value_type> val;
         getarr(name, val);
-        AMREX_ALWAYS_ASSERT(val.size() == AMREX_SPACEDIM || val.size() == 1);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            val.size() == AMREX_SPACEDIM || val.size() == 1,
+            "name = " + name + ", val.size() = " +
+                std::to_string(val.size()) + ", AMREX_SPACEDIM = " +
+                std::to_string(AMREX_SPACEDIM));
         if (val.size() == 1) {
             value.x() = val[0];
             value.y() = val[0];
@@ -99,8 +111,11 @@ public:
         amrex::Vector<vs::Vector::value_type> val;
         queryarr(name, val);
         if (!val.empty()) {
-            AMREX_ALWAYS_ASSERT(
-                val.size() == AMREX_SPACEDIM || val.size() == 1);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                val.size() == AMREX_SPACEDIM || val.size() == 1,
+                "name = " + name + ", val.size() = " +
+                    std::to_string(val.size()) + ", AMREX_SPACEDIM = " +
+                    std::to_string(AMREX_SPACEDIM));
             if (val.size() == 1) {
                 value.x() = val[0];
                 value.y() = val[0];
