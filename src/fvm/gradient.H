@@ -18,9 +18,17 @@ struct Gradient
     Gradient(FTypeOut& gradphi, const FTypeIn& phi)
         : m_gradphi(gradphi), m_phi(phi)
     {
-        AMREX_ALWAYS_ASSERT(
-            gradphi.num_comp() == AMREX_SPACEDIM * phi.num_comp());
-        AMREX_ALWAYS_ASSERT(m_phi.num_grow() > amrex::IntVect(0));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            gradphi.num_comp() == AMREX_SPACEDIM * phi.num_comp(),
+            "gradphi.num_comp() = " + std::to_string(gradphi.num_comp()) +
+                ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM) +
+                ", phi.num_comp() = " + std::to_string(phi.num_comp()));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            m_phi.num_grow() > amrex::IntVect(0),
+            "m_phi.num_grow() = (" +
+                std::to_string(m_phi.num_grow()[0]) + ", " +
+                std::to_string(m_phi.num_grow()[1]) + ", " +
+                std::to_string(m_phi.num_grow()[2]) + ")");
     }
 
     template <typename Stencil>

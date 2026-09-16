@@ -21,8 +21,17 @@ struct Filter
     Filter(FTypeOut& filterphi, const FTypeIn& phi)
         : m_filterphi(filterphi), m_phi(phi)
     {
-        AMREX_ALWAYS_ASSERT(filterphi.num_comp() == phi.num_comp());
-        AMREX_ALWAYS_ASSERT(m_phi.num_grow() > amrex::IntVect(0));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            filterphi.num_comp() == phi.num_comp(),
+            "filterphi.num_comp() = " +
+                std::to_string(filterphi.num_comp()) + ", phi.num_comp() = " +
+                std::to_string(phi.num_comp()));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            m_phi.num_grow() > amrex::IntVect(0),
+            "m_phi.num_grow() = (" +
+                std::to_string(m_phi.num_grow()[0]) + ", " +
+                std::to_string(m_phi.num_grow()[1]) + ", " +
+                std::to_string(m_phi.num_grow()[2]) + ")");
     }
 
     template <typename Stencil>
