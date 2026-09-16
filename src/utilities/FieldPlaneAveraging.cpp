@@ -22,7 +22,7 @@ FPlaneAveraging<FType>::FPlaneAveraging(
     , m_max_level(max_level)
     , m_comp_deriv(compute_deriv)
 {
-    AMREX_ALWAYS_ASSERT(m_axis >= 0 && m_axis < AMREX_SPACEDIM);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(m_axis >= 0 && m_axis < AMREX_SPACEDIM, "m_axis = " + std::to_string(m_axis) + ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
     const auto& mesh = m_field.repo().mesh();
     auto geom = mesh.Geom();
 
@@ -40,12 +40,12 @@ FPlaneAveraging<FType>::FPlaneAveraging(
     const int dom_lo = dom_lo_vec[m_axis];
     const int dom_hi = dom_hi_vec[m_axis];
 
-    AMREX_ALWAYS_ASSERT(dom_lo == 0);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(dom_lo == 0, "dom_lo = " + std::to_string(dom_lo));
     int dom_hi2 = geom[0].Domain().bigEnd()[m_axis] + 1;
     for (int i = 0; i < finestLevel; ++i) {
         dom_hi2 *= mesh.refRatio(i)[m_axis];
     }
-    AMREX_ALWAYS_ASSERT(dom_hi + 1 == dom_hi2);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(dom_hi + 1 == dom_hi2, "dom_hi = " + std::to_string(dom_hi) + ", dom_hi2 = " + std::to_string(dom_hi2));
 
     // TODO: make an input maybe?
     m_ncell_line = dom_hi - dom_lo + 1;
@@ -92,7 +92,7 @@ void FPlaneAveraging<FType>::convert_x_to_ind(
         c = 1.0_rt;
     }
 
-    AMREX_ALWAYS_ASSERT(ind >= 0 && ind + 1 < m_ncell_line);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(ind >= 0 && ind + 1 < m_ncell_line, "ind = " + std::to_string(ind) + ", m_ncell_line = " + std::to_string(m_ncell_line));
 }
 
 template <typename FType>
@@ -153,7 +153,7 @@ FPlaneAveraging<FType>::line_average_interpolated(amrex::Real x, int comp) const
 
     BL_PROFILE("kynema-sgf::PlaneAveraging::line_average_interpolated");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(comp >= 0 && comp < m_ncomp, "comp = " + std::to_string(comp) + ", m_ncomp = " + std::to_string(m_ncomp));
 
     int ind;
     amrex::Real c;
@@ -169,7 +169,7 @@ void FPlaneAveraging<FType>::line_average(
 {
     BL_PROFILE("kynema-sgf::PlaneAveraging::line_average");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(comp >= 0 && comp < m_ncomp, "comp = " + std::to_string(comp) + ", m_ncomp = " + std::to_string(m_ncomp));
 
     for (int i = 0; i < m_ncell_line; i++) {
         l_vec[i] = m_line_average[(m_ncomp * i) + comp];
@@ -181,8 +181,8 @@ amrex::Real FPlaneAveraging<FType>::line_average_cell(int ind, int comp) const
 {
     BL_PROFILE("kynema-sgf::PlaneAveraging::line_average_cell");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
-    AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(comp >= 0 && comp < m_ncomp, "comp = " + std::to_string(comp) + ", m_ncomp = " + std::to_string(m_ncomp));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(ind >= 0 && ind < m_ncell_line, "ind = " + std::to_string(ind) + ", m_ncell_line = " + std::to_string(m_ncell_line));
 
     return m_line_average[(m_ncomp * ind) + comp];
 }
@@ -440,8 +440,8 @@ FPlaneAveraging<FType>::line_derivative_of_average_cell(int ind, int comp) const
 {
     BL_PROFILE("kynema-sgf::PlaneAveraging::line_derivative_of_average_cell");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
-    AMREX_ALWAYS_ASSERT(ind >= 0 && ind < m_ncell_line);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(comp >= 0 && comp < m_ncomp, "comp = " + std::to_string(comp) + ", m_ncomp = " + std::to_string(m_ncomp));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(ind >= 0 && ind < m_ncell_line, "ind = " + std::to_string(ind) + ", m_ncell_line = " + std::to_string(m_ncell_line));
 
     amrex::Real dudx;
 
@@ -469,7 +469,7 @@ amrex::Real FPlaneAveraging<FType>::line_derivative_interpolated(
 {
     BL_PROFILE("kynema-sgf::PlaneAveraging::line_derivative_interpolated");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_ncomp);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(comp >= 0 && comp < m_ncomp, "comp = " + std::to_string(comp) + ", m_ncomp = " + std::to_string(m_ncomp));
 
     int ind;
     amrex::Real c;
