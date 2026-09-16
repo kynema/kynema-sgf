@@ -112,10 +112,10 @@ void Actuator::post_init_actions()
     }
 
     setup_container();
-    update_positions();
-    update_velocities();
-    compute_forces();
-    compute_source_term();
+    update_actuator_positions_and_sample_fields();
+    update_actuator_state_from_sampled_fields();
+    compute_actuator_loads_and_update_state();
+    accumulate_actuator_source_terms();
     prepare_outputs();
 }
 
@@ -150,10 +150,10 @@ void Actuator::pre_advance_work()
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     m_container->reset_container();
-    update_positions();
-    update_velocities();
-    compute_forces();
-    compute_source_term();
+    update_actuator_positions_and_sample_fields();
+    update_actuator_state_from_sampled_fields();
+    compute_actuator_loads_and_update_state();
+    accumulate_actuator_source_terms();
     communicate_turbine_io();
 }
 
@@ -223,17 +223,19 @@ void Actuator::setup_container()
     m_container->initialize_container();
 }
 
-/** Update actuator positions and sample velocities at new locations.
+/** Update actuator-node positions and sample the local flow field there.
  *
- *  This method loops over all the turbines local to this MPI rank and updates
- *  the position vectors. These new locations are provided to the sampling
- *  container that samples velocities at these new locations.
+ *  This method loops over all turbine nodes local to this MPI rank, updates
+ *  the position vectors, pushes them into the sampling container, and samples
+ *  velocity and density from the CFD mesh at those new locations.
  *
- *  \sa Actuator::update_velocities
+ *  \sa Actuator::update_actuator_state_from_sampled_fields
  */
-void Actuator::update_positions()
+void Actuator::update_actuator_positions_and_sample_fields()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::update_positions");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::update_actuator_positions_and_sample_"
+        "fields");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -244,19 +246,21 @@ void Actuator::update_positions()
     }
     m_container->update_positions();
 
-    // Sample velocities at the new locations
+    // Sample the local velocity and density at the updated actuator locations
     const auto& vel = m_sim.repo().get_field("velocity");
     const auto& density = m_sim.repo().get_field("density");
     m_container->sample_fields(vel, density);
 }
 
-/** Provide updated velocities from container to actuator instances
+/** Copy the sampled flow data back into each actuator instance.
  *
- *  \sa Acuator::update_positions
+ *  \sa Actuator::update_actuator_positions_and_sample_fields
  */
-void Actuator::update_velocities()
+void Actuator::update_actuator_state_from_sampled_fields()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::update_velocities");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::update_actuator_state_from_sampled_"
+        "fields");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -272,21 +276,24 @@ void Actuator::update_velocities()
     }
 }
 
-/** Helper method to compute forces on all actuator components
+/** Compute loads and update state for all local actuator components.
  */
-void Actuator::compute_forces()
+void Actuator::compute_actuator_loads_and_update_state()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_forces");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::compute_actuator_loads_and_update_"
+        "state");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
-            ac->compute_forces();
+            ac->compute_loads_and_update_state();
         }
     }
 }
 
-void Actuator::compute_source_term()
+void Actuator::accumulate_actuator_source_terms()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_source_term");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::accumulate_actuator_source_terms");
     m_act_source.setVal(0.0_rt);
     const int nlevels = m_sim.repo().num_active_levels();
 

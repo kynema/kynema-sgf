@@ -73,13 +73,13 @@ protected:
 private:
     void setup_container();
 
-    void update_positions();
+    void update_actuator_positions_and_sample_fields();
 
-    void update_velocities();
+    void update_actuator_state_from_sampled_fields();
 
-    void compute_forces();
+    void compute_actuator_loads_and_update_state();
 
-    void compute_source_term();
+    void accumulate_actuator_source_terms();
 
     void communicate_turbine_io();
 
