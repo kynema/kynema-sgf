@@ -90,7 +90,10 @@ void ExtTurbIface<FastTurbine, FastSolverData>::parse_inputs(
     pp.query("stop_time", m_stop_time);
 
     // Ensure that the user specified m_stop_time is not shorter than CFD sim
-    AMREX_ALWAYS_ASSERT(m_stop_time > (cfd_stop - 1.0e-6_rt));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_stop_time > (cfd_stop - 1.0e-6_rt),
+        "OpenFAST stop_time = " + std::to_string(m_stop_time) +
+            ", CFD stop_time = " + std::to_string(cfd_stop));
 
     if (m_start_time > 0.0_rt) {
         m_sim_mode = ::ext_turb::SimMode::replay;
@@ -327,7 +330,11 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
                 << std::endl;
             fi.num_pts_tower = 0;
         }
-        AMREX_ALWAYS_ASSERT(npts == (nrotor_pts + fi.num_pts_tower));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            npts == (nrotor_pts + fi.num_pts_tower),
+            "OpenFAST points: npts = " + std::to_string(npts) +
+                ", nrotor_pts = " + std::to_string(nrotor_pts) +
+                ", num_pts_tower = " + std::to_string(fi.num_pts_tower));
 #endif
     }
 
@@ -373,7 +380,11 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
     auto ncf = ncutils::NCFile::open(fname, NC_NOWRITE);
     {
         const int nt = static_cast<int>(ncf.dim("num_time_steps").len());
-        AMREX_ALWAYS_ASSERT(nt >= num_cfd_steps);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            nt >= num_cfd_steps,
+            "OpenFAST velocity timesteps = " + std::to_string(nt) +
+                ", required CFD timesteps = " +
+                std::to_string(num_cfd_steps));
     }
 
     // Replay OpenFAST simulation for the desired number of timesteps to mimic
@@ -438,7 +449,11 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
                 << std::endl;
             fi.num_pts_tower = 0;
         }
-        AMREX_ALWAYS_ASSERT(npts == (nrotor_pts + fi.num_pts_tower));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            npts == (nrotor_pts + fi.num_pts_tower),
+            "OpenFAST points: npts = " + std::to_string(npts) +
+                ", nrotor_pts = " + std::to_string(nrotor_pts) +
+                ", num_pts_tower = " + std::to_string(fi.num_pts_tower));
 #endif
     }
 

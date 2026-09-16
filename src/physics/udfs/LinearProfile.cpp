@@ -24,7 +24,10 @@ LinearProfile::LinearProfile(const Field& fld)
     pp.getarr("start_val", start_val);
     pp.getarr("stop_val", end_val);
 
-    AMREX_ALWAYS_ASSERT(start_val.size() == ncomp);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        start_val.size() == ncomp,
+        "LinearProfile start_val size = " + std::to_string(start_val.size()) +
+            ", expected ncomp = " + std::to_string(ncomp));
     AMREX_ALWAYS_ASSERT(end_val.size() == ncomp);
 
     for (int i = 0; i < ncomp; ++i) {

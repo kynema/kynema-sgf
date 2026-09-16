@@ -279,7 +279,10 @@ IntField&
 FieldRepo::get_int_field(const std::string& name, const FieldState fstate) const
 {
     BL_PROFILE("kynema-sgf::FieldRepo::get_int_field");
-    AMREX_ALWAYS_ASSERT(fstate == FieldState::New);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fstate == FieldState::New,
+        "Integer fields only support FieldState::New; fstate = " +
+            std::to_string(static_cast<int>(fstate)));
     const auto fname = field_impl::field_name_with_state(name, fstate);
     const auto found = m_int_fid_map.find(fname);
     if (found == m_int_fid_map.end()) { // NOLINT(bugprone-branch-clone)

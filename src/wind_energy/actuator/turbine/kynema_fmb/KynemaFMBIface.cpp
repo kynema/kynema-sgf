@@ -556,7 +556,11 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
     const int local_id)
 {
     BL_PROFILE("kynema-sgf::KynemaFMBIface::init_solution");
-    AMREX_ALWAYS_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        local_id < static_cast<int>(m_turbine_data.size()),
+        "Kynema FMB turbine local_id = " + std::to_string(local_id) +
+            ", turbine data count = " +
+            std::to_string(m_turbine_data.size()));
     AMREX_ALWAYS_ASSERT(m_is_initialized);
 
     auto& fi = *m_turbine_data[local_id];
