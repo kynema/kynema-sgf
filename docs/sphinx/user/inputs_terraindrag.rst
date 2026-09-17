@@ -128,3 +128,5 @@ Notes
   ``terrain_height`` from wave fields and sets a uniform low roughness
   (``terrainz0 = 1.0e-4``).
 - In ocean-wave mode, terrain-file and roughness-file parameters are not used.
+- When the ``MultiPhase`` physics module is active, the vof post-solve step extrapolates vof
+  laterally into the cells with ``terrain_blank = 1``; see :doc:`inputs_multiphase`.

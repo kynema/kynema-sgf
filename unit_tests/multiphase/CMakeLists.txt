@@ -9,4 +9,5 @@ target_sources(
   test_mflux_schemes.cpp
   test_reference_fields.cpp
   test_vof_overset_ops.cpp
+  test_vof_terrain_fill.cpp
   )
