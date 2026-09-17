@@ -10,6 +10,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_abl_src_timetable.cpp
   test_abl_terrain.cpp
   test_abl_forest.cpp
+  test_abl_wall_refinement.cpp
   )
 
 if (KYNEMA_SGF_ENABLE_NETCDF)
