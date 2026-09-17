@@ -18,6 +18,14 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
 
         auto& tf = data.meta().ext_data;
 
+        std::string force_point_distribution_type{"uniform"};
+        pp.query("force_point_distribution_type", force_point_distribution_type);
+        if (force_point_distribution_type == "chord_clustered") {
+            tf.force_point_distribution_type = 1;
+        } else {
+            tf.force_point_distribution_type = 0;
+        }
+
         pp.get("openfast_start_time", tf.start_time);
         pp.get("openfast_stop_time", tf.stop_time);
 

@@ -33,6 +33,10 @@ void PerturbationForcing::operator()(
         amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> end{
             m_end[0], m_end[1], m_end[2]};
         amrex::RealBox pert_box(start.data(), end.data());
+        amrex::Print() << "Temperature perturbations:" << std::endl;
+        amrex::Print() << pert_box.lo(0) << " " << pert_box.lo(1) << " " << pert_box.lo(2) << std::endl;
+        amrex::Print() << pert_box.hi(0) << " " << pert_box.hi(1) << " " << pert_box.hi(2) << std::endl;
+        amrex::Print() << pert_box.volume() << std::endl;
         const bool has_terrain =
             this->m_sim.repo().int_field_exists("terrain_blank");
         const auto& geom = m_mesh.Geom(lev);
@@ -65,9 +69,10 @@ void PerturbationForcing::operator()(
                                       : 0.0_rt;
                     const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
                     const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
-                    const amrex::Real z = amrex::max<amrex::Real>(
-                        prob_lo[2] + ((k + 0.5_rt) * dx[2]) - height_arr_cell,
-                        0.5_rt * dx[2]);
+                    const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
+                  //const amrex::Real z = amrex::max<amrex::Real>(
+                  //    prob_lo[2] + ((k + 0.5_rt) * dx[2]) - height_arr_cell,
+                  //    0.5_rt * dx[2]);
                     const amrex::RealVect point{x, y, z};
                     if (pert_box.contains(point)) {
                         const amrex::Real pert_cell =
