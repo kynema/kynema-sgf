@@ -4,6 +4,9 @@
 #include "src/turbulence/TurbulenceModel.H"
 #include "ks_test_utils/test_utils.H"
 #include "src/utilities/math_ops.H"
+#include "src/utilities/tagging/CartBoxRefinement.H"
+#include "src/turbulence/LES/hybrid_length_scale.H"
+#include <sstream>
 
 using namespace amrex::literals;
 
@@ -338,6 +341,205 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
         std::sqrt(tke_val);
     EXPECT_NEAR(min_val, ksgs_answer, tol);
     EXPECT_NEAR(max_val, ksgs_answer, tol);
+}
+
+//! Two-level mesh with a refined box that touches the lower wall, as in
+//! https://github.com/kynema/kynema-sgf/issues/1806
+class TurbLESLevelTest : public MeshTest
+{
+protected:
+    void populate_parameters() override
+    {
+        MeshTest::populate_parameters();
+
+        {
+            amrex::ParmParse pp("amr");
+            const amrex::Vector<int> ncell{{m_nx, m_nx, m_nx}};
+            pp.addarr("n_cell", ncell);
+            pp.add("max_level", 1);
+            pp.add("max_grid_size", m_nx);
+            pp.add("blocking_factor", 2);
+        }
+        {
+            amrex::ParmParse pp("geometry");
+            const amrex::Vector<amrex::Real> problo{{0.0_rt, 0.0_rt, 0.0_rt}};
+            const amrex::Vector<amrex::Real> probhi{{m_len, m_len, m_len}};
+            pp.addarr("prob_lo", problo);
+            pp.addarr("prob_hi", probhi);
+        }
+
+        // Refine a box in the middle of the domain, from the wall up
+        std::stringstream ss;
+        ss << "1 // Number of levels" << '\n';
+        ss << "1 // Number of boxes at this level" << '\n';
+        ss << "16.1 16.1 0.0 47.9 47.9 31.9" << '\n';
+
+        create_mesh_instance<RefineMesh>();
+        std::unique_ptr<kynema_sgf::CartBoxRefinement> box_refine(
+            new kynema_sgf::CartBoxRefinement(sim()));
+        box_refine->read_inputs(mesh(), ss);
+
+        if (mesh<RefineMesh>() != nullptr) {
+            mesh<RefineMesh>()->refine_criteria_vec().push_back(
+                std::move(box_refine));
+        }
+    }
+
+    const int m_nx{8};
+    const amrex::Real m_len{64.0_rt};
+
+public:
+    //! Filter width cbrt(dx dy dz) on a level
+    [[nodiscard]] amrex::Real filter_width(const int lev) const
+    {
+        return m_len / static_cast<amrex::Real>(m_nx * (1 << lev));
+    }
+};
+
+// Documents the cause of issue 1806: for the same subgrid kinetic energy the
+// OneEqKsgsM84 eddy viscosity halves with every refinement level, because its
+// length scale is the local filter width
+TEST_F(TurbLESLevelTest, test_1eqKsgs_level_dependence)
+{
+    const amrex::Real Ceps = 0.93_rt;
+    const amrex::Real Ce = 0.1_rt;
+    const amrex::Real Tref = 300.0_rt;
+    const amrex::Real rho0 = 1.2_rt;
+    const amrex::Real tke_val = 0.3_rt;
+    {
+        amrex::ParmParse pp("turbulence");
+        pp.add("model", (std::string) "OneEqKsgsM84");
+    }
+    {
+        amrex::ParmParse pp("OneEqKsgsM84_coeffs");
+        pp.add("Ceps", Ceps);
+        pp.add("Ce", Ce);
+    }
+    {
+        amrex::ParmParse pp("incflo");
+        amrex::Vector<std::string> physics{"ABL"};
+        pp.addarr("physics", physics);
+        pp.add("density", rho0);
+        amrex::Vector<amrex::Real> vvec{8.0_rt, 0.0_rt, 0.0_rt};
+        pp.addarr("velocity", vvec);
+        amrex::Vector<amrex::Real> gvec{0.0_rt, 0.0_rt, -9.81_rt};
+        pp.addarr("gravity", gvec);
+    }
+    {
+        amrex::ParmParse pp("ABL");
+        pp.add("surface_temp_flux", 0.0_rt);
+        amrex::Vector<amrex::Real> t_hts{0.0_rt, 100.0_rt};
+        pp.addarr("temperature_heights", t_hts);
+        amrex::Vector<amrex::Real> t_vals{Tref, Tref};
+        pp.addarr("temperature_values", t_vals);
+    }
+    {
+        amrex::ParmParse pp("transport");
+        pp.add("reference_temperature", Tref);
+    }
+
+    populate_parameters();
+    initialize_mesh();
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    sim().create_transport_model();
+    sim().init_physics();
+    sim().create_turbulence_model();
+    sim().turbulence_model().post_init_actions();
+    auto& tmodel = sim().turbulence_model();
+
+    ASSERT_EQ(sim().repo().num_active_levels(), 2);
+
+    // Neutral, uniform state: the same subgrid kinetic energy on both levels
+    sim().repo().get_field("velocity").setVal(0.0_rt);
+    sim().repo().get_field("density").setVal(rho0);
+    sim().repo().get_field("temperature").setVal(Tref);
+    sim().repo().get_field("tke").setVal(tke_val);
+
+    tmodel.update_turbulent_viscosity(
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
+    const auto& muturb = sim().repo().get_field("mu_turb");
+
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    for (int lev = 0; lev < 2; ++lev) {
+        const amrex::Real answer =
+            rho0 * Ce * filter_width(lev) * std::sqrt(tke_val);
+        EXPECT_NEAR(muturb(lev).min(0), answer, tol);
+        EXPECT_NEAR(muturb(lev).max(0), answer, tol);
+    }
+    // Same physical location, same subgrid kinetic energy, half the eddy
+    // viscosity on the finer level
+    EXPECT_NEAR(muturb(1).max(0) / muturb(0).max(0), 0.5_rt, tol);
+}
+
+// Shows that the near-wall hybrid RANS-LES length scale shared with the
+// Kosovic model removes most of that level dependence close to the wall when
+// it is evaluated with the OneEqKsgsM84 coefficients
+TEST_F(TurbLESLevelTest, test_hybrid_length_level_independence)
+{
+    namespace hl = kynema_sgf::turbulence::hybrid_length;
+    const amrex::Real Ceps = 0.93_rt;
+    const amrex::Real Ce = 0.1_rt;
+    const amrex::Real kappa = 0.41_rt;
+    const amrex::Real switch_height = 24.0_rt;
+    const amrex::Real exponent = 2.0_rt;
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+
+    populate_parameters();
+    initialize_mesh();
+    ASSERT_EQ(sim().repo().num_active_levels(), 2);
+    const amrex::Real ds0 = filter_width(0);
+    const amrex::Real ds1 = filter_width(1);
+
+    // Limits of the blending
+    EXPECT_NEAR(hl::rans_weight(0.0_rt, switch_height), 1.0_rt, tol);
+    EXPECT_NEAR(
+        hl::blended_length_sqr(ds0 * ds0, 2.0_rt, 0.0_rt, exponent), ds0 * ds0,
+        tol);
+    EXPECT_NEAR(
+        hl::blended_length_sqr(ds0 * ds0, 2.0_rt, 1.0_rt, exponent), 2.0_rt,
+        tol);
+
+    // The RANS length scale recovers the log-law eddy viscosity when
+    // production balances dissipation: k = (Ce / Ceps) l^2 S^2
+    {
+        const amrex::Real utau = 0.4_rt;
+        const amrex::Real z = 10.0_rt;
+        const amrex::Real l_rans =
+            hl::one_eq_rans_length(kappa, z, 1.0_rt, Ce, Ceps);
+        const amrex::Real shear = utau / (kappa * z);
+        const amrex::Real k_eq = (Ce / Ceps) * l_rans * l_rans * shear * shear;
+        EXPECT_NEAR(Ce * l_rans * std::sqrt(k_eq), kappa * utau * z, tol);
+    }
+
+    // Ratio of the fine to the coarse length scale (and so of the eddy
+    // viscosity for the same subgrid kinetic energy) at the same height
+    const auto level_ratio = [&](const amrex::Real z, const amrex::Real ds_c,
+                                 const amrex::Real ds_f) {
+        const amrex::Real l_rans =
+            hl::one_eq_rans_length(kappa, z, 1.0_rt, Ce, Ceps);
+        const amrex::Real w = hl::rans_weight(z, switch_height);
+        const amrex::Real l_c = std::sqrt(
+            hl::blended_length_sqr(ds_c * ds_c, l_rans * l_rans, w, exponent));
+        const amrex::Real l_f = std::sqrt(
+            hl::blended_length_sqr(ds_f * ds_f, l_rans * l_rans, w, exponent));
+        return l_f / l_c;
+    };
+
+    // Close to the wall the two levels agree (OneEqKsgsM84 gives 0.5)
+    EXPECT_GT(level_ratio(0.5_rt * ds0, ds0, ds1), 0.95_rt);
+    EXPECT_GT(level_ratio(2.0_rt * ds0, ds0, ds1), 0.9_rt);
+    // Far above the wall the LES filter width is recovered on each level
+    EXPECT_NEAR(level_ratio(20.0_rt * switch_height, ds0, ds1), ds1 / ds0, tol);
+
+    // Filter widths of a 64 x 64 x 16 m grid and of its second refinement
+    // level: OneEqKsgsM84 gives 0.25 at every height
+    const amrex::Real ds_coarse = std::cbrt(64.0_rt * 64.0_rt * 16.0_rt);
+    const amrex::Real ds_fine = 0.25_rt * ds_coarse;
+    EXPECT_GT(level_ratio(8.0_rt, ds_coarse, ds_fine), 0.75_rt);
+    EXPECT_GT(level_ratio(16.0_rt, ds_coarse, ds_fine), 0.7_rt);
 }
 
 TEST_F(TurbLESTest, test_AMD_setup_calc)
