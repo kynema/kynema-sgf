@@ -9,6 +9,10 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_abl_bc.cpp
   test_abl_src_timetable.cpp
   test_abl_terrain.cpp
+  test_immersed_terrain.cpp
+  test_immersed_drag_forcing.cpp
+  test_immersed_interface_diffusion.cpp
+  test_immersed_scalar_diffusion.cpp
   test_abl_forest.cpp
   )
 
