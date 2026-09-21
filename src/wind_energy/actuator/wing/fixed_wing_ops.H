@@ -50,8 +50,7 @@ struct ReadInputsOp<FixedWing, ActSrcLine>
                 force_coord_flags_query_inp.size() == AMREX_SPACEDIM,
                 "force_coord_flags_query_inp.size() = " +
                     std::to_string(force_coord_flags_query_inp.size()) +
-                    ", AMREX_SPACEDIM = " +
-                    std::to_string(AMREX_SPACEDIM));
+                    ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
             wdata.force_coord_flags = force_coord_flags_query_inp;
         }
 

@@ -19,7 +19,10 @@ void LidarSampler::initialize(const std::string& key)
 
     // This is the origin of the scan (x, y, z) [m]
     pp.getarr("origin", m_origin);
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(static_cast<int>(m_origin.size()) == AMREX_SPACEDIM, "m_origin.size() = " + std::to_string(m_origin.size()) + ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        static_cast<int>(m_origin.size()) == AMREX_SPACEDIM,
+        "m_origin.size() = " + std::to_string(m_origin.size()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
 
     // The number of points
     pp.get("num_points", m_npts);

@@ -935,36 +935,36 @@ void BoundaryPlane::read_header()
                 amrex::Vector<amrex::Real> nc_dat{0, 0};
                 lev_grp.var("lengths").get(nc_dat.data());
                 AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                    nc_dat == lengths,
-                    "BoundaryPlane: netCDF lengths are [" +
-                        std::to_string(nc_dat[0]) + ", " +
-                        std::to_string(nc_dat[1]) + "] but expected [" +
-                        std::to_string(lengths[0]) + ", " +
-                        std::to_string(lengths[1]) + "]");
+                    nc_dat == lengths, "BoundaryPlane: netCDF lengths are [" +
+                                           std::to_string(nc_dat[0]) + ", " +
+                                           std::to_string(nc_dat[1]) +
+                                           "] but expected [" +
+                                           std::to_string(lengths[0]) + ", " +
+                                           std::to_string(lengths[1]) + "]");
                 lev_grp.var("lo").get(nc_dat.data());
                 AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                    nc_dat == los,
-                    "BoundaryPlane: netCDF lower bounds are [" +
-                        std::to_string(nc_dat[0]) + ", " +
-                        std::to_string(nc_dat[1]) + "] but expected [" +
-                        std::to_string(los[0]) + ", " +
-                        std::to_string(los[1]) + "]");
+                    nc_dat == los, "BoundaryPlane: netCDF lower bounds are [" +
+                                       std::to_string(nc_dat[0]) + ", " +
+                                       std::to_string(nc_dat[1]) +
+                                       "] but expected [" +
+                                       std::to_string(los[0]) + ", " +
+                                       std::to_string(los[1]) + "]");
                 lev_grp.var("hi").get(nc_dat.data());
                 AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                    nc_dat == his,
-                    "BoundaryPlane: netCDF upper bounds are [" +
-                        std::to_string(nc_dat[0]) + ", " +
-                        std::to_string(nc_dat[1]) + "] but expected [" +
-                        std::to_string(his[0]) + ", " +
-                        std::to_string(his[1]) + "]");
+                    nc_dat == his, "BoundaryPlane: netCDF upper bounds are [" +
+                                       std::to_string(nc_dat[0]) + ", " +
+                                       std::to_string(nc_dat[1]) +
+                                       "] but expected [" +
+                                       std::to_string(his[0]) + ", " +
+                                       std::to_string(his[1]) + "]");
                 lev_grp.var("dx").get(nc_dat.data());
                 AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                    nc_dat == pdx,
-                    "BoundaryPlane: netCDF cell sizes are [" +
-                        std::to_string(nc_dat[0]) + ", " +
-                        std::to_string(nc_dat[1]) + "] but expected [" +
-                        std::to_string(pdx[0]) + ", " +
-                        std::to_string(pdx[1]) + "]");
+                    nc_dat == pdx, "BoundaryPlane: netCDF cell sizes are [" +
+                                       std::to_string(nc_dat[0]) + ", " +
+                                       std::to_string(nc_dat[1]) +
+                                       "] but expected [" +
+                                       std::to_string(pdx[0]) + ", " +
+                                       std::to_string(pdx[1]) + "]");
 
                 // Create the data structures for the input data
                 amrex::IntVect plo(lo);
@@ -1196,8 +1196,8 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             ncomp == field.num_comp(),
             "BoundaryPlane: header component count " + std::to_string(ncomp) +
-                " does not match field '" + field.name() + "' component count " +
-                std::to_string(field.num_comp()));
+                " does not match field '" + field.name() +
+                "' component count " + std::to_string(field.num_comp()));
 
         // Skip the names
         for (int nc = 0; nc < ncomp; nc++) {
@@ -1283,40 +1283,36 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
                 prob_domain[i].smallEnd(perp[0]) ==
                     m_mesh.Geom(i).Domain().smallEnd(perp[0]),
                 "BoundaryPlane: level " + std::to_string(i) +
-                    " domain small end in dimension " + std::to_string(perp[0]) +
-                    " is " +
+                    " domain small end in dimension " +
+                    std::to_string(perp[0]) + " is " +
                     std::to_string(prob_domain[i].smallEnd(perp[0])) +
-                    " but mesh value is " + std::to_string(
-                                               m_mesh.Geom(i).Domain().smallEnd(
-                                                   perp[0])));
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().smallEnd(perp[0])));
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].smallEnd(perp[1]) ==
                     m_mesh.Geom(i).Domain().smallEnd(perp[1]),
                 "BoundaryPlane: level " + std::to_string(i) +
-                    " domain small end in dimension " + std::to_string(perp[1]) +
-                    " is " +
+                    " domain small end in dimension " +
+                    std::to_string(perp[1]) + " is " +
                     std::to_string(prob_domain[i].smallEnd(perp[1])) +
-                    " but mesh value is " + std::to_string(
-                                               m_mesh.Geom(i).Domain().smallEnd(
-                                                   perp[1])));
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().smallEnd(perp[1])));
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].bigEnd(perp[0]) ==
                     m_mesh.Geom(i).Domain().bigEnd(perp[0]),
                 "BoundaryPlane: level " + std::to_string(i) +
                     " domain big end in dimension " + std::to_string(perp[0]) +
                     " is " + std::to_string(prob_domain[i].bigEnd(perp[0])) +
-                    " but mesh value is " + std::to_string(
-                                               m_mesh.Geom(i).Domain().bigEnd(
-                                                   perp[0])));
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().bigEnd(perp[0])));
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].bigEnd(perp[1]) ==
                     m_mesh.Geom(i).Domain().bigEnd(perp[1]),
                 "BoundaryPlane: level " + std::to_string(i) +
                     " domain big end in dimension " + std::to_string(perp[1]) +
                     " is " + std::to_string(prob_domain[i].bigEnd(perp[1])) +
-                    " but mesh value is " + std::to_string(
-                                               m_mesh.Geom(i).Domain().bigEnd(
-                                                   perp[1])));
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().bigEnd(perp[1])));
         }
 
         amrex::Vector<int> level_steps(nlevels);
@@ -1362,10 +1358,10 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
                 ba.growHi(normal, -1);
             }
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                ba.size() == 1,
-                "BoundaryPlane: boundary level " + std::to_string(ilev) +
-                    " has " + std::to_string(ba.size()) +
-                    " boxes; expected exactly one");
+                ba.size() == 1, "BoundaryPlane: boundary level " +
+                                    std::to_string(ilev) + " has " +
+                                    std::to_string(ba.size()) +
+                                    " boxes; expected exactly one");
             bndry_boxes[ilev].push_back(ba[0]);
         }
     }

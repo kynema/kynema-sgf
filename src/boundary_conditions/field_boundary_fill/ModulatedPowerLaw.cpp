@@ -58,8 +58,7 @@ ModulatedPowerLaw::ModulatedPowerLaw(CFDSim& sim)
 
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         m_theta_heights.size() == m_theta_values.size(),
-        "m_theta_heights.size() = " +
-            std::to_string(m_theta_heights.size()) +
+        "m_theta_heights.size() = " + std::to_string(m_theta_heights.size()) +
             ", m_theta_values.size() = " +
             std::to_string(m_theta_values.size()));
     int num_theta_values = static_cast<int>(m_theta_heights.size());

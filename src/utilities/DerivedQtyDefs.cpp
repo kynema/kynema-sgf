@@ -11,7 +11,8 @@ VorticityMag::VorticityMag(
     const FieldRepo& repo, const std::vector<std::string>& args)
     : m_vel(repo.get_field("velocity"))
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.empty(), "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.empty(), "args.size() = " + std::to_string(args.size()));
 }
 
 void VorticityMag::operator()(ScratchField& fld, const int scomp) const
@@ -26,7 +27,8 @@ QCriterion::QCriterion(
     const FieldRepo& repo, const std::vector<std::string>& args)
     : m_vel(repo.get_field("velocity"))
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.empty(), "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.empty(), "args.size() = " + std::to_string(args.size()));
 }
 
 void QCriterion::operator()(ScratchField& fld, const int scomp) const
@@ -41,7 +43,8 @@ QCriterionNondim::QCriterionNondim(
     const FieldRepo& repo, const std::vector<std::string>& args)
     : m_vel(repo.get_field("velocity"))
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.empty(), "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.empty(), "args.size() = " + std::to_string(args.size()));
 }
 
 void QCriterionNondim::operator()(ScratchField& fld, const int scomp) const
@@ -56,7 +59,8 @@ StrainRateMag::StrainRateMag(
     const FieldRepo& repo, const std::vector<std::string>& args)
     : m_vel(repo.get_field("velocity"))
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.empty(), "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.empty(), "args.size() = " + std::to_string(args.size()));
 }
 
 void StrainRateMag::operator()(ScratchField& fld, const int scomp) const
@@ -69,7 +73,8 @@ void StrainRateMag::operator()(ScratchField& fld, const int scomp) const
 
 Gradient::Gradient(const FieldRepo& repo, const std::vector<std::string>& args)
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.size() == 1U, "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.size() == 1U, "args.size() = " + std::to_string(args.size()));
     m_phi = &repo.get_field(args[0]);
 }
 
@@ -84,9 +89,13 @@ void Gradient::operator()(ScratchField& fld, const int scomp) const
 Divergence::Divergence(
     const FieldRepo& repo, const std::vector<std::string>& args)
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.size() == 1U, "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.size() == 1U, "args.size() = " + std::to_string(args.size()));
     m_phi = &repo.get_field(args[0]);
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(m_phi->num_comp() == AMREX_SPACEDIM, "m_phi->num_comp() = " + std::to_string(m_phi->num_comp()) + ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_phi->num_comp() == AMREX_SPACEDIM,
+        "m_phi->num_comp() = " + std::to_string(m_phi->num_comp()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
 }
 
 void Divergence::operator()(ScratchField& fld, const int scomp) const
@@ -100,9 +109,13 @@ void Divergence::operator()(ScratchField& fld, const int scomp) const
 Laplacian::Laplacian(
     const FieldRepo& repo, const std::vector<std::string>& args)
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.size() == 1U, "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.size() == 1U, "args.size() = " + std::to_string(args.size()));
     m_phi = &repo.get_field(args[0]);
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(m_phi->num_comp() == AMREX_SPACEDIM, "m_phi->num_comp() = " + std::to_string(m_phi->num_comp()) + ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_phi->num_comp() == AMREX_SPACEDIM,
+        "m_phi->num_comp() = " + std::to_string(m_phi->num_comp()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
 }
 
 void Laplacian::operator()(ScratchField& fld, const int scomp) const
@@ -116,7 +129,8 @@ void Laplacian::operator()(ScratchField& fld, const int scomp) const
 MaskTerrain::MaskTerrain(
     const FieldRepo& repo, const std::vector<std::string>& args)
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(args.size() == 1U, "args.size() = " + std::to_string(args.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        args.size() == 1U, "args.size() = " + std::to_string(args.size()));
     m_phi = &repo.get_field(args[0]);
     if (!repo.int_field_exists("terrain_blank")) {
         amrex::Abort(
@@ -154,15 +168,22 @@ FieldComponents::FieldComponents(
     const FieldRepo& repo, const std::vector<std::string>& args)
 {
     const size_t nargs = args.size();
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(nargs > 1U, "nargs = " + std::to_string(nargs));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        nargs > 1U, "nargs = " + std::to_string(nargs));
     m_fld = &repo.get_field(args[0]);
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(static_cast<int>(nargs - 1) < m_fld->num_comp(), "nargs = " + std::to_string(nargs) + ", m_fld->num_comp() = " + std::to_string(m_fld->num_comp()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        static_cast<int>(nargs - 1) < m_fld->num_comp(),
+        "nargs = " + std::to_string(nargs) +
+            ", m_fld->num_comp() = " + std::to_string(m_fld->num_comp()));
 
     m_ncomp = static_cast<int>(nargs) - 1;
     m_comp.resize(nargs - 1);
     for (size_t i = 1; i < nargs; ++i) {
         m_comp[i - 1] = std::stoi(args[i]);
-        AMREX_ALWAYS_ASSERT_WITH_MESSAGE((m_comp[i - 1] >= 0) && (m_comp[i - 1] < m_fld->num_comp()), "m_comp[i - 1] = " + std::to_string(m_comp[i - 1]) + ", m_fld->num_comp() = " + std::to_string(m_fld->num_comp()));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            (m_comp[i - 1] >= 0) && (m_comp[i - 1] < m_fld->num_comp()),
+            "m_comp[i - 1] = " + std::to_string(m_comp[i - 1]) +
+                ", m_fld->num_comp() = " + std::to_string(m_fld->num_comp()));
     }
 }
 

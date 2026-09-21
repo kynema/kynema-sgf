@@ -81,7 +81,8 @@ void fllc_init(
             AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 dr > std::numeric_limits<amrex::Real>::epsilon(),
                 "dr = " + std::to_string(dr) + ", epsilon = " +
-                    std::to_string(std::numeric_limits<amrex::Real>::epsilon()));
+                    std::to_string(
+                        std::numeric_limits<amrex::Real>::epsilon()));
 
             // Append value to the array
             // Ensure that the value is smaller than the tip

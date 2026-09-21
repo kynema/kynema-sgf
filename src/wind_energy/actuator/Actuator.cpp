@@ -65,8 +65,7 @@ void Actuator::pre_init_actions()
         std::string type;
         pp.query("type", type);
         pp1.query("type", type);
-        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            !type.empty(), "type = " + type);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(!type.empty(), "type = " + type);
         cnt_turbfast +=
             ((type == "TurbineFastLine") || (type == "TurbineFastDisk")) ? 1
                                                                          : 0;

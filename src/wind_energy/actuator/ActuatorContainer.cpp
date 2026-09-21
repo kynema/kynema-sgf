@@ -167,9 +167,8 @@ void ActuatorContainer::update_positions()
     BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::update_positions");
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         m_container_initialized && !m_is_scattered,
-        "m_container_initialized = " +
-            std::to_string(m_container_initialized) + ", m_is_scattered = " +
-            std::to_string(m_is_scattered));
+        "m_container_initialized = " + std::to_string(m_container_initialized) +
+            ", m_is_scattered = " + std::to_string(m_is_scattered));
 
     const auto dpos = gpu::device_view(m_data.position);
     const auto* const dptr = dpos.data();
@@ -213,9 +212,8 @@ void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
     BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::sample_velocities");
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         m_container_initialized && m_is_scattered,
-        "m_container_initialized = " +
-            std::to_string(m_container_initialized) + ", m_is_scattered = " +
-            std::to_string(m_is_scattered));
+        "m_container_initialized = " + std::to_string(m_container_initialized) +
+            ", m_is_scattered = " + std::to_string(m_is_scattered));
 
     // Sample velocity field
     interpolate_fields(vel, density);

@@ -343,7 +343,11 @@ typename C2::value_type bilinear(
     const typename C1::value_type& xout,
     const typename C1::value_type& yout)
 {
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE((xinp.size() * yinp.size()) == zinp.size(), "xinp.size() = " + std::to_string(xinp.size()) + ", yinp.size() = " + std::to_string(yinp.size()) + ", zinp.size() = " + std::to_string(zinp.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        (xinp.size() * yinp.size()) == zinp.size(),
+        "xinp.size() = " + std::to_string(xinp.size()) +
+            ", yinp.size() = " + std::to_string(yinp.size()) +
+            ", zinp.size() = " + std::to_string(zinp.size()));
     return bilinear(
         xinp.data(), (xinp.data() + xinp.size()), yinp.data(),
         (yinp.data() + yinp.size()), zinp.data(), xout, yout);

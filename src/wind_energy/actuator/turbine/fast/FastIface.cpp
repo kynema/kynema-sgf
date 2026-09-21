@@ -391,8 +391,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             nt >= num_cfd_steps,
             "OpenFAST velocity timesteps = " + std::to_string(nt) +
-                ", required CFD timesteps = " +
-                std::to_string(num_cfd_steps));
+                ", required CFD timesteps = " + std::to_string(num_cfd_steps));
     }
 
     // Replay OpenFAST simulation for the desired number of timesteps to mimic

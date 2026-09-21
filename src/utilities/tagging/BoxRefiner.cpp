@@ -15,7 +15,8 @@ vs::Vector parse_vector(amrex::ParmParse& pp, const std::string& key)
 {
     amrex::Vector<amrex::Real> tmp;
     pp.getarr(key, tmp);
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(tmp.size() == 3U, "tmp.size() = " + std::to_string(tmp.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        tmp.size() == 3U, "tmp.size() = " + std::to_string(tmp.size()));
 
     return vs::Vector{tmp[0], tmp[1], tmp[2]};
 }
@@ -97,8 +98,15 @@ BoxRefiner::BoxRefiner(const CFDSim& /*unused*/, const std::string& key)
     vs::Vector max_c(
         vs::DTraits<amrex::Real>::min(), vs::DTraits<amrex::Real>::min(),
         vs::DTraits<amrex::Real>::min());
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(min_c.size() == hex_corners[0].size(), "min_c.size() = " + std::to_string(min_c.size()) + ", hex_corners[0].size() = " + std::to_string(hex_corners[0].size()));
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(max_c.size() == min_c.size(), "max_c.size() = " + std::to_string(max_c.size()) + ", min_c.size() = " + std::to_string(min_c.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        min_c.size() == hex_corners[0].size(),
+        "min_c.size() = " + std::to_string(min_c.size()) +
+            ", hex_corners[0].size() = " +
+            std::to_string(hex_corners[0].size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        max_c.size() == min_c.size(),
+        "max_c.size() = " + std::to_string(max_c.size()) +
+            ", min_c.size() = " + std::to_string(min_c.size()));
     for (const auto& hc : hex_corners) {
         for (int i = 0; i < min_c.size(); i++) {
             min_c[i] = (min_c[i] > hc[i]) ? hc[i] : min_c[i];
@@ -107,7 +115,10 @@ BoxRefiner::BoxRefiner(const CFDSim& /*unused*/, const std::string& key)
     }
     vs::Vector search_radius = vs::Vector::zero();
     const amrex::Real search_fraction = 0.05_rt;
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(search_radius.size() == min_c.size(), "search_radius.size() = " + std::to_string(search_radius.size()) + ", min_c.size() = " + std::to_string(min_c.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        search_radius.size() == min_c.size(),
+        "search_radius.size() = " + std::to_string(search_radius.size()) +
+            ", min_c.size() = " + std::to_string(min_c.size()));
     for (int i = 0; i < min_c.size(); i++) {
         search_radius[i] = search_fraction * (max_c[i] - min_c[i]);
     }

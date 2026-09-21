@@ -559,8 +559,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         local_id < static_cast<int>(m_turbine_data.size()),
         "Kynema FMB turbine local_id = " + std::to_string(local_id) +
-            ", turbine data count = " +
-            std::to_string(m_turbine_data.size()));
+            ", turbine data count = " + std::to_string(m_turbine_data.size()));
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         m_is_initialized,
         "m_is_initialized = " + std::to_string(m_is_initialized));

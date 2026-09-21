@@ -25,9 +25,8 @@ struct Gradient
                 ", phi.num_comp() = " + std::to_string(phi.num_comp()));
         AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             m_phi.num_grow() > amrex::IntVect(0),
-            "m_phi.num_grow() = (" +
-                std::to_string(m_phi.num_grow()[0]) + ", " +
-                std::to_string(m_phi.num_grow()[1]) + ", " +
+            "m_phi.num_grow() = (" + std::to_string(m_phi.num_grow()[0]) +
+                ", " + std::to_string(m_phi.num_grow()[1]) + ", " +
                 std::to_string(m_phi.num_grow()[2]) + ")");
     }
 
