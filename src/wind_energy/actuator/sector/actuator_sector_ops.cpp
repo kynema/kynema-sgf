@@ -220,7 +220,7 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
     const auto& time = data.sim().time();
     // Velocity is sampled at the temporal midpoint, matching the actuator-line
     // convention used elsewhere in the code. The resulting sampled velocity is
-    // then used by ComputeForceOp for this step.
+    // then used by ComputeLoadsAndUpdateStateOp for this step.
     const amrex::Real tmid = 0.5_rt * (time.current_time() + time.new_time());
     const auto orientation = meta.body_motion->orientation(tmid);
     meta.center =
@@ -695,7 +695,7 @@ void UpdatePosOp<ActuatorSector, ActSrcSector>::operator()(
     sector::update_midpoint_sample_points(data);
 }
 
-void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
+void ComputeLoadsAndUpdateStateOp<ActuatorSector, ActSrcSector>::operator()(
     ActuatorSector::DataType& data)
 {
     auto& meta = data.meta();
