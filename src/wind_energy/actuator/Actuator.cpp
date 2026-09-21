@@ -293,7 +293,8 @@ void Actuator::compute_actuator_loads_and_advance_model_and_scatter()
 void Actuator::accumulate_actuator_source_terms_for_fluid()
 {
     BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::accumulate_actuator_source_terms_for_fluid");
+        "kynema-sgf::actuator::Actuator::accumulate_actuator_source_terms_for_"
+        "fluid");
     m_act_source.setVal(0.0_rt);
     const int nlevels = m_sim.repo().num_active_levels();
 
