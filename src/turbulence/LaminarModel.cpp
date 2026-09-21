@@ -27,7 +27,9 @@ void laminar_visc_update(
     Field& evisc, Laminar<Transport>& lam, const Transport& /*unused*/)
     requires(!Transport::constant_properties)
 {
-    field_ops::copy(evisc, *lam.mu(), 0, 0, evisc.num_comp(), evisc.num_grow());
+    auto mu = lam.mu();
+    field_ops::copy(evisc, *mu, 0, 0, evisc.num_comp(), evisc.num_grow());
+    amrex::Gpu::streamSynchronize();
 }
 
 template <typename Transport>
@@ -43,8 +45,9 @@ void laminar_alpha_update(
     Field& evisc, Laminar<Transport>& lam, const Transport& /*unused*/)
     requires(!Transport::constant_properties)
 {
-    field_ops::copy(
-        evisc, *lam.alpha(), 0, 0, evisc.num_comp(), evisc.num_grow());
+    auto alpha = lam.alpha();
+    field_ops::copy(evisc, *alpha, 0, 0, evisc.num_comp(), evisc.num_grow());
+    amrex::Gpu::streamSynchronize();
 }
 
 template <typename Transport>
@@ -66,9 +69,9 @@ void laminar_scal_diff_update(
     const std::string& name)
     requires(!Transport::constant_properties)
 {
-    field_ops::copy(
-        evisc, *lam.scalar_diffusivity(name), 0, 0, evisc.num_comp(),
-        evisc.num_grow());
+    auto diff = lam.scalar_diffusivity(name);
+    field_ops::copy(evisc, *diff, 0, 0, evisc.num_comp(), evisc.num_grow());
+    amrex::Gpu::streamSynchronize();
 }
 
 } // namespace
