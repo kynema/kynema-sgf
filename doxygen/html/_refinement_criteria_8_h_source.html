@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/RefinementCriteria.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/RefinementCriteria.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_refinement_criteria_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-utilities-tagging-refinementcriteria-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/RefinementCriteria.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-utilities-tagging-refinementcriteria-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/utilities/tagging/RefinementCriteria.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_d59b7dddc6cfeb8ed243c8310c362d19.html">utilities</a></li><li class="navelem"><a href="dir_d355beac328bcafdf7b9e46fc7710973.html">tagging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">RefinementCriteria.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_refinement_criteria_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef REFINEMENTCRITERIA_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define REFINEMENTCRITERIA_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;AMReX_AmrCore.H&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_TagBox.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_factory_8_h.html">src/core/Factory.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1tagging.html">tagging</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532">   24</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">TaggingOperator</a> : std::uint8_t { <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532">AND</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a1d00e7dce692e8dc3f6877f035e3a616">OR</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a68d29af060ea90083c505ee392700eef">AND_NOT</a>, <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a756eaf1e3554bffb0df4a824191577f6">OR_NOT</a> };</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1tagging.html#a7360bdbc7f30bcda5e0e223358bf187e">   31</a></span>AMREX_FORCE_INLINE <a class="code hl_enumeration" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">TaggingOperator</a> <a class="code hl_function" href="namespacekynema__sgf_1_1tagging.html#a7360bdbc7f30bcda5e0e223358bf187e">string_to_operator</a>(<span class="keyword">const</span> std::string&amp; op)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span> (op == <span class="stringliteral">&quot;and&quot;</span>) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532">TaggingOperator::AND</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">if</span> (op == <span class="stringliteral">&quot;or&quot;</span>) {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a1d00e7dce692e8dc3f6877f035e3a616">TaggingOperator::OR</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">if</span> (op == <span class="stringliteral">&quot;and_not&quot;</span>) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a68d29af060ea90083c505ee392700eef">TaggingOperator::AND_NOT</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (op == <span class="stringliteral">&quot;or_not&quot;</span>) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a756eaf1e3554bffb0df4a824191577f6">TaggingOperator::OR_NOT</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    amrex::Abort(</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="stringliteral">&quot;Invalid operator for tagging criteria: &quot;</span> + op +</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="stringliteral">&quot;. Must be one of: and, or, and_not, or_not.&quot;</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// Unreachable, but avoids compiler warning</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532">TaggingOperator::AND</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1tagging.html#a90ddc632a4fc2b15b89e7dbd731d1eec">   52</a></span>AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::TagBox::TagVal <a class="code hl_function" href="namespacekynema__sgf_1_1tagging.html#a90ddc632a4fc2b15b89e7dbd731d1eec">tag_val</a>(</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> previous_val, <span class="keyword">const</span> <span class="keywordtype">bool</span> current_val, <span class="keyword">const</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">TaggingOperator</a>&amp; op)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">switch</span> (op) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532">TaggingOperator::AND</a>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> (previous_val &amp;&amp; current_val) ? amrex::TagBox::SET</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                                             : amrex::TagBox::CLEAR;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a1d00e7dce692e8dc3f6877f035e3a616">TaggingOperator::OR</a>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">return</span> (previous_val || current_val) ? amrex::TagBox::SET</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                                             : amrex::TagBox::CLEAR;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a68d29af060ea90083c505ee392700eef">TaggingOperator::AND_NOT</a>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">return</span> (previous_val &amp;&amp; !current_val) ? amrex::TagBox::SET</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                              : amrex::TagBox::CLEAR;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a756eaf1e3554bffb0df4a824191577f6">TaggingOperator::OR_NOT</a>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> (previous_val || !current_val) ? amrex::TagBox::SET</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                                              : amrex::TagBox::CLEAR;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// Unreachable, but avoids compiler warning</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">return</span> amrex::TagBox::CLEAR;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>} <span class="comment">// namespace tagging</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">class </span>CFDSim;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="};">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html">   86</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#ad1aa86ee94991f42491bd9dbdd142a53">RefinementCriteria</a> : <span class="keyword">public</span> <a class="code hl_function" href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">Factory</a>&lt;RefinementCriteria, CFDSim&amp;&gt;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#a2a81993f21d1ea05c3572062627333a3">   89</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#a2a81993f21d1ea05c3572062627333a3">base_identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;RefinementCriteria&quot;</span>; }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="}">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#a5c7d22704451713ad5826270b26301b5">   91</a></span>    [[nodiscard]] <a class="code hl_enumeration" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">tagging::TaggingOperator</a> <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#a5c7d22704451713ad5826270b26301b5">tag_operator</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classkynema__sgf_1_1_refinement_criteria.html#a8c05320e629b2a0d28dc4436e1d0e54a">m_tag_operator</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#a1959427a3f82b7d60131edb1ef1e385f">   96</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#a1959427a3f82b7d60131edb1ef1e385f">tag_operator</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">tagging::TaggingOperator</a>&amp; op)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_variable" href="classkynema__sgf_1_1_refinement_criteria.html#a8c05320e629b2a0d28dc4436e1d0e54a">m_tag_operator</a> = op;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#ad1aa86ee94991f42491bd9dbdd142a53">  101</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#ad1aa86ee94991f42491bd9dbdd142a53">RefinementCriteria</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#ae36d044a57390ee782f98d1a02084992">  103</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#ae36d044a57390ee782f98d1a02084992">~RefinementCriteria</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#a38cdba1ccd683b087e5c3d9ed7f58b8c">  107</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#a38cdba1ccd683b087e5c3d9ed7f58b8c">initialize</a>(<span class="keyword">const</span> std::string&amp; key) = 0;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#ab4d6cc0a7853772357ed59f126a38fcf">  113</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_refinement_criteria.html#ab4d6cc0a7853772357ed59f126a38fcf">operator()</a>(</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordtype">int</span> level, amrex::TagBoxArray&amp; tags, amrex::Real time, <span class="keywordtype">int</span> ngrow) = 0;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refinement_criteria.html#a8c05320e629b2a0d28dc4436e1d0e54a">  117</a></span>    <a class="code hl_enumeration" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">tagging::TaggingOperator</a> <a class="code hl_variable" href="classkynema__sgf_1_1_refinement_criteria.html#a8c05320e629b2a0d28dc4436e1d0e54a">m_tag_operator</a>{<a class="code hl_enumvalue" href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a1d00e7dce692e8dc3f6877f035e3a616">tagging::TaggingOperator::OR</a>};</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>};</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="foldopen" id="foldopen00123" data-start="{" data-end="};">
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refine_criteria_manager.html">  123</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_refine_criteria_manager.html#a9bcf8414d4aa8d7a0f3d9ad729c39d11">RefineCriteriaManager</a></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>{</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_refine_criteria_manager.html#a9bcf8414d4aa8d7a0f3d9ad729c39d11">RefineCriteriaManager</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refine_criteria_manager.html#a68eff58cfe0249cc00047e845f697143">  128</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_refine_criteria_manager.html#a68eff58cfe0249cc00047e845f697143">~RefineCriteriaManager</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_refine_criteria_manager.html#a11410d19ab3b6196c34e384b1029f601">initialize</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_function" href="classkynema__sgf_1_1_refine_criteria_manager.html#a713527afbe1e7f962d1042873f34a8e3">tag_cells</a>(<span class="keywordtype">int</span> lev, amrex::TagBoxArray&amp; tags, amrex::Real time, <span class="keywordtype">int</span> ngrow);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refine_criteria_manager.html#a9288052cc5496cf2df0ae44a1e376948">  136</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_refine_criteria_manager.html#a9288052cc5496cf2df0ae44a1e376948">m_sim</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_refine_criteria_manager.html#af849025fbdc36166762fd5c053751c18">  138</a></span>    amrex::Vector&lt;std::unique_ptr&lt;RefinementCriteria&gt;&gt; <a class="code hl_variable" href="classkynema__sgf_1_1_refine_criteria_manager.html#af849025fbdc36166762fd5c053751c18">m_refiners</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};</div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#endif </span><span class="comment">/* REFINEMENTCRITERIA_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_factory_8_h_html"><div class="ttname"><a href="_factory_8_h.html">Factory.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refine_criteria_manager_html_a11410d19ab3b6196c34e384b1029f601"><div class="ttname"><a href="classkynema__sgf_1_1_refine_criteria_manager.html#a11410d19ab3b6196c34e384b1029f601">kynema_sgf::RefineCriteriaManager::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdef"><b>Definition</b> RefinementCriteria.cpp:10</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refine_criteria_manager_html_a68eff58cfe0249cc00047e845f697143"><div class="ttname"><a href="classkynema__sgf_1_1_refine_criteria_manager.html#a68eff58cfe0249cc00047e845f697143">kynema_sgf::RefineCriteriaManager::~RefineCriteriaManager</a></div><div class="ttdeci">~RefineCriteriaManager()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refine_criteria_manager_html_a713527afbe1e7f962d1042873f34a8e3"><div class="ttname"><a href="classkynema__sgf_1_1_refine_criteria_manager.html#a713527afbe1e7f962d1042873f34a8e3">kynema_sgf::RefineCriteriaManager::tag_cells</a></div><div class="ttdeci">void tag_cells(int lev, amrex::TagBoxArray &amp;tags, amrex::Real time, int ngrow)</div><div class="ttdef"><b>Definition</b> RefinementCriteria.cpp:38</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refine_criteria_manager_html_a9288052cc5496cf2df0ae44a1e376948"><div class="ttname"><a href="classkynema__sgf_1_1_refine_criteria_manager.html#a9288052cc5496cf2df0ae44a1e376948">kynema_sgf::RefineCriteriaManager::m_sim</a></div><div class="ttdeci">CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:136</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refine_criteria_manager_html_a9bcf8414d4aa8d7a0f3d9ad729c39d11"><div class="ttname"><a href="classkynema__sgf_1_1_refine_criteria_manager.html#a9bcf8414d4aa8d7a0f3d9ad729c39d11">kynema_sgf::RefineCriteriaManager::RefineCriteriaManager</a></div><div class="ttdeci">RefineCriteriaManager(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> RefinementCriteria.cpp:8</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refine_criteria_manager_html_af849025fbdc36166762fd5c053751c18"><div class="ttname"><a href="classkynema__sgf_1_1_refine_criteria_manager.html#af849025fbdc36166762fd5c053751c18">kynema_sgf::RefineCriteriaManager::m_refiners</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; RefinementCriteria &gt; &gt; m_refiners</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:138</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_a1959427a3f82b7d60131edb1ef1e385f"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#a1959427a3f82b7d60131edb1ef1e385f">kynema_sgf::RefinementCriteria::tag_operator</a></div><div class="ttdeci">void tag_operator(const tagging::TaggingOperator &amp;op)</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:96</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_a2a81993f21d1ea05c3572062627333a3"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#a2a81993f21d1ea05c3572062627333a3">kynema_sgf::RefinementCriteria::base_identifier</a></div><div class="ttdeci">static std::string base_identifier()</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:89</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_a38cdba1ccd683b087e5c3d9ed7f58b8c"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#a38cdba1ccd683b087e5c3d9ed7f58b8c">kynema_sgf::RefinementCriteria::initialize</a></div><div class="ttdeci">virtual void initialize(const std::string &amp;key)=0</div><div class="ttdoc">Perform initialization tasks (e.g., read from file etc.).</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_a5c7d22704451713ad5826270b26301b5"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#a5c7d22704451713ad5826270b26301b5">kynema_sgf::RefinementCriteria::tag_operator</a></div><div class="ttdeci">tagging::TaggingOperator tag_operator() const</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:91</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_a8c05320e629b2a0d28dc4436e1d0e54a"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#a8c05320e629b2a0d28dc4436e1d0e54a">kynema_sgf::RefinementCriteria::m_tag_operator</a></div><div class="ttdeci">tagging::TaggingOperator m_tag_operator</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:117</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_ab4d6cc0a7853772357ed59f126a38fcf"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#ab4d6cc0a7853772357ed59f126a38fcf">kynema_sgf::RefinementCriteria::operator()</a></div><div class="ttdeci">virtual void operator()(int level, amrex::TagBoxArray &amp;tags, amrex::Real time, int ngrow)=0</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_ad1aa86ee94991f42491bd9dbdd142a53"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#ad1aa86ee94991f42491bd9dbdd142a53">kynema_sgf::RefinementCriteria::RefinementCriteria</a></div><div class="ttdeci">RefinementCriteria()=default</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_refinement_criteria_html_ae36d044a57390ee782f98d1a02084992"><div class="ttname"><a href="classkynema__sgf_1_1_refinement_criteria.html#ae36d044a57390ee782f98d1a02084992">kynema_sgf::RefinementCriteria::~RefinementCriteria</a></div><div class="ttdeci">~RefinementCriteria() override=default</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html">kynema_sgf::tagging</a></div><div class="ttdef"><b>Definition</b> BoxRefiner.cpp:9</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_a7360bdbc7f30bcda5e0e223358bf187e"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#a7360bdbc7f30bcda5e0e223358bf187e">kynema_sgf::tagging::string_to_operator</a></div><div class="ttdeci">AMREX_FORCE_INLINE TaggingOperator string_to_operator(const std::string &amp;op)</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:31</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_a90ddc632a4fc2b15b89e7dbd731d1eec"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#a90ddc632a4fc2b15b89e7dbd731d1eec">kynema_sgf::tagging::tag_val</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::TagBox::TagVal tag_val(const bool previous_val, const bool current_val, const TaggingOperator &amp;op)</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:52</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_aeebf4f556f6592570fdbd33faf78b142"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142">kynema_sgf::tagging::TaggingOperator</a></div><div class="ttdeci">TaggingOperator</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:24</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_aeebf4f556f6592570fdbd33faf78b142a1d00e7dce692e8dc3f6877f035e3a616"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a1d00e7dce692e8dc3f6877f035e3a616">kynema_sgf::tagging::TaggingOperator::OR</a></div><div class="ttdeci">@ OR</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:24</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a558ffc8f5770d8e4f95f51d822685532">kynema_sgf::tagging::TaggingOperator::AND</a></div><div class="ttdeci">@ AND</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:24</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_aeebf4f556f6592570fdbd33faf78b142a68d29af060ea90083c505ee392700eef"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a68d29af060ea90083c505ee392700eef">kynema_sgf::tagging::TaggingOperator::AND_NOT</a></div><div class="ttdeci">@ AND_NOT</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:24</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1tagging_html_aeebf4f556f6592570fdbd33faf78b142a756eaf1e3554bffb0df4a824191577f6"><div class="ttname"><a href="namespacekynema__sgf_1_1tagging.html#aeebf4f556f6592570fdbd33faf78b142a756eaf1e3554bffb0df4a824191577f6">kynema_sgf::tagging::TaggingOperator::OR_NOT</a></div><div class="ttdeci">@ OR_NOT</div><div class="ttdef"><b>Definition</b> RefinementCriteria.H:24</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_factory_html_a91304216d59ae6834fc0da187ec512c6"><div class="ttname"><a href="structkynema__sgf_1_1_factory.html#a91304216d59ae6834fc0da187ec512c6">kynema_sgf::Factory&lt; RefinementCriteria, CFDSim &amp; &gt;::Factory</a></div><div class="ttdeci">Factory()=default</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

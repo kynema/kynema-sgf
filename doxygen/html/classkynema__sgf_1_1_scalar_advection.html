@@ -1,0 +1,944 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ScalarAdvection Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ScalarAdvection Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_scalar_advection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scalaradvection-class-reference">
+<h1>ScalarAdvection Class Reference<a class="headerlink" href="#scalaradvection-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ScalarAdvection Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_scalar_advection.html">ScalarAdvection</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_scalar_advection-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ScalarAdvection Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_scalar_advection_8_h_source.html">ScalarAdvection.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::ScalarAdvection:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_scalar_advection__inherit__graph.svg" width="224" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ScalarAdvection:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_scalar_advection__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a7dba03915775f8dae81d9cad67aea04e" id="r_a7dba03915775f8dae81d9cad67aea04e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dba03915775f8dae81d9cad67aea04e">ScalarAdvection</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;sim)</td></tr>
+<tr class="memitem:ac5ae7d6010588af9b2c84f17bab2de24" id="r_ac5ae7d6010588af9b2c84f17bab2de24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5ae7d6010588af9b2c84f17bab2de24">~ScalarAdvection</a> () override=default</td></tr>
+<tr class="memitem:a97bbaeac6ce2154b36f621301194c06a" id="r_a97bbaeac6ce2154b36f621301194c06a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97bbaeac6ce2154b36f621301194c06a">initialize_fields</a> (int level, const amrex::Geometry &amp;geom) override</td></tr>
+<tr class="memdesc:a97bbaeac6ce2154b36f621301194c06a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the fields for <a class="el" href="classkynema__sgf_1_1_scalar_advection.html">ScalarAdvection</a> simulations.  <br /></td></tr>
+<tr class="memitem:a7990379ef02a2bfd86b17fc42b3e963d" id="r_a7990379ef02a2bfd86b17fc42b3e963d"><td class="memTemplParams" colspan="2">template&lt;typename Shape&gt; </td></tr>
+<tr class="memitem:a7990379ef02a2bfd86b17fc42b3e963d template"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7990379ef02a2bfd86b17fc42b3e963d">compute_error</a> (const Shape &amp;scalar_function)</td></tr>
+<tr class="memitem:a7c4cdfdc32330220f576c216b0b943f4" id="r_a7c4cdfdc32330220f576c216b0b943f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c4cdfdc32330220f576c216b0b943f4">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a265b5914c98aa6d85663e9cd6efaf1c8" id="r_a265b5914c98aa6d85663e9cd6efaf1c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a265b5914c98aa6d85663e9cd6efaf1c8">post_regrid_actions</a> () override</td></tr>
+<tr class="memitem:ae0b1b18d63d2f02a153a18a6ce735949" id="r_ae0b1b18d63d2f02a153a18a6ce735949"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0b1b18d63d2f02a153a18a6ce735949">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:ab7c678d0696865094c567141a5601aec" id="r_ab7c678d0696865094c567141a5601aec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7c678d0696865094c567141a5601aec">post_advance_work</a> () override</td></tr>
+<tr class="memitem:aeba835c32d795a86c62965a863a4d9a1" id="r_aeba835c32d795a86c62965a863a4d9a1"><td class="memTemplParams" colspan="2">template&lt;typename Shape&gt; </td></tr>
+<tr class="memitem:aeba835c32d795a86c62965a863a4d9a1 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeba835c32d795a86c62965a863a4d9a1">initialize_scalar</a> (const Shape &amp;scalar_function)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae607026d10787e32ba9b6ca4dcf489ac" id="r_ae607026d10787e32ba9b6ca4dcf489ac"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae607026d10787e32ba9b6ca4dcf489ac">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9089a63a4889d537dc916c8557678bac" id="r_a9089a63a4889d537dc916c8557678bac"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9089a63a4889d537dc916c8557678bac">m_time</a></td></tr>
+<tr class="memitem:ad776a9f7bc815418424c32ec7cd3cc8b" id="r_ad776a9f7bc815418424c32ec7cd3cc8b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad776a9f7bc815418424c32ec7cd3cc8b">m_repo</a></td></tr>
+<tr class="memitem:a99fc73c70f80d15a9057fc424e42ac2a" id="r_a99fc73c70f80d15a9057fc424e42ac2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99fc73c70f80d15a9057fc424e42ac2a">m_velocity</a></td></tr>
+<tr class="memitem:a3f309a808f455ccb5be39141b82cacb7" id="r_a3f309a808f455ccb5be39141b82cacb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f309a808f455ccb5be39141b82cacb7">m_density</a></td></tr>
+<tr class="memitem:ae862a37466281c3fb3489d2a43a8a460" id="r_ae862a37466281c3fb3489d2a43a8a460"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae862a37466281c3fb3489d2a43a8a460">m_output_fname</a> = &quot;error.log&quot;</td></tr>
+<tr class="memitem:a202bae217b758561917e5981d6292abb" id="r_a202bae217b758561917e5981d6292abb"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a202bae217b758561917e5981d6292abb">m_w</a> = 20</td></tr>
+<tr class="memitem:a75432972dd49e3620083d33c2ecb20a0" id="r_a75432972dd49e3620083d33c2ecb20a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75432972dd49e3620083d33c2ecb20a0">m_scalar</a> {nullptr}</td></tr>
+<tr class="memdesc:a75432972dd49e3620083d33c2ecb20a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar field.  <br /></td></tr>
+<tr class="memitem:aef90bf64945df8e2b0a8dccd996dbca4" id="r_aef90bf64945df8e2b0a8dccd996dbca4"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef90bf64945df8e2b0a8dccd996dbca4">m_u</a> {1.0_rt}</td></tr>
+<tr class="memdesc:aef90bf64945df8e2b0a8dccd996dbca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flow velocity in x-direction.  <br /></td></tr>
+<tr class="memitem:a0d8785e3428e82c11170ecccf2351c8f" id="r_a0d8785e3428e82c11170ecccf2351c8f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d8785e3428e82c11170ecccf2351c8f">m_v</a> {0.0_rt}</td></tr>
+<tr class="memitem:ac28717b8c02894f73e9a38aa950e6428" id="r_ac28717b8c02894f73e9a38aa950e6428"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac28717b8c02894f73e9a38aa950e6428">m_x0</a> {0.1_rt}</td></tr>
+<tr class="memdesc:ac28717b8c02894f73e9a38aa950e6428"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial wave/pulse packet location.  <br /></td></tr>
+<tr class="memitem:a2d7fb27a6acc859678155ee54f3f9b59" id="r_a2d7fb27a6acc859678155ee54f3f9b59"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d7fb27a6acc859678155ee54f3f9b59">m_y0</a> {0.1_rt}</td></tr>
+<tr class="memitem:a6448da1355e7915f76f1652cb419ab93" id="r_a6448da1355e7915f76f1652cb419ab93"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6448da1355e7915f76f1652cb419ab93">m_amplitude</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a6448da1355e7915f76f1652cb419ab93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial wave/pulse amplitude.  <br /></td></tr>
+<tr class="memitem:aa3ebda83a085ae488b537bcbac5ae18c" id="r_aa3ebda83a085ae488b537bcbac5ae18c"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3ebda83a085ae488b537bcbac5ae18c">m_x_width</a> {0.01_rt}</td></tr>
+<tr class="memdesc:aa3ebda83a085ae488b537bcbac5ae18c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial wave/pulse width (standard deviation for GaussianPulse and <a class="el" href="structkynema__sgf_1_1_gaussian_wave_packet.html">GaussianWavePacket</a>)  <br /></td></tr>
+<tr class="memitem:a4ca77af728d1cd1f75426d291e917d11" id="r_a4ca77af728d1cd1f75426d291e917d11"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ca77af728d1cd1f75426d291e917d11">m_y_width</a> {0.01_rt}</td></tr>
+<tr class="memitem:a38b68a18c4ce728f74aa9df8b88071bd" id="r_a38b68a18c4ce728f74aa9df8b88071bd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38b68a18c4ce728f74aa9df8b88071bd">m_x_wavenumber</a> {16.0_rt * std::numbers::pi_v&lt;amrex::Real&gt;}</td></tr>
+<tr class="memdesc:a38b68a18c4ce728f74aa9df8b88071bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wave numbers.  <br /></td></tr>
+<tr class="memitem:ab33c70942e9e8ef518b03714f7810f4f" id="r_ab33c70942e9e8ef518b03714f7810f4f"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab33c70942e9e8ef518b03714f7810f4f">m_y_wavenumber</a> {16.0_rt * std::numbers::pi_v&lt;amrex::Real&gt;}</td></tr>
+<tr class="memitem:a751a04f097f0b39c0fe331d4af9753d3" id="r_a751a04f097f0b39c0fe331d4af9753d3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a751a04f097f0b39c0fe331d4af9753d3">m_shape</a> {&quot;gaussian&quot;}</td></tr>
+<tr class="memdesc:a751a04f097f0b39c0fe331d4af9753d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial wave/pulse shape.  <br /></td></tr>
+<tr class="memitem:a292157ac99f09f657f2b147c3a6a8f70" id="r_a292157ac99f09f657f2b147c3a6a8f70"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a292157ac99f09f657f2b147c3a6a8f70">m_rho</a> {1.0_rt}</td></tr>
+<tr class="memdesc:a292157ac99f09f657f2b147c3a6a8f70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Density.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Scalar Advection physics</p>
+<dl class="section see"><dt>See also</dt><dd>ScalarAdvectionFieldInit </dd></dl>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7dba03915775f8dae81d9cad67aea04e" name="a7dba03915775f8dae81d9cad67aea04e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dba03915775f8dae81d9cad67aea04e">&#9670;&#160;</a></span>ScalarAdvection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ScalarAdvection::ScalarAdvection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5ae7d6010588af9b2c84f17bab2de24" name="ac5ae7d6010588af9b2c84f17bab2de24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ae7d6010588af9b2c84f17bab2de24">&#9670;&#160;</a></span>~ScalarAdvection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ScalarAdvection::~ScalarAdvection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7990379ef02a2bfd86b17fc42b3e963d" name="a7990379ef02a2bfd86b17fc42b3e963d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7990379ef02a2bfd86b17fc42b3e963d">&#9670;&#160;</a></span>compute_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Shape&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt; amrex::Real &gt; kynema_sgf::ScalarAdvection::compute_error </td>
+          <td>(</td>
+          <td class="paramtype">const Shape &amp;</td>          <td class="paramname"><span class="paramname"><em>scalar_function</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae607026d10787e32ba9b6ca4dcf489ac" name="ae607026d10787e32ba9b6ca4dcf489ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae607026d10787e32ba9b6ca4dcf489ac">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ScalarAdvection::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97bbaeac6ce2154b36f621301194c06a" name="a97bbaeac6ce2154b36f621301194c06a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97bbaeac6ce2154b36f621301194c06a">&#9670;&#160;</a></span>initialize_fields()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ScalarAdvection::initialize_fields </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the fields for <a class="el" href="classkynema__sgf_1_1_scalar_advection.html">ScalarAdvection</a> simulations. </p>
+<p>Initialize the velocity and passive scalar fields at the beginning of the simulation. </p>
+
+</div>
+</div>
+<a id="aeba835c32d795a86c62965a863a4d9a1" name="aeba835c32d795a86c62965a863a4d9a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeba835c32d795a86c62965a863a4d9a1">&#9670;&#160;</a></span>initialize_scalar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Shape&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ScalarAdvection::initialize_scalar </td>
+          <td>(</td>
+          <td class="paramtype">const Shape &amp;</td>          <td class="paramname"><span class="paramname"><em>scalar_function</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab7c678d0696865094c567141a5601aec" name="ab7c678d0696865094c567141a5601aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7c678d0696865094c567141a5601aec">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ScalarAdvection::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c4cdfdc32330220f576c216b0b943f4" name="a7c4cdfdc32330220f576c216b0b943f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c4cdfdc32330220f576c216b0b943f4">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ScalarAdvection::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a265b5914c98aa6d85663e9cd6efaf1c8" name="a265b5914c98aa6d85663e9cd6efaf1c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a265b5914c98aa6d85663e9cd6efaf1c8">&#9670;&#160;</a></span>post_regrid_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ScalarAdvection::post_regrid_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0b1b18d63d2f02a153a18a6ce735949" name="ae0b1b18d63d2f02a153a18a6ce735949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0b1b18d63d2f02a153a18a6ce735949">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ScalarAdvection::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a6448da1355e7915f76f1652cb419ab93" name="a6448da1355e7915f76f1652cb419ab93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6448da1355e7915f76f1652cb419ab93">&#9670;&#160;</a></span>m_amplitude</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_amplitude {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial wave/pulse amplitude. </p>
+
+</div>
+</div>
+<a id="a3f309a808f455ccb5be39141b82cacb7" name="a3f309a808f455ccb5be39141b82cacb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f309a808f455ccb5be39141b82cacb7">&#9670;&#160;</a></span>m_density</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::ScalarAdvection::m_density</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae862a37466281c3fb3489d2a43a8a460" name="ae862a37466281c3fb3489d2a43a8a460"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae862a37466281c3fb3489d2a43a8a460">&#9670;&#160;</a></span>m_output_fname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ScalarAdvection::m_output_fname = &quot;error.log&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad776a9f7bc815418424c32ec7cd3cc8b" name="ad776a9f7bc815418424c32ec7cd3cc8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad776a9f7bc815418424c32ec7cd3cc8b">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::ScalarAdvection::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a292157ac99f09f657f2b147c3a6a8f70" name="a292157ac99f09f657f2b147c3a6a8f70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a292157ac99f09f657f2b147c3a6a8f70">&#9670;&#160;</a></span>m_rho</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_rho {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Density. </p>
+
+</div>
+</div>
+<a id="a75432972dd49e3620083d33c2ecb20a0" name="a75432972dd49e3620083d33c2ecb20a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75432972dd49e3620083d33c2ecb20a0">&#9670;&#160;</a></span>m_scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>* kynema_sgf::ScalarAdvection::m_scalar {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Scalar field. </p>
+
+</div>
+</div>
+<a id="a751a04f097f0b39c0fe331d4af9753d3" name="a751a04f097f0b39c0fe331d4af9753d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751a04f097f0b39c0fe331d4af9753d3">&#9670;&#160;</a></span>m_shape</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ScalarAdvection::m_shape {&quot;gaussian&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial wave/pulse shape. </p>
+
+</div>
+</div>
+<a id="a9089a63a4889d537dc916c8557678bac" name="a9089a63a4889d537dc916c8557678bac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9089a63a4889d537dc916c8557678bac">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&amp; kynema_sgf::ScalarAdvection::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef90bf64945df8e2b0a8dccd996dbca4" name="aef90bf64945df8e2b0a8dccd996dbca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef90bf64945df8e2b0a8dccd996dbca4">&#9670;&#160;</a></span>m_u</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_u {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flow velocity in x-direction. </p>
+
+</div>
+</div>
+<a id="a0d8785e3428e82c11170ecccf2351c8f" name="a0d8785e3428e82c11170ecccf2351c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d8785e3428e82c11170ecccf2351c8f">&#9670;&#160;</a></span>m_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_v {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99fc73c70f80d15a9057fc424e42ac2a" name="a99fc73c70f80d15a9057fc424e42ac2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99fc73c70f80d15a9057fc424e42ac2a">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::ScalarAdvection::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a202bae217b758561917e5981d6292abb" name="a202bae217b758561917e5981d6292abb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a202bae217b758561917e5981d6292abb">&#9670;&#160;</a></span>m_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int kynema_sgf::ScalarAdvection::m_w = 20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac28717b8c02894f73e9a38aa950e6428" name="ac28717b8c02894f73e9a38aa950e6428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac28717b8c02894f73e9a38aa950e6428">&#9670;&#160;</a></span>m_x0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_x0 {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial wave/pulse packet location. </p>
+
+</div>
+</div>
+<a id="a38b68a18c4ce728f74aa9df8b88071bd" name="a38b68a18c4ce728f74aa9df8b88071bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b68a18c4ce728f74aa9df8b88071bd">&#9670;&#160;</a></span>m_x_wavenumber</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_x_wavenumber {16.0_rt * std::numbers::pi_v&lt;amrex::Real&gt;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wave numbers. </p>
+
+</div>
+</div>
+<a id="aa3ebda83a085ae488b537bcbac5ae18c" name="aa3ebda83a085ae488b537bcbac5ae18c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3ebda83a085ae488b537bcbac5ae18c">&#9670;&#160;</a></span>m_x_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_x_width {0.01_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initial wave/pulse width (standard deviation for GaussianPulse and <a class="el" href="structkynema__sgf_1_1_gaussian_wave_packet.html">GaussianWavePacket</a>) </p>
+
+</div>
+</div>
+<a id="a2d7fb27a6acc859678155ee54f3f9b59" name="a2d7fb27a6acc859678155ee54f3f9b59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d7fb27a6acc859678155ee54f3f9b59">&#9670;&#160;</a></span>m_y0</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_y0 {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab33c70942e9e8ef518b03714f7810f4f" name="ab33c70942e9e8ef518b03714f7810f4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab33c70942e9e8ef518b03714f7810f4f">&#9670;&#160;</a></span>m_y_wavenumber</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_y_wavenumber {16.0_rt * std::numbers::pi_v&lt;amrex::Real&gt;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ca77af728d1cd1f75426d291e917d11" name="a4ca77af728d1cd1f75426d291e917d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ca77af728d1cd1f75426d291e917d11">&#9670;&#160;</a></span>m_y_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ScalarAdvection::m_y_width {0.01_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_scalar_advection_8_h_source.html">ScalarAdvection.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/<a class="el" href="_scalar_advection_8cpp.html">ScalarAdvection.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

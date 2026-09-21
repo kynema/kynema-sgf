@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ShearStress.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ShearStress.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_shear_stress_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-shearstress-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ShearStress.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-shearstress-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/ShearStress.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ShearStress.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_shear_stress_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SHEARSTRESS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SHEARSTRESS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_m_o_data_8_h.html">src/wind_energy/MOData.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html">   22</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_constant.html#aacdd2feea8fdd043d1bc680bff3b05c8">ShearStressConstant</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#aacdd2feea8fdd043d1bc680bff3b05c8">   24</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_constant.html#aacdd2feea8fdd043d1bc680bff3b05c8">ShearStressConstant</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a>&amp; mo)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a3521b792f209ceb6b7589ab525073cd2">utau2</a>(mo.utau * mo.utau)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#acba623dce0d370ad9a4d03ab37a8568d">u_mean</a>(mo.vel_mean[0])</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a5072857bdd7ebdc214698d3aaa295499">v_mean</a>(mo.vel_mean[1])</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a0dae6929bf681e9fcf5db7eb83688c4c">wspd_mean</a>(mo.vmag_mean)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a4f239ee2d60ddd25e353641b24539341">theta_mean</a>(mo.<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a4f239ee2d60ddd25e353641b24539341">theta_mean</a>)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a69aa8465433b2af3fbb59f52fde38eff">theta_surface</a>(mo.surf_temp)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a212a6122fac192852b8da481bf683ba6">term1</a>(mo.utau * mo.kappa / mo.phi_h())</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    {}</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#aa111a548c2d3740d04972cb7070cdc9a">   35</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_constant.html#aa111a548c2d3740d04972cb7070cdc9a">calc_vel_x</a>(amrex::Real <span class="comment">/* u */</span>, amrex::Real <span class="comment">/* wspd */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#acba623dce0d370ad9a4d03ab37a8568d">u_mean</a> / <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a0dae6929bf681e9fcf5db7eb83688c4c">wspd_mean</a> * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a3521b792f209ceb6b7589ab525073cd2">utau2</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    };</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a91a9d067d6ccdf273a31f245a2837b62">   41</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_constant.html#a91a9d067d6ccdf273a31f245a2837b62">calc_vel_y</a>(amrex::Real <span class="comment">/* u */</span>, amrex::Real <span class="comment">/* wspd */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a5072857bdd7ebdc214698d3aaa295499">v_mean</a> / <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a0dae6929bf681e9fcf5db7eb83688c4c">wspd_mean</a> * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a3521b792f209ceb6b7589ab525073cd2">utau2</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    };</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a038420eaf63e04ed7416469b7daa9010">   47</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_constant.html#a038420eaf63e04ed7416469b7daa9010">calc_theta</a>(amrex::Real <span class="comment">/* wspd */</span>, amrex::Real <span class="comment">/* theta */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a212a6122fac192852b8da481bf683ba6">term1</a> * (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a4f239ee2d60ddd25e353641b24539341">theta_mean</a> - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a69aa8465433b2af3fbb59f52fde38eff">theta_surface</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    };</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a3521b792f209ceb6b7589ab525073cd2">   52</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a3521b792f209ceb6b7589ab525073cd2">utau2</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#acba623dce0d370ad9a4d03ab37a8568d">   53</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#acba623dce0d370ad9a4d03ab37a8568d">u_mean</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a5072857bdd7ebdc214698d3aaa295499">   54</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a5072857bdd7ebdc214698d3aaa295499">v_mean</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a0dae6929bf681e9fcf5db7eb83688c4c">   55</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a0dae6929bf681e9fcf5db7eb83688c4c">wspd_mean</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a4f239ee2d60ddd25e353641b24539341">   56</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a4f239ee2d60ddd25e353641b24539341">theta_mean</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a69aa8465433b2af3fbb59f52fde38eff">   57</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a69aa8465433b2af3fbb59f52fde38eff">theta_surface</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_constant.html#a212a6122fac192852b8da481bf683ba6">   58</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_constant.html#a212a6122fac192852b8da481bf683ba6">term1</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html">   61</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_local.html#accab962d2a917f9ec31b3f68e729bd58">ShearStressLocal</a></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#accab962d2a917f9ec31b3f68e729bd58">   63</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_local.html#accab962d2a917f9ec31b3f68e729bd58">ShearStressLocal</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a>&amp; mo)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#acc1a3e31128574815bc2498bc88556ea">utau2</a>(mo.utau * mo.utau)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a6a0aced7d78c4a857009de6c267abfa9">theta_surface</a>(mo.surf_temp)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a0510546cf6a548dff186ebd679c54ca3">term1</a>(mo.utau * mo.kappa / mo.phi_h())</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {}</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#a1c49f5ade0c4437df7104fb9efe26009">   70</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_local.html#a1c49f5ade0c4437df7104fb9efe26009">calc_vel_x</a>(amrex::Real u, amrex::Real wspd)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">return</span> u / amrex::max&lt;amrex::Real&gt;(wspd, <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a18a63fbe6c2860efa3c04ecf36dac618">small_vel</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#acc1a3e31128574815bc2498bc88556ea">utau2</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    };</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#adf7b9b59e23dbdca0cbdd7344d8f5f1d">   76</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_local.html#adf7b9b59e23dbdca0cbdd7344d8f5f1d">calc_vel_y</a>(amrex::Real v, amrex::Real wspd)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> v / amrex::max&lt;amrex::Real&gt;(wspd, <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a18a63fbe6c2860efa3c04ecf36dac618">small_vel</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#acc1a3e31128574815bc2498bc88556ea">utau2</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    };</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#a11aac0f5a1852cfe156f8ca67c032901">   82</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_local.html#a11aac0f5a1852cfe156f8ca67c032901">calc_theta</a>(amrex::Real <span class="comment">/* wspd */</span>, amrex::Real theta)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a0510546cf6a548dff186ebd679c54ca3">term1</a> * (theta - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a6a0aced7d78c4a857009de6c267abfa9">theta_surface</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    };</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#acc1a3e31128574815bc2498bc88556ea">   87</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#acc1a3e31128574815bc2498bc88556ea">utau2</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#a6a0aced7d78c4a857009de6c267abfa9">   88</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a6a0aced7d78c4a857009de6c267abfa9">theta_surface</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#a0510546cf6a548dff186ebd679c54ca3">   89</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a0510546cf6a548dff186ebd679c54ca3">term1</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_local.html#a18a63fbe6c2860efa3c04ecf36dac618">   90</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_local.html#a18a63fbe6c2860efa3c04ecf36dac618">small_vel</a>{1.0e-6_rt};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="};">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html">   93</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_schumann.html#a4ed6cd211320692aa70a13e3ed8963e5">ShearStressSchumann</a></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>{</div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="}">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#a4ed6cd211320692aa70a13e3ed8963e5">   95</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_schumann.html#a4ed6cd211320692aa70a13e3ed8963e5">ShearStressSchumann</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a>&amp; mo)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a95ace7a925d45faa127f36a355fbab6d">utau2</a>(mo.utau * mo.utau)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a44b0fcf3520a3f5d2b4dd7cf0f361ce6">wspd_mean</a>(mo.vmag_mean)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a0ae5128162d276bf97901f4eb4bf2d51">theta_surface</a>(mo.surf_temp)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a8e5b073c697e0fdb41a44dea16e50ed5">term1</a>(mo.utau * mo.kappa / mo.phi_h())</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    {}</div>
+</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#afc59211bb211d175ff004a13e1f7fb52">  103</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_schumann.html#afc59211bb211d175ff004a13e1f7fb52">calc_vel_x</a>(amrex::Real u, amrex::Real <span class="comment">/* wspd */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> u / <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a44b0fcf3520a3f5d2b4dd7cf0f361ce6">wspd_mean</a> * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a95ace7a925d45faa127f36a355fbab6d">utau2</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    };</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#ad8043299a365922fe249e1707d9d719b">  109</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_schumann.html#ad8043299a365922fe249e1707d9d719b">calc_vel_y</a>(amrex::Real v, amrex::Real <span class="comment">/* wspd */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">return</span> v / <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a44b0fcf3520a3f5d2b4dd7cf0f361ce6">wspd_mean</a> * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a95ace7a925d45faa127f36a355fbab6d">utau2</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    };</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#a6d74d1211e5b00a2c93136f1ce7e4544">  115</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_schumann.html#a6d74d1211e5b00a2c93136f1ce7e4544">calc_theta</a>(amrex::Real <span class="comment">/* wspd */</span>, amrex::Real theta)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a8e5b073c697e0fdb41a44dea16e50ed5">term1</a> * (theta - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a0ae5128162d276bf97901f4eb4bf2d51">theta_surface</a>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    };</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#a95ace7a925d45faa127f36a355fbab6d">  120</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a95ace7a925d45faa127f36a355fbab6d">utau2</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#a44b0fcf3520a3f5d2b4dd7cf0f361ce6">  121</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a44b0fcf3520a3f5d2b4dd7cf0f361ce6">wspd_mean</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#a0ae5128162d276bf97901f4eb4bf2d51">  122</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a0ae5128162d276bf97901f4eb4bf2d51">theta_surface</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_schumann.html#a8e5b073c697e0fdb41a44dea16e50ed5">  123</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_schumann.html#a8e5b073c697e0fdb41a44dea16e50ed5">term1</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>};</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="};">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html">  126</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_moeng.html#a2332bdf2e592f5ec7b8c9c044604eace">ShearStressMoeng</a></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a2332bdf2e592f5ec7b8c9c044604eace">  128</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_moeng.html#a2332bdf2e592f5ec7b8c9c044604eace">ShearStressMoeng</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a>&amp; mo)</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a65aeae21b3c28aeda0ab1b90fbc74d53">utau2</a>(mo.utau * mo.utau)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#abf856c0f4334d308b9744108018f3a55">u_mean</a>(mo.vel_mean[0])</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a313c82e71875c3c432974337e0e4fc45">v_mean</a>(mo.vel_mean[1])</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a>(mo.vmag_mean)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a98fbe8ed33a31fd4cd62c971ceab929d">theta_surface</a>(mo.surf_temp)</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">theta_mean</a>(mo.<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">theta_mean</a>)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a0cf052cfb9e51c32acda31aba6d72052">term1</a>(mo.utau * mo.kappa / (mo.vmag_mean * mo.phi_h()))</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    {}</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#aa58619e8b83df135cb34b31245b641ee">  139</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_moeng.html#aa58619e8b83df135cb34b31245b641ee">calc_vel_x</a>(amrex::Real u, amrex::Real wspd)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">return</span> ((u - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#abf856c0f4334d308b9744108018f3a55">u_mean</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a> + wspd * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#abf856c0f4334d308b9744108018f3a55">u_mean</a>) /</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>               (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a> * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a65aeae21b3c28aeda0ab1b90fbc74d53">utau2</a>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    };</div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#aa01e410890925d216aac6f85cf9abb44">  146</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_moeng.html#aa01e410890925d216aac6f85cf9abb44">calc_vel_y</a>(amrex::Real v, amrex::Real wspd)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> ((v - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a313c82e71875c3c432974337e0e4fc45">v_mean</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a> + wspd * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a313c82e71875c3c432974337e0e4fc45">v_mean</a>) /</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>               (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a> * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a65aeae21b3c28aeda0ab1b90fbc74d53">utau2</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    };</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="}">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a7d8cac7d57bd343bb29b51b5d6585723">  153</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_moeng.html#a7d8cac7d57bd343bb29b51b5d6585723">calc_theta</a>(amrex::Real wspd, amrex::Real theta)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keyword">const</span> amrex::Real num1 = (theta - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">theta_mean</a>) * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keyword">const</span> amrex::Real num2 = (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">theta_mean</a> - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a98fbe8ed33a31fd4cd62c971ceab929d">theta_surface</a>) * wspd;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a0cf052cfb9e51c32acda31aba6d72052">term1</a> * (num1 + num2);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    };</div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a65aeae21b3c28aeda0ab1b90fbc74d53">  160</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a65aeae21b3c28aeda0ab1b90fbc74d53">utau2</a>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#abf856c0f4334d308b9744108018f3a55">  161</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#abf856c0f4334d308b9744108018f3a55">u_mean</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a313c82e71875c3c432974337e0e4fc45">  162</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a313c82e71875c3c432974337e0e4fc45">v_mean</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">  163</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">wspd_mean</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a98fbe8ed33a31fd4cd62c971ceab929d">  164</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a98fbe8ed33a31fd4cd62c971ceab929d">theta_surface</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">  165</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">theta_mean</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_moeng.html#a0cf052cfb9e51c32acda31aba6d72052">  166</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_moeng.html#a0cf052cfb9e51c32acda31aba6d72052">term1</a>; <span class="comment">// NOLINT(modernize-use-default-member-init)</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>};</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="};">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html">  169</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_donelan.html#afa02569b3dd1dbb0db4336751dcee24a">ShearStressDonelan</a></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>{</div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#afa02569b3dd1dbb0db4336751dcee24a">  171</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_donelan.html#afa02569b3dd1dbb0db4336751dcee24a">ShearStressDonelan</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a>&amp; mo)</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        : <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a>(mo.vmag_mean)</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7729b64fe375830382e8a3b4c9c33438">theta_mean</a>(mo.<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7729b64fe375830382e8a3b4c9c33438">theta_mean</a>)</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ad2c375c75c069d07d2af7f5938d8c747">theta_surface</a>(mo.surf_temp)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7efa36130dada0b81ac5ac8880e5208a">temp_flux_surface</a>(mo.surf_temp_flux)</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        , <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac208f9ce2fa6b2698e376c32d717b5b6">alg_type</a>(mo.<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac208f9ce2fa6b2698e376c32d717b5b6">alg_type</a>)</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    {}</div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#a1441070c5398d31c92de27ce63962449">  180</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_donelan.html#a1441070c5398d31c92de27ce63962449">calc_vel_x</a>(amrex::Real u, amrex::Real wspd)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        amrex::Real Cd = 0.001_rt;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keyword">const</span> amrex::Real c = 7.0e-5_rt;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a> &lt;= 5.0_rt) {</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>            Cd = 0.001_rt;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean &lt; 25.0_rt &amp;&amp; wspd_mean &gt;</a> 5.0_rt) {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            Cd = 0.001_rt + (c * (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a> - 5.0_rt));</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            Cd = 0.0024_rt;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordflow">return</span> Cd * u * wspd;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    }</div>
+</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#a895a055efb734562544c204f27ecdc63">  196</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_donelan.html#a895a055efb734562544c204f27ecdc63">calc_vel_y</a>(amrex::Real v, amrex::Real wspd)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        amrex::Real Cd = 0.001_rt;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keyword">const</span> amrex::Real c = 7.0e-5_rt;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a> &lt;= 5) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            Cd = 0.001_rt;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean &lt; 25.0_rt &amp;&amp; wspd_mean &gt;</a> 5.0_rt) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            Cd = 0.001_rt + (c * (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a> - 5.0_rt));</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            Cd = 0.0024_rt;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">return</span> Cd * v * wspd;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    };</div>
+</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real</div>
+<div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#abeb5009b898abe587e068f339250fc2e">  212</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1_shear_stress_donelan.html#abeb5009b898abe587e068f339250fc2e">calc_theta</a>(amrex::Real <span class="comment">/* wspd */</span>, amrex::Real <span class="comment">/* theta */</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        amrex::Real flux = 0.0_rt;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordflow">switch</span> (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac208f9ce2fa6b2698e376c32d717b5b6">alg_type</a>) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="structkynema__sgf_1_1_m_o_data.html#a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226">kynema_sgf::MOData::ThetaCalcType::HEAT_FLUX</a>:</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            flux = <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7efa36130dada0b81ac5ac8880e5208a">temp_flux_surface</a>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="structkynema__sgf_1_1_m_o_data.html#a69d9b59d216e8f5cb4ad6887e975f847a317cef85d14b4909f1d76becb00dc0f1">kynema_sgf::MOData::ThetaCalcType::SURFACE_TEMPERATURE</a>:</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            flux = 0.0012_rt * <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a> * (<a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ad2c375c75c069d07d2af7f5938d8c747">theta_surface</a> - <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7729b64fe375830382e8a3b4c9c33438">theta_mean</a>);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="keywordflow">return</span> flux;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    };</div>
+</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">  226</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">wspd_mean</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7729b64fe375830382e8a3b4c9c33438">  227</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7729b64fe375830382e8a3b4c9c33438">theta_mean</a>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#ad2c375c75c069d07d2af7f5938d8c747">  228</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ad2c375c75c069d07d2af7f5938d8c747">theta_surface</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7efa36130dada0b81ac5ac8880e5208a">  229</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#a7efa36130dada0b81ac5ac8880e5208a">temp_flux_surface</a>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac208f9ce2fa6b2698e376c32d717b5b6">  230</a></span>    <a class="code hl_enumeration" href="structkynema__sgf_1_1_m_o_data.html#a69d9b59d216e8f5cb4ad6887e975f847">kynema_sgf::MOData::ThetaCalcType</a> <a class="code hl_variable" href="structkynema__sgf_1_1_shear_stress_donelan.html#ac208f9ce2fa6b2698e376c32d717b5b6">alg_type</a>;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>};</div>
+</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">#endif </span><span class="comment">/* ShearStress_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_m_o_data_8_h_html"><div class="ttname"><a href="_m_o_data_8_h.html">MOData.H</a></div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_m_o_data_html"><div class="ttname"><a href="structkynema__sgf_1_1_m_o_data.html">kynema_sgf::MOData</a></div><div class="ttdef"><b>Definition</b> MOData.H:25</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_m_o_data_html_a69d9b59d216e8f5cb4ad6887e975f847"><div class="ttname"><a href="structkynema__sgf_1_1_m_o_data.html#a69d9b59d216e8f5cb4ad6887e975f847">kynema_sgf::MOData::ThetaCalcType</a></div><div class="ttdeci">ThetaCalcType</div><div class="ttdef"><b>Definition</b> MOData.H:26</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_m_o_data_html_a69d9b59d216e8f5cb4ad6887e975f847a317cef85d14b4909f1d76becb00dc0f1"><div class="ttname"><a href="structkynema__sgf_1_1_m_o_data.html#a69d9b59d216e8f5cb4ad6887e975f847a317cef85d14b4909f1d76becb00dc0f1">kynema_sgf::MOData::ThetaCalcType::SURFACE_TEMPERATURE</a></div><div class="ttdeci">@ SURFACE_TEMPERATURE</div><div class="ttdoc">Surface temperature specified.</div><div class="ttdef"><b>Definition</b> MOData.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_m_o_data_html_a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226"><div class="ttname"><a href="structkynema__sgf_1_1_m_o_data.html#a69d9b59d216e8f5cb4ad6887e975f847ac03b743c56d9316fbd3d327453b22226">kynema_sgf::MOData::ThetaCalcType::HEAT_FLUX</a></div><div class="ttdeci">@ HEAT_FLUX</div><div class="ttdoc">Heat-flux specified.</div><div class="ttdef"><b>Definition</b> MOData.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a038420eaf63e04ed7416469b7daa9010"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a038420eaf63e04ed7416469b7daa9010">kynema_sgf::ShearStressConstant::calc_theta</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_theta(amrex::Real, amrex::Real) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:47</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a0dae6929bf681e9fcf5db7eb83688c4c"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a0dae6929bf681e9fcf5db7eb83688c4c">kynema_sgf::ShearStressConstant::wspd_mean</a></div><div class="ttdeci">amrex::Real wspd_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:55</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a212a6122fac192852b8da481bf683ba6"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a212a6122fac192852b8da481bf683ba6">kynema_sgf::ShearStressConstant::term1</a></div><div class="ttdeci">amrex::Real term1</div><div class="ttdef"><b>Definition</b> ShearStress.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a3521b792f209ceb6b7589ab525073cd2"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a3521b792f209ceb6b7589ab525073cd2">kynema_sgf::ShearStressConstant::utau2</a></div><div class="ttdeci">amrex::Real utau2</div><div class="ttdef"><b>Definition</b> ShearStress.H:52</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a4f239ee2d60ddd25e353641b24539341"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a4f239ee2d60ddd25e353641b24539341">kynema_sgf::ShearStressConstant::theta_mean</a></div><div class="ttdeci">amrex::Real theta_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:56</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a5072857bdd7ebdc214698d3aaa295499"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a5072857bdd7ebdc214698d3aaa295499">kynema_sgf::ShearStressConstant::v_mean</a></div><div class="ttdeci">amrex::Real v_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:54</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a69aa8465433b2af3fbb59f52fde38eff"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a69aa8465433b2af3fbb59f52fde38eff">kynema_sgf::ShearStressConstant::theta_surface</a></div><div class="ttdeci">amrex::Real theta_surface</div><div class="ttdef"><b>Definition</b> ShearStress.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_a91a9d067d6ccdf273a31f245a2837b62"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#a91a9d067d6ccdf273a31f245a2837b62">kynema_sgf::ShearStressConstant::calc_vel_y</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_y(amrex::Real, amrex::Real) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:41</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_aa111a548c2d3740d04972cb7070cdc9a"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#aa111a548c2d3740d04972cb7070cdc9a">kynema_sgf::ShearStressConstant::calc_vel_x</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_x(amrex::Real, amrex::Real) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:35</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_aacdd2feea8fdd043d1bc680bff3b05c8"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#aacdd2feea8fdd043d1bc680bff3b05c8">kynema_sgf::ShearStressConstant::ShearStressConstant</a></div><div class="ttdeci">ShearStressConstant(const kynema_sgf::MOData &amp;mo)</div><div class="ttdef"><b>Definition</b> ShearStress.H:24</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_constant_html_acba623dce0d370ad9a4d03ab37a8568d"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_constant.html#acba623dce0d370ad9a4d03ab37a8568d">kynema_sgf::ShearStressConstant::u_mean</a></div><div class="ttdeci">amrex::Real u_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:53</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_a1441070c5398d31c92de27ce63962449"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#a1441070c5398d31c92de27ce63962449">kynema_sgf::ShearStressDonelan::calc_vel_x</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_x(amrex::Real u, amrex::Real wspd) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:180</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_a7729b64fe375830382e8a3b4c9c33438"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#a7729b64fe375830382e8a3b4c9c33438">kynema_sgf::ShearStressDonelan::theta_mean</a></div><div class="ttdeci">amrex::Real theta_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:227</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_a7efa36130dada0b81ac5ac8880e5208a"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#a7efa36130dada0b81ac5ac8880e5208a">kynema_sgf::ShearStressDonelan::temp_flux_surface</a></div><div class="ttdeci">amrex::Real temp_flux_surface</div><div class="ttdef"><b>Definition</b> ShearStress.H:229</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_a895a055efb734562544c204f27ecdc63"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#a895a055efb734562544c204f27ecdc63">kynema_sgf::ShearStressDonelan::calc_vel_y</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_y(amrex::Real v, amrex::Real wspd) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:196</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_abeb5009b898abe587e068f339250fc2e"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#abeb5009b898abe587e068f339250fc2e">kynema_sgf::ShearStressDonelan::calc_theta</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_theta(amrex::Real, amrex::Real) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:212</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_ac208f9ce2fa6b2698e376c32d717b5b6"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#ac208f9ce2fa6b2698e376c32d717b5b6">kynema_sgf::ShearStressDonelan::alg_type</a></div><div class="ttdeci">kynema_sgf::MOData::ThetaCalcType alg_type</div><div class="ttdef"><b>Definition</b> ShearStress.H:230</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_ac4aaa438774612c00837d2d7a176ea4c"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#ac4aaa438774612c00837d2d7a176ea4c">kynema_sgf::ShearStressDonelan::wspd_mean</a></div><div class="ttdeci">amrex::Real wspd_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:226</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_ad2c375c75c069d07d2af7f5938d8c747"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#ad2c375c75c069d07d2af7f5938d8c747">kynema_sgf::ShearStressDonelan::theta_surface</a></div><div class="ttdeci">amrex::Real theta_surface</div><div class="ttdef"><b>Definition</b> ShearStress.H:228</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_donelan_html_afa02569b3dd1dbb0db4336751dcee24a"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_donelan.html#afa02569b3dd1dbb0db4336751dcee24a">kynema_sgf::ShearStressDonelan::ShearStressDonelan</a></div><div class="ttdeci">ShearStressDonelan(const kynema_sgf::MOData &amp;mo)</div><div class="ttdef"><b>Definition</b> ShearStress.H:171</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_a0510546cf6a548dff186ebd679c54ca3"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#a0510546cf6a548dff186ebd679c54ca3">kynema_sgf::ShearStressLocal::term1</a></div><div class="ttdeci">amrex::Real term1</div><div class="ttdef"><b>Definition</b> ShearStress.H:89</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_a11aac0f5a1852cfe156f8ca67c032901"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#a11aac0f5a1852cfe156f8ca67c032901">kynema_sgf::ShearStressLocal::calc_theta</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_theta(amrex::Real, amrex::Real theta) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:82</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_a18a63fbe6c2860efa3c04ecf36dac618"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#a18a63fbe6c2860efa3c04ecf36dac618">kynema_sgf::ShearStressLocal::small_vel</a></div><div class="ttdeci">amrex::Real small_vel</div><div class="ttdef"><b>Definition</b> ShearStress.H:90</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_a1c49f5ade0c4437df7104fb9efe26009"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#a1c49f5ade0c4437df7104fb9efe26009">kynema_sgf::ShearStressLocal::calc_vel_x</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_x(amrex::Real u, amrex::Real wspd) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:70</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_a6a0aced7d78c4a857009de6c267abfa9"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#a6a0aced7d78c4a857009de6c267abfa9">kynema_sgf::ShearStressLocal::theta_surface</a></div><div class="ttdeci">amrex::Real theta_surface</div><div class="ttdef"><b>Definition</b> ShearStress.H:88</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_acc1a3e31128574815bc2498bc88556ea"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#acc1a3e31128574815bc2498bc88556ea">kynema_sgf::ShearStressLocal::utau2</a></div><div class="ttdeci">amrex::Real utau2</div><div class="ttdef"><b>Definition</b> ShearStress.H:87</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_accab962d2a917f9ec31b3f68e729bd58"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#accab962d2a917f9ec31b3f68e729bd58">kynema_sgf::ShearStressLocal::ShearStressLocal</a></div><div class="ttdeci">ShearStressLocal(const kynema_sgf::MOData &amp;mo)</div><div class="ttdef"><b>Definition</b> ShearStress.H:63</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_local_html_adf7b9b59e23dbdca0cbdd7344d8f5f1d"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_local.html#adf7b9b59e23dbdca0cbdd7344d8f5f1d">kynema_sgf::ShearStressLocal::calc_vel_y</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_y(amrex::Real v, amrex::Real wspd) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:76</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a0cf052cfb9e51c32acda31aba6d72052"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a0cf052cfb9e51c32acda31aba6d72052">kynema_sgf::ShearStressMoeng::term1</a></div><div class="ttdeci">amrex::Real term1</div><div class="ttdef"><b>Definition</b> ShearStress.H:166</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a2332bdf2e592f5ec7b8c9c044604eace"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a2332bdf2e592f5ec7b8c9c044604eace">kynema_sgf::ShearStressMoeng::ShearStressMoeng</a></div><div class="ttdeci">ShearStressMoeng(const kynema_sgf::MOData &amp;mo)</div><div class="ttdef"><b>Definition</b> ShearStress.H:128</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a313c82e71875c3c432974337e0e4fc45"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a313c82e71875c3c432974337e0e4fc45">kynema_sgf::ShearStressMoeng::v_mean</a></div><div class="ttdeci">amrex::Real v_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:162</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a65aeae21b3c28aeda0ab1b90fbc74d53"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a65aeae21b3c28aeda0ab1b90fbc74d53">kynema_sgf::ShearStressMoeng::utau2</a></div><div class="ttdeci">amrex::Real utau2</div><div class="ttdef"><b>Definition</b> ShearStress.H:160</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a76fd81117c007bac6419684c787dac2e"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a76fd81117c007bac6419684c787dac2e">kynema_sgf::ShearStressMoeng::wspd_mean</a></div><div class="ttdeci">amrex::Real wspd_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:163</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a7d8cac7d57bd343bb29b51b5d6585723"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a7d8cac7d57bd343bb29b51b5d6585723">kynema_sgf::ShearStressMoeng::calc_theta</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_theta(amrex::Real wspd, amrex::Real theta) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:153</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_a98fbe8ed33a31fd4cd62c971ceab929d"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#a98fbe8ed33a31fd4cd62c971ceab929d">kynema_sgf::ShearStressMoeng::theta_surface</a></div><div class="ttdeci">amrex::Real theta_surface</div><div class="ttdef"><b>Definition</b> ShearStress.H:164</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_aa01e410890925d216aac6f85cf9abb44"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#aa01e410890925d216aac6f85cf9abb44">kynema_sgf::ShearStressMoeng::calc_vel_y</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_y(amrex::Real v, amrex::Real wspd) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:146</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_aa58619e8b83df135cb34b31245b641ee"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#aa58619e8b83df135cb34b31245b641ee">kynema_sgf::ShearStressMoeng::calc_vel_x</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_x(amrex::Real u, amrex::Real wspd) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:139</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_abf856c0f4334d308b9744108018f3a55"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#abf856c0f4334d308b9744108018f3a55">kynema_sgf::ShearStressMoeng::u_mean</a></div><div class="ttdeci">amrex::Real u_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:161</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_moeng_html_ac8fbf50ee925ec48abd48a03efaede07"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_moeng.html#ac8fbf50ee925ec48abd48a03efaede07">kynema_sgf::ShearStressMoeng::theta_mean</a></div><div class="ttdeci">amrex::Real theta_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:165</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_a0ae5128162d276bf97901f4eb4bf2d51"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#a0ae5128162d276bf97901f4eb4bf2d51">kynema_sgf::ShearStressSchumann::theta_surface</a></div><div class="ttdeci">amrex::Real theta_surface</div><div class="ttdef"><b>Definition</b> ShearStress.H:122</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_a44b0fcf3520a3f5d2b4dd7cf0f361ce6"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#a44b0fcf3520a3f5d2b4dd7cf0f361ce6">kynema_sgf::ShearStressSchumann::wspd_mean</a></div><div class="ttdeci">amrex::Real wspd_mean</div><div class="ttdef"><b>Definition</b> ShearStress.H:121</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_a4ed6cd211320692aa70a13e3ed8963e5"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#a4ed6cd211320692aa70a13e3ed8963e5">kynema_sgf::ShearStressSchumann::ShearStressSchumann</a></div><div class="ttdeci">ShearStressSchumann(const kynema_sgf::MOData &amp;mo)</div><div class="ttdef"><b>Definition</b> ShearStress.H:95</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_a6d74d1211e5b00a2c93136f1ce7e4544"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#a6d74d1211e5b00a2c93136f1ce7e4544">kynema_sgf::ShearStressSchumann::calc_theta</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_theta(amrex::Real, amrex::Real theta) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:115</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_a8e5b073c697e0fdb41a44dea16e50ed5"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#a8e5b073c697e0fdb41a44dea16e50ed5">kynema_sgf::ShearStressSchumann::term1</a></div><div class="ttdeci">amrex::Real term1</div><div class="ttdef"><b>Definition</b> ShearStress.H:123</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_a95ace7a925d45faa127f36a355fbab6d"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#a95ace7a925d45faa127f36a355fbab6d">kynema_sgf::ShearStressSchumann::utau2</a></div><div class="ttdeci">amrex::Real utau2</div><div class="ttdef"><b>Definition</b> ShearStress.H:120</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_ad8043299a365922fe249e1707d9d719b"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#ad8043299a365922fe249e1707d9d719b">kynema_sgf::ShearStressSchumann::calc_vel_y</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_y(amrex::Real v, amrex::Real) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:109</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1_shear_stress_schumann_html_afc59211bb211d175ff004a13e1f7fb52"><div class="ttname"><a href="structkynema__sgf_1_1_shear_stress_schumann.html#afc59211bb211d175ff004a13e1f7fb52">kynema_sgf::ShearStressSchumann::calc_vel_x</a></div><div class="ttdeci">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_vel_x(amrex::Real u, amrex::Real) const</div><div class="ttdef"><b>Definition</b> ShearStress.H:103</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

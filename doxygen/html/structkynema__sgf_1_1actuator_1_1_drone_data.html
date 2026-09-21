@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::actuator::DroneData Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::actuator::DroneData Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structkynema__sgf_1_1actuator_1_1_drone_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dronedata-struct-reference">
+<h1>DroneData Struct Reference<a class="headerlink" href="#dronedata-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::actuator::DroneData Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1actuator.html">actuator</a></li><li class="navelem"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html">DroneData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structkynema__sgf_1_1actuator_1_1_drone_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::actuator::DroneData Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Composite actuator that gives all child rotors one rigid-body motion.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_drone_8_h_source.html">Drone.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::actuator::DroneData:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="structkynema__sgf_1_1actuator_1_1_drone_data__coll__graph.svg" width="100%" height="504"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ad03ff0a46e76647183e0f43ef7e2791d" id="r_ad03ff0a46e76647183e0f43ef7e2791d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad03ff0a46e76647183e0f43ef7e2791d">num_rotors</a> {0}</td></tr>
+<tr class="memitem:aa33593bbddb426041b1ebc04c1fda356" id="r_aa33593bbddb426041b1ebc04c1fda356"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa33593bbddb426041b1ebc04c1fda356">arm_lengths</a></td></tr>
+<tr class="memitem:afbbe2459091875e01552479583be5cb8" id="r_afbbe2459091875e01552479583be5cb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbbe2459091875e01552479583be5cb8">arm_angles_degrees</a></td></tr>
+<tr class="memitem:a991269c4c1c1d017d60f542c2d3ccf11" id="r_a991269c4c1c1d017d60f542c2d3ccf11"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a991269c4c1c1d017d60f542c2d3ccf11">arm_phase_degrees</a> {0.0_rt}</td></tr>
+<tr class="memitem:a7d538cfe83fa61594b3382964a437ab2" id="r_a7d538cfe83fa61594b3382964a437ab2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d538cfe83fa61594b3382964a437ab2">center</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:a155f7369a94c47d34bc51c441927e438" id="r_a155f7369a94c47d34bc51c441927e438"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a155f7369a94c47d34bc51c441927e438">translation_velocity</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:a3d90eeda92ec4544f4e4bcd4a5584456" id="r_a3d90eeda92ec4544f4e4bcd4a5584456"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d90eeda92ec4544f4e4bcd4a5584456">body_orientation_degrees</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:a9106b4a21a50cdb8c4bfd804a0157094" id="r_a9106b4a21a50cdb8c4bfd804a0157094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9106b4a21a50cdb8c4bfd804a0157094">body_orientation</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_tensor_t.html#a9a14bb3c8afac3c74a350b5bbeb94807">vs::Tensor::identity</a>()}</td></tr>
+<tr class="memitem:a3469184363c13a96355bb164d64a945a" id="r_a3469184363c13a96355bb164d64a945a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion.html">motion::RigidBodyMotion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3469184363c13a96355bb164d64a945a">body_motion</a></td></tr>
+<tr class="memitem:ae3f00406174edb9986d23d7ca16bf855" id="r_ae3f00406174edb9986d23d7ca16bf855"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_rotor_motion.html">motion::RotorMotion</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3f00406174edb9986d23d7ca16bf855">rotor_motion</a></td></tr>
+<tr class="memitem:a8e906e6dd5c9d8c2a568ba788bc4e2a5" id="r_a8e906e6dd5c9d8c2a568ba788bc4e2a5"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e906e6dd5c9d8c2a568ba788bc4e2a5">mirror_blades</a></td></tr>
+<tr class="memitem:a5c75a05199d79dafa0d17501e499dc3f" id="r_a5c75a05199d79dafa0d17501e499dc3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c75a05199d79dafa0d17501e499dc3f">total_force</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:ab2194c3943155c5e323c80ef09cb8bf2" id="r_ab2194c3943155c5e323c80ef09cb8bf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2194c3943155c5e323c80ef09cb8bf2">total_moment</a> {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td></tr>
+<tr class="memitem:a0456c086fe823d7d78a56ab2caaeeb53" id="r_a0456c086fe823d7d78a56ab2caaeeb53"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; std::unique_ptr&lt; <a class="el" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html">DroneRotor</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0456c086fe823d7d78a56ab2caaeeb53">rotors</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Composite actuator that gives all child rotors one rigid-body motion. </p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="afbbe2459091875e01552479583be5cb8" name="afbbe2459091875e01552479583be5cb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbbe2459091875e01552479583be5cb8">&#9670;&#160;</a></span>arm_angles_degrees</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::DroneData::arm_angles_degrees</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa33593bbddb426041b1ebc04c1fda356" name="aa33593bbddb426041b1ebc04c1fda356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa33593bbddb426041b1ebc04c1fda356">&#9670;&#160;</a></span>arm_lengths</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> kynema_sgf::actuator::DroneData::arm_lengths</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a991269c4c1c1d017d60f542c2d3ccf11" name="a991269c4c1c1d017d60f542c2d3ccf11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a991269c4c1c1d017d60f542c2d3ccf11">&#9670;&#160;</a></span>arm_phase_degrees</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::actuator::DroneData::arm_phase_degrees {0.0_rt}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3469184363c13a96355bb164d64a945a" name="a3469184363c13a96355bb164d64a945a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3469184363c13a96355bb164d64a945a">&#9670;&#160;</a></span>body_motion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_rigid_body_motion.html">motion::RigidBodyMotion</a>&gt; kynema_sgf::actuator::DroneData::body_motion</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9106b4a21a50cdb8c4bfd804a0157094" name="a9106b4a21a50cdb8c4bfd804a0157094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9106b4a21a50cdb8c4bfd804a0157094">&#9670;&#160;</a></span>body_orientation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> kynema_sgf::actuator::DroneData::body_orientation {<a class="el" href="structkynema__sgf_1_1vs_1_1_tensor_t.html#a9a14bb3c8afac3c74a350b5bbeb94807">vs::Tensor::identity</a>()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d90eeda92ec4544f4e4bcd4a5584456" name="a3d90eeda92ec4544f4e4bcd4a5584456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d90eeda92ec4544f4e4bcd4a5584456">&#9670;&#160;</a></span>body_orientation_degrees</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DroneData::body_orientation_degrees {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d538cfe83fa61594b3382964a437ab2" name="a7d538cfe83fa61594b3382964a437ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d538cfe83fa61594b3382964a437ab2">&#9670;&#160;</a></span>center</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DroneData::center {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e906e6dd5c9d8c2a568ba788bc4e2a5" name="a8e906e6dd5c9d8c2a568ba788bc4e2a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e906e6dd5c9d8c2a568ba788bc4e2a5">&#9670;&#160;</a></span>mirror_blades</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;int&gt; kynema_sgf::actuator::DroneData::mirror_blades</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad03ff0a46e76647183e0f43ef7e2791d" name="ad03ff0a46e76647183e0f43ef7e2791d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad03ff0a46e76647183e0f43ef7e2791d">&#9670;&#160;</a></span>num_rotors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::actuator::DroneData::num_rotors {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3f00406174edb9986d23d7ca16bf855" name="ae3f00406174edb9986d23d7ca16bf855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f00406174edb9986d23d7ca16bf855">&#9670;&#160;</a></span>rotor_motion</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classkynema__sgf_1_1actuator_1_1motion_1_1_rotor_motion.html">motion::RotorMotion</a>&gt; kynema_sgf::actuator::DroneData::rotor_motion</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0456c086fe823d7d78a56ab2caaeeb53" name="a0456c086fe823d7d78a56ab2caaeeb53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0456c086fe823d7d78a56ab2caaeeb53">&#9670;&#160;</a></span>rotors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;std::unique_ptr&lt;<a class="el" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html">DroneRotor</a>&gt; &gt; kynema_sgf::actuator::DroneData::rotors</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c75a05199d79dafa0d17501e499dc3f" name="a5c75a05199d79dafa0d17501e499dc3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c75a05199d79dafa0d17501e499dc3f">&#9670;&#160;</a></span>total_force</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DroneData::total_force {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab2194c3943155c5e323c80ef09cb8bf2" name="ab2194c3943155c5e323c80ef09cb8bf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2194c3943155c5e323c80ef09cb8bf2">&#9670;&#160;</a></span>total_moment</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DroneData::total_moment {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a155f7369a94c47d34bc51c441927e438" name="a155f7369a94c47d34bc51c441927e438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a155f7369a94c47d34bc51c441927e438">&#9670;&#160;</a></span>translation_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> kynema_sgf::actuator::DroneData::translation_velocity {<a class="el" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/drone/<a class="el" href="_drone_8_h_source.html">Drone.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::FieldBoundaryMgr Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::FieldBoundaryMgr Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_field_boundary_mgr.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fieldboundarymgr-class-reference">
+<h1>FieldBoundaryMgr Class Reference<a class="headerlink" href="#fieldboundarymgr-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::FieldBoundaryMgr Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classkynema__sgf_1_1_field_boundary_mgr-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::FieldBoundaryMgr Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_field_boundary_8_h_source.html">FieldBoundary.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::FieldBoundaryMgr:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_field_boundary_mgr__inherit__graph.svg" width="270" height="286"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::FieldBoundaryMgr:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_field_boundary_mgr__coll__graph.svg" width="100%" height="417"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a22257ed665380da2ff6fb63400acb480" id="r_a22257ed665380da2ff6fb63400acb480"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a22257ed665380da2ff6fb63400acb480 template"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22257ed665380da2ff6fb63400acb480">get</a> ()</td></tr>
+<tr class="memdesc:a22257ed665380da2ff6fb63400acb480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a concrete field-boundary instance.  <br /></td></tr>
+<tr class="memitem:a5e0b28349d47c7731e727147f56b4a50" id="r_a5e0b28349d47c7731e727147f56b4a50"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a5e0b28349d47c7731e727147f56b4a50 template"><td class="memItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e0b28349d47c7731e727147f56b4a50">get</a> () const</td></tr>
+<tr class="memdesc:a5e0b28349d47c7731e727147f56b4a50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a concrete field-boundary instance.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classkynema__sgf_1_1_coll_mgr"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classkynema__sgf_1_1_coll_mgr')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr&lt; FieldBoundaryMgr, FieldBoundary &gt;</a></td></tr>
+<tr class="memitem:a31ea0b233fa84d05bcf72b8462af3e96 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a31ea0b233fa84d05bcf72b8462af3e96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a31ea0b233fa84d05bcf72b8462af3e96">~CollMgr</a> ()=default</td></tr>
+<tr class="memitem:a84c37c0fa1c5ac33bc59be730a3bbc4c inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a84c37c0fa1c5ac33bc59be730a3bbc4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a84c37c0fa1c5ac33bc59be730a3bbc4c">operator=</a> (const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">CollMgr</a> &amp;)=delete</td></tr>
+<tr class="memitem:ab6ff4d344cb935a2e3b8b14481c9b969 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_ab6ff4d344cb935a2e3b8b14481c9b969"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_boundary.html">FieldBoundary</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ab6ff4d344cb935a2e3b8b14481c9b969">create</a> (const std::string &amp;key, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:a6ec1cec65c45726d2b2e60763518a6f1 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a6ec1cec65c45726d2b2e60763518a6f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a6ec1cec65c45726d2b2e60763518a6f1">objects</a> ()</td></tr>
+<tr class="memdesc:a6ec1cec65c45726d2b2e60763518a6f1 inherit pub_methods_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of the registered objects.  <br /></td></tr>
+<tr class="memitem:a5c00aeaeb965abce00787074f9e528c8 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_a5c00aeaeb965abce00787074f9e528c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a5c00aeaeb965abce00787074f9e528c8">contains</a> (const std::string &amp;key) const</td></tr>
+<tr class="memdesc:a5c00aeaeb965abce00787074f9e528c8 inherit pub_methods_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query if an object exists using the lookup key.  <br /></td></tr>
+<tr class="memitem:ae7f0988e9cfec93e12582048db08cf11 inherit pub_methods_classkynema__sgf_1_1_coll_mgr" id="r_ae7f0988e9cfec93e12582048db08cf11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_boundary.html">FieldBoundary</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ae7f0988e9cfec93e12582048db08cf11">operator()</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:ae7f0988e9cfec93e12582048db08cf11 inherit pub_methods_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the object corresponding to a lookup key.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classkynema__sgf_1_1_coll_mgr"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_types_classkynema__sgf_1_1_coll_mgr')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Types inherited from <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr&lt; FieldBoundaryMgr, FieldBoundary &gt;</a></td></tr>
+<tr class="memitem:ad9a10ac8495d2b7ac5ab5a153484eb91 inherit pub_types_classkynema__sgf_1_1_coll_mgr" id="r_ad9a10ac8495d2b7ac5ab5a153484eb91"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ad9a10ac8495d2b7ac5ab5a153484eb91">TypePtr</a></td></tr>
+<tr class="memitem:ac8acc7ec0f7401f1377a985f580298ae inherit pub_types_classkynema__sgf_1_1_coll_mgr" id="r_ac8acc7ec0f7401f1377a985f580298ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a></td></tr>
+<tr class="inherit_header pro_attribs_classkynema__sgf_1_1_coll_mgr"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classkynema__sgf_1_1_coll_mgr')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classkynema__sgf_1_1_coll_mgr.html">kynema_sgf::CollMgr&lt; FieldBoundaryMgr, FieldBoundary &gt;</a></td></tr>
+<tr class="memitem:aca9f58210b96fbb66c30e72c611e2726 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr" id="r_aca9f58210b96fbb66c30e72c611e2726"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">TypeVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#aca9f58210b96fbb66c30e72c611e2726">m_obj_vec</a></td></tr>
+<tr class="memdesc:aca9f58210b96fbb66c30e72c611e2726 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of objects registered so far.  <br /></td></tr>
+<tr class="memitem:a800762c836ebac85d8a49efc79ad6d01 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr" id="r_a800762c836ebac85d8a49efc79ad6d01"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a800762c836ebac85d8a49efc79ad6d01">m_obj_map</a></td></tr>
+<tr class="memdesc:a800762c836ebac85d8a49efc79ad6d01 inherit pro_attribs_classkynema__sgf_1_1_coll_mgr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key word based lookup.  <br /></td></tr>
+<tr class="memitem:a375b9dd5bf6301df39835bda65e6849c inherit pro_attribs_classkynema__sgf_1_1_coll_mgr" id="r_a375b9dd5bf6301df39835bda65e6849c"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#a375b9dd5bf6301df39835bda65e6849c">Collection</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A collection of <a class="el" href="classkynema__sgf_1_1_field_boundary.html">FieldBoundary</a> instances active during a simulation </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a22257ed665380da2ff6fb63400acb480" name="a22257ed665380da2ff6fb63400acb480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22257ed665380da2ff6fb63400acb480">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T &amp; kynema_sgf::FieldBoundaryMgr::get </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a concrete field-boundary instance. </p>
+
+</div>
+</div>
+<a id="a5e0b28349d47c7731e727147f56b4a50" name="a5e0b28349d47c7731e727147f56b4a50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e0b28349d47c7731e727147f56b4a50">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const T &amp; kynema_sgf::FieldBoundaryMgr::get </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a concrete field-boundary instance. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_field_boundary_8_h_source.html">FieldBoundary.H</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ABLMesoscaleInput Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ABLMesoscaleInput Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_a_b_l_mesoscale_input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ablmesoscaleinput-class-reference">
+<h1>ABLMesoscaleInput Class Reference<a class="headerlink" href="#ablmesoscaleinput-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ABLMesoscaleInput Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_a_b_l_mesoscale_input.html">ABLMesoscaleInput</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_a_b_l_mesoscale_input-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ABLMesoscaleInput Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_a_b_l_mesoscale_input_8_h_source.html">ABLMesoscaleInput.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ABLMesoscaleInput:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_a_b_l_mesoscale_input__coll__graph.svg" width="214" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a8a44f1c3c2d41e266438e06125f60c6d" id="r_a8a44f1c3c2d41e266438e06125f60c6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a44f1c3c2d41e266438e06125f60c6d">ABLMesoscaleInput</a> (std::string ncfile, std::string var_prefix=&quot;&quot;)</td></tr>
+<tr class="memitem:ac51251ade1e5f9ec434e8286a3576f57" id="r_ac51251ade1e5f9ec434e8286a3576f57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac51251ade1e5f9ec434e8286a3576f57">~ABLMesoscaleInput</a> ()=default</td></tr>
+<tr class="memitem:abb21873b769081f0fd621cec4d5372ea" id="r_abb21873b769081f0fd621cec4d5372ea"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb21873b769081f0fd621cec4d5372ea">meso_heights</a> () const</td></tr>
+<tr class="memitem:a0f2ac200519892d4bc99d9499e827eae" id="r_a0f2ac200519892d4bc99d9499e827eae"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f2ac200519892d4bc99d9499e827eae">meso_times</a> () const</td></tr>
+<tr class="memitem:ab35456a345e35abdca1235ce5cc35b01" id="r_ab35456a345e35abdca1235ce5cc35b01"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab35456a345e35abdca1235ce5cc35b01">meso_u</a> () const</td></tr>
+<tr class="memitem:a695521695ab01fc8b4f9669fc9617ee9" id="r_a695521695ab01fc8b4f9669fc9617ee9"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a695521695ab01fc8b4f9669fc9617ee9">meso_v</a> () const</td></tr>
+<tr class="memitem:a1cb5b8623d7d451e6afaf89f40865512" id="r_a1cb5b8623d7d451e6afaf89f40865512"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cb5b8623d7d451e6afaf89f40865512">meso_temp</a> () const</td></tr>
+<tr class="memitem:a9abe4b1a171cffadf93b992c3aff69f7" id="r_a9abe4b1a171cffadf93b992c3aff69f7"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9abe4b1a171cffadf93b992c3aff69f7">meso_tflux</a> () const</td></tr>
+<tr class="memitem:a13a17f27f162631cb04bc9c85a4c5c98" id="r_a13a17f27f162631cb04bc9c85a4c5c98"><td class="memItemLeft" align="right" valign="top">const amrex::Vector&lt; amrex::Real &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13a17f27f162631cb04bc9c85a4c5c98">meso_transition_height</a> () const</td></tr>
+<tr class="memitem:ad5fdfb899e56852c9723b26e166ccc10" id="r_ad5fdfb899e56852c9723b26e166ccc10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5fdfb899e56852c9723b26e166ccc10">is_tendency_forcing</a> () const</td></tr>
+<tr class="memitem:a70c912efe4f310bd2e250b01799c64f6" id="r_a70c912efe4f310bd2e250b01799c64f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70c912efe4f310bd2e250b01799c64f6">nheights</a> () const</td></tr>
+<tr class="memitem:a27a8c43fc63505baef342ef14f69d1da" id="r_a27a8c43fc63505baef342ef14f69d1da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27a8c43fc63505baef342ef14f69d1da">times</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5b7d2425ec1394060a24ae8fbd6b49f5" id="r_a5b7d2425ec1394060a24ae8fbd6b49f5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b7d2425ec1394060a24ae8fbd6b49f5">m_filename</a></td></tr>
+<tr class="memitem:a2906df2a8f39201529340024c1fbe1b5" id="r_a2906df2a8f39201529340024c1fbe1b5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2906df2a8f39201529340024c1fbe1b5">m_var_prefix</a></td></tr>
+<tr class="memitem:ae6b7ae125360e0093d5ee25550b2aa47" id="r_ae6b7ae125360e0093d5ee25550b2aa47"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6b7ae125360e0093d5ee25550b2aa47">m_height</a></td></tr>
+<tr class="memitem:a93ab9c1decbff735542ffcb4ff73291d" id="r_a93ab9c1decbff735542ffcb4ff73291d"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93ab9c1decbff735542ffcb4ff73291d">m_time</a></td></tr>
+<tr class="memitem:a3ba2b212600fb03158da7de27a55475f" id="r_a3ba2b212600fb03158da7de27a55475f"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ba2b212600fb03158da7de27a55475f">m_u</a></td></tr>
+<tr class="memitem:a4f8fbeff658516d8163b6798f8f3ab88" id="r_a4f8fbeff658516d8163b6798f8f3ab88"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f8fbeff658516d8163b6798f8f3ab88">m_v</a></td></tr>
+<tr class="memitem:a1cb23f9a75c285f17a2cb07da9bf5df6" id="r_a1cb23f9a75c285f17a2cb07da9bf5df6"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cb23f9a75c285f17a2cb07da9bf5df6">m_temp</a></td></tr>
+<tr class="memitem:a5dd2516332bf40e60ee0b6f7b3d16e86" id="r_a5dd2516332bf40e60ee0b6f7b3d16e86"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dd2516332bf40e60ee0b6f7b3d16e86">m_tflux</a></td></tr>
+<tr class="memitem:af974e58ee532bf1cd4103e268ab210a9" id="r_af974e58ee532bf1cd4103e268ab210a9"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af974e58ee532bf1cd4103e268ab210a9">m_transition_height</a></td></tr>
+<tr class="memitem:a0df89789e8dcd374b98c900446c733aa" id="r_a0df89789e8dcd374b98c900446c733aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0df89789e8dcd374b98c900446c733aa">m_nheight</a></td></tr>
+<tr class="memitem:ac2edaab79454c5d8b7b9fc10fb0d3b33" id="r_ac2edaab79454c5d8b7b9fc10fb0d3b33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2edaab79454c5d8b7b9fc10fb0d3b33">m_ntime</a></td></tr>
+<tr class="memitem:a41a9a1235f30c84c67853dd7b5cb8b66" id="r_a41a9a1235f30c84c67853dd7b5cb8b66"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41a9a1235f30c84c67853dd7b5cb8b66">m_abl_tendency</a> {false}</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8a44f1c3c2d41e266438e06125f60c6d" name="a8a44f1c3c2d41e266438e06125f60c6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a44f1c3c2d41e266438e06125f60c6d">&#9670;&#160;</a></span>ABLMesoscaleInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ABLMesoscaleInput::ABLMesoscaleInput </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>ncfile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>var_prefix</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac51251ade1e5f9ec434e8286a3576f57" name="ac51251ade1e5f9ec434e8286a3576f57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac51251ade1e5f9ec434e8286a3576f57">&#9670;&#160;</a></span>~ABLMesoscaleInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ABLMesoscaleInput::~ABLMesoscaleInput </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="ad5fdfb899e56852c9723b26e166ccc10" name="ad5fdfb899e56852c9723b26e166ccc10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5fdfb899e56852c9723b26e166ccc10">&#9670;&#160;</a></span>is_tendency_forcing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleInput::is_tendency_forcing </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb21873b769081f0fd621cec4d5372ea" name="abb21873b769081f0fd621cec4d5372ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb21873b769081f0fd621cec4d5372ea">&#9670;&#160;</a></span>meso_heights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_heights </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1cb5b8623d7d451e6afaf89f40865512" name="a1cb5b8623d7d451e6afaf89f40865512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cb5b8623d7d451e6afaf89f40865512">&#9670;&#160;</a></span>meso_temp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_temp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9abe4b1a171cffadf93b992c3aff69f7" name="a9abe4b1a171cffadf93b992c3aff69f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9abe4b1a171cffadf93b992c3aff69f7">&#9670;&#160;</a></span>meso_tflux()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_tflux </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f2ac200519892d4bc99d9499e827eae" name="a0f2ac200519892d4bc99d9499e827eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2ac200519892d4bc99d9499e827eae">&#9670;&#160;</a></span>meso_times()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_times </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13a17f27f162631cb04bc9c85a4c5c98" name="a13a17f27f162631cb04bc9c85a4c5c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a17f27f162631cb04bc9c85a4c5c98">&#9670;&#160;</a></span>meso_transition_height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_transition_height </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab35456a345e35abdca1235ce5cc35b01" name="ab35456a345e35abdca1235ce5cc35b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab35456a345e35abdca1235ce5cc35b01">&#9670;&#160;</a></span>meso_u()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_u </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a695521695ab01fc8b4f9669fc9617ee9" name="a695521695ab01fc8b4f9669fc9617ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a695521695ab01fc8b4f9669fc9617ee9">&#9670;&#160;</a></span>meso_v()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::Vector&lt; amrex::Real &gt; &amp; kynema_sgf::ABLMesoscaleInput::meso_v </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70c912efe4f310bd2e250b01799c64f6" name="a70c912efe4f310bd2e250b01799c64f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70c912efe4f310bd2e250b01799c64f6">&#9670;&#160;</a></span>nheights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleInput::nheights </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27a8c43fc63505baef342ef14f69d1da" name="a27a8c43fc63505baef342ef14f69d1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27a8c43fc63505baef342ef14f69d1da">&#9670;&#160;</a></span>times()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleInput::times </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a41a9a1235f30c84c67853dd7b5cb8b66" name="a41a9a1235f30c84c67853dd7b5cb8b66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a9a1235f30c84c67853dd7b5cb8b66">&#9670;&#160;</a></span>m_abl_tendency</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::ABLMesoscaleInput::m_abl_tendency {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b7d2425ec1394060a24ae8fbd6b49f5" name="a5b7d2425ec1394060a24ae8fbd6b49f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b7d2425ec1394060a24ae8fbd6b49f5">&#9670;&#160;</a></span>m_filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ABLMesoscaleInput::m_filename</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6b7ae125360e0093d5ee25550b2aa47" name="ae6b7ae125360e0093d5ee25550b2aa47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6b7ae125360e0093d5ee25550b2aa47">&#9670;&#160;</a></span>m_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0df89789e8dcd374b98c900446c733aa" name="a0df89789e8dcd374b98c900446c733aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0df89789e8dcd374b98c900446c733aa">&#9670;&#160;</a></span>m_nheight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleInput::m_nheight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2edaab79454c5d8b7b9fc10fb0d3b33" name="ac2edaab79454c5d8b7b9fc10fb0d3b33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2edaab79454c5d8b7b9fc10fb0d3b33">&#9670;&#160;</a></span>m_ntime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int kynema_sgf::ABLMesoscaleInput::m_ntime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1cb23f9a75c285f17a2cb07da9bf5df6" name="a1cb23f9a75c285f17a2cb07da9bf5df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cb23f9a75c285f17a2cb07da9bf5df6">&#9670;&#160;</a></span>m_temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_temp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5dd2516332bf40e60ee0b6f7b3d16e86" name="a5dd2516332bf40e60ee0b6f7b3d16e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dd2516332bf40e60ee0b6f7b3d16e86">&#9670;&#160;</a></span>m_tflux</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_tflux</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a93ab9c1decbff735542ffcb4ff73291d" name="a93ab9c1decbff735542ffcb4ff73291d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ab9c1decbff735542ffcb4ff73291d">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af974e58ee532bf1cd4103e268ab210a9" name="af974e58ee532bf1cd4103e268ab210a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af974e58ee532bf1cd4103e268ab210a9">&#9670;&#160;</a></span>m_transition_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_transition_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ba2b212600fb03158da7de27a55475f" name="a3ba2b212600fb03158da7de27a55475f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ba2b212600fb03158da7de27a55475f">&#9670;&#160;</a></span>m_u</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_u</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f8fbeff658516d8163b6798f8f3ab88" name="a4f8fbeff658516d8163b6798f8f3ab88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8fbeff658516d8163b6798f8f3ab88">&#9670;&#160;</a></span>m_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ABLMesoscaleInput::m_v</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2906df2a8f39201529340024c1fbe1b5" name="a2906df2a8f39201529340024c1fbe1b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2906df2a8f39201529340024c1fbe1b5">&#9670;&#160;</a></span>m_var_prefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ABLMesoscaleInput::m_var_prefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_a_b_l_mesoscale_input_8_h_source.html">ABLMesoscaleInput.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/<a class="el" href="_a_b_l_mesoscale_input_8cpp.html">ABLMesoscaleInput.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::ModulatedPowerLaw Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::ModulatedPowerLaw Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_modulated_power_law.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modulatedpowerlaw-class-reference">
+<h1>ModulatedPowerLaw Class Reference<a class="headerlink" href="#modulatedpowerlaw-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::ModulatedPowerLaw Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_modulated_power_law.html">ModulatedPowerLaw</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_modulated_power_law-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::ModulatedPowerLaw Class Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics models</a> &raquo; <a class="el" href="group__wind.html">Wind energy modeling</a> &raquo; <a class="el" href="group__we__abl.html">ABL</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_modulated_power_law_8_h_source.html">ModulatedPowerLaw.H</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for kynema_sgf::ModulatedPowerLaw:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_modulated_power_law__inherit__graph.svg" width="260" height="124"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::ModulatedPowerLaw:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_modulated_power_law__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a47da81c2e52098e1b47843b3cf6167aa" id="r_a47da81c2e52098e1b47843b3cf6167aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47da81c2e52098e1b47843b3cf6167aa">ModulatedPowerLaw</a> (<a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;)</td></tr>
+<tr class="memitem:a3b1bb0e5df67dc36637d7bfedaca8f49" id="r_a3b1bb0e5df67dc36637d7bfedaca8f49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b1bb0e5df67dc36637d7bfedaca8f49">post_init_actions</a> () override</td></tr>
+<tr class="memitem:a0fb904b787f9287f8674076751586a78" id="r_a0fb904b787f9287f8674076751586a78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fb904b787f9287f8674076751586a78">pre_advance_work</a> () override</td></tr>
+<tr class="memitem:adfac051526078ac323b1b4f026945efe" id="r_adfac051526078ac323b1b4f026945efe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfac051526078ac323b1b4f026945efe">post_advance_work</a> () override</td></tr>
+<tr class="memitem:a60b2e15ed1a6d355cbe9aab6177f4fe0" id="r_a60b2e15ed1a6d355cbe9aab6177f4fe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60b2e15ed1a6d355cbe9aab6177f4fe0">set_velocity</a> (int lev, amrex::Real time, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;fld, amrex::MultiFab &amp;mfab, int dcomp=0, int orig_comp=0) const override</td></tr>
+<tr class="memitem:a06840141b233af629d8284cc31f634b9" id="r_a06840141b233af629d8284cc31f634b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06840141b233af629d8284cc31f634b9">set_temperature</a> (int lev, amrex::Real time, const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;fld, amrex::MultiFab &amp;mfab) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8ba92cfde7da99320fed107caf4ccfa6" id="r_a8ba92cfde7da99320fed107caf4ccfa6"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ba92cfde7da99320fed107caf4ccfa6">identifier</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aeee3eca76027e837c55fe11a8f9d42a8" id="r_aeee3eca76027e837c55fe11a8f9d42a8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee3eca76027e837c55fe11a8f9d42a8">m_sim</a></td></tr>
+<tr class="memitem:a2fdba3c964c61280d2301962566499d7" id="r_a2fdba3c964c61280d2301962566499d7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fdba3c964c61280d2301962566499d7">m_time</a></td></tr>
+<tr class="memitem:af4af115eae3b89c02e713fd083e0696b" id="r_af4af115eae3b89c02e713fd083e0696b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4af115eae3b89c02e713fd083e0696b">m_repo</a></td></tr>
+<tr class="memitem:afbc903e31d5734f510ec81a637b2d14c" id="r_afbc903e31d5734f510ec81a637b2d14c"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbc903e31d5734f510ec81a637b2d14c">m_mesh</a></td></tr>
+<tr class="memitem:a7d67c0378e9bb794fb86f6e32ade0a08" id="r_a7d67c0378e9bb794fb86f6e32ade0a08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d67c0378e9bb794fb86f6e32ade0a08">m_velocity</a></td></tr>
+<tr class="memitem:a908846f37a3ca9fa0942facb39bed20c" id="r_a908846f37a3ca9fa0942facb39bed20c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a908846f37a3ca9fa0942facb39bed20c">m_temperature</a></td></tr>
+<tr class="memitem:a5c22329eff47ed8678c75d6b1eb770aa" id="r_a5c22329eff47ed8678c75d6b1eb770aa"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c22329eff47ed8678c75d6b1eb770aa">m_zoffset</a> {0.0_rt}</td></tr>
+<tr class="memitem:a491e7947ea6759682946f8a56896c6fe" id="r_a491e7947ea6759682946f8a56896c6fe"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a491e7947ea6759682946f8a56896c6fe">m_zref</a> {90}</td></tr>
+<tr class="memitem:a1aded93cecfe51b2eeb4414d3a44766b" id="r_a1aded93cecfe51b2eeb4414d3a44766b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aded93cecfe51b2eeb4414d3a44766b">m_shear_exp</a> {0.1_rt}</td></tr>
+<tr class="memitem:a7aaa8bd4ec07a7c471ab8d1867f79eca" id="r_a7aaa8bd4ec07a7c471ab8d1867f79eca"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aaa8bd4ec07a7c471ab8d1867f79eca">m_umax_factor</a> {1.2_rt}</td></tr>
+<tr class="memitem:a205d14febf9cfe126ec0a7497f6d592b" id="r_a205d14febf9cfe126ec0a7497f6d592b"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a205d14febf9cfe126ec0a7497f6d592b">m_bulk_velocity</a> {15.0_rt}</td></tr>
+<tr class="memitem:afeab29bd6773d3c62b164ce7e26975a2" id="r_afeab29bd6773d3c62b164ce7e26975a2"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afeab29bd6773d3c62b164ce7e26975a2">m_shearlayer_height</a> {600.0_rt}</td></tr>
+<tr class="memitem:ac3775d79e2709f111a8c1615d91b1dae" id="r_ac3775d79e2709f111a8c1615d91b1dae"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3775d79e2709f111a8c1615d91b1dae">m_shearlayer_smear_thickness</a> {30.0_rt}</td></tr>
+<tr class="memitem:acaca30fbee5a570d86559b66bba65030" id="r_acaca30fbee5a570d86559b66bba65030"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaca30fbee5a570d86559b66bba65030">m_wind_speed</a> {8.0_rt}</td></tr>
+<tr class="memitem:a44622bebf09acb14b4daadcbfec5ab83" id="r_a44622bebf09acb14b4daadcbfec5ab83"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44622bebf09acb14b4daadcbfec5ab83">m_wind_direction</a> {270.0_rt}</td></tr>
+<tr class="memitem:a9f29e83994c221a0926caf7ee478de3b" id="r_a9f29e83994c221a0926caf7ee478de3b"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f29e83994c221a0926caf7ee478de3b">m_uvec</a> {8.0_rt, 0.0_rt, 0.0_rt}</td></tr>
+<tr class="memitem:ae1eab893b703f1911a9f6aeb2c443966" id="r_ae1eab893b703f1911a9f6aeb2c443966"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1eab893b703f1911a9f6aeb2c443966">m_start_time</a> {0.0_rt}</td></tr>
+<tr class="memitem:ab351eefeb8f3118cf50b36e6b0fcb03a" id="r_ab351eefeb8f3118cf50b36e6b0fcb03a"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab351eefeb8f3118cf50b36e6b0fcb03a">m_stop_time</a> {std::numeric_limits&lt;amrex::Real&gt;::max()}</td></tr>
+<tr class="memitem:a71b977d943056f96be62343fe305a0dd" id="r_a71b977d943056f96be62343fe305a0dd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71b977d943056f96be62343fe305a0dd">m_degrees_per_sec</a> {0.02_rt}</td></tr>
+<tr class="memitem:a7188fe4a6ce18905e34dac23590f96bc" id="r_a7188fe4a6ce18905e34dac23590f96bc"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7188fe4a6ce18905e34dac23590f96bc">m_thht_d</a></td></tr>
+<tr class="memitem:acf4d54abb31806d9c2b82fc4120b3d96" id="r_acf4d54abb31806d9c2b82fc4120b3d96"><td class="memItemLeft" align="right" valign="top">amrex::Gpu::DeviceVector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf4d54abb31806d9c2b82fc4120b3d96">m_thvv_d</a></td></tr>
+<tr class="memitem:aab9a759385900304b24d8d8e121e13e1" id="r_aab9a759385900304b24d8d8e121e13e1"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab9a759385900304b24d8d8e121e13e1">m_delta_t</a> {0.8_rt}</td></tr>
+<tr class="memitem:a080b3ae186548d5b94f8559fb1ebab93" id="r_a080b3ae186548d5b94f8559fb1ebab93"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a080b3ae186548d5b94f8559fb1ebab93">m_theta_cutoff_height</a> {250.0_rt}</td></tr>
+<tr class="memitem:afcd5736bcfbd572bf7d462f705fbb429" id="r_afcd5736bcfbd572bf7d462f705fbb429"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcd5736bcfbd572bf7d462f705fbb429">m_theta_gauss_mean</a> {0.0_rt}</td></tr>
+<tr class="memitem:a6773f570d68744f1a1f449ce2cf044fd" id="r_a6773f570d68744f1a1f449ce2cf044fd"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6773f570d68744f1a1f449ce2cf044fd">m_theta_gauss_var</a> {1.0_rt}</td></tr>
+<tr id="pri-attribs-0" class="groupHeader"><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ab748bba5ff021afd1c0672058fbe4651" id="r_ab748bba5ff021afd1c0672058fbe4651"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab748bba5ff021afd1c0672058fbe4651">m_theta_heights</a></td></tr>
+<tr class="memitem:a3e0ec9021bd607d482033c581502e330" id="r_a3e0ec9021bd607d482033c581502e330"><td class="memItemLeft" align="right" valign="top">amrex::Vector&lt; amrex::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e0ec9021bd607d482033c581502e330">m_theta_values</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for <a class="el" href="classkynema__sgf_1_1_a_b_l.html">ABL</a> modulated power law</p>
+<p>This class sets velocity and temperature at mass inflow bc's </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a47da81c2e52098e1b47843b3cf6167aa" name="a47da81c2e52098e1b47843b3cf6167aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47da81c2e52098e1b47843b3cf6167aa">&#9670;&#160;</a></span>ModulatedPowerLaw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::ModulatedPowerLaw::ModulatedPowerLaw </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>sim</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8ba92cfde7da99320fed107caf4ccfa6" name="a8ba92cfde7da99320fed107caf4ccfa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba92cfde7da99320fed107caf4ccfa6">&#9670;&#160;</a></span>identifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kynema_sgf::ModulatedPowerLaw::identifier </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfac051526078ac323b1b4f026945efe" name="adfac051526078ac323b1b4f026945efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfac051526078ac323b1b4f026945efe">&#9670;&#160;</a></span>post_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ModulatedPowerLaw::post_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b1bb0e5df67dc36637d7bfedaca8f49" name="a3b1bb0e5df67dc36637d7bfedaca8f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b1bb0e5df67dc36637d7bfedaca8f49">&#9670;&#160;</a></span>post_init_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ModulatedPowerLaw::post_init_actions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0fb904b787f9287f8674076751586a78" name="a0fb904b787f9287f8674076751586a78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fb904b787f9287f8674076751586a78">&#9670;&#160;</a></span>pre_advance_work()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ModulatedPowerLaw::pre_advance_work </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06840141b233af629d8284cc31f634b9" name="a06840141b233af629d8284cc31f634b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06840141b233af629d8284cc31f634b9">&#9670;&#160;</a></span>set_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ModulatedPowerLaw::set_temperature </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60b2e15ed1a6d355cbe9aab6177f4fe0" name="a60b2e15ed1a6d355cbe9aab6177f4fe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60b2e15ed1a6d355cbe9aab6177f4fe0">&#9670;&#160;</a></span>set_velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::ModulatedPowerLaw::set_velocity </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lev</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Real</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classkynema__sgf_1_1_field.html">Field</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>fld</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::MultiFab &amp;</td>          <td class="paramname"><span class="paramname"><em>mfab</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dcomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>orig_comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a205d14febf9cfe126ec0a7497f6d592b" name="a205d14febf9cfe126ec0a7497f6d592b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205d14febf9cfe126ec0a7497f6d592b">&#9670;&#160;</a></span>m_bulk_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_bulk_velocity {15.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71b977d943056f96be62343fe305a0dd" name="a71b977d943056f96be62343fe305a0dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b977d943056f96be62343fe305a0dd">&#9670;&#160;</a></span>m_degrees_per_sec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_degrees_per_sec {0.02_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab9a759385900304b24d8d8e121e13e1" name="aab9a759385900304b24d8d8e121e13e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab9a759385900304b24d8d8e121e13e1">&#9670;&#160;</a></span>m_delta_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_delta_t {0.8_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afbc903e31d5734f510ec81a637b2d14c" name="afbc903e31d5734f510ec81a637b2d14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbc903e31d5734f510ec81a637b2d14c">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore&amp; kynema_sgf::ModulatedPowerLaw::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4af115eae3b89c02e713fd083e0696b" name="af4af115eae3b89c02e713fd083e0696b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4af115eae3b89c02e713fd083e0696b">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&amp; kynema_sgf::ModulatedPowerLaw::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1aded93cecfe51b2eeb4414d3a44766b" name="a1aded93cecfe51b2eeb4414d3a44766b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aded93cecfe51b2eeb4414d3a44766b">&#9670;&#160;</a></span>m_shear_exp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_shear_exp {0.1_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afeab29bd6773d3c62b164ce7e26975a2" name="afeab29bd6773d3c62b164ce7e26975a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afeab29bd6773d3c62b164ce7e26975a2">&#9670;&#160;</a></span>m_shearlayer_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_shearlayer_height {600.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3775d79e2709f111a8c1615d91b1dae" name="ac3775d79e2709f111a8c1615d91b1dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3775d79e2709f111a8c1615d91b1dae">&#9670;&#160;</a></span>m_shearlayer_smear_thickness</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_shearlayer_smear_thickness {30.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeee3eca76027e837c55fe11a8f9d42a8" name="aeee3eca76027e837c55fe11a8f9d42a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee3eca76027e837c55fe11a8f9d42a8">&#9670;&#160;</a></span>m_sim</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; kynema_sgf::ModulatedPowerLaw::m_sim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae1eab893b703f1911a9f6aeb2c443966" name="ae1eab893b703f1911a9f6aeb2c443966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1eab893b703f1911a9f6aeb2c443966">&#9670;&#160;</a></span>m_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_start_time {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab351eefeb8f3118cf50b36e6b0fcb03a" name="ab351eefeb8f3118cf50b36e6b0fcb03a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab351eefeb8f3118cf50b36e6b0fcb03a">&#9670;&#160;</a></span>m_stop_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_stop_time {std::numeric_limits&lt;amrex::Real&gt;::max()}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a908846f37a3ca9fa0942facb39bed20c" name="a908846f37a3ca9fa0942facb39bed20c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a908846f37a3ca9fa0942facb39bed20c">&#9670;&#160;</a></span>m_temperature</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::ModulatedPowerLaw::m_temperature</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a080b3ae186548d5b94f8559fb1ebab93" name="a080b3ae186548d5b94f8559fb1ebab93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080b3ae186548d5b94f8559fb1ebab93">&#9670;&#160;</a></span>m_theta_cutoff_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_theta_cutoff_height {250.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afcd5736bcfbd572bf7d462f705fbb429" name="afcd5736bcfbd572bf7d462f705fbb429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd5736bcfbd572bf7d462f705fbb429">&#9670;&#160;</a></span>m_theta_gauss_mean</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_theta_gauss_mean {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6773f570d68744f1a1f449ce2cf044fd" name="a6773f570d68744f1a1f449ce2cf044fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6773f570d68744f1a1f449ce2cf044fd">&#9670;&#160;</a></span>m_theta_gauss_var</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_theta_gauss_var {1.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab748bba5ff021afd1c0672058fbe4651" name="ab748bba5ff021afd1c0672058fbe4651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab748bba5ff021afd1c0672058fbe4651">&#9670;&#160;</a></span>m_theta_heights</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ModulatedPowerLaw::m_theta_heights</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Lookup table containing temperature variation w.r.t. height above terrain </p>
+
+</div>
+</div>
+<a id="a3e0ec9021bd607d482033c581502e330" name="a3e0ec9021bd607d482033c581502e330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0ec9021bd607d482033c581502e330">&#9670;&#160;</a></span>m_theta_values</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ModulatedPowerLaw::m_theta_values</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7188fe4a6ce18905e34dac23590f96bc" name="a7188fe4a6ce18905e34dac23590f96bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7188fe4a6ce18905e34dac23590f96bc">&#9670;&#160;</a></span>m_thht_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::ModulatedPowerLaw::m_thht_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf4d54abb31806d9c2b82fc4120b3d96" name="acf4d54abb31806d9c2b82fc4120b3d96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf4d54abb31806d9c2b82fc4120b3d96">&#9670;&#160;</a></span>m_thvv_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Gpu::DeviceVector&lt;amrex::Real&gt; kynema_sgf::ModulatedPowerLaw::m_thvv_d</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2fdba3c964c61280d2301962566499d7" name="a2fdba3c964c61280d2301962566499d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fdba3c964c61280d2301962566499d7">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">kynema_sgf::SimTime</a>&amp; kynema_sgf::ModulatedPowerLaw::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7aaa8bd4ec07a7c471ab8d1867f79eca" name="a7aaa8bd4ec07a7c471ab8d1867f79eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aaa8bd4ec07a7c471ab8d1867f79eca">&#9670;&#160;</a></span>m_umax_factor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_umax_factor {1.2_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f29e83994c221a0926caf7ee478de3b" name="a9f29e83994c221a0926caf7ee478de3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f29e83994c221a0926caf7ee478de3b">&#9670;&#160;</a></span>m_uvec</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Vector&lt;amrex::Real&gt; kynema_sgf::ModulatedPowerLaw::m_uvec {8.0_rt, 0.0_rt, 0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d67c0378e9bb794fb86f6e32ade0a08" name="a7d67c0378e9bb794fb86f6e32ade0a08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d67c0378e9bb794fb86f6e32ade0a08">&#9670;&#160;</a></span>m_velocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field.html">Field</a>&amp; kynema_sgf::ModulatedPowerLaw::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44622bebf09acb14b4daadcbfec5ab83" name="a44622bebf09acb14b4daadcbfec5ab83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44622bebf09acb14b4daadcbfec5ab83">&#9670;&#160;</a></span>m_wind_direction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_wind_direction {270.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acaca30fbee5a570d86559b66bba65030" name="acaca30fbee5a570d86559b66bba65030"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaca30fbee5a570d86559b66bba65030">&#9670;&#160;</a></span>m_wind_speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_wind_speed {8.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c22329eff47ed8678c75d6b1eb770aa" name="a5c22329eff47ed8678c75d6b1eb770aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c22329eff47ed8678c75d6b1eb770aa">&#9670;&#160;</a></span>m_zoffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_zoffset {0.0_rt}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a491e7947ea6759682946f8a56896c6fe" name="a491e7947ea6759682946f8a56896c6fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a491e7947ea6759682946f8a56896c6fe">&#9670;&#160;</a></span>m_zref</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::ModulatedPowerLaw::m_zref {90}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_modulated_power_law_8_h_source.html">ModulatedPowerLaw.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/boundary_conditions/field_boundary_fill/<a class="el" href="_modulated_power_law_8cpp.html">ModulatedPowerLaw.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
