@@ -111,11 +111,11 @@ void Actuator::post_init_actions()
         vel(lev).FillBoundary(m_sim.mesh().Geom()[lev].periodicity());
     }
 
-    setup_container();
-    update_actuator_positions_and_sample_fields();
-    update_actuator_state_from_sampled_fields();
-    compute_actuator_loads_and_update_state();
-    accumulate_actuator_source_terms();
+    setup_particle_container();
+    update_positions_and_sample_fields();
+    update_actuator_data_from_particles();
+    compute_actuator_loads_and_advance_model_and_scatter();
+    accumulate_actuator_source_terms_for_fluid();
     prepare_outputs();
 }
 
@@ -142,7 +142,7 @@ void Actuator::post_regrid_actions()
         act->determine_influenced_procs();
     }
 
-    setup_container();
+    setup_particle_container();
 }
 
 void Actuator::pre_advance_work()
@@ -150,10 +150,10 @@ void Actuator::pre_advance_work()
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     m_container->reset_container();
-    update_actuator_positions_and_sample_fields();
-    update_actuator_state_from_sampled_fields();
-    compute_actuator_loads_and_update_state();
-    accumulate_actuator_source_terms();
+    update_positions_and_sample_fields();
+    update_actuator_data_from_particles();
+    compute_actuator_loads_and_advance_model_and_scatter();
+    accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
 }
 
@@ -198,9 +198,9 @@ void Actuator::communicate_turbine_io()
  *  nodes for all turbines that influence the current MPI rank. This method is
  *  invoked once during initialization and during regrid step.
  */
-void Actuator::setup_container()
+void Actuator::setup_particle_container()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::setup_container");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::setup_particle_container");
 
     const int ntotal = num_actuators();
     const int nlocal = static_cast<int>(std::count_if(
@@ -229,9 +229,9 @@ void Actuator::setup_container()
  *  the position vectors, pushes them into the sampling container, and samples
  *  velocity and density from the CFD mesh at those new locations.
  *
- *  \sa Actuator::update_actuator_state_from_sampled_fields
+ *  \sa Actuator::update_actuator_data_from_particles
  */
-void Actuator::update_actuator_positions_and_sample_fields()
+void Actuator::update_positions_and_sample_fields()
 {
     BL_PROFILE(
         "kynema-sgf::actuator::Actuator::update_actuator_positions_and_sample_"
@@ -254,9 +254,9 @@ void Actuator::update_actuator_positions_and_sample_fields()
 
 /** Copy the sampled flow data back into each actuator instance.
  *
- *  \sa Actuator::update_actuator_positions_and_sample_fields
+ *  \sa Actuator::update_positions_and_sample_fields
  */
-void Actuator::update_actuator_state_from_sampled_fields()
+void Actuator::update_actuator_data_from_particles()
 {
     BL_PROFILE(
         "kynema-sgf::actuator::Actuator::update_actuator_state_from_sampled_"
@@ -278,7 +278,7 @@ void Actuator::update_actuator_state_from_sampled_fields()
 
 /** Compute loads and update state for all local actuator components.
  */
-void Actuator::compute_actuator_loads_and_update_state()
+void Actuator::compute_actuator_loads_and_advance_model_and_scatter()
 {
     BL_PROFILE(
         "kynema-sgf::actuator::Actuator::compute_actuator_loads_and_update_"
@@ -290,10 +290,10 @@ void Actuator::compute_actuator_loads_and_update_state()
     }
 }
 
-void Actuator::accumulate_actuator_source_terms()
+void Actuator::accumulate_actuator_source_terms_for_fluid()
 {
     BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::accumulate_actuator_source_terms");
+        "kynema-sgf::actuator::Actuator::accumulate_actuator_source_terms_for_fluid");
     m_act_source.setVal(0.0_rt);
     const int nlevels = m_sim.repo().num_active_levels();
 
