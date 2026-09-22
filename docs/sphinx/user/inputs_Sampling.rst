@@ -184,6 +184,31 @@ Illustration of this example:
 
    Example of sampling on planes.
 
+The ``MovingPlaneSampler`` inherits the standard ``PlaneSampler`` behavior and
+attaches the plane to a moving ``Drone`` or ``ActuatorSector``.
+``actuator_label`` names the actuator in ``Actuator.labels``. The existing
+``origin``, ``axis1``, ``axis2``, and ``offset_vector`` inputs are interpreted
+in the actuator's local frame, and the plane translates and rotates with the
+actuator. NetCDF output for a moving plane includes
+``points(time, num_points, ndim)``.
+
+Example::
+
+  sampling.body_plane.type = MovingPlaneSampler
+  sampling.body_plane.actuator_label = FigureEightQuad
+  sampling.body_plane.origin = -0.20 -0.20 0.0
+  sampling.body_plane.axis1 = 0.40 0.0 0.0
+  sampling.body_plane.axis2 = 0.0 0.40 0.0
+  sampling.body_plane.num_points = 65 65
+  sampling.body_plane.offset_vector = 0.0 0.0 1.0
+  sampling.body_plane.offsets = -0.10 0.0 0.10
+
+.. input_param:: sampling.MovingPlaneSampler.actuator_label
+
+   **type:** String, optional
+
+   Top-level actuator name whose rigid reference frame controls the plane.
+
 Sampling at arbitrary locations
 ````````````````````````````````
 
@@ -211,6 +236,25 @@ Sampling on a volume
 The ``VolumeSampler`` samples a 3D volume that starts at ``lo`` and
 extends to ``hi``. The resolution in all directions is specified by
 ``num_points``.
+
+The ``MovingVolumeSampler`` uses the same inputs and sampling layout, with
+``lo`` and ``hi`` interpreted in an actuator's local frame. The volume
+translates and rotates with the actuator named by ``actuator_label``. NetCDF
+output includes ``points(time, num_points, ndim)`` for the moving coordinates.
+
+Example::
+
+  sampling.drone_volume.type = MovingVolumeSampler
+  sampling.drone_volume.actuator_label = FigureEightQuad
+  sampling.drone_volume.lo = -0.20 -0.20 -0.40
+  sampling.drone_volume.hi =  0.20  0.20  0.10
+  sampling.drone_volume.num_points = 65 65 81
+
+.. input_param:: sampling.MovingVolumeSampler.actuator_label
+
+   **type:** String, required
+
+   Top-level actuator name whose rigid reference frame controls the volume.
 
 Optional input ``snap_to_cell_center = true`` snaps each sampled point to the
 nearest cell center on the finest available level before sampling.

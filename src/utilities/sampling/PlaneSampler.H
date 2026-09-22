@@ -85,7 +85,7 @@ public:
     //! Number of output probe locations (after data reduction etc.)
     [[nodiscard]] long num_output_points() const override { return m_npts; }
 
-private:
+protected:
     const CFDSim& m_sim;
 
     amrex::Vector<amrex::Real> m_axis1;
