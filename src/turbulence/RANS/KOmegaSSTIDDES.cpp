@@ -299,53 +299,49 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                 const amrex::Real sdr_diss_amb =
                     beta * rho_arrs[nbx](i, j, k) * sdr_amb * sdr_amb;
 
+                // The source fields always hold the full explicit balance,
+                // which is what the Godunov predictor needs as forcing. For
+                // implicit and Crank-Nicolson diffusion part of the
+                // destruction is also linearized onto the diagonal following
+                // Menter (1993). KwSSTSrc and SDRSrc add lhs_src_term times
+                // the field back to the right-hand side (delta form), so a
+                // converged solution satisfies the full balance for every
+                // diffusion type.
+                sdr_src_arrs[nbx](i, j, k) = production_omega + cross_diffusion;
+
+                sdr_diss_arrs[nbx](i, j, k) =
+                    (-rho_arrs[nbx](i, j, k) * beta * sdr_arrs[nbx](i, j, k) *
+                     sdr_arrs[nbx](i, j, k)) +
+                    sdr_diss_amb;
+
                 if (diff_type == DiffusionType::Crank_Nicolson) {
 
                     tke_lhs_arrs[nbx](i, j, k) =
                         0.5_rt * tke_lhs_arrs[nbx](i, j, k);
 
-                    sdr_src_arrs[nbx](i, j, k) = production_omega;
-
-                    sdr_diss_arrs[nbx](i, j, k) = cross_diffusion;
-
                     sdr_lhs_arrs[nbx](i, j, k) =
-                        (rho_arrs[nbx](i, j, k) * beta *
-                             sdr_arrs[nbx](i, j, k) +
-                         0.5_rt * std::abs(cross_diffusion) /
-                             (sdr_arrs[nbx](i, j, k) +
-                              std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e1_rt)) *
+                        ((rho_arrs[nbx](i, j, k) * beta *
+                          sdr_arrs[nbx](i, j, k)) +
+                         (0.5_rt * std::abs(cross_diffusion) /
+                          (sdr_arrs[nbx](i, j, k) +
+                           std::numeric_limits<amrex::Real>::epsilon() *
+                               1.0e1_rt))) *
                         delta_t;
 
                 } else if (diff_type == DiffusionType::Implicit) {
-                    /* Source term linearization is based on Florian
-                       Menter's (1993) AIAA paper */
-                    diss_arrs[nbx](i, j, k) = 0.0_rt;
-
-                    sdr_src_arrs[nbx](i, j, k) = production_omega;
-
-                    sdr_diss_arrs[nbx](i, j, k) = 0.0_rt;
-
                     sdr_lhs_arrs[nbx](i, j, k) =
-                        (2.0_rt * rho_arrs[nbx](i, j, k) * beta *
-                             sdr_arrs[nbx](i, j, k) +
-                         std::abs(cross_diffusion) /
-                             (sdr_arrs[nbx](i, j, k) +
-                              std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e1_rt)) *
+                        ((2.0_rt * rho_arrs[nbx](i, j, k) * beta *
+                          sdr_arrs[nbx](i, j, k)) +
+                         (std::abs(cross_diffusion) /
+                          (sdr_arrs[nbx](i, j, k) +
+                           std::numeric_limits<amrex::Real>::epsilon() *
+                               1.0e1_rt))) *
                         delta_t;
                 } else {
-                    sdr_src_arrs[nbx](i, j, k) =
-                        production_omega + cross_diffusion;
+                    // No linear system is solved for explicit diffusion
+                    tke_lhs_arrs[nbx](i, j, k) = 0.0_rt;
 
-                    sdr_diss_arrs[nbx](i, j, k) =
-                        (-rho_arrs[nbx](i, j, k) * beta *
-                         sdr_arrs[nbx](i, j, k) * sdr_arrs[nbx](i, j, k)) +
-                        sdr_diss_amb;
-
-                    sdr_lhs_arrs[nbx](i, j, k) =
-                        0.5_rt * rho_arrs[nbx](i, j, k) * beta *
-                        sdr_arrs[nbx](i, j, k) * delta_t;
+                    sdr_lhs_arrs[nbx](i, j, k) = 0.0_rt;
                 }
             });
     }

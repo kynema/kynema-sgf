@@ -9,9 +9,32 @@ RANS models
 The RANS models are available in two flavors: wall-modeled and wall-resolved. The former model is 
 designed for cases with :math:`y+ > 30` while the latter requires :math:`y+ < 5`. The wall-modeled RANS 
 model available in Kynema-SGF is based on the work of `Axell and Liungman (EFM 2001 ) <https://link.springer.com/article/10.1023/A:1011560202388>`_.
-The code also includes Menter's K-Omega SST model with IDDES support. 
+The code also includes Menter's K-Omega SST model with IDDES support.
 
-Axell One-Equation RANS Model 
+K-Omega SST Source Terms
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The source terms of the :math:`k` and :math:`\omega` equations are advanced together with the
+diffusion solve. For implicit and Crank-Nicolson diffusion, part of the destruction is linearized
+onto the diagonal of the linear system following Menter (1993). For a variable :math:`\phi` with the
+full explicit source :math:`S_\phi` (production, destruction, cross diffusion and ambient terms) and
+a linearization coefficient :math:`D_\phi \geq 0`, the update is
+
+.. math::
+
+   \frac{\rho^{n+1} \phi^{n+1} - \rho^{n} \phi^{n}}{\Delta t} + D_\phi \phi^{n+1} =
+   A_\phi + S_\phi(\phi^{*}) + D_\phi \phi^{*},
+
+where :math:`A_\phi` collects advection and diffusion and :math:`\phi^{*}` is the state the model is
+evaluated on (:math:`\phi^{n}` in the predictor and the predicted state in the MOL corrector). For
+implicit diffusion the coefficients are :math:`D_k = \beta^* \rho \omega` (:math:`D_k = \rho \sqrt{k} / l_{IDDES}`
+for IDDES) and :math:`D_\omega = 2 \beta \rho \omega + |CD_{k\omega}| / \omega`. Crank-Nicolson
+diffusion uses half of these values and explicit diffusion uses zero. Because :math:`D_\phi \phi^{*}` is
+added back on the right-hand side, a converged solution satisfies the full balance
+:math:`A_\phi + S_\phi = 0` for every diffusion type and time step. With the Godunov scheme, the forcing
+used to extrapolate the face states in time is the full source :math:`S_\phi(\phi^{n})`.
+
+Axell One-Equation RANS Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The one-equation model solves the transport equation for turbulent kinetic energy (TKE). The length scale is computed using algebraic equations. 
