@@ -49,7 +49,9 @@ void external_determine_influenced_procs(datatype& data)
     info.procs =
         utils::determine_influenced_procs(data.sim().mesh(), info.bound_box);
 
-    AMREX_ALWAYS_ASSERT(info.root_proc > -1);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        info.root_proc > -1,
+        "info.root_proc = " + std::to_string(info.root_proc));
     // During regrid, the influenced processes might have changed and might
     // no longer include the root proc. We insert it back to ensure that it
     // is always present on the list.

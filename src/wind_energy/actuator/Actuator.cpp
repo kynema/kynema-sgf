@@ -65,7 +65,7 @@ void Actuator::pre_init_actions()
         std::string type;
         pp.query("type", type);
         pp1.query("type", type);
-        AMREX_ALWAYS_ASSERT(!type.empty());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(!type.empty(), "type = " + type);
         cnt_turbfast +=
             ((type == "TurbineFastLine") || (type == "TurbineFastDisk")) ? 1
                                                                          : 0;
@@ -97,7 +97,11 @@ void Actuator::post_init_actions()
         // Sanity check that we have processed the turbines correctly
         int nact =
             std::accumulate(act_proc_count.begin(), act_proc_count.end(), 0);
-        AMREX_ALWAYS_ASSERT(num_actuators() == nact);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            num_actuators() == nact,
+            "Processed actuator count = " + std::to_string(nact) +
+                ", configured actuator count = " +
+                std::to_string(num_actuators()));
     }
 
     for (auto& act : m_actuators) {
