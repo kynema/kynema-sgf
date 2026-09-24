@@ -233,8 +233,43 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
     // For now assume variable viscosity for overset
     // this can be removed once the nsolve overset
     // masking is implemented in cell based AMReX poisson solvers
+    // Implicit immersed-terrain drag (ImmersedTerrain.implicit_projection):
+    // faces inside the terrain get the coefficient 1/(rho (1 + beta C dt)) and
+    // the predicted face velocities are divided by the same factor, so that
+    // u_mac = (u_mac* - grad phi / rho) / (1 + beta C dt)
+    const bool implicit_ib = m_repo.field_exists("terrain_drag_rate");
+    std::unique_ptr<ScratchField> rho_eff;
+    std::unique_ptr<ScratchField> fac_cc, fac_xf, fac_yf, fac_zf;
+    if (implicit_ib) {
+        const auto& drag_rate = m_repo.get_field("terrain_drag_rate");
+        rho_eff = m_repo.create_scratch_field(1, 1);
+        fac_cc = m_repo.create_scratch_field(1, 1);
+        fac_xf = m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::XFACE);
+        fac_yf = m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::YFACE);
+        fac_zf = m_repo.create_scratch_field(1, 0, kynema_sgf::FieldLoc::ZFACE);
+        for (int lev = 0; lev < m_repo.num_active_levels(); ++lev) {
+            const auto& rho_arrs = density(lev).const_arrays();
+            const auto& rate_arrs = drag_rate(lev).const_arrays();
+            const auto& reff_arrs = (*rho_eff)(lev).arrays();
+            const auto& fac_arrs = (*fac_cc)(lev).arrays();
+            amrex::ParallelFor(
+                (*rho_eff)(lev), amrex::IntVect(1),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real f =
+                        1.0_rt + (dt * rate_arrs[nbx](i, j, k));
+                    fac_arrs[nbx](i, j, k) = f;
+                    reff_arrs[nbx](i, j, k) = rho_arrs[nbx](i, j, k) * f;
+                });
+            amrex::Array<amrex::MultiFab*, ICNS::ndim> fac_face{
+                &(*fac_xf)(lev), &(*fac_yf)(lev), &(*fac_zf)(lev)};
+            amrex::average_cellcenter_to_face(
+                fac_face, (*fac_cc)(lev), geom[lev]);
+        }
+        amrex::Gpu::streamSynchronize();
+    }
+
     if (m_variable_density || m_has_overset || m_mesh_mapping ||
-        m_is_anelastic) {
+        m_is_anelastic || implicit_ib) {
         amrex::Vector<amrex::Array<amrex::MultiFab const*, ICNS::ndim>>
             rho_face_const;
         rho_face_const.reserve(m_repo.num_active_levels());
@@ -256,7 +291,8 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
             rho_face[lev][2] = &(*rho_zf)(lev);
 
             amrex::average_cellcenter_to_face(
-                rho_face[lev], density(lev), geom[lev]);
+                rho_face[lev], implicit_ib ? (*rho_eff)(lev) : density(lev),
+                geom[lev]);
 
             if (m_is_anelastic) {
                 ref_rho_face[lev][0] = &(*ref_rho_xf)(lev);
@@ -305,6 +341,11 @@ void MacProjOp::operator()(const FieldState fstate, const amrex::Real dt)
         mac_vec[lev][0] = &u_mac(lev);
         mac_vec[lev][1] = &v_mac(lev);
         mac_vec[lev][2] = &w_mac(lev);
+        if (implicit_ib) {
+            amrex::Divide(u_mac(lev), (*fac_xf)(lev), 0, 0, 1, 0);
+            amrex::Divide(v_mac(lev), (*fac_yf)(lev), 0, 0, 1, 0);
+            amrex::Divide(w_mac(lev), (*fac_zf)(lev), 0, 0, 1, 0);
+        }
         if (m_is_anelastic) {
             for (int idim = 0; idim < ICNS::ndim; ++idim) {
                 amrex::Multiply(

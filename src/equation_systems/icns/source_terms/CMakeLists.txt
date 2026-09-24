@@ -15,6 +15,7 @@ target_sources(${kynema_sgf_lib_name} PRIVATE
   RayleighDamping.cpp
   NonLinearSGSTerm.cpp
   DragForcing.cpp
+  ImmersedDragForcing.cpp
   ForestForcing.cpp
   VelocityFreeAtmosphereForcing.cpp
   )

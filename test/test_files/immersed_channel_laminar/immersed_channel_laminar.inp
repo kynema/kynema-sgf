@@ -1,0 +1,40 @@
+time.stop_time = 30.0
+time.max_step = 10000000
+time.fixed_dt = 0.005
+time.cfl = 0.9
+time.plot_interval = 1000
+time.checkpoint_interval = -1
+ConstValue.density.value = 1.0
+ConstValue.velocity.value = 0.0 0.0 0.0
+incflo.use_godunov = 1
+incflo.diffusion_type = 2
+incflo.do_initial_proj = 0
+incflo.initial_iterations = 0
+transport.viscosity = 0.01
+turbulence.model = Laminar
+io.int_outputs = terrain_mask
+io.outputs = terrain_fraction
+incflo.physics = FreeStream ImmersedTerrain
+ICNS.source_terms = BodyForce ImmersedDragForcing
+BodyForce.type = uniform_constant
+BodyForce.magnitude = 0.01 0.0 0.0
+ImmersedTerrain.terrain_file = "terrain.amrwind"
+ImmersedTerrain.implicit_projection = 1
+ImmersedTerrain.drag_weight = center
+ImmersedDragForcing.drag_coefficient = 1000.0
+amr.n_cell = 4 1 32
+amr.max_level = 0
+amr.blocking_factor = 1
+amr.max_grid_size = 64
+geometry.prob_lo = 0 0 0
+geometry.prob_hi = 0.125 0.03125 1.0
+geometry.is_periodic = 1 1 0
+zlo.type = "slip_wall"
+zhi.type = "no_slip_wall"
+incflo.verbose = 0
+
+# Laminar Poiseuille channel with an immersed flat bottom wall at z = 0.2137
+# (between cell centers) and a no-slip top wall, driven by a body force.
+# Exact steady solution: u(z) = F/(2 nu) (z - h)(1 - z). With
+# the no-slip wall flux, drag_weight = center and the implicit
+# projection the profile converges at second order.

@@ -155,6 +155,7 @@ public:
             // B coeffs
             auto b = diffusion::average_velocity_eta_to_faces(
                 geom[lev], viscosity(lev));
+            diffusion::apply_immersed_interface(b, repo, lev);
             if (m_mesh_mapping) {
                 diffusion::viscosity_to_uniform_space(b, repo, lev);
             }
@@ -187,6 +188,8 @@ public:
         const amrex::Real alpha = 1.0_rt;
         const amrex::Real beta = dt;
         m_solver_scalar->setScalars(alpha, beta);
+        // Implicit immersed drag in the diffusion solve (see ImmersedTerrain)
+        auto rho_eff = diffusion::immersed_effective_density(repo, density, dt);
 
         for (int lev = 0; lev < nlevels; ++lev) {
             m_solver_scalar->setLevelBC(lev, &m_pdefields.field(lev));
@@ -198,6 +201,8 @@ public:
                     (*rho_times_detJ)(lev), density(lev), 0, (*mesh_detJ)(lev),
                     0, 0, 1, m_density.num_grow()[0]);
                 m_solver_scalar->setACoeffs(lev, (*rho_times_detJ)(lev));
+            } else if (rho_eff) {
+                m_solver_scalar->setACoeffs(lev, (*rho_eff)(lev));
             } else {
                 m_solver_scalar->setACoeffs(lev, density(lev));
             }
@@ -205,6 +210,7 @@ public:
             // B coeffs
             auto b = diffusion::average_velocity_eta_to_faces(
                 geom[lev], viscosity(lev));
+            diffusion::apply_immersed_interface(b, repo, lev);
             if (m_mesh_mapping) {
                 diffusion::viscosity_to_uniform_space(b, repo, lev);
             }
@@ -351,6 +357,7 @@ public:
                 // B coeffs
                 auto b = diffusion::average_velocity_eta_to_faces(
                     geom[lev], viscosity(lev));
+                diffusion::apply_immersed_interface(b, repo, lev);
 
                 if (m_mesh_mapping) {
                     diffusion::viscosity_to_uniform_space(b, repo, lev);
@@ -390,6 +397,8 @@ public:
 
         const amrex::Real alpha = 1.0_rt;
         const amrex::Real beta = dt;
+        // Implicit immersed drag in the diffusion solve (see ImmersedTerrain)
+        auto rho_eff = diffusion::immersed_effective_density(repo, density, dt);
 
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {
             m_solver_scalar[i]->setScalars(alpha, beta);
@@ -409,6 +418,8 @@ public:
                 // A coeffs
                 if (m_mesh_mapping) {
                     m_solver_scalar[i]->setACoeffs(lev, (*rho_times_detJ)(lev));
+                } else if (rho_eff) {
+                    m_solver_scalar[i]->setACoeffs(lev, (*rho_eff)(lev));
                 } else {
                     m_solver_scalar[i]->setACoeffs(lev, density(lev));
                 }
@@ -416,6 +427,7 @@ public:
                 // B coeffs
                 auto b = diffusion::average_velocity_eta_to_faces(
                     geom[lev], viscosity(lev));
+                diffusion::apply_immersed_interface(b, repo, lev);
                 if (m_mesh_mapping) {
                     diffusion::viscosity_to_uniform_space(b, repo, lev);
                 }

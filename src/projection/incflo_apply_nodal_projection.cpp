@@ -176,6 +176,37 @@ void incflo::ApplyProjection(
 
     bool mesh_mapping = m_sim.has_mesh_mapping();
 
+    // Implicit immersed-terrain drag (ImmersedTerrain.implicit_projection):
+    // the terrain acts as a fluid of density rho (1 + beta C dt) so that
+    //   u^{n+1} = (u** - dt grad p / rho) / (1 + beta C dt)
+    // is divergence free. The velocity is divided by the factor below and
+    // sigma carries rho_eff = rho (1 + beta C dt).
+    const bool implicit_ib = m_repo.field_exists("terrain_drag_rate");
+    const bool use_sigma = variable_density || mesh_mapping || implicit_ib;
+    // The implicit drag factor uses the physical time step. During the initial
+    // projection the scaling factor is a dummy value and no step is taken, so
+    // the factor is 1 and the initial condition is only made divergence free.
+    const amrex::Real implicit_dt =
+        m_initial_projection ? 0.0_rt : scaling_factor;
+    std::unique_ptr<kynema_sgf::ScratchField> rho_eff;
+    if (implicit_ib) {
+        const auto& drag_rate = m_repo.get_field("terrain_drag_rate");
+        rho_eff = m_repo.create_scratch_field(1, 0);
+        for (int lev = 0; lev <= finest_level; ++lev) {
+            const auto& rho_arrs = density[lev]->const_arrays();
+            const auto& rate_arrs = drag_rate(lev).const_arrays();
+            const auto& reff_arrs = (*rho_eff)(lev).arrays();
+            amrex::ParallelFor(
+                (*rho_eff)(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    reff_arrs[nbx](i, j, k) =
+                        rho_arrs[nbx](i, j, k) *
+                        (1.0_rt + implicit_dt * rate_arrs[nbx](i, j, k));
+                });
+        }
+        amrex::Gpu::streamSynchronize();
+    }
+
     auto& grad_p = m_repo.get_field("gp");
     auto& pressure = m_repo.get_field("p");
     auto& velocity = icns().fields().field;
@@ -238,6 +269,23 @@ void incflo::ApplyProjection(
         amrex::Gpu::streamSynchronize();
     }
 
+    // Implicit drag: divide u** by (1 + beta C dt) in the full (non-delta)
+    // form of the projection
+    if (implicit_ib && !incremental && !proj_for_small_dt) {
+        const auto& drag_rate = m_repo.get_field("terrain_drag_rate");
+        for (int lev = 0; lev <= finest_level; ++lev) {
+            const auto& u_arrs = velocity(lev).arrays();
+            const auto& rate_arrs = drag_rate(lev).const_arrays();
+            amrex::ParallelFor(
+                velocity(lev), amrex::IntVect(0), AMREX_SPACEDIM,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                    u_arrs[nbx](i, j, k, n) /=
+                        (1.0_rt + implicit_dt * rate_arrs[nbx](i, j, k));
+                });
+        }
+        amrex::Gpu::streamSynchronize();
+    }
+
     // ensure velocity is in stretched mesh space
     if (velocity_old.in_uniform_space() && mesh_mapping) {
         velocity_old.to_stretched_space();
@@ -259,13 +307,14 @@ void incflo::ApplyProjection(
     // Create sigma while accounting for mesh mapping
     // sigma = 1/(fac^2)*J * dt/rho
     amrex::Vector<amrex::MultiFab> sigma(finest_level + 1);
-    if (variable_density || mesh_mapping) {
+    if (use_sigma) {
         int ncomp = mesh_mapping ? AMREX_SPACEDIM : 1;
         for (int lev = 0; lev <= finest_level; ++lev) {
             sigma[lev].define(
                 grids[lev], dmap[lev], ncomp, 0, amrex::MFInfo(), Factory(lev));
             const auto& sig_arrs = sigma[lev].arrays();
-            const auto& rho_arrs = density[lev]->const_arrays();
+            const auto& rho_arrs = implicit_ib ? (*rho_eff)(lev).const_arrays()
+                                               : density[lev]->const_arrays();
             const auto& fac_arrs =
                 mesh_mapping ? ((*mesh_fac)(lev).const_arrays())
                              : amrex::MultiArray4<amrex::Real const>();
@@ -340,7 +389,7 @@ void incflo::ApplyProjection(
 
     kynema_sgf::MLMGOptions options("nodal_proj");
 
-    if (variable_density || mesh_mapping) {
+    if (use_sigma) {
         nodal_projector = std::make_unique<Hydro::NodalProjector>(
             vel, GetVecOfConstPtrs(sigma), Geom(0, finest_level),
             options.lpinfo());
