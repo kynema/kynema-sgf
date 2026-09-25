@@ -1,0 +1,90 @@
+# Rough ridge of the Ishihara-Zhou wind-tunnel dataset on a coarse grid.
+#
+# Full scale (tunnel x1000): a cosine-squared ridge 40 m high with a 100 m
+# half-width and its crest at x = 800 m, under the measured rough-surface
+# approach flow (Ishihara & Zhou, Data in Brief 63 (2025) 112260, CC BY 4.0).
+# The profile supplies velocity, temperature and tke at the inflow face.
+# KLAxell reads the same atmosphere from rans_1d.info, whose fourth column is w
+# rather than temperature. The files come from tools/ishihara_zhou/make_cases.py
+# at dx = dz = 16 m.
+
+# Geometry
+geometry.prob_lo                            = 0.0 0.0 0.0
+geometry.prob_hi                            = 2400.0 64.0 896.0
+geometry.is_periodic                        = 0 1 0
+# Grid
+amr.n_cell                                  = 150 4 56
+amr.max_level                               = 0
+amr.blocking_factor_x                       = 2
+amr.blocking_factor_y                       = 1
+amr.blocking_factor_z                       = 8
+# Simulation control parameters
+time.max_step                               = 10
+time.initial_dt                             = 0.1
+time.cfl                                    = 0.5
+time.init_shrink                            = 0.1
+time.regrid_interval                        = -1
+time.plot_interval                          = 10
+time.checkpoint_interval                    = -1
+# incflo
+incflo.physics                              = ABL TerrainDrag
+incflo.density                              = 1.225
+incflo.gravity                              = 0.0 0.0 -9.81
+incflo.velocity                             = 5.925 0.0 0.0
+incflo.verbose                              = 0
+incflo.initial_iterations                   = 3
+incflo.do_initial_proj                      = true
+incflo.constant_density                     = true
+incflo.use_godunov                          = true
+incflo.godunov_type                         = "ppm"
+incflo.diffusion_type                       = 2
+# transport equation parameters
+transport.model                             = ConstTransport
+transport.viscosity                         = 1.0e-5
+transport.laminar_prandtl                   = 0.7
+transport.turbulent_prandtl                 = 0.3333
+transport.reference_temperature             = 300.0
+# turbulence equation parameters
+turbulence.model                            = KLAxell
+TKE.source_terms                            = KransAxell
+# Atmospheric boundary layer: neutral, no Coriolis force or geostrophic
+# forcing. The sponge starts above the domain top, so it never acts.
+ABL.kappa                                   = 0.41
+ABL.normal_direction                        = 2
+ABL.surface_roughness_z0                    = 0.3
+ABL.surface_temp_flux                       = 0.0
+ABL.wall_shear_stress_type                  = local
+ABL.perturb_velocity                        = false
+ABL.perturb_temperature                     = false
+ABL.initial_wind_profile                    = true
+ABL.rans_1dprofile_file                     = "rans_1d.info"
+ABL.meso_sponge_start                       = 5000.0
+ABL.temperature_heights                     = 0.0 896.0
+ABL.temperature_values                      = 300.0 300.0
+ABL.stats_output_frequency                  = 10
+# Terrain
+ICNS.source_terms                           = DragForcing
+TerrainDrag.terrain_file                    = "terrain.amrwind"
+TerrainDrag.uniform_roughness               = 0.3
+io.int_outputs                              = terrain_blank terrain_drag
+# Boundary conditions
+TabulatedProfile.filename                   = inflow_profile.txt
+
+xlo.type                                    = "mass_inflow"
+xlo.density                                 = 1.225
+xlo.velocity.inflow_type                    = TabulatedProfile
+xlo.temperature.inflow_type                 = TabulatedProfile
+xlo.tke.inflow_type                         = TabulatedProfile
+
+xhi.type                                    = "pressure_outflow"
+
+zlo.type                                    = "wall_model"
+zlo.tke_type                                = "fixed_gradient"
+zlo.tke                                     = 0.0
+
+# The ceiling of the wind tunnel
+zhi.type                                    = "slip_wall"
+zhi.temperature_type                        = "fixed_gradient"
+zhi.temperature                             = 0.0
+zhi.tke_type                                = "fixed_gradient"
+zhi.tke                                     = 0.0

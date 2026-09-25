@@ -9,4 +9,5 @@ target_sources(${kynema_sgf_lib_name}
   CustomVelocity.cpp
   CustomScalar.cpp
   TwoLayer.cpp
+  TabulatedProfile.cpp
   )

@@ -239,6 +239,12 @@ void ABLVelWallFunc::wall_model(
     BL_PROFILE("kynema-sgf::ABLVelWallFunc");
 
     constexpr int idim = 2;
+    // The wall stress divides by the wind speed and by the effective
+    // viscosity. Both are zero when the lower boundary is filled ahead of the
+    // initial projection, before the turbulence model has run, and no viscous
+    // flux can be carried then, so the stress is left out rather than divided
+    // by. Matches the guard ShearStress already applies to the wind speed.
+    constexpr amrex::Real small_vel = 1.0e-6_rt;
     const auto& repo = velocity.repo();
     const auto& density = repo.get_field("density", rho_state);
     const auto& viscosity = repo.get_field("velocity_mueff");
@@ -307,12 +313,18 @@ void ABLVelWallFunc::wall_model(
                             // Blank Terrain added to keep the boundary
                             // condition backward compatible while adding
                             // terrain sensitive BC
-                            varr(i, j, k - 1, 0) = blankTerrain * ustar *
-                                                   ustar * uu / wspd *
-                                                   den(i, j, k) / mu;
-                            varr(i, j, k - 1, 1) = blankTerrain * ustar *
-                                                   ustar * vv / wspd *
-                                                   den(i, j, k) / mu;
+                            const amrex::Real wspd_lim =
+                                amrex::max(wspd, small_vel);
+                            varr(i, j, k - 1, 0) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * ustar * ustar * uu /
+                                       wspd_lim * den(i, j, k) / mu)
+                                    : 0.0_rt;
+                            varr(i, j, k - 1, 1) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * ustar * ustar * vv /
+                                       wspd_lim * den(i, j, k) / mu)
+                                    : 0.0_rt;
                         });
                 } else {
                     amrex::ParallelFor(
@@ -333,12 +345,16 @@ void ABLVelWallFunc::wall_model(
                             // Blank Terrain added to keep the boundary
                             // condition backward compatible while adding
                             // terrain sensitive BC
-                            varr(i, j, k - 1, 0) = blankTerrain *
-                                                   tau.calc_vel_x(uu, wspd) *
-                                                   den(i, j, k) / mu;
-                            varr(i, j, k - 1, 1) = blankTerrain *
-                                                   tau.calc_vel_y(vv, wspd) *
-                                                   den(i, j, k) / mu;
+                            varr(i, j, k - 1, 0) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * tau.calc_vel_x(uu, wspd) *
+                                       den(i, j, k) / mu)
+                                    : 0.0_rt;
+                            varr(i, j, k - 1, 1) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * tau.calc_vel_y(vv, wspd) *
+                                       den(i, j, k) / mu)
+                                    : 0.0_rt;
                         });
                 }
             }
