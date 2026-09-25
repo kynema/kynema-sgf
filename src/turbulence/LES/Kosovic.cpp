@@ -59,6 +59,8 @@ Kosovic<Transport>::Kosovic(CFDSim& sim)
 
     amrex::ParmParse pp_incflo("incflo");
     pp_incflo.queryarr("gravity", m_gravity);
+
+    m_Nij.set_default_fillpatch_bc(sim.time());
 }
 template <typename Transport>
 void Kosovic<Transport>::update_turbulent_viscosity(
@@ -109,8 +111,16 @@ void Kosovic<Transport>::update_turbulent_viscosity(
     fvm::strainrate(mu_turb, vel);
     // Non-linear component Nij is computed here and goes into Body Forcing
     fvm::nonlinearsum(m_Nij, vel);
-    fvm::divergence(m_divNij, m_Nij);
     const int nlevels = repo.num_active_levels();
+    // nonlinearsum only fills valid cells. Fill Nij ghosts across box, rank,
+    // periodic and coarse-fine boundaries so the divergence uses neighbor
+    // values there, then reset them to zero beyond non-periodic domain faces
+    // so that no non-linear stress acts on the walls.
+    m_Nij.fillpatch(this->m_sim.time().current_time());
+    for (int lev = 0; lev < nlevels; ++lev) {
+        m_Nij(lev).setDomainBndry(0.0_rt, geom_vec[lev]);
+    }
+    fvm::divergence(m_divNij, m_Nij);
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& geom = geom_vec[lev];
         const auto& problo = repo.mesh().Geom(lev).ProbLoArray();
