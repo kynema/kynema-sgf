@@ -51,7 +51,7 @@ public:
     //! Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
-private:
+protected:
     Field& m_vel;
     Field& m_turb_lscale;
     Field& m_shear_prod;
