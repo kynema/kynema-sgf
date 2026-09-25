@@ -29,6 +29,22 @@ public:
     MOData& mo() { return m_mo; }
     [[nodiscard]] const MOData& mo() const { return m_mo; }
 
+    //! Monin-Obukhov data carrying the mean quantities of a given mesh level
+    //!
+    //! On a single-level mesh this is the same object as mo(). When more
+    //! than one level touches the wall, every level holds the plane averages
+    //! of its own wall-adjacent cells at their own height, so that the wall
+    //! models that combine the local first-cell values with their plane
+    //! averages return the same mean stress and heat flux on every level.
+    //! The friction velocity, Obukhov length and surface heat flux are
+    //! shared by all levels.
+    //!
+    //! \param lev [in] Mesh level
+    [[nodiscard]] const MOData& mo(int lev) const
+    {
+        return (lev < static_cast<int>(m_mo_lev.size())) ? m_mo_lev[lev] : m_mo;
+    }
+
     //! Return the plane-averaged computed friction velocity at any given
     //! instance
     [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
@@ -42,6 +58,11 @@ public:
 
     void update_tflux(amrex::Real tflux);
 
+    //! Compute the mean quantities of the wall-adjacent cells of every level
+    //! that touches the wall (multi-level meshes only).
+    //! Public because it launches GPU kernels
+    void update_level_means();
+
 private:
     const CFDSim& m_sim;
 
@@ -49,6 +70,9 @@ private:
 
     //! Monin-Obukhov instance
     MOData m_mo;
+
+    //! Monin-Obukhov data per mesh level, empty on single-level meshes
+    amrex::Vector<MOData> m_mo_lev;
 
     int m_direction{2};             ///< Direction normal to wall
     bool m_use_fch{true};           ///< Use first cell height?
@@ -84,9 +108,10 @@ public:
 
     void operator()(Field& velocity, FieldState rho_state) override;
 
+    //! Apply the shear-stress model, built per level from the mean
+    //! quantities of that level
     template <typename ShearStress>
-    void
-    wall_model(Field& velocity, FieldState rho_state, const ShearStress& tau);
+    void wall_model(Field& velocity, FieldState rho_state);
 
 private:
     const ABLWallFunction& m_wall_func;
@@ -102,9 +127,10 @@ public:
 
     void operator()(Field& temperature, FieldState rho_state) override;
 
+    //! Apply the heat-flux model, built per level from the mean quantities
+    //! of that level
     template <typename HeatFlux>
-    void
-    wall_model(Field& temperature, FieldState rho_state, const HeatFlux& tau);
+    void wall_model(Field& temperature, FieldState rho_state);
 
 private:
     const ABLWallFunction& m_wall_func;

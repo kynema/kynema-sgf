@@ -13,6 +13,9 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_Print.H"
 #include "AMReX_ParallelDescriptor.H"
+#include "AMReX_ParReduce.H"
+#include "AMReX_MultiFabUtil.H"
+#include "AMReX_iMultiFab.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -203,6 +206,123 @@ void ABLWallFunction::update_umean(
     }
 
     m_mo.update_fluxes();
+
+    // Mean quantities of every mesh level that touches the wall
+    if (m_inflow_outflow) {
+        m_mo_lev.clear();
+    } else {
+        update_level_means();
+    }
+}
+
+void ABLWallFunction::update_level_means()
+{
+    m_mo_lev.clear();
+
+    const auto& repo = m_sim.repo();
+    const int nlevels = repo.num_active_levels();
+    // A single-level mesh keeps the plane averages at the reference height
+    if (nlevels < 2) {
+        return;
+    }
+
+    // The wall models combine the local values of the first cell of each
+    // level with the mean values entering the Monin-Obukhov data. On a mesh
+    // where more than one level touches the wall, the first cells of the
+    // levels sit at different heights, so the means must be taken per level
+    // from the wall-adjacent cells that the level owns: the mean stress and
+    // heat flux then match the friction velocity and the surface heat flux
+    // on every level. The friction velocity, the Obukhov length and the
+    // surface heat flux themselves stay those of the reference height.
+    const auto& velocity = repo.get_field("velocity");
+    const auto& temperature = repo.get_field("temperature");
+    const int idim = m_direction;
+
+    m_mo_lev.resize(nlevels, m_mo);
+    for (int lev = 0; lev < nlevels; ++lev) {
+        const auto& geom = m_mesh.Geom(lev);
+        const int kwall = geom.Domain().smallEnd(idim);
+
+        // Exclude the wall cells covered by a finer level
+        amrex::iMultiFab level_mask;
+        if (lev < nlevels - 1) {
+            level_mask = amrex::makeFineMask(
+                m_mesh.boxArray(lev), m_mesh.DistributionMap(lev),
+                m_mesh.boxArray(lev + 1), m_mesh.refRatio(lev), 1, 0);
+        } else {
+            level_mask.define(
+                m_mesh.boxArray(lev), m_mesh.DistributionMap(lev), 1, 0,
+                amrex::MFInfo());
+            level_mask.setVal(1);
+        }
+
+        const auto& vel_arrs = velocity(lev).const_arrays();
+        const auto& temp_arrs = temperature(lev).const_arrays();
+        const auto& mask_arrs = level_mask.const_arrays();
+
+        // Sums of u, v, |u_h|, |u_h| u, |u_h| v, theta and the cell count
+        // over the wall-adjacent cells of this level
+        using SumTuple = amrex::GpuTuple<
+            amrex::Real, amrex::Real, amrex::Real, amrex::Real, amrex::Real,
+            amrex::Real, amrex::Real>;
+        const SumTuple sums = amrex::ParReduce(
+            amrex::TypeList<
+                amrex::ReduceOpSum, amrex::ReduceOpSum, amrex::ReduceOpSum,
+                amrex::ReduceOpSum, amrex::ReduceOpSum, amrex::ReduceOpSum,
+                amrex::ReduceOpSum>{},
+            amrex::TypeList<
+                amrex::Real, amrex::Real, amrex::Real, amrex::Real, amrex::Real,
+                amrex::Real, amrex::Real>{},
+            velocity(lev), amrex::IntVect(0),
+            [=] AMREX_GPU_DEVICE(int box_no, int i, int j, int k) -> SumTuple {
+                const amrex::IntVect iv(i, j, k);
+                if (iv[idim] != kwall) {
+                    return {0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt,
+                            0.0_rt, 0.0_rt, 0.0_rt};
+                }
+                const auto msk =
+                    static_cast<amrex::Real>(mask_arrs[box_no](i, j, k));
+                const auto& vel = vel_arrs[box_no];
+                const amrex::Real uu = vel(i, j, k, 0);
+                const amrex::Real vv = vel(i, j, k, 1);
+                const amrex::Real wspd = std::sqrt((uu * uu) + (vv * vv));
+                return {
+                    msk * uu,
+                    msk * vv,
+                    msk * wspd,
+                    msk * wspd * uu,
+                    msk * wspd * vv,
+                    msk * temp_arrs[box_no](i, j, k),
+                    msk};
+            });
+        amrex::GpuArray<amrex::Real, 7> vals{
+            amrex::get<0>(sums), amrex::get<1>(sums), amrex::get<2>(sums),
+            amrex::get<3>(sums), amrex::get<4>(sums), amrex::get<5>(sums),
+            amrex::get<6>(sums)};
+        amrex::ParallelDescriptor::ReduceRealSum(vals.data(), 7);
+
+        const amrex::Real count = vals[6];
+        if (!(count > 0.0_rt)) {
+            // This level does not touch the wall
+            continue;
+        }
+
+        auto& mo_lev = m_mo_lev[lev];
+        mo_lev.zref = 0.5_rt * geom.CellSize(idim);
+        mo_lev.vel_mean[0] = vals[0] / count;
+        mo_lev.vel_mean[1] = vals[1] / count;
+        mo_lev.vmag_mean = vals[2] / count;
+        mo_lev.Su_mean = vals[3] / count;
+        mo_lev.Sv_mean = vals[4] / count;
+        mo_lev.theta_mean = vals[5] / count;
+        if (mo_lev.alg_type == MOData::ThetaCalcType::HEAT_FLUX) {
+            // Surface temperature that returns the specified heat flux from
+            // the mean state of this level (same relation as update_fluxes)
+            mo_lev.surf_temp = (mo_lev.surf_temp_flux * mo_lev.phi_h() /
+                                (mo_lev.utau * mo_lev.kappa)) +
+                               mo_lev.theta_mean;
+        }
+    }
 }
 
 void ABLWallFunction::update_tflux(const amrex::Real tflux)
@@ -233,8 +353,7 @@ ABLVelWallFunc::ABLVelWallFunc(
 }
 
 template <typename ShearStress>
-void ABLVelWallFunc::wall_model(
-    Field& velocity, const FieldState rho_state, const ShearStress& tau)
+void ABLVelWallFunc::wall_model(Field& velocity, const FieldState rho_state)
 {
     BL_PROFILE("kynema-sgf::ABLVelWallFunc");
 
@@ -264,6 +383,8 @@ void ABLVelWallFunc::wall_model(
         const auto& vold_lev = velocity.state(FieldState::Old)(lev);
         auto& vel_lev = velocity(lev);
         const auto& eta_lev = viscosity(lev);
+        // Shear-stress model with the mean quantities of this level
+        const ShearStress tau(m_wall_func.mo(lev));
 
         if (amrex::Gpu::notInLaunchRegion()) {
             mfi_info.SetDynamic(true);
@@ -348,32 +469,16 @@ void ABLVelWallFunc::wall_model(
 
 void ABLVelWallFunc::operator()(Field& velocity, const FieldState rho_state)
 {
-    const auto& mo = m_wall_func.mo();
-
     if (m_wall_shear_stress_type == "moeng") {
-
-        auto tau = ShearStressMoeng(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressMoeng>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "constant") {
-
-        auto tau = ShearStressConstant(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressConstant>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "local") {
-
-        auto tau = ShearStressLocal(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressLocal>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "schumann") {
-
-        auto tau = ShearStressSchumann(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressSchumann>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "donelan") {
-
-        auto tau = ShearStressDonelan(mo);
-        wall_model(velocity, rho_state, tau);
+        wall_model<ShearStressDonelan>(velocity, rho_state);
     }
 }
 
@@ -390,8 +495,7 @@ ABLTempWallFunc::ABLTempWallFunc(
 }
 
 template <typename HeatFlux>
-void ABLTempWallFunc::wall_model(
-    Field& temperature, const FieldState rho_state, const HeatFlux& tau)
+void ABLTempWallFunc::wall_model(Field& temperature, const FieldState rho_state)
 {
     constexpr int idim = 2;
     auto& repo = temperature.repo();
@@ -425,6 +529,8 @@ void ABLTempWallFunc::wall_model(
         const auto& told_lev = temperature.state(FieldState::Old)(lev);
         auto& theta = temperature(lev);
         const auto& eta_lev = alpha(lev);
+        // Heat-flux model with the mean quantities of this level
+        const HeatFlux tau(m_wall_func.mo(lev));
 
         if (amrex::Gpu::notInLaunchRegion()) {
             mfi_info.SetDynamic(true);
@@ -501,33 +607,16 @@ void ABLTempWallFunc::wall_model(
 
 void ABLTempWallFunc::operator()(Field& temperature, const FieldState rho_state)
 {
-
-    const auto& mo = m_wall_func.mo();
-
     if (m_wall_shear_stress_type == "moeng") {
-
-        auto tau = ShearStressMoeng(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressMoeng>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "constant") {
-
-        auto tau = ShearStressConstant(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressConstant>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "local") {
-
-        auto tau = ShearStressLocal(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressLocal>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "schumann") {
-
-        auto tau = ShearStressSchumann(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressSchumann>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "donelan") {
-
-        auto tau = ShearStressDonelan(mo);
-        wall_model(temperature, rho_state, tau);
+        wall_model<ShearStressDonelan>(temperature, rho_state);
     }
 }
 
