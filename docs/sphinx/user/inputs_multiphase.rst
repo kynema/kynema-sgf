@@ -36,3 +36,31 @@ This section is for the MultiPhase physics module, which is required for flows t
    source terms act in the presence of water. However, this parameter is not needed if the ``OceanWaves`` physics
    module is being used because; the ``water_level`` value is automatically populated in that case from the ``OceanWaves``
    setup parameters.
+
+Notes
+-----
+
+Terrain-blanked cells
+^^^^^^^^^^^^^^^^^^^^^
+
+When the ``terrain_blank`` int field is present (i.e., when a physics module such as
+:doc:`TerrainDrag <inputs_terraindrag>` or ``ChannelBuilder`` is active), the volume-of-fluid
+post-solve step extrapolates the vof field into the cells that are inside the terrain body
+(``terrain_blank = 1``). This keeps the interface within the solid from drifting away from the
+surrounding flow, which would otherwise lead to spurious density gradients and forcing near the
+terrain surface.
+
+The extrapolation is performed after the vof solve and before the density is computed from vof:
+- Blanked cells with at least one lateral neighbor (in x or y) that is not blanked take the average
+   vof of those unblanked neighbors. Valid cells on the x or y domain boundary may be used as
+   sources, but ghost cells outside the domain are excluded.
+- Blanked cells that have no non-blanked lateral neighbors take the average of the laterally
+  neighboring blanked cells that have already been assigned a value. This is repeated in sweeps,
+  so values propagate one layer deeper into the terrain per sweep until every reachable blanked
+  cell has been assigned.
+- Only lateral (x and y) neighbors are used, so each horizontal plane of cells is filled
+  independently of the planes above and below it.
+- Blanked cells that are not reachable from any non-blanked cell keep their existing vof value.
+
+This step is a no-op when no ``terrain_blank`` field exists, and it does not modify the vof values
+of non-blanked cells.
