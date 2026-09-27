@@ -53,12 +53,12 @@ struct UpdatePosOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdateVelOp;
 
-/** Compute aerodynamic forces at the actuator grid points during a simulation.
+/** Compute actuator loads and update any state advanced by the actuator model.
  *
  *  \ingroup actuator
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
-struct ComputeForceOp;
+struct ComputeLoadsAndUpdateStateOp;
 
 /** Compute source term for the momentum equation.
  *

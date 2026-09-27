@@ -116,7 +116,7 @@ struct UpdateVelOp<
 };
 
 template <typename ActTrait>
-struct ComputeForceOp<
+struct ComputeLoadsAndUpdateStateOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
