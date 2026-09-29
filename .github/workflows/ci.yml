@@ -179,7 +179,7 @@ jobs:
         with: 
           submodules: true
       - name: Dependencies
-        run: sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
+        run: sudo apt-get install -y libopenmpi-dev openmpi-bin
       - name: Setup
         run: |
           mkdir -p ${{runner.workspace}}/golds-single
@@ -204,7 +204,7 @@ jobs:
         run: |
           cmake -B ${{runner.workspace}}/build-ci-single \
             -DCMAKE_INSTALL_PREFIX:PATH=${{runner.workspace}}/install-single \
-            -DCMAKE_BUILD_TYPE:STRING=Release \
+            -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo \
             -DMPIEXEC_PREFLAGS:STRING=--oversubscribe \
             -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
             -DKYNEMA_SGF_ENABLE_MPI:BOOL=ON \
@@ -238,6 +238,15 @@ jobs:
       - name: Test
         working-directory: ${{runner.workspace}}/build-ci-single
         run: ctest -LE no_ci -VV --output-on-failure
+      - name: Print AMReX backtraces
+        if: failure()
+        working-directory: ${{runner.workspace}}/build-ci-single
+        run: |
+          find . -type f -name 'Backtrace.*' -print0 | while IFS= read -r -d '' f; do
+            echo "::group::${f}"
+            cat "${f}"
+            echo "::endgroup::"
+          done
 
   GPU-Nvidia:
     name: GPU-CUDA
