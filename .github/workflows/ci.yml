@@ -213,6 +213,7 @@ jobs:
             -DKYNEMA_SGF_TEST_WITH_FCOMPARE:BOOL=OFF \
             -DKYNEMA_SGF_ENABLE_W2A:BOOL=OFF \
             -DAMReX_BACKTRACE:BOOL=ON \
+            -DAMReX_FPE:BOOL=ON \
             -DCMAKE_CXX_COMPILER_LAUNCHER:STRING=ccache \
             ${{github.workspace}}
       - name: Build
