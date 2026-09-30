@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
         "Error: OpenMP is enabled in the compiler but not through the build "
         "system");
 #endif
+
 #ifdef AMREX_USE_MPI
     MPI_Init(&argc, &argv);
 #endif
@@ -68,9 +69,6 @@ int main(int argc, char* argv[])
         }
     });
 
-    volatile double zero = 0.0;
-    double x = 1.0 / zero;
-    amrex::Print() << x << '\n';
     { /* These braces are necessary to ensure amrex::Finalize() can be called
         without explicitly deleting all the incflo member MultiFabs */
 
