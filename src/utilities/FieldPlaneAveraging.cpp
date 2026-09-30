@@ -258,7 +258,8 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
         const amrex::Real dz = geom.CellSize()[idxOp.odir2];
 
         const amrex::Real problo_x = geom.ProbLo(dir);
-        const amrex::Real probhi_x = geom.ProbHi(dir);
+        const int dom_lo = geom.Domain().smallEnd(dir);
+        const int dom_hi = geom.Domain().bigEnd(dir);
 
         amrex::iMultiFab level_mask;
         if (lev < finestLevel) {
@@ -365,19 +366,31 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
                                          0.5_rt) *
                                             dx;
                                     // Get location of neighboring cell centers
-                                    auto x_up = x_cell + dx;
-                                    auto x_down = x_cell - dx;
-                                    // Bound locations by domain limits
+                                    const auto x_up = x_cell + dx;
+                                    const auto x_down = x_cell - dx;
+                                    // Pick the closest neighbor. Across a
+                                    // non-periodic domain boundary the ghost
+                                    // cell is not used: what it holds depends
+                                    // on the boundary condition (a value at
+                                    // the face, an extrapolation to the ghost
+                                    // center, a gradient for wall models) and
+                                    // on whether it has been filled at all,
+                                    // so the interior neighbor is used
+                                    // instead. Indices are also bounded in
+                                    // case of no ghost cells.
+                                    bool use_up = std::abs(x_up - x_targ) <
+                                                  std::abs(x_down - x_targ);
                                     if (!periodic_dir) {
-                                        x_up = amrex::min(probhi_x, x_up);
-                                        x_down = amrex::max(problo_x, x_down);
+                                        if (use_up && (idx + 1 > dom_hi)) {
+                                            use_up = false;
+                                        } else if (
+                                            !use_up && (idx - 1 < dom_lo)) {
+                                            use_up = true;
+                                        }
                                     }
-                                    // Pick indices of closest neighbor
-                                    // Bound indices in case of no ghost cells
                                     auto iv_nb = iv;
                                     auto x_nb = x_cell;
-                                    if (std::abs(x_up - x_targ) <
-                                        std::abs(x_down - x_targ)) {
+                                    if (use_up) {
                                         x_nb = x_up;
                                         iv_nb[dir] += 1;
                                         if (no_ghost) {
@@ -391,6 +404,12 @@ void FPlaneAveraging<FType>::compute_averages(const IndexSelector& idxOp)
                                             iv_nb[dir] = amrex::max<int>(
                                                 iv_nb[dir], vbx.smallEnd(dir));
                                         }
+                                    }
+                                    if (!periodic_dir &&
+                                        ((iv_nb[dir] < dom_lo) ||
+                                         (iv_nb[dir] > dom_hi))) {
+                                        // Single cell across the domain
+                                        iv_nb = iv;
                                     }
                                     // Interpolate to target location using
                                     // closest neighbor
