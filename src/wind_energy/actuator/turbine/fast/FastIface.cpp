@@ -302,7 +302,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
         &fi.tid_global, out_file, &fi.num_pts_blade, &fi.num_pts_tower,
         fi.base_pos.begin(), &abort_lev, &fi.dt_cfd, &fi.dt_ext,
         &m_solver_data.m_inflow_type, &fi.num_blades, &fi.num_blade_elem,
-        &fi.num_tower_elem, &fi.chord_cluster_type, &fi.to_cfd, &fi.from_cfd);
+        &fi.num_tower_elem, &fi.force_point_distribution_type, &fi.to_cfd, &fi.from_cfd);
 #else
     fast_func(
         FAST_OpFM_Init, &fi.tid_local, &fi.stop_time, inp_file.begin(),
@@ -311,7 +311,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
         &m_solver_data.m_init_sc_inputs_glob,
         &m_solver_data.m_init_sc_inputs_turbine, &fi.num_pts_blade,
         &fi.num_pts_tower, fi.base_pos.begin(), &abort_lev, &fi.dt_ext,
-        &fi.num_blades, &fi.num_blade_elem, &fi.chord_cluster_type, &fi.to_cfd,
+        &fi.num_blades, &fi.num_blade_elem, &fi.force_point_distribution_type, &fi.to_cfd,
         &fi.from_cfd, &fi.to_sc, &fi.from_sc);
 #endif
 

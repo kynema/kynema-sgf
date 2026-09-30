@@ -18,8 +18,10 @@ struct FastTurbine : public ext_turb::ExternalTurbine
     /** Variables exclusive to OpenFAST turbine type
      */
 
-    //! Node cluster type for the chord
-    int chord_cluster_type{0};
+    //! Select the way the force points are distributed along the blade.
+    //  0 is uniform spacing
+    //  1 is chord-scaled spacing
+    int force_point_distribution_type{0};
 
     sgf_fast::OfInputType to_cfd;
     sgf_fast::OfOutputType from_cfd;
