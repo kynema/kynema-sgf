@@ -17,7 +17,8 @@ int main(int argc, char* argv[])
         "Error: OpenMP is enabled in the compiler but not through the build "
         "system");
 #endif
-
+    volatile double zero = 0.0;
+    double x = 1.0 / zero;
 #ifdef AMREX_USE_MPI
     MPI_Init(&argc, &argv);
 #endif
