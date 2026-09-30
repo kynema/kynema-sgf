@@ -107,6 +107,32 @@ void init_field_linear(
     }
     amrex::Gpu::streamSynchronize();
 }
+
+//! Overwrite the ghost cells outside the domain in direction dir with a value
+//! that would spoil any average that reads them
+void spoil_domain_ghosts(
+    kynema_sgf::Field& fld, const int dir, const amrex::Real value)
+{
+    const auto& mesh = fld.repo().mesh();
+    const int nlevels = fld.repo().num_active_levels();
+    const int ncomp = fld.num_comp();
+
+    for (int lev = 0; lev < nlevels; ++lev) {
+        const int dom_lo = mesh.Geom(lev).Domain().smallEnd(dir);
+        const int dom_hi = mesh.Geom(lev).Domain().bigEnd(dir);
+        const auto& farrs = fld(lev).arrays();
+
+        amrex::ParallelFor(
+            fld(lev), fld.num_grow(), ncomp,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
+                const amrex::IntVect iv(i, j, k);
+                if ((iv[dir] < dom_lo) || (iv[dir] > dom_hi)) {
+                    farrs[nbx](i, j, k, n) = value;
+                }
+            });
+    }
+    amrex::Gpu::streamSynchronize();
+}
 } // namespace
 
 TEST_F(FieldPlaneAveragingFineTest, test_linear_fine_only)
@@ -211,6 +237,62 @@ TEST_F(FieldPlaneAveragingFineTest, test_linear)
             pa_fine.line_derivative_interpolated(z, 2)};
 
         // test each velocity field du/dx = u0
+        for (int j = 0; j < 3; ++j) {
+            EXPECT_NEAR(u0[j], dudx[j], tol);
+        }
+    }
+}
+
+TEST_F(FieldPlaneAveragingFineTest, test_linear_ignores_domain_ghosts)
+{
+    // Same field as test_linear, but the ghost cells outside the
+    // non-periodic domain boundaries hold garbage. What those cells hold
+    // depends on the boundary condition and on whether they have been
+    // filled, so the averages must not depend on them.
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+
+    amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> u0 = {
+        {1.0_rt, 3.5_rt, 5.6_rt}};
+
+    populate_parameters();
+    initialize_mesh();
+
+    auto& frepo = mesh().field_repo();
+    auto& velocityf = frepo.declare_field("velocity", 3, 1);
+
+    constexpr int dir = 2;
+    init_field_linear(velocityf, u0, dir);
+    spoil_domain_ghosts(velocityf, dir, 1.0e10_rt);
+
+    kynema_sgf::FieldPlaneAveraging pa_fine(
+        velocityf, sim().time(), dir, -1, true);
+    pa_fine();
+
+    constexpr int n = 20;
+    const amrex::Real L = z_fine_hi - z_fine_lo;
+    const amrex::Real dz = L / (static_cast<amrex::Real>(n));
+    const amrex::Real half_dz_pa = 0.25_rt;
+    const int n_more = static_cast<int>((8.0_rt - 2.0_rt * half_dz_pa) / dz);
+
+    for (int i = 0; i < n_more; ++i) {
+
+        const amrex::Real z = half_dz_pa + (i * dz);
+
+        const amrex::Array<amrex::Real, 3> u = {
+            pa_fine.line_average_interpolated(z, 0),
+            pa_fine.line_average_interpolated(z, 1),
+            pa_fine.line_average_interpolated(z, 2)};
+
+        for (int j = 0; j < 3; ++j) {
+            EXPECT_NEAR(u0[j] * (z), u[j], tol);
+        }
+
+        const amrex::Array<amrex::Real, 3> dudx = {
+            pa_fine.line_derivative_interpolated(z, 0),
+            pa_fine.line_derivative_interpolated(z, 1),
+            pa_fine.line_derivative_interpolated(z, 2)};
+
         for (int j = 0; j < 3; ++j) {
             EXPECT_NEAR(u0[j], dudx[j], tol);
         }

@@ -280,6 +280,7 @@ void InletData::read_data_native(
     }
 
     bndry.copyTo((*m_data_n[ori])[lev], 0, nstart, static_cast<int>(nc));
+    amrex::Gpu::streamSynchronize();
 
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (false)
@@ -305,6 +306,7 @@ void InletData::read_data_native(
     }
 
     bndry.copyTo((*m_data_np1[ori])[lev], 0, nstart, static_cast<int>(nc));
+    amrex::Gpu::streamSynchronize();
 }
 
 void InletData::interpolate(const amrex::Real time)
@@ -845,6 +847,7 @@ void BoundaryPlane::write_file()
                 bndry.copyFrom(
                     field(lev), 1, 0, 0, field.num_comp(),
                     geom[lev].periodicity());
+                amrex::Gpu::streamSynchronize();
 
                 std::string filename = amrex::MultiFabFileFullPrefix(
                     lev, chkname, level_prefix, field.name());

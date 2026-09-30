@@ -119,6 +119,7 @@ public:
                 }
             }
         }
+        amrex::Gpu::streamSynchronize();
     }
 
     //! Perform derived field interpolation to sampling locations
