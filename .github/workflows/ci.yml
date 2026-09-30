@@ -40,7 +40,7 @@ jobs:
             ccache_cache: /Users/runner/Library/Caches/ccache
           - os: ubuntu-24.04
             #Note mpich on ubuntu-24.04 does not run mpiexec correctly so we are using openmpi
-            install_deps: sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
+            install_deps: sudo apt-get update; sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
             comp: gnu
             procs: $(nproc)
             ccache_cache: ~/.cache/ccache
@@ -130,7 +130,7 @@ jobs:
           exit $(tail -n 1 build-output-warnings.txt | awk '{print $2}')
       - name: Test
         working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}
-        run: ctest ${{matrix.ctest_args}} -VV --output-on-failure
+        run: ctest ${{matrix.ctest_args}} -VV -j ${{env.NPROCS}} --output-on-failure
       - name: Reference Checkout
         if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
         run: |
@@ -168,7 +168,7 @@ jobs:
       - name: Reference Test
         if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
         working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}-reference
-        run: ctest ${{matrix.ctest_args}} -VV --output-on-failure
+        run: ctest ${{matrix.ctest_args}} -VV -j ${{env.NPROCS}} --output-on-failure
 
   CPU-SINGLE:
     needs: Formatting
@@ -179,7 +179,7 @@ jobs:
         with: 
           submodules: true
       - name: Dependencies
-        run: sudo apt-get install -y libopenmpi-dev openmpi-bin
+        run: sudo apt-get update; sudo apt-get install -y libopenmpi-dev openmpi-bin
       - name: Setup
         run: |
           mkdir -p ${{runner.workspace}}/golds-single
@@ -239,7 +239,7 @@ jobs:
           exit $(tail -n 1 build-output-warnings.txt | awk '{print $2}')
       - name: Test
         working-directory: ${{runner.workspace}}/build-ci-single
-        run: ctest -LE no_ci -VV --output-on-failure
+        run: ctest -LE no_ci -VV -j ${{env.NPROCS}} --output-on-failure
       - name: Print AMReX backtraces
         if: failure()
         working-directory: ${{runner.workspace}}/build-ci-single
