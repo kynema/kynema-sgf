@@ -17,14 +17,20 @@ CylinderRefiner::CylinderRefiner(
 
     // Start of the cylinder
     pp.getarr("start", tmp_vec);
-    AMREX_ALWAYS_ASSERT(tmp_vec.size() == AMREX_SPACEDIM);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        tmp_vec.size() == AMREX_SPACEDIM,
+        "tmp_vec.size() = " + std::to_string(tmp_vec.size()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         m_start[i] = tmp_vec[i];
     }
 
     // End point of cylinder
     pp.getarr("end", tmp_vec);
-    AMREX_ALWAYS_ASSERT(tmp_vec.size() == AMREX_SPACEDIM);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        tmp_vec.size() == AMREX_SPACEDIM,
+        "tmp_vec.size() = " + std::to_string(tmp_vec.size()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         m_end[i] = tmp_vec[i];
     }

@@ -105,7 +105,9 @@ int ExtTurbIface<SolverTurbine, SolverData>::register_turbine(
     SolverTurbine& data)
 {
     BL_PROFILE("kynema-sgf::ExtTurbIface::register_turbine");
-    AMREX_ALWAYS_ASSERT(!m_is_initialized);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        !m_is_initialized,
+        "m_is_initialized = " + std::to_string(m_is_initialized));
     const int local_id = static_cast<int>(m_turbine_data.size());
     const int gid = data.tid_global;
     m_turbine_map[gid] = local_id;
@@ -118,7 +120,11 @@ int ExtTurbIface<SolverTurbine, SolverData>::register_turbine(
 template <typename SolverTurbine, typename SolverData>
 void ExtTurbIface<SolverTurbine, SolverData>::init_turbine(const int local_id)
 {
-    AMREX_ALWAYS_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        local_id < static_cast<int>(m_turbine_data.size()),
+        "local_id = " + std::to_string(local_id) +
+            ", m_turbine_data.size() = " +
+            std::to_string(m_turbine_data.size()));
     if (!m_is_initialized) {
         allocate_ext_turbines();
     }

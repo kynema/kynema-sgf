@@ -14,9 +14,16 @@ struct Divergence
     Divergence(FTypeOut& divphi, const FTypeIn& phi)
         : m_divphi(divphi), m_phi(phi)
     {
-        AMREX_ALWAYS_ASSERT(
-            AMREX_SPACEDIM * divphi.num_comp() == phi.num_comp());
-        AMREX_ALWAYS_ASSERT(m_phi.num_grow() > amrex::IntVect(0));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            AMREX_SPACEDIM * divphi.num_comp() == phi.num_comp(),
+            "AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM) +
+                ", divphi.num_comp() = " + std::to_string(divphi.num_comp()) +
+                ", phi.num_comp() = " + std::to_string(phi.num_comp()));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            m_phi.num_grow() > amrex::IntVect(0),
+            "m_phi.num_grow() = (" + std::to_string(m_phi.num_grow()[0]) +
+                ", " + std::to_string(m_phi.num_grow()[1]) + ", " +
+                std::to_string(m_phi.num_grow()[2]) + ")");
     }
 
     template <typename Stencil>
@@ -98,8 +105,14 @@ void divergence(FTypeOut& divphi, const FTypeIn& phi)
 template <typename FType>
 std::unique_ptr<ScratchField> divergence(const FType& phi)
 {
-    AMREX_ALWAYS_ASSERT(phi.num_comp() >= AMREX_SPACEDIM);
-    AMREX_ALWAYS_ASSERT(phi.num_comp() % AMREX_SPACEDIM == 0);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        phi.num_comp() >= AMREX_SPACEDIM,
+        "phi.num_comp() = " + std::to_string(phi.num_comp()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        phi.num_comp() % AMREX_SPACEDIM == 0,
+        "phi.num_comp() = " + std::to_string(phi.num_comp()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
     const std::string gname = phi.name() + "_divergence";
     auto divphi =
         phi.repo().create_scratch_field(gname, phi.num_comp() / AMREX_SPACEDIM);

@@ -83,12 +83,29 @@ SecondMomentAveraging::SecondMomentAveraging(
     : m_plane_average1(pa1), m_plane_average2(pa2)
 {
 
-    AMREX_ALWAYS_ASSERT(m_plane_average1.axis() == m_plane_average2.axis());
-    AMREX_ALWAYS_ASSERT(m_plane_average1.level() == m_plane_average2.level());
-    AMREX_ALWAYS_ASSERT(
-        m_plane_average1.ncell_plane() == m_plane_average2.ncell_plane());
-    AMREX_ALWAYS_ASSERT(
-        m_plane_average1.ncell_line() == m_plane_average2.ncell_line());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_plane_average1.axis() == m_plane_average2.axis(),
+        "m_plane_average1.axis() = " + std::to_string(m_plane_average1.axis()) +
+            ", m_plane_average2.axis() = " +
+            std::to_string(m_plane_average2.axis()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_plane_average1.level() == m_plane_average2.level(),
+        "m_plane_average1.level() = " +
+            std::to_string(m_plane_average1.level()) +
+            ", m_plane_average2.level() = " +
+            std::to_string(m_plane_average2.level()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_plane_average1.ncell_plane() == m_plane_average2.ncell_plane(),
+        "m_plane_average1.ncell_plane() = " +
+            std::to_string(m_plane_average1.ncell_plane()) +
+            ", m_plane_average2.ncell_plane() = " +
+            std::to_string(m_plane_average2.ncell_plane()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_plane_average1.ncell_line() == m_plane_average2.ncell_line(),
+        "m_plane_average1.ncell_line() = " +
+            std::to_string(m_plane_average1.ncell_line()) +
+            ", m_plane_average2.ncell_line() = " +
+            std::to_string(m_plane_average2.ncell_line()));
 
     m_num_moments = m_plane_average1.ncomp() * m_plane_average2.ncomp();
 
@@ -368,8 +385,14 @@ amrex::Real SecondMomentAveraging::line_average_interpolated(
     BL_PROFILE(
         "kynema-sgf::SecondMomentAveraging::line_average_interpolated 1");
 
-    AMREX_ALWAYS_ASSERT(comp1 >= 0 && comp1 < m_plane_average1.ncomp());
-    AMREX_ALWAYS_ASSERT(comp2 >= 0 && comp2 < m_plane_average2.ncomp());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp1 >= 0 && comp1 < m_plane_average1.ncomp(),
+        "comp1 = " + std::to_string(comp1) + ", m_plane_average1.ncomp() = " +
+            std::to_string(m_plane_average1.ncomp()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp2 >= 0 && comp2 < m_plane_average2.ncomp(),
+        "comp2 = " + std::to_string(comp2) + ", m_plane_average2.ncomp() = " +
+            std::to_string(m_plane_average2.ncomp()));
 
     const int comp = (m_plane_average1.ncomp() * comp1) + comp2;
     return line_average_interpolated(x, comp);
@@ -381,7 +404,10 @@ SecondMomentAveraging::line_average_interpolated(amrex::Real x, int comp) const
     BL_PROFILE(
         "kynema-sgf::SecondMomentAveraging::line_average_interpolated 2");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp >= 0 && comp < m_num_moments,
+        "comp = " + std::to_string(comp) +
+            ", m_num_moments = " + std::to_string(m_num_moments));
 
     const amrex::Real dx = m_plane_average1.dx();
     const amrex::Real xlo = m_plane_average1.xlo();
@@ -401,7 +427,10 @@ SecondMomentAveraging::line_average_interpolated(amrex::Real x, int comp) const
         c = 1.0_rt;
     }
 
-    AMREX_ALWAYS_ASSERT(ind >= 0 and ind + 1 < ncell_line);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        ind >= 0 and ind + 1 < ncell_line,
+        "ind = " + std::to_string(ind) +
+            ", ncell_line = " + std::to_string(ncell_line));
 
     return (m_second_moments_line[(m_num_moments * ind) + comp] *
             (1.0_rt - c)) +
@@ -412,8 +441,14 @@ amrex::Real SecondMomentAveraging::line_average_cell(int ind, int comp) const
 {
     BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_cell 2");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
-    AMREX_ALWAYS_ASSERT(ind >= 0 and ind + 1 < m_plane_average1.ncell_line());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp >= 0 && comp < m_num_moments,
+        "comp = " + std::to_string(comp) +
+            ", m_num_moments = " + std::to_string(m_num_moments));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        ind >= 0 and ind + 1 < m_plane_average1.ncell_line(),
+        "ind = " + std::to_string(ind) + ", m_plane_average1.ncell_line() = " +
+            std::to_string(m_plane_average1.ncell_line()));
 
     return m_second_moments_line[(m_num_moments * ind) + comp];
 }
@@ -423,8 +458,14 @@ SecondMomentAveraging::line_average_cell(int ind, int comp1, int comp2) const
 {
     BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_average_cell 1");
 
-    AMREX_ALWAYS_ASSERT(comp1 >= 0 && comp1 < m_plane_average1.ncomp());
-    AMREX_ALWAYS_ASSERT(comp2 >= 0 && comp2 < m_plane_average2.ncomp());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp1 >= 0 && comp1 < m_plane_average1.ncomp(),
+        "comp1 = " + std::to_string(comp1) + ", m_plane_average1.ncomp() = " +
+            std::to_string(m_plane_average1.ncomp()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp2 >= 0 && comp2 < m_plane_average2.ncomp(),
+        "comp2 = " + std::to_string(comp2) + ", m_plane_average2.ncomp() = " +
+            std::to_string(m_plane_average2.ncomp()));
 
     const int comp = (m_plane_average1.ncomp() * comp1) + comp2;
     return line_average_cell(ind, comp);
@@ -435,7 +476,10 @@ void SecondMomentAveraging::line_moment(
 {
     BL_PROFILE("kynema-sgf::SecondMomentAveraging::line_moment");
 
-    AMREX_ALWAYS_ASSERT(comp >= 0 && comp < m_num_moments);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        comp >= 0 && comp < m_num_moments,
+        "comp = " + std::to_string(comp) +
+            ", m_num_moments = " + std::to_string(m_num_moments));
 
     const int ncell_line = m_plane_average1.ncell_line();
     for (int i = 0; i < ncell_line; i++) {

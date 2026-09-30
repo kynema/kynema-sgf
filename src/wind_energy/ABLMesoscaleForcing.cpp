@@ -40,8 +40,12 @@ ABLMesoscaleForcing::ABLMesoscaleForcing(
                 amrex::Print() << "  " << m_weighting_heights[i] << " "
                                << m_weighting_values[i] << '\n';
             }
-            AMREX_ALWAYS_ASSERT(
-                m_weighting_heights.size() == m_weighting_values.size());
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                m_weighting_heights.size() == m_weighting_values.size(),
+                "m_weighting_heights.size() = " +
+                    std::to_string(m_weighting_heights.size()) +
+                    ", m_weighting_values.size() = " +
+                    std::to_string(m_weighting_values.size()));
             m_user_specified_weighting = true;
         }
 
