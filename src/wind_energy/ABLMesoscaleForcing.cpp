@@ -172,7 +172,6 @@ void ABLMesoscaleForcing::indirect_forcing_init()
 
 void ABLMesoscaleForcing::invert_mat(
     const amrex::Array2D<amrex::Real, 0, 3, 0, 3>& m,
-    // cppcheck-suppress constParameterReference
     amrex::Array2D<amrex::Real, 0, 3, 0, 3>& im)
 {
     amrex::Real A2323 = (m(2, 2) * m(3, 3)) - (m(2, 3) * m(3, 2));

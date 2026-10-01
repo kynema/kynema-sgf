@@ -58,7 +58,6 @@ void init_vof(kynema_sgf::Field& fld)
 class WaveEnergyImpl : public kynema_sgf::wave_energy::WaveEnergy
 {
 public:
-    // cppcheck-suppress passedByValue
     WaveEnergyImpl(kynema_sgf::CFDSim& sim, std::string label)
         : kynema_sgf::wave_energy::WaveEnergy(sim, std::move(label))
     {}

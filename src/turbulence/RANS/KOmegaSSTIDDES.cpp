@@ -21,7 +21,6 @@ template <typename Transport>
 KOmegaSSTIDDES<Transport>::~KOmegaSSTIDDES() = default;
 
 template <typename Transport>
-// cppcheck-suppress uninitMemberVar
 KOmegaSSTIDDES<Transport>::KOmegaSSTIDDES(CFDSim& sim)
     : KOmegaSST<Transport>(sim)
     , m_rans_ind(sim.repo().declare_field("rans_indicator", 1, 1, 1))

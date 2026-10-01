@@ -354,7 +354,6 @@ template <>
 struct ProcessOutputsOp<Joukowsky, ActSrcDisk>
 {
 private:
-    // cppcheck-suppress uninitMemberVarPrivate
     const Joukowsky::DataType& m_data;
     //! Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
@@ -366,11 +365,7 @@ private:
     int m_out_freq{10};
 
 public:
-    // cppcheck-suppress constParameter
-    explicit ProcessOutputsOp<Joukowsky, ActSrcDisk>(
-        const Joukowsky::DataType& data)
-        : m_data(data)
-    {}
+    explicit ProcessOutputsOp(const Joukowsky::DataType& data) : m_data(data) {}
     void operator()(Joukowsky::DataType& /*data*/) {}
     void read_io_options(const utils::ActParser& pp)
     {

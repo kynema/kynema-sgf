@@ -15,7 +15,6 @@ namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
-// cppcheck-suppress uninitMemberVar
 OneEqKsgs<Transport>::OneEqKsgs(CFDSim& sim)
     : TurbModelBase<Transport>(sim)
     , m_vel(sim.repo().get_field("velocity"))

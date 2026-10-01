@@ -16,7 +16,6 @@ namespace act = kynema_sgf::actuator;
 
 struct FixedWing : public act::FixedWing
 {
-    // cppcheck-suppress duplInheritedMember
     static std::string identifier() { return "TestFixedWing"; }
 };
 

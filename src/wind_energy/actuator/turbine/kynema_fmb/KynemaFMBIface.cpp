@@ -844,7 +844,6 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     ::sgf_fmb::update_turbine(fi, false);
 }
 
-// cppcheck-suppress constParameterReference
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_replay_turbine(
