@@ -63,8 +63,6 @@ TEST_F(ICNSInitTest, 2level)
     initialize_mesh();
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
-    sim().create_transport_model();
-    sim().create_turbulence_model();
     pde_mgr.icns().initialize();
 }
 
