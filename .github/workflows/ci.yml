@@ -40,7 +40,7 @@ jobs:
             ccache_cache: /Users/runner/Library/Caches/ccache
           - os: ubuntu-26.04
             #Note mpich on ubuntu-26.04 does not run mpiexec correctly so we are using openmpi
-            install_deps: sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
+            install_deps: sudo apt-get update; sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
             comp: gnu
             procs: $(nproc)
             ccache_cache: ~/.cache/ccache
@@ -179,7 +179,7 @@ jobs:
         with: 
           submodules: true
       - name: Dependencies
-        run: sudo apt-get install -y libopenmpi-dev openmpi-bin
+        run: sudo apt-get update; sudo apt-get install -y libopenmpi-dev openmpi-bin
       - name: Setup
         run: |
           mkdir -p ${{runner.workspace}}/golds-single
