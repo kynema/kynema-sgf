@@ -1,5 +1,6 @@
 #include <cmath>
 #include "src/turbulence/LES/Kosovic.H"
+#include "src/turbulence/LES/hybrid_length_scale.H"
 #include "src/turbulence/TurbModelDefs.H"
 #include "src/fvm/nonLinearSum.H"
 #include "src/fvm/strainrate.H"
@@ -151,7 +152,8 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                          ? amrex::max<amrex::Real>(
                                x3 - height_arrs[nbx](i, j, k, 0), 0.5_rt * dz)
                          : x3;
-                const amrex::Real fmu = std::exp(-x3 / locSwitchLoc);
+                const amrex::Real fmu =
+                    hybrid_length::rans_weight(x3, locSwitchLoc);
                 const amrex::Real phiM =
                     (monin_obukhov_length < 0)
                         ? std::pow(
@@ -168,8 +170,8 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
                 const amrex::Real viscosityScale =
                     (locSurfaceFactor *
-                     (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor +
-                      std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                     hybrid_length::blended_length_sqr(
+                         smag_factor, ransL, fmu, locSurfaceRANSExp)) +
                     ((1.0_rt - locSurfaceFactor) * smag_factor);
                 const amrex::Real blankTerrain =
                     (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
