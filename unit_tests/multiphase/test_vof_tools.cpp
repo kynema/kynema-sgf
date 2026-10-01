@@ -151,7 +151,7 @@ levelset_to_vof_test_impl(const amrex::Real deltax, kynema_sgf::Field& levelset)
                             1.0_rt,
                             amrex::max<amrex::Real>(
                                 0.0_rt,
-                                (levelset_arr(i, j, k) + 0.5_rt * dx) / dx));
+                                (levelset_arr(i, j, k) + (0.5_rt * dx)) / dx));
                         error += std::abs(approx_vof - vof);
                     }
 

@@ -21,14 +21,14 @@ void initialize_vof(
         amrex::ParallelFor(
             vof_mfab, amrex::IntVect(1),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                const amrex::Real z = zlo + (k + 0.5_rt) * dz;
+                const amrex::Real z = zlo + ((k + 0.5_rt) * dz);
 
-                if (z + 0.5_rt * dz <= wlev) {
+                if (z + (0.5_rt * dz) <= wlev) {
                     vof_arrs[nbx](i, j, k) = 1.0_rt;
-                } else if (z - 0.5_rt * dz >= wlev) {
+                } else if (z - (0.5_rt * dz) >= wlev) {
                     vof_arrs[nbx](i, j, k) = 0.0_rt;
                 } else {
-                    vof_arrs[nbx](i, j, k) = (wlev - (z - 0.5_rt * dz)) / dz;
+                    vof_arrs[nbx](i, j, k) = (wlev - (z - (0.5_rt * dz))) / dz;
                 }
             });
     }

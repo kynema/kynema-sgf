@@ -63,7 +63,7 @@ amrex::Real max_error_chunk1(
             bx, reduce_data,
             [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept -> ReduceTuple {
                 const amrex::Real expected =
-                    dx_sv * static_cast<amrex::Real>(i + j + k) + offset;
+                    (dx_sv * static_cast<amrex::Real>(i + j + k)) + offset;
                 return {amrex::Math::abs(arr(i, j, k) - expected)};
             });
     }
@@ -95,9 +95,9 @@ amrex::Real max_error_chunk2(
             bx, reduce_data,
             [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept -> ReduceTuple {
                 const amrex::Real expected =
-                    dx_sv * static_cast<amrex::Real>(i) +
-                    dy_sv * static_cast<amrex::Real>(j) +
-                    dz_sv * static_cast<amrex::Real>(k) + offset;
+                    (dx_sv * static_cast<amrex::Real>(i)) +
+                    (dy_sv * static_cast<amrex::Real>(j)) +
+                    (dz_sv * static_cast<amrex::Real>(k)) + offset;
                 return {amrex::Math::abs(arr(i, j, k) - expected)};
             });
     }

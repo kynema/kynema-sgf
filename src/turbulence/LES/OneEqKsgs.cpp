@@ -162,7 +162,7 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
 
                 buoy_prod_arrs[nbx](i, j, k) =
                     -mu_arrs[nbx](i, j, k) *
-                    (1.0_rt + 2.0_rt * tlscale_arrs[nbx](i, j, k) / ds) *
+                    (1.0_rt + (2.0_rt * tlscale_arrs[nbx](i, j, k) / ds)) *
                     stratification;
 
                 shear_prod_arrs[nbx](i, j, k) *=
@@ -204,7 +204,7 @@ void OneEqKsgsM84<Transport>::update_alphaeff(Field& alphaeff)
                 alphaeff_arrs[nbx](i, j, k) =
                     lam_diff_arrs[nbx](i, j, k) +
                     (muturb_arrs[nbx](i, j, k) *
-                     (1.0_rt + 2.0_rt * tlscale_arrs[nbx](i, j, k) / ds));
+                     (1.0_rt + (2.0_rt * tlscale_arrs[nbx](i, j, k) / ds)));
             });
     }
     amrex::Gpu::streamSynchronize();

@@ -53,8 +53,8 @@ int compute_convex_hull_2d(
         });
 
     auto cross = [](const auto& o, const auto& a, const auto& b) {
-        return (a.first - o.first) * (b.second - o.second) -
-               (a.second - o.second) * (b.first - o.first);
+        return ((a.first - o.first) * (b.second - o.second)) -
+               ((a.second - o.second) * (b.first - o.first));
     };
 
     std::vector<std::pair<amrex::Real, amrex::Real>> lower;
@@ -272,7 +272,8 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                             amrex::Real lad_interp = 0.0_rt;
                             if (nearest_d2[0] < eps2) {
                                 lad_interp = nearest_lad[0];
-                            } else if (z - 0.5_rt * dx[2] <= max_z_neighbors) {
+                            } else if (
+                                z - (0.5_rt * dx[2]) <= max_z_neighbors) {
                                 amrex::Real sum_w = 0.0_rt;
                                 amrex::Real sum_lad = 0.0_rt;
                                 for (int n = 0; n < num_neighbors; ++n) {

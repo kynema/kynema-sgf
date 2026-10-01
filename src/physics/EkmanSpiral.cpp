@@ -22,7 +22,7 @@ struct UExact
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real UExact::operator()(
     const amrex::Real v0, const amrex::Real a, const amrex::Real z) const
 {
-    return v0 * (1.0_rt - std::exp(-a * z) * std::cos(-a * z));
+    return v0 * (1.0_rt - (std::exp(-a * z) * std::cos(-a * z)));
 }
 
 struct VExact

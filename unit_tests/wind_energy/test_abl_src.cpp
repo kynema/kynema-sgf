@@ -332,8 +332,8 @@ TEST_F(ABLMeshTest, hurricane_forcing)
         2.0_rt * kynema_sgf::utils::two_pi() / 86400.0_rt;
     const amrex::Real dz = sim().mesh().Geom(0).CellSizeArray()[2];
     const amrex::Real ratio_top =
-        (18000.0_rt - (1000.0_rt - 0.5_rt * dz)) / 18000.0_rt;
-    const amrex::Real ratio_bottom = (18000.0_rt - 0.5_rt * dz) / 18000.0_rt;
+        (18000.0_rt - (1000.0_rt - (0.5_rt * dz))) / 18000.0_rt;
+    const amrex::Real ratio_bottom = (18000.0_rt - (0.5_rt * dz)) / 18000.0_rt;
     const amrex::Array<amrex::Real, AMREX_SPACEDIM> golds_max{
         {(-corfac * 40.0_rt * ratio_top) -
              (40.0_rt * ratio_top * 40.0_rt * ratio_top / 40000.0_rt),

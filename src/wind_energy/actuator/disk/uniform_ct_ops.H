@@ -91,7 +91,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
             const amrex::Real rp = r + (dr * 0.5_rt);
             const amrex::Real rm = r - (dr * 0.5_rt);
             const amrex::Real a =
-                std::numbers::pi_v<amrex::Real> * (rp * rp - rm * rm);
+                std::numbers::pi_v<amrex::Real> * ((rp * rp) - (rm * rm));
             // disk force should always point in direction of the normal
             grid.force[ip] = (aeroPressure * a) * normal;
         }

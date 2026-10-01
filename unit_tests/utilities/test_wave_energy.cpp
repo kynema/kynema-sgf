@@ -149,17 +149,17 @@ TEST_F(WaveEnergyTest, checkoutput)
     const amrex::Real cell_vol = dx * dx * dz;
     amrex::Real ke_ref =
         0.5_rt * cell_vol / (m_wlev * 2.0_rt * 2.0_rt) *
-        (4.0_rt * 5.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt) + 25.0_rt +
-         0.5_rt * (4.0_rt * 15.0_rt + 5.0_rt * (4.0_rt + 16.0_rt) +
-                   3.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt)) +
-         (4.0_rt * 10.0_rt + 5.0_rt * (1.0_rt + 9.0_rt) +
-          2.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt)));
+        ((4.0_rt * 5.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt)) + 25.0_rt +
+         (0.5_rt * ((4.0_rt * 15.0_rt) + (5.0_rt * (4.0_rt + 16.0_rt)) +
+                    (3.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt)))) +
+         ((4.0_rt * 10.0_rt) + (5.0_rt * (1.0_rt + 9.0_rt)) +
+          (2.0_rt * (1.0_rt + 4.0_rt + 9.0_rt + 16.0_rt))));
     EXPECT_NEAR(ke, ke_ref, m_tol);
     // Formula has been integrated in z, and uses exact interface locations
     amrex::Real pe_exact =
         (dx * dx * (-m_g) * 0.5_rt / (m_wlev * 2.0_rt * 2.0_rt) *
-         (15.0_rt * kynema_sgf::utils::powi(2.5_rt * dz, 2) +
-          10.0_rt * kynema_sgf::utils::powi(3.0_rt * dz, 2))) +
+         ((15.0_rt * kynema_sgf::utils::powi(2.5_rt * dz, 2)) +
+          (10.0_rt * kynema_sgf::utils::powi(3.0_rt * dz, 2)))) +
         (0.5_rt * (-m_g) * m_wlev);
     EXPECT_NEAR(pe, pe_exact, m_tol);
 }

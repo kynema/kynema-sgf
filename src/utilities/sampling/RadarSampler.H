@@ -103,7 +103,7 @@ public:
     [[nodiscard]] long num_points() const override
     {
         return m_interp_steps * m_ntotal *
-               (m_npts + m_ntheta * m_npts * (m_nphi - 1));
+               (m_npts + (m_ntheta * m_npts * (m_nphi - 1)));
     }
 
     //! Number of probe locations to output
@@ -115,7 +115,7 @@ public:
     //! Number of sampling container locations per interp step
     [[nodiscard]] long num_points_scan() const
     {
-        return m_ntotal * (m_npts + m_ntheta * m_npts * (m_nphi - 1));
+        return m_ntotal * (m_npts + (m_ntheta * m_npts * (m_nphi - 1)));
     }
 
     //! Number of probe locations on Radar axis

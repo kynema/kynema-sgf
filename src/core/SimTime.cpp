@@ -260,7 +260,7 @@ void SimTime::set_current_cfl(
         }
 
         m_dt[0] = (m_cur_time <
-                   (m_delay_time - 0.1 * amrex::max(m_initial_dt, 0.0_rt)))
+                   (m_delay_time - (0.1 * amrex::max(m_initial_dt, 0.0_rt))))
                       ? m_initial_dt
                       : dt_new;
 
@@ -268,7 +268,7 @@ void SimTime::set_current_cfl(
         // Ensure that we use user-specified dt. Checkpoint restart might have
         // overridden this
         m_dt[0] = (m_cur_time <
-                   (m_delay_time - 0.1 * amrex::max(m_initial_dt, 0.0_rt)))
+                   (m_delay_time - (0.1 * amrex::max(m_initial_dt, 0.0_rt))))
                       ? m_initial_dt
                       : m_fixed_dt;
     }

@@ -252,7 +252,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_noslip)
 
     // Naive cell-centered answer, with no_slip_wall (Dirichlet)
     const amrex::Real uz_wallcell =
-        (uz_bulk * 1.5_rt * m_dz + 2.0_rt - 0.0_rt) / (2.0_rt * m_dz);
+        ((uz_bulk * 1.5_rt * m_dz) + 2.0_rt - 0.0_rt) / (2.0_rt * m_dz);
     // Wall-normal direction
     const amrex::Real wz_wallcell = uz_wallcell;
 
@@ -266,8 +266,8 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_noslip)
     EXPECT_GT(std::abs(shear_wall - s_naive), m_tol);
     // Answer that accounts for location of wall at cell face
     const amrex::Real uz_wallface =
-        ((uz_bulk * 1.5_rt * m_dz + 2.0_rt) / 3.0_rt + uz_bulk * 0.5_rt * m_dz +
-         2.0_rt - 0.0_rt) /
+        ((((uz_bulk * 1.5_rt * m_dz) + 2.0_rt) / 3.0_rt) +
+         (uz_bulk * 0.5_rt * m_dz) + 2.0_rt - 0.0_rt) /
         m_dz;
     const amrex::Real wz_wallface = uz_wallface;
     const amrex::Real s_true = std::sqrt(
@@ -301,9 +301,10 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_slip)
     // Answer that accounts for slip_wall BC
     // (tangential extrapolation, dirichlet normal)
     const amrex::Real uz_bulk = m_srate / 2.0_rt;
-    const amrex::Real wz_wall = ((uz_bulk * 1.5_rt * m_dz + 2.0_rt) / 3.0_rt +
-                                 uz_bulk * 0.5_rt * m_dz + 2.0_rt - 0.0_rt) /
-                                m_dz;
+    const amrex::Real wz_wall =
+        ((((uz_bulk * 1.5_rt * m_dz) + 2.0_rt) / 3.0_rt) +
+         (uz_bulk * 0.5_rt * m_dz) + 2.0_rt - 0.0_rt) /
+        m_dz;
     const amrex::Real s_true =
         std::sqrt((2.0_rt * wz_wall * wz_wall) + (2.0_rt * uz_bulk * uz_bulk));
     EXPECT_NEAR(shear_wall, s_true, m_tol);
@@ -348,9 +349,10 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel)
     auto shear_wall =
         get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
     // (tangential extrapolation, dirichlet normal)
-    const amrex::Real wz_wall = ((uz_bulk * 1.5_rt * m_dz + 2.0_rt) / 3.0_rt +
-                                 uz_bulk * 0.5_rt * m_dz + 2.0_rt - 0.0_rt) /
-                                m_dz;
+    const amrex::Real wz_wall =
+        ((((uz_bulk * 1.5_rt * m_dz) + 2.0_rt) / 3.0_rt) +
+         (uz_bulk * 0.5_rt * m_dz) + 2.0_rt - 0.0_rt) /
+        m_dz;
     const amrex::Real s_true =
         std::sqrt((2.0_rt * wz_wall * wz_wall) + (2.0_rt * uz_bulk * uz_bulk));
     EXPECT_NEAR(shear_wall, s_true, m_tol);
@@ -397,9 +399,10 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
     auto shear_wall =
         get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
     // (tangential extrapolation, dirichlet normal)
-    const amrex::Real wz_wall = ((uz_bulk * 1.5_rt * m_dz + 2.0_rt) / 3.0_rt +
-                                 uz_bulk * 0.5_rt * m_dz + 2.0_rt - 0.0_rt) /
-                                m_dz;
+    const amrex::Real wz_wall =
+        ((((uz_bulk * 1.5_rt * m_dz) + 2.0_rt) / 3.0_rt) +
+         (uz_bulk * 0.5_rt * m_dz) + 2.0_rt - 0.0_rt) /
+        m_dz;
     const amrex::Real s_true =
         std::sqrt((2.0_rt * wz_wall * wz_wall) + (2.0_rt * uz_bulk * uz_bulk));
     // This is checking the correct value -- without the fillpatch, it is wrong
@@ -416,9 +419,9 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
 
     // Velocity gradient with wallmodel value included as dirichlet
     const amrex::Real uz_wmdirichlet =
-        (1.0_rt / 3.0_rt * (uz_bulk * 1.5_rt * m_dz + 2.0_rt) +
-         1.0_rt * (uz_bulk * 0.5_rt * m_dz + 2.0_rt) -
-         4.0_rt / 3.0_rt * uz_wm) /
+        ((1.0_rt / 3.0_rt * ((uz_bulk * 1.5_rt * m_dz) + 2.0_rt)) +
+         (1.0_rt * ((uz_bulk * 0.5_rt * m_dz) + 2.0_rt)) -
+         (4.0_rt / 3.0_rt * uz_wm)) /
         m_dz;
 
     // Naive answer, assumes wall Dirichlet
@@ -461,9 +464,9 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_zerogradient)
     EXPECT_GT(std::abs(shear_wall - s_naive), m_tol);
     // Answer that accounts for BC (Neumann)
     const amrex::Real uz_wallface_neumann =
-        (1.0_rt / 3.0_rt * (uz_bulk * 1.5_rt * m_dz + 2.0_rt) +
-         1.0_rt * (uz_bulk * 0.5_rt * m_dz + 2.0_rt) -
-         4.0_rt / 3.0_rt * (uz_bulk * 0.5_rt * m_dz + 2.0_rt)) /
+        ((1.0_rt / 3.0_rt * ((uz_bulk * 1.5_rt * m_dz) + 2.0_rt)) +
+         (1.0_rt * ((uz_bulk * 0.5_rt * m_dz) + 2.0_rt)) -
+         (4.0_rt / 3.0_rt * ((uz_bulk * 0.5_rt * m_dz) + 2.0_rt))) /
         m_dz;
     // Neumann is applied to w as well
     const amrex::Real wz_wallface_neumann = uz_wallface_neumann;
@@ -504,15 +507,15 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_symmetricwall)
     EXPECT_GT(std::abs(shear_wall - s_naive), m_tol);
     // Answer that accounts for BC (Neumann)
     const amrex::Real uz_wallface_neumann =
-        (1.0_rt / 3.0_rt * (uz_bulk * 1.5_rt * m_dz + 2.0_rt) +
-         1.0_rt * (uz_bulk * 0.5_rt * m_dz + 2.0_rt) -
-         4.0_rt / 3.0_rt * (uz_bulk * 0.5_rt * m_dz + 2.0_rt)) /
+        ((1.0_rt / 3.0_rt * ((uz_bulk * 1.5_rt * m_dz) + 2.0_rt)) +
+         (1.0_rt * ((uz_bulk * 0.5_rt * m_dz) + 2.0_rt)) -
+         (4.0_rt / 3.0_rt * ((uz_bulk * 0.5_rt * m_dz) + 2.0_rt))) /
         m_dz;
     // Wall condition on w
     const amrex::Real wz_wallface =
-        (1.0_rt / 3.0_rt * (uz_bulk * 1.5_rt * m_dz + 2.0_rt) +
-         1.0_rt * (uz_bulk * 0.5_rt * m_dz + 2.0_rt) -
-         4.0_rt / 3.0_rt * (0.0_rt)) /
+        ((1.0_rt / 3.0_rt * ((uz_bulk * 1.5_rt * m_dz) + 2.0_rt)) +
+         (1.0_rt * ((uz_bulk * 0.5_rt * m_dz) + 2.0_rt)) -
+         (4.0_rt / 3.0_rt * (0.0_rt))) /
         m_dz;
     const amrex::Real s_true = std::sqrt(
         (2.0_rt * wz_wallface * wz_wallface) +

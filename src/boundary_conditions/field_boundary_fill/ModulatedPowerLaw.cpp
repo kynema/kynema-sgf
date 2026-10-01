@@ -149,12 +149,12 @@ void ModulatedPowerLaw::set_velocity(
     const amrex::Real num2 = vmax * (height - z2);
     const amrex::Real denom =
         0.5_rt *
-        (std::log(std::cosh(-smear_coeff * (height - zc))) / smear_coeff -
-         std::log(std::cosh(-smear_coeff * (z2 - zc))) / smear_coeff +
+        ((std::log(std::cosh(-smear_coeff * (height - zc))) / smear_coeff) -
+         (std::log(std::cosh(-smear_coeff * (z2 - zc))) / smear_coeff) +
          (height - z2));
 
     const amrex::Real upper_coeff =
-        (bulk_velocity * height - num1 - num2) / denom;
+        ((bulk_velocity * height) - num1 - num2) / denom;
 
     const auto& bctype = fld.bc_type();
     const int nghost = 1;

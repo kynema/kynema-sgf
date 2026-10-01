@@ -223,7 +223,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                     Gamma_yhi = utils::gamma_absorb(
                         y - (probhi[1] - zone_length_y), zone_length_y, 1.0_rt);
                     const amrex::Real Gamma_y_to_xhi = utils::gamma_generate(
-                        x - (probhi[0] - 1.5_rt * beach_length),
+                        x - (probhi[0] - (1.5_rt * beach_length)),
                         0.5_rt * beach_length);
                     if (has_beach) {
                         Gamma_ylo =
@@ -281,9 +281,9 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                             amrex::max<amrex::Real>(0.0_rt, dvf) *
                             (target_profile[n] - vel(i, j, k, n));
                         // Update overall velocity using momentum
-                        vel(i, j, k, n) = (rho1 * integrated_vel_liq +
-                                           rho2 * (1.0_rt - volfrac(i, j, k)) *
-                                               vel(i, j, k, n)) /
+                        vel(i, j, k, n) = ((rho1 * integrated_vel_liq) +
+                                           (rho2 * (1.0_rt - volfrac(i, j, k)) *
+                                            vel(i, j, k, n))) /
                                           rho_;
                     }
 

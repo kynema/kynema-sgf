@@ -122,9 +122,9 @@ void QCriterionRefinement::operator()(
             const auto qc = 0.5_rt * (W2 - S2);
             const auto qc_nondim =
                 0.5_rt *
-                (W2 / amrex::max<amrex::Real>(
-                          S2, std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt) -
+                ((W2 / amrex::max<amrex::Real>(
+                           S2, std::numeric_limits<amrex::Real>::epsilon() *
+                                   1.0e4_rt)) -
                  1.0_rt);
 
             bool current_tag = false;

@@ -184,8 +184,8 @@ struct UpdateTargetFieldsOp<LinearWaves>
                         wave_number * g * std::tanh(wave_number * water_depth),
                         0.5_rt);
                     const amrex::Real phase =
-                        (wave_number * (x - current * time)) - (omega * time) -
-                        phase_offset;
+                        (wave_number * (x - (current * time))) -
+                        (omega * time) - phase_offset;
 
                     const amrex::Real eta =
                         (wave_height / 2.0_rt * std::cos(phase)) +

@@ -51,7 +51,7 @@ amrex::Real interp_metric_to_radius(
     const int ilo = ihi - 1;
     const amrex::Real t =
         (target_metric - metric[ilo]) / (metric[ihi] - metric[ilo]);
-    return (1.0_rt - t) * radius[ilo] + t * radius[ihi];
+    return ((1.0_rt - t) * radius[ilo]) + (t * radius[ihi]);
 }
 
 void require_midpoint(const std::string& value, const std::string& name)
@@ -85,7 +85,7 @@ void build_radial_grid(ActuatorSectorData& meta)
     for (int i = 0; i < dense_n; ++i) {
         const amrex::Real xi =
             static_cast<amrex::Real>(i) / static_cast<amrex::Real>(dense_n - 1);
-        dense_r[i] = meta.root_radius + xi * span;
+        dense_r[i] = meta.root_radius + (xi * span);
     }
 
     // Build a cumulative spacing metric whose local density enforces both
@@ -104,8 +104,8 @@ void build_radial_grid(ActuatorSectorData& meta)
         };
         const amrex::Real d0 = density_at(dense_r[i - 1]);
         const amrex::Real d1 = density_at(dense_r[i]);
-        metric[i] =
-            metric[i - 1] + 0.5_rt * (d0 + d1) * (dense_r[i] - dense_r[i - 1]);
+        metric[i] = metric[i - 1] +
+                    (0.5_rt * (d0 + d1) * (dense_r[i] - dense_r[i - 1]));
     }
 
     const int n_intervals =
@@ -246,7 +246,7 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
                                   static_cast<amrex::Real>(ib) /
                                   static_cast<amrex::Real>(meta.num_blades);
         for (int ir = 0; ir < nr; ++ir) {
-            const int ip = ib * nr + ir;
+            const int ip = (ib * nr) + ir;
             vs::Vector e_r;
             vs::Vector e_theta;
             vs::Vector e_normal;
@@ -273,7 +273,7 @@ void set_placement(
 
     const amrex::Real max_eps = local_epsilon(meta, max_interp_chord(meta));
     const amrex::Real search_radius =
-        meta.rotor_radius + meta.support_radius_over_epsilon * max_eps;
+        meta.rotor_radius + (meta.support_radius_over_epsilon * max_eps);
     if ((meta.body_motion && meta.body_motion->moves()) ||
         vs::mag(translation_velocity) > constants::EPS) {
         const auto& geom = data.sim().mesh().Geom(0);
@@ -631,7 +631,7 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
     const amrex::Real max_eps =
         sector::local_epsilon(meta, sector::max_interp_chord(meta));
     const amrex::Real search_radius =
-        meta.rotor_radius + meta.support_radius_over_epsilon * max_eps;
+        meta.rotor_radius + (meta.support_radius_over_epsilon * max_eps);
     const auto& geom = data.sim().mesh().Geom(0);
     const auto plo = geom.ProbLoArray();
     const auto phi = geom.ProbHiArray();
@@ -703,7 +703,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     const auto& time = data.sim().time();
     const amrex::Real t0 = time.current_time();
     const amrex::Real dt = sector::timestep_width(data.sim());
-    const amrex::Real tmid = t0 + 0.5_rt * dt;
+    const amrex::Real tmid = t0 + (0.5_rt * dt);
     // Aerodynamic loads use the same midpoint pose as the CFD velocity samples.
     const amrex::Real mid_theta =
         meta.rotor_motion->azimuth(meta.rotor_index, tmid);
@@ -732,7 +732,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
                                   static_cast<amrex::Real>(ib) /
                                   static_cast<amrex::Real>(meta.num_blades);
         for (int ir = 0; ir < nr; ++ir) {
-            const int ip = ib * nr + ir;
+            const int ip = (ib * nr) + ir;
             vs::Vector e_r;
             vs::Vector e_theta;
             vs::Vector e_normal;
@@ -758,7 +758,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             // opposite tangential force for torque cancellation.
             const amrex::Real raw_aoa =
                 std::atan2(vnormal, -spin_sign * vtheta) +
-                spin_sign * ::kynema_sgf::utils::radians(meta.twist[ir]);
+                (spin_sign * ::kynema_sgf::utils::radians(meta.twist[ir]));
             const amrex::Real aoa =
                 std::remainder(raw_aoa, ::kynema_sgf::utils::two_pi());
 
@@ -800,8 +800,8 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     const amrex::Real hub_offset_distance = vs::mag(meta.body_offset);
     for (int ir = 0; ir < nr; ++ir) {
         const amrex::Real swept_speed =
-            body_translation_speed + std::abs(meta.omega) * meta.radius[ir] +
-            body_angular_speed * (hub_offset_distance + meta.radius[ir]);
+            body_translation_speed + (std::abs(meta.omega) * meta.radius[ir]) +
+            (body_angular_speed * (hub_offset_distance + meta.radius[ir]));
         const int ntheta = amrex::max(
             1, static_cast<int>(std::ceil(
                    swept_speed * dt * meta.epsilon_dl /
@@ -820,12 +820,12 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
                                   static_cast<amrex::Real>(ib) /
                                   static_cast<amrex::Real>(meta.num_blades);
         for (int ir = 0; ir < nr; ++ir) {
-            const int ip = ib * nr + ir;
+            const int ip = (ib * nr) + ir;
             const int ntheta = meta.theta_counts[ir];
             for (int it = 0; it < ntheta; ++it) {
                 const amrex::Real xi = (static_cast<amrex::Real>(it) + 0.5_rt) /
                                        static_cast<amrex::Real>(ntheta);
-                const amrex::Real t = t0 + xi * dt;
+                const amrex::Real t = t0 + (xi * dt);
                 // Re-evaluate the prescribed pose and azimuth at every swept
                 // quadrature time rather than approximating the trajectory.
                 const amrex::Real theta =
@@ -967,7 +967,7 @@ void ActSrcOp<ActuatorSector, ActSrcSector>::operator()(
                 const int ilo = static_cast<int>(scaled);
                 const int ihi = amrex::min(ilo + 1, table_nintervals);
                 const amrex::Real frac = scaled - static_cast<amrex::Real>(ilo);
-                eval = (1.0_rt - frac) * table[ilo] + frac * table[ihi];
+                eval = ((1.0_rt - frac) * table[ilo]) + (frac * table[ihi]);
             } else {
                 eval = std::exp(-rr_sqr);
             }

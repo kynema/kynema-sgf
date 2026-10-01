@@ -215,9 +215,9 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
             amrex::Real horizontal_coeff_west = 0.0_rt;
             amrex::Real horizontal_coeff_south = 0.0_rt;
             amrex::Real vertical_coeff = 0.0_rt;
-            const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
-            const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
-            const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
+            const amrex::Real x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+            const amrex::Real y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
             if (x < damping_east_start) {
                 horizontal_coeff_east = 0.0_rt;
             } else if (x >= damping_east_end) {

@@ -176,8 +176,8 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt,
                     2.0_rt * rho_arrs[nbx](i, j, k) * sigma_omega2 * gko /
                         (sdr_arrs[nbx](i, j, k) +
-                         std::numeric_limits<amrex::Real>::epsilon() *
-                             1.0e1_rt));
+                         (std::numeric_limits<amrex::Real>::epsilon() *
+                          1.0e1_rt)));
 
                 amrex::Real tmp1 =
                     4.0_rt * rho_arrs[nbx](i, j, k) * sigma_omega2 *
@@ -185,14 +185,14 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                     (cdkomega * wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k));
                 amrex::Real tmp2 =
                     std::sqrt(tke_arrs[nbx](i, j, k)) /
-                    (beta_star * sdr_arrs[nbx](i, j, k) *
-                         wd_arrs[nbx](i, j, k) +
-                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+                    ((beta_star * sdr_arrs[nbx](i, j, k) *
+                      wd_arrs[nbx](i, j, k)) +
+                     (std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt));
                 amrex::Real tmp3 =
                     500.0_rt * lam_mu_arrs[nbx](i, j, k) /
-                    (wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k) *
-                         sdr_arrs[nbx](i, j, k) * rho_arrs[nbx](i, j, k) +
-                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+                    ((wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k) *
+                      sdr_arrs[nbx](i, j, k) * rho_arrs[nbx](i, j, k)) +
+                     (std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt));
                 amrex::Real tmp4 = shear_prod_arrs[nbx](i, j, k);
                 amrex::Real tmp5 = vortmag_arrs[nbx](i, j, k);
 
@@ -218,7 +218,7 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                 const amrex::Real denom =
                     (rho_arrs[nbx](i, j, k) * kappa * kappa *
                      wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k) *
-                     std::sqrt(0.5_rt * (tmp4 * tmp4 + tmp5 * tmp5)));
+                     std::sqrt(0.5_rt * ((tmp4 * tmp4) + (tmp5 * tmp5))));
                 const amrex::Real rdl = lam_mu_arrs[nbx](i, j, k) / denom;
                 const amrex::Real rdt = mu_arrs[nbx](i, j, k) / denom;
                 const amrex::Real fl =
@@ -293,7 +293,7 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                     (1.0_rt - tmp_f1) * 2.0_rt * rho_arrs[nbx](i, j, k) *
                     sigma_omega2 * gko /
                     (sdr_arrs[nbx](i, j, k) +
-                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+                     (std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt));
 
                 const amrex::Real sdr_diss_amb =
                     beta * rho_arrs[nbx](i, j, k) * sdr_amb * sdr_amb;
@@ -308,12 +308,12 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                     sdr_diss_arrs[nbx](i, j, k) = cross_diffusion;
 
                     sdr_lhs_arrs[nbx](i, j, k) =
-                        (rho_arrs[nbx](i, j, k) * beta *
-                             sdr_arrs[nbx](i, j, k) +
-                         0.5_rt * std::abs(cross_diffusion) /
-                             (sdr_arrs[nbx](i, j, k) +
-                              std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e1_rt)) *
+                        ((rho_arrs[nbx](i, j, k) * beta *
+                          sdr_arrs[nbx](i, j, k)) +
+                         (0.5_rt * std::abs(cross_diffusion) /
+                          (sdr_arrs[nbx](i, j, k) +
+                           (std::numeric_limits<amrex::Real>::epsilon() *
+                            1.0e1_rt)))) *
                         delta_t;
 
                 } else if (diff_type == DiffusionType::Implicit) {
@@ -326,12 +326,12 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                     sdr_diss_arrs[nbx](i, j, k) = 0.0_rt;
 
                     sdr_lhs_arrs[nbx](i, j, k) =
-                        (2.0_rt * rho_arrs[nbx](i, j, k) * beta *
-                             sdr_arrs[nbx](i, j, k) +
-                         std::abs(cross_diffusion) /
-                             (sdr_arrs[nbx](i, j, k) +
-                              std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e1_rt)) *
+                        ((2.0_rt * rho_arrs[nbx](i, j, k) * beta *
+                          sdr_arrs[nbx](i, j, k)) +
+                         (std::abs(cross_diffusion) /
+                          (sdr_arrs[nbx](i, j, k) +
+                           (std::numeric_limits<amrex::Real>::epsilon() *
+                            1.0e1_rt)))) *
                         delta_t;
                 } else {
                     sdr_src_arrs[nbx](i, j, k) =

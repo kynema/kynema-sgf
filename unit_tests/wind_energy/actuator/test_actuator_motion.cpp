@@ -47,7 +47,7 @@ TEST(ActuatorMotion, slerp_flips_any_negative_dot_product)
     const amrex::Real negative_w = -0.5_rt * kynema_sgf::constants::EPS;
     const kynema_sgf::vs::Quaternion end{
         negative_w, 0.0_rt, 0.0_rt,
-        std::sqrt(1.0_rt - negative_w * negative_w)};
+        std::sqrt(1.0_rt - (negative_w * negative_w))};
 
     ASSERT_LT(kynema_sgf::vs::dot(start, end), 0.0_rt);
     const auto midpoint = kynema_sgf::vs::slerp(start, end, 0.5_rt);

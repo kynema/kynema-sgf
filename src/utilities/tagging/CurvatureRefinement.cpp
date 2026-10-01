@@ -66,15 +66,15 @@ void CurvatureRefinement::operator()(
             // TODO: ignoring wall stencils for now
 
             const auto phixx =
-                (farrs[nbx](i + 1, j, k) - 2.0_rt * farrs[nbx](i, j, k) +
+                (farrs[nbx](i + 1, j, k) - (2.0_rt * farrs[nbx](i, j, k)) +
                  farrs[nbx](i - 1, j, k)) *
                 idx[0] * idx[0];
             const auto phiyy =
-                (farrs[nbx](i, j + 1, k) - 2.0_rt * farrs[nbx](i, j, k) +
+                (farrs[nbx](i, j + 1, k) - (2.0_rt * farrs[nbx](i, j, k)) +
                  farrs[nbx](i, j - 1, k)) *
                 idx[0] * idx[0];
             const auto phizz =
-                (farrs[nbx](i, j, k + 1) - 2.0_rt * farrs[nbx](i, j, k) +
+                (farrs[nbx](i, j, k + 1) - (2.0_rt * farrs[nbx](i, j, k)) +
                  farrs[nbx](i, j, k - 1)) *
                 idx[0] * idx[0];
 
