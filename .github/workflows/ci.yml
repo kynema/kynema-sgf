@@ -284,11 +284,11 @@ jobs:
           wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/cuda-keyring_1.1-1_all.deb
           sudo dpkg -i cuda-keyring_1.1-1_all.deb
           sudo apt-get update
-          sudo apt-get install -y cuda-command-line-tools-13-2 cuda-compiler-13-2 cuda-minimal-build-13-2 cuda-nvml-dev-13-2 cuda-nvtx-13-2 libcurand-dev-13-2 cuda-cupti-dev-13-2 libcusparse-dev-13-2
+          sudo apt-get install -y cuda-command-line-tools-13-3 cuda-compiler-13-3 cuda-minimal-build-13-3 cuda-nvml-dev-13-3 cuda-nvtx-13-3 libcurand-dev-13-3 cuda-cupti-dev-13-3 libcusparse-dev-13-3
       - name: Configure and build
         run: |
-          export PATH=/usr/local/nvidia/bin:/usr/local/cuda-13.2/bin:${PATH}
-          export LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-13.2/lib:${LD_LIBRARY_PATH}
+          export PATH=/usr/local/nvidia/bin:/usr/local/cuda-13.3/bin:${PATH}
+          export LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-13.3/lib:${LD_LIBRARY_PATH}
           cmake -B build-cuda \
             -DCMAKE_BUILD_TYPE:STRING=Release \
             -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
