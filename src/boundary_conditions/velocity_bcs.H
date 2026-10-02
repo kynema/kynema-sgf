@@ -11,6 +11,8 @@
 #include "src/physics/udfs/Rankine.H"
 #include "src/physics/udfs/CustomVelocity.H"
 #include "src/physics/udfs/TwoLayer.H"
+#include "src/physics/udfs/TabulatedProfile.H"
+#include "src/boundary_conditions/inflow_udf_faces.H"
 
 namespace kynema_sgf::vel_bc {
 
@@ -24,33 +26,37 @@ void register_inflow_vel_dirichlet(
     if (inflow_udf == "LinearProfile") {
         using InflowOp = BCOpCreator<udf::LinearProfile, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else if (inflow_udf == "PowerLawProfile") {
         using InflowOp = BCOpCreator<udf::PowerLawProfile, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else if (inflow_udf == "BurggrafLid") {
         using InflowOp = BCOpCreator<udf::BurggrafLid, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else if (inflow_udf == "Rankine") {
         using InflowOp = BCOpCreator<udf::Rankine, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else if (inflow_udf == "CustomVelocity") {
         using InflowOp = BCOpCreator<udf::CustomVelocity, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else if (inflow_udf == "TwoLayer") {
         using InflowOp = BCOpCreator<udf::TwoLayer, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
+    } else if (inflow_udf == "TabulatedProfile") {
+        using InflowOp = BCOpCreator<udf::TabulatedProfile, WallOp>;
+        field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else {
         amrex::Abort("Velocity BC: Invalid dirichlet BC type = " + inflow_udf);
     }
 }
 
-void register_velocity_dirichlet(
+inline void register_velocity_dirichlet(
     Field& field,
     const amrex::AmrCore& mesh,
     const SimTime& time,
@@ -71,12 +77,13 @@ void register_velocity_dirichlet(
             "Velocity BC: Only constant dirichlet supported for Wall BC");
     }
 
+    // One fill operator serves every inflow and inflow-outflow face; when
+    // both kinds of face use the same UDF it is registered once
+    bc_udf::check_inflow_udf_faces(field, udfs, "Velocity BC");
     if (inflow_udf != "ConstDirichlet") {
         register_inflow_vel_dirichlet<ConstDirichlet>(
             field, inflow_udf, mesh, time);
-    }
-
-    if (inflow_outflow_udf != "ConstDirichlet") {
+    } else if (inflow_outflow_udf != "ConstDirichlet") {
         register_inflow_vel_dirichlet<ConstDirichlet>(
             field, inflow_outflow_udf, mesh, time);
     }

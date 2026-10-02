@@ -34,6 +34,17 @@ struct BCOp<ICNS>
         const amrex::Real density_default = 1.0_rt;
         BCScalar bc_den(density);
         bc_den(density_default);
+        // Density is not tabulated. A transported density is refused by
+        // TabulatedProfile itself; the constant density registers no inflow
+        // UDF, so the selection is refused here rather than ignored
+        const auto den_udfs = bc_den.get_dirichlet_udfs();
+        if ((den_udfs[0] == "TabulatedProfile") ||
+            (den_udfs[1] == "TabulatedProfile")) {
+            amrex::Abort(
+                "TabulatedProfile: density cannot be read from a profile "
+                "file; give every inflow face a constant <face>.density "
+                "instead");
+        }
 
         auto& pressure = m_fields.repo.get_field("p");
         BCPressure bc_pres(pressure);

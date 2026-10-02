@@ -212,6 +212,10 @@ public:
         Field& field,
         const amrex::AmrCore& mesh,
         const SimTime& time,
+        // Most operators are small plain data, so a reference is kept, as
+        // CodeQL asks. Only an operator owning device memory (the tabulated
+        // inflow profile) would gain from being moved in; it is built once.
+        // NOLINTNEXTLINE(modernize-pass-by-value)
         const BCOpCreator& bc_op,
         FieldInterpolator itype = FieldInterpolator::CellConsLinear,
         FieldInterpolator face_itype = FieldInterpolator::FaceDivFree)
@@ -446,7 +450,6 @@ public:
         const auto& bctype = m_field.bc_type();
         const auto& geom = m_mesh.Geom(lev);
         const auto& gdata = geom.data();
-        const auto& bcfunc = bc_functor();
 
         for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
             const auto ori = oit();
@@ -466,6 +469,9 @@ public:
                 }
                 const auto& dbx = ori.isLow() ? amrex::bdryLo(domain_box, idir)
                                               : amrex::bdryHi(domain_box, idir);
+                // The sibling field is face-centered in fdir, as in
+                // fillpatch_sibling_fields
+                const auto bcfunc = bc_functor_face(fdir);
 
                 auto& mfab = *mfabs[fdir];
 #ifdef AMREX_USE_OMP

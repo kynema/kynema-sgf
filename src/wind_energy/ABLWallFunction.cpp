@@ -239,6 +239,11 @@ void ABLVelWallFunc::wall_model(
     BL_PROFILE("kynema-sgf::ABLVelWallFunc");
 
     constexpr int idim = 2;
+    // The wall stress divides by the effective viscosity, which is zero when
+    // the lower boundary is filled ahead of the initial projection, before
+    // the turbulence model has run. No viscous flux can be carried then, so
+    // the stress is left out rather than divided by zero. Results are
+    // unchanged whenever the viscosity is positive.
     const auto& repo = velocity.repo();
     const auto& density = repo.get_field("density", rho_state);
     const auto& viscosity = repo.get_field("velocity_mueff");
@@ -307,12 +312,21 @@ void ABLVelWallFunc::wall_model(
                             // Blank Terrain added to keep the boundary
                             // condition backward compatible while adding
                             // terrain sensitive BC
-                            varr(i, j, k - 1, 0) = blankTerrain * ustar *
-                                                   ustar * uu / wspd *
-                                                   den(i, j, k) / mu;
-                            varr(i, j, k - 1, 1) = blankTerrain * ustar *
-                                                   ustar * vv / wspd *
-                                                   den(i, j, k) / mu;
+                            // A cell at rest (e.g. blanked by terrain) has
+                            // uu = vv = 0 and no stress; dividing by 1 there
+                            // avoids 0/0, and any other speed is used as is
+                            const amrex::Real wspd_safe =
+                                (wspd > 0.0_rt) ? wspd : 1.0_rt;
+                            varr(i, j, k - 1, 0) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * ustar * ustar * uu /
+                                       wspd_safe * den(i, j, k) / mu)
+                                    : 0.0_rt;
+                            varr(i, j, k - 1, 1) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * ustar * ustar * vv /
+                                       wspd_safe * den(i, j, k) / mu)
+                                    : 0.0_rt;
                         });
                 } else {
                     amrex::ParallelFor(
@@ -333,12 +347,16 @@ void ABLVelWallFunc::wall_model(
                             // Blank Terrain added to keep the boundary
                             // condition backward compatible while adding
                             // terrain sensitive BC
-                            varr(i, j, k - 1, 0) = blankTerrain *
-                                                   tau.calc_vel_x(uu, wspd) *
-                                                   den(i, j, k) / mu;
-                            varr(i, j, k - 1, 1) = blankTerrain *
-                                                   tau.calc_vel_y(vv, wspd) *
-                                                   den(i, j, k) / mu;
+                            varr(i, j, k - 1, 0) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * tau.calc_vel_x(uu, wspd) *
+                                       den(i, j, k) / mu)
+                                    : 0.0_rt;
+                            varr(i, j, k - 1, 1) =
+                                (mu > 0.0_rt)
+                                    ? (blankTerrain * tau.calc_vel_y(vv, wspd) *
+                                       den(i, j, k) / mu)
+                                    : 0.0_rt;
                         });
                 }
             }
@@ -473,8 +491,13 @@ void ABLTempWallFunc::wall_model(
                             const amrex::Real blankTerrain =
                                 (has_terrain) ? 1 - blank_arr(i, j, k, 0)
                                               : 1.0_rt;
-                            tarr(i, j, k - 1) = blankTerrain * den(i, j, k) *
-                                                surf_temp_flux / alphaT;
+                            // The diffusivity is zero before the turbulence
+                            // model has run; no flux can be carried then
+                            tarr(i, j, k - 1) =
+                                (alphaT > 0.0_rt)
+                                    ? (blankTerrain * den(i, j, k) *
+                                       surf_temp_flux / alphaT)
+                                    : 0.0_rt;
                         });
                 } else {
                     amrex::ParallelFor(
@@ -489,9 +512,13 @@ void ABLTempWallFunc::wall_model(
                             const amrex::Real blankTerrain =
                                 (has_terrain) ? 1 - blank_arr(i, j, k, 0)
                                               : 1.0_rt;
-                            tarr(i, j, k - 1) = blankTerrain * den(i, j, k) *
-                                                tau.calc_theta(wspd, theta2) /
-                                                alphaT;
+                            // The diffusivity is zero before the turbulence
+                            // model has run; no flux can be carried then
+                            tarr(i, j, k - 1) =
+                                (alphaT > 0.0_rt)
+                                    ? (blankTerrain * den(i, j, k) *
+                                       tau.calc_theta(wspd, theta2) / alphaT)
+                                    : 0.0_rt;
                         });
                 }
             }

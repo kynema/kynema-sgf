@@ -42,6 +42,47 @@ struct TestProfile
     DeviceOp m_op;
 };
 
+//! Inflow UDF that opts in to the face direction and writes it back, plus
+//! one: a sibling field face-centered in x, y or z gets 1, 2 or 3, the
+//! values TestProfile gives the u, v and w components
+struct FaceDirProfile
+{
+    struct DeviceOp
+    {
+        int face_dir{-1};
+
+        AMREX_GPU_DEVICE
+        void operator()(
+            const amrex::IntVect& iv,
+            amrex::Array4<amrex::Real> const& field,
+            amrex::GeometryData const& /*unused*/,
+            const amrex::Real /*unused*/,
+            amrex::Orientation /*unused*/,
+            const int comp,
+            const int dcomp,
+            const int /*unused*/) const
+        {
+            field(iv[0], iv[1], iv[2], dcomp + comp) =
+                static_cast<amrex::Real>(face_dir + 1);
+        }
+    };
+
+    using DeviceType = DeviceOp;
+
+    static std::string identifier() { return "FaceDirProfile"; }
+
+    static constexpr bool uses_face_dir = true;
+
+    explicit FaceDirProfile(const kynema_sgf::Field& /*unused*/) {}
+
+    [[nodiscard]] static DeviceType device_instance(const int face_dir = -1)
+    {
+        DeviceType op;
+        op.face_dir = face_dir;
+        return op;
+    }
+};
+
 amrex::Real get_field_err(
     kynema_sgf::Field& field, const bool check_all_ghost, const int comp = 0)
 {
@@ -182,6 +223,7 @@ public:
         (*m_wmac).setVal(0.);
     }
 
+    template <typename Profile = TestProfile>
     void set_up_dirichlet()
     {
         auto& ibctype = (*m_vel).bc_type();
@@ -197,8 +239,8 @@ public:
             ibctype[ori] = BC::mass_inflow;
         }
         using InflowOp =
-            kynema_sgf::BCOpCreator<TestProfile, kynema_sgf::ConstDirichlet>;
-        AMREX_ALWAYS_ASSERT(TestProfile(*m_vel).identifier() == "TestProfile");
+            kynema_sgf::BCOpCreator<Profile, kynema_sgf::ConstDirichlet>;
+        AMREX_ALWAYS_ASSERT(!Profile(*m_vel).identifier().empty());
         (*m_vel)
             .register_fill_patch_op<kynema_sgf::FieldFillPatchOps<InflowOp>>(
                 mesh(), time(), InflowOp(*m_vel));
@@ -206,6 +248,7 @@ public:
         EXPECT_TRUE((*m_vel).bc_initialized());
     }
 
+    template <typename Profile = TestProfile>
     void prep_test()
     {
         // Default dimensions are n_cell = 8 x 8 x 8
@@ -217,7 +260,7 @@ public:
         }
         initialize_mesh();
         set_up_fields();
-        set_up_dirichlet();
+        set_up_dirichlet<Profile>();
     }
 
     kynema_sgf::Field* m_vel;
@@ -279,6 +322,34 @@ TEST_F(FieldFillPatchTest, dirichlet_sibling_inflow)
     EXPECT_DOUBLE_EQ(err, 0.);
     err = get_field_err(*m_wmac, false, 2);
     EXPECT_DOUBLE_EQ(err, 0.);
+}
+
+// A UDF that opts in to the face direction receives it when the MAC
+// velocities are filled, on the inflow path of the MAC projection as in the
+// sibling fillpatch
+TEST_F(FieldFillPatchTest, sibling_inflow_passes_the_face_direction)
+{
+    prep_test<FaceDirProfile>();
+
+    amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mac_vel = {
+        AMREX_D_DECL(&(*m_umac)(0), &(*m_vmac)(0), &(*m_wmac)(0))};
+    (*m_vel).set_inflow_sibling_fields(0, time().current_time(), mac_vel);
+    EXPECT_DOUBLE_EQ(get_field_err(*m_umac, false, 0), 0.);
+    EXPECT_DOUBLE_EQ(get_field_err(*m_vmac, false, 1), 0.);
+    EXPECT_DOUBLE_EQ(get_field_err(*m_wmac, false, 2), 0.);
+}
+
+TEST_F(FieldFillPatchTest, sibling_fillpatch_passes_the_face_direction)
+{
+    prep_test<FaceDirProfile>();
+
+    amrex::Array<kynema_sgf::Field*, AMREX_SPACEDIM> mac_vel = {
+        AMREX_D_DECL(m_umac, m_vmac, m_wmac)};
+    (*m_vel).fillpatch_sibling_fields(
+        time().current_time(), (*m_umac).num_grow(), mac_vel);
+    EXPECT_DOUBLE_EQ(get_field_err(*m_umac, true, 0), 0.);
+    EXPECT_DOUBLE_EQ(get_field_err(*m_vmac, true, 1), 0.);
+    EXPECT_DOUBLE_EQ(get_field_err(*m_wmac, true, 2), 0.);
 }
 
 } // namespace kynema_sgf_tests
