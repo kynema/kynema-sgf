@@ -58,8 +58,10 @@ from_axis_angle(const Vector& axis, const amrex::Real angle_degrees)
     const amrex::Real axis_magnitude = mag(axis);
     const amrex::Real scale = std::sin(half_angle) / axis_magnitude;
     return {
-        std::cos(half_angle), scale * axis.x(), scale * axis.y(),
-        scale * axis.z()};
+        .w = std::cos(half_angle),
+        .x = scale * axis.x(),
+        .y = scale * axis.y(),
+        .z = scale * axis.z()};
 }
 
 //! Compatibility interface for existing axis-angle tensor rotations

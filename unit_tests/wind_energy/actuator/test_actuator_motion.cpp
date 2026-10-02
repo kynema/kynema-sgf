@@ -31,7 +31,8 @@ void write_table(const std::string& filename, const std::string& contents)
 
 TEST(ActuatorMotion, quaternion_normalization)
 {
-    kynema_sgf::vs::Quaternion quaternion{2.0_rt, 0.0_rt, 0.0_rt, 0.0_rt};
+    kynema_sgf::vs::Quaternion quaternion{
+        .w = 2.0_rt, .x = 0.0_rt, .y = 0.0_rt, .z = 0.0_rt};
     const auto normalized = quaternion.normalized();
 
     EXPECT_NEAR(quaternion.w, 2.0_rt, test_tol);
@@ -46,8 +47,10 @@ TEST(ActuatorMotion, slerp_flips_any_negative_dot_product)
     const kynema_sgf::vs::Quaternion start{};
     const amrex::Real negative_w = -0.5_rt * kynema_sgf::constants::EPS;
     const kynema_sgf::vs::Quaternion end{
-        negative_w, 0.0_rt, 0.0_rt,
-        std::sqrt(1.0_rt - (negative_w * negative_w))};
+        .w = negative_w,
+        .x = 0.0_rt,
+        .y = 0.0_rt,
+        .z = std::sqrt(1.0_rt - (negative_w * negative_w))};
 
     ASSERT_LT(kynema_sgf::vs::dot(start, end), 0.0_rt);
     const auto midpoint = kynema_sgf::vs::slerp(start, end, 0.5_rt);
