@@ -57,6 +57,11 @@ struct Forest
     amrex::Real m_bbox_yhi{0.0_rt};
     amrex::Real m_bbox_zhi{0.0_rt};
 
+    // Range of the terrain height on this level. Both stay zero without
+    // TerrainDrag, so the bounding boxes are unchanged in that case.
+    amrex::Real m_terrain_zmin{0.0_rt};
+    amrex::Real m_terrain_zmax{0.0_rt};
+
     // Compute the type-2 peak LAD scaling factor from integrated LAI.
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real lm() const
     {
@@ -87,7 +92,9 @@ struct Forest
         amrex::Real af = 0.0_rt;
         if (m_type_forest == 1) {
             af = m_lai_forest / m_height_forest;
-        } else if (m_type_forest == 2) {
+        } else if (m_type_forest == 2 && z < m_height_forest) {
+            // The profile tends to zero at the tree top, where the ratio
+            // below divides by zero, so the top and above are left at zero.
             const auto treeZm = m_laimax_forest * m_height_forest;
             const auto ratio =
                 (m_height_forest - treeZm) / (m_height_forest - z);
@@ -124,8 +131,8 @@ struct Forest
         const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>& prob_lo) const
     {
         if (m_drag_mode == 1) {
-            return {m_bbox_xlo, m_bbox_ylo, m_bbox_zlo,
-                    m_bbox_xhi, m_bbox_yhi, m_bbox_zhi};
+            return {m_bbox_xlo, m_bbox_ylo, m_bbox_zlo + m_terrain_zmin,
+                    m_bbox_xhi, m_bbox_yhi, m_bbox_zhi + m_terrain_zmax};
         }
 
         const amrex::Real search_tol = 1.1_rt;
@@ -136,7 +143,7 @@ struct Forest
         const auto z0 = prob_lo[2];
         const auto x1 = m_x_forest + search_radius;
         const auto y1 = m_y_forest + search_radius;
-        const auto z1 = m_height_forest;
+        const auto z1 = m_height_forest + m_terrain_zmax;
         return {x0, y0, z0, x1, y1, z1};
     }
 
@@ -156,6 +163,126 @@ struct ForestPoint
     amrex::Real m_z;
     amrex::Real m_lad;
 };
+
+/** LAD of a legacy cylindrical forest at a point
+ *
+ *  \param fst Forest descriptor (m_drag_mode == 0)
+ *  \param x Point x coordinate
+ *  \param y Point y coordinate
+ *  \param zagl Point height above the local ground
+ *  \param lad Leaf area density at the point (output)
+ *  \return true when the point lies inside the forest cylinder
+ */
+AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool cylinder_lad(
+    const Forest& fst,
+    const amrex::Real x,
+    const amrex::Real y,
+    const amrex::Real zagl,
+    amrex::Real& lad)
+{
+    lad = 0.0_rt;
+    const auto radius = std::sqrt(
+        ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
+        ((y - fst.m_y_forest) * (y - fst.m_y_forest)));
+    if (zagl <= fst.m_height_forest &&
+        radius <= (0.5_rt * fst.m_diameter_forest)) {
+        lad = fst.area_fraction(zagl, fst.lm());
+        return true;
+    }
+    return false;
+}
+
+/** LAD of a point-cloud forest at a point by inverse-distance weighting
+ *
+ *  \param fst Forest descriptor (m_drag_mode == 1)
+ *  \param points Flattened point-cloud samples of all forests
+ *  \param hull_edges Flattened convex hull edges of all forests
+ *  \param x Point x coordinate
+ *  \param y Point y coordinate
+ *  \param z Point height, in the same frame as the sample heights
+ *  \param half_dz Half the cell height, for the canopy-top cutoff
+ *  \param num_neighbors Number of nearest samples to weight (at most 8)
+ *  \param interp_eps Regularization length of the weights
+ *  \return Interpolated LAD, zero outside the hull or above the canopy
+ */
+AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real point_cloud_lad(
+    const Forest& fst,
+    const ForestPoint* points,
+    const ForestHullEdge* hull_edges,
+    const amrex::Real x,
+    const amrex::Real y,
+    const amrex::Real z,
+    const amrex::Real half_dz,
+    const int num_neighbors,
+    const amrex::Real interp_eps)
+{
+    if (fst.m_cloud_point_count <= 0 ||
+        !fst.point_in_on_hull(x, y, hull_edges)) {
+        return 0.0_rt;
+    }
+
+    const int max_neighbors = 8;
+    const amrex::Real huge = constants::LARGE_NUM;
+    amrex::GpuArray<amrex::Real, 8> nearest_d2;
+    amrex::GpuArray<amrex::Real, 8> nearest_lad;
+    amrex::GpuArray<amrex::Real, 8> nearest_z;
+    for (int n = 0; n < max_neighbors; ++n) {
+        nearest_d2[n] = huge;
+        nearest_lad[n] = 0.0_rt;
+        nearest_z[n] = 0.0_rt;
+    }
+
+    // Sorted nearest-neighbor list, updated in place.
+    const int pstart = fst.m_cloud_point_offset;
+    const int pend = pstart + fst.m_cloud_point_count;
+    for (int p = pstart; p < pend; ++p) {
+        const auto& pt = points[p];
+        const auto dxp = x - pt.m_x;
+        const auto dyp = y - pt.m_y;
+        const auto dzp = z - pt.m_z;
+        const auto d2 = (dxp * dxp) + (dyp * dyp) + (dzp * dzp);
+        if (d2 < nearest_d2[num_neighbors - 1]) {
+            int insert = num_neighbors - 1;
+            while (insert > 0 && d2 < nearest_d2[insert - 1]) {
+                nearest_d2[insert] = nearest_d2[insert - 1];
+                nearest_lad[insert] = nearest_lad[insert - 1];
+                nearest_z[insert] = nearest_z[insert - 1];
+                --insert;
+            }
+            nearest_d2[insert] = d2;
+            nearest_lad[insert] = pt.m_lad;
+            nearest_z[insert] = pt.m_z;
+        }
+    }
+
+    // No LAD above the highest of the nearest samples.
+    amrex::Real max_z_neighbors = 0.0_rt;
+    for (int n = 0; n < num_neighbors; ++n) {
+        max_z_neighbors =
+            amrex::max<amrex::Real>(max_z_neighbors, nearest_z[n]);
+    }
+
+    const auto eps2 = interp_eps * interp_eps;
+    amrex::Real lad_interp = 0.0_rt;
+    if (nearest_d2[0] < eps2) {
+        lad_interp = nearest_lad[0];
+    } else if (z - half_dz <= max_z_neighbors) {
+        amrex::Real sum_w = 0.0_rt;
+        amrex::Real sum_lad = 0.0_rt;
+        for (int n = 0; n < num_neighbors; ++n) {
+            if (nearest_d2[n] >= huge) {
+                continue;
+            }
+            const auto w = 1.0_rt / std::sqrt(nearest_d2[n] + eps2);
+            sum_w += w;
+            sum_lad += w * nearest_lad[n];
+        }
+        if (sum_w > 0.0_rt) {
+            lad_interp = sum_lad / sum_w;
+        }
+    }
+    return lad_interp;
+}
 
 /** Forestdrag Flow physics
  *  \ingroup physics
@@ -207,6 +334,17 @@ private:
     // Point-cloud interpolation controls.
     int m_point_neighbors{4};
     amrex::Real m_point_interp_eps{constants::TIGHT_TOL};
+
+    // Place the forests on the TerrainDrag terrain: heights in the forest and
+    // point-cloud files are taken above the local ground.
+    bool m_terrain_aware{true};
+    // TerrainDrag was created before ForestDrag, so its terrain_height field
+    // is filled first on every (re)initialization.
+    bool m_terrain_created_first{false};
+    // Terrain height range on the level being initialized, used to extend the
+    // forest bounding boxes.
+    amrex::Real m_terrain_zmin{0.0_rt};
+    amrex::Real m_terrain_zmax{0.0_rt};
 };
 } // namespace kynema_sgf::forestdrag
 
