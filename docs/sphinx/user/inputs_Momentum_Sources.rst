@@ -320,6 +320,86 @@ Section: Momentum Sources
    for the lack of resolution. Therefore, this option should remain set to false except in scenarios
    when the form drag is known to be under-resolved.
 
+The following arguments are influential when ``MetMastForcing`` is included in
+:input_param:`ICNS.source_terms`. The source term relaxes the velocity towards
+met-mast and lidar measurements. Each measurement station is a horizontal
+location and a profile of one or more heights. Station :math:`i` has the weight
+
+.. math::
+
+   w_i = \exp\left(-\frac{1}{4}\left[\frac{r_i^2}{R_h^2} + \frac{d_i^2}{R_z^2}\right]\right)
+
+where :math:`r_i` is the horizontal distance to the station and :math:`d_i` is
+the vertical distance outside the measured height range, which is zero inside
+it. The target :math:`t_i` is the measured velocity :math:`\bar{u}_i`,
+interpolated linearly in height, widened to the band
+:math:`\bar{u}_i \pm \alpha \sigma_i` so that only the part of the velocity
+outside the measured variability is forced. The stations are combined into one
+relaxation
+
+.. math::
+
+   S = -\min\left(\frac{W}{\tau}, \frac{1}{\Delta t}\right) (u - \bar{t}), \quad
+   W = \min\left(1, \sum_i w_i\right), \quad
+   \bar{t} = \frac{\sum_i w_i t_i}{\sum_i w_i}
+
+When ``TerrainDrag`` is active, the heights are above the local terrain and the
+cells inside the terrain are not forced.
+
+.. input_param:: ABL.metmast_1dprofile_file
+
+   **type:** String, optional
+
+   File with met-mast points, one per line: ``x y z u v w T``, where ``z`` is
+   the height above the terrain. The temperature ``T`` is not used. At least one
+   of this file and :input_param:`ABL.metmast_profile_files` is required.
+
+.. input_param:: ABL.metmast_profile_files
+
+   **type:** List of strings, optional
+
+   Lidar profile files, one per lidar. The first line is the location ``x y``,
+   followed by one line per height ``z u v w su sv sw`` in increasing order of
+   ``z``, the height above the terrain. ``su``, ``sv`` and ``sw`` are the
+   standard deviations of the velocity components. Above and below the measured
+   heights, the end values are used and the weight is tapered with
+   :input_param:`ABL.metmast_vertical_radius`.
+
+.. input_param:: ABL.metmast_timescale
+
+   **type:** Real, optional, default = ``ABL.meso_timescale`` or 30.0
+
+   Relaxation time scale :math:`\tau` in seconds. The relaxation rate is
+   limited to :math:`1/\Delta t`.
+
+.. input_param:: ABL.metmast_horizontal_radius
+
+   **type:** Real, optional, default = 500.0
+
+   Horizontal radius :math:`R_h` of the forcing around each station.
+
+.. input_param:: ABL.metmast_vertical_radius
+
+   **type:** Real, optional, default = 25.0
+
+   Vertical radius :math:`R_z` of the forcing around a met-mast point, and of
+   the taper above and below a lidar profile.
+
+.. input_param:: ABL.metmast_damping_radius
+
+   **type:** Real, optional, default = 1400.0
+
+   Cutoff on the normalized squared distance
+   :math:`r_i^2/R_h^2 + d_i^2/R_z^2` beyond which a station does not force.
+
+.. input_param:: ABL.metmast_sigma_factor
+
+   **type:** Real, optional, default = 1.0
+
+   Half-width :math:`\alpha` of the tolerance band in standard deviations. A
+   value of 0 relaxes the velocity to the measured mean. Met-mast points have
+   no standard deviation and are always relaxed to the mean.
+
 
 The following arguments are influential when ``GravityForcing`` is included in :input_param:`ICNS.source_terms`.
 
