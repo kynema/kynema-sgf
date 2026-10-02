@@ -29,6 +29,31 @@ Section: Temperature Sources
    This value modifies the time scale of the BC forcing component of DragTempForcing relative to
    the time step size.
 
+.. input_param:: DragTempForcing.blank_follow_fluid
+
+   **type:** Boolean, optional, default = false (true with
+   :input_param:`TerrainDrag.wall_treatment` ``= improved``)
+
+   Relaxes the blanked (terrain) cells toward the temperature of the cell
+   above them instead of ``DragTempForcing.soil_temperature``.
+   Held at the soil temperature under air of another temperature, the
+   blanked column conducts heat through its top face into the drag cell, a
+   surface heat flux on top of the one the drag-cell forcing sets. With this
+   option no gradient forms across the blanked face. The relaxation is
+   integrated exactly over the time step,
+
+   .. math::
+
+      S = -\frac{1 - e^{-C_d \Delta t}}{\Delta t}\,(\theta_k - \theta_{k+1}),
+      \qquad
+      C_d = \min\left(\frac{c_d}{\Delta z\,|\mathbf{u}|}, \frac{10}{\Delta z}\right),
+
+   with :math:`c_d` = :input_param:`DragTempForcing.drag_coefficient`; the
+   explicit rate reaches 2 per step at :math:`\Delta z` = 5 m and
+   :math:`\Delta t` = 1 s. The drag cells are not changed. The target is the
+   cell directly above, so on slopes a blanked cell next to the air on its
+   side still follows the cell above it.
+
 
 The following list of inputs are used with the `Temperature.source_terms = PerturbationForcing` option to add perturbation to the 
 temperature field to generate flow structures for LES when the inflow data is coarse or uniform flow condition. Not 

@@ -371,4 +371,17 @@ void TerrainDrag::convert_waves_to_terrain_fields()
     }
 }
 
+bool improved_wall_treatment()
+{
+    std::string treatment{"original"};
+    amrex::ParmParse pp(TerrainDrag::identifier());
+    pp.query("wall_treatment", treatment);
+    if ((treatment != "original") && (treatment != "improved")) {
+        amrex::Abort(
+            "TerrainDrag.wall_treatment must be original or improved, not " +
+            treatment);
+    }
+    return treatment == "improved";
+}
+
 } // namespace kynema_sgf::terraindrag

@@ -4,6 +4,7 @@
 #include <string>
 #include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -45,6 +46,49 @@ public:
     //! Update the effective scalar diffusivity field
     void update_scalar_diff(Field& deff, const std::string& name) override;
 
+    /** With TerrainDrag and ``KLAxell.terrain_wall_stencil``: strain rate of
+     *  the fluid cells next to the blanked cells from the stencil that flat
+     *  ground uses at its bottom wall, the wall being the face of the blanked
+     *  cell. Public because it launches a device lambda.
+     *
+     *  @param velocity Velocity field of the state being updated
+     */
+    void terrain_wall_strain_rate(const Field& velocity);
+
+    /** With TerrainDrag and ``KLAxell.terrain_blanked_face_length``: height
+     *  of the top face of the blanked column, from which the mixing length is
+     *  measured in place of the terrain height. Public because it launches a
+     *  device lambda.
+     *
+     *  @param face_height Scratch field (one component) set to the face height
+     */
+    void terrain_blanked_face_height(ScratchField& face_height) const;
+
+    /** With TerrainDrag and ``KLAxell.terrain_face_stress``: viscosity of the
+     *  drag cells sized so that the face above each one carries the wall
+     *  stress u*^2 of the DragForcing wall law. Public because it launches a
+     *  device lambda.
+     *
+     *  @param lev Level to update
+     *  @param velocity Velocity field of the state being updated
+     *  @param density Density field of the state being updated
+     */
+    void
+    terrain_face_stress(int lev, const Field& velocity, const Field& density);
+
+    /** With TerrainDrag, ``KLAxell.terrain_face_heat_flux`` and
+     *  ``ABL.wall_het_model = mol``: heat diffusivity of the drag cells sized
+     *  so that the face above each one carries the surface heat flux
+     *  -u* theta* given by the Obukhov length. Public because it launches a
+     *  device lambda.
+     *
+     *  @param lev Level to update
+     *  @param alphaeff Effective thermal diffusivity being updated
+     *  @param lam_alpha Laminar thermal diffusivity
+     */
+    void terrain_face_heat_flux(
+        int lev, Field& alphaeff, const ScratchField& lam_alpha);
+
     //! Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
@@ -72,6 +116,29 @@ private:
     amrex::Real m_meso_sponge_start{2000};
 
     std::unique_ptr<ScratchField> m_gradT;
+
+    //! TerrainDrag options (``KLAxell.<name>``), all off by default and all
+    //! on with ``TerrainDrag.wall_treatment = improved``
+    //! Flat-ground wall stencil for the strain rate of the wall cells
+    bool m_terrain_wall_stencil{false};
+    //! Mixing length measured from the top face of the blanked column
+    bool m_terrain_blanked_face_length{false};
+    //! Drag-cell viscosity from the wall stress on the face above it
+    bool m_terrain_face_stress{false};
+    //! Drag-cell heat diffusivity from the surface heat flux on the face
+    //! above it (mol only)
+    bool m_terrain_face_heat_flux{false};
+
+    //! Surface-layer inputs of the face stress and heat flux, read from the
+    //! same inputs as DragForcing (``ABL.wall_het_model``,
+    //! ``ABL.monin_obukhov_length``, ``ABL.kappa``, ``ABL.mo_beta_m``,
+    //! ``ABL.mo_gamma_m``, ``DragForcing.minimum_z0``)
+    std::string m_wall_het_model{"none"};
+    amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
+    amrex::Real m_kappa{0.41_rt};
+    amrex::Real m_beta_m{16.0_rt};
+    amrex::Real m_gamma_m{5.0_rt};
+    amrex::Real m_min_z0{1.0e-4_rt};
 };
 
 } // namespace kynema_sgf::turbulence
