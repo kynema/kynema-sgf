@@ -226,13 +226,13 @@ TEST(ActuatorMotion, rotor_speed_integrates_azimuth_and_holds_rate)
     EXPECT_NEAR(motion.omega(0, 1.0_rt), 1.0_rt, test_tol);
     EXPECT_NEAR(
         motion.azimuth(0, 1.0_rt),
-        0.5_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, test_tol);
+        0.5_rt + (0.5_rt * std::numbers::pi_v<amrex::Real>), test_tol);
     EXPECT_NEAR(
         motion.azimuth(0, 3.0_rt),
-        4.0_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, test_tol);
+        4.0_rt + (0.5_rt * std::numbers::pi_v<amrex::Real>), test_tol);
     EXPECT_NEAR(
         motion.azimuth(1, 3.0_rt),
-        -4.0_rt + 0.5_rt * std::numbers::pi_v<amrex::Real>, test_tol);
+        -4.0_rt + (0.5_rt * std::numbers::pi_v<amrex::Real>), test_tol);
 
     std::remove(filename.c_str());
 }

@@ -664,10 +664,10 @@ TEST_F(ABLMeshTest, densitybuoyancy)
 
     // f = g*(1-rho_0/rho)
     EXPECT_NEAR(
-        utils::field_min(src_term, 2), -9.81_rt * (1.0_rt - 1.0_rt / 2.0_rt),
+        utils::field_min(src_term, 2), -9.81_rt * (1.0_rt - (1.0_rt / 2.0_rt)),
         tol);
     EXPECT_NEAR(
-        utils::field_max(src_term, 2), -9.81_rt * (1.0_rt - 1.0_rt / 0.5_rt),
+        utils::field_max(src_term, 2), -9.81_rt * (1.0_rt - (1.0_rt / 0.5_rt)),
         tol);
 }
 
