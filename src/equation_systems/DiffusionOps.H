@@ -63,6 +63,7 @@ public:
         for (int lev = 0; lev < nlevels; ++lev) {
             auto b = diffusion::average_velocity_eta_to_faces(
                 geom[lev], viscosity(lev));
+            diffusion::apply_immersed_interface(b, m_pdefields.repo, lev);
             if (m_mesh_mapping) {
                 diffusion::viscosity_to_uniform_space(b, m_pdefields.repo, lev);
             }
@@ -83,6 +84,7 @@ public:
         for (int lev = 0; lev < nlevels; ++lev) {
             auto b = diffusion::average_velocity_eta_to_faces(
                 geom[lev], viscosity(lev));
+            diffusion::apply_immersed_interface(b, m_pdefields.repo, lev);
             if (m_mesh_mapping) {
                 diffusion::viscosity_to_uniform_space(b, m_pdefields.repo, lev);
             }
@@ -99,6 +101,9 @@ protected:
 
     PDEFields& m_pdefields;
     Field& m_density;
+    //! Time step of the current implicit solve (0 for the explicit applier);
+    //! used to pin immersed-terrain cells with the effective density
+    amrex::Real m_implicit_dt{0.0_rt};
 
     MLMGOptions m_options;
 
