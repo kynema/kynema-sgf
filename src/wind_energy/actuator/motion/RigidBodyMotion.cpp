@@ -34,8 +34,7 @@ vs::Tensor integrate_global_angular_velocity(
     while (direction * (time - start) > 0.0_rt) {
         amrex::Real end = time;
         if (direction > 0.0_rt) {
-            const auto next =
-                std::upper_bound(times.begin(), times.end(), start);
+            const auto next = std::ranges::upper_bound(times, start);
             if (next != times.end()) {
                 end = std::min(time, *next);
             }
@@ -208,7 +207,7 @@ vs::Tensor RigidBodyMotion::orientation(const amrex::Real time) const
                 orientation_quaternion(static_cast<int>(times.size()) - 1));
         }
         const int upper = static_cast<int>(
-            std::upper_bound(times.begin(), times.end(), time) - times.begin());
+            std::ranges::upper_bound(times, time) - times.begin());
         const int lower = upper - 1;
         const amrex::Real fraction =
             (time - times[lower]) / (times[upper] - times[lower]);
@@ -235,7 +234,7 @@ vs::Vector RigidBodyMotion::angular_velocity(const amrex::Real time) const
             return vs::Vector::zero();
         }
         int upper = static_cast<int>(
-            std::upper_bound(times.begin(), times.end(), time) - times.begin());
+            std::ranges::upper_bound(times, time) - times.begin());
         upper = std::min(upper, static_cast<int>(times.size()) - 1);
         const int lower = upper - 1;
         auto a = orientation_quaternion(lower);

@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <cmath>
 #include <numbers>
+#include <utility>
 
 #include "AMReX_Print.H"
 
@@ -45,8 +46,7 @@ amrex::Real interp_metric_to_radius(
     if (target_metric >= metric.back()) {
         return radius.back();
     }
-    const auto hi =
-        std::upper_bound(metric.begin(), metric.end(), target_metric);
+    const auto hi = std::ranges::upper_bound(metric, target_metric);
     const int ihi = static_cast<int>(std::distance(metric.begin(), hi));
     const int ilo = ihi - 1;
     const amrex::Real t =
@@ -887,7 +887,7 @@ void ActSrcOp<ActuatorSector, ActSrcSector>::copy_to_device()
 {
     const auto& grid = m_data.grid();
     const int npts = static_cast<int>(grid.pos.size());
-    if (static_cast<int>(m_pos.size()) != npts) {
+    if (std::cmp_not_equal(m_pos.size(), npts)) {
         m_pos.resize(npts);
         m_force.resize(npts);
         m_epsilon.resize(npts);
@@ -902,8 +902,7 @@ void ActSrcOp<ActuatorSector, ActSrcSector>::copy_to_device()
         amrex::Gpu::hostToDevice, grid.epsilon.begin(), grid.epsilon.end(),
         m_epsilon.begin());
     const auto& table = m_data.meta().gaussian_table;
-    if (static_cast<int>(m_gaussian_table.size()) !=
-        static_cast<int>(table.size())) {
+    if (std::cmp_not_equal(m_gaussian_table.size(), table.size())) {
         m_gaussian_table.resize(table.size());
     }
     amrex::Gpu::copy(

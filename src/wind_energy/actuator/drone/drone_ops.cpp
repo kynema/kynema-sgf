@@ -271,8 +271,7 @@ void UpdatePosOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
     for (auto& rotor : data.meta().rotors) {
         UpdatePosOp<ActuatorSector, ActSrcSector>()(rotor->data);
         const auto& positions = rotor->data.grid().vel_pos;
-        std::copy(
-            positions.begin(), positions.end(), grid.vel_pos.begin() + offset);
+        std::ranges::copy(positions, grid.vel_pos.begin() + offset);
         offset += static_cast<int>(positions.size());
     }
 }

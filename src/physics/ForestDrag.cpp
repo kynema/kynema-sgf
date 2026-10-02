@@ -12,6 +12,7 @@
 #include <filesystem>
 #include <limits>
 #include <sstream>
+#include <utility>
 #include <vector>
 #include <ranges>
 
@@ -44,13 +45,11 @@ int compute_convex_hull_2d(
     }
 
     std::vector<std::pair<amrex::Real, amrex::Real>> sorted_points = points;
-    std::sort(
-        sorted_points.begin(), sorted_points.end(),
-        [](const auto& a, const auto& b) {
-            return a.first < b.first ||
-                   (std::abs(a.first - b.first) < constants::TIGHT_TOL &&
-                    a.second < b.second);
-        });
+    std::ranges::sort(sorted_points, [](const auto& a, const auto& b) {
+        return a.first < b.first ||
+               (std::abs(a.first - b.first) < constants::TIGHT_TOL &&
+                a.second < b.second);
+    });
 
     auto cross = [](const auto& o, const auto& a, const auto& b) {
         return ((a.first - o.first) * (b.second - o.second)) -
@@ -439,18 +438,18 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
 
         // Ensure CCW winding so inward normals are consistently defined.
         amrex::Real twice_area = 0.0_rt;
-        for (int v = 0; v < static_cast<int>(hull_2d.size()); ++v) {
+        for (int v = 0; std::cmp_less(v, hull_2d.size()); ++v) {
             const int vn = (v + 1) % static_cast<int>(hull_2d.size());
             twice_area += (hull_2d[v].first * hull_2d[vn].second) -
                           (hull_2d[vn].first * hull_2d[v].second);
         }
         if (twice_area < 0.0_rt) {
-            std::reverse(hull_2d.begin(), hull_2d.end());
+            std::ranges::reverse(hull_2d);
         }
 
         f.m_hull_edge_offset = static_cast<int>(hull_edges.size());
         f.m_hull_edge_count = static_cast<int>(hull_2d.size());
-        for (int v = 0; v < static_cast<int>(hull_2d.size()); ++v) {
+        for (int v = 0; std::cmp_less(v, hull_2d.size()); ++v) {
             const int vn = (v + 1) % static_cast<int>(hull_2d.size());
             const auto xi = hull_2d[v].first;
             const auto yi = hull_2d[v].second;
