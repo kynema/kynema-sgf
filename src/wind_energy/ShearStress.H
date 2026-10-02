@@ -217,6 +217,7 @@ struct ShearStressDonelan
             flux = temp_flux_surface;
             break;
         case kynema_sgf::MOData::ThetaCalcType::SURFACE_TEMPERATURE:
+        case kynema_sgf::MOData::ThetaCalcType::NEAR_SURFACE_TEMPERATURE:
             flux = 0.0012_rt * wspd_mean * (theta_surface - theta_mean);
             break;
         }

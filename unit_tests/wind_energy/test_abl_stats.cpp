@@ -2,6 +2,7 @@
 #include "ks_test_utils/iter_tools.H"
 #include "ks_test_utils/test_utils.H"
 #include "src/equation_systems/tke/TKE.H"
+#include "src/wind_energy/ABL.H"
 #include "src/wind_energy/ABLStats.H"
 #include "src/incflo.H"
 #include "AMReX_REAL.H"
@@ -80,6 +81,26 @@ amrex::Real test_new_tke(
             });
     }
     return error_total;
+}
+
+//! Temperature with a capping inversion centered at z_inv, ghosts included
+void init_inversion_temperature(
+    kynema_sgf::Field& temperature, const amrex::Real z_inv)
+{
+    const auto& mesh = temperature.repo().mesh();
+    for (int lev = 0; lev < temperature.repo().num_active_levels(); ++lev) {
+        const auto& problo = mesh.Geom(lev).ProbLoArray();
+        const auto& dx = mesh.Geom(lev).CellSizeArray();
+        const auto& farrs = temperature(lev).arrays();
+        amrex::ParallelFor(
+            temperature(lev), temperature.num_grow(),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+                farrs[nbx](i, j, k) =
+                    300.0_rt + (5.0_rt * std::tanh((z - z_inv) / 20.0_rt));
+            });
+    }
+    amrex::Gpu::streamSynchronize();
 }
 
 void remove_nans(kynema_sgf::Field& field)
@@ -256,6 +277,32 @@ TEST_F(ABLMeshTest, stats_energy_budget)
         tke, tke.state(kynema_sgf::FieldState::Old), tke_eqn.fields().conv_term,
         buoy, shear, dissip, *(diff), dt);
     EXPECT_NEAR(err_total, 0.0_rt, tol);
+}
+
+TEST_F(ABLMeshTest, stats_capping_inversion_height)
+{
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    populate_parameters();
+    initialize_mesh();
+
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    pde_mgr.register_transport_pde("Temperature");
+    sim().init_physics();
+
+    // Largest dtheta/dz is closest to the cell centered at z = 27.5 dz
+    auto& temperature = sim().repo().get_field("temperature");
+    init_inversion_temperature(temperature, 425.0_rt);
+    const amrex::Real dz = sim().mesh().Geom(0).CellSize(2);
+    const amrex::Real zi_gold = 27.5_rt * dz;
+
+    const auto& abl = sim().physics_manager().get<kynema_sgf::ABL>();
+    kynema_sgf::ABLStats stats(sim(), abl.abl_wall_function(), 2, -1);
+    stats.post_init_actions();
+    stats.compute_zi();
+    // zi is known on every rank, not only the I/O rank
+    EXPECT_NEAR(stats.zi(), zi_gold, tol * zi_gold);
 }
 
 } // namespace kynema_sgf_tests

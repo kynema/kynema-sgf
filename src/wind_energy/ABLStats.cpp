@@ -13,6 +13,7 @@
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_ParallelDescriptor.H"
+#include "AMReX_ParallelReduce.H"
 #include "AMReX_REAL.H"
 #include "AMReX_Vector.H"
 #include "AMReX_ValLocPair.H"
@@ -352,7 +353,7 @@ void ABLStats::compute_zi()
                 for (int k = lo.z; k <= hi.z; ++k) {
                     if (a(i, j, k) > vmax) {
                         vmax = a(i, j, k);
-                        idxmax = i;
+                        idxmax = k;
                     }
                 }
                 zi_sum += (idxmax + amrex::Real(0.5_rt)) * m_dn;
@@ -361,9 +362,9 @@ void ABLStats::compute_zi()
 #endif
     }
 
-    amrex::ParallelReduce::Sum(
-        zi_sum, amrex::ParallelDescriptor::IOProcessorNumber(),
-        amrex::ParallelDescriptor::Communicator());
+    // Every rank needs zi when it sets the free-atmosphere damping height
+    amrex::ParallelAllReduce::Sum(
+        zi_sum, amrex::ParallelDescriptor::Communicator());
 
     amrex::Long npts = 1;
     for (int idim = 0; idim < AMREX_SPACEDIM; ++idim) {

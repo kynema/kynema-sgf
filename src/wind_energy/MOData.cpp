@@ -65,15 +65,31 @@ void MOData::update_fluxes(int max_iters)
         utau_iter = utau;
         switch (alg_type) {
         case ThetaCalcType::HEAT_FLUX:
-            surf_temp = (surf_temp_flux * (std::log(zref / z0t) - psi_h) /
-                         (utau * kappa)) +
-                        theta_mean;
+            surf_temp =
+                (surf_temp_flux * (alpha_h * (std::log(zref / z0t) - psi_h)) /
+                 (utau * kappa)) +
+                theta_mean;
             break;
 
         case ThetaCalcType::SURFACE_TEMPERATURE:
             surf_temp_flux = -(theta_mean - surf_temp) * utau * kappa /
-                             (std::log(zref / z0t) - psi_h);
+                             (alpha_h * (std::log(zref / z0t) - psi_h));
             break;
+
+        case ThetaCalcType::NEAR_SURFACE_TEMPERATURE: {
+            // theta(z) = theta_s - q phi_h(z) / (kappa utau) holds at both
+            // zref and near_surf_height: solve the pair for q and theta_s
+            const amrex::Real phi_ref =
+                alpha_h * (std::log(zref / z0t) - psi_h);
+            const amrex::Real phi_near =
+                alpha_h * (std::log(near_surf_height / z0t) -
+                           calc_psi_h(zeta * near_surf_height / zref));
+            surf_temp_flux = utau * kappa * (near_surf_temp - theta_mean) /
+                             (phi_ref - phi_near);
+            surf_temp =
+                near_surf_temp + (surf_temp_flux * phi_near / (utau * kappa));
+            break;
+        }
         }
 
         if (std::abs(surf_temp_flux) > eps) {

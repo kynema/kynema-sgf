@@ -61,7 +61,10 @@ public:
     void post_advance_work() override;
 
     //! Compute height of capping inversion
-    void compute_zi();
+    void compute_zi() override;
+
+    //! Height of the capping inversion above the bottom of the domain
+    [[nodiscard]] amrex::Real zi() const override { return m_zi; }
 
     //! Return vel plane averaging instance
     const VelPlaneAveraging& vel_profile() const override
