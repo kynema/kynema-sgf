@@ -61,6 +61,7 @@ TEST_F(ICNSInitTest, 2level)
 {
     populate_parameters();
     initialize_mesh();
+    sim().create_turbulence_model();
     auto& pde_mgr = sim().pde_manager();
     pde_mgr.register_icns();
     pde_mgr.icns().initialize();
@@ -70,6 +71,7 @@ TEST_F(ICNSInitTest, generic_2level)
 {
     populate_parameters();
     initialize_mesh();
+    sim().create_turbulence_model();
     auto& repo = sim().repo();
     auto& generic_field = repo.declare_field("generic", 1, 1, 1);
     generic_field.set_default_fillpatch_bc(sim().time());

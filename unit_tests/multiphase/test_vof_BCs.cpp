@@ -285,6 +285,7 @@ protected:
         // Set up icns PDE to set up mac velocity, access to VOF PDE
         auto& pde_mgr = sim().pde_manager();
         auto& mom_eqn = pde_mgr.register_icns();
+        sim().create_turbulence_model();
         mom_eqn.initialize();
 
         // Initialize physics for the sake of MultiPhase routines
