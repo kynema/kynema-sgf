@@ -1,4 +1,5 @@
 #include "src/physics/ForestDrag.H"
+#include "src/physics/TerrainDrag.H"
 #include "src/CFDSim.H"
 #include "AMReX_iMultiFab.H"
 #include "AMReX_MultiFabUtil.H"
@@ -90,6 +91,7 @@ ForestDrag::ForestDrag(CFDSim& sim)
     : m_sim(sim)
     , m_forest_drag(sim.repo().declare_field("forest_drag", 1, 1, 1))
     , m_forest_id(sim.repo().declare_field("forest_id", 1, 1, 1))
+    , m_terrain_created_first(sim.physics_manager().contains("TerrainDrag"))
 {
 
     // Accept either legacy cylinder input or point-cloud input, but not both.
@@ -103,6 +105,7 @@ ForestDrag::ForestDrag(CFDSim& sim)
             "'point_cloud_files'");
     }
     pp.queryarr("point_cloud_files", m_point_cloud_files);
+    pp.query("terrain_aware", m_terrain_aware);
     if (point_forest) {
         // One drag coefficient is required per point-cloud forest file.
         pp.getarr("coefficients_of_drag", m_forest_cd);
@@ -115,6 +118,68 @@ ForestDrag::ForestDrag(CFDSim& sim)
         // Keep neighbor count bounded by fixed-size device arrays in kernels.
         m_point_neighbors =
             amrex::max<int>(1, amrex::min<int>(m_point_neighbors, 8));
+    }
+
+    // Canopy drag (default) or a roughness length in each forest footprint.
+    std::string model{"canopy"};
+    pp.query("model", model);
+    if (model == "roughness") {
+        m_roughness_mode = true;
+    } else if (model != "canopy") {
+        amrex::Abort(
+            "ForestDrag: 'model' must be 'canopy' or 'roughness', not '" +
+            model + "'");
+    }
+    if (m_roughness_mode) {
+        const bool has_z0 = pp.contains("roughness_z0");
+        const bool has_fraction = pp.contains("roughness_height_fraction");
+        if (has_z0 == has_fraction) {
+            amrex::Abort(
+                "ForestDrag: model = roughness needs exactly one of "
+                "'roughness_z0' or 'roughness_height_fraction'");
+        }
+        pp.queryarr("roughness_z0", m_roughness_z0);
+        pp.queryarr("roughness_height_fraction", m_roughness_height_fraction);
+        const auto& values =
+            has_z0 ? m_roughness_z0 : m_roughness_height_fraction;
+        if (values.empty()) {
+            amrex::Abort("ForestDrag: empty roughness list");
+        }
+        for (const auto v : values) {
+            if (!(v > 0.0_rt)) {
+                amrex::Abort("ForestDrag: roughness values must be positive");
+            }
+        }
+        if (point_forest && values.size() != 1 &&
+            values.size() != m_point_cloud_files.size()) {
+            amrex::Abort(
+                "ForestDrag: give one roughness value, or one per "
+                "point-cloud file");
+        }
+        if (!point_forest && values.size() != 1) {
+            // One row of 8 values per cylinder forest
+            std::ifstream file(m_forest_file, std::ios::in);
+            if (!file.good()) {
+                amrex::Abort("Cannot find file " + m_forest_file);
+            }
+            long n_values = 0;
+            amrex::Real value = 0.0_rt;
+            while (file >> value) {
+                ++n_values;
+            }
+            if (values.size() != n_values / 8) {
+                amrex::Abort(
+                    "ForestDrag: give one roughness value, or one per forest "
+                    "in " +
+                    m_forest_file);
+            }
+        }
+        bool canopy_tke = false;
+        pp.query("canopy_tke", canopy_tke);
+        if (canopy_tke) {
+            amrex::Print() << "WARNING: ForestDrag: canopy_tke has no effect "
+                              "with model = roughness (forest_drag is zero)\n";
+        }
     }
 
     // Register outputs and initialize field defaults.
@@ -130,6 +195,20 @@ ForestDrag::ForestDrag(CFDSim& sim)
 void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
 {
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
+
+    // With TerrainDrag, the forests stand on the local terrain. Physics are
+    // initialized in the incflo.physics order, so TerrainDrag must come first
+    // for terrain_height to be filled before it is used here. Terrain built
+    // from single-phase OceanWaves is only filled after the levels are set up
+    // and moves every step, so the forests keep their legacy placement there.
+    const auto& physics = m_sim.physics_manager();
+    const bool use_terrain = uses_terrain();
+    if (use_terrain && !m_terrain_created_first) {
+        amrex::Abort(
+            "ForestDrag: list TerrainDrag before ForestDrag in incflo.physics, "
+            "or set ForestDrag.terrain_aware = false");
+    }
+    set_terrain_range(level);
 
     // Build host-side forest metadata for the requested AMR level.
     amrex::Vector<ForestPoint> cloud_points;
@@ -168,6 +247,87 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     // Rebuild fields from scratch each time we initialize this level.
     drag.setVal(0.0_rt);
     fst_id.setVal(-1.0_rt);
+
+    if (m_roughness_mode) {
+        // TerrainDrag fills terrainz0 (roughness file or its default) first;
+        // the footprints overwrite it, the last forest in the input wins.
+        // forest_drag stays zero and forest_id marks the trees.
+        if (!m_terrain_created_first) {
+            amrex::Abort(
+                "ForestDrag: model = roughness writes the TerrainDrag "
+                "roughness field; list TerrainDrag before ForestDrag in "
+                "incflo.physics");
+        }
+        // Terrain built from single-phase OceanWaves resets terrainz0 to the
+        // wave roughness every step
+        if (physics.get<terraindrag::TerrainDrag>().terrain_is_waves()) {
+            amrex::Abort(
+                "ForestDrag: model = roughness needs a TerrainDrag terrain "
+                "file, not a terrain built from OceanWaves");
+        }
+        amrex::Real z0_max = 0.0_rt;
+        for (auto& f : forests) {
+            f.m_roughness_z0 = forest_roughness(f);
+            z0_max = amrex::max<amrex::Real>(z0_max, f.m_roughness_z0);
+        }
+        // The terrain wall model applies ln(0.5 dz / z0) in the first cell
+        if (z0_max >= 0.5_rt * dx[2]) {
+            amrex::Print() << "WARNING: ForestDrag: roughness length " << z0_max
+                           << " m is not below half the cell height "
+                           << 0.5_rt * dx[2] << " m on level " << level
+                           << "; the terrain wall model needs z0 < dz / 2\n";
+        }
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, forests.begin(), forests.end(),
+            d_forests.begin());
+        auto& terrainz0 = m_sim.repo().get_field("terrainz0")(level);
+        const auto* forests_ptr = d_forests.data();
+        const auto* hull_edges_ptr = d_hull_edges.data();
+#ifdef AMREX_USE_OMP
+#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
+#endif
+        for (amrex::MFIter mfi(terrainz0); mfi.isValid(); ++mfi) {
+            const auto& gbx = mfi.growntilebox();
+            for (int nf = 0; nf < static_cast<int>(forests.size()); nf++) {
+                // Whole columns under the footprint, with one ghost layer
+                // beyond the domain in x and y.
+                auto column = forests[nf].bounding_box(geom);
+                column.grow(0, 1);
+                column.grow(1, 1);
+                column.setSmall(2, gbx.smallEnd(2));
+                column.setBig(2, gbx.bigEnd(2));
+                const auto bxi = gbx & column;
+                if (bxi.isEmpty()) {
+                    continue;
+                }
+                const auto& z0 = terrainz0.array(mfi);
+                const auto& levelId = fst_id.array(mfi);
+                const auto& ht = use_terrain
+                                     ? m_sim.repo()
+                                           .get_field("terrain_height")(level)
+                                           .const_array(mfi)
+                                     : amrex::Array4<amrex::Real const>();
+                amrex::ParallelFor(
+                    bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                        const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                        const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+                        const auto& fst = forests_ptr[nf];
+                        if (!fst.in_footprint(x, y, hull_edges_ptr)) {
+                            return;
+                        }
+                        z0(i, j, k) = fst.m_roughness_z0;
+                        const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
+                        const auto zagl = use_terrain ? z - ht(i, j, k) : z;
+                        if (zagl > 0.0_rt && zagl <= fst.m_height_forest) {
+                            levelId(i, j, k) = fst.m_id;
+                        }
+                    });
+            }
+        }
+        // The device copies of the forests go out of scope on return.
+        amrex::Gpu::streamSynchronize();
+        return;
+    }
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
 #endif
@@ -185,6 +345,41 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto* hull_edges_ptr = d_hull_edges.data();
                 const int num_neighbors = m_point_neighbors;
                 const amrex::Real interp_eps = m_point_interp_eps;
+                if (use_terrain) {
+                    // Heights of the forest and point-cloud files are above
+                    // the local ground; no drag inside the terrain.
+                    const auto& ht = m_sim.repo()
+                                         .get_field("terrain_height")(level)
+                                         .const_array(mfi);
+                    const amrex::Real half_dz = 0.5_rt * dx[2];
+                    amrex::ParallelFor(
+                        bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                            const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                            const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+                            const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
+                            const auto zagl = z - ht(i, j, k);
+                            if (zagl <= 0.0_rt) {
+                                return;
+                            }
+                            const auto& fst = forests_ptr[nf];
+                            if (fst.m_drag_mode == 0) {
+                                amrex::Real lad = 0.0_rt;
+                                if (cylinder_lad(fst, x, y, zagl, lad)) {
+                                    levelId(i, j, k) = fst.m_id;
+                                    levelDrag(i, j, k) += fst.m_cd_forest * lad;
+                                }
+                            } else {
+                                const auto lad = point_cloud_lad(
+                                    fst, points_ptr, hull_edges_ptr, x, y, zagl,
+                                    half_dz, num_neighbors, interp_eps);
+                                if (lad > 0.0_rt) {
+                                    levelId(i, j, k) = fst.m_id;
+                                    levelDrag(i, j, k) += fst.m_cd_forest * lad;
+                                }
+                            }
+                        });
+                    continue;
+                }
                 amrex::ParallelFor(
                     bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         // Convert integer cell indices to cell-center
@@ -304,6 +499,40 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
     }
 }
 
+amrex::Real ForestDrag::forest_roughness(const Forest& fst) const
+{
+    const bool use_z0 = !m_roughness_z0.empty();
+    const auto& values = use_z0 ? m_roughness_z0 : m_roughness_height_fraction;
+    if (values.size() > 1 && fst.m_id >= static_cast<int>(values.size())) {
+        amrex::Abort(
+            "ForestDrag: fewer roughness values than forests; give one value "
+            "for all forests or one per forest");
+    }
+    const auto value = (values.size() == 1) ? values[0] : values[fst.m_id];
+    return use_z0 ? value : value * fst.m_height_forest;
+}
+
+bool ForestDrag::uses_terrain() const
+{
+    const auto& physics = m_sim.physics_manager();
+    return m_terrain_aware && physics.contains("TerrainDrag") &&
+           !physics.get<terraindrag::TerrainDrag>().terrain_is_waves();
+}
+
+void ForestDrag::set_terrain_range(const int level)
+{
+    m_terrain_zmin = 0.0_rt;
+    m_terrain_zmax = 0.0_rt;
+    if (uses_terrain()) {
+        const auto& terrain_height =
+            m_sim.repo().get_field("terrain_height")(level);
+        m_terrain_zmin = terrain_height.min(0);
+        m_terrain_zmax = terrain_height.max(0);
+    }
+}
+
+void ForestDrag::post_init_actions() { check_canopy_resolution(); }
+
 void ForestDrag::post_regrid_actions()
 {
     // Forest fields depend on geometry and valid boxes, so recompute on regrid.
@@ -311,6 +540,62 @@ void ForestDrag::post_regrid_actions()
     for (int lev = 0; lev < nlevels; ++lev) {
         initialize_fields(lev, m_sim.repo().mesh().Geom(lev));
     }
+    check_canopy_resolution();
+}
+
+int ForestDrag::check_canopy_resolution()
+{
+    if (m_roughness_mode) {
+        return 0;
+    }
+    // Each forest is resolved by the finest level that covers it. The readers
+    // keep the forests that intersect a level's boxes, so go from the finest
+    // level down and count every forest once; level 0 covers the domain.
+    // initialize_fields sets the terrain range again before it is used there.
+    amrex::Vector<int> counted;
+    int n_coarse = 0;
+    int worst_id = -1;
+    amrex::Real worst_cells = constants::LARGE_NUM;
+    amrex::Real worst_dz = 0.0_rt;
+    for (int lev = m_sim.repo().num_active_levels() - 1; lev >= 0; --lev) {
+        set_terrain_range(lev);
+        const amrex::Real dz = m_sim.repo().mesh().Geom(lev).CellSize(2);
+        amrex::Vector<ForestPoint> cloud_points;
+        amrex::Vector<ForestHullEdge> hull_edges;
+        const auto forests =
+            m_point_cloud_files.empty()
+                ? read_cylinder_forests(lev)
+                : read_point_cloud_forests(lev, cloud_points, hull_edges);
+        for (const auto& f : forests) {
+            if (f.m_id >= counted.size()) {
+                counted.resize(f.m_id + 1, 0);
+            }
+            if (counted[f.m_id] != 0) {
+                continue;
+            }
+            counted[f.m_id] = 1;
+            const amrex::Real cells = f.m_height_forest / dz;
+            if (cells < static_cast<amrex::Real>(min_canopy_cells())) {
+                ++n_coarse;
+            }
+            if (cells < worst_cells) {
+                worst_cells = cells;
+                worst_id = f.m_id;
+                worst_dz = dz;
+            }
+        }
+    }
+    if (n_coarse > 0) {
+        amrex::Print()
+            << "WARNING: ForestDrag: " << n_coarse
+            << " forest(s) span fewer than " << min_canopy_cells()
+            << " cells of the finest level that covers them; forest "
+            << worst_id << " spans " << worst_cells << " (dz = " << worst_dz
+            << " m). The canopy model needs about 5-10 cells over the canopy "
+               "height (validated with 10); refine the mesh or use "
+               "ForestDrag.model = roughness\n";
+    }
+    return n_coarse;
 }
 
 amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
@@ -341,6 +626,8 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
         f.m_cd_forest = value6;
         f.m_lai_forest = value7;
         f.m_laimax_forest = value8;
+        f.m_terrain_zmin = m_terrain_zmin;
+        f.m_terrain_zmax = m_terrain_zmax;
 
         // Keep only forests intersecting this rank's local level boxes.
         const auto bx = f.bounding_box(geom);
@@ -492,6 +779,8 @@ amrex::Vector<Forest> ForestDrag::read_point_cloud_forests(
         f.m_type_forest = 0.0_rt;
         f.m_lai_forest = 0.0_rt;
         f.m_laimax_forest = 0.0_rt;
+        f.m_terrain_zmin = m_terrain_zmin;
+        f.m_terrain_zmax = m_terrain_zmax;
 
         // Keep only forests intersecting this rank's local level boxes.
         if (ba.intersects(f.bounding_box(geom))) {
