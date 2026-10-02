@@ -236,7 +236,33 @@ This section is for setting atmospheric boundary layer parameters.
    **type:** String, optional, default = "Moeng"
 
    Wall shear stress model: options include
-   "constant", "local", "Schumann", and "Moeng"
+   "constant", "local", "Schumann", "Moeng", and "Donelan"
+
+   The "Moeng" and "Schumann" models combine the velocity and temperature
+   of the first cell above the wall with their plane averages; the heat
+   flux of the "local" model is that of the "Schumann" model. The
+   "constant" model does not use the first-cell values: its stress and heat
+   flux follow from the plane averages alone. On a mesh where a refinement
+   level touches the wall-modeled boundary, the first cells of the levels
+   sit at different heights, so the plane averages entering these models
+   are taken per level from the wall-adjacent cells that each level owns,
+   at their own height. The mean surface stress of the "Moeng",
+   "Schumann" and "constant" models is then, on every level,
+   :math:`u_*^2 \langle \mathbf{u}_h \rangle / \langle |\mathbf{u}_h| \rangle`
+   with the averages taken over the wall-adjacent cells that the level
+   owns, which is :math:`u_*^2` along the mean wind when the wind is uniform
+   over the plane. With a specified :input_param:`ABL.surface_temp_flux`,
+   the mean surface heat flux is that flux on every level. The friction
+   velocity, the Obukhov length and the surface heat flux are computed once,
+   from the plane average at :input_param:`ABL.log_law_height`. The
+   "Donelan" model selects its drag coefficient from the mean wind at
+   :input_param:`ABL.log_law_height` and keeps that plane average on every
+   level. Meshes whose refinement does not reach the wall use the plane
+   averages at :input_param:`ABL.log_law_height` as before, and so does a
+   level whose first cell sits at or below the roughness height (with a
+   warning) and every level in inflow-outflow mode. Wall cells blanked by
+   terrain carry no wall stress and are left out of the level averages;
+   heights are measured from ``ABL.wall_position``.
 
 .. input_param:: ABL.bndry_output_format
 
