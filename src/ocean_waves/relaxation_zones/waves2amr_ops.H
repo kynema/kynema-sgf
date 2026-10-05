@@ -207,9 +207,7 @@ template <>
 struct ReadInputsOp<W2AWaves>
 {
     void operator()(
-        // cppcheck-suppress constParameterReference
-        W2AWaves::DataType& data,
-        const ::kynema_sgf::utils::MultiParser& pp)
+        W2AWaves::DataType& data, const ::kynema_sgf::utils::MultiParser& pp)
     {
 // Check for W2A initialization
 #ifndef KYNEMA_SGF_USE_W2A
@@ -594,9 +592,7 @@ struct ReadInputsOp<W2AWaves>
 template <>
 struct InitDataOp<W2AWaves>
 {
-    void
-    // cppcheck-suppress constParameterReference
-    operator()(
+    void operator()(
         W2AWaves::DataType& data,
         int level,
         const amrex::Geometry& geom,
@@ -765,7 +761,6 @@ struct InitDataOp<W2AWaves>
 template <>
 struct UpdateTargetFieldsOp<W2AWaves>
 {
-    // cppcheck-suppress constParameterReference
     void operator()(W2AWaves::DataType& data, const amrex::Real time)
     {
 

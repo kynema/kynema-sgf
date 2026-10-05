@@ -63,16 +63,16 @@ void apply_mms_vel(CFDSim& sim)
                     varrs[nbx](i, j, k, 0) =
                         u0 -
                         (std::cos(
-                             std::numbers::pi_v<amrex::Real> * (x - u0 * t)) *
+                             std::numbers::pi_v<amrex::Real> * (x - (u0 * t))) *
                          std::sin(
-                             std::numbers::pi_v<amrex::Real> * (y - v0 * t)) *
+                             std::numbers::pi_v<amrex::Real> * (y - (v0 * t))) *
                          std::exp(-2.0_rt * omega * t));
                     varrs[nbx](i, j, k, 1) =
                         v0 +
                         (std::sin(
-                             std::numbers::pi_v<amrex::Real> * (x - u0 * t)) *
+                             std::numbers::pi_v<amrex::Real> * (x - (u0 * t))) *
                          std::cos(
-                             std::numbers::pi_v<amrex::Real> * (y - v0 * t)) *
+                             std::numbers::pi_v<amrex::Real> * (y - (v0 * t))) *
                          std::exp(-2.0_rt * omega * t));
                     varrs[nbx](i, j, k, 2) = 0.0_rt;
                 }

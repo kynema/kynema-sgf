@@ -81,7 +81,7 @@ void HurricaneForcing::operator()(
             const amrex::Real V_z = V * (Vzh - ht) / Vzh;
             const amrex::Real dVdR_z = dVdR * (Vzh - ht) / Vzh;
             const amrex::Real M1LES = (umean * umean / R) + (vmean * V_z / R) -
-                                      (f * V_z + V_z * V_z / R);
+                                      ((f * V_z) + (V_z * V_z / R));
             const amrex::Real M2LES = (-umean * dVdR_z) - (umean * V_z / R);
 
             if (n == 0) {

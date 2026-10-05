@@ -27,9 +27,9 @@ void init_vof(kynema_sgf::Field& vof_fld, amrex::Real water_level)
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 const amrex::Real local_vof = amrex::min<amrex::Real>(
-                    1.0_rt,
-                    amrex::max<amrex::Real>(
-                        0.0_rt, (water_level - (z - offset * dx[2])) / dx[2]));
+                    1.0_rt, amrex::max<amrex::Real>(
+                                0.0_rt, (water_level - (z - (offset * dx[2]))) /
+                                            dx[2]));
                 farrs[nbx](i, j, k) = local_vof;
             });
     }
@@ -67,20 +67,20 @@ void init_vof_multival(
                     local_vof = amrex::min<amrex::Real>(
                         1.0_rt,
                         amrex::max<amrex::Real>(
-                            0.0_rt, (wl0 - (z - offset * dx[2])) / dx[2]));
+                            0.0_rt, (wl0 - (z - (offset * dx[2]))) / dx[2]));
                 } else {
                     // Above wl0
                     if (z - (offset * dx[2]) > wl2) {
                         local_vof = amrex::min<amrex::Real>(
-                            1.0_rt,
-                            amrex::max<amrex::Real>(
-                                0.0_rt, ((z + offset * dx[2]) - wl1) / dx[2]));
+                            1.0_rt, amrex::max<amrex::Real>(
+                                        0.0_rt, ((z + (offset * dx[2])) - wl1) /
+                                                    dx[2]));
                     } else {
                         // Bottom portion
                         local_vof = amrex::min<amrex::Real>(
-                            1.0_rt,
-                            amrex::max<amrex::Real>(
-                                0.0_rt, (wl2 - (z - offset * dx[2])) / dx[2]));
+                            1.0_rt, amrex::max<amrex::Real>(
+                                        0.0_rt, (wl2 - (z - (offset * dx[2]))) /
+                                                    dx[2]));
                     }
                 }
                 farrs[nbx](i, j, k) = local_vof;
@@ -116,13 +116,13 @@ void init_vof_slope(
 
                 // Find height of interface at current x, y
                 const amrex::Real local_ht =
-                    water_level + (slope * (x - 0.5_rt * domain_length)) +
-                    (slope * (y - 0.5_rt * domain_length));
+                    water_level + (slope * (x - (0.5_rt * domain_length))) +
+                    (slope * (y - (0.5_rt * domain_length)));
 
                 const amrex::Real local_vof = amrex::min<amrex::Real>(
                     1.0_rt,
                     amrex::max<amrex::Real>(
-                        0.0_rt, (local_ht - (z - offset * dx[2])) / dx[2]));
+                        0.0_rt, (local_ht - (z - (offset * dx[2]))) / dx[2]));
                 farrs[nbx](i, j, k) = local_vof;
             });
     }
@@ -176,7 +176,7 @@ void init_vof_outliers(
                 const amrex::Real z = problo[2] + ((k + offset) * dx[2]);
                 if (std::abs(water_level - z) < 0.5_rt * dx[2]) {
                     farrs[nbx](i, j, k) =
-                        (water_level - (z - 0.5_rt * dx[2])) / dx[2];
+                        (water_level - (z - (0.5_rt * dx[2]))) / dx[2];
                 } else if (z > water_level) {
                     farrs[nbx](i, j, k) = distort_above ? 0.1_rt : 0.0_rt;
                 } else {
@@ -832,7 +832,7 @@ TEST_F(FreeSurfaceTest, point_diffuse_in_single_phase)
     const amrex::Real vof_cell = 0.0_rt;
     const amrex::Real vof_mz = (water_lev_diffuse - 58.0_rt) / 2.0_rt;
     const amrex::Real vof_pxy =
-        (water_lev_diffuse + 4.0_rt * vof_slope - 60.0_rt) / 2.0_rt;
+        (water_lev_diffuse + (4.0_rt * vof_slope) - 60.0_rt) / 2.0_rt;
     const amrex::Real vof_c =
         vof_cell + (2.0_rt * (vof_pxy - vof_cell) / 4.0_rt * (2.0_rt - 0.1_rt));
     const amrex::Real slope_z = (vof_cell - vof_mz) / 2.0_rt;

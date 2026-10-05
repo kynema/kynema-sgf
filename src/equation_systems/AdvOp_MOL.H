@@ -22,7 +22,6 @@ struct AdvectionOp<
     fvm::MOL,
     typename std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
 {
-    // cppcheck-suppress uninitMemberVar
     AdvectionOp(
         CFDSim& /* sim */,
         PDEFields& fields_in,
@@ -51,7 +50,6 @@ struct AdvectionOp<
         const auto& repo = fields.repo;
         const auto& geom = repo.mesh().Geom();
 
-        // cppcheck-suppress constVariableReference
         auto& conv_term = fields.conv_term.state(fstate);
         const auto& dof_field = fields.field.state(fstate);
         const auto& den = density.state(fstate);

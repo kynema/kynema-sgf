@@ -169,11 +169,11 @@ public:
         amrex::ParallelFor(np, [=] AMREX_GPU_DEVICE(int ip) {
             auto& p = pstruct[ip];
             const amrex::Real x =
-                (p.pos(0) - problo[0] - offset[0] * dx[0]) * dxi[0];
+                (p.pos(0) - problo[0] - (offset[0] * dx[0])) * dxi[0];
             const amrex::Real y =
-                (p.pos(1) - problo[1] - offset[1] * dx[1]) * dxi[1];
+                (p.pos(1) - problo[1] - (offset[1] * dx[1])) * dxi[1];
             const amrex::Real z =
-                (p.pos(2) - problo[2] - offset[2] * dx[2]) * dxi[2];
+                (p.pos(2) - problo[2] - (offset[2] * dx[2])) * dxi[2];
 
             // Round to the nearest data point index
             const int i = static_cast<int>(std::round(x));
@@ -205,11 +205,11 @@ public:
             auto& p = pstruct[ip];
             // Determine offsets within the containing cell
             const amrex::Real x =
-                (p.pos(0) - problo[0] - offset[0] * dx[0]) * dxi[0];
+                (p.pos(0) - problo[0] - (offset[0] * dx[0])) * dxi[0];
             const amrex::Real y =
-                (p.pos(1) - problo[1] - offset[1] * dx[1]) * dxi[1];
+                (p.pos(1) - problo[1] - (offset[1] * dx[1])) * dxi[1];
             const amrex::Real z =
-                (p.pos(2) - problo[2] - offset[2] * dx[2]) * dxi[2];
+                (p.pos(2) - problo[2] - (offset[2] * dx[2])) * dxi[2];
 
             // Index of the low corner
             const int i = static_cast<int>(std::floor(x));

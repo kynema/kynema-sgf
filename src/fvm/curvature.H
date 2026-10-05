@@ -44,76 +44,76 @@ struct Curvature
                 auto const& curphi = out_arrs[nbx];
                 for (int n = 0; n < ncomp; ++n) {
                     const amrex::Real phixx =
-                        (Stencil::s00 * phi(i + 1, j, k, n) +
-                         Stencil::s01 * phi(i, j, k, n) +
-                         Stencil::s02 * phi(i - 1, j, k, n)) *
+                        ((Stencil::s00 * phi(i + 1, j, k, n)) +
+                         (Stencil::s01 * phi(i, j, k, n)) +
+                         (Stencil::s02 * phi(i - 1, j, k, n))) *
                         idx[0] * idx[0];
                     const amrex::Real phiyy =
-                        (Stencil::s10 * phi(i, j + 1, k, n) +
-                         Stencil::s11 * phi(i, j, k, n) +
-                         Stencil::s12 * phi(i, j - 1, k, n)) *
+                        ((Stencil::s10 * phi(i, j + 1, k, n)) +
+                         (Stencil::s11 * phi(i, j, k, n)) +
+                         (Stencil::s12 * phi(i, j - 1, k, n))) *
                         idx[1] * idx[1];
                     const amrex::Real phizz =
-                        (Stencil::s20 * phi(i, j, k + 1, n) +
-                         Stencil::s21 * phi(i, j, k, n) +
-                         Stencil::s22 * phi(i, j, k - 1, n)) *
+                        ((Stencil::s20 * phi(i, j, k + 1, n)) +
+                         (Stencil::s21 * phi(i, j, k, n)) +
+                         (Stencil::s22 * phi(i, j, k - 1, n))) *
                         idx[2] * idx[2];
                     const amrex::Real phiz =
-                        (Stencil::c20 * phi(i, j, k + 1, n) +
-                         Stencil::c21 * phi(i, j, k, n) +
-                         Stencil::c22 * phi(i, j, k - 1, n)) *
+                        ((Stencil::c20 * phi(i, j, k + 1, n)) +
+                         (Stencil::c21 * phi(i, j, k, n)) +
+                         (Stencil::c22 * phi(i, j, k - 1, n))) *
                         idx[2];
                     const amrex::Real phiz_ip1 =
-                        (Stencil::c20 * phi(i + 1, j, k + 1, n) +
-                         Stencil::c21 * phi(i + 1, j, k, n) +
-                         Stencil::c22 * phi(i + 1, j, k - 1, n)) *
+                        ((Stencil::c20 * phi(i + 1, j, k + 1, n)) +
+                         (Stencil::c21 * phi(i + 1, j, k, n)) +
+                         (Stencil::c22 * phi(i + 1, j, k - 1, n))) *
                         idx[2];
                     const amrex::Real phiz_im1 =
-                        (Stencil::c20 * phi(i - 1, j, k + 1, n) +
-                         Stencil::c21 * phi(i - 1, j, k, n) +
-                         Stencil::c22 * phi(i - 1, j, k - 1, n)) *
+                        ((Stencil::c20 * phi(i - 1, j, k + 1, n)) +
+                         (Stencil::c21 * phi(i - 1, j, k, n)) +
+                         (Stencil::c22 * phi(i - 1, j, k - 1, n))) *
                         idx[2];
                     const amrex::Real phiz_jp1 =
-                        (Stencil::c20 * phi(i, j + 1, k + 1, n) +
-                         Stencil::c21 * phi(i, j + 1, k, n) +
-                         Stencil::c22 * phi(i, j + 1, k - 1, n)) *
+                        ((Stencil::c20 * phi(i, j + 1, k + 1, n)) +
+                         (Stencil::c21 * phi(i, j + 1, k, n)) +
+                         (Stencil::c22 * phi(i, j + 1, k - 1, n))) *
                         idx[2];
                     const amrex::Real phiz_jm1 =
-                        (Stencil::c20 * phi(i, j - 1, k + 1, n) +
-                         Stencil::c21 * phi(i, j - 1, k, n) +
-                         Stencil::c22 * phi(i, j - 1, k - 1, n)) *
+                        ((Stencil::c20 * phi(i, j - 1, k + 1, n)) +
+                         (Stencil::c21 * phi(i, j - 1, k, n)) +
+                         (Stencil::c22 * phi(i, j - 1, k - 1, n))) *
                         idx[2];
                     const amrex::Real phiy =
-                        (Stencil::c10 * phi(i, j + 1, k, n) +
-                         Stencil::c11 * phi(i, j, k, n) +
-                         Stencil::c12 * phi(i, j - 1, k, n)) *
+                        ((Stencil::c10 * phi(i, j + 1, k, n)) +
+                         (Stencil::c11 * phi(i, j, k, n)) +
+                         (Stencil::c12 * phi(i, j - 1, k, n))) *
                         idx[1];
                     const amrex::Real phiy_ip1 =
-                        (Stencil::c10 * phi(i + 1, j + 1, k, n) +
-                         Stencil::c11 * phi(i + 1, j, k, n) +
-                         Stencil::c12 * phi(i + 1, j - 1, k, n)) *
+                        ((Stencil::c10 * phi(i + 1, j + 1, k, n)) +
+                         (Stencil::c11 * phi(i + 1, j, k, n)) +
+                         (Stencil::c12 * phi(i + 1, j - 1, k, n))) *
                         idx[1];
                     const amrex::Real phiy_im1 =
-                        (Stencil::c10 * phi(i - 1, j + 1, k, n) +
-                         Stencil::c11 * phi(i - 1, j, k, n) +
-                         Stencil::c12 * phi(i - 1, j - 1, k, n)) *
+                        ((Stencil::c10 * phi(i - 1, j + 1, k, n)) +
+                         (Stencil::c11 * phi(i - 1, j, k, n)) +
+                         (Stencil::c12 * phi(i - 1, j - 1, k, n))) *
                         idx[1];
                     const amrex::Real phiyz =
-                        (Stencil::c10 * phiz_jp1 + Stencil::c11 * phiz +
-                         Stencil::c12 * phiz_jm1) *
+                        ((Stencil::c10 * phiz_jp1) + (Stencil::c11 * phiz) +
+                         (Stencil::c12 * phiz_jm1)) *
                         idx[1];
                     const amrex::Real phix =
-                        (Stencil::c00 * phi(i + 1, j, k, n) +
-                         Stencil::c01 * phi(i, j, k, n) +
-                         Stencil::c02 * phi(i - 1, j, k, n)) *
+                        ((Stencil::c00 * phi(i + 1, j, k, n)) +
+                         (Stencil::c01 * phi(i, j, k, n)) +
+                         (Stencil::c02 * phi(i - 1, j, k, n))) *
                         idx[0];
                     const amrex::Real phixy =
-                        (Stencil::c00 * phiy_ip1 + Stencil::c01 * phiy +
-                         Stencil::c02 * phiy_im1) *
+                        ((Stencil::c00 * phiy_ip1) + (Stencil::c01 * phiy) +
+                         (Stencil::c02 * phiy_im1)) *
                         idx[0];
                     const amrex::Real phixz =
-                        (Stencil::c00 * phiz_ip1 + Stencil::c01 * phiz +
-                         Stencil::c02 * phiz_im1) *
+                        ((Stencil::c00 * phiz_ip1) + (Stencil::c01 * phiz) +
+                         (Stencil::c02 * phiz_im1)) *
                         idx[0];
                     curphi(i, j, k, n) =
                         -((phix * phix * phiyy) -

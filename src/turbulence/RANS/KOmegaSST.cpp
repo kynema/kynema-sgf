@@ -161,8 +161,8 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt,
                     2.0_rt * rho_arrs[nbx](i, j, k) * sigma_omega2 * gko /
                         (sdr_arrs[nbx](i, j, k) +
-                         std::numeric_limits<amrex::Real>::epsilon() *
-                             1.0e1_rt));
+                         (std::numeric_limits<amrex::Real>::epsilon() *
+                          1.0e1_rt)));
 
                 amrex::Real tmp1 =
                     4.0_rt * rho_arrs[nbx](i, j, k) * sigma_omega2 *
@@ -170,14 +170,14 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
                     (cdkomega * wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k));
                 amrex::Real tmp2 =
                     std::sqrt(tke_arrs[nbx](i, j, k)) /
-                    (beta_star * sdr_arrs[nbx](i, j, k) *
-                         wd_arrs[nbx](i, j, k) +
-                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+                    ((beta_star * sdr_arrs[nbx](i, j, k) *
+                      wd_arrs[nbx](i, j, k)) +
+                     (std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt));
                 amrex::Real tmp3 =
                     500.0_rt * lam_mu_arrs[nbx](i, j, k) /
-                    (wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k) *
-                         sdr_arrs[nbx](i, j, k) * rho_arrs[nbx](i, j, k) +
-                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+                    ((wd_arrs[nbx](i, j, k) * wd_arrs[nbx](i, j, k) *
+                      sdr_arrs[nbx](i, j, k) * rho_arrs[nbx](i, j, k)) +
+                     (std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt));
                 amrex::Real tmp4 = shear_prod_arrs[nbx](i, j, k);
 
                 amrex::Real arg1 = amrex::min<amrex::Real>(
@@ -238,7 +238,7 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
                     (1.0_rt - tmp_f1) * 2.0_rt * rho_arrs[nbx](i, j, k) *
                     sigma_omega2 * gko /
                     (sdr_arrs[nbx](i, j, k) +
-                     std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+                     (std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt));
 
                 const amrex::Real sdr_diss_amb =
                     beta * rho_arrs[nbx](i, j, k) * sdr_amb * sdr_amb;
@@ -253,12 +253,12 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
                     sdr_diss_arrs[nbx](i, j, k) = cross_diffusion;
 
                     sdr_lhs_arrs[nbx](i, j, k) =
-                        (rho_arrs[nbx](i, j, k) * beta *
-                             sdr_arrs[nbx](i, j, k) +
-                         0.5_rt * std::abs(cross_diffusion) /
-                             (sdr_arrs[nbx](i, j, k) +
-                              std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e1_rt)) *
+                        ((rho_arrs[nbx](i, j, k) * beta *
+                          sdr_arrs[nbx](i, j, k)) +
+                         (0.5_rt * std::abs(cross_diffusion) /
+                          (sdr_arrs[nbx](i, j, k) +
+                           (std::numeric_limits<amrex::Real>::epsilon() *
+                            1.0e1_rt)))) *
                         delta_t;
                 } else if (diff_type == DiffusionType::Implicit) {
                     /* Source term linearization is based on Florian
@@ -270,12 +270,12 @@ void KOmegaSST<Transport>::update_turbulent_viscosity(
                     sdr_diss_arrs[nbx](i, j, k) = 0.0_rt;
 
                     sdr_lhs_arrs[nbx](i, j, k) =
-                        (2.0_rt * rho_arrs[nbx](i, j, k) * beta *
-                             sdr_arrs[nbx](i, j, k) +
-                         std::abs(cross_diffusion) /
-                             (sdr_arrs[nbx](i, j, k) +
-                              std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e1_rt)) *
+                        ((2.0_rt * rho_arrs[nbx](i, j, k) * beta *
+                          sdr_arrs[nbx](i, j, k)) +
+                         (std::abs(cross_diffusion) /
+                          (sdr_arrs[nbx](i, j, k) +
+                           (std::numeric_limits<amrex::Real>::epsilon() *
+                            1.0e1_rt)))) *
                         delta_t;
 
                 } else {
@@ -321,7 +321,7 @@ void KOmegaSST<Transport>::update_scalar_diff(
                 deff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     deff_arrs[nbx](i, j, k) =
                         lam_mu_arrs[nbx](i, j, k) +
-                        ((f1_arrs[nbx](i, j, k) * (sigma_k1 - sigma_k2) +
+                        (((f1_arrs[nbx](i, j, k) * (sigma_k1 - sigma_k2)) +
                           sigma_k2) *
                          mu_arrs[nbx](i, j, k));
                 });
@@ -341,8 +341,8 @@ void KOmegaSST<Transport>::update_scalar_diff(
                 deff(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
                     deff_arrs[nbx](i, j, k) =
                         lam_mu_arrs[nbx](i, j, k) +
-                        ((f1_arrs[nbx](i, j, k) *
-                              (sigma_omega1 - sigma_omega2) +
+                        (((f1_arrs[nbx](i, j, k) *
+                           (sigma_omega1 - sigma_omega2)) +
                           sigma_omega2) *
                          mu_arrs[nbx](i, j, k));
                 });

@@ -52,7 +52,6 @@ public:
 
     ~LinearShearProfile() override = default;
 
-    // cppcheck-suppress duplInheritedMember
     [[nodiscard]] LinearShearOp device_instance() const { return m_op; }
 
 private:
@@ -101,7 +100,6 @@ public:
 
     ~PowerLawProfile() override = default;
 
-    // cppcheck-suppress duplInheritedMember
     [[nodiscard]] PowerLawOp device_instance() const { return m_op; }
 
 private:

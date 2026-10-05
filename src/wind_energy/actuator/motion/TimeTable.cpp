@@ -61,11 +61,10 @@ void TimeTable::read(
     for (int i = 1; i < static_cast<int>(m_time.size()); ++i) {
         const amrex::Real dt = m_time[i] - m_time[i - 1];
         for (int n = 0; n < num_values; ++n) {
-            m_prefix_integral[i][n] =
-                m_prefix_integral[i - 1][n] +
-                0.5_rt * dt *
-                    (m_values[(i - 1) * m_num_values + n] +
-                     m_values[i * m_num_values + n]);
+            m_prefix_integral[i][n] = m_prefix_integral[i - 1][n] +
+                                      (0.5_rt * dt *
+                                       (m_values[((i - 1) * m_num_values) + n] +
+                                        m_values[(i * m_num_values) + n]));
         }
     }
 }
@@ -139,8 +138,8 @@ RealList TimeTable::derivative(const amrex::Real time) const
     const int i = interval(time);
     const amrex::Real dt = m_time[i + 1] - m_time[i];
     for (int n = 0; n < m_num_values; ++n) {
-        result[n] = (m_values[(i + 1) * m_num_values + n] -
-                     m_values[i * m_num_values + n]) /
+        result[n] = (m_values[((i + 1) * m_num_values) + n] -
+                     m_values[(i * m_num_values) + n]) /
                     dt;
     }
     return result;
@@ -161,7 +160,8 @@ RealList TimeTable::integral(const amrex::Real time) const
         result = m_prefix_integral.back();
         const amrex::Real dt = time - m_time.back();
         for (int n = 0; n < m_num_values; ++n) {
-            result[n] += dt * m_values[(m_time.size() - 1) * m_num_values + n];
+            result[n] +=
+                dt * m_values[((m_time.size() - 1) * m_num_values) + n];
         }
         return result;
     }
@@ -170,11 +170,11 @@ RealList TimeTable::integral(const amrex::Real time) const
     const amrex::Real dt = time - m_time[i];
     const amrex::Real interval_dt = m_time[i + 1] - m_time[i];
     for (int n = 0; n < m_num_values; ++n) {
-        const amrex::Real slope = (m_values[(i + 1) * m_num_values + n] -
-                                   m_values[i * m_num_values + n]) /
+        const amrex::Real slope = (m_values[((i + 1) * m_num_values) + n] -
+                                   m_values[(i * m_num_values) + n]) /
                                   interval_dt;
-        result[n] +=
-            m_values[i * m_num_values + n] * dt + 0.5_rt * slope * dt * dt;
+        result[n] += (m_values[(i * m_num_values) + n] * dt) +
+                     (0.5_rt * slope * dt * dt);
     }
     return result;
 }

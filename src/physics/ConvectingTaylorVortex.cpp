@@ -22,8 +22,8 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real UExact::operator()(
     const amrex::Real y,
     const amrex::Real t) const
 {
-    return u0 - (std::cos(std::numbers::pi_v<amrex::Real> * (x - u0 * t)) *
-                 std::sin(std::numbers::pi_v<amrex::Real> * (y - v0 * t)) *
+    return u0 - (std::cos(std::numbers::pi_v<amrex::Real> * (x - (u0 * t))) *
+                 std::sin(std::numbers::pi_v<amrex::Real> * (y - (v0 * t))) *
                  std::exp(-2.0_rt * omega * t));
 }
 
@@ -35,8 +35,8 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real VExact::operator()(
     const amrex::Real y,
     const amrex::Real t) const
 {
-    return v0 + (std::sin(std::numbers::pi_v<amrex::Real> * (x - u0 * t)) *
-                 std::cos(std::numbers::pi_v<amrex::Real> * (y - v0 * t)) *
+    return v0 + (std::sin(std::numbers::pi_v<amrex::Real> * (x - (u0 * t))) *
+                 std::cos(std::numbers::pi_v<amrex::Real> * (y - (v0 * t))) *
                  std::exp(-2.0_rt * omega * t));
 }
 
@@ -60,7 +60,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GpxExact::operator()(
     const amrex::Real t) const
 {
     return 0.5_rt * std::numbers::pi_v<amrex::Real> *
-           std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * (x - u0 * t)) *
+           std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * (x - (u0 * t))) *
            std::exp(-4.0_rt * omega * t);
 }
 
@@ -73,7 +73,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real GpyExact::operator()(
     const amrex::Real t) const
 {
     return 0.5_rt * std::numbers::pi_v<amrex::Real> *
-           std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * (y - v0 * t)) *
+           std::sin(2.0_rt * std::numbers::pi_v<amrex::Real> * (y - (v0 * t))) *
            std::exp(-4.0_rt * omega * t);
 }
 

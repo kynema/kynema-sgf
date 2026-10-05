@@ -17,7 +17,6 @@ namespace kynema_sgf {
 namespace turbulence {
 
 template <typename Transport>
-// cppcheck-suppress uninitMemberVar
 Kosovic<Transport>::Kosovic(CFDSim& sim)
     : TurbModelBase<Transport>(sim)
     , m_vel(sim.repo().get_field("velocity"))
@@ -168,8 +167,9 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 const amrex::Real turnOff = std::exp(-x3 / locLESTurnOff);
                 const amrex::Real viscosityScale =
                     (locSurfaceFactor *
-                     (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor +
-                      std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                     ((std::pow(1.0_rt - fmu, locSurfaceRANSExp) *
+                       smag_factor) +
+                      (std::pow(fmu, locSurfaceRANSExp) * ransL))) +
                     ((1.0_rt - locSurfaceFactor) * smag_factor);
                 const amrex::Real blankTerrain =
                     (has_terrain) ? 1 - blank_arrs[nbx](i, j, k, 0) : 1.0_rt;
@@ -177,9 +177,9 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     mu_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
                 const amrex::Real T0 = ref_theta_arrs[nbx](i, j, k);
                 const amrex::Real stratification_sensor =
-                    -(gradT_arrs[nbx](i, j, k, 0) * gravity[0] +
-                      gradT_arrs[nbx](i, j, k, 1) * gravity[1] +
-                      gradT_arrs[nbx](i, j, k, 2) * gravity[2]) /
+                    -((gradT_arrs[nbx](i, j, k, 0) * gravity[0]) +
+                      (gradT_arrs[nbx](i, j, k, 1) * gravity[1]) +
+                      (gradT_arrs[nbx](i, j, k, 2) * gravity[2])) /
                     T0;
                 amrex::Real stratification = 1.0_rt;
                 amrex::Real non_linear_coeff = 1.0_rt;
@@ -187,11 +187,11 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                 if (stratification_sensor > tol) {
                     // stable
                     non_linear_coeff =
-                        (mut - 3.0_rt * stratification_sensor < tol) ? 0.0_rt
-                                                                     : 1.0_rt;
+                        (mut - (3.0_rt * stratification_sensor) < tol) ? 0.0_rt
+                                                                       : 1.0_rt;
                     stratification = std::sqrt(
                         amrex::max<amrex::Real>(
-                            tol, mut - 3.0_rt * stratification_sensor));
+                            tol, mut - (3.0_rt * stratification_sensor)));
                 } else {
                     stratification = std::sqrt(mut);
                 }
@@ -228,9 +228,9 @@ void Kosovic<Transport>::update_turbulent_viscosity(
                     (drag * mut_loglaw);
                 const amrex::Real stressScale =
                     (locSurfaceFactor *
-                     (std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor *
-                          0.25_rt * locC1 +
-                      std::pow(fmu, locSurfaceRANSExp) * ransL)) +
+                     ((std::pow(1.0_rt - fmu, locSurfaceRANSExp) * smag_factor *
+                       0.25_rt * locC1) +
+                      (std::pow(fmu, locSurfaceRANSExp) * ransL))) +
                     ((1.0_rt - locSurfaceFactor) * smag_factor * 0.25_rt *
                      locC1);
                 divNij_arrs[nbx](i, j, k, 0) *= rho * stressScale * turnOff *

@@ -40,7 +40,6 @@ struct PostSolveOp<TKE>
 
     void operator()(const amrex::Real time)
     {
-        // cppcheck-suppress constVariableReference
         auto& field = m_fields.field;
         const auto& repo = field.repo();
         const int nlevels = repo.num_active_levels();

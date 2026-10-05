@@ -311,11 +311,11 @@ void ActuatorContainer::interpolate_fields(
                 auto& pp = pstruct[ip];
                 // Determine offsets within the containing cell
                 const amrex::Real x =
-                    (pp.pos(0) - plo[0] - 0.5_rt * dx[0]) * dxi[0];
+                    (pp.pos(0) - plo[0] - (0.5_rt * dx[0])) * dxi[0];
                 const amrex::Real y =
-                    (pp.pos(1) - plo[1] - 0.5_rt * dx[1]) * dxi[1];
+                    (pp.pos(1) - plo[1] - (0.5_rt * dx[1])) * dxi[1];
                 const amrex::Real z =
-                    (pp.pos(2) - plo[2] - 0.5_rt * dx[2]) * dxi[2];
+                    (pp.pos(2) - plo[2] - (0.5_rt * dx[2])) * dxi[2];
 
                 // Index of the low corner
                 const int i = static_cast<int>(std::floor(x));
