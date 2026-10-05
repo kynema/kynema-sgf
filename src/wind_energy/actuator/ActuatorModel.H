@@ -57,6 +57,10 @@ public:
 
     virtual void compute_loads_and_update_state() = 0;
 
+    virtual void compute_loads() = 0;
+
+    virtual void advance_model() = 0;
+
     virtual void compute_source_term(
         int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom) = 0;
 
@@ -157,6 +161,19 @@ public:
         std::copy(
             density.begin(), density.end(), m_data.grid().density.begin());
         ops::UpdateVelOp<ActTrait, SrcTrait>()(m_data);
+    }
+
+    void compute_loads() override
+    {
+        ops::ComputeLoadsOp<ActTrait, SrcTrait>()(m_data);
+        m_src_op.setup_op();
+        // communicate loads
+    }
+
+    void advance_model() override
+    {
+        ops::AdvanceModelOp<ActTrait, SrcTrait>()(m_data);
+        // communicate positions
     }
 
     void compute_loads_and_update_state() override

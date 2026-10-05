@@ -20,7 +20,7 @@ namespace sgf_fmb {
 void build_turbine(
     kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
-    const int n_blades,
+    int &n_blades,
     const int n_blade_nodes,
     const int n_tower_nodes,
     const amrex::Real rotor_speed_init,

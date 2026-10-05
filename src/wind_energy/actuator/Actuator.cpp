@@ -290,6 +290,28 @@ void Actuator::compute_actuator_loads_and_advance_model_and_scatter()
     }
 }
 
+void Actuator::compute_actuator_loads()
+{
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::compute_actuator_loads");
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->compute_loads();
+        }
+    }
+}
+
+void Actuator::advance_model()
+{
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::advance_model");
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->advance_model();
+        }
+    }
+}
+
 void Actuator::accumulate_actuator_source_terms_for_fluid()
 {
     BL_PROFILE(

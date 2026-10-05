@@ -60,6 +60,20 @@ struct UpdateVelOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct ComputeLoadsAndUpdateStateOp;
 
+/** Compute actuator loads and scatter them to the relevant processes.
+ *
+ *  \ingroup actuator
+ */
+template <typename ActTrait, typename SrcTrait, typename = void>
+struct ComputeLoadsOp;
+
+/** Advance the actuator model by one CFD time step then scatter new position.
+ *
+ *  \ingroup actuator
+ */
+template <typename ActTrait, typename SrcTrait, typename = void>
+struct AdvanceModelOp;
+
 /** Compute source term for the momentum equation.
  *
  *  \ingroup actuator
