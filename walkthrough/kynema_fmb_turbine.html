@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-FMB turbine walkthrough &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LES with Terrain" href="terrain.html" />
+    <link rel="prev" title="Turbine simulation walkthrough" href="turbine.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Walkthrough</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="precursor.html">Precursor (ABL) walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="turbine.html">Turbine simulation walkthrough</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kynema-FMB turbine walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#restarting-a-kynema-fmb-coupled-run">Restarting a Kynema-FMB coupled run</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="terrain.html">LES with Terrain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rans.html">Wall-Modeled RANS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noprecursorrans.html">External Driven Terrain Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration.html">Actuator Line Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Walkthrough</a></li>
+      <li class="breadcrumb-item active">Kynema-FMB turbine walkthrough</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/walkthrough/kynema_fmb_turbine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kynema-fmb-turbine-walkthrough">
+<span id="kynema-fmb-turbine"></span><h1>Kynema-FMB turbine walkthrough<a class="headerlink" href="#kynema-fmb-turbine-walkthrough" title="Link to this heading"></a></h1>
+<p>This walkthrough shows how to run a turbine simulation in Kynema-SGF with the structural and aerodynamic turbine model provided by Kynema-FMB. The example is based on the regression test input file <code class="docutils literal notranslate"><span class="pre">act_kynema_fmb_alm.inp</span></code> and uses the actuator line representation <code class="docutils literal notranslate"><span class="pre">TurbineKynemaFMBLine</span></code>. To run this example, Kynema-SGF must be compiled with Kynema-FMB support enabled.</p>
+<p>Here is the main input file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># --- Simulation time control parameters ---</span>
+<span class="linenos"> 2</span><span class="n">time</span><span class="o">.</span><span class="n">stop_time</span>                           <span class="o">=</span> <span class="mf">0.2</span>
+<span class="linenos"> 3</span><span class="n">time</span><span class="o">.</span><span class="n">fixed_dt</span>                            <span class="o">=</span> <span class="mf">0.02</span>
+<span class="linenos"> 4</span><span class="n">incflo</span><span class="o">.</span><span class="n">physics</span>                           <span class="o">=</span> <span class="n">FreeStream</span> <span class="n">Actuator</span>
+<span class="linenos"> 5</span><span class="n">io</span><span class="o">.</span><span class="n">check_file</span>                            <span class="o">=</span> <span class="n">chk</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># --- Flow setup ---</span>
+<span class="linenos"> 8</span><span class="n">incflo</span><span class="o">.</span><span class="n">density</span>                           <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos"> 9</span><span class="n">ConstValue</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="n">value</span>                 <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos">10</span><span class="n">ConstValue</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">value</span>                <span class="o">=</span> <span class="mf">11.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="linenos">11</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_lo</span>                         <span class="o">=</span> <span class="o">-</span><span class="mf">960.0</span> <span class="o">-</span><span class="mf">960.0</span> <span class="o">-</span><span class="mf">960.0</span>
+<span class="linenos">12</span><span class="n">geometry</span><span class="o">.</span><span class="n">prob_hi</span>                         <span class="o">=</span> <span class="mf">960.0</span> <span class="mf">960.0</span> <span class="mf">960.0</span>
+<span class="linenos">13</span><span class="n">amr</span><span class="o">.</span><span class="n">n_cell</span>                               <span class="o">=</span> <span class="mi">96</span> <span class="mi">96</span> <span class="mi">96</span>
+<span class="linenos">14</span><span class="n">ICNS</span><span class="o">.</span><span class="n">source_terms</span>                        <span class="o">=</span> <span class="n">ActuatorForcing</span>
+<span class="linenos">15</span><span class="n">time</span><span class="o">.</span><span class="n">plot_interval</span>                       <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos">16</span><span class="n">time</span><span class="o">.</span><span class="n">checkpoint_interval</span>                 <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="c1"># --- Actuator setup ---</span>
+<span class="linenos">19</span><span class="n">Actuator</span><span class="o">.</span><span class="n">type</span>                            <span class="o">=</span> <span class="n">TurbineKynemaFMBLine</span>
+<span class="linenos">20</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">epsilon</span>       <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">21</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">epsilon_tower</span> <span class="o">=</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="linenos">22</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">kynema_fmb_input_file</span>  <span class="o">=</span> <span class="n">NREL</span><span class="o">-</span><span class="mi">5</span><span class="n">MW</span><span class="o">-</span><span class="n">aero</span><span class="o">.</span><span class="n">yaml</span>
+<span class="linenos">23</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_struct_nodes_blade</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos">24</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_struct_nodes_tower</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="linenos">25</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_points_blade</span>       <span class="o">=</span> <span class="mi">64</span>
+<span class="linenos">26</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_points_tower</span>       <span class="o">=</span> <span class="mi">7</span>
+<span class="linenos">27</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">rot_speed_rpm</span>          <span class="o">=</span> <span class="mf">12.1</span>
+<span class="linenos">28</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">dt</span>                     <span class="o">=</span> <span class="mf">0.005</span>
+<span class="linenos">29</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">density</span>                <span class="o">=</span> <span class="mf">1.225</span>
+<span class="linenos">30</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">output_frequency</span>       <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">31</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">num_blades</span>             <span class="o">=</span> <span class="mi">3</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="n">Actuator</span><span class="o">.</span><span class="n">labels</span>                          <span class="o">=</span> <span class="n">T0</span> <span class="n">T1</span>
+<span class="linenos">34</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T0</span><span class="o">.</span><span class="n">base_position</span>                <span class="o">=</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">250.0</span> <span class="o">-</span><span class="mf">90.0</span>
+<span class="linenos">35</span><span class="n">Actuator</span><span class="o">.</span><span class="n">T1</span><span class="o">.</span><span class="n">base_position</span>                <span class="o">=</span> <span class="mf">0.0</span> <span class="mf">250.0</span> <span class="o">-</span><span class="mf">90.0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For simplicity, the flow setup here is a simple freestream problem with <code class="docutils literal notranslate"><span class="pre">FreeStream</span> <span class="pre">Actuator</span></code> enabled in <code class="docutils literal notranslate"><span class="pre">incflo.physics</span></code>. There is no precursor inflow, wall-model data, or body-force forcing to prepare ahead of time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Actuator.type</span></code> is set to <code class="docutils literal notranslate"><span class="pre">TurbineKynemaFMBLine</span></code>, which couples the Kynema-SGF actuator forcing to a Kynema-FMB turbine model.</p></li>
+<li><p>The turbine geometry and structural properties are not described directly in the Kynema-SGF input file. Instead, they are read from the WindIO YAML file specified by <code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file</span></code>.</p></li>
+<li><p>The actuator discretization still needs to be provided in the Kynema-SGF input file. In this example that includes the blade and tower structural node counts, the number of aerodynamic force points, the Gaussian widths <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> and <code class="docutils literal notranslate"><span class="pre">epsilon_tower</span></code>, and the turbine base locations.</p></li>
+<li><p>The turbine solver time step <code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.dt</span></code> must divide the Kynema-SGF time step exactly. In this case <code class="docutils literal notranslate"><span class="pre">time.fixed_dt</span> <span class="pre">=</span> <span class="pre">0.02</span></code> and <code class="docutils literal notranslate"><span class="pre">dt</span> <span class="pre">=</span> <span class="pre">0.005</span></code>, so Kynema-FMB advances four sub-steps per flow solve. Kynema-FMB is highly robust, and it typically can use the same time step size as the flow solver.</p></li>
+</ul>
+<p>The turbine-specific lines in the example are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file</span> <span class="pre">=</span> <span class="pre">NREL-5MW-aero.yaml</span></code> points to the WindIO description consumed by Kynema-FMB. This file can be found in the regression test directory under <code class="docutils literal notranslate"><span class="pre">tests/test_files/actuator_kynema_fmb_alm</span></code>; it is not listed here for the sake of brevity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_struct_nodes_blade</span></code> and <code class="docutils literal notranslate"><span class="pre">num_struct_nodes_tower</span></code> set the number of structural nodes used by the beam model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_points_blade</span></code> and <code class="docutils literal notranslate"><span class="pre">num_points_tower</span></code> set the aerodynamic sampling points seen by Kynema-SGF. These must match the number of aerodynamic sections available in the Kynema-FMB input data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rot_speed_rpm</span></code> is for turbine initialization in Kynema-FMB side</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">density</span></code> is the fluid density, which is needed for the aerodynamic force calculations in Kynema-FMB. This should match the density used in the Kynema-SGF simulation.</p></li>
+<li><p>Optional Kynema-FMB solver controls are read from the <code class="docutils literal notranslate"><span class="pre">KynemaFMB</span></code> namespace, including <code class="docutils literal notranslate"><span class="pre">damping_factor</span></code>, <code class="docutils literal notranslate"><span class="pre">max_nonlinear_iterations</span></code>, <code class="docutils literal notranslate"><span class="pre">abs_err_tol</span></code>, and <code class="docutils literal notranslate"><span class="pre">rel_err_tol</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Actuator.labels</span></code> together with the per-turbine <code class="docutils literal notranslate"><span class="pre">base_position</span></code> entries determine how many turbines are instantiated and where they are placed.</p></li>
+</ul>
+<p>Unlike the OpenFAST walkthrough, this example does not require a separate OpenFAST case directory for each turbine. The run directory instead needs the Kynema-SGF input file and the WindIO YAML file referenced by <code class="docutils literal notranslate"><span class="pre">kynema_fmb_input_file</span></code>. For the test case shown here, the essential files are:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">act_kynema_fmb_alm.inp  NREL-5MW-aero.yaml</span>
+</pre></div>
+</div>
+<p>When the run starts, Kynema-SGF builds the flow problem, instantiates one Kynema-FMB turbine for each actuator label, and then advances the two solvers together. Kynema-FMB writes its own turbine output files using names of the form <code class="docutils literal notranslate"><span class="pre">kynema_fmb_&lt;label&gt;</span></code> and also writes per-turbine checkpoints whenever Kynema-SGF writes a checkpoint.</p>
+<p>Submit the coupled simulation in the usual way:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">kynema_sgf act_kynema_fmb_alm.inp</span>
+</pre></div>
+</div>
+<p>which should follow after <code class="docutils literal notranslate"><span class="pre">srun</span></code>, <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, or a similar launcher when running in parallel.</p>
+<section id="restarting-a-kynema-fmb-coupled-run">
+<h2>Restarting a Kynema-FMB coupled run<a class="headerlink" href="#restarting-a-kynema-fmb-coupled-run" title="Link to this heading"></a></h2>
+<p>Restarting the coupled case requires both the Kynema-SGF checkpoint and the Kynema-FMB turbine checkpoints. The regression test restart file shows the minimal changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">FILE</span> <span class="o">=</span> <span class="o">../</span><span class="n">act_kynema_fmb_alm</span><span class="o">/</span><span class="n">act_kynema_fmb_alm</span><span class="o">.</span><span class="n">inp</span>
+<span class="linenos">2</span><span class="n">io</span><span class="o">.</span><span class="n">restart_file</span> <span class="o">=</span> <span class="o">../</span><span class="n">act_kynema_fmb_alm</span><span class="o">/</span><span class="n">chk00003</span>
+<span class="linenos">3</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">kynema_fmb_input_file</span> <span class="o">=</span> <span class="o">../</span><span class="n">act_kynema_fmb_alm</span><span class="o">/</span><span class="n">NREL</span><span class="o">-</span><span class="mi">5</span><span class="n">MW</span><span class="o">-</span><span class="n">aero</span><span class="o">.</span><span class="n">yaml</span>
+<span class="linenos">4</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">kynema_fmb_restart_directory</span> <span class="o">=</span> <span class="o">../</span><span class="n">act_kynema_fmb_alm</span><span class="o">/</span>
+<span class="linenos">5</span><span class="n">Actuator</span><span class="o">.</span><span class="n">TurbineKynemaFMBLine</span><span class="o">.</span><span class="n">kynema_fmb_restart_step</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>The restart input works as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span> <span class="pre">=</span> <span class="pre">../act_kynema_fmb_alm/act_kynema_fmb_alm.inp</span></code> reuses the original setup and overrides only the restart-specific entries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">io.restart_file</span> <span class="pre">=</span> <span class="pre">../act_kynema_fmb_alm/chk00003</span></code> tells Kynema-SGF to restart the flow solution from checkpoint step 3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_directory</span></code> points to the directory that contains the Kynema-FMB turbine checkpoints.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Actuator.TurbineKynemaFMBLine.kynema_fmb_restart_step</span> <span class="pre">=</span> <span class="pre">3</span></code> selects which turbine checkpoint to load.</p></li>
+</ul>
+<p>Internally, Kynema-SGF constructs a Kynema-FMB checkpoint filename for each turbine label using the pattern <code class="docutils literal notranslate"><span class="pre">kynema_fmb_00003_&lt;label&gt;.chk</span></code>. For the two-turbine example above, restarting from step 3 requires files such as:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">chk00003</span>
+<span class="go">kynema_fmb_00003_T0.chk</span>
+<span class="go">kynema_fmb_00003_T1.chk</span>
+</pre></div>
+</div>
+<p>all available under the paths referenced by the restart input.</p>
+<p>The restart run is then launched the same way as any other case:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">kynema_sgf act_kynema_fmb_alm_restart.inp</span>
+</pre></div>
+</div>
+<p>If either the AMR checkpoint or one of the turbine checkpoint files is missing, initialization will fail before the simulation begins.</p>
+<p>For additional parameter details beyond this example, see the actuator input reference in the user documentation together with the Kynema-FMB input names used in this walkthrough.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="turbine.html" class="btn btn-neutral float-left" title="Turbine simulation walkthrough" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="terrain.html" class="btn btn-neutral float-right" title="LES with Terrain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

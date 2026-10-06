@@ -1,0 +1,551 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section: RANSConvergence &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kynema-SGF ABL Boundary I/O" href="abl_bndry_io.html" />
+    <link rel="prev" title="Section: FieldNorms" href="inputs_FieldNorms.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="inputs.html#input-file-reference">Input file reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inputs_geometry.html">Section: geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_amr.html">Section: AMReX and AMR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_tagging.html">Section: tagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_time.html">Section: time</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_io.html">Section: io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_incflo.html">Section: incflo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_transport.html">Section: transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_turbulence.html">Section: turbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Momentum_Sources.html">Section: Momentum Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Temperature_Sources.html">Section: Temperature Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_TKE_Sources.html">Section: TKE Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL.html">Section: ABL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ABL_meso_forcing.html">Section: ABLMesoForcing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator.html">Section: Actuator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Actuator_KynemaFMB.html">Actuator-Based Kynema-FMB Coupling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_multiphase.html">Section: MultiPhase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FreeSurfaceDamping.html">Section: FreeSurfaceDamping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ocean_waves.html">Section: Ocean Waves</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_SyntheticTurbulence.html">Section: SyntheticTurbulence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_forest.html">Section: ForestDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_terraindrag.html">Section: TerrainDrag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_ChannelBuilder.html">Section: ChannelBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Boundary_conditions.html">Section: Boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_field_boundaries.html">Section: Field Boundaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_MLMG.html">Section: MLMG options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_post_processing.html">Section: Post-processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Sampling.html">Section: Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Subvolume.html">Section: Subvolume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Averaging.html">Section: Averaging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_KineticEnergy.html">Section: KineticEnergy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_Enstrophy.html">Section: Enstrophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputs_FieldNorms.html">Section: FieldNorms</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Section: RANSConvergence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compressing field output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+          <li class="breadcrumb-item"><a href="inputs.html">Kynema-SGF inputs file</a></li>
+      <li class="breadcrumb-item active">Section: RANSConvergence</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/inputs_RANSConvergence.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="section-ransconvergence">
+<span id="inputs-ransconvergence"></span><h1>Section: RANSConvergence<a class="headerlink" href="#section-ransconvergence" title="Link to this heading"></a></h1>
+<p>This section controls the pseudo-steady convergence monitor. The monitor
+samples horizontal wind speed and turbulent kinetic energy at a list of
+user-supplied points, and once every point has stopped changing it asks the
+time integrator to stop, which writes a final plotfile and checkpoint. It
+removes the need to guess a <a class="reference internal" href="inputs_time.html#input_param-time.stop_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.stop_time</span></code></a> that is long enough
+to reach a steady state but not wastefully longer.</p>
+<p>The prefix is the label set in <code class="docutils literal notranslate"><span class="pre">incflo.post_processing</span></code>. For example
+<code class="docutils literal notranslate"><span class="pre">incflo.post_processing</span> <span class="pre">=</span> <span class="pre">convergence</span></code>. The inputs controlling output timing
+that are shared with other post-processing types are listed in the
+[<a class="reference internal" href="inputs_post_processing.html#inputs-post-processing"><span class="std std-ref">post-processing section</span></a>]; this monitor drives
+its own sampling cadence and does not use them.</p>
+<section id="restricted-to-the-klaxell-model">
+<h2>Restricted to the KLAxell model<a class="headerlink" href="#restricted-to-the-klaxell-model" title="Link to this heading"></a></h2>
+<p>The monitor aborts unless <a class="reference internal" href="inputs_turbulence.html#input_param-turbulence.model"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">turbulence.model</span></code></a> is <code class="docutils literal notranslate"><span class="pre">KLAxell</span></code>.</p>
+<p>The criterion is a drift test on an instantaneous sampled value, which is only
+meaningful when that value approaches a limit. A RANS run marching to a
+pseudo-steady state has such a limit. A large eddy simulation does not: the
+velocity at a point stays turbulent indefinitely, so a drift test on the raw
+value never passes, and a drift test on a running mean passes trivially because
+a cumulative mean converges as <span class="math notranslate nohighlight">\(1/N\)</span> whether or not the flow is
+stationary. Applying the monitor to an LES would report a convergence the
+solution does not have, so it is refused rather than offered with a warning.</p>
+</section>
+<section id="how-convergence-is-measured">
+<h2>How convergence is measured<a class="headerlink" href="#how-convergence-is-measured" title="Link to this heading"></a></h2>
+<p>At each sample the monitor interpolates velocity and <code class="docutils literal notranslate"><span class="pre">tke</span></code> at every monitor
+point and stores them. Over a trailing window of width
+<a class="reference internal" href="#input_param-convergence.window"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.window</span></code></a> it then measures the peak-to-trough spread of
+horizontal wind speed <span class="math notranslate nohighlight">\(\sqrt{u^2+v^2}\)</span> and of <code class="docutils literal notranslate"><span class="pre">tke</span></code>. A point has
+converged when both spreads are below tolerance, and the run stops when every
+point has converged.</p>
+<p>The spread over a window is used rather than a difference between successive
+samples because an atmospheric boundary layer under Coriolis and geostrophic
+forcing does not decay monotonically to steady state. It spirals in through a
+damped inertial oscillation of period <span class="math notranslate nohighlight">\(2\pi/f\)</span>, which for
+<span class="math notranslate nohighlight">\(f = 10^{-4}\,\mathrm{s^{-1}}\)</span> is about 17.5 hours. A difference between
+successive samples vanishes at every turning point of that oscillation, so a
+monitor built on it would report convergence at the first peak, hours before
+the oscillation has actually decayed. A window still contains the swing on
+both sides of a turning point and is not fooled.</p>
+<p>A window shrinks the turning-point problem but does not remove it. Near a
+turning point the signal is locally quadratic, so the spread measured over a
+window of width <span class="math notranslate nohighlight">\(W\)</span> falls to roughly <span class="math notranslate nohighlight">\(W/T\)</span> of its typical value,
+where <span class="math notranslate nohighlight">\(T\)</span> is the oscillation period. On a one-hour window with a 17.5
+hour inertial period, that is a dip of more than an order of magnitude: in a
+test case the speed envelope peaked at 0.52 m/s and dipped to 0.022 m/s at a
+turning point, while the flow was still far from steady.</p>
+<p>The remedy is <a class="reference internal" href="#input_param-convergence.hold_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.hold_time</span></code></a>. The dip lasts on the order
+of one window, so requiring the criterion to hold continuously for longer than
+that means a turning point cannot stop the run whatever the window and
+tolerance are. The default of two windows is measured against that dip and
+should not be lowered without a reason.</p>
+<p>Three consequences for choosing inputs:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#input_param-convergence.window"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.window</span></code></a> should be a meaningful fraction of the
+inertial period, one to two hours for a mid-latitude or polar case. Longer
+windows make the turning-point dip shallower.</p></li>
+<li><p><a class="reference internal" href="#input_param-convergence.hold_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.hold_time</span></code></a> guards the dip that the window leaves
+behind. Leave it at the default unless you have measured the dip in your own
+configuration.</p></li>
+<li><p><a class="reference internal" href="#input_param-convergence.sample_interval_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.sample_interval_time</span></code></a> should be generous. Sampling
+every step buys no information, because the solution cannot move
+meaningfully in one timestep.</p></li>
+</ul>
+<p>The vertical velocity is deliberately excluded from the speed. In a converging
+boundary layer it is small and comparatively noisy, so including it adds
+jitter to the envelope and delays the stop without making the test more
+informative.</p>
+<p>Every point is tested independently and all points must pass. The metric is
+never averaged across points, because a point drifting up and a point drifting
+down would cancel in the mean and the aggregate would pass while neither point
+had converged.</p>
+</section>
+<section id="choosing-tolerances">
+<h2>Choosing tolerances<a class="headerlink" href="#choosing-tolerances" title="Link to this heading"></a></h2>
+<p>Each quantity takes an absolute and a relative tolerance, and the test uses
+whichever is larger:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{spread} &lt; \max(\mathrm{abs\_tol},\;
+                       \mathrm{rel\_tol} \cdot |\overline{\phi}|)\]</div>
+<p>A single absolute tolerance does not work for <code class="docutils literal notranslate"><span class="pre">tke</span></code>, which spans orders of
+magnitude between the surface layer and the region above the boundary-layer
+top. A single relative tolerance fails at the other end, becoming
+unsatisfiable as <code class="docutils literal notranslate"><span class="pre">tke</span></code> approaches zero aloft. The combined form behaves as
+an absolute floor where the quantity is small and as a relative test where it
+is large.</p>
+<p>Both absolute tolerances must be greater than zero and neither relative
+tolerance may be negative; the monitor refuses to start otherwise.</p>
+<p>Start by running with <a class="reference internal" href="#input_param-convergence.stop_on_convergence"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.stop_on_convergence</span></code></a> set to
+false on a case whose convergence you already trust. The monitor then reports
+the spreads at each check without ever stopping the run, which is the cheapest
+way to see the noise floor of your configuration and pick tolerances that are
+neither unreachable nor met by accident.</p>
+<p><a class="reference internal" href="inputs_time.html#input_param-time.max_step"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.max_step</span></code></a> and <a class="reference internal" href="inputs_time.html#input_param-time.stop_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">time.stop_time</span></code></a> remain in force
+as backstops. A tolerance set below the noise floor of the run will simply
+never trigger.</p>
+</section>
+<section id="estimated-time-to-convergence">
+<h2>Estimated time to convergence<a class="headerlink" href="#estimated-time-to-convergence" title="Link to this heading"></a></h2>
+<p>When the envelope is decaying roughly exponentially, the monitor fits
+<span class="math notranslate nohighlight">\(s(t) = A e^{-rt}\)</span> by least squares to the recent history of the worst
+normalized spread and extrapolates to the point where it would reach
+tolerance. The result is printed as an estimated time to convergence, which is
+useful for deciding whether a queued job has enough wall time left to finish.</p>
+<p>The estimate is a diagnostic and never a stopping criterion: the run stops
+only on measured spreads. Extrapolating an exponential fit to a threshold is
+precisely where such a fit is least reliable, so the estimate is suppressed
+unless the fit is good, controlled by <a class="reference internal" href="#input_param-convergence.eta_min_rsq"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.eta_min_rsq</span></code></a>.
+It is also suppressed when the envelope is not decaying, which is the honest
+report when a run has stalled on a noise floor rather than a confident
+prediction that will never come true, when fewer than
+<a class="reference internal" href="#input_param-convergence.eta_min_samples"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.eta_min_samples</span></code></a> full windows have been recorded,
+when any recorded spread is exactly zero, and when the fit claims tolerance
+should already have been reached while the measured spread says otherwise.</p>
+<p>Only full windows enter the fit, and only the trailing
+<a class="reference internal" href="#input_param-convergence.eta_fit_window"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.eta_fit_window</span></code></a> of them, so that neither the
+window-filling phase nor the early transient drags the fitted rate.</p>
+</section>
+<section id="monitor-points">
+<h2>Monitor points<a class="headerlink" href="#monitor-points" title="Link to this heading"></a></h2>
+<p>Points are read from a text file whose first line is the number of points,
+followed by one <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></code> triple per line. This is the same format used by
+<a class="reference internal" href="inputs_Sampling.html#inputs-sampling"><span class="std std-ref">ProbeSampler</span></a>.</p>
+<p>The monitor prints the coordinates of every point it is monitoring at startup.
+Check that list: a point outside the domain is silently moved inside it by the
+underlying probe sampler, with a warning, so the printed coordinates are the
+ones actually being used.</p>
+<p>If a terrain height field is present, points below the terrain surface are a
+fatal error. Such a point is held near zero by the drag forcing and converges
+immediately, and because every point must pass the test it would weaken the
+criterion without ever failing.</p>
+</section>
+<section id="restarts">
+<h2>Restarts<a class="headerlink" href="#restarts" title="Link to this heading"></a></h2>
+<p>The window is not carried across a restart. After a restart the monitor
+refills the window from scratch and then serves the hold again before it can
+declare convergence, which costs one window plus the hold of extra runtime.
+This is deliberate: a restart may change resolution, forcing or terrain, and
+carrying stale samples across it would let a run stop on evidence gathered
+under different physics.</p>
+</section>
+<section id="example-run">
+<h2>Example run<a class="headerlink" href="#example-run" title="Link to this heading"></a></h2>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/rans_convergence_monitor.png"><img alt="RANSConvergence diagnostics on a KLAxell boundary layer run" src="../_images/rans_convergence_monitor.png" style="width: 800px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">2 </span><span class="caption-text">The monitor on a coarse KLAxell boundary layer, run in report-only mode so
+the history continues past the point where the run would have stopped.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The case is a 16 x 16 x 32 KLAxell boundary layer on a 2048 x 2048 x 1024 m
+domain with a fixed 5 s timestep, run to 60000 s, with Coriolis forcing giving
+<span class="math notranslate nohighlight">\(f = 10^{-4}\,\mathrm{s^{-1}}\)</span> and an inertial period of 17.5 hours.
+The monitor used <code class="docutils literal notranslate"><span class="pre">start_time</span> <span class="pre">=</span> <span class="pre">3600</span></code>, <code class="docutils literal notranslate"><span class="pre">sample_interval_time</span> <span class="pre">=</span> <span class="pre">120</span></code>,
+<code class="docutils literal notranslate"><span class="pre">window</span> <span class="pre">=</span> <span class="pre">3600</span></code>, <code class="docutils literal notranslate"><span class="pre">velocity_abs_tol</span> <span class="pre">=</span> <span class="pre">0.03</span></code>, <code class="docutils literal notranslate"><span class="pre">tke_abs_tol</span> <span class="pre">=</span> <span class="pre">0.005</span></code> and the
+default <code class="docutils literal notranslate"><span class="pre">hold_time</span></code> of 7200 s. The mesh is far too coarse for a production
+answer; it is sized to make the behavior of the criterion visible.</p>
+<p>The top panel shows the three monitor points turning over as the inertial
+oscillation carries the flow past its first peak; the flow has plainly not
+settled by the end of the run.</p>
+<p>The middle panel is what the monitor tests, the spread divided by its own
+tolerance, so convergence is the line at one. The speed envelope falls through
+that line near 9.7 hours and then climbs back to three and a half times
+tolerance. That dip is a turning point of the oscillation, and without
+<a class="reference internal" href="#input_param-convergence.hold_time"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.hold_time</span></code></a> the run would have stopped there. The
+shaded band is the monitor passing tolerance and holding: the hold reached
+1320 s of the required 7200 s before the spread rose back through tolerance
+and reset it. The dotted line is the exponential fit, extrapolating a crossing
+at 18.1 hours with an <span class="math notranslate nohighlight">\(R^2\)</span> of 0.68, just above the default
+<a class="reference internal" href="#input_param-convergence.eta_min_rsq"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">convergence.eta_min_rsq</span></code></a>.</p>
+<p>The bottom panel shows why a window is needed at all. The change in speed
+between successive samples at the worst point collapses to about
+<span class="math notranslate nohighlight">\(3 \times 10^{-5}\)</span> m/s at the turning point, a thousand times below
+tolerance, while the window spread at the same instant is
+<span class="math notranslate nohighlight">\(2 \times 10^{-2}\)</span> m/s.</p>
+<p>The figure can be regenerated for any run with <code class="docutils literal notranslate"><span class="pre">tools/plot_rans_convergence.py</span></code>,
+which needs an ASCII <code class="docutils literal notranslate"><span class="pre">Sampling</span></code> post-processor on the same points alongside
+the monitor.</p>
+</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The monitor only decides when to stop. It does not change the time
+integration or accelerate convergence in any way.</p></li>
+<li><p>There is no domain-wide residual. <a class="reference internal" href="inputs_FieldNorms.html#inputs-fieldnorms"><span class="std std-ref">FieldNorms</span></a>
+computes global norms, but in a boundary layer setup those are dominated by
+the Rayleigh damping layer and any sponge regions, which converge to an
+imposed target rather than to a solution. Monitor points answer the
+question that usually matters, whether the layer of interest is steady.</p></li>
+<li><p>Wind direction is not tested. The inertial oscillation shows up more
+strongly in direction than in speed, so a speed criterion can pass while
+the wind is still turning. Choose tolerances and the hold with that in mind.</p></li>
+<li><p>One tolerance pair per quantity applies to every point.</p></li>
+<li><p>The window is not saved in the checkpoint file; see <a class="reference internal" href="#restarts">Restarts</a>.</p></li>
+</ul>
+</section>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Link to this heading"></a></h2>
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.type">
+<span class="sig-name descname"><span class="pre">convergence.type</span></span><a class="headerlink" href="#input_param-convergence.type" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, mandatory</p>
+<p>To use the convergence monitor specify with keyword <code class="docutils literal notranslate"><span class="pre">RANSConvergence</span></code></p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.probe_location_file">
+<span class="sig-name descname"><span class="pre">convergence.probe_location_file</span></span><a class="headerlink" href="#input_param-convergence.probe_location_file" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> String, optional, default = <code class="docutils literal notranslate"><span class="pre">probe_locations.txt</span></code></p>
+<p>Path to the file listing the monitor points.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.start_time">
+<span class="sig-name descname"><span class="pre">convergence.start_time</span></span><a class="headerlink" href="#input_param-convergence.start_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>Simulation time at which monitoring begins. There is no default and a value
+of zero is rejected. A KLAxell run is driven toward its target by forcing
+terms that ramp in over time, such as
+<a class="reference internal" href="inputs_Momentum_Sources.html#input_param-DragForcing.bc_forcing_time_factor"><code class="xref std std-input_param docutils literal notranslate"><span class="pre">DragForcing.bc_forcing_time_factor</span></code></a> and the mesoscale sponge.
+Convergence measured before those ramps have finished says only that the
+solution is tracking a moving target, so this delay must be chosen
+deliberately rather than defaulted.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.sample_interval_time">
+<span class="sig-name descname"><span class="pre">convergence.sample_interval_time</span></span><a class="headerlink" href="#input_param-convergence.sample_interval_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>Simulation time in seconds between samples. Specified in physical time
+rather than timesteps because these runs use adaptive timestepping.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.window">
+<span class="sig-name descname"><span class="pre">convergence.window</span></span><a class="headerlink" href="#input_param-convergence.window" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, mandatory</p>
+<p>Width in seconds of the trailing window over which the peak-to-trough
+spread is measured. Must be larger than the sample interval.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.velocity_abs_tol">
+<span class="sig-name descname"><span class="pre">convergence.velocity_abs_tol</span></span><a class="headerlink" href="#input_param-convergence.velocity_abs_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.01</p>
+<p>Absolute tolerance in m/s on the horizontal wind speed spread. Must be
+greater than zero: it is the floor that keeps the test meaningful where the
+speed is small, every check divides a spread by the resulting tolerance, and
+a value of zero could never be met in any case.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.velocity_rel_tol">
+<span class="sig-name descname"><span class="pre">convergence.velocity_rel_tol</span></span><a class="headerlink" href="#input_param-convergence.velocity_rel_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.001</p>
+<p>Relative tolerance on the horizontal wind speed spread, applied to the
+window mean of the speed at that point.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.tke_abs_tol">
+<span class="sig-name descname"><span class="pre">convergence.tke_abs_tol</span></span><a class="headerlink" href="#input_param-convergence.tke_abs_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.001</p>
+<p>Absolute tolerance in m^2/s^2 on the turbulent kinetic energy spread. Must
+be greater than zero, for the same reason as the velocity floor above.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.tke_rel_tol">
+<span class="sig-name descname"><span class="pre">convergence.tke_rel_tol</span></span><a class="headerlink" href="#input_param-convergence.tke_rel_tol" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.01</p>
+<p>Relative tolerance on the turbulent kinetic energy spread, applied to the
+window mean of <code class="docutils literal notranslate"><span class="pre">tke</span></code> at that point.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.hold_time">
+<span class="sig-name descname"><span class="pre">convergence.hold_time</span></span><a class="headerlink" href="#input_param-convergence.hold_time" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = twice <code class="docutils literal notranslate"><span class="pre">window</span></code></p>
+<p>How long in seconds every point must stay within tolerance continuously
+before the run is stopped. A single passing check is not enough, because the
+envelope dips at every turning point of the inertial oscillation. The
+elapsed hold is reported in the output file, and it resets to zero as soon
+as any point falls back outside tolerance.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.min_samples">
+<span class="sig-name descname"><span class="pre">convergence.min_samples</span></span><a class="headerlink" href="#input_param-convergence.min_samples" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 4</p>
+<p>Fewest samples that must be present in the window before convergence may be
+declared. Must be at least 2 for a spread to be meaningful.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.stop_on_convergence">
+<span class="sig-name descname"><span class="pre">convergence.stop_on_convergence</span></span><a class="headerlink" href="#input_param-convergence.stop_on_convergence" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>When true, the run stops once every point has converged, and a plotfile and
+checkpoint are written unconditionally. When false the monitor reports at
+each check but never stops the run.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.report_eta">
+<span class="sig-name descname"><span class="pre">convergence.report_eta</span></span><a class="headerlink" href="#input_param-convergence.report_eta" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Boolean, optional, default = true</p>
+<p>Report an estimated time to convergence from an exponential fit to the
+envelope history.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.eta_fit_window">
+<span class="sig-name descname"><span class="pre">convergence.eta_fit_window</span></span><a class="headerlink" href="#input_param-convergence.eta_fit_window" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 10 times <code class="docutils literal notranslate"><span class="pre">window</span></code></p>
+<p>Trailing span in seconds of envelope history used for the exponential fit.
+Using the whole history instead would let the early transient, before the
+forcing ramps have settled, contaminate the fitted decay rate.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.eta_min_samples">
+<span class="sig-name descname"><span class="pre">convergence.eta_min_samples</span></span><a class="headerlink" href="#input_param-convergence.eta_min_samples" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Integer, optional, default = 5</p>
+<p>Fewest envelope samples that will be fitted.</p>
+</dd></dl>
+
+<dl class="std input_param">
+<dt class="sig sig-object std" id="input_param-convergence.eta_min_rsq">
+<span class="sig-name descname"><span class="pre">convergence.eta_min_rsq</span></span><a class="headerlink" href="#input_param-convergence.eta_min_rsq" title="Link to this definition"></a></dt>
+<dd><p><strong>type:</strong> Real, optional, default = 0.5</p>
+<p>Smallest coefficient of determination, computed in log space, for which the
+estimated time to convergence is reported. A fit below this is discarded
+rather than quoted.</p>
+</dd></dl>
+
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<p>A text file named after the label is written to the post-processing directory,
+with one line per check recording the time, how many samples the window holds
+and whether it is full, how many points have converged, the worst point for
+each quantity together with its spread and the tolerance it was compared
+against, how long the criterion has held, and the estimated time to
+convergence. The same information is printed to the log.</p>
+<p>The columns, in order, are <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">samples_in_window</span></code>, <code class="docutils literal notranslate"><span class="pre">window_full</span></code>,
+<code class="docutils literal notranslate"><span class="pre">num_converged</span></code>, <code class="docutils literal notranslate"><span class="pre">num_points</span></code>, <code class="docutils literal notranslate"><span class="pre">worst_velocity_point</span></code>,
+<code class="docutils literal notranslate"><span class="pre">worst_velocity_spread</span></code>, <code class="docutils literal notranslate"><span class="pre">worst_velocity_tol</span></code>, <code class="docutils literal notranslate"><span class="pre">worst_tke_point</span></code>,
+<code class="docutils literal notranslate"><span class="pre">worst_tke_spread</span></code>, <code class="docutils literal notranslate"><span class="pre">worst_tke_tol</span></code>, <code class="docutils literal notranslate"><span class="pre">hold_elapsed</span></code> and
+<code class="docutils literal notranslate"><span class="pre">estimated_time_to_convergence</span></code>, the last being -1 when no estimate is
+reported.</p>
+<p>Read <code class="docutils literal notranslate"><span class="pre">window_full</span></code> before <code class="docutils literal notranslate"><span class="pre">num_converged</span></code>. While the window is still
+filling it holds only a couple of samples, whose spread is small whatever the
+flow is doing, so early rows routinely show every point converged without
+meaning it.</p>
+<p>The worst-offender columns are the ones to read when a run does not converge:
+they distinguish a flow that is genuinely still evolving from a single badly
+placed point holding up an otherwise converged field, and from a tolerance
+that is simply too tight.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">incflo</span><span class="o">.</span><span class="n">post_processing</span>            <span class="o">=</span> <span class="n">convergence</span>
+
+<span class="n">convergence</span><span class="o">.</span><span class="n">type</span>                  <span class="o">=</span> <span class="n">RANSConvergence</span>
+<span class="n">convergence</span><span class="o">.</span><span class="n">probe_location_file</span>   <span class="o">=</span> <span class="n">monitor_points</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="n">convergence</span><span class="o">.</span><span class="n">start_time</span>            <span class="o">=</span> <span class="mf">7200.0</span>
+<span class="n">convergence</span><span class="o">.</span><span class="n">sample_interval_time</span>  <span class="o">=</span> <span class="mf">60.0</span>
+<span class="n">convergence</span><span class="o">.</span><span class="n">window</span>                <span class="o">=</span> <span class="mf">3600.0</span>
+
+<span class="n">convergence</span><span class="o">.</span><span class="n">velocity_abs_tol</span>      <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">convergence</span><span class="o">.</span><span class="n">velocity_rel_tol</span>      <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">convergence</span><span class="o">.</span><span class="n">tke_abs_tol</span>           <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">convergence</span><span class="o">.</span><span class="n">tke_rel_tol</span>           <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">convergence</span><span class="o">.</span><span class="n">stop_on_convergence</span>   <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="inputs_FieldNorms.html" class="btn btn-neutral float-left" title="Section: FieldNorms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="abl_bndry_io.html" class="btn btn-neutral float-right" title="Kynema-SGF ABL Boundary I/O" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

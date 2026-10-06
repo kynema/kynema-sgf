@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/drone/Drone.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/drone/Drone.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_drone_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-drone-drone-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/drone/Drone.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-wind-energy-actuator-drone-drone-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/wind_energy/actuator/drone/Drone.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_a80d9316c48aa709b9bc78e2b746db24.html">wind_energy</a></li><li class="navelem"><a href="dir_9dcf803d990c86a52c151efe46b23ed3.html">actuator</a></li><li class="navelem"><a href="dir_9993e8817f571e306347c1e04c12d3b2.html">drone</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">Drone.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_drone_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef DRONE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define DRONE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="actuator__types_8_h.html">src/wind_energy/actuator/actuator_types.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_actuator_sector_8_h.html">src/wind_energy/actuator/sector/ActuatorSector.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="actuator__sector__ops_8_h.html">src/wind_energy/actuator/sector/actuator_sector_ops.H</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_rigid_body_motion_8_h.html">src/wind_energy/actuator/motion/RigidBodyMotion.H</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="_rotor_motion_8_h.html">src/wind_energy/actuator/motion/RotorMotion.H</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html">   16</a></span><span class="keyword">struct </span><a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a154ecc591ee20bc294ad1f8e521d2aa4">DroneRotor</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a8e7486e7100a8a097d9aed25cd8b6cd2">   18</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a8e7486e7100a8a097d9aed25cd8b6cd2">SectorData</a> = <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#ae4d22749034a9865c12f99cf8cdb668d">ActuatorSector::DataType</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a154ecc591ee20bc294ad1f8e521d2aa4">DroneRotor</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim, <span class="keyword">const</span> std::string&amp; label, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a25509160f9a492129a33257a5c1b56f6">   22</a></span>    <a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a8e7486e7100a8a097d9aed25cd8b6cd2">SectorData</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a25509160f9a492129a33257a5c1b56f6">data</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a067f558a896b19ca13deefa547638291">   23</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1ops_1_1_act_src_op.html">ops::ActSrcOp&lt;ActuatorSector, ActSrcSector&gt;</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a067f558a896b19ca13deefa547638291">source</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#ab0f2b087315fabf5363373f22627348a">   24</a></span>    <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op.html">ops::ProcessOutputsOp&lt;ActuatorSector, ActSrcSector&gt;</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#ab0f2b087315fabf5363373f22627348a">output</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a3cb6812212cfad4fae8ef7a261ac2a3f">   25</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a3cb6812212cfad4fae8ef7a261ac2a3f">body_offset</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html">   29</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_drone_data.html">DroneData</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ad03ff0a46e76647183e0f43ef7e2791d">   31</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ad03ff0a46e76647183e0f43ef7e2791d">num_rotors</a>{0};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#aa33593bbddb426041b1ebc04c1fda356">   32</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#aa33593bbddb426041b1ebc04c1fda356">arm_lengths</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#afbbe2459091875e01552479583be5cb8">   33</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#afbbe2459091875e01552479583be5cb8">arm_angles_degrees</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a991269c4c1c1d017d60f542c2d3ccf11">   34</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a991269c4c1c1d017d60f542c2d3ccf11">arm_phase_degrees</a>{0.0_rt};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a7d538cfe83fa61594b3382964a437ab2">   35</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a7d538cfe83fa61594b3382964a437ab2">center</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a155f7369a94c47d34bc51c441927e438">   36</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a155f7369a94c47d34bc51c441927e438">translation_velocity</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a3d90eeda92ec4544f4e4bcd4a5584456">   37</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a3d90eeda92ec4544f4e4bcd4a5584456">body_orientation_degrees</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a9106b4a21a50cdb8c4bfd804a0157094">   38</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a9106b4a21a50cdb8c4bfd804a0157094">body_orientation</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_tensor_t.html#a9a14bb3c8afac3c74a350b5bbeb94807">vs::Tensor::identity</a>()};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a3469184363c13a96355bb164d64a945a">   39</a></span>    std::shared_ptr&lt;motion::RigidBodyMotion&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a3469184363c13a96355bb164d64a945a">body_motion</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ae3f00406174edb9986d23d7ca16bf855">   40</a></span>    std::shared_ptr&lt;motion::RotorMotion&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ae3f00406174edb9986d23d7ca16bf855">rotor_motion</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a8e906e6dd5c9d8c2a568ba788bc4e2a5">   41</a></span>    amrex::Vector&lt;int&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a8e906e6dd5c9d8c2a568ba788bc4e2a5">mirror_blades</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a5c75a05199d79dafa0d17501e499dc3f">   42</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a5c75a05199d79dafa0d17501e499dc3f">total_force</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ab2194c3943155c5e323c80ef09cb8bf2">   43</a></span>    <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a> <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ab2194c3943155c5e323c80ef09cb8bf2">total_moment</a>{<a class="code hl_function" href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">vs::Vector::zero</a>()};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a0456c086fe823d7d78a56ab2caaeeb53">   44</a></span>    amrex::Vector&lt;std::unique_ptr&lt;DroneRotor&gt;&gt; <a class="code hl_variable" href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a0456c086fe823d7d78a56ab2caaeeb53">rotors</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone.html">   47</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_drone.html">Drone</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">ActuatorType</a></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone.html#a13f5a3cec742ddcccd918e07db7568dc">   49</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_drone.html#a13f5a3cec742ddcccd918e07db7568dc">InfoType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_info.html">ActInfo</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone.html#a38076fb02bcc97e52f957e4ca159def0">   50</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_drone.html#a38076fb02bcc97e52f957e4ca159def0">GridType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_act_grid.html">ActGrid</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone.html#a9cdb6b49b05b44fe645572d4bda2f9da">   51</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_drone.html#a9cdb6b49b05b44fe645572d4bda2f9da">MetaType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1actuator_1_1_drone_data.html">DroneData</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone.html#a71f908d8c8f559c5e2c4588664044695">   52</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1actuator_1_1_drone.html#a71f908d8c8f559c5e2c4588664044695">DataType</a> = <a class="code hl_class" href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">ActDataHolder&lt;Drone&gt;</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1actuator_1_1_drone.html#adf9831944f1decdb0695cf71120fff3d">   54</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1actuator_1_1_drone.html#adf9831944f1decdb0695cf71120fff3d">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;Drone&quot;</span>; }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">namespace </span>drone {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">vs::Tensor</a> <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1drone.html#a8d9e8a2a57363fbc4c28a55f70e4b0fe">body_rotation</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">vs::Vector</a>&amp; roll_pitch_yaw_degrees);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a> <a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1drone.html#a300a784953a802f70ca2d7920cf9690c">uniform_arm_angles</a>(<span class="keywordtype">int</span> num_rotors, amrex::Real phase_degrees);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">VecList</a></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_function" href="namespacekynema__sgf_1_1actuator_1_1drone.html#a33b34afd8fe4ca50d3da402b8f99a0bf">rotor_body_offsets</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&amp; arm_lengths, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">RealList</a>&amp; angles_degrees);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>} <span class="comment">// namespace drone</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>} <span class="comment">// namespace kynema_sgf::actuator</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_actuator_sector_8_h_html"><div class="ttname"><a href="_actuator_sector_8_h.html">ActuatorSector.H</a></div></div>
+<div class="ttc" id="a_rigid_body_motion_8_h_html"><div class="ttname"><a href="_rigid_body_motion_8_h.html">RigidBodyMotion.H</a></div></div>
+<div class="ttc" id="a_rotor_motion_8_h_html"><div class="ttname"><a href="_rotor_motion_8_h.html">RotorMotion.H</a></div></div>
+<div class="ttc" id="aactuator__sector__ops_8_h_html"><div class="ttname"><a href="actuator__sector__ops_8_h.html">actuator_sector_ops.H</a></div></div>
+<div class="ttc" id="aactuator__types_8_h_html"><div class="ttname"><a href="actuator__types_8_h.html">actuator_types.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1_act_data_holder_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1_act_data_holder.html">kynema_sgf::actuator::ActDataHolder</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:215</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1actuator_1_1ops_1_1_act_src_op_html"><div class="ttname"><a href="classkynema__sgf_1_1actuator_1_1ops_1_1_act_src_op.html">kynema_sgf::actuator::ops::ActSrcOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:68</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1drone_html_a300a784953a802f70ca2d7920cf9690c"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1drone.html#a300a784953a802f70ca2d7920cf9690c">kynema_sgf::actuator::drone::uniform_arm_angles</a></div><div class="ttdeci">RealList uniform_arm_angles(const int num_rotors, const amrex::Real phase)</div><div class="ttdef"><b>Definition</b> Drone.cpp:24</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1drone_html_a33b34afd8fe4ca50d3da402b8f99a0bf"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1drone.html#a33b34afd8fe4ca50d3da402b8f99a0bf">kynema_sgf::actuator::drone::rotor_body_offsets</a></div><div class="ttdeci">VecList rotor_body_offsets(const RealList &amp;lengths, const RealList &amp;angles_degrees)</div><div class="ttdef"><b>Definition</b> Drone.cpp:35</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_1_1drone_html_a8d9e8a2a57363fbc4c28a55f70e4b0fe"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator_1_1drone.html#a8d9e8a2a57363fbc4c28a55f70e4b0fe">kynema_sgf::actuator::drone::body_rotation</a></div><div class="ttdeci">vs::Tensor body_rotation(const vs::Vector &amp;roll_pitch_yaw_degrees)</div><div class="ttdef"><b>Definition</b> Drone.cpp:16</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html">kynema_sgf::actuator</a></div><div class="ttdef"><b>Definition</b> ActParser.H:6</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a05a88c15cb29c1bc8314a1194c882789"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a05a88c15cb29c1bc8314a1194c882789">kynema_sgf::actuator::RealList</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; RealList</div><div class="ttdef"><b>Definition</b> actuator_types.H:91</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1actuator_html_a39fef9a9215a0de416e46e1c858a4434"><div class="ttname"><a href="namespacekynema__sgf_1_1actuator.html#a39fef9a9215a0de416e46e1c858a4434">kynema_sgf::actuator::VecList</a></div><div class="ttdeci">amrex::Vector&lt; kynema_sgf::vs::Vector &gt; VecList</div><div class="ttdef"><b>Definition</b> actuator_types.H:93</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a8b5875515cfa717dbeb39c7f4186ce50"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a8b5875515cfa717dbeb39c7f4186ce50">kynema_sgf::vs::Vector</a></div><div class="ttdeci">VectorT&lt; amrex::Real &gt; Vector</div><div class="ttdef"><b>Definition</b> vector.H:145</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1vs_html_a93db93fdfb70125c5abd8a72ac76efd1"><div class="ttname"><a href="namespacekynema__sgf_1_1vs.html#a93db93fdfb70125c5abd8a72ac76efd1">kynema_sgf::vs::Tensor</a></div><div class="ttdeci">TensorT&lt; amrex::Real &gt; Tensor</div><div class="ttdef"><b>Definition</b> tensor.H:158</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_grid_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_grid.html">kynema_sgf::actuator::ActGrid</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:105</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_act_info_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_act_info.html">kynema_sgf::actuator::ActInfo</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:175</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_sector_html_ae4d22749034a9865c12f99cf8cdb668d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_sector.html#ae4d22749034a9865c12f99cf8cdb668d">kynema_sgf::actuator::ActuatorSector::DataType</a></div><div class="ttdeci">ActDataHolder&lt; ActuatorSector &gt; DataType</div><div class="ttdef"><b>Definition</b> ActuatorSector.H:213</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_actuator_type_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_actuator_type.html">kynema_sgf::actuator::ActuatorType</a></div><div class="ttdef"><b>Definition</b> actuator_types.H:27</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html">kynema_sgf::actuator::DroneData</a></div><div class="ttdoc">Composite actuator that gives all child rotors one rigid-body motion.</div><div class="ttdef"><b>Definition</b> Drone.H:30</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a0456c086fe823d7d78a56ab2caaeeb53"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a0456c086fe823d7d78a56ab2caaeeb53">kynema_sgf::actuator::DroneData::rotors</a></div><div class="ttdeci">amrex::Vector&lt; std::unique_ptr&lt; DroneRotor &gt; &gt; rotors</div><div class="ttdef"><b>Definition</b> Drone.H:44</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a155f7369a94c47d34bc51c441927e438"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a155f7369a94c47d34bc51c441927e438">kynema_sgf::actuator::DroneData::translation_velocity</a></div><div class="ttdeci">vs::Vector translation_velocity</div><div class="ttdef"><b>Definition</b> Drone.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a3469184363c13a96355bb164d64a945a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a3469184363c13a96355bb164d64a945a">kynema_sgf::actuator::DroneData::body_motion</a></div><div class="ttdeci">std::shared_ptr&lt; motion::RigidBodyMotion &gt; body_motion</div><div class="ttdef"><b>Definition</b> Drone.H:39</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a3d90eeda92ec4544f4e4bcd4a5584456"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a3d90eeda92ec4544f4e4bcd4a5584456">kynema_sgf::actuator::DroneData::body_orientation_degrees</a></div><div class="ttdeci">vs::Vector body_orientation_degrees</div><div class="ttdef"><b>Definition</b> Drone.H:37</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a5c75a05199d79dafa0d17501e499dc3f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a5c75a05199d79dafa0d17501e499dc3f">kynema_sgf::actuator::DroneData::total_force</a></div><div class="ttdeci">vs::Vector total_force</div><div class="ttdef"><b>Definition</b> Drone.H:42</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a7d538cfe83fa61594b3382964a437ab2"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a7d538cfe83fa61594b3382964a437ab2">kynema_sgf::actuator::DroneData::center</a></div><div class="ttdeci">vs::Vector center</div><div class="ttdef"><b>Definition</b> Drone.H:35</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a8e906e6dd5c9d8c2a568ba788bc4e2a5"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a8e906e6dd5c9d8c2a568ba788bc4e2a5">kynema_sgf::actuator::DroneData::mirror_blades</a></div><div class="ttdeci">amrex::Vector&lt; int &gt; mirror_blades</div><div class="ttdef"><b>Definition</b> Drone.H:41</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a9106b4a21a50cdb8c4bfd804a0157094"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a9106b4a21a50cdb8c4bfd804a0157094">kynema_sgf::actuator::DroneData::body_orientation</a></div><div class="ttdeci">vs::Tensor body_orientation</div><div class="ttdef"><b>Definition</b> Drone.H:38</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_a991269c4c1c1d017d60f542c2d3ccf11"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#a991269c4c1c1d017d60f542c2d3ccf11">kynema_sgf::actuator::DroneData::arm_phase_degrees</a></div><div class="ttdeci">amrex::Real arm_phase_degrees</div><div class="ttdef"><b>Definition</b> Drone.H:34</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_aa33593bbddb426041b1ebc04c1fda356"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#aa33593bbddb426041b1ebc04c1fda356">kynema_sgf::actuator::DroneData::arm_lengths</a></div><div class="ttdeci">RealList arm_lengths</div><div class="ttdef"><b>Definition</b> Drone.H:32</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_ab2194c3943155c5e323c80ef09cb8bf2"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ab2194c3943155c5e323c80ef09cb8bf2">kynema_sgf::actuator::DroneData::total_moment</a></div><div class="ttdeci">vs::Vector total_moment</div><div class="ttdef"><b>Definition</b> Drone.H:43</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_ad03ff0a46e76647183e0f43ef7e2791d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ad03ff0a46e76647183e0f43ef7e2791d">kynema_sgf::actuator::DroneData::num_rotors</a></div><div class="ttdeci">int num_rotors</div><div class="ttdef"><b>Definition</b> Drone.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_ae3f00406174edb9986d23d7ca16bf855"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#ae3f00406174edb9986d23d7ca16bf855">kynema_sgf::actuator::DroneData::rotor_motion</a></div><div class="ttdeci">std::shared_ptr&lt; motion::RotorMotion &gt; rotor_motion</div><div class="ttdef"><b>Definition</b> Drone.H:40</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_data_html_afbbe2459091875e01552479583be5cb8"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_data.html#afbbe2459091875e01552479583be5cb8">kynema_sgf::actuator::DroneData::arm_angles_degrees</a></div><div class="ttdeci">RealList arm_angles_degrees</div><div class="ttdef"><b>Definition</b> Drone.H:33</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone.html">kynema_sgf::actuator::Drone</a></div><div class="ttdef"><b>Definition</b> Drone.H:48</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_html_a13f5a3cec742ddcccd918e07db7568dc"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone.html#a13f5a3cec742ddcccd918e07db7568dc">kynema_sgf::actuator::Drone::InfoType</a></div><div class="ttdeci">ActInfo InfoType</div><div class="ttdef"><b>Definition</b> Drone.H:49</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_html_a38076fb02bcc97e52f957e4ca159def0"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone.html#a38076fb02bcc97e52f957e4ca159def0">kynema_sgf::actuator::Drone::GridType</a></div><div class="ttdeci">ActGrid GridType</div><div class="ttdef"><b>Definition</b> Drone.H:50</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_html_a71f908d8c8f559c5e2c4588664044695"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone.html#a71f908d8c8f559c5e2c4588664044695">kynema_sgf::actuator::Drone::DataType</a></div><div class="ttdeci">ActDataHolder&lt; Drone &gt; DataType</div><div class="ttdef"><b>Definition</b> Drone.H:52</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_html_a9cdb6b49b05b44fe645572d4bda2f9da"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone.html#a9cdb6b49b05b44fe645572d4bda2f9da">kynema_sgf::actuator::Drone::MetaType</a></div><div class="ttdeci">DroneData MetaType</div><div class="ttdef"><b>Definition</b> Drone.H:51</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_html_adf9831944f1decdb0695cf71120fff3d"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone.html#adf9831944f1decdb0695cf71120fff3d">kynema_sgf::actuator::Drone::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> Drone.H:54</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_rotor_html_a067f558a896b19ca13deefa547638291"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a067f558a896b19ca13deefa547638291">kynema_sgf::actuator::DroneRotor::source</a></div><div class="ttdeci">ops::ActSrcOp&lt; ActuatorSector, ActSrcSector &gt; source</div><div class="ttdef"><b>Definition</b> Drone.H:23</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_rotor_html_a154ecc591ee20bc294ad1f8e521d2aa4"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a154ecc591ee20bc294ad1f8e521d2aa4">kynema_sgf::actuator::DroneRotor::DroneRotor</a></div><div class="ttdeci">DroneRotor(CFDSim &amp;sim, const std::string &amp;label, int id)</div><div class="ttdef"><b>Definition</b> Drone.cpp:10</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_rotor_html_a25509160f9a492129a33257a5c1b56f6"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a25509160f9a492129a33257a5c1b56f6">kynema_sgf::actuator::DroneRotor::data</a></div><div class="ttdeci">SectorData data</div><div class="ttdef"><b>Definition</b> Drone.H:22</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_rotor_html_a3cb6812212cfad4fae8ef7a261ac2a3f"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a3cb6812212cfad4fae8ef7a261ac2a3f">kynema_sgf::actuator::DroneRotor::body_offset</a></div><div class="ttdeci">vs::Vector body_offset</div><div class="ttdef"><b>Definition</b> Drone.H:25</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_rotor_html_a8e7486e7100a8a097d9aed25cd8b6cd2"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#a8e7486e7100a8a097d9aed25cd8b6cd2">kynema_sgf::actuator::DroneRotor::SectorData</a></div><div class="ttdeci">ActuatorSector::DataType SectorData</div><div class="ttdef"><b>Definition</b> Drone.H:18</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1_drone_rotor_html_ab0f2b087315fabf5363373f22627348a"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1_drone_rotor.html#ab0f2b087315fabf5363373f22627348a">kynema_sgf::actuator::DroneRotor::output</a></div><div class="ttdeci">ops::ProcessOutputsOp&lt; ActuatorSector, ActSrcSector &gt; output</div><div class="ttdef"><b>Definition</b> Drone.H:24</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op_html"><div class="ttname"><a href="structkynema__sgf_1_1actuator_1_1ops_1_1_process_outputs_op.html">kynema_sgf::actuator::ops::ProcessOutputsOp</a></div><div class="ttdef"><b>Definition</b> actuator_ops.H:71</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_tensor_t_html_a9a14bb3c8afac3c74a350b5bbeb94807"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_tensor_t.html#a9a14bb3c8afac3c74a350b5bbeb94807">kynema_sgf::vs::TensorT&lt; amrex::Real &gt;::identity</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr TensorT&lt; amrex::Real &gt; identity()</div><div class="ttdef"><b>Definition</b> tensor.H:64</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1vs_1_1_vector_t_html_a96a88495bac0075a2f204b73f067a827"><div class="ttname"><a href="structkynema__sgf_1_1vs_1_1_vector_t.html#a96a88495bac0075a2f204b73f067a827">kynema_sgf::vs::VectorT&lt; amrex::Real &gt;::zero</a></div><div class="ttdeci">AMREX_GPU_HOST_DEVICE static AMREX_FORCE_INLINE constexpr VectorT&lt; amrex::Real &gt; zero()</div><div class="ttdef"><b>Definition</b> vector.H:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
