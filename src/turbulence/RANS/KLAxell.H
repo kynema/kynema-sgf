@@ -4,6 +4,7 @@
 #include <string>
 #include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
+#include "src/physics/ForestCanopy.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -72,6 +73,9 @@ private:
     amrex::Real m_meso_sponge_start{2000};
 
     std::unique_ptr<ScratchField> m_gradT;
+
+    //! Canopy length scale limit (ForestDrag.canopy_tke, canopy_length_alpha)
+    forestdrag::CanopyTurbulence m_canopy;
 };
 
 } // namespace kynema_sgf::turbulence

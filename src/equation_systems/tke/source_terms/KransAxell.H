@@ -3,6 +3,7 @@
 
 #include "src/transport_models/TransportModel.H"
 #include "src/equation_systems/tke/TKESource.H"
+#include "src/physics/ForestCanopy.H"
 #include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
@@ -70,6 +71,8 @@ private:
     amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
     amrex::Real m_gamma_m{5.0_rt};
     amrex::Real m_beta_m{16.0_rt};
+    //! Canopy TKE source inputs (ForestDrag.canopy_tke and coefficients)
+    forestdrag::CanopyTurbulence m_canopy;
 };
 
 } // namespace kynema_sgf::pde::tke
