@@ -23,6 +23,18 @@ public:
     void operator()(
         int lev, FieldState fstate, amrex::MultiFab& src_term) const override;
 
+    /** With ``DragTempForcing.blank_follow_fluid``: replace the relaxation of
+     *  the blanked cells toward the soil temperature, applied by operator(),
+     *  with a relaxation toward the temperature of the cell above. Public
+     *  because it launches a device lambda.
+     *
+     *  @param lev Level to update
+     *  @param fstate State of the velocity and temperature fields
+     *  @param src_term Temperature source term updated by operator()
+     */
+    void blank_follow_fluid(
+        int lev, FieldState fstate, amrex::MultiFab& src_term) const;
+
 private:
     const SimTime& m_time;
     const CFDSim& m_sim;
@@ -40,6 +52,10 @@ private:
     amrex::Real m_beta_h{16.0_rt};
     amrex::Real m_soil_temperature{300};
     amrex::Real m_forcing_time_factor{5.0_rt};
+    //! Blanked cells relax toward the cell above instead of the soil
+    //! temperature (off by default, on with ``TerrainDrag.wall_treatment =
+    //! improved``)
+    bool m_blank_follow_fluid{false};
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 

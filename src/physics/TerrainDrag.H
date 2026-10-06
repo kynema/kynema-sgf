@@ -94,6 +94,18 @@ private:
     const std::string m_wave_negative_elevation_name{"ow_levelset"};
     const std::string m_wave_velocity_name{"ow_velocity"};
 };
+
+/** Near-wall treatment selected by ``TerrainDrag.wall_treatment``.
+ *
+ *  ``original`` (default) keeps the original near-wall model. ``improved``
+ *  turns on the five near-wall corrections as their default:
+ *  ``KLAxell.terrain_wall_stencil``, ``KLAxell.terrain_blanked_face_length``,
+ *  ``KLAxell.terrain_face_stress``, ``KLAxell.terrain_face_heat_flux`` and
+ *  ``DragTempForcing.blank_follow_fluid``. Each can still be set on its own.
+ *
+ *  @return true for ``improved``
+ */
+bool improved_wall_treatment();
 } // namespace kynema_sgf::terraindrag
 
 #endif

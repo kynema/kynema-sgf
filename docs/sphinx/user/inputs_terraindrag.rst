@@ -39,6 +39,30 @@ TerrainDrag has two operation modes:
    If both ``uniform_roughness`` and ``roughness_file`` are provided, values
    from the roughness file are used where available.
 
+.. input_param:: TerrainDrag.wall_treatment
+
+   **type:** String, optional, default = ``original``
+
+   Near-wall treatment of the cells next to the blanked terrain with the
+   ``KLAxell`` model. ``original`` keeps the original model. ``improved``
+   turns on five corrections that make the cells next to the terrain behave
+   like the first cells above flat ground:
+
+   - :input_param:`KLAxell.terrain_wall_stencil`: the strain rate of the wall
+     cells from the flat-ground wall stencil;
+   - :input_param:`KLAxell.terrain_blanked_face_length`: the mixing length
+     measured from the top face of the blanked column;
+   - :input_param:`KLAxell.terrain_face_stress`: the drag-cell viscosity set
+     so that the face above it carries the wall stress;
+   - :input_param:`KLAxell.terrain_face_heat_flux`: the drag-cell heat
+     diffusivity set so that the face above it carries the surface heat flux
+     (``ABL.wall_het_model = mol``);
+   - :input_param:`DragTempForcing.blank_follow_fluid`: the blanked cells
+     relaxed toward the air above them instead of the soil temperature.
+
+   With ``improved`` each correction can still be turned off on its own, and
+   with ``original`` each can be turned on on its own.
+
 .. input_param:: TerrainDrag.damp_east_slope
 
    **type:** Real, optional, default = 0.0
