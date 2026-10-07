@@ -64,6 +64,13 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real damping_calc(
     amrex::Real blending_fraction,
     BlendingFunctionType function_type)
 {
+    if (layer_thickness <= 0.0_rt) {
+        return 0.0_rt;
+    }
+    if (blending_fraction <= 0.0_rt) {
+        return (distance_from_boundary <= layer_thickness) ? 1.0_rt : 0.0_rt;
+    }
+
     const amrex::Real length_full_damp =
         layer_thickness * (1.0_rt - blending_fraction);
     const amrex::Real blend_position_nondim =
