@@ -91,13 +91,6 @@ struct DampingLayerSourceTraits<SDRSource>
     static constexpr const char* field_name = "sdr";
 };
 
-template <>
-struct DampingLayerSourceTraits<SourceTerm>
-{
-    static constexpr bool is_specialized = true;
-    static constexpr const char* field_name = "";
-};
-
 template <typename T>
 class DampingLayerSource : public T::template Register<DampingLayerSource<T>>
 {
