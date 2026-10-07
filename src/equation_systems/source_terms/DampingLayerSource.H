@@ -24,7 +24,7 @@ enum class TargetType : std::uint8_t {
     Field = 3
 };
 
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE TargetType
+AMREX_FORCE_INLINE TargetType
 string_to_target_type(const std::string& target_type_str)
 {
     std::string target_type_lower = amrex::toLower(target_type_str);
@@ -351,23 +351,28 @@ public:
                         ? (*target_field_ptr)(lev).const_arrays()
                         : amrex::MultiArray4<const amrex::Real>();
 
-                amrex::GpuArray<int, AMREX_SPACEDIM> damp_this_component{
-                    0, 0, 0};
+                amrex::GpuArray<int, AMREX_SPACEDIM> damped_components{0, 0, 0};
+
+                int ncomp = 0;
                 for (int comp = 0; comp < m_damped_field.num_comp(); ++comp) {
-                    damp_this_component[comp] =
-                        m_damped_components[bc_idx][comp];
+                    ncomp += m_damped_components[bc_idx][comp];
+                    if (m_damped_components[bc_idx][comp] == 1) {
+                        damped_components[ncomp - 1] = comp;
+                    }
                 }
 
                 amrex::ParallelFor(
-                    damping_mfab, amrex::IntVect(0), m_damped_field.num_comp(),
+                    damping_mfab, amrex::IntVect(0), ncomp,
                     [=] AMREX_GPU_DEVICE(
-                        int nbx, int i, int j, int k, int n) noexcept {
+                        int nbx, int i, int j, int k, int icomp) noexcept {
                         const amrex::Real x =
                             problo[0] + ((i + 0.5_rt) * dx[0]);
                         const amrex::Real y =
                             problo[1] + ((j + 0.5_rt) * dx[1]);
                         const amrex::Real z =
                             problo[2] + ((k + 0.5_rt) * dx[2]);
+
+                        const int n = damped_components[icomp];
 
                         // Modify src term based on current value of damped
                         // field, damping coefficient field, target value
@@ -393,12 +398,9 @@ public:
                             target_value = target_field_arrs[nbx](i, j, k, n);
                         }
 
-                        if (damp_this_component[n] == 1) {
-                            src_arrs[nbx](i, j, k, n) +=
-                                damping_arrs[nbx](i, j, k) *
-                                (target_value -
-                                 damped_field_arrs[nbx](i, j, k, n));
-                        }
+                        src_arrs[nbx](i, j, k, n) +=
+                            damping_arrs[nbx](i, j, k) *
+                            (target_value - damped_field_arrs[nbx](i, j, k, n));
                     });
             }
         }
