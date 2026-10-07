@@ -115,15 +115,14 @@ private:
 
     //! Quantities for constructing damping layers
     amrex::Vector<std::string> m_field_names;
-    amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 6>> m_layers_thickness;
-    amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 6>>
-        m_layers_blending_fraction;
-    amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 4>> m_layers_min_height;
-    amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 4>>
+    amrex::Vector<amrex::Array<amrex::Real, 6>> m_layers_thickness;
+    amrex::Vector<amrex::Array<amrex::Real, 6>> m_layers_blending_fraction;
+    amrex::Vector<amrex::Array<amrex::Real, 4>> m_layers_min_height;
+    amrex::Vector<amrex::Array<amrex::Real, 4>>
         m_layers_vertical_blending_thickness;
-    amrex::Gpu::DeviceVector<amrex::Array<BlendingFunctionType, 4>>
+    amrex::Vector<amrex::Array<BlendingFunctionType, 4>>
         m_layers_vertical_blending_function_type;
-    amrex::Gpu::DeviceVector<amrex::Array<BlendingFunctionType, 6>>
+    amrex::Vector<amrex::Array<BlendingFunctionType, 6>>
         m_layers_blending_function_type;
 };
 } // namespace kynema_sgf::damping_layer

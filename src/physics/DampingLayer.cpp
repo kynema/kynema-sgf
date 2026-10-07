@@ -17,16 +17,6 @@ DampingLayer::DampingLayer(CFDSim& sim) : m_repo(sim.repo()), m_mesh(sim.mesh())
     amrex::ParmParse pp(identifier());
     pp.getarr("fields", m_field_names);
 
-    amrex::Vector<amrex::Array<amrex::Real, 6>> layers_thickness;
-    amrex::Vector<amrex::Array<amrex::Real, 6>> layers_blending_fraction;
-    amrex::Vector<amrex::Array<amrex::Real, 4>> layers_min_height;
-    amrex::Vector<amrex::Array<amrex::Real, 4>>
-        layers_vertical_blending_thickness;
-    amrex::Vector<amrex::Array<BlendingFunctionType, 4>>
-        layers_vertical_blending_function_type;
-    amrex::Vector<amrex::Array<BlendingFunctionType, 6>>
-        layers_blending_function_type;
-
     for (const auto& lbl : m_field_names) {
         const std::string key = identifier() + "." + lbl;
 
@@ -99,45 +89,15 @@ DampingLayer::DampingLayer(CFDSim& sim) : m_repo(sim.repo()), m_mesh(sim.mesh())
             ++bc_index;
         }
 
-        layers_thickness.emplace_back(bc_thickness);
-        layers_blending_fraction.emplace_back(bc_blending_fraction);
-        layers_min_height.emplace_back(bc_min_height);
-        layers_vertical_blending_thickness.emplace_back(
+        m_layers_thickness.emplace_back(bc_thickness);
+        m_layers_blending_fraction.emplace_back(bc_blending_fraction);
+        m_layers_min_height.emplace_back(bc_min_height);
+        m_layers_vertical_blending_thickness.emplace_back(
             bc_vertical_blending_thickness);
-        layers_vertical_blending_function_type.emplace_back(
+        m_layers_vertical_blending_function_type.emplace_back(
             bc_vertical_blending_function_type);
-        layers_blending_function_type.emplace_back(bc_blending_function_type);
+        m_layers_blending_function_type.emplace_back(bc_blending_function_type);
     }
-
-    const int nfields = static_cast<int>(layers_thickness.size());
-    m_layers_thickness.resize(nfields);
-    m_layers_blending_fraction.resize(nfields);
-    m_layers_min_height.resize(nfields);
-    m_layers_blending_function_type.resize(nfields);
-    m_layers_vertical_blending_thickness.resize(nfields);
-    m_layers_vertical_blending_function_type.resize(nfields);
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, layers_thickness.begin(),
-        layers_thickness.end(), m_layers_thickness.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, layers_blending_fraction.begin(),
-        layers_blending_fraction.end(), m_layers_blending_fraction.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, layers_min_height.begin(),
-        layers_min_height.end(), m_layers_min_height.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, layers_vertical_blending_thickness.begin(),
-        layers_vertical_blending_thickness.end(),
-        m_layers_vertical_blending_thickness.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice,
-        layers_vertical_blending_function_type.begin(),
-        layers_vertical_blending_function_type.end(),
-        m_layers_vertical_blending_function_type.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, layers_blending_function_type.begin(),
-        layers_blending_function_type.end(),
-        m_layers_blending_function_type.begin());
 }
 
 void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
@@ -148,37 +108,30 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
 
     const int nfields = static_cast<int>(m_field_names.size());
     const std::string* field_names_ptr = m_field_names.data();
-    const amrex::Array<amrex::Real, 6>* bc_thickness_ptr =
-        m_layers_thickness.data();
-    const amrex::Array<amrex::Real, 6>* bc_blending_fraction_ptr =
-        m_layers_blending_fraction.data();
-    const amrex::Array<amrex::Real, 4>* bc_min_height_ptr =
-        m_layers_min_height.data();
-    const amrex::Array<BlendingFunctionType, 6>* bc_blending_function_type_ptr =
-        m_layers_blending_function_type.data();
 
     for (int field_idx = 0; field_idx < nfields; ++field_idx) {
         const std::string lbl = field_names_ptr[field_idx];
 
         const amrex::Array<amrex::Real, 6>& bc_thickness =
-            bc_thickness_ptr[field_idx];
+            m_layers_thickness[field_idx];
         const amrex::Array<amrex::Real, 6>& bc_blending_fraction =
-            bc_blending_fraction_ptr[field_idx];
+            m_layers_blending_fraction[field_idx];
         const amrex::Array<amrex::Real, 4>& bc_min_height =
-            bc_min_height_ptr[field_idx];
+            m_layers_min_height[field_idx];
         const amrex::Array<amrex::Real, 4>& bc_vertical_blending_thickness =
             m_layers_vertical_blending_thickness[field_idx];
         const amrex::Array<BlendingFunctionType, 4>&
             bc_vertical_blending_function_type =
                 m_layers_vertical_blending_function_type[field_idx];
         const amrex::Array<BlendingFunctionType, 6>& bc_blending_function_type =
-            bc_blending_function_type_ptr[field_idx];
+            m_layers_blending_function_type[field_idx];
 
         // Field pointer to the damping layer field for this boundary condition
         Field* damping_layer_ptr{nullptr};
 
         for (int bc_idx = 0; bc_idx < 6; ++bc_idx) {
-            if (bc_thickness[bc_idx] > 0.0_rt) {
+            const amrex::Real thickness = bc_thickness[bc_idx];
+            if (thickness > 0.0_rt) {
                 // Form damping layer field name
                 const auto field_name =
                     "damping_layer_" + lbl + "_" + m_bc_names[bc_idx];
@@ -197,6 +150,8 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                                  : BlendingFunctionType::Cosine;
                 const BlendingFunctionType blending_function_type =
                     bc_blending_function_type[bc_idx];
+                const int coordinate_idx = bc_idx / 2;
+                const bool high_side = (bc_idx % 2) == 1;
 
                 auto& damping_layer_mfab = (*damping_layer_ptr)(level);
                 auto damping_layer_arrs = damping_layer_mfab.arrays();
@@ -212,35 +167,16 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                         const amrex::Real z =
                             prob_lo[2] + ((k + 0.5_rt) * dx[2]);
 
-                        // Determine the distance from the boundary
-                        amrex::Real distance_from_boundary = 0.0_rt;
-                        switch (bc_idx) {
-                        case 0: // xlo
-                            distance_from_boundary = x - prob_lo[0];
-                            break;
-                        case 1: // xhi
-                            distance_from_boundary = prob_hi[0] - x;
-                            break;
-                        case 2: // ylo
-                            distance_from_boundary = y - prob_lo[1];
-                            break;
-                        case 3: // yhi
-                            distance_from_boundary = prob_hi[1] - y;
-                            break;
-                        case 4: // zlo
-                            distance_from_boundary = z - prob_lo[2];
-                            break;
-                        case 5: // zhi
-                            distance_from_boundary = prob_hi[2] - z;
-                            break;
-                        default:
-                            amrex::Abort(
-                                "Invalid boundary index in "
-                                "DampingLayer::initialize_fields");
-                        }
+                        const amrex::Real coordinate = (coordinate_idx == 0) ? x
+                                                       : (coordinate_idx == 1)
+                                                           ? y
+                                                           : z;
+                        const amrex::Real distance_from_boundary =
+                            high_side ? prob_hi[coordinate_idx] - coordinate
+                                      : coordinate - prob_lo[coordinate_idx];
 
                         amrex::Real damping_coeff = damping_calc(
-                            distance_from_boundary, bc_thickness[bc_idx],
+                            distance_from_boundary, thickness,
                             blending_fraction, blending_function_type);
 
                         if (min_height > constants::LOW_NUM) {
