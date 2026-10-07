@@ -8,7 +8,10 @@
 #include "src/wind_energy/MOData.H"
 #include "src/utilities/linear_interpolation.H"
 
+#include <algorithm>
 #include <cmath>
+#include <fstream>
+#include <limits>
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Print.H"
@@ -18,6 +21,36 @@
 using namespace amrex::literals;
 
 namespace kynema_sgf {
+
+namespace {
+//! Read a two-column time table after a one-line header
+void read_time_table(
+    const std::string& key,
+    const std::string& fname,
+    amrex::Vector<amrex::Real>& times,
+    amrex::Vector<amrex::Real>& values)
+{
+    std::ifstream ifh(fname, std::ios::in);
+    if (!ifh.good()) {
+        amrex::Abort("ABLWallFunction: cannot find " + key + " file: " + fname);
+    }
+    ifh.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    amrex::Real data_time;
+    amrex::Real data_value;
+    while (ifh >> data_time >> data_value) {
+        times.push_back(data_time);
+        values.push_back(data_value);
+        ifh.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    if (times.empty()) {
+        amrex::Abort(
+            "ABLWallFunction: " + key +
+            " file has no data rows after the "
+            "header line: " +
+            fname);
+    }
+}
+} // namespace
 
 ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     : m_sim(sim), m_mesh(sim.mesh())
@@ -33,6 +66,10 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     pp.query("mo_gamma_h", m_mo.gamma_h);
     pp.query("mo_beta_m", m_mo.beta_m);
     pp.query("mo_beta_h", m_mo.beta_h);
+    pp.query("mo_alpha_h", m_mo.alpha_h);
+    if (m_mo.alpha_h <= 0.0_rt) {
+        amrex::Abort("ABLWallFunction: mo_alpha_h must be positive");
+    }
     const char* z0_same = "surface_roughness_z0";
     const char* z0_aero = "aerodynamic_roughness_length";
     const char* z0_therm = "thermal_roughness_length";
@@ -75,7 +112,44 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     m_wall_pos = m_sim.mesh().Geom(0).ProbLo(m_direction);
     pp.query("wall_position", m_wall_pos);
 
-    if (pp.contains("surface_temp_flux")) {
+    // The time-table heat flux and the near-surface temperature replace the
+    // other surface temperature boundary conditions
+    const amrex::Vector<std::string> thermal_keys{
+        "surface_temp_flux", "surface_temp_timetable", "surface_temp_rate",
+        "surface_temp_flux_timetable", "near_surface_temp_timetable"};
+    const auto n_thermal =
+        std::ranges::count_if(thermal_keys, [&pp](const std::string& key) {
+            return pp.contains(key);
+        });
+    if ((n_thermal > 1) && (pp.contains("surface_temp_flux_timetable") ||
+                            pp.contains("near_surface_temp_timetable"))) {
+        amrex::Abort(
+            "ABLWallFunction: surface_temp_flux_timetable and "
+            "near_surface_temp_timetable cannot be combined with another "
+            "surface temperature boundary condition");
+    }
+
+    if (pp.contains("surface_temp_flux_timetable")) {
+        pp.get("surface_temp_flux_timetable", m_surf_temp_flux_timetable);
+        m_tempflux_table = true;
+        amrex::Print() << "ABLWallFunction: Surface temperature flux time "
+                          "table mode is selected."
+                       << '\n';
+        read_time_table(
+            "surface_temp_flux_timetable", m_surf_temp_flux_timetable,
+            m_surf_temp_flux_time, m_surf_temp_flux_value);
+    } else if (pp.contains("near_surface_temp_timetable")) {
+        pp.get("near_surface_temp_timetable", m_near_surf_temp_timetable);
+        pp.get("near_surface_height", m_mo.near_surf_height);
+        m_tempflux = false;
+        m_near_surf_temp = true;
+        amrex::Print() << "ABLWallFunction: Near-surface temperature time "
+                          "table mode is selected."
+                       << '\n';
+        read_time_table(
+            "near_surface_temp_timetable", m_near_surf_temp_timetable,
+            m_near_surf_temp_time, m_near_surf_temp_value);
+    } else if (pp.contains("surface_temp_flux")) {
         pp.query("surface_temp_flux", m_mo.surf_temp_flux);
         amrex::Print()
             << "ABLWallFunction: Surface temperature flux mode is selected."
@@ -148,8 +222,12 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
         }
     }
 
-    m_mo.alg_type = m_tempflux ? MOData::ThetaCalcType::HEAT_FLUX
-                               : MOData::ThetaCalcType::SURFACE_TEMPERATURE;
+    if (m_near_surf_temp) {
+        m_mo.alg_type = MOData::ThetaCalcType::NEAR_SURFACE_TEMPERATURE;
+    } else {
+        m_mo.alg_type = m_tempflux ? MOData::ThetaCalcType::HEAT_FLUX
+                                   : MOData::ThetaCalcType::SURFACE_TEMPERATURE;
+    }
     m_mo.gravity = utils::vec_mag(m_gravity.data());
 }
 
@@ -159,6 +237,22 @@ void ABLWallFunction::init_log_law_height(int max_level)
         const auto& geom = m_mesh.Geom(max_level);
         m_mo.zref = 0.5_rt * geom.CellSize(m_direction);
     }
+
+    if (m_near_surf_temp) {
+        const amrex::Real zn = m_mo.near_surf_height;
+        if (zn <= m_mo.z0t) {
+            amrex::Abort(
+                "ABLWallFunction: near_surface_height must be above the "
+                "thermal roughness length");
+        }
+        // The two heights give the two equations for the heat flux and the
+        // surface temperature
+        if (std::abs(zn - m_mo.zref) < 1.0e-3_rt * m_mo.zref) {
+            amrex::Abort(
+                "ABLWallFunction: near_surface_height must differ from the "
+                "log-law height");
+        }
+    }
 }
 
 void ABLWallFunction::update_umean(
@@ -166,7 +260,19 @@ void ABLWallFunction::update_umean(
 {
     const auto& time = m_sim.time();
 
-    if (!m_tempflux) {
+    if (m_tempflux_table) {
+        m_mo.surf_temp_flux = kynema_sgf::interp::linear(
+            m_surf_temp_flux_time, m_surf_temp_flux_value, time.current_time());
+        amrex::Print() << "Current surface temperature flux: "
+                       << m_mo.surf_temp_flux << '\n';
+    }
+
+    if (m_near_surf_temp) {
+        m_mo.near_surf_temp = kynema_sgf::interp::linear(
+            m_near_surf_temp_time, m_near_surf_temp_value, time.current_time());
+        amrex::Print() << "Current near-surface temperature: "
+                       << m_mo.near_surf_temp << '\n';
+    } else if (!m_tempflux) {
         if (!m_temp_table) {
             m_mo.surf_temp =
                 m_surf_temp_init +

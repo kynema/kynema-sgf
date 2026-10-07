@@ -8,6 +8,7 @@
 #include "src/equation_systems/icns/MomentumSource.H"
 #include "src/equation_systems/icns/source_terms/BodyForce.H"
 #include "src/equation_systems/icns/source_terms/ABLForcing.H"
+#include "src/utilities/FieldPlaneAveraging.H"
 #include "src/equation_systems/icns/source_terms/GeostrophicForcing.H"
 #include "src/equation_systems/icns/source_terms/CoriolisForcing.H"
 #include "src/equation_systems/icns/source_terms/BoussinesqBuoyancy.H"
@@ -110,6 +111,227 @@ TEST_F(ABLMeshTest, abl_forcing)
             EXPECT_NEAR(min_val, max_val, tol);
         }
     }
+}
+
+namespace {
+//! Mean of a source-term component over the cells at a height
+amrex::Real plane_mean_at_height(
+    kynema_sgf::Field& field,
+    const int comp,
+    const amrex::Real ploz,
+    const amrex::Real dz,
+    const amrex::Real height)
+{
+    // 8 x 8 cells in each horizontal plane
+    return get_val_at_height(field, 0, comp, ploz, dz, height) / 64.0_rt;
+}
+
+//! Set up the ABLForcing inputs for the free-atmosphere damping tests
+void add_free_atmosphere_inputs(const bool detect_height)
+{
+    amrex::ParmParse pp("ABLForcing");
+    pp.add("free_atmosphere_damping", 1);
+    pp.add("free_atmosphere_damping_time_scale", 50.0_rt);
+    if (detect_height) {
+        pp.add("detect_free_atmosphere_height", 1);
+    } else {
+        pp.add("free_atmosphere_height", 500.0_rt);
+    }
+}
+
+//! Coriolis parameter from the ABLMeshTest inputs (latitude 45 degrees)
+amrex::Real coriolis_factor()
+{
+    return 2.0_rt * kynema_sgf::utils::two_pi() / 86164.091_rt *
+           std::sin(kynema_sgf::utils::radians(45.0_rt));
+}
+} // namespace
+
+TEST_F(ABLMeshTest, abl_forcing_free_atmosphere_damping)
+{
+    constexpr amrex::Real tol = 1.0e-4_rt;
+    constexpr amrex::Real tau = 50.0_rt;
+    constexpr amrex::Real u0 = 3.0_rt;
+    constexpr amrex::Real v0 = 4.0_rt;
+    populate_parameters();
+    add_free_atmosphere_inputs(false);
+    initialize_mesh();
+
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    pde_mgr.register_transport_pde("Temperature");
+    sim().init_physics();
+    {
+        amrex::ParmParse pp("ICNS");
+        pp.addarr(
+            "source_terms",
+            amrex::Vector<std::string>{"CoriolisForcing", "ABLForcing"});
+    }
+
+    auto& src_term = pde_mgr.icns().fields().src_term;
+    auto& velocity = sim().repo().get_field("velocity");
+    velocity.setVal(0.0_rt);
+    velocity(0).setVal(u0, 0, 1);
+    velocity(0).setVal(v0, 1, 1);
+    kynema_sgf::VelPlaneAveraging vpa(sim(), 2, -1);
+    vpa();
+
+    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
+    EXPECT_TRUE(abl_forcing.free_atmosphere_damping());
+    EXPECT_FALSE(abl_forcing.detect_free_atmosphere_height());
+
+    auto& time = sim().time();
+    time.new_timestep();
+    time.set_current_cfl(2.0_rt, 0.0_rt, 0.0_rt);
+    // Means chosen so that F = (0.002, -0.001)
+    abl_forcing.set_mean_velocities(20.0_rt - 2.0e-4_rt, 10.0_rt + 1.0e-4_rt);
+    // zi is ignored with a fixed free-atmosphere height
+    abl_forcing.update_free_atmosphere(vpa, 100.0_rt);
+    EXPECT_NEAR(abl_forcing.free_atmosphere_height(), 500.0_rt, tol);
+
+    // No damping at the first update after start-up
+    src_term.setVal(0.0_rt);
+    abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
+    EXPECT_NEAR(
+        utils::field_max(src_term, 0), abl_forcing.abl_forcing()[0],
+        tol * std::abs(abl_forcing.abl_forcing()[0]));
+    EXPECT_NEAR(
+        utils::field_min(src_term, 0), abl_forcing.abl_forcing()[0],
+        tol * std::abs(abl_forcing.abl_forcing()[0]));
+    abl_forcing.update_free_atmosphere(vpa, 100.0_rt);
+
+    const auto forcing = abl_forcing.abl_forcing();
+    const amrex::Real fcor = coriolis_factor();
+    const auto ug = abl_forcing.geostrophic_velocity();
+    EXPECT_NEAR(ug[0], forcing[1] / fcor, tol * std::abs(ug[0]));
+    EXPECT_NEAR(ug[1], -forcing[0] / fcor, tol * std::abs(ug[1]));
+
+    src_term.setVal(0.0_rt);
+    abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
+
+    const amrex::Real dz = sim().mesh().Geom(0).CellSize(2);
+    const amrex::Real ploz = sim().mesh().Geom(0).ProbLo(2);
+    // Cell centers below and above the 500 m free-atmosphere height
+    const amrex::Real z_below = ploz + (15.5_rt * dz);
+    const amrex::Real z_above = ploz + (47.5_rt * dz);
+    // Below the free atmosphere only the ABL forcing acts
+    EXPECT_NEAR(
+        plane_mean_at_height(src_term, 0, ploz, dz, z_below), forcing[0],
+        tol * std::abs(forcing[0]));
+    EXPECT_NEAR(
+        plane_mean_at_height(src_term, 1, ploz, dz, z_below), forcing[1],
+        tol * std::abs(forcing[1]));
+    // Above it the mean velocity also relaxes toward the geostrophic wind
+    const amrex::Real sx = forcing[0] + ((ug[0] - u0) / tau);
+    const amrex::Real sy = forcing[1] + ((ug[1] - v0) / tau);
+    EXPECT_NEAR(
+        plane_mean_at_height(src_term, 0, ploz, dz, z_above), sx,
+        tol * std::abs(sx));
+    EXPECT_NEAR(
+        plane_mean_at_height(src_term, 1, ploz, dz, z_above), sy,
+        tol * std::abs(sy));
+    EXPECT_NEAR(utils::field_max(src_term, 2), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_min(src_term, 2), 0.0_rt, tol);
+}
+
+TEST_F(ABLMeshTest, abl_forcing_free_atmosphere_detect_height)
+{
+    constexpr amrex::Real tol = 1.0e-4_rt;
+    populate_parameters();
+    add_free_atmosphere_inputs(true);
+    {
+        amrex::ParmParse pp("ABLForcing");
+        pp.add("free_atmosphere_damping_start_time", 10.0_rt);
+    }
+    initialize_mesh();
+
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    pde_mgr.register_transport_pde("Temperature");
+    sim().init_physics();
+    {
+        amrex::ParmParse pp("ICNS");
+        pp.addarr(
+            "source_terms",
+            amrex::Vector<std::string>{"CoriolisForcing", "ABLForcing"});
+    }
+
+    auto& src_term = pde_mgr.icns().fields().src_term;
+    auto& velocity = sim().repo().get_field("velocity");
+    velocity.setVal(0.0_rt);
+    kynema_sgf::VelPlaneAveraging vpa(sim(), 2, -1);
+    vpa();
+
+    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
+    EXPECT_TRUE(abl_forcing.detect_free_atmosphere_height());
+
+    auto& time = sim().time();
+    time.new_timestep();
+    time.set_current_cfl(2.0_rt, 0.0_rt, 0.0_rt);
+    abl_forcing.set_mean_velocities(20.0_rt - 2.0e-4_rt, 10.0_rt + 1.0e-4_rt);
+    // The height follows zi, measured from the bottom of the domain
+    abl_forcing.update_free_atmosphere(vpa, 300.0_rt);
+    abl_forcing.update_free_atmosphere(vpa, 300.0_rt);
+    EXPECT_NEAR(
+        abl_forcing.free_atmosphere_height(),
+        sim().mesh().Geom(0).ProbLo(2) + 300.0_rt, tol);
+
+    // Before the start time the source term is the ABL forcing alone
+    src_term.setVal(0.0_rt);
+    abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
+    const auto forcing = abl_forcing.abl_forcing();
+    for (int i = 0; i < 2; ++i) {
+        EXPECT_NEAR(
+            utils::field_min(src_term, i), forcing[i],
+            tol * std::abs(forcing[i]));
+        EXPECT_NEAR(
+            utils::field_max(src_term, i), forcing[i],
+            tol * std::abs(forcing[i]));
+    }
+}
+
+TEST_F(ABLMeshTest, abl_forcing_free_atmosphere_needs_coriolis)
+{
+    populate_parameters();
+    add_free_atmosphere_inputs(false);
+    initialize_mesh();
+
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    pde_mgr.register_transport_pde("Temperature");
+    sim().init_physics();
+    {
+        amrex::ParmParse pp("ICNS");
+        pp.addarr("source_terms", amrex::Vector<std::string>{"ABLForcing"});
+    }
+    EXPECT_THROW(
+        kynema_sgf::pde::icns::ABLForcing abl_forcing(sim()),
+        std::runtime_error);
+}
+
+TEST_F(ABLMeshTest, abl_forcing_free_atmosphere_needs_nonzero_coriolis)
+{
+    populate_parameters();
+    add_free_atmosphere_inputs(false);
+    {
+        amrex::ParmParse pp("CoriolisForcing");
+        pp.add("latitude", 0.0_rt);
+    }
+    initialize_mesh();
+
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    pde_mgr.register_transport_pde("Temperature");
+    sim().init_physics();
+    {
+        amrex::ParmParse pp("ICNS");
+        pp.addarr(
+            "source_terms",
+            amrex::Vector<std::string>{"CoriolisForcing", "ABLForcing"});
+    }
+    EXPECT_THROW(
+        kynema_sgf::pde::icns::ABLForcing abl_forcing(sim()),
+        std::runtime_error);
 }
 
 TEST_F(ABLMeshTest, body_force)

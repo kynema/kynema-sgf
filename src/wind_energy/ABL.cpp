@@ -241,6 +241,13 @@ void ABL::pre_advance_work()
         }
 #endif
 
+        if (m_abl_forcing->free_atmosphere_damping()) {
+            if (m_abl_forcing->detect_free_atmosphere_height()) {
+                m_stats->compute_zi();
+            }
+            m_abl_forcing->update_free_atmosphere(vel_pa, m_stats->zi());
+        }
+
         m_abl_forcing->set_mean_velocities(vx, vy);
     }
 

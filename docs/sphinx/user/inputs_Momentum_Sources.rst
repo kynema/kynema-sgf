@@ -93,6 +93,60 @@ Section: Momentum Sources
    an input file for Body Forcing. The output file will contain the time and three vector
    components of the force.
 
+   With :input_param:`ABLForcing.free_atmosphere_damping`, the file also
+   contains the geostrophic wind that balances the forcing and the
+   free-atmosphere height.
+
+.. input_param:: ABLForcing.free_atmosphere_damping
+
+   **type:** Boolean, optional, default = false
+
+   Relax the planar-averaged velocity above a free-atmosphere height :math:`h`
+   toward the geostrophic wind that balances the ABL forcing :math:`\mathbf{F}`,
+   :math:`U_g = F_y / f` and :math:`V_g = -F_x / f`, with the source term
+   :math:`(U_g - \langle u \rangle(z)) / \tau` and :math:`(V_g - \langle v \rangle(z)) / \tau`
+   for :math:`z \geq h`. This removes the inertial oscillations of the free
+   atmosphere that the time-varying forcing otherwise excites. The Coriolis
+   parameter :math:`f = 2 \Omega \sin \phi` is computed from the
+   ``CoriolisForcing`` inputs, and ``CoriolisForcing`` must be one of the
+   ``ICNS.source_terms``. As in ``GeostrophicForcing``, :math:`x` is east and
+   :math:`y` is north. The forcing of a timestep corrects the drift of the
+   previous one, so the damping starts at the second timestep after start-up.
+
+.. input_param:: ABLForcing.free_atmosphere_height
+
+   **type:** Real, mandatory with :input_param:`ABLForcing.free_atmosphere_damping`
+   unless :input_param:`ABLForcing.detect_free_atmosphere_height` is true
+
+   Height (in the domain coordinates) above which the free atmosphere is damped.
+
+.. input_param:: ABLForcing.detect_free_atmosphere_height
+
+   **type:** Boolean, optional, default = false
+
+   Set the free-atmosphere height to the capping inversion height every
+   timestep. The capping inversion height is the planar average of the height of
+   the largest vertical potential temperature gradient on level 0, as in the ABL
+   statistics output. It is meant for boundary layers under a capping inversion.
+
+.. input_param:: ABLForcing.free_atmosphere_damping_time_scale
+
+   **type:** Real, optional, default = 100.0
+
+   Relaxation time scale :math:`\tau` in seconds.
+
+.. input_param:: ABLForcing.free_atmosphere_damping_start_time
+
+   **type:** Real, optional, default = 0.0
+
+   Time at which the free-atmosphere damping starts.
+
+.. input_param:: ABLForcing.free_atmosphere_damping_end_time
+
+   **type:** Real, optional, default = no end
+
+   Time at which the free-atmosphere damping ends.
+
 .. input_param:: ABLForcing.forcing_timetable_frequency
 
    **type:** Int, optional
