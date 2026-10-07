@@ -200,6 +200,28 @@ public:
                 }
             }
 
+            if (target_type == TargetType::Profile) {
+                const int ncomp = m_damped_field.num_comp();
+                if (ncomp > 1) {
+                    if (m_damped_components[bc_idx][1] == 1 &&
+                        m_target_profile_values_y[bc_idx].empty()) {
+                        amrex::Abort(
+                            "DampingLayerSource: target_profile_values_y is "
+                            "required when damping component 1 for field " +
+                            m_damped_field_name +
+                            " with target_type = profile.");
+                    }
+                    if (ncomp > 2 && m_damped_components[bc_idx][2] == 1 &&
+                        m_target_profile_values_z[bc_idx].empty()) {
+                        amrex::Abort(
+                            "DampingLayerSource: target_profile_values_z is "
+                            "required when damping component 2 for field " +
+                            m_damped_field_name +
+                            " with target_type = profile.");
+                    }
+                }
+            }
+
             if (target_type == TargetType::Constant) {
                 if (m_target_value[bc_idx].size() !=
                     m_damped_field.num_comp()) {
