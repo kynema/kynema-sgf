@@ -90,6 +90,11 @@ void CartBoxRefinement::initialize(const std::string& key)
     }
 
     read_inputs(m_mesh, ifh);
+
+    if (tag_operator() != tagging::TaggingOperator::OR) {
+        amrex::Abort(
+            "CartBoxRefinement only supports the 'or' operator for tagging");
+    }
 }
 
 void CartBoxRefinement::read_inputs(

@@ -108,6 +108,7 @@ tagging.T1_level_3_zone.T1_level_3_zone.zaxis = 0.0 0.0 151.2
 Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file  = NREL-5MW-aero.yaml
 Actuator.TurbineKynemaFMBLine.num_struct_nodes_blade = 11
 Actuator.TurbineKynemaFMBLine.num_struct_nodes_tower = 11
+Actuator.TurbineKynemaFMBLine.section_ref_blade      = 2
 Actuator.TurbineKynemaFMBLine.num_points_blade       = 64
 Actuator.TurbineKynemaFMBLine.num_points_tower       = 7
 Actuator.TurbineKynemaFMBLine.rot_speed_rpm          = 12.1

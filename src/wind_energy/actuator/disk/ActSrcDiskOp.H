@@ -37,7 +37,6 @@ protected:
     void copy_to_device();
 
 public:
-    // cppcheck-suppress uninitMemberVar
     explicit ActSrcOp(typename ActTrait::DataType& data)
         : m_data(data)
         , m_act_src(m_data.sim().repo().get_field("actuator_src_term"))

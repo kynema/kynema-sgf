@@ -120,3 +120,4 @@ documentation provided here might not work with older releases.
    inputs_KineticEnergy.rst
    inputs_Enstrophy.rst
    inputs_FieldNorms.rst
+   inputs_RANSConvergence.rst

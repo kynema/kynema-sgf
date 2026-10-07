@@ -21,12 +21,9 @@ void OceanWavesFillInflow::fillpatch(
     int lev,
     amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& nghost,
-    const FieldState fstate)
+    const amrex::IntVect& /* nghost */,
+    const FieldState /* fstate */)
 {
-    FieldFillPatchOps<FieldBCDirichlet>::fillpatch(
-        lev, time, mfab, nghost, fstate);
-
     if (m_field.base_name() == "velocity") {
         m_ow_bndry.set_velocity(lev, time, m_field, mfab);
     } else if (m_field.base_name() == "vof") {
@@ -40,12 +37,9 @@ void OceanWavesFillInflow::fillpatch_from_coarse(
     int lev,
     amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& nghost,
-    const FieldState fstate)
+    const amrex::IntVect& /* nghost */,
+    const FieldState /* fstate */)
 {
-    FieldFillPatchOps<FieldBCDirichlet>::fillpatch_from_coarse(
-        lev, time, mfab, nghost, fstate);
-
     if (m_field.base_name() == "velocity") {
         m_ow_bndry.set_velocity(lev, time, m_field, mfab);
     } else if (m_field.base_name() == "vof") {
@@ -59,12 +53,9 @@ void OceanWavesFillInflow::fillphysbc(
     int lev,
     amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& nghost,
-    const FieldState fstate)
+    const amrex::IntVect& /* nghost */,
+    const FieldState /* fstate */)
 {
-    FieldFillPatchOps<FieldBCDirichlet>::fillphysbc(
-        lev, time, mfab, nghost, fstate);
-
     if (m_field.base_name() == "velocity") {
         m_ow_bndry.set_velocity(lev, time, m_field, mfab);
     } else if (m_field.base_name() == "vof") {

@@ -306,7 +306,7 @@ void incflo::ApplyProjection(
     amrex::Vector<amrex::MultiFab*> vel;
     for (int lev = 0; lev <= finest_level; ++lev) {
         vel.push_back(&(velocity(lev)));
-        vel[lev]->setBndry(0.0_rt);
+        vel[lev]->setDomainBndry(0.0_rt, geom[lev]);
         if (!proj_for_small_dt and !incremental) {
             kynema_sgf::nodal_projection::set_inflow_velocity(
                 m_sim.field_boundaries(), velocity, lev, time, *vel[lev], 1);

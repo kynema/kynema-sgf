@@ -89,7 +89,8 @@ void ReynoldsStress::operator()(
                         const amrex::Real avg = stressarrs[nbx](i, j, k, mn);
                         // The stress <AB>
                         stressarrs[nbx](i, j, k, mn) =
-                            (avg * factor + fval2 * avg_time_interval) / filter;
+                            ((avg * factor) + (fval2 * avg_time_interval)) /
+                            filter;
                         // The Reynolds stress <ab>
                         restressarrs[nbx](i, j, k, mn) =
                             stressarrs[nbx](i, j, k, mn) - aval2;

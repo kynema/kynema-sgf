@@ -47,17 +47,17 @@ struct Filter
                 auto const& filterphi_arr = out_arrs[nbx];
                 for (int icomp = 0; icomp < ncomp; icomp++) {
                     const amrex::Real filx =
-                        Stencil::f00 * phi_arr(i + 1, j, k, icomp) +
-                        Stencil::f01 * phi_arr(i, j, k, icomp) +
-                        Stencil::f02 * phi_arr(i - 1, j, k, icomp);
+                        (Stencil::f00 * phi_arr(i + 1, j, k, icomp)) +
+                        (Stencil::f01 * phi_arr(i, j, k, icomp)) +
+                        (Stencil::f02 * phi_arr(i - 1, j, k, icomp));
                     const amrex::Real fily =
-                        Stencil::f10 * phi_arr(i, j + 1, k, icomp) +
-                        Stencil::f11 * phi_arr(i, j, k, icomp) +
-                        Stencil::f12 * phi_arr(i, j - 1, k, icomp);
+                        (Stencil::f10 * phi_arr(i, j + 1, k, icomp)) +
+                        (Stencil::f11 * phi_arr(i, j, k, icomp)) +
+                        (Stencil::f12 * phi_arr(i, j - 1, k, icomp));
                     const amrex::Real filz =
-                        Stencil::f20 * phi_arr(i, j, k + 1, icomp) +
-                        Stencil::f21 * phi_arr(i, j, k, icomp) +
-                        Stencil::f22 * phi_arr(i, j, k - 1, icomp);
+                        (Stencil::f20 * phi_arr(i, j, k + 1, icomp)) +
+                        (Stencil::f21 * phi_arr(i, j, k, icomp)) +
+                        (Stencil::f22 * phi_arr(i, j, k - 1, icomp));
                     filterphi_arr(i, j, k, icomp) =
                         1.0_rt / 3.0_rt * (filx + fily + filz);
                 }

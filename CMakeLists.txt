@@ -1,6 +1,6 @@
 ############################ BASE ######################################
 
-cmake_minimum_required (VERSION 3.20 FATAL_ERROR)
+cmake_minimum_required (VERSION 3.25 FATAL_ERROR)
 project(Kynema-SGF CXX C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")

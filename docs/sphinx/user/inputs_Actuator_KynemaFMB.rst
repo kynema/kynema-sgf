@@ -24,6 +24,9 @@ Example for ``TurbineKynemaFMBLine``::
    Actuator.TurbineKynemaFMBLine.kynema_fmb_input_file = NREL-5MW-aero.yaml
    Actuator.TurbineKynemaFMBLine.num_struct_nodes_blade = 11
    Actuator.TurbineKynemaFMBLine.num_struct_nodes_tower = 11
+   Actuator.TurbineKynemaFMBLine.section_ref_blade = 0
+   Actuator.TurbineKynemaFMBLine.section_ref_tower = 2
+   Actuator.TurbineKynemaFMBLine.decouple_structure_from_aero_loading = false
    Actuator.TurbineKynemaFMBLine.num_points_blade = 64
    Actuator.TurbineKynemaFMBLine.num_points_tower = 7
    Actuator.TurbineKynemaFMBLine.num_blades = 3
@@ -78,6 +81,25 @@ Kynema-FMB turbine setup and coupling
    **type:** Int, required
 
    Number of structural nodes used by Kynema-FMB for the tower.
+
+.. input_param:: Actuator.TurbineKynemaFMBLine.section_ref_blade
+
+   **type:** Int, optional, default = 0
+
+   Section refinement level passed to Kynema-FMB for the blade beam elements.
+
+.. input_param:: Actuator.TurbineKynemaFMBLine.section_ref_tower
+
+   **type:** Int, optional, default = 2
+
+   Section refinement level passed to Kynema-FMB for the tower beam elements.
+
+.. input_param:: Actuator.TurbineKynemaFMBLine.decouple_structure_from_aero_loading
+
+   **type:** Bool, optional, default = false
+
+   When true, aerodynamic loads are calculated but excluded from the Kynema-FMB
+   structural solve, enabling one-way structural/aerodynamic coupling.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.num_points_blade
 
@@ -288,3 +310,6 @@ Kynema-FMB solver options
 
    Numerical damping factor forwarded to the Kynema-FMB solver, which is applied in its temporal scheme.
    Counterintuitively, 0 corresponds to full damping and 1 corresponds to no damping.
+
+The structural solver also uses :input_param:`incflo.gravity` as its gravity
+vector. Its default is ``0 0 -9.81`` m/s\ :sup:`2`.

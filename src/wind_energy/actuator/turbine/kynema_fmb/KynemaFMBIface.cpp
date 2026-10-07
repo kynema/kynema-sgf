@@ -23,12 +23,26 @@ void build_turbine(
     const int n_blades,
     const int n_blade_nodes,
     const int n_tower_nodes,
+    const int section_refinement_blade,
+    const int section_refinement_tower,
     const amrex::Real rotor_speed_init,
     const amrex::Real generator_power_init,
     const amrex::Real wind_speed_init,
     const amrex::Real yaw_init,
     const amrex::Real generator_efficiency)
 {
+    // Number of blades
+    const auto& n_blades_wio = wio["assembly"]["number_of_blades"];
+    if (n_blades_wio) {
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            n_blades == n_blades_wio.as<int>(),
+            "Number of blades in the YAML input to Kynema-FMB (" +
+                std::to_string(n_blades_wio.as<int>()) + ") does not match " +
+                "the expected number of blades from the Kynema-SGF input file "
+                "(" +
+                std::to_string(n_blades) + ").");
+    }
+
     // WindIO components
     const auto& wio_blade = wio["components"]["blade"];
     const auto& wio_tower = wio["components"]["tower"];
@@ -75,7 +89,7 @@ void build_turbine(
         // Set blade parameters
         blade_builder.SetElementOrder(n_blade_nodes - 1)
             .PrescribedRootMotion(false)
-            .SetSectionRefinement(2);
+            .SetSectionRefinement(section_refinement_blade);
 
         // Add reference axis coordinates (WindIO uses Z-axis as reference axis)
         const auto ref_axis = wio_blade["reference_axis"];
@@ -190,7 +204,7 @@ void build_turbine(
     tower_builder
         .SetElementOrder(
             n_tower_nodes - 1) // Set element order to num nodes - 1
-        .SetSectionRefinement(2)
+        .SetSectionRefinement(section_refinement_tower)
         .PrescribedRootMotion(false); // Fix displacement of tower base node
 
     // Add reference axis coordinates (WindIO uses Z-axis as reference axis)
@@ -340,13 +354,14 @@ void build_turbine(
 amrex::Vector<int> build_aero(
     kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
+    const int n_blades,
     const bool do_tower_aero)
 {
     //--------------------------------------------------------------------------
     // Build Aerodynamics
     //--------------------------------------------------------------------------
 
-    auto airfoil_blade_map = std::vector{0UL, 0UL, 0UL};
+    auto airfoil_blade_map = std::vector(n_blades, 0UL);
     if (do_tower_aero) {
         airfoil_blade_map.emplace_back(1UL);
     }
@@ -471,6 +486,9 @@ void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
         fi.pass_fluid_velocity_and_hub_load();
         fi.interface->Aerodynamics().CalculateAerodynamicLoads(
             fi.fluid_density);
+        if (fi.one_way_coupled) {
+            fi.save_and_zero_aerodynamic_loads();
+        }
         fi.interface->Aerodynamics().CalculateNodalLoads();
     }
     if (advance) {
@@ -499,7 +517,7 @@ void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
         fi.interface->WriteOutput();
         fi.interface->CloseOutputFile();
         // Populate buffers with turbine data
-        fi.populate_buffers();
+        fi.populate_buffers(fi.one_way_coupled);
     }
 }
 } // namespace sgf_fmb
@@ -750,11 +768,12 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     // Builds turbine, including blades, nacelle, and tower
     sgf_fmb::build_turbine(
         builder, wio, fi.num_blades, fi.num_blade_elem, fi.num_tower_elem,
+        fi.section_refinement_blade, fi.section_refinement_tower,
         fi.rotational_speed, fi.generator_power, fi.wind_speed, fi.yaw,
         fi.generator_efficiency);
 
-    auto n_aero_sections =
-        sgf_fmb::build_aero(builder, wio, (fi.num_pts_tower != 0));
+    auto n_aero_sections = sgf_fmb::build_aero(
+        builder, wio, fi.num_blades, (fi.num_pts_tower != 0));
 
     if (n_aero_sections[0] != fi.num_pts_blade) {
         amrex::Abort(
@@ -825,7 +844,6 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     ::sgf_fmb::update_turbine(fi, false);
 }
 
-// cppcheck-suppress constParameterReference
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_replay_turbine(

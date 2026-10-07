@@ -1,0 +1,112 @@
+# Exercises the RANSConvergence monitor: sampling at monitor points, the
+# trailing envelope test, the stop request and the forced final output.
+#
+# The tolerances below are deliberately loose and the window is deliberately
+# short, so that the monitor reaches its verdict within the handful of steps a
+# regression test runs. This checks the mechanism, not the physics: a real
+# KLAxell run reaches a pseudo-steady state over hours of simulated time, with
+# a start_time past the forcing ramps and a window that is a meaningful
+# fraction of the inertial period. The exponential-fit machinery that reports
+# a time to convergence is covered by the unit tests instead.
+# Geometry
+geometry.prob_lo                            = 0.0 0.0 0.0
+geometry.prob_hi                            = 2048 2048 1024
+geometry.is_periodic                        = 1 1 0
+# Grid
+amr.n_cell                                  = 16 16 32
+amr.max_level                               = 0
+# Simulation control parameters
+time.max_step                               = 20
+time.fixed_dt                               = 0.5
+time.regrid_interval                        = -1
+time.plot_interval                          = -1
+time.checkpoint_interval                    = -1
+# io
+io.output_default_variables                 = false
+io.outputs                                  = velocity temperature tke mu_turb
+# incflo
+incflo.physics                              = ABL
+incflo.density                              = 1.225
+incflo.gravity                              = 0.  0. -9.81
+incflo.velocity                             = 10.0 0.0 0.0
+incflo.verbose                              = 0
+incflo.initial_iterations                   = 3
+incflo.do_initial_proj                      = true
+incflo.constant_density                     = true
+incflo.use_godunov                          = true
+incflo.godunov_type                         = "weno_z"
+incflo.diffusion_type                       = 2
+# transport equation parameters
+transport.model                             = ConstTransport
+transport.viscosity                         = 0.0
+transport.laminar_prandtl                   = 0.7
+transport.turbulent_prandtl                 = 0.333
+transport.reference_temperature             = 300.
+transport.thermal_expansion_coefficient     = 0.003333
+# turbulence equation parameters
+turbulence.model                            = KLAxell
+TKE.source_terms                            = KransAxell
+# Atmospheric boundary layer
+ABL.Uperiods                                = 12.0
+ABL.Vperiods                                = 12.0
+ABL.cutoff_height                           = 50.0
+ABL.deltaU                                  = 0
+ABL.deltaV                                  = 0
+ABL.kappa                                   = .41
+ABL.normal_direction                        = 2
+ABL.perturb_ref_height                      = 50.0
+ABL.perturb_velocity                        = true
+ABL.perturb_temperature                     = false
+ABL.surface_roughness_z0                    = 0.1
+ABL.initial_wind_profile                    = true
+ABL.rans_1dprofile_file                     = "rans_1d.info"
+ABL.temperature_heights                     = 0  800  900 1800 2700
+ABL.temperature_values                      = 300 300 308 311 314
+ABL.wall_shear_stress_type                  = local
+ABL.surface_temp_flux                       = 0.0
+# Source
+ICNS.source_terms                           = BoussinesqBuoyancy CoriolisForcing GeostrophicForcing RayleighDamping
+CoriolisForcing.east_vector                 = 1.0 0.0 0.0
+CoriolisForcing.north_vector                = 0.0 1.0 0.0
+CoriolisForcing.latitude                    = 90.0
+CoriolisForcing.rotational_time_period      = 125663.706143592
+GeostrophicForcing.geostrophic_wind         = 10 0.0 0.0
+RayleighDamping.reference_velocity          = 10 0.0 0.0
+RayleighDamping.length_sloped_damping       = 150
+RayleighDamping.length_complete_damping     = 50
+RayleighDamping.time_scale                  = 20.0
+# BC
+zhi.type                                    = "slip_wall"
+zhi.temperature_type                        = "fixed_gradient"
+zhi.temperature                             = 0.0
+zhi.tke_type                                = "fixed_gradient"
+zlo.type                                    = "wall_model"
+# Convergence monitor
+incflo.post_processing                      = convergence
+convergence.type                            = RANSConvergence
+convergence.probe_location_file             = probes.txt
+convergence.start_time                      = 0.5
+convergence.sample_interval_time            = 0.5
+convergence.window                          = 1.5
+convergence.min_samples                     = 4
+# Tuned so the stop lands on the last step the harness runs. Every add_test_r
+# test has its plt00006 copied for gold capture, so a test that stops earlier
+# than step 6 leaves nothing to copy. The window fills at t = 2.0 (step 4) and
+# the hold completes at t = 3.0 (step 6), which is deterministic here because
+# the tolerances above are far too loose to depend on the flow.
+#
+# What this test can and cannot show: the harness sets its own plot interval
+# at step 6, so plt00006 exists whether or not the monitor fires, and the run
+# ends at step 6 either way. This test therefore proves that the monitor
+# initializes, samples across ranks and evaluates without a trap, and that it
+# does not stop the run before step 6. That it stops at the right step, that
+# it samples the right components and that a requested stop forces the final
+# output are covered by unit_tests/utilities/test_rans_convergence.cpp and
+# unit_tests/core/test_simtime.cpp. A production run wants the default hold of
+# two windows.
+convergence.hold_time                       = 1.0
+convergence.velocity_abs_tol                = 1000.0
+convergence.velocity_rel_tol                = 1.0
+convergence.tke_abs_tol                     = 1000.0
+convergence.tke_rel_tol                     = 1.0
+convergence.stop_on_convergence             = true

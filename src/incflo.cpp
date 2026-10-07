@@ -400,11 +400,17 @@ void incflo::Evolve()
                        << '\n';
     }
 
-    // Output at final time
-    if (m_time.write_last_plot_file()) {
+    if (m_time.stop_requested()) {
+        amrex::Print() << "Simulation stopped: " << m_time.stop_reason()
+                       << '\n';
+    }
+
+    // Output at final time. A requested stop leaves output behind even when
+    // no output interval was configured; see SimTime::write_final_plot_file()
+    if (m_time.write_final_plot_file()) {
         m_sim.io_manager().write_plot_file();
     }
-    if (m_time.write_last_checkpoint()) {
+    if (m_time.write_final_checkpoint()) {
         m_sim.io_manager().write_checkpoint_file();
     }
     m_sim.post_manager().final_output();

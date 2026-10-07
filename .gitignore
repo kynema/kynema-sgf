@@ -25,3 +25,12 @@ build*
 __pycache__/
 docs/sphinx/doxygen
 docs/sphinx/references/auto
+
+# Artifacts the unit test binary writes into the directory it is run from.
+# Anchored to the repository root on purpose: terrain.amrwind and
+# forest.amrwind are real tracked inputs under test/test_files/, and an
+# unanchored pattern would silently stop a new test case adding one.
+/terrain.amrwind
+/forest.amrwind
+/forest_points.dat
+/post_processing/

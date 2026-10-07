@@ -107,10 +107,8 @@ private:
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
-    //! Blanking field for terrain or buildings
-    IntField& m_terrain_blank;
-
     bool m_is_multiphase{false};
+    bool m_initialize_terrain{true};
     bool m_initialize_velocity{true};
     bool m_zero_blanked_velocity{true};
     bool m_initialize_drag{false};

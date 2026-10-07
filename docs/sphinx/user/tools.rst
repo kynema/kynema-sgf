@@ -74,6 +74,10 @@ Python scripts
 
     Contains helpful routines for manipulating native boundary plane data.
 
+.. input_param:: plot_rans_convergence.py
+
+    Plots the diagnostics of a ``RANSConvergence`` run: horizontal speed at the monitor points, the spread-over-tolerance history with hold periods and the exponential fit, and the sample-to-sample change for comparison. Requires an ASCII ``Sampling`` post-processor on the same points and the fixed timestep of the run.
+
 .. input_param:: refine_native_boundary_plane.py
 
     Apply mesh refinement to a boundary plane file written in native format.

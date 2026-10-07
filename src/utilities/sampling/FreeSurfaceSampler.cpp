@@ -162,9 +162,9 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                        : 0;
                         } else {
                             n0_f = static_cast<int>(std::ceil(
-                                (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                                (xm[gc0] - (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
                             n0_a = static_cast<int>(std::ceil(
-                                (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                                (xm[gc0] + (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
                             // Edge case of phi
                             if (std::abs(
                                     xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
@@ -190,9 +190,9 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                        : 0;
                         } else {
                             n1_f = static_cast<int>(std::ceil(
-                                (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                                (xm[gc1] - (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
                             n1_a = static_cast<int>(std::ceil(
-                                (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                                (xm[gc1] + (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
                             // Edge case of phi
                             if (std::abs(
                                     xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
@@ -277,10 +277,10 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                ? 1
                                : 0;
                 } else {
-                    n0_f = static_cast<int>(
-                        std::ceil((xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0));
-                    n0_a = static_cast<int>(
-                        std::ceil((xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                    n0_f = static_cast<int>(std::ceil(
+                        (xm[gc0] - (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
+                    n0_a = static_cast<int>(std::ceil(
+                        (xm[gc0] + (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
                     // Edge case of phi
                     if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
                             eps &&
@@ -303,10 +303,10 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                ? 1
                                : 0;
                 } else {
-                    n1_f = static_cast<int>(
-                        std::ceil((xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1));
-                    n1_a = static_cast<int>(
-                        std::ceil((xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                    n1_f = static_cast<int>(std::ceil(
+                        (xm[gc1] - (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
+                    n1_a = static_cast<int>(std::ceil(
+                        (xm[gc1] + (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
                     // Edge case of phi
                     if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
                             eps &&
@@ -611,14 +611,14 @@ bool FreeSurfaceSampler::update_sampling_locations()
                                     } else {
                                         // Intersect 2D point with plane
                                         ht =
-                                            (xm[dir] - 0.5_rt * dx[dir]) +
+                                            (xm[dir] - (0.5_rt * dx[dir])) +
                                             ((alpha -
-                                              mg1 * dxi[gc0] *
-                                                  (loc0 - (xm[gc0] -
-                                                           0.5_rt * dx[gc0])) -
-                                              mg2 * dxi[gc1] *
-                                                  (loc1 - (xm[gc1] -
-                                                           0.5_rt * dx[gc1]))) /
+                                              (mg1 * dxi[gc0] *
+                                               (loc0 - (xm[gc0] -
+                                                        (0.5_rt * dx[gc0])))) -
+                                              (mg2 * dxi[gc1] *
+                                               (loc1 - (xm[gc1] -
+                                                        (0.5_rt * dx[gc1]))))) /
                                              (mdr * dxi[dir]));
                                     }
                                 }
@@ -808,9 +808,9 @@ void FreeSurfaceSampler::post_regrid_actions()
                                : 0;
                 } else {
                     n0_f = (int)std::ceil(
-                        (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0);
+                        (xm[gc0] - (0.5_rt * dx[gc0]) - s_gc0) / dxs0);
                     n0_a = (int)std::ceil(
-                        (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0);
+                        (xm[gc0] + (0.5_rt * dx[gc0]) - s_gc0) / dxs0);
                     // Edge case of phi
                     if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
                             eps &&
@@ -834,9 +834,9 @@ void FreeSurfaceSampler::post_regrid_actions()
                                : 0;
                 } else {
                     n1_f = (int)std::ceil(
-                        (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1);
+                        (xm[gc1] - (0.5_rt * dx[gc1]) - s_gc1) / dxs1);
                     n1_a = (int)std::ceil(
-                        (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1);
+                        (xm[gc1] + (0.5_rt * dx[gc1]) - s_gc1) / dxs1);
                     // Edge case of phi
                     if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
                             eps &&

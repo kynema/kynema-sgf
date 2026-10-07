@@ -43,6 +43,11 @@ public:
         return m_data_d[lev];
     };
 
+    amrex::Gpu::DeviceVector<amrex::Real>& device_data(const int lev)
+    {
+        return m_data_d[lev];
+    };
+
     void copy_host_to_device();
 
     void copy_to_field(Field& fld);

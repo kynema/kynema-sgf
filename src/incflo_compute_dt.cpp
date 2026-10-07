@@ -156,9 +156,9 @@ void incflo::compute_dt()
                         mesh_mapping ? (fac_arr[box_no](i, j, k, 2)) : 1.0_rt;
 
                     const amrex::Real dxinv2 =
-                        2.0_rt * (dxinv[0] / fac_x * dxinv[0] / fac_x +
-                                  dxinv[1] / fac_y * dxinv[1] / fac_y +
-                                  dxinv[2] / fac_z * dxinv[2] / fac_z);
+                        2.0_rt * ((dxinv[0] / fac_x * dxinv[0] / fac_x) +
+                                  (dxinv[1] / fac_y * dxinv[1] / fac_y) +
+                                  (dxinv[2] / fac_z * dxinv[2] / fac_z));
 
                     const auto mask =
                         static_cast<amrex::Real>(mask_arr[box_no](i, j, k));
@@ -313,18 +313,18 @@ void incflo::compute_prescribe_dt()
                         const auto mask =
                             static_cast<amrex::Real>(mask_arr[box_no](i, j, k));
 
-                        result = mask * (amrex::max(
-                                             std::abs(umac(i, j, k)),
-                                             std::abs(umac(i + 1, j, k))) *
-                                             dxinv[0] / fac_x +
-                                         amrex::max(
-                                             std::abs(vmac(i, j, k)),
-                                             std::abs(vmac(i, j + 1, k))) *
-                                             dxinv[1] / fac_y +
-                                         amrex::max(
-                                             std::abs(wmac(i, j, k)),
-                                             std::abs(wmac(i, j, k + 1))) *
-                                             dxinv[2] / fac_z);
+                        result = mask * ((amrex::max(
+                                              std::abs(umac(i, j, k)),
+                                              std::abs(umac(i + 1, j, k))) *
+                                          dxinv[0] / fac_x) +
+                                         (amrex::max(
+                                              std::abs(vmac(i, j, k)),
+                                              std::abs(vmac(i, j + 1, k))) *
+                                          dxinv[1] / fac_y) +
+                                         (amrex::max(
+                                              std::abs(wmac(i, j, k)),
+                                              std::abs(wmac(i, j, k + 1))) *
+                                          dxinv[2] / fac_z));
                     }
                     return result;
                 });

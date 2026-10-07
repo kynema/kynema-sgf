@@ -37,15 +37,16 @@ Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs);
 
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE Tensor tensor_unit(const Quaternion& q)
 {
-    return {1.0_rt - 2.0_rt * (q.y * q.y + q.z * q.z),
-            2.0_rt * (q.x * q.y - q.z * q.w),
-            2.0_rt * (q.x * q.z + q.y * q.w),
-            2.0_rt * (q.x * q.y + q.z * q.w),
-            1.0_rt - 2.0_rt * (q.x * q.x + q.z * q.z),
-            2.0_rt * (q.y * q.z - q.x * q.w),
-            2.0_rt * (q.x * q.z - q.y * q.w),
-            2.0_rt * (q.y * q.z + q.x * q.w),
-            1.0_rt - 2.0_rt * (q.x * q.x + q.y * q.y)};
+    return {
+        1.0_rt - (2.0_rt * ((q.y * q.y) + (q.z * q.z))),
+        2.0_rt * ((q.x * q.y) - (q.z * q.w)),
+        2.0_rt * ((q.x * q.z) + (q.y * q.w)),
+        2.0_rt * ((q.x * q.y) + (q.z * q.w)),
+        1.0_rt - (2.0_rt * ((q.x * q.x) + (q.z * q.z))),
+        2.0_rt * ((q.y * q.z) - (q.x * q.w)),
+        2.0_rt * ((q.x * q.z) - (q.y * q.w)),
+        2.0_rt * ((q.y * q.z) + (q.x * q.w)),
+        1.0_rt - (2.0_rt * ((q.x * q.x) + (q.y * q.y)))};
 }
 
 Tensor tensor(const Quaternion& input);
@@ -57,8 +58,10 @@ from_axis_angle(const Vector& axis, const amrex::Real angle_degrees)
     const amrex::Real axis_magnitude = mag(axis);
     const amrex::Real scale = std::sin(half_angle) / axis_magnitude;
     return {
-        std::cos(half_angle), scale * axis.x(), scale * axis.y(),
-        scale * axis.z()};
+        .w = std::cos(half_angle),
+        .x = scale * axis.x(),
+        .y = scale * axis.y(),
+        .z = scale * axis.z()};
 }
 
 //! Compatibility interface for existing axis-angle tensor rotations
@@ -80,15 +83,15 @@ quaternion(const Vector& axis, const amrex::Real angle_degrees)
 
     Tensor result;
     result.xx() = (q0 * q0) + (q1 * q1) - (q2 * q2) - (q3 * q3);
-    result.xy() = 2.0_rt * (q1 * q2 - q0 * q3);
-    result.xz() = 2.0_rt * (q0 * q2 + q1 * q3);
+    result.xy() = 2.0_rt * ((q1 * q2) - (q0 * q3));
+    result.xz() = 2.0_rt * ((q0 * q2) + (q1 * q3));
 
-    result.yx() = 2.0_rt * (q1 * q2 + q0 * q3);
+    result.yx() = 2.0_rt * ((q1 * q2) + (q0 * q3));
     result.yy() = (q0 * q0) - (q1 * q1) + (q2 * q2) - (q3 * q3);
-    result.yz() = 2.0_rt * (q2 * q3 - q0 * q1);
+    result.yz() = 2.0_rt * ((q2 * q3) - (q0 * q1));
 
-    result.zx() = 2.0_rt * (q1 * q3 - q0 * q2);
-    result.zy() = 2.0_rt * (q0 * q1 + q2 * q3);
+    result.zx() = 2.0_rt * ((q1 * q3) - (q0 * q2));
+    result.zy() = 2.0_rt * ((q0 * q1) + (q2 * q3));
     result.zz() = (q0 * q0) - (q1 * q1) - (q2 * q2) + (q3 * q3);
 
     return result;

@@ -91,7 +91,7 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
             const amrex::Real rp = r + (dr * 0.5_rt);
             const amrex::Real rm = r - (dr * 0.5_rt);
             const amrex::Real a =
-                std::numbers::pi_v<amrex::Real> * (rp * rp - rm * rm);
+                std::numbers::pi_v<amrex::Real> * ((rp * rp) - (rm * rm));
             // disk force should always point in direction of the normal
             grid.force[ip] = (aeroPressure * a) * normal;
         }
@@ -135,7 +135,6 @@ template <>
 struct ProcessOutputsOp<UniformCt, ActSrcDisk>
 {
 private:
-    // cppcheck-suppress uninitMemberVarPrivate
     const UniformCt::DataType& m_data;
     //! Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
@@ -147,10 +146,7 @@ private:
     int m_out_freq{10};
 
 public:
-    explicit ProcessOutputsOp<UniformCt, ActSrcDisk>(
-        const UniformCt::DataType& data)
-        : m_data(data)
-    {}
+    explicit ProcessOutputsOp(const UniformCt::DataType& data) : m_data(data) {}
     void operator()(UniformCt::DataType& /*unused*/) {}
     void read_io_options(const utils::ActParser& pp)
     {

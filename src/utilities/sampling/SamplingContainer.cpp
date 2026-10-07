@@ -132,6 +132,7 @@ void SamplingContainer::initialize_particles(
                 pp.idata(IIx::sid) = probe_id;
                 pp.idata(IIx::nid) = static_cast<int>(p_dids[ip]);
             });
+            amrex::Gpu::streamSynchronize();
             offset += npts;
         }
     }
@@ -163,6 +164,7 @@ void SamplingContainer::interpolate_derived_fields(
                 outfield->num_comp(), scomp, use_nearest);
         }
     }
+    amrex::Gpu::streamSynchronize();
 }
 
 void SamplingContainer::populate_buffer(std::vector<amrex::Real>& buf)

@@ -66,6 +66,7 @@ void QCriterionRefinement::operator()(
     const auto& tag_arrs = tags.arrays();
     const auto& vel_arrs = mfab.const_arrays();
     const auto qc_val = m_qc_value[level];
+    const auto op = tag_operator();
 
     amrex::ParallelFor(
         mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -121,15 +122,20 @@ void QCriterionRefinement::operator()(
             const auto qc = 0.5_rt * (W2 - S2);
             const auto qc_nondim =
                 0.5_rt *
-                (W2 / amrex::max<amrex::Real>(
-                          S2, std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt) -
+                ((W2 / amrex::max<amrex::Real>(
+                           S2, std::numeric_limits<amrex::Real>::epsilon() *
+                                   1.0e4_rt)) -
                  1.0_rt);
 
+            bool current_tag = false;
             if ((nondim && qc_nondim > qc_val) ||
                 (!nondim && std::abs(qc) > qc_val)) {
-                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                current_tag = true;
             }
+            const auto previous_tag =
+                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
+            tag_arrs[nbx](i, j, k) =
+                tagging::tag_val(previous_tag, current_tag, op);
         });
 }
 

@@ -61,7 +61,7 @@ void ReAveraging::operator()(
                     const amrex::Real aval = avgarrs[nbx](i, j, k, n);
 
                     avgarrs[nbx](i, j, k, n) =
-                        (aval * factor + fval * avg_time_interval) / filter;
+                        ((aval * factor) + (fval * avg_time_interval)) / filter;
                 }
             });
     }

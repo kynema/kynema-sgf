@@ -14,7 +14,7 @@ protected:
     void populate_parameters() override { MeshTest::populate_parameters(); }
     [[nodiscard]] amrex::Real log_law_actual(const amrex::Real utau) const
     {
-        return utau * (std::log(m_zref * utau / m_nu) / 0.384_rt + 4.27_rt);
+        return utau * ((std::log(m_zref * utau / m_nu) / 0.384_rt) + 4.27_rt);
     }
 
     const amrex::Real m_zref = 1.0_rt / 32.0_rt;

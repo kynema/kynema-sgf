@@ -5,4 +5,5 @@ target_sources(${kynema_sgf_lib_name}
   FieldNorms.cpp
   KineticEnergy.cpp
   WaveEnergy.cpp
+  RANSConvergence.cpp
   )
