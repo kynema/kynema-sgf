@@ -126,7 +126,7 @@ struct UpdateVelOp<ActuatorSector, ActSrcSector>
 };
 
 template <>
-struct ComputeForceOp<ActuatorSector, ActSrcSector>
+struct ComputeLoadsAndUpdateStateOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& data);
 };

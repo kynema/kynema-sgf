@@ -116,7 +116,7 @@ struct UpdateVelOp<
 };
 
 template <typename ActTrait>
-struct ComputeForceOp<
+struct ComputeLoadsAndUpdateStateOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
@@ -256,6 +256,157 @@ struct ComputeForceOp<
         }
     }
 };
+
+template <typename ActTrait>
+struct ComputeLoadsOp<
+    ActTrait,
+    ActSrcLine,
+    typename std::enable_if_t<
+        std::is_base_of_v<WingType, ActTrait> &&
+        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+{
+    void operator()(typename ActTrait::DataType& data)
+    {
+        auto& grid = data.grid();
+        auto& wdata = data.meta();
+        const int npts = wdata.num_pts;
+        const auto& dx = wdata.dx;
+        const auto& chord = wdata.chord;
+        const auto& aflookup = airfoil_lookup<ActTrait>(data);
+        const auto& time = data.sim().time();
+
+        // Move force points to location at n+1
+        // Also, get velocity of actuator from n to n+1
+        // (will be unchanged for "none" and "linear" motion)
+        actuator::wing::new_wing_position_velocity(
+            grid.pos, wdata.vel_tr, npts, time.current_time(), time.new_time(),
+            wdata.motion_type, wdata.s_period, wdata.s_vector);
+
+        // Build the local reference frame
+        const vs::Vector wspan = wdata.end - wdata.start;
+
+        // Use the global coord to orient the blade
+        // The default is for inflow in the x direction
+        const auto blade_y = wspan.unit();
+        const auto blade_z = (wdata.blade_x.unit() ^ blade_y).unit();
+        // Ensure orthogonality for new reference frame
+        const auto blade_x = (blade_y ^ blade_z).unit();
+
+        // Calculate the aoa based on the pitch actuation table if supplied
+        // (interpolate pitch angle at step n+1/2) or the initial pitch angle
+        if (!wdata.pitch_timetable_file.empty()) {
+            const auto time_interp =
+                (time.current_time() + time.new_time()) / 2.0_rt;
+            wdata.pitch = kynema_sgf::interp::linear_angle(
+                wdata.time_table, wdata.pitch_table, time_interp, 360.0_rt);
+            amrex::Print() << "Wing Ops: Current wing pitch (at time "
+                           << time_interp << " s) is " << wdata.pitch
+                           << " degrees.\n";
+            // Recalculate transformation matrix and update on grid struct
+            auto tmat = vs::quaternion(wspan, wdata.pitch);
+            grid.orientation.assign(npts, tmat);
+        }
+
+        // Get flags for each coordinate of force and put in vs::Vector
+        const vs::Vector force_coord_flags_vec = {
+            static_cast<amrex::Real>(wdata.force_coord_flags[0]),
+            static_cast<amrex::Real>(wdata.force_coord_flags[1]),
+            static_cast<amrex::Real>(wdata.force_coord_flags[2])};
+
+        // Calculate the local force using sampled velocity (at n)
+        amrex::Real total_lift = 0.0_rt;
+        amrex::Real total_drag = 0.0_rt;
+        for (int ip = 0; ip < npts; ++ip) {
+
+            // Wind vector is relative to actuator motion
+            vs::Vector windvector;
+            windvector[0] = (grid.vel[ip] - wdata.vel_tr) & blade_x;
+            windvector[1] = 0;
+            windvector[2] = (grid.vel[ip] - wdata.vel_tr) & blade_z;
+
+            const auto vmag = vs::mag(windvector);
+            const auto aoa = std::atan2(windvector[2], windvector[0]) +
+                             kynema_sgf::utils::radians(wdata.pitch);
+
+            // Get Cl, Cd values
+            amrex::Real cl, cd;
+            aflookup(aoa, cl, cd);
+
+            // Calculate factor for qval: 0.5_rt * Uinf * Uinf * dx
+            // but replace velocity magnitude if specified
+            auto qfac =
+                (wdata.prescribed_uinf < 0.0_rt)
+                    ? 0.5_rt * vmag * vmag
+                    : 0.5_rt * wdata.prescribed_uinf * wdata.prescribed_uinf;
+            // Length scale in spanwise direction
+            if (wdata.gauss_2D && wdata.normalize_2D_spanwise) {
+                // Do not multiply by a length scale, but divide by number of
+                // points because the Gaussians of each point all overlap
+                qfac /= static_cast<amrex::Real>(npts);
+                // Convert 3D Gaussian factor to 2D factor
+                constexpr amrex::Real G2D_from_3D =
+                    std::numbers::inv_pi_v<amrex::Real> /
+                    0.17958712212516656_rt;
+                qfac *= G2D_from_3D;
+                // Get rid of epsilon in spanwise direction
+                const amrex::Real eps_span = grid.epsilon[ip][1];
+                qfac *= eps_span;
+            } else {
+                // 3D implementation: multiply by spanwise dx
+                qfac *= dx[ip];
+            }
+
+            const auto qval = qfac * chord[ip];
+            const auto lift = qval * cl;
+            const auto drag = qval * cd;
+
+            // Determine unit vector parallel and perpendicular to velocity
+            const auto drag_dir =
+                ((blade_x * windvector.x()) + (blade_z * windvector.z()))
+                    .unit();
+            const auto lift_dir = (drag_dir ^ blade_y).unit();
+
+            // Compute force on fluid from this section of wing
+            grid.force[ip] = -((lift_dir * lift) + (drag * drag_dir));
+
+            // In global coords, zero disabled force components
+            grid.force[ip] *= force_coord_flags_vec;
+
+            // Assign values for output
+            wdata.vel_rel[ip] = windvector;
+            wdata.aoa[ip] = kynema_sgf::utils::degrees(aoa);
+            wdata.cl[ip] = cl;
+            wdata.cd[ip] = cd;
+
+            total_lift += lift;
+            total_drag += drag;
+        }
+
+        wdata.lift = total_lift;
+        wdata.drag = total_drag;
+
+        if (wdata.fllc) {
+            if (!(wdata.fllc->initialized) &&
+                (time.current_time() > wdata.fllc->fllc_start_time)) {
+                wdata.component_view =
+                    kynema_sgf::actuator::wing::make_component_view<ActTrait>(
+                        data);
+                fllc_init(
+                    *(wdata.fllc.get()), wdata.component_view,
+                    wdata.epsilon_chord[0]);
+            }
+        }
+    }
+};
+
+template <typename ActTrait>
+struct AdvanceModelOp<
+    ActTrait,
+    ActSrcLine,
+    typename std::enable_if_t<
+        std::is_base_of_v<WingType, ActTrait> &&
+        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+{};
 
 template <typename ActTrait, typename SrcTrait>
 struct ProcessOutputsOp<

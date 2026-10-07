@@ -138,7 +138,7 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
   https://wes.copernicus.org/preprints/wes-2022-108/
  */
 template <>
-struct ComputeForceOp<Joukowsky, ActSrcDisk>
+struct ComputeLoadsAndUpdateStateOp<Joukowsky, ActSrcDisk>
 {
     void operator()(Joukowsky::DataType& data)
     {

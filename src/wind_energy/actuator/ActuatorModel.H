@@ -55,7 +55,11 @@ public:
 
     virtual void update_fields(const VecSlice&, const RealSlice&) = 0;
 
-    virtual void compute_forces() = 0;
+    virtual void compute_loads_and_update_state() = 0;
+
+    virtual void compute_loads() = 0;
+
+    virtual void advance_model() = 0;
 
     virtual void compute_source_term(
         int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom) = 0;
@@ -70,8 +74,9 @@ public:
  *  \ingroup actuator
  *
  *  \tparam ActTrait An actuator type trait that defines the behavior of the
- *  different actions (initialization, velocity sampling, force computation, and
- *  momentum source term computations) that are executed by the ActuatorModel
+ *  different actions (initialization, velocity sampling, load computation and
+ *  state updates, and momentum source term computations) that are executed by
+ *  the ActuatorModel
  *  class through the kynema_sgf::Actuator physics driver class.
  *
  *  \tparam SrcTrait A source type trait that defines how the forcing term is
@@ -158,9 +163,22 @@ public:
         ops::UpdateVelOp<ActTrait, SrcTrait>()(m_data);
     }
 
-    void compute_forces() override
+    void compute_loads() override
     {
-        ops::ComputeForceOp<ActTrait, SrcTrait>()(m_data);
+        ops::ComputeLoadsOp<ActTrait, SrcTrait>()(m_data);
+        m_src_op.setup_op();
+        // communicate loads
+    }
+
+    void advance_model() override
+    {
+        ops::AdvanceModelOp<ActTrait, SrcTrait>()(m_data);
+        // communicate positions
+    }
+
+    void compute_loads_and_update_state() override
+    {
+        ops::ComputeLoadsAndUpdateStateOp<ActTrait, SrcTrait>()(m_data);
         m_src_op.setup_op();
     }
 

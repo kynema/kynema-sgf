@@ -138,7 +138,7 @@ struct InitDataOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
 };
 
 template <>
-struct ComputeForceOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
+struct ComputeLoadsAndUpdateStateOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
 {
     void operator()(::kynema_sgf_tests::Joukowsky::DataType& data)
     {
@@ -162,7 +162,9 @@ struct ComputeForceOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
                 std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt)
                 << ", " << i;
         }
-        ComputeForceOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk> actual_op;
+        ComputeLoadsAndUpdateStateOp<
+            ::kynema_sgf::actuator::Joukowsky, ActSrcDisk>
+            actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
         for (int i = 0; i < meta.num_force_pts; ++i) {
             for (int j = 0; j < 3; ++j) {

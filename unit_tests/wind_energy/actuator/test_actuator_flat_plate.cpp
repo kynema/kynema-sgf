@@ -166,7 +166,7 @@ struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+struct ComputeLoadsAndUpdateStateOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {

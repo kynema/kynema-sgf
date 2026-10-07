@@ -71,15 +71,19 @@ protected:
     virtual void prepare_outputs();
 
 private:
-    void setup_container();
+    void setup_particle_container();
 
-    void update_positions();
+    void update_positions_and_sample_fields();
 
-    void update_velocities();
+    void update_actuator_data_from_particles();
 
-    void compute_forces();
+    void compute_actuator_loads_and_advance_model_and_scatter();
+    
+    void compute_actuator_loads();
 
-    void compute_source_term();
+    void advance_model();
+
+    void accumulate_actuator_source_terms_for_fluid();
 
     void communicate_turbine_io();
 
