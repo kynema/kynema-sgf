@@ -120,6 +120,8 @@ Flow physics
 
    * Immersed boundary forcing method with stair-case type terrain and wall function [:ref:`doc <terrain>`]
 
+   * Immersed boundary forcing method with partial terrain fraction, no-slip interface flux and implicit drag in the projection [:ref:`doc <terrainmodel>`]
+
    * Coupling with Nalu-Wind for body-conforming meshes with overset methodology
 
 * Miscellaneous cases
