@@ -4,6 +4,7 @@
 #include <string>
 #include "src/core/ScratchField.H"
 #include "src/turbulence/TurbModelBase.H"
+#include "src/utilities/constants.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -87,6 +88,9 @@ public:
     //! Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
+    //! Update the near-wall hybrid length scale field (surfaceRANS option)
+    void update_hybrid_length_scale();
+
 private:
     Field& m_temperature;
 
@@ -98,6 +102,26 @@ private:
     Field* m_sdr;
 
     std::unique_ptr<ScratchField> m_gradT;
+
+    /** Near-wall hybrid length scale (OneEqKsgsM84.surfaceRANS)
+     *
+     *  Blends the filter width with the wall-distance length scale that
+     *  recovers the log law, l^2 = (1-f)^n ds^2 + f^n l_rans^2 with
+     *  f = exp(-z / switchLoc), so that the length scale near the ground does
+     *  not depend on the refinement level. Same blending and inputs as the
+     *  Kosovic model (surfaceRANS, switchLoc, surfaceRANSExp).
+     */
+    bool m_surface_rans{false};
+    amrex::Real m_switch_loc{24.0_rt};
+    amrex::Real m_surface_rans_exp{2.0_rt};
+    amrex::Real m_kappa{0.41_rt};
+    amrex::Real m_gamma_m{5.0_rt};
+    amrex::Real m_beta_m{16.0_rt};
+    //! Obukhov length: ABL.monin_obukhov_length when given, else the value
+    //! of the ABL wall function at the current step
+    amrex::Real m_monin_obukhov_length{constants::LARGE_NUM};
+    bool m_fixed_mol{false};
+    Field* m_hybrid_lscale{nullptr};
 };
 
 /** 1-equation subgrid scale TKE turbulence model

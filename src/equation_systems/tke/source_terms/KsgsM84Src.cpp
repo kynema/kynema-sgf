@@ -3,6 +3,7 @@
 #include "src/equation_systems/tke/source_terms/KsgsM84Src.H"
 #include "src/CFDSim.H"
 #include "src/turbulence/TurbulenceModel.H"
+#include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -20,6 +21,12 @@ KsgsM84Src::KsgsM84Src(const CFDSim& sim)
     auto coeffs = sim.turbulence_model().model_coeffs();
     m_Ceps = coeffs["Ceps"];
     m_CepsGround = (3.9_rt / 0.93_rt) * m_Ceps;
+
+    amrex::ParmParse pp("OneEqKsgsM84");
+    pp.query("surfaceRANS", m_surface_rans);
+    if (m_surface_rans) {
+        m_hybrid_lscale = &(sim.repo().get_field("hybrid_length_scale"));
+    }
 }
 
 KsgsM84Src::~KsgsM84Src() = default;
@@ -44,22 +51,45 @@ void KsgsM84Src::operator()(
     auto const& dissip_arrs = m_dissip(lev).arrays();
     auto const& tke_arrs = m_tke(lev).const_arrays();
 
-    amrex::ParallelFor(
-        src_term, amrex::IntVect(0), 1,
-        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
-            const auto& tlscale_arr = tlscale_arrs[nbx];
-            const auto& shear_prod_arr = shear_prod_arrs[nbx];
-            const auto& buoy_prod_arr = buoy_prod_arrs[nbx];
-            const auto& dissip_arr = dissip_arrs[nbx];
-            const auto& tke_arr = tke_arrs[nbx];
+    if (m_surface_rans) {
+        // Dissipation with the per-cell hybrid length scale of the model in
+        // place of the filter width
+        auto const& lscale_arrs = (*m_hybrid_lscale)(lev).const_arrays();
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                const auto& tlscale_arr = tlscale_arrs[nbx];
+                const auto& shear_prod_arr = shear_prod_arrs[nbx];
+                const auto& buoy_prod_arr = buoy_prod_arrs[nbx];
+                const auto& dissip_arr = dissip_arrs[nbx];
+                const auto& tke_arr = tke_arrs[nbx];
 
-            dissip_arr(i, j, k) = calc_dissip(
-                calc_ceps_local(Ceps, tlscale_arr(i, j, k), ds),
-                tke_arr(i, j, k), tlscale_arr(i, j, k));
-            src_arrs[nbx](i, j, k) += shear_prod_arr(i, j, k) +
-                                      buoy_prod_arr(i, j, k) -
-                                      dissip_arr(i, j, k);
-        });
+                dissip_arr(i, j, k) = calc_dissip(
+                    calc_ceps_local(
+                        Ceps, tlscale_arr(i, j, k), lscale_arrs[nbx](i, j, k)),
+                    tke_arr(i, j, k), tlscale_arr(i, j, k));
+                src_arrs[nbx](i, j, k) += shear_prod_arr(i, j, k) +
+                                          buoy_prod_arr(i, j, k) -
+                                          dissip_arr(i, j, k);
+            });
+    } else {
+        amrex::ParallelFor(
+            src_term, amrex::IntVect(0), 1,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
+                const auto& tlscale_arr = tlscale_arrs[nbx];
+                const auto& shear_prod_arr = shear_prod_arrs[nbx];
+                const auto& buoy_prod_arr = buoy_prod_arrs[nbx];
+                const auto& dissip_arr = dissip_arrs[nbx];
+                const auto& tke_arr = tke_arrs[nbx];
+
+                dissip_arr(i, j, k) = calc_dissip(
+                    calc_ceps_local(Ceps, tlscale_arr(i, j, k), ds),
+                    tke_arr(i, j, k), tlscale_arr(i, j, k));
+                src_arrs[nbx](i, j, k) += shear_prod_arr(i, j, k) +
+                                          buoy_prod_arr(i, j, k) -
+                                          dissip_arr(i, j, k);
+            });
+    }
 
     // Wall boundary corrections via MFIter (boundary boxes are
     // MFIter-dependent)
