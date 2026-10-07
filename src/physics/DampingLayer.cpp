@@ -249,14 +249,15 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                             const amrex::Real vertical_thickness =
                                 prob_hi[2] - min_height;
                             const amrex::Real vertical_blending_fraction =
-                                vertical_blending_thickness / distance_from_zhi;
+                                vertical_blending_thickness /
+                                vertical_thickness;
                             const amrex::Real vertical_damping_coeff =
                                 damping_calc(
                                     distance_from_zhi, vertical_thickness,
                                     vertical_blending_fraction,
                                     vertical_blending_function_type);
-                            damping_coeff =
-                                std::min(damping_coeff, vertical_damping_coeff);
+                            damping_coeff = amrex::min<amrex::Real>(
+                                damping_coeff, vertical_damping_coeff);
                         }
                         // Set the damping coefficient in the field
                         damping_layer_arrs[nbx](i, j, k, 0) = damping_coeff;
