@@ -205,9 +205,12 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                     damping_layer_mfab,
                     [=] AMREX_GPU_DEVICE(
                         int nbx, int i, int j, int k) noexcept {
-                        const amrex::Real x = prob_lo[0] + (i + 0.5_rt) * dx[0];
-                        const amrex::Real y = prob_lo[1] + (j + 0.5_rt) * dx[1];
-                        const amrex::Real z = prob_lo[2] + (k + 0.5_rt) * dx[2];
+                        const amrex::Real x =
+                            prob_lo[0] + ((i + 0.5_rt) * dx[0]);
+                        const amrex::Real y =
+                            prob_lo[1] + ((j + 0.5_rt) * dx[1]);
+                        const amrex::Real z =
+                            prob_lo[2] + ((k + 0.5_rt) * dx[2]);
 
                         // Determine the distance from the boundary
                         amrex::Real distance_from_boundary = 0.0_rt;

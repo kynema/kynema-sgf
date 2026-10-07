@@ -16,7 +16,7 @@ enum class BlendingFunctionType : std::uint8_t {
     Cosine = 3
 };
 
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE BlendingFunctionType
+AMREX_FORCE_INLINE BlendingFunctionType
 string_to_blending_function_type(const std::string& op_str)
 {
     std::string op = amrex::toLower(op_str);
@@ -46,15 +46,15 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real blending_function(
     case BlendingFunctionType::Linear:
         return 1.0_rt - position_nondim;
     case BlendingFunctionType::Quadratic:
-        return 1.0_rt - position_nondim * position_nondim;
+        return 1.0_rt - (position_nondim * position_nondim);
     case BlendingFunctionType::Exponential: // exponential difference and ratio
         return 1.0_rt - (std::expm1(std::pow(position_nondim, 3.5_rt)) /
                          std::expm1(1.0_rt));
     case BlendingFunctionType::Cosine:
     default:
         return 0.5_rt +
-               0.5_rt *
-                   std::cos(std::numbers::pi_v<amrex::Real> * position_nondim);
+               (0.5_rt *
+                std::cos(std::numbers::pi_v<amrex::Real> * position_nondim));
     }
 }
 
