@@ -156,6 +156,252 @@ The power law profile uses the following input parameters. This one is only for 
 
    The maximum velocity cutoff in the mean power law profile. :math:`u_{\text{max}}` in the equation.
 
+TabulatedProfile
+""""""""""""""""
+
+Reads a vertical profile from a text file and imposes it on inflow boundaries.
+Unlike the profiles above, it applies to velocity and to the fields of the
+scalar transport equations: temperature, ``tke``, and any scalar added later.
+It does not apply to ``density``, which the run refuses, or to the volume
+fraction ``vof`` of the multiphase solver, whose boundary conditions take only
+constant values.
+
+Choosing the boundary condition type
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Which type a face should have follows from one question: does the flow enter
+through the whole of it?
+
+``mass_inflow`` suits a face the flow enters everywhere along its height, which
+is the usual case for a fixed wind direction with little turning. The whole
+column is held at the tabulated values.
+
+``mass_inflow_outflow`` suits a face the flow enters over part of its height
+only. That is what happens whenever the wind turns with height, since the
+component normal to the face changes sign somewhere up the column, and it is
+the usual case for an atmospheric boundary layer. Each boundary cell is then
+decided on its own: where the flow enters, the profile is imposed, and where it
+leaves, the value is extrapolated from the interior. The projection is kept
+solvable by matching outflow to inflow, so all four lateral faces can be
+inflow-outflow with no pressure outflow among them.
+
+When in doubt, use ``mass_inflow_outflow`` on the lateral faces. It reduces to
+the same answer when the flow does enter everywhere.
+
+Getting this wrong on a face the flow leaves is not quiet. A profile whose
+normal component reverses within the domain on a ``mass_inflow`` face is
+refused at startup, naming the face and the type to use instead, because it
+would otherwise drive flow backwards through the boundary with no solvability
+correction to absorb it. A profile pointing out of the domain everywhere on
+such a face is refused for the same reason. Both are checked only over the
+part of the column that is in the domain and above the ground of the face
+(see ``TabulatedProfile.zoffset``), so a reversal above the domain top or
+buried in the terrain is not grounds for refusing the run.
+
+Input keys
+^^^^^^^^^^
+
+The input key depends on the boundary condition type. A ``mass_inflow`` face
+is named by ``<field>.inflow_type``:
+
+.. code-block:: none
+
+   xlo.type                    = mass_inflow
+   xlo.density                 = 1.0
+   xlo.velocity.inflow_type    = TabulatedProfile
+   xlo.temperature.inflow_type = TabulatedProfile
+   xlo.tke.inflow_type         = TabulatedProfile
+   TabulatedProfile.filename   = inflow_profile.txt
+
+while a ``mass_inflow_outflow`` face is named by
+``<field>.inflow_outflow_type``. This is the form to use for an atmospheric
+boundary layer, where the wind direction decides which part of each face is an
+inflow:
+
+.. code-block:: none
+
+   xlo.type                             = mass_inflow_outflow
+   xlo.density                          = 1.0
+   xlo.velocity.inflow_outflow_type     = TabulatedProfile
+   xlo.temperature.inflow_outflow_type  = TabulatedProfile
+   xlo.tke.inflow_outflow_type          = TabulatedProfile
+   TabulatedProfile.filename            = inflow_profile.txt
+
+.. warning::
+   A face uses the profile for a field only when that face selects it with
+   the key of its own boundary type: ``<field>.inflow_type`` on a
+   ``mass_inflow`` face, ``<field>.inflow_outflow_type`` on a
+   ``mass_inflow_outflow`` face. The two keys are not interchangeable, and
+   each profiled field (velocity, temperature, tke) needs its own key on
+   every face. Any other inflow face of the field, including one whose key
+   names ``ConstDirichlet``, takes its constant ``<face>.<field>`` value, even
+   when ``TabulatedProfile.filename`` names a file; for a scalar that constant
+   must be given.
+
+   ``density`` is not tabulated: every inflow face, of either type, needs a
+   constant ``<face>.density``, and the run stops if ``density`` selects
+   ``TabulatedProfile``, whether the density is constant or transported.
+
+   One inflow UDF serves every inflow face of a field, so all its
+   ``mass_inflow`` and ``mass_inflow_outflow`` faces must name the same UDF
+   (this holds for any UDF, not only this one); the run stops if they
+   differ. Any other UDF also fills the inflow faces that name none, so
+   with it every inflow face of the field must select it, and the run stops
+   on a face left at its constant. ``TabulatedProfile`` alone falls back to
+   the constant face by face.
+
+File format
+^^^^^^^^^^^
+
+One row per height, whitespace separated, with heights strictly increasing
+(adjacent heights more than about :math:`1.2 \times 10^{-7}` apart, below
+which the interpolation cannot tell them apart).
+An optional comment line naming the columns may precede the data (repeated
+``#`` characters and commas between the names are allowed):
+
+.. code-block:: none
+
+   # z u v T tke
+   0.0      8.0  -1.0  300.0  0.40
+   200.0    9.0   1.0  300.0  0.30
+   1000.0  10.0   8.0  308.0  0.05
+
+The header is a comment line ahead of the data whose first entry is ``z``
+and that names as many columns as the data holds; when several do, the last
+one ahead of the data is used. Other comment lines are notes, including one
+that starts with ``z`` (for example ``# z is the height above ground``). The
+run stops, naming the line, rather than guessing the columns when a comment
+that starts with ``z`` names a known column (``u``, ``v``, ``w``, ``T``,
+``tke``) but does not fit the data, or when a comment as wide as the data names
+a known column but does not start with ``z`` (``# height u v w T``, or
+``# height u humidity speed`` over four columns). A note
+that happens to be as wide as the data is taken as the header; the error that
+follows names its line, so that it can be reworded.
+
+Without such a header the column count decides the layout: four columns are
+``z u v T`` and five are ``z u v T tke``. Any other width must carry a header.
+The assumed names are echoed at startup so the choice is visible in the log.
+
+The file is checked as it is read. A value that is not a number, is not
+finite, or is too large (or nonzero but smaller than the smallest normal
+value, about 1e-38 in single precision) for the precision of the build stops
+the run, naming the line, the column and the offending text. So does a line with a different number of columns from
+the rest, a column name repeated in the header, a height that does not increase,
+and a file that holds fewer than two heights. Anything trailing on a line is an
+error rather than something quietly ignored.
+
+Each field takes the column named after it, so ``temperature`` reads ``T``
+(``theta``, ``temp`` and ``temperature`` are also accepted) and ``tke`` reads
+``tke``; names are matched without regard to case. Other scalars read the
+column named after the field, and only single-component scalars are
+supported.
+Velocity takes ``u``, ``v`` and ``w``; a missing ``w`` column is zero, but a
+missing ``u`` or ``v`` is an error. A ``tke`` column is only needed where tke
+itself is filled from the profile. Outside the tabulated range the nearest
+value is held rather than extrapolated. On a bottom or top face the profile
+is read at the height of the face; on the other faces at the height of the
+point filled, a cell center or, for ``w`` in the ghost cells of the x and y
+faces, a node.
+
+.. note::
+   ``ABL.rans_1dprofile_file`` is a different five column format, ``z u v w
+   tke``, holding vertical velocity where this one holds temperature, and its
+   readers take no header. Pointing both inputs at the same file is refused:
+   give the inflow profile its own file.
+
+Wind direction and veer
+^^^^^^^^^^^^^^^^^^^^^^^
+
+A profile may be given per face, so that the inflow faces follow the wind. A
+face that selects ``TabulatedProfile`` but has no file takes its constant
+``<face>.<field>`` value.
+
+.. code-block:: none
+
+   TabulatedProfile.filename  = east_profile.txt   # faces that select the UDF
+   ylo.tabulated_profile_file = south_profile.txt  # except this one
+
+As above, a veering profile needs ``mass_inflow_outflow``. Give it to all four
+lateral faces rather than choosing inflow faces from the surface wind
+direction: with veer the answer is different at different heights, so a face
+picked from the surface wind will be wrong higher up.
+
+.. code-block:: none
+
+   xlo.type = mass_inflow_outflow
+   xhi.type = mass_inflow_outflow
+   ylo.type = mass_inflow_outflow
+   yhi.type = mass_inflow_outflow
+   # on each of the four faces
+   xlo.density                         = 1.0
+   xlo.velocity.inflow_outflow_type    = TabulatedProfile
+   xlo.temperature.inflow_outflow_type = TabulatedProfile
+   xlo.tke.inflow_outflow_type         = TabulatedProfile   # with a TKE model
+   TabulatedProfile.filename           = veer_profile.txt
+
+.. input_param:: TabulatedProfile.filename
+
+   **type:** String, optional; at least one face that selects the UDF needs
+   a file, from here or from ``<face>.tabulated_profile_file``
+
+   The profile file used on every face that selects ``TabulatedProfile``.
+
+.. input_param:: <face>.tabulated_profile_file
+
+   **type:** String, optional
+
+   Profile file for one face, overriding ``TabulatedProfile.filename``.
+
+.. input_param:: TabulatedProfile.zoffset
+
+   **type:** Real, optional, default = 0.0
+
+   Height of the ground at the boundary. Heights in the file are measured from
+   here rather than from the bottom of the domain, so a profile given above
+   ground can be used where the boundary stands on raised ground. Below the
+   lowest tabulated height (offset included) the lowest tabulated value is
+   held.
+
+.. input_param:: <face>.tabulated_profile_zoffset
+
+   **type:** Real, optional
+
+   Ground height for one face, overriding ``TabulatedProfile.zoffset``.
+
+.. input_param:: TabulatedProfile.ground_tolerance
+
+   **type:** Real, optional, default = the cell height at level 0
+
+   How far the ground may vary along a face, and how far the offset may sit
+   from it, before the run is refused. It must not be negative.
+
+Only a uniform lift is supported. Ground that varies along a face would vary
+the inflow area with it, and the inflow-outflow solvability correction would
+then rescale the profile that was asked for. The ground is taken from the
+terrain file the run reads: with ``TerrainDrag`` active, its file
+(``TerrainDrag.terrain_file``, default ``terrain.amrwind``); without it,
+the file the ABL physics reads for a terrain-aligned initial profile
+(``TerrainDrag.terrain_file``, with the same default). The ground along each x or y face that uses a
+profile is then checked against the offset, and the run stops if the face is
+not level, if the offset is not the height it stands at, or if the terrain
+file cannot be read. ``TerrainDrag`` builds its terrain
+from the waves, and nothing is checked, when ``OceanWaves`` is listed before it
+in ``incflo.physics`` and no volume fraction is (``MultiPhase`` without a level
+set); physics are built in the order listed.
+
+The interior has to be measured from the same place as the boundary. Setting
+an offset while the interior is initialized from a profile measured from the
+bottom of the domain, that is with the ``ABL`` physics active,
+``ABL.initial_wind_profile`` on and ``ABL.terrain_aligned_profile`` off, is
+refused for that reason. This applies
+to the fields that profile sets (velocity, temperature and tke); another scalar
+starts from its own initial condition.
+
+.. note::
+   Heights are measured in the domain coordinate, so this profile does not
+   follow a stretched mesh set up through ``geometry.mesh_mapping``; do not
+   combine the two.
+
 Custom boundary conditions
 """"""""""""""""""""""""""
 
@@ -182,7 +428,14 @@ It uses a Dirichlet condition for the diffusion solver.
 Both the approaches mentioned above for the mass inflow condition,
 constant values and UDFs, can be used to specify the boundary values.
 The outflow values will be automatically replaced by a value from the interior cell
-to enforce the Neumann type behavior.
+to enforce the Neumann type behavior. This applies to velocity and to the
+fields of the scalar transport equations (``temperature``, ``tke``, ``sdr``,
+passive scalars, and ``density`` or the level set when they are solved), on
+every ``mass_inflow_outflow`` face, whether its inflow value is a constant or
+a UDF. It is applied before the diffusion solve (and, for velocity, the
+projection). Other
+fields, such as pressure, keep the specified value on the whole face, and the
+volume fraction of the multiphase solver keeps its own treatment.
 See the ``freestream_godunov_inout`` test for an example that uses the TwoLayer UDF.
 This test involves two z-layers of the flow along opposite x-directions.
 The input file options are copied here::

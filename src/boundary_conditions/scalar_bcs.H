@@ -6,6 +6,7 @@
 #include "src/core/FieldRepo.H"
 #include "src/core/SimTime.H"
 #include "src/physics/udfs/CustomScalar.H"
+#include "src/physics/udfs/TabulatedProfile.H"
 
 namespace kynema_sgf::scalar_bc {
 
@@ -19,7 +20,11 @@ void register_inflow_scalar_dirichlet(
     if (inflow_udf == "CustomScalar") {
         using InflowOp = BCOpCreator<udf::CustomScalar, WallOp>;
         field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
-            mesh, time, InflowOp(field));
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
+    } else if (inflow_udf == "TabulatedProfile") {
+        using InflowOp = BCOpCreator<udf::TabulatedProfile, WallOp>;
+        field.register_fill_patch_op<FieldFillPatchOps<InflowOp>>(
+            mesh, time, InflowOp(field), field.fillpatch_interpolator());
     } else {
         amrex::Abort("Scalar BC: Invalid dirichlet BC type = " + inflow_udf);
     }

@@ -1,4 +1,5 @@
 #include "src/boundary_conditions/scalar_bcs.H"
+#include "src/boundary_conditions/inflow_udf_faces.H"
 
 namespace kynema_sgf::scalar_bc {
 void register_scalar_dirichlet(
@@ -22,12 +23,13 @@ void register_scalar_dirichlet(
             "Scalar BC: Only constant dirichlet supported for Wall BC");
     }
 
+    // One fill operator serves every inflow and inflow-outflow face; when
+    // both kinds of face use the same UDF it is registered once
+    bc_udf::check_inflow_udf_faces(field, udfs, "Scalar BC");
     if (inflow_udf != "ConstDirichlet") {
         register_inflow_scalar_dirichlet<ConstDirichlet>(
             field, inflow_udf, mesh, time);
-    }
-
-    if (inflow_outflow_udf != "ConstDirichlet") {
+    } else if (inflow_outflow_udf != "ConstDirichlet") {
         register_inflow_scalar_dirichlet<ConstDirichlet>(
             field, inflow_outflow_udf, mesh, time);
     }

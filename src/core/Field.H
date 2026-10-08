@@ -73,6 +73,10 @@ struct FieldInfo
     //! Function that handles filling patch and physics BC data for this field
     amrex::Vector<std::unique_ptr<FieldFillPatchOpsBase>> m_fillpatch_ops;
 
+    //! Interpolation used to fill this field from a coarser level, kept so
+    //! that a fillpatch op registered later (e.g. an inflow UDF) can use it
+    FieldInterpolator m_fillpatch_itype{FieldInterpolator::CellConsLinear};
+
     //! Custom boundary condition actions for this field
     amrex::Vector<std::unique_ptr<FieldBCIface>> m_bc_func;
 
@@ -223,6 +227,24 @@ public:
     [[nodiscard]] bool has_fillpatch_op() const
     {
         return !m_info->m_fillpatch_ops.empty();
+    }
+
+    //! Interpolation used to fill this field from a coarser level
+    [[nodiscard]] FieldInterpolator fillpatch_interpolator() const
+    {
+        return m_info->m_fillpatch_itype;
+    }
+
+    /** Record the interpolation used to fill this field from a coarser level
+     *
+     *  A fillpatch op registered later for the same field, such as the one of
+     *  an inflow UDF, reuses it rather than falling back to the default.
+     *
+     *  \param itype Interpolation type
+     */
+    void set_fillpatch_interpolator(const FieldInterpolator itype)
+    {
+        m_info->m_fillpatch_itype = itype;
     }
 
     /** Setup default BC conditions for fillpatch operations

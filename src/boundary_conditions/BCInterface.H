@@ -54,6 +54,21 @@ public:
     //! User-defined functions for Dirichlet-type boundaries
     amrex::Array<const std::string, 3> get_dirichlet_udfs();
 
+    /** Mark the field as the solution of a transport equation
+     *
+     *  On a mass_inflow_outflow face the inflow value (constant or UDF) only
+     *  holds where the flow enters the domain. For a transported field, the
+     *  cells where the flow leaves take the value of the interior cell instead
+     *  (a Neumann condition), as documented for that boundary type. Fields
+     *  that are not transported, such as pressure or source terms, keep the
+     *  inflow value on the whole face.
+     *
+     *  Call it before operator(), which registers the boundary functions.
+     *
+     *  \param flag True for a transported field
+     */
+    void set_transported(const bool flag = true) { m_transported = flag; }
+
 protected:
     //! Setup AMReX mathematical BC types
     virtual void set_bcrec() = 0;
@@ -90,6 +105,9 @@ protected:
 
     //! Field instance where BC is being set
     Field& m_field;
+
+    //! Whether the field is transported, see set_transported()
+    bool m_transported{false};
 };
 
 /** Boundary condition initialization for velocity (ICNS momentum) field
@@ -98,7 +116,8 @@ protected:
 class BCVelocity : public BCIface
 {
 public:
-    explicit BCVelocity(Field& field) : BCIface(field) {}
+    //! Velocity is always transported by the momentum equation
+    explicit BCVelocity(Field& field) : BCIface(field) { m_transported = true; }
 
 protected:
     void set_bcrec() override;
