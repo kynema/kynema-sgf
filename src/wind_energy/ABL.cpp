@@ -37,9 +37,8 @@ ABL::ABL(CFDSim& sim)
     {
         std::string statistics_mode = "precursor";
         int dir = 2;
-        // Default to level 0 for backward-compatible statistics
-        // Override with ABL.stats_max_level
-        int stats_max_level = 0;
+        // Default to using finest available level for statistics
+        int stats_max_level = -1;
         amrex::ParmParse pp("ABL");
         pp.query("enable_hybrid_rl_mode", m_hybrid_rl);
         pp.query("initial_sdr_value", m_init_sdr);
