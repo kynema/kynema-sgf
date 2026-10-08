@@ -150,7 +150,7 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                                  : BlendingFunctionType::Cosine;
                 const BlendingFunctionType blending_function_type =
                     bc_blending_function_type[bc_idx];
-                const auto coordinate_idx = bc_idx / 2;
+                const auto coordinate_idx = static_cast<int>(bc_idx / 2);
                 const bool high_side = (bc_idx % 2) == 1;
 
                 auto& damping_layer_mfab = (*damping_layer_ptr)(level);
