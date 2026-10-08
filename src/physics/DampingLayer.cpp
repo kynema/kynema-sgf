@@ -129,7 +129,7 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
         // Field pointer to the damping layer field for this boundary condition
         Field* damping_layer_ptr{nullptr};
 
-        for (int bc_idx = 0; bc_idx < 6; ++bc_idx) {
+        for (uint bc_idx = 0; bc_idx < 6; ++bc_idx) {
             const amrex::Real thickness = bc_thickness[bc_idx];
             if (thickness > 0.0_rt) {
                 // Form damping layer field name
@@ -150,7 +150,7 @@ void DampingLayer::initialize_fields(int level, const amrex::Geometry& geom)
                                  : BlendingFunctionType::Cosine;
                 const BlendingFunctionType blending_function_type =
                     bc_blending_function_type[bc_idx];
-                const int coordinate_idx = bc_idx / 2;
+                const auto coordinate_idx = bc_idx / 2;
                 const bool high_side = (bc_idx % 2) == 1;
 
                 auto& damping_layer_mfab = (*damping_layer_ptr)(level);
