@@ -156,6 +156,7 @@ void update_pos_op(datatype& data)
     // This is handled in Actuator class, but we add a check here just as a
     // safeguard
     if (!data.info().is_root_proc) {
+      //amrex::Print() << "Returning because not root proc for this turbine..." << std::endl;
         return;
     }
 
@@ -169,7 +170,22 @@ void update_pos_op(datatype& data)
         vel_pos[i].x() = static_cast<amrex::Real>(pxvel[i]) + bp.x();
         vel_pos[i].y() = static_cast<amrex::Real>(pyvel[i]) + bp.y();
         vel_pos[i].z() = static_cast<amrex::Real>(pzvel[i]) + bp.z();
+      //amrex::Print() << "velocity node " << i << ": ( " << vel_pos[i].x() << ", " << vel_pos[i].y() << ", " << vel_pos[i].z() << " )" << std::endl;
     }
+    
+/*
+    const auto& pxforce = tdata.ext_data.position_at_force(0);
+    const auto& pyforce = tdata.ext_data.position_at_force(1);
+    const auto& pzforce = tdata.ext_data.position_at_force(2);
+    const auto& chord = tdata.ext_data.chord_at_force();
+    auto& eps = data.grid().epsilon;
+    auto& force_pos = data.grid().pos;
+    for (int i = 0; i < force_pos.size(); ++i) {
+        amrex::Print() << "force node " << i << ": ( " << pxforce[i] + bp.x() << ", " << pyforce[i] + bp.y() << ", " << pzforce[i] + bp.z() << " )"
+                                             << "; ( " << chord[i] << " )" 
+                                             << "; ( " << eps[i].x() << ", " << eps[i].y() << ", " << eps[i].z() << " )" << std::endl;
+    }
+*/
 }
 
 template <typename datatype>
