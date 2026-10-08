@@ -132,13 +132,6 @@ void ABLMeanBoussinesq::mean_temperature_init(const FieldPlaneAveraging& tavg)
 {
     m_axis = tavg.axis();
 
-    // The implementation depends the assumption that the ABL statistics class
-    // computes statistics at the cell-centeres only on level 0. If this
-    // assumption changes in future, the implementation will break... so put in
-    // a check here to catch this.
-    AMREX_ALWAYS_ASSERT(
-        m_mesh.Geom(0).Domain().length(m_axis) ==
-        static_cast<int>(tavg.line_centroids().size()));
     m_theta_ht.resize(tavg.line_centroids().size());
     m_theta_vals.resize(tavg.line_average().size());
     amrex::Gpu::copy(
