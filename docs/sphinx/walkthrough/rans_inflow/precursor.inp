@@ -1,11 +1,5 @@
 FILE = common.inp
 geometry.is_periodic = 1 1 0
-# With f=0, maintain the 10 m/s wind using mean-wind feedback, not f*Ug.
-ICNS.source_terms = BoussinesqBuoyancy ABLForcing
-ABLForcing.abl_forcing_height = 960
-ABLForcing.forcing_timetable_output_file = forcing.txt
-ABLForcing.forcing_timetable_frequency = 1
-ABLForcing.forcing_timetable_start_time = 0
 ABL.bndry_io_mode = -1
 ABL.bndry_file = bndry
 ABL.bndry_planes = xlo

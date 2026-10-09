@@ -25,6 +25,12 @@ incflo.godunov_type = weno_z
 incflo.diffusion_type = 2
 incflo.initial_iterations = 3
 incflo.do_initial_proj = true
+# No CoriolisForcing source; these parameters define the pressure gradient only.
+ICNS.source_terms = BoussinesqBuoyancy GeostrophicForcing
+CoriolisForcing.latitude = 45
+# Earth default rotational_time_period = 86164.091 s (not overridden).
+# Orient Ug so that f*(-Vg, Ug, 0) drives the long x direction.
+GeostrophicForcing.geostrophic_wind = 0 -10 0
 
 transport.model = ConstTransport
 transport.viscosity = 0
@@ -46,7 +52,7 @@ ABL.perturb_velocity = false
 ABL.perturb_temperature = false
 ABL.initial_wind_profile = true
 ABL.rans_1dprofile_file = seed.info
-# Disable vertical and horizontal TKE sponges for the baseline.
+# Disable TKE sponges; this also retains the neutral length-scale override.
 ABL.meso_sponge_start = 1024
 ABL.horizontal_sponge_tke = false
 ABL.stats_output_format = ascii

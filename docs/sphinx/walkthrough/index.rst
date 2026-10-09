@@ -23,5 +23,6 @@ through precursor simulations, and then turbines are placed in the flow.
    kynema_fmb_turbine.rst
    terrain.rst
    rans.rst 
+   rans_inflow.rst
    noprecursorrans.rst
    calibration.rst
