@@ -29,6 +29,27 @@ public:
     MOData& mo() { return m_mo; }
     [[nodiscard]] const MOData& mo() const { return m_mo; }
 
+    //! Monin-Obukhov data carrying the mean quantities of a given mesh level
+    //!
+    //! On a single-level mesh, when only level 0 touches the wall, when
+    //! the bottom boundary is not a wall model, in inflow-outflow mode, or with
+    //! ABL.level_means_method = none, this is the same object as mo(). When a
+    //! finer level touches the wall, every level with wall cells whose first
+    //! cell sits above the roughness height holds the plane averages of the
+    //! reference height carried to its own first-cell height along the
+    //! Monin-Obukhov profile (any other level holds a copy of mo()), so that
+    //! the wall models that combine the local first-cell values with their
+    //! plane averages return the same mean stress and heat flux on every level
+    //! when the plane-mean profiles follow that profile (see
+    //! ABL.level_means_method). The friction velocity, Obukhov length and
+    //! surface heat flux are shared by all levels.
+    //!
+    //! \param lev [in] Mesh level
+    [[nodiscard]] const MOData& mo(int lev) const
+    {
+        return (lev < static_cast<int>(m_mo_lev.size())) ? m_mo_lev[lev] : m_mo;
+    }
+
     //! Return the plane-averaged computed friction velocity at any given
     //! instance
     [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
@@ -43,12 +64,29 @@ public:
     void update_tflux(amrex::Real tflux);
 
 private:
+    //! Set the Monin-Obukhov data of every level that touches the wall (only
+    //! when a level finer than level 0 does), see mo(int)
+    void update_level_means();
+
     const CFDSim& m_sim;
 
     const amrex::AmrCore& m_mesh;
 
     //! Monin-Obukhov instance
     MOData m_mo;
+
+    //! Monin-Obukhov data per mesh level; empty when mo(lev) is mo() on
+    //! every level (see mo(int))
+    amrex::Vector<MOData> m_mo_lev;
+
+    //! How the per-level data are obtained: "mo_profile" (reference-height
+    //! plane averages carried along the Monin-Obukhov profile) or "none"
+    //! (every level uses the reference-height plane averages)
+    std::string m_level_means_method{"mo_profile"};
+
+    //! Whether the warning about a first cell at or below the roughness
+    //! height was printed
+    bool m_warned_low_first_cell{false};
 
     int m_direction{2};             ///< Direction normal to wall
     bool m_use_fch{true};           ///< Use first cell height?
@@ -84,9 +122,11 @@ public:
 
     void operator()(Field& velocity, FieldState rho_state) override;
 
+    //! Apply the shear-stress model, built per level from the mean
+    //! quantities of that level (from those of the reference height for the
+    //! Donelan model)
     template <typename ShearStress>
-    void
-    wall_model(Field& velocity, FieldState rho_state, const ShearStress& tau);
+    void wall_model(Field& velocity, FieldState rho_state);
 
 private:
     const ABLWallFunction& m_wall_func;
@@ -102,9 +142,11 @@ public:
 
     void operator()(Field& temperature, FieldState rho_state) override;
 
+    //! Apply the heat-flux model, built per level from the mean quantities
+    //! of that level (from those of the reference height for the Donelan
+    //! model)
     template <typename HeatFlux>
-    void
-    wall_model(Field& temperature, FieldState rho_state, const HeatFlux& tau);
+    void wall_model(Field& temperature, FieldState rho_state);
 
 private:
     const ABLWallFunction& m_wall_func;

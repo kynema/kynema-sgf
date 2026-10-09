@@ -236,7 +236,67 @@ This section is for setting atmospheric boundary layer parameters.
    **type:** String, optional, default = "Moeng"
 
    Wall shear stress model: options include
-   "constant", "local", "Schumann", and "Moeng"
+   "constant", "local", "Schumann", "Moeng", and "Donelan"
+
+   The "Moeng" model combines the velocity and temperature of the first
+   cell above the wall with their plane averages; the "Schumann" model
+   divides the first-cell velocity by the plane-mean wind speed and uses
+   the first-cell temperature difference to the surface, and the heat flux
+   of the "local" model is that of the "Schumann" model. The
+   "constant" model does not use the first-cell values: its stress and heat
+   flux follow from the plane averages alone. On a mesh where a refinement
+   level touches the wall-modeled boundary, the first cells of the levels
+   sit at different heights, so the plane averages at
+   :input_param:`ABL.log_law_height` are carried to the first-cell height
+   of each level along the Monin-Obukhov profile of the surface layer (see
+   :input_param:`ABL.level_means_method`). The mean surface stress of the
+   "Moeng", "Schumann" and "constant" models is then the same on every
+   level, and so is the mean surface heat flux, as long as the plane-mean
+   profiles follow the Monin-Obukhov profile. The friction velocity, the
+   Obukhov length and the surface heat flux are computed once, from the
+   plane average at :input_param:`ABL.log_law_height`. The "Donelan" model
+   selects its drag coefficient from the mean wind at
+   :input_param:`ABL.log_law_height` and keeps that plane average on every
+   level. Meshes whose refinement does not reach the wall use the plane
+   averages at :input_param:`ABL.log_law_height` on every level, as before,
+   and so does a level whose first cell sits at or below the roughness
+   height (the larger of the aerodynamic and thermal roughness lengths), or
+   where the log-profile functions are not positive (with a warning), and
+   every level in inflow-outflow mode. Heights
+   are measured from :input_param:`ABL.wall_position`.
+
+.. input_param:: ABL.level_means_method
+
+   **type:** String, optional, default = "mo_profile"
+
+   How the plane averages that enter the "Moeng", "Schumann", "local" and
+   "constant" wall models are obtained on a mesh level whose first cell is
+   not at :input_param:`ABL.log_law_height`. Only meshes with a refinement
+   level that touches the wall-modeled boundary are affected.
+
+   - "mo_profile": the plane averages at :input_param:`ABL.log_law_height`
+     are carried to the first-cell height :math:`z_\ell` of each level along
+     the Monin-Obukhov profile: the mean wind components and speed are
+     multiplied by :math:`\phi_m(z_\ell)/\phi_m(z_{ref})` and the mean
+     temperature difference to the surface by
+     :math:`\phi_h(z_\ell)/\phi_h(z_{ref})`, with
+     :math:`\phi_m(z) = \ln(z/z_0) - \psi_m(z/L)` and
+     :math:`\phi_h(z) = \ln(z/z_{0t}) - \psi_h(z/L)` the log-profile
+     functions of the wall function and :math:`L` its Obukhov length. The
+     surface temperature, the friction velocity and the Obukhov length are
+     those of the reference height on every level; a level where
+     :math:`\phi_m` or :math:`\phi_h` is not positive at the first-cell
+     height keeps the reference-height averages, with a warning.
+   - "none": every level uses the plane averages at
+     :input_param:`ABL.log_law_height`, as before this input existed. On a
+     refined level the first cell is lower than the averages, and the
+     "Moeng" model then returns :math:`(2 r_m - 1)\,u_*^2` instead of
+     :math:`u_*^2` for the mean stress, with
+     :math:`r_m = \phi_m(z_\ell)/\phi_m(z_{ref}) < 1`; kept for comparison.
+
+   Any other value aborts the run. The input is not used by the "Donelan"
+   model, with :input_param:`ABL.wall_het_model` set to "mol", or in
+   inflow-outflow mode, which do not read the plane averages per level.
 
 .. input_param:: ABL.bndry_output_format
 

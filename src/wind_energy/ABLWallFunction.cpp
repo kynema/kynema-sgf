@@ -9,6 +9,7 @@
 #include "src/utilities/linear_interpolation.H"
 
 #include <cmath>
+#include <type_traits>
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Print.H"
@@ -74,6 +75,14 @@ ABLWallFunction::ABLWallFunction(const CFDSim& sim)
     }
     m_wall_pos = m_sim.mesh().Geom(0).ProbLo(m_direction);
     pp.query("wall_position", m_wall_pos);
+    pp.query("level_means_method", m_level_means_method);
+    m_level_means_method = amrex::toLower(m_level_means_method);
+    if ((m_level_means_method != "mo_profile") &&
+        (m_level_means_method != "none")) {
+        amrex::Abort(
+            "ABL.level_means_method must be mo_profile or none, got " +
+            m_level_means_method);
+    }
 
     if (pp.contains("surface_temp_flux")) {
         pp.query("surface_temp_flux", m_mo.surf_temp_flux);
@@ -203,11 +212,138 @@ void ABLWallFunction::update_umean(
     }
 
     m_mo.update_fluxes();
+
+    // Mean quantities of every mesh level that touches the wall
+    if (m_inflow_outflow) {
+        m_mo_lev.clear();
+    } else {
+        update_level_means();
+    }
+}
+
+void ABLWallFunction::update_level_means()
+{
+    m_mo_lev.clear();
+    if (m_level_means_method == "none") {
+        return;
+    }
+
+    const auto& repo = m_sim.repo();
+    const int nlevels = repo.num_active_levels();
+    // A single-level mesh keeps the plane averages at the reference height
+    if (nlevels < 2) {
+        return;
+    }
+
+    // The means only serve the wall models at zlo
+    const amrex::Orientation zlo(amrex::Direction::z, amrex::Orientation::low);
+    const bool vel_wall =
+        repo.get_field("velocity").bc_type()[zlo] == BC::wall_model;
+    const bool temp_wall =
+        repo.field_exists("temperature") &&
+        (repo.get_field("temperature").bc_type()[zlo] == BC::wall_model);
+    if (!vel_wall && !temp_wall) {
+        return;
+    }
+
+    // Same wall as ABLVelWallFunc and ABLTempWallFunc, which apply the wall
+    // models at zlo. Layer of the wall-adjacent cells of a level:
+    constexpr int idim = 2;
+    const auto wall_layer = [this](const int lev) {
+        amrex::Box bx = m_mesh.Geom(lev).Domain();
+        bx.setBig(idim, bx.smallEnd(idim));
+        return bx;
+    };
+
+    // Refinement that does not reach the wall leaves level 0 alone on the
+    // wall, which then keeps the plane averages at the reference height as
+    // on a single-level mesh. The box arrays tell without touching any data
+    bool fine_level_on_wall = false;
+    for (int lev = 1; lev < nlevels; ++lev) {
+        fine_level_on_wall = fine_level_on_wall ||
+                             m_mesh.boxArray(lev).intersects(wall_layer(lev));
+    }
+    if (!fine_level_on_wall) {
+        return;
+    }
+
+    // The wall models combine the local values of the first cell of each
+    // level with the plane averages entering the Monin-Obukhov data. On a
+    // mesh where a finer level touches the wall, the first cells of the
+    // levels sit at different heights, so each level gets the plane averages
+    // of the reference height carried to its own first-cell height z_l
+    // along the Monin-Obukhov profile of the surface layer:
+    //
+    //   <u>_l     = <u>     phi_m(z_l) / phi_m(z_ref)      (also v, |u_h|)
+    //   <theta>_l = theta_s + (<theta> - theta_s) phi_h(z_l) / phi_h(z_ref)
+    //
+    // with phi_m(z) = ln(z/z0) - psi_m(z/L) and phi_h(z) = ln(z/z0t) -
+    // psi_h(z/L). When the plane-mean profiles follow the Monin-Obukhov
+    // profile, the mean stress and heat flux of every level then equal those
+    // of the reference height. The friction velocity, the Obukhov length and
+    // the surface heat flux stay those of the reference height.
+    const amrex::Real phi_m_ref = m_mo.phi_m();
+    const amrex::Real phi_h_ref = m_mo.phi_h();
+    m_mo_lev.resize(nlevels, m_mo);
+    for (int lev = 0; lev < nlevels; ++lev) {
+        const auto& geom = m_mesh.Geom(lev);
+        if (!m_mesh.boxArray(lev).intersects(wall_layer(lev))) {
+            // No wall cells on this level: keeps the copy of m_mo
+            continue;
+        }
+
+        // Height of the first cell center above the wall, measured from the
+        // wall position like the reference height
+        const amrex::Real zref_lev =
+            geom.ProbLo(idim) + (0.5_rt * geom.CellSize(idim)) - m_wall_pos;
+        // The log law does not hold at or below the roughness height, and
+        // in strongly unstable conditions phi_m or phi_h can vanish or change
+        // sign just above it: such a level keeps the means at the reference
+        // height, as without refinement
+        const bool above_roughness = zref_lev > amrex::max(m_mo.z0, m_mo.z0t);
+        const amrex::Real phi_m_lev =
+            above_roughness ? m_mo.phi_m(zref_lev) : 0.0_rt;
+        const amrex::Real phi_h_lev =
+            above_roughness ? m_mo.phi_h(zref_lev) : 0.0_rt;
+        if (!(phi_m_lev > 0.0_rt) || !(phi_h_lev > 0.0_rt)) {
+            if (!m_warned_low_first_cell) {
+                amrex::Print()
+                    << "WARNING: ABLWallFunction: the first cell of level "
+                    << lev << " sits at " << zref_lev
+                    << " m, where the log-law profile functions are not "
+                       "positive; this level uses the plane averages at the "
+                       "reference height\n";
+                m_warned_low_first_cell = true;
+            }
+            continue;
+        }
+
+        // The surface temperature, friction velocity, Obukhov length and
+        // surface heat flux are those of the reference height. With the
+        // scaled mean temperature, kappa u* (theta_s - <theta>_l) / phi_h(z_l)
+        // is the reference-height heat flux on every level
+        auto& mo_lev = m_mo_lev[lev];
+        mo_lev.zref = zref_lev;
+        const amrex::Real rm = phi_m_lev / phi_m_ref;
+        const amrex::Real rh = phi_h_lev / phi_h_ref;
+        mo_lev.vel_mean[0] = m_mo.vel_mean[0] * rm;
+        mo_lev.vel_mean[1] = m_mo.vel_mean[1] * rm;
+        mo_lev.vmag_mean = m_mo.vmag_mean * rm;
+        mo_lev.Su_mean = m_mo.Su_mean * rm * rm;
+        mo_lev.Sv_mean = m_mo.Sv_mean * rm * rm;
+        mo_lev.theta_mean =
+            m_mo.surf_temp + ((m_mo.theta_mean - m_mo.surf_temp) * rh);
+    }
 }
 
 void ABLWallFunction::update_tflux(const amrex::Real tflux)
 {
     m_mo.surf_temp_flux = tflux;
+    // The per-level data carry the same surface heat flux. Their surface
+    // temperatures, like that of m_mo, stay those of the last update_umean
+    for (auto& mo_lev : m_mo_lev) {
+        mo_lev.surf_temp_flux = tflux;
+    }
 }
 
 ABLVelWallFunc::ABLVelWallFunc(
@@ -232,9 +368,21 @@ ABLVelWallFunc::ABLVelWallFunc(
     }
 }
 
+namespace {
+//! Whether a wall model takes the mean quantities of each mesh level. The
+//! Donelan model selects its drag coefficient (and, with a specified
+//! surface temperature, its heat flux) from the mean wind at the reference
+//! height, ABL.log_law_height, so it keeps the reference-height data on
+//! every level
+template <typename WallModel>
+constexpr bool uses_level_means()
+{
+    return !std::is_same_v<WallModel, ShearStressDonelan>;
+}
+} // namespace
+
 template <typename ShearStress>
-void ABLVelWallFunc::wall_model(
-    Field& velocity, const FieldState rho_state, const ShearStress& tau)
+void ABLVelWallFunc::wall_model(Field& velocity, const FieldState rho_state)
 {
     BL_PROFILE("kynema-sgf::ABLVelWallFunc");
 
@@ -264,6 +412,11 @@ void ABLVelWallFunc::wall_model(
         const auto& vold_lev = velocity.state(FieldState::Old)(lev);
         auto& vel_lev = velocity(lev);
         const auto& eta_lev = viscosity(lev);
+        // Shear-stress model with the mean quantities of this level, or of
+        // the reference height for the Donelan model
+        const ShearStress tau(
+            uses_level_means<ShearStress>() ? m_wall_func.mo(lev)
+                                            : m_wall_func.mo());
 
         if (amrex::Gpu::notInLaunchRegion()) {
             mfi_info.SetDynamic(true);
@@ -348,32 +501,16 @@ void ABLVelWallFunc::wall_model(
 
 void ABLVelWallFunc::operator()(Field& velocity, const FieldState rho_state)
 {
-    const auto& mo = m_wall_func.mo();
-
     if (m_wall_shear_stress_type == "moeng") {
-
-        auto tau = ShearStressMoeng(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressMoeng>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "constant") {
-
-        auto tau = ShearStressConstant(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressConstant>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "local") {
-
-        auto tau = ShearStressLocal(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressLocal>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "schumann") {
-
-        auto tau = ShearStressSchumann(mo);
-        wall_model(velocity, rho_state, tau);
-
+        wall_model<ShearStressSchumann>(velocity, rho_state);
     } else if (m_wall_shear_stress_type == "donelan") {
-
-        auto tau = ShearStressDonelan(mo);
-        wall_model(velocity, rho_state, tau);
+        wall_model<ShearStressDonelan>(velocity, rho_state);
     }
 }
 
@@ -390,8 +527,7 @@ ABLTempWallFunc::ABLTempWallFunc(
 }
 
 template <typename HeatFlux>
-void ABLTempWallFunc::wall_model(
-    Field& temperature, const FieldState rho_state, const HeatFlux& tau)
+void ABLTempWallFunc::wall_model(Field& temperature, const FieldState rho_state)
 {
     constexpr int idim = 2;
     auto& repo = temperature.repo();
@@ -425,6 +561,11 @@ void ABLTempWallFunc::wall_model(
         const auto& told_lev = temperature.state(FieldState::Old)(lev);
         auto& theta = temperature(lev);
         const auto& eta_lev = alpha(lev);
+        // Heat-flux model with the mean quantities of this level, or of the
+        // reference height for the Donelan model
+        const HeatFlux tau(
+            uses_level_means<HeatFlux>() ? m_wall_func.mo(lev)
+                                         : m_wall_func.mo());
 
         if (amrex::Gpu::notInLaunchRegion()) {
             mfi_info.SetDynamic(true);
@@ -501,33 +642,16 @@ void ABLTempWallFunc::wall_model(
 
 void ABLTempWallFunc::operator()(Field& temperature, const FieldState rho_state)
 {
-
-    const auto& mo = m_wall_func.mo();
-
     if (m_wall_shear_stress_type == "moeng") {
-
-        auto tau = ShearStressMoeng(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressMoeng>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "constant") {
-
-        auto tau = ShearStressConstant(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressConstant>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "local") {
-
-        auto tau = ShearStressLocal(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressLocal>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "schumann") {
-
-        auto tau = ShearStressSchumann(mo);
-        wall_model(temperature, rho_state, tau);
-
+        wall_model<ShearStressSchumann>(temperature, rho_state);
     } else if (m_wall_shear_stress_type == "donelan") {
-
-        auto tau = ShearStressDonelan(mo);
-        wall_model(temperature, rho_state, tau);
+        wall_model<ShearStressDonelan>(temperature, rho_state);
     }
 }
 
