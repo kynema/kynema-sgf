@@ -87,6 +87,8 @@ void MLMGOptions::operator()(amrex::MLMG& mlmg)
         mlmg.setBottomSolver(amrex::MLMG::BottomSolver::bicgcg);
     } else if (m_bottom_solver_type == "cgbicg") {
         mlmg.setBottomSolver(amrex::MLMG::BottomSolver::cgbicg);
+    } else if (m_bottom_solver_type == "amg") {
+        mlmg.setBottomSolver(amrex::MLMG::BottomSolver::algmg);
     } else if (m_bottom_solver_type == "hypre") {
 #ifdef AMREX_USE_HYPRE
         mlmg.setBottomSolver(amrex::MLMG::BottomSolver::hypre);

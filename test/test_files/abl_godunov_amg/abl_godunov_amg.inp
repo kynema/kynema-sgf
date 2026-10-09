@@ -1,0 +1,3 @@
+FILE = ../abl_godunov/abl_godunov.inp
+mac_proj.bottom_solver = amg
+nodal_proj.bottom_solver = amg
