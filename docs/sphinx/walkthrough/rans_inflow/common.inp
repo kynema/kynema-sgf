@@ -1,0 +1,85 @@
+# Quasi-2D: four identical periodic y cells for the 3D solver's stencils.
+geometry.prob_lo = 0 0 0
+geometry.prob_hi = 2048 128 1024
+amr.n_cell = 64 4 64
+amr.max_level = 0
+amr.blocking_factor = 4
+amr.max_grid_size = 64
+
+time.fixed_dt = 2
+time.stop_time = 60000
+time.max_step = -1
+time.regrid_interval = -1
+time.plot_interval = 1000
+time.checkpoint_interval = 1000
+io.output_default_variables = false
+io.outputs = velocity temperature tke mu_turb turb_lscale shear_prod buoy_prod dissipation
+
+incflo.physics = ABL
+incflo.density = 1.225
+incflo.gravity = 0 0 -9.81
+incflo.velocity = 10 0 0
+incflo.constant_density = true
+incflo.use_godunov = true
+incflo.godunov_type = weno_z
+incflo.diffusion_type = 2
+incflo.initial_iterations = 3
+incflo.do_initial_proj = true
+
+transport.model = ConstTransport
+transport.viscosity = 0
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.333
+transport.reference_temperature = 300
+transport.thermal_expansion_coefficient = 0.003333333333333
+turbulence.model = KLAxell
+TKE.source_terms = KransAxell
+
+ABL.normal_direction = 2
+ABL.kappa = 0.41
+ABL.surface_roughness_z0 = 0.1
+ABL.surface_temp_flux = 0
+ABL.wall_shear_stress_type = local
+# Keep the same wall-statistics path in both runs; no frozen wf_* defaults.
+ABL.inflow_outflow_mode = false
+ABL.perturb_velocity = false
+ABL.perturb_temperature = false
+ABL.initial_wind_profile = true
+ABL.rans_1dprofile_file = seed.info
+# Disable vertical and horizontal TKE sponges for the baseline.
+ABL.meso_sponge_start = 1024
+ABL.horizontal_sponge_tke = false
+ABL.stats_output_format = ascii
+ABL.stats_output_frequency = 30
+
+zhi.type = slip_wall
+zhi.temperature_type = fixed_gradient
+zhi.temperature = 0
+zhi.tke_type = fixed_gradient
+zhi.tke = 0
+zlo.type = wall_model
+
+incflo.post_processing = profiles convergence
+profiles.type = Sampling
+profiles.output_format = ascii
+profiles.output_interval = 30
+profiles.output_after_final_step = true
+profiles.fields = velocity temperature tke mu_turb turb_lscale shear_prod buoy_prod dissipation
+profiles.labels = xz
+profiles.xz.type = PlaneSampler
+profiles.xz.origin = 16 16 8
+profiles.xz.axis1 = 2016 0 0
+profiles.xz.axis2 = 0 0 1008
+profiles.xz.num_points = 64 64
+
+convergence.type = RANSConvergence
+convergence.probe_location_file = probes.txt
+convergence.start_time = 7200
+convergence.sample_interval_time = 60
+convergence.window = 3600
+convergence.hold_time = 7200
+convergence.velocity_abs_tol = 0.01
+convergence.velocity_rel_tol = 0.001
+convergence.tke_abs_tol = 0.001
+convergence.tke_rel_tol = 0.01
+convergence.stop_on_convergence = true

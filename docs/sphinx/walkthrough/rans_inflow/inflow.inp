@@ -1,0 +1,18 @@
+FILE = common.inp
+geometry.is_periodic = 0 1 0
+# Replay the recorded precursor acceleration instead of a new feedback loop.
+ICNS.source_terms = BoussinesqBuoyancy BodyForce
+BodyForce.type = uniform_timetable
+BodyForce.uniform_timetable_file = ../record/forcing.txt
+ABL.bndry_io_mode = 1
+ABL.bndry_file = ../record/bndry
+ABL.bndry_var_names = velocity temperature tke
+ABL.bndry_output_format = native
+xlo.type = mass_inflow
+xlo.velocity = 10 0 0
+xlo.density = 1.225
+xlo.temperature = 300
+xlo.tke = 0.1
+xhi.type = pressure_outflow
+# The end time and matching precursor checkpoint are supplied at launch.
+convergence.stop_on_convergence = false
