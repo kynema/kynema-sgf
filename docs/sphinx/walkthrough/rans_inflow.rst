@@ -4,11 +4,24 @@ KLAxell precursor/inflow homogeneity check
 Status
 ------
 
-These are experiment inputs, not measured results. The checkout was based on
-``main`` revision ``733cea204e07738fdbe37c43ef239fb248c4e126``. Configuration
-of the existing solver build failed because the AMReX and AMReX-Hydro
-submodule directories were empty; no simulations have been executed.
-Profile agreement and the cause of the reported heterogeneity remain unverified.
+The checkout was based on ``main`` revision
+``733cea204e07738fdbe37c43ef239fb248c4e126``. After retrieving the pinned AMReX,
+AMReX-Hydro and GoogleTest source archives, the unchanged solver compiled in
+serial Release mode. The existing unit suite passed 339 tests, with the MPI
+and GPU configuration tests skipped.
+
+A high-inversion precursor smoke test completed 10 steps (20 s) without an
+abort. All 4096 sampled points were finite. Maximum horizontal ranges were
+7.28e-11 m/s in u, 1.42e-10 K in temperature and 3.43e-12 m squared/s squared
+in TKE. This checks startup and sampling, not a converged atmospheric state.
+Full high-inversion spinup was launched, but convergence and matched inflow
+results have not yet been established. The cause of the reported inflow
+heterogeneity remains unverified.
+
+The sandbox executable is ``/tmp/kynema-rans-build/kynema_sgf``; build/test logs
+are alongside it, and the full precursor log is
+``/tmp/kynema-rans-high/spinup/run.log``. These temporary outputs are not
+committed and are specific to this sandbox session.
 
 Start with the high inversion case
 ----------------------------------
@@ -54,7 +67,7 @@ directory::
    ROOT=/home/runner/work/kynema-sgf/kynema-sgf
    INPUT="$ROOT/docs/sphinx/walkthrough/rans_inflow"
    RUN=/tmp/kynema-rans-high
-   EXE=/absolute/path/to/kynema_sgf
+   EXE=/tmp/kynema-rans-build/kynema_sgf
    mkdir -p "$RUN/spinup" "$RUN/record" "$RUN/inflow"
    cp "$INPUT/common.inp" "$INPUT/precursor.inp" "$INPUT/seed.info" "$INPUT/probes.txt" "$RUN/spinup/"
    cp "$INPUT/high/precursor.inp" "$RUN/spinup/case.inp"
@@ -67,14 +80,16 @@ Reaching the 60000 s backstop alone is not convergence. Extend the run if
 needed. Check that spinup is horizontally uniform at every height.
 
 Identify the final checkpoint and its physical time T from the log/checkpoint.
-Set ``CHK`` to its absolute path and ``END`` to T + 4096 s, rounded consistently
-with the 2 s timestep. This recording interval is twenty nominal domain
+Set ``CHK`` to its absolute path, ``END`` to T + 4096 s, and ``RECORD_END`` to
+``END`` + 2 s, rounded consistently with the 2 s timestep. Native boundary
+interpolation accesses two adjacent times, so the recording must extend beyond
+the final inflow time. This comparison interval is twenty nominal domain
 transits at 10 m/s; slower near-wall flow may need more time. Record a periodic
 continuation from that checkpoint::
 
    cp "$RUN/spinup/"*.inp "$INPUT/seed.info" "$INPUT/probes.txt" "$RUN/record/"
    cd "$RUN/record"
-   "$EXE" "$RUN/record/case.inp" io.restart_file="$CHK" time.stop_time="$END" \
+   "$EXE" "$RUN/record/case.inp" io.restart_file="$CHK" time.stop_time="$RECORD_END" \
        ABL.bndry_io_mode=0 convergence.stop_on_convergence=false \
        > "$RUN/record/run.log" 2>&1
 
