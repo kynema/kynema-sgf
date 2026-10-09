@@ -68,6 +68,7 @@ zlo.type = wall_model
 incflo.post_processing = profiles convergence
 profiles.type = Sampling
 profiles.output_format = ascii
+profiles.interpolation_order = 0
 profiles.output_interval = 30
 profiles.output_after_final_step = true
 profiles.fields = velocity temperature tke mu_turb turb_lscale shear_prod buoy_prod dissipation
