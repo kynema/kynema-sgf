@@ -98,6 +98,7 @@ void BCIface::read_bctype()
 void BCIface::set_bcfuncs()
 {
     const auto& ibctype = m_field.bc_type();
+
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
         const auto bct = ibctype[ori];
@@ -106,10 +107,13 @@ void BCIface::set_bcfuncs()
             m_field.register_custom_bc<FixedGradientBC>(ori);
         }
 
-        if (((m_field.name() == "velocity") ||
-             (m_field.name() == "temperature")) &&
-            (bct == BC::mass_inflow_outflow)) {
-
+        // On a mass_inflow_outflow face, a transported field keeps its inflow
+        // value (constant or UDF) where the flow enters and takes the interior
+        // value where it leaves. This holds for every field marked by
+        // set_transported() (velocity and the scalar transport equations;
+        // VOF keeps its own treatment) and on every such face, whatever sets
+        // its inflow value, so the choice of one face never changes another.
+        if (m_transported && (bct == BC::mass_inflow_outflow)) {
             m_field.register_custom_bc<MassInflowOutflowBC>(ori);
         }
     }
@@ -135,10 +139,14 @@ amrex::Array<const std::string, 3> BCIface::get_dirichlet_udfs()
         const auto bct = bctype[ori];
         amrex::ParmParse pp(bcid);
 
+        // An inflow face that names ConstDirichlet is the same as one that
+        // names no UDF: it keeps its constant where the UDF allows it
+        // (TabulatedProfile), and is refused where the UDF would overwrite
+        // it (see bc_udf::check_inflow_udf_faces)
         if (bct == BC::mass_inflow) {
-            if (pp.contains(inflow_key)) {
-                std::string val;
-                pp.get(inflow_key, val);
+            std::string val{"ConstDirichlet"};
+            pp.query(inflow_key, val);
+            if (val != "ConstDirichlet") {
 
                 if (has_inflow_udf && (inflow_udf != val)) {
                     amrex::Abort(
@@ -151,9 +159,9 @@ amrex::Array<const std::string, 3> BCIface::get_dirichlet_udfs()
         }
 
         if (bct == BC::mass_inflow_outflow) {
-            if (pp.contains(inflow_outflow_key)) {
-                std::string val;
-                pp.get(inflow_outflow_key, val);
+            std::string val{"ConstDirichlet"};
+            pp.query(inflow_outflow_key, val);
+            if (val != "ConstDirichlet") {
 
                 if (has_inflow_outflow_udf && (inflow_outflow_udf != val)) {
                     amrex::Abort(

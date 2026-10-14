@@ -22,7 +22,10 @@ struct BCOp<PDE, std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
      */
     void init_bcs()
     {
+        // The PDE variable is transported, so on a mass_inflow_outflow face
+        // it takes the interior value where the flow leaves the domain
         BCScalar bc(m_fields.field);
+        bc.set_transported();
         bc(PDE::default_bc_value);
         const auto udfs = bc.get_dirichlet_udfs();
         scalar_bc::register_scalar_dirichlet(

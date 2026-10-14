@@ -70,6 +70,9 @@ PDEFields create_fields_instance(
     PDEFields fields(repo, PDE::var_name());
     fields.field.register_fill_patch_op<FieldFillPatchOps<FieldBCDirichlet>>(
         repo.mesh(), time, itype);
+    // Kept so that an inflow UDF registered later fills with the same
+    // interpolation (e.g. TKE.interpolation = PiecewiseConstant)
+    fields.field.set_fillpatch_interpolator(itype);
     fields.src_term.register_fill_patch_op<FieldFillPatchOps<FieldBCNoOp>>(
         repo.mesh(), time, FieldInterpolator::PiecewiseConstant);
     fields.mueff.set_default_fillpatch_bc(time);

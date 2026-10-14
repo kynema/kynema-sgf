@@ -1,0 +1,56 @@
+# A tabulated inflow profile over an inclined plane.
+#
+# The ground rises downstream, from 100 m at the inflow face to 300 m at the
+# outflow face, and is uniform across the span. The inflow face therefore
+# stands on level ground, which is the case TabulatedProfile.zoffset is meant
+# for: heights in the profile file are measured from the ground at that face.
+#
+# Ground that varied along the inflow face would need a height that varies with
+# it, which is deliberately not supported. A varying inflow area would be
+# rescaled by the inflow-outflow solvability correction and no longer match the
+# profile that was asked for.
+
+time.stop_time                = -100.0
+time.max_step                 = 10
+time.fixed_dt                 = -1
+time.cfl                      = 0.9
+time.plot_interval            = 10
+time.checkpoint_interval      = -1
+
+ConstValue.density.value      = 1.0
+ConstValue.velocity.value     = 5.0 0.0 0.0
+
+incflo.use_godunov            = 1
+incflo.diffusion_type         = 2
+incflo.do_initial_proj        = 1
+incflo.initial_iterations     = 3
+incflo.verbose                = 0
+transport.viscosity           = 1.0e-5
+transport.laminar_prandtl     = 0.7
+transport.turbulent_prandtl   = 0.3333
+turbulence.model              = Laminar
+
+incflo.physics                = FreeStream TerrainDrag
+ICNS.source_terms             = DragForcing
+DragForcing.is_laminar        = 1
+TerrainDrag.terrain_file      = "terrain.amrwind"
+io.int_outputs                = terrain_blank terrain_drag
+
+amr.n_cell                    = 32 32 32
+amr.max_level                 = 0
+geometry.prob_lo              = 0.0 0.0 0.0
+geometry.prob_hi              = 1000.0 1000.0 1000.0
+geometry.is_periodic          = 0 0 0
+
+# The profile is tabulated above ground and the ground at xlo is at 100 m
+TabulatedProfile.filename     = inflow_profile.txt
+TabulatedProfile.zoffset      = 100.0
+
+xlo.type                      = "mass_inflow"
+xlo.density                   = 1.0
+xlo.velocity.inflow_type      = TabulatedProfile
+xhi.type                      = "pressure_outflow"
+ylo.type                      = "slip_wall"
+yhi.type                      = "slip_wall"
+zlo.type                      = "slip_wall"
+zhi.type                      = "slip_wall"
