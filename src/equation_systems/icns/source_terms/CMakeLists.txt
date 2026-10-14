@@ -17,4 +17,5 @@ target_sources(${kynema_sgf_lib_name} PRIVATE
   DragForcing.cpp
   ForestForcing.cpp
   VelocityFreeAtmosphereForcing.cpp
+  MetMastForcing.cpp
   )
