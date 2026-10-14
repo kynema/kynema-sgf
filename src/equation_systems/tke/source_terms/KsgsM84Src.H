@@ -32,6 +32,10 @@ private:
     Field& m_buoy_prod;
     Field& m_dissip;
     Field& m_tke;
+
+    //! Near-wall hybrid length scale of OneEqKsgsM84 (surfaceRANS option)
+    bool m_surface_rans{false};
+    const Field* m_hybrid_lscale{nullptr};
 };
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real calc_ceps_local(
