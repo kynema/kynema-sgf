@@ -34,6 +34,17 @@ This section is for setting atmospheric boundary layer parameters.
 
    Wall model surface roughness length (in meters) for thermal processes, i.e., the wall temperature flux model.
 
+.. input_param:: ABL.mo_alpha_h
+
+   **type:** Real, optional, default = 1.0
+
+   Scaling of the Monin-Obukhov temperature profile, which plays the role of a
+   turbulent Prandtl number in the surface layer:
+   :math:`\theta(z) = \theta_s - \alpha_h \, q \left[ \ln(z/z_{0t}) - \psi_h(z/L) \right] / (\kappa u_*)`.
+   It is used both in the Monin-Obukhov iteration and in the wall-model heat flux,
+   so the flux the wall model applies is the one the iteration computes.
+   The default leaves the results unchanged.
+
 .. input_param:: ABL.normal_direction
 
    **type:** Integer, optional, default = 2
@@ -80,12 +91,43 @@ This section is for setting atmospheric boundary layer parameters.
    at the wall-modeled boundary. This is not a required argument because there are other options for
    setting up the surface temperature condition.
 
+.. input_param:: ABL.surface_temp_flux_timetable
+
+   **type:** String, optional
+
+   File name of a surface temperature flux time table, allowing the heat flux
+   (in K m/s) to change with time. The file starts with a one-line header,
+   followed by one line per entry with the time and the flux; the flux is
+   interpolated linearly in time. This option cannot be combined with another
+   surface temperature boundary condition.
+
 .. input_param:: ABL.surface_temp_timetable
 
    **type:** String, optional
 
    File name of surface temperature time table, allowing the surface temperature
    to change with time without specifying a surface temperature rate.
+
+.. input_param:: ABL.near_surface_temp_timetable
+
+   **type:** String, optional
+
+   File name of a time table of the temperature measured near the surface, at
+   :input_param:`ABL.near_surface_height` (for example a 2 m station
+   temperature). The file starts with a one-line header, followed by one line per
+   entry with the time and the temperature. At every timestep, the
+   Monin-Obukhov profile is required to pass through this temperature and the
+   planar-averaged temperature at the log-law height, which gives the surface
+   temperature and the surface heat flux together. This option cannot be combined
+   with another surface temperature boundary condition.
+
+.. input_param:: ABL.near_surface_height
+
+   **type:** Real, mandatory with :input_param:`ABL.near_surface_temp_timetable`
+
+   Height above the surface (in meters) of the temperatures in
+   :input_param:`ABL.near_surface_temp_timetable`. It must be above the thermal
+   roughness length and differ from the log-law height.
 
 .. input_param:: ABL.surface_temp_rate
 

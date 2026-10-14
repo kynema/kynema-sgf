@@ -60,8 +60,20 @@ private:
     amrex::Vector<amrex::Real> m_surf_temp_time;
     amrex::Vector<amrex::Real> m_surf_temp_value;
 
+    //! Table of surface temperature flux versus time
+    std::string m_surf_temp_flux_timetable;
+    amrex::Vector<amrex::Real> m_surf_temp_flux_time;
+    amrex::Vector<amrex::Real> m_surf_temp_flux_value;
+
+    //! Table of near-surface temperature versus time
+    std::string m_near_surf_temp_timetable;
+    amrex::Vector<amrex::Real> m_near_surf_temp_time;
+    amrex::Vector<amrex::Real> m_near_surf_temp_value;
+
     bool m_tempflux{true};
     bool m_temp_table{false};
+    bool m_tempflux_table{false};
+    bool m_near_surf_temp{false};
     amrex::Real m_surf_temp_rate{0.0_rt};
     amrex::Real m_surf_temp_rate_tstart{0.0_rt};
     amrex::Real m_surf_temp_init{300.0_rt};

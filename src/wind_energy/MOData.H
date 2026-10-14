@@ -24,8 +24,9 @@ namespace kynema_sgf {
 struct MOData
 {
     enum class ThetaCalcType : std::uint8_t {
-        HEAT_FLUX = 0,      ///< Heat-flux specified
-        SURFACE_TEMPERATURE ///< Surface temperature specified
+        HEAT_FLUX = 0,           ///< Heat-flux specified
+        SURFACE_TEMPERATURE,     ///< Surface temperature specified
+        NEAR_SURFACE_TEMPERATURE ///< Temperature specified near the surface
     };
 
     amrex::Real zref{0.0_rt};           ///< Reference height (m)
@@ -44,6 +45,14 @@ struct MOData
 
     amrex::Real surf_temp_flux{0.0_rt}; ///< Heat flux
     amrex::Real surf_temp;              ///< Instantaneous surface temperature
+
+    //! Height of the specified near-surface temperature (m)
+    amrex::Real near_surf_height{2.0_rt};
+    //! Instantaneous near-surface temperature (at near_surf_height)
+    amrex::Real near_surf_temp{0.0_rt};
+
+    //! Scaling of the temperature profile (turbulent Prandtl number)
+    amrex::Real alpha_h{1.0_rt};
 
     amrex::Real gamma_m{5.0_rt};
     amrex::Real gamma_h{5.0_rt};
@@ -64,12 +73,13 @@ struct MOData
 
     [[nodiscard]] amrex::Real phi_h() const
     {
-        return std::log(zref / z0t) - calc_psi_h(zref / obukhov_len);
+        return alpha_h *
+               (std::log(zref / z0t) - calc_psi_h(zref / obukhov_len));
     }
 
     [[nodiscard]] amrex::Real phi_h(amrex::Real z) const
     {
-        return std::log(z / z0t) - calc_psi_h(z / obukhov_len);
+        return alpha_h * (std::log(z / z0t) - calc_psi_h(z / obukhov_len));
     }
 
     [[nodiscard]] amrex::Real calc_psi_m(amrex::Real zeta) const;

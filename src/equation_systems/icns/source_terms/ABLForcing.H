@@ -1,10 +1,15 @@
 #ifndef ABLFORCING_H
 #define ABLFORCING_H
 
+#include <limits>
+
 #include "src/equation_systems/icns/MomentumSource.H"
 #include "src/core/SimTime.H"
 #include "src/utilities/trig_ops.H"
 #include "src/utilities/linear_interpolation.H"
+#include "src/utilities/FieldPlaneAveraging.H"
+#include "AMReX_Gpu.H"
+#include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -13,6 +18,23 @@ namespace kynema_sgf::pde::icns {
 
 /** Forcing term to drive the ABL profile to a desired state
  *  \ingroup icns_src we_abl
+ *
+ *  The forcing is a uniform horizontal acceleration \f$\mathbf{F}\f$ that
+ *  drives the planar-averaged velocity at `abl_forcing_height` to the target
+ *  velocity. With `free_atmosphere_damping` enabled, the planar-averaged
+ *  velocity above the free-atmosphere height \f$h\f$ is also relaxed toward
+ *  the geostrophic wind that balances \f$\mathbf{F}\f$,
+ *
+ *  \f[
+ *    U_g = F_y / f, \quad V_g = -F_x / f, \quad
+ *    S_{x,y} = \frac{1}{\tau}
+ *      \left( U_{g,x,y} - \langle u_{x,y} \rangle (z) \right)
+ *      \quad \text{for} \quad z \geq h,
+ *  \f]
+ *
+ *  where \f$f = 2 \Omega \sin \phi\f$ comes from the CoriolisForcing inputs.
+ *  This removes the inertial oscillations the free atmosphere undergoes when
+ *  the forcing changes in time.
  *
  *  \sa ABL
  */
@@ -71,11 +93,62 @@ public:
             outfile.open(m_force_timetable, std::ios::out | std::ios::app);
             outfile << std::setprecision(17) << nph_time << "\t"
                     << m_abl_forcing[0] << "\t" << m_abl_forcing[1] << "\t"
-                    << 0.0_rt << '\n';
+                    << 0.0_rt;
+            if (m_fa_damping) {
+                const auto ug = geostrophic_velocity();
+                outfile << "\t" << ug[0] << "\t" << ug[1] << "\t"
+                        << m_fa_height;
+            }
+            outfile << '\n';
         }
     }
 
     [[nodiscard]] amrex::RealArray abl_forcing() const { return m_abl_forcing; }
+
+    //! True if the free atmosphere is damped toward the geostrophic wind
+    [[nodiscard]] bool free_atmosphere_damping() const { return m_fa_damping; }
+
+    //! True if the free-atmosphere height follows the capping inversion
+    [[nodiscard]] bool detect_free_atmosphere_height() const
+    {
+        return m_fa_detect_height;
+    }
+
+    //! Height above which the free-atmosphere damping acts
+    [[nodiscard]] amrex::Real free_atmosphere_height() const
+    {
+        return m_fa_height;
+    }
+
+    //! Geostrophic wind that balances the current forcing
+    [[nodiscard]] amrex::Array<amrex::Real, 2> geostrophic_velocity() const
+    {
+        return {
+            m_abl_forcing[1] / m_fa_coriolis_factor,
+            -m_abl_forcing[0] / m_fa_coriolis_factor};
+    }
+
+    /** Update the free-atmosphere damping inputs at the start of a timestep
+     *
+     *  The damping acts from the second update on: the first forcing after
+     *  start-up corrects no drift yet, so it does not give the geostrophic
+     *  wind.
+     *
+     *  \param vpa Planar-averaged velocity profile
+     *  \param zi Capping inversion height above the bottom of the domain,
+     *  used only when `detect_free_atmosphere_height` is on
+     */
+    void update_free_atmosphere(const VelPlaneAveraging& vpa, amrex::Real zi);
+
+    /** Add the free-atmosphere damping to the source term
+     *
+     *  Public because it launches a device lambda.
+     *
+     *  \param lev Mesh level
+     *  \param src_term Momentum source term
+     */
+    void
+    apply_free_atmosphere_damping(int lev, amrex::MultiFab& src_term) const;
 
     [[nodiscard]] amrex::Real forcing_height() const
     {
@@ -83,8 +156,44 @@ public:
     }
 
 private:
+    //! Read the free-atmosphere damping inputs
+    void read_free_atmosphere_inputs(const amrex::ParmParse& pp_abl);
+
     const SimTime& m_time;
     const amrex::AmrCore& m_mesh;
+
+    //! Damp the free atmosphere toward the geostrophic wind
+    bool m_fa_damping{false};
+
+    //! Set the free-atmosphere height from the capping inversion height
+    bool m_fa_detect_height{false};
+
+    //! Height above which the free atmosphere is damped
+    amrex::Real m_fa_height{0.0_rt};
+
+    //! Relaxation time scale of the free-atmosphere damping (s)
+    amrex::Real m_fa_tau{100.0_rt};
+
+    //! Time at which the free-atmosphere damping starts
+    amrex::Real m_fa_start_time{0.0_rt};
+
+    //! Time at which the free-atmosphere damping ends
+    amrex::Real m_fa_end_time{std::numeric_limits<amrex::Real>::max()};
+
+    //! Coriolis parameter f = 2 Omega sin(latitude)
+    amrex::Real m_fa_coriolis_factor{1.0_rt};
+
+    //! Number of free-atmosphere updates since start-up
+    int m_fa_num_updates{0};
+
+    //! Averaging direction of the velocity profile
+    int m_fa_axis{2};
+
+    //! Heights of the planar-averaged velocity profile
+    amrex::Gpu::DeviceVector<amrex::Real> m_fa_heights;
+
+    //! Planar-averaged velocity profile (3 components per height)
+    amrex::Gpu::DeviceVector<amrex::Real> m_fa_velocity;
 
     //! Activated when water is present in domain
     bool m_use_phase_ramp{false};

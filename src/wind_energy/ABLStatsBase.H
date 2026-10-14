@@ -55,6 +55,12 @@ public:
     //! Perform actions at the end of a timestep
     virtual void post_advance_work() = 0;
 
+    //! Compute the height of the capping inversion from the level 0 field
+    virtual void compute_zi() = 0;
+
+    //! Height of the capping inversion above the bottom of the domain
+    [[nodiscard]] virtual amrex::Real zi() const = 0;
+
     virtual void
     register_forcing_term(pde::icns::ABLForcing* forcing) const = 0;
 
