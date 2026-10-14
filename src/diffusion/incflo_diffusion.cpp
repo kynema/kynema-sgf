@@ -205,6 +205,56 @@ void fixup_eta_on_domain_faces(
     }
 }
 
+void apply_immersed_interface(
+    amrex::Array<amrex::MultiFab, AMREX_SPACEDIM>& fc,
+    const kynema_sgf::FieldRepo& repo,
+    const int lev)
+{
+    if (!repo.field_exists("terrain_diffusion_xf")) {
+        return;
+    }
+    BL_PROFILE("kynema-sgf::diffusion::apply_immersed_interface");
+    const amrex::Array<std::string, AMREX_SPACEDIM> names{
+        {"terrain_diffusion_xf", "terrain_diffusion_yf",
+         "terrain_diffusion_zf"}};
+    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+        amrex::MultiFab::Multiply(
+            fc[dir], repo.get_field(names[dir])(lev), 0, 0, 1, 0);
+    }
+}
+
+std::unique_ptr<kynema_sgf::ScratchField> immersed_effective_density(
+    const kynema_sgf::FieldRepo& repo,
+    const kynema_sgf::Field& density,
+    const amrex::Real dt)
+{
+    if (!repo.field_exists("terrain_drag_rate")) {
+        return nullptr;
+    }
+    BL_PROFILE("kynema-sgf::diffusion::immersed_effective_density");
+    const auto& drag_rate = repo.get_field("terrain_drag_rate");
+    auto rho_eff = repo.create_scratch_field(1, density.num_grow()[0]);
+    // The drag-rate field carries fewer ghost cells than the density; fill
+    // the ghosts with the plain density and scale only where the rate exists
+    const amrex::IntVect ngrow_rate =
+        amrex::min(density.num_grow(), drag_rate.num_grow());
+    const int nlevels = repo.num_active_levels();
+    for (int lev = 0; lev < nlevels; ++lev) {
+        amrex::MultiFab::Copy(
+            (*rho_eff)(lev), density(lev), 0, 0, 1, density.num_grow());
+        const auto& rate_arrs = drag_rate(lev).const_arrays();
+        const auto& reff_arrs = (*rho_eff)(lev).arrays();
+        amrex::ParallelFor(
+            (*rho_eff)(lev), ngrow_rate,
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                reff_arrs[nbx](i, j, k) *=
+                    (1.0_rt + (dt * rate_arrs[nbx](i, j, k)));
+            });
+    }
+    amrex::Gpu::streamSynchronize();
+    return rho_eff;
+}
+
 void viscosity_to_uniform_space(
     amrex::Array<amrex::MultiFab, AMREX_SPACEDIM>& b,
     const kynema_sgf::FieldRepo& repo,

@@ -321,6 +321,27 @@ Section: Momentum Sources
    when the form drag is known to be under-resolved.
 
 
+The following arguments are influential when ``ImmersedDragForcing`` is included in
+:input_param:`ICNS.source_terms`. This source term requires the
+:ref:`ImmersedTerrain <inputs_immersedterrain>` physics and replaces ``DragForcing`` for
+terrain represented with a partial terrain fraction. It applies an immersed drag in every
+cell with a non-zero drag weight :math:`w`, relaxing the velocity toward zero at the rate
+:math:`C = w C_d / \Delta z`, integrated exactly over the time step as
+:math:`C_\mathrm{eff} = (1 - e^{-C \Delta t}) / \Delta t` so that no drag limiter is needed.
+The weight follows :input_param:`ImmersedTerrain.drag_weight`: ``fraction`` uses the terrain
+fraction :math:`\beta`, ``center`` uses 1 where the cell center is inside the terrain. With
+laminar flow and ``fraction`` weighting the partial cell is a fluid cell whose wall is
+carried by the no-slip wall flux, and only cells entirely inside the terrain take the drag. With
+:input_param:`ImmersedTerrain.implicit_projection` the immersed drag is instead applied
+inside the nodal and MAC projections and this source term adds nothing.
+
+.. input_param:: ImmersedDragForcing.drag_coefficient
+
+   **type:** Real, optional, default = 10.0
+
+   Coefficient :math:`C_d` of the immersed drag; the relaxation rate in a fully solid cell
+   is :math:`C_d / \Delta z`.
+
 The following arguments are influential when ``GravityForcing`` is included in :input_param:`ICNS.source_terms`.
 
    .. input_param:: ICNS.use_perturb_pressure

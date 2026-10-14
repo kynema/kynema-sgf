@@ -1,0 +1,74 @@
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               =   -100.0     # Max (simulated) time to evolve
+time.max_step                =   10        # Max number of time steps
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.fixed_dt         =   -1        # Use this constant dt if > 0
+time.cfl              =   0.9         # CFL factor
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =  1000000       # Steps between plot files
+time.checkpoint_interval      =  -1       # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+ConstValue.density.value = 1.0
+ConstValue.velocity.value = 1.0 0.0 0.0
+
+incflo.use_godunov = 1
+incflo.diffusion_type = 2
+incflo.do_initial_proj = 0
+incflo.initial_iterations = 0
+# Finite viscosity: the no-slip wall flux rescales the face viscosity
+# at the terrain interface so the discrete flux matches a no-slip wall at the
+# true wall position (laminar pathway)
+transport.viscosity = 1.0
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+turbulence.model = Laminar
+io.int_outputs = terrain_mask
+io.outputs = terrain_fraction terrain_surface terrain_drag_rate
+incflo.physics = FreeStream ImmersedTerrain
+ICNS.source_terms                        = ImmersedDragForcing
+ImmersedTerrain.terrain_file = "terrain.amrwind"
+ImmersedTerrain.implicit_projection = 1
+ImmersedDragForcing.drag_coefficient = 10.0
+
+amr.n_cell              =  56 56 104    # Grid cells at coarsest AMRlevel
+amr.max_level           = 1           # Max AMR level in hierarchy
+geometry.prob_lo        =   0    0  0
+geometry.prob_hi        =   1024 1024 1024
+geometry.is_periodic    =   0   0   0   # Periodicity x y z (0/1)
+
+# Boundary conditions
+xlo.type = "mass_inflow"
+xlo.density = 1.0
+xlo.velocity = 1.0 0.0 0.0
+xhi.type = "pressure_outflow"
+ylo.type =   "slip_wall"
+yhi.type =   "slip_wall"
+zlo.type =   "slip_wall"
+zhi.type =   "slip_wall"
+
+incflo.verbose          =   0          # incflo_level
+
+incflo.post_processing = sampling
+sampling.labels = volume1
+sampling.fields = velocity terrain_fraction
+sampling.int_fields = terrain_mask
+sampling.volume1.type        = VolumeSampler
+sampling.volume1.hi        = 600 600 200
+sampling.volume1.lo      =  400 400 0.0
+sampling.volume1.num_points  = 10 10 20
+
+tagging.labels = terrain
+tagging.terrain.type = FieldRefinement
+tagging.terrain.field_name = terrain_mask
+tagging.terrain.grad_error = 0.5 0.5 0.5 0.5

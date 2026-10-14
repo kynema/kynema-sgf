@@ -39,6 +39,31 @@ be used for the simulation of neutral ABL. A future release will update this cal
 the values from a precursor simulation for both neutral and  non-neutral stratification. 
 The terrain can be visualized by including ``io.int_outputs = terrain_blank`` in the input file. 
 
+Partial terrain fraction
+------------------------
+
+The ``ImmersedTerrain`` physics is the successor to ``TerrainDrag``. Instead of blanking whole
+cells it stores the fraction of each cell occupied by terrain, so slopes are not represented as a
+staircase, and it treats the side walls of steep terrain as well as the top. It is used with the
+``ImmersedDragForcing`` source term, which applies the immersed drag with an exact time
+integration (no drag limiters are needed). A minimal laminar setup is::
+
+   incflo.physics = FreeStream ImmersedTerrain
+   ICNS.source_terms = ImmersedDragForcing
+   turbulence.model = Laminar
+   ImmersedTerrain.terrain_file = "terrain.amrwind"
+   ImmersedTerrain.implicit_projection = 1
+   io.int_outputs = terrain_mask
+   io.outputs = terrain_fraction
+
+The terrain file format is the same as for ``TerrainDrag``. Setting
+``ImmersedTerrain.implicit_projection = 1`` applies the drag inside the pressure projection,
+which makes the velocity inside the terrain independent of the time step and allows the drag
+coefficient to be increased with resolution; see :ref:`terrainmodel` for the formulation and
+:ref:`inputs_immersedterrain` for the full list of inputs. The lateral sponge layer and the
+Rayleigh damping described above are not part of ``ImmersedDragForcing`` and must be supplied by
+the existing sponge and damping source terms if needed.
+
 It is recommended to use the ``ProbeSampler`` to create the terrain-aligned output planes. The easiest method
 to generate the text file for ``ProbeSampler`` is to write the STL as a text file and then use offsets in 
 postprocessing to write the planes at different heights above the terrain. The terrain-aware output can 

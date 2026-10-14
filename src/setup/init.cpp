@@ -210,9 +210,11 @@ void incflo::InitialProjection()
 
     amrex::Real dummy_dt = 1.0_rt;
     bool incremental = false;
+    m_initial_projection = true;
     ApplyProjection(
         density().vec_const_ptrs(), m_time.current_time(), dummy_dt,
         incremental);
+    m_initial_projection = false;
 
     // We set p and gp back to zero (p0 may still be still non-zero)
     pressure().setVal(0.0_rt);

@@ -195,6 +195,9 @@ private:
 
     //! reconstruct true pressure
     bool m_reconstruct_true_pressure{false};
+    //! True while the initial projection runs; the implicit immersed-terrain
+    //! drag is then disabled so the initial projection stays a pure projection
+    bool m_initial_projection{false};
 
     //
     // end of member variables
