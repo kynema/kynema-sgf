@@ -213,7 +213,14 @@ void update_vel_op(datatype& data)
 }
 
 template <typename datatype>
-void compute_force_op(datatype& data)
+void update_external_turbine_loads(datatype& data)
+{
+    // Update external turbine loads
+    ext_loads<datatype>(data);
+}
+
+template <typename datatype>
+void advance_external_turbine(datatype& data)
 {
     // Advance external solver by specified number of sub-steps
     ext_step<datatype>(data);

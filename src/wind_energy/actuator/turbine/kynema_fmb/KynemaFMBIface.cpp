@@ -475,22 +475,22 @@ void build_controller(
                                   .SetOutputFilePath(controller_output_file);
 }
 
-void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
+void calculate_aerodynamic_loads(::ext_turb::KynemaFMBTurbine& fi)
+{
+
+    fi.interface->Aerodynamics().CalculateMotion(fi.interface->GetHostState());
+    // copy fluid velocity to turbine solver (set inflow)
+    fi.pass_fluid_velocity_and_hub_load();
+    fi.interface->Aerodynamics().CalculateAerodynamicLoads(fi.fluid_density);
+    if (fi.one_way_coupled) {
+        fi.save_and_zero_aerodynamic_loads();
+    }
+    fi.interface->Aerodynamics().CalculateNodalLoads();
+}
+
+void update_turbine_model(::ext_turb::KynemaFMBTurbine& fi, bool advance)
 {
     ++fi.substep_counter;
-    // Operations that only need to be done once
-    if (fi.substep_counter == 1) {
-        fi.interface->Aerodynamics().CalculateMotion(
-            fi.interface->GetHostState());
-        // copy fluid velocity to turbine solver (set inflow)
-        fi.pass_fluid_velocity_and_hub_load();
-        fi.interface->Aerodynamics().CalculateAerodynamicLoads(
-            fi.fluid_density);
-        if (fi.one_way_coupled) {
-            fi.save_and_zero_aerodynamic_loads();
-        }
-        fi.interface->Aerodynamics().CalculateNodalLoads();
-    }
     if (advance) {
         // individual turbine step, do not output every step
         bool converged = fi.interface->Step();
@@ -579,7 +579,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
 
     auto& fi = *m_turbine_data[local_id];
 
-    ::sgf_fmb::update_turbine(fi, false);
+    ::sgf_fmb::update_turbine_model(fi, false);
 
     fi.is_solution0 = false;
 }
@@ -724,10 +724,17 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::read_velocity_data(
 #endif
 
 template <>
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::calc_aero_loads(
+    KynemaFMBTurbine& fi)
+{
+    ::sgf_fmb::calculate_aerodynamic_loads(fi);
+}
+
+template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::do_turbine_step(
     KynemaFMBTurbine& fi)
 {
-    ::sgf_fmb::update_turbine(fi, true);
+    ::sgf_fmb::update_turbine_model(fi, true);
 }
 
 template <>
@@ -841,7 +848,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     }
 
     fi.allocate_buffers();
-    ::sgf_fmb::update_turbine(fi, false);
+    ::sgf_fmb::update_turbine_model(fi, false);
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)

@@ -53,12 +53,19 @@ struct UpdatePosOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdateVelOp;
 
-/** Compute aerodynamic forces at the actuator grid points during a simulation.
+/** Compute actuator loads and scatter them to the relevant processes.
  *
  *  \ingroup actuator
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
-struct ComputeForceOp;
+struct ComputeLoadsOp;
+
+/** Advance the actuator model by one CFD time step then scatter new position.
+ *
+ *  \ingroup actuator
+ */
+template <typename ActTrait, typename SrcTrait, typename = void>
+struct AdvanceModelOp;
 
 /** Compute source term for the momentum equation.
  *

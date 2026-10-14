@@ -34,8 +34,7 @@ void write_netcdf(
 
 void refresh_wing_position(VecList& vpoints, VecList fpoints, int npts);
 
-void new_wing_position_velocity(
-    VecList& points,
+vs::Vector new_wing_displacement_motion(
     vs::Vector& vtr,
     int npts,
     amrex::Real tn,
@@ -116,7 +115,7 @@ struct UpdateVelOp<
 };
 
 template <typename ActTrait>
-struct ComputeForceOp<
+struct ComputeLoadsOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
@@ -133,11 +132,11 @@ struct ComputeForceOp<
         const auto& aflookup = airfoil_lookup<ActTrait>(data);
         const auto& time = data.sim().time();
 
-        // Move force points to location at n+1
-        // Also, get velocity of actuator from n to n+1
+        // Get velocity of actuator from n to n+1
         // (will be unchanged for "none" and "linear" motion)
-        actuator::wing::new_wing_position_velocity(
-            grid.pos, wdata.vel_tr, npts, time.current_time(), time.new_time(),
+        // Positions are updated later
+        actuator::wing::new_wing_displacement_motion(
+            wdata.vel_tr, npts, time.current_time(), time.new_time(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
 
         // Build the local reference frame
@@ -152,17 +151,12 @@ struct ComputeForceOp<
 
         // Calculate the aoa based on the pitch actuation table if supplied
         // (interpolate pitch angle at step n+1/2) or the initial pitch angle
+        auto pitch = wdata.pitch;
         if (!wdata.pitch_timetable_file.empty()) {
             const auto time_interp =
                 (time.current_time() + time.new_time()) / 2.0_rt;
-            wdata.pitch = kynema_sgf::interp::linear_angle(
+            pitch = kynema_sgf::interp::linear_angle(
                 wdata.time_table, wdata.pitch_table, time_interp, 360.0_rt);
-            amrex::Print() << "Wing Ops: Current wing pitch (at time "
-                           << time_interp << " s) is " << wdata.pitch
-                           << " degrees.\n";
-            // Recalculate transformation matrix and update on grid struct
-            auto tmat = vs::quaternion(wspan, wdata.pitch);
-            grid.orientation.assign(npts, tmat);
         }
 
         // Get flags for each coordinate of force and put in vs::Vector
@@ -184,7 +178,7 @@ struct ComputeForceOp<
 
             const auto vmag = vs::mag(windvector);
             const auto aoa = std::atan2(windvector[2], windvector[0]) +
-                             kynema_sgf::utils::radians(wdata.pitch);
+                             kynema_sgf::utils::radians(pitch);
 
             // Get Cl, Cd values
             amrex::Real cl, cd;
@@ -242,6 +236,54 @@ struct ComputeForceOp<
 
         wdata.lift = total_lift;
         wdata.drag = total_drag;
+    }
+};
+
+template <typename ActTrait>
+struct AdvanceModelOp<
+    ActTrait,
+    ActSrcLine,
+    typename std::enable_if_t<
+        std::is_base_of_v<WingType, ActTrait> &&
+        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+{
+    void operator()(typename ActTrait::DataType& data)
+    {
+        auto& grid = data.grid();
+        auto& wdata = data.meta();
+        const int npts = wdata.num_pts;
+        const auto& dx = wdata.dx;
+        const auto& chord = wdata.chord;
+        const auto& aflookup = airfoil_lookup<ActTrait>(data);
+        const auto& time = data.sim().time();
+
+        // Move force points to location at n+1 using displacement vector
+        auto disp = actuator::wing::new_wing_displacement_motion(
+            wdata.vel_tr, npts, time.current_time(), time.new_time(),
+            wdata.motion_type, wdata.s_period, wdata.s_vector);
+        for (int ip = 0; ip < npts; ++ip) {
+            grid.pos[ip].x() = grid.pos[ip].x() + disp.x();
+            grid.pos[ip].y() = grid.pos[ip].y() + disp.y();
+            grid.pos[ip].z() = grid.pos[ip].z() + disp.z();
+        }
+
+        // Build the local reference frame
+        const vs::Vector wspan = wdata.end - wdata.start;
+
+        // Calculate the aoa based on the pitch actuation table if supplied
+        // (interpolate pitch angle at step n+1/2) or the initial pitch angle
+        if (!wdata.pitch_timetable_file.empty()) {
+            const auto time_interp =
+                (time.current_time() + time.new_time()) / 2.0_rt;
+            wdata.pitch = kynema_sgf::interp::linear_angle(
+                wdata.time_table, wdata.pitch_table, time_interp, 360.0_rt);
+            amrex::Print() << "Wing Ops: Current wing pitch (at time "
+                           << time_interp << " s) is " << wdata.pitch
+                           << " degrees.\n";
+            // Recalculate transformation matrix and update on grid struct
+            auto tmat = vs::quaternion(wspan, wdata.pitch);
+            grid.orientation.assign(npts, tmat);
+        }
 
         if (wdata.fllc) {
             if (!(wdata.fllc->initialized) &&

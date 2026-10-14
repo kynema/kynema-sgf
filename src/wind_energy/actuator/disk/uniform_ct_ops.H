@@ -68,7 +68,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 // this will then be spread uniformly over that area in the
 // projection step
 template <>
-struct ComputeForceOp<UniformCt, ActSrcDisk>
+struct ComputeLoadsOp<UniformCt, ActSrcDisk>
 {
     void operator()(UniformCt::DataType& data)
     {
@@ -119,6 +119,15 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
                 -kynema_sgf::utils::degrees(turbine_angle) + 270.0_rt;
         }
 #endif
+    }
+};
+
+template <>
+struct AdvanceModelOp<UniformCt, ActSrcDisk>
+{
+    void operator()(UniformCt::DataType& /* data */)
+    { // Actuator disk model does not evolve in space; it only changes positions
+      // due to controller input, which occurs in UpdatePosOp
     }
 };
 

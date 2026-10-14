@@ -170,7 +170,7 @@ void compute_nacelle_force(datatype& data)
 }
 
 template <typename datatype>
-void ext_step(datatype& data)
+void ext_loads(datatype& data)
 {
     if (!data.info().is_root_proc) {
         return;
@@ -180,16 +180,29 @@ void ext_step(datatype& data)
     auto& tf = data.meta().ext_data;
     if (tf.is_solution0) {
         meta.ext_ptr->init_solution(tf.tid_local);
-    } else {
+    }
+
+    meta.ext_ptr->advance_aero_loads(tf.tid_local);
+    meta.ext_ptr->get_hub_stats(tf.tid_local);
+    compute_nacelle_force<datatype>(data);
+}
+
+template <typename datatype>
+void ext_step(datatype& data)
+{
+    if (!data.info().is_root_proc) {
+        return;
+    }
+
+    auto& meta = data.meta();
+    auto& tf = data.meta().ext_data;
+    if (!tf.is_solution0) {
         meta.ext_ptr->advance_turbine(tf.tid_local);
     }
 
-    meta.ext_ptr->get_hub_stats(tf.tid_local);
-
-    // Populate nacelle force into the OpenFAST data structure so that it
-    // gets broadcasted to all influenced processes in subsequent scattering
-    // of data.
-    compute_nacelle_force<datatype>(data);
+    // Refactoring changed order of this, will modify results
+    /* meta.ext_ptr->get_hub_stats(tf.tid_local);
+       compute_nacelle_force<datatype>(data); */
 }
 
 template <typename datatype>
@@ -210,7 +223,8 @@ void scatter_data(datatype& data)
     // Note, other procs do not have a valid data in those pointers.
     if (data.info().is_root_proc) {
         BL_PROFILE(
-            "kynema-sgf::actuator::external::compute_force_op::scatter1");
+            "kynema-sgf::actuator::external::advance_external_turbine::"
+            "scatter1");
         const auto& ext_tdata = data.meta().ext_data;
         auto it = buf.begin();
         for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
@@ -239,7 +253,8 @@ void scatter_data(datatype& data)
     const int tag = 1001;
     if (data.info().is_root_proc) {
         BL_PROFILE(
-            "kynema-sgf::actuator::external::compute_force_op::scatter2");
+            "kynema-sgf::actuator::external::advance_external_turbine::"
+            "scatter2");
         for (const int ip : procs) {
             if (ip == data.info().root_proc) {
                 continue;
@@ -250,7 +265,8 @@ void scatter_data(datatype& data)
         }
     } else {
         BL_PROFILE(
-            "kynema-sgf::actuator::external::compute_force_op::scatter2");
+            "kynema-sgf::actuator::external::advance_external_turbine::"
+            "scatter2");
         amrex::ParallelDescriptor::Recv(
             buf.data(), dsize, data.info().root_proc, tag, data.meta().tcomm);
     }
@@ -259,7 +275,8 @@ void scatter_data(datatype& data)
     // send/recv buffer.
     {
         BL_PROFILE(
-            "kynema-sgf::actuator::external::compute_force_op::scatter3");
+            "kynema-sgf::actuator::external::advance_external_turbine::"
+            "scatter3");
         const auto& bp = data.info().base_pos;
         auto& grid = data.grid();
         const auto& npts = grid.pos.size();

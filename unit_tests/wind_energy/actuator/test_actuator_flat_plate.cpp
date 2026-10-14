@@ -166,7 +166,7 @@ struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+struct ComputeLoadsOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
@@ -200,6 +200,12 @@ struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
             grid.force[ip] = -(lift_dir * lift + drag * drag_dir);
         }
     }
+};
+
+template <typename SrcTrait>
+struct AdvanceModelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+{
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& /*data*/) {}
 };
 
 } // namespace ops
