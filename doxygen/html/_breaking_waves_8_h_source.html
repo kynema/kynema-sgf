@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/BreakingWaves.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/BreakingWaves.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_breaking_waves_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-breakingwaves-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/BreakingWaves.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-physics-multiphase-breakingwaves-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/physics/multiphase/BreakingWaves.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_ddcea0517a7b80a55be019748a9389a4.html">physics</a></li><li class="navelem"><a href="dir_ea84defc78a3d6a93c5f3fc502908131.html">multiphase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">BreakingWaves.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_breaking_waves_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef NWB_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define NWB_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_physics_8_h.html">src/core/Physics.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_sim_time_8_h.html">src/core/SimTime.H</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf.html">kynema_sgf</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html">   33</a></span><span class="keyword">class </span><a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#aeac98c53f58476397a19ccdf01bf9f0f">BreakingWaves</a> : <span class="keyword">public</span> Physics::Register&lt;BreakingWaves&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a527542f538af2e3794e3b33b7dfcbe06">   36</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#a527542f538af2e3794e3b33b7dfcbe06">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;BreakingWaves&quot;</span>; }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#aeac98c53f58476397a19ccdf01bf9f0f">BreakingWaves</a>(<a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; sim);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a9079e7941b7d3a348ae03b092ff1728d">   40</a></span>    <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#a9079e7941b7d3a348ae03b092ff1728d">~BreakingWaves</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#a207d11e7bceb30dfd3e71e0e026634f4">initialize_fields</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> amrex::Geometry&amp; geom) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a661ce35caf9ed5b633b7bb53826041eb">   44</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#a661ce35caf9ed5b633b7bb53826041eb">post_init_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a2ec7e2a0f9a389c39b77f9dd9a268d33">   46</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#a2ec7e2a0f9a389c39b77f9dd9a268d33">post_regrid_actions</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a191481bad854ae1a8b867c0fdfab31fe">   48</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#a191481bad854ae1a8b867c0fdfab31fe">pre_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#ae7cd75b42b161333c9105c07f4a8b0db">   50</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkynema__sgf_1_1_breaking_waves.html#ae7cd75b42b161333c9105c07f4a8b0db">post_advance_work</a>()<span class="keyword"> override </span>{}</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a722eeecee9d046e2a21ce4d1af0f38d9">   53</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a722eeecee9d046e2a21ce4d1af0f38d9">m_sim</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a3d51229df9c2179668bcfab7d116ad29">   55</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a3d51229df9c2179668bcfab7d116ad29">m_velocity</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a309038699ec3e61b320a53209231020d">   56</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a309038699ec3e61b320a53209231020d">m_levelset</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a80fb9f0b6786e1fc958bbb6f9be98119">   57</a></span>    <a class="code hl_class" href="classkynema__sgf_1_1_field.html">Field</a>&amp; <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a80fb9f0b6786e1fc958bbb6f9be98119">m_density</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a6161a738878dcc7ecf575830a374080c">   60</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a6161a738878dcc7ecf575830a374080c">m_tke0</a>{0.000001_rt};</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a3cdb03da8223bcca2866a5785a8af949">   63</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a3cdb03da8223bcca2866a5785a8af949">m_sdr0</a>{1.0_rt};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a275130b0ad27e0c71ac4eb5ebbdcaa1f">   66</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a275130b0ad27e0c71ac4eb5ebbdcaa1f">m_amplitude</a>{0.1_rt};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a771f992592fafcaa4be5d9ac7e5e0c8c">   68</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a771f992592fafcaa4be5d9ac7e5e0c8c">m_air_vel_shear_rate</a>{0.1_rt};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a3961c0ab2ed7ba7c2852c920782d46cf">   71</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a3961c0ab2ed7ba7c2852c920782d46cf">m_wavelength</a>{2.0_rt};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#aef61211eee446f63f6f60160ab03ec46">   74</a></span>    amrex::Real <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#aef61211eee446f63f6f60160ab03ec46">m_waterlevel</a>{0.0_rt};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classkynema__sgf_1_1_breaking_waves.html#a86fcd4618b24cc768fcbe319b7a24fe8">   76</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkynema__sgf_1_1_breaking_waves.html#a86fcd4618b24cc768fcbe319b7a24fe8">m_laminar</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>} <span class="comment">// namespace kynema_sgf</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif </span><span class="comment">/* NWB_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_physics_8_h_html"><div class="ttname"><a href="_physics_8_h.html">Physics.H</a></div></div>
+<div class="ttc" id="a_sim_time_8_h_html"><div class="ttname"><a href="_sim_time_8_h.html">SimTime.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a191481bad854ae1a8b867c0fdfab31fe"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a191481bad854ae1a8b867c0fdfab31fe">kynema_sgf::BreakingWaves::pre_advance_work</a></div><div class="ttdeci">void pre_advance_work() override</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:48</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a207d11e7bceb30dfd3e71e0e026634f4"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a207d11e7bceb30dfd3e71e0e026634f4">kynema_sgf::BreakingWaves::initialize_fields</a></div><div class="ttdeci">void initialize_fields(int level, const amrex::Geometry &amp;geom) override</div><div class="ttdef"><b>Definition</b> BreakingWaves.cpp:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a275130b0ad27e0c71ac4eb5ebbdcaa1f"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a275130b0ad27e0c71ac4eb5ebbdcaa1f">kynema_sgf::BreakingWaves::m_amplitude</a></div><div class="ttdeci">amrex::Real m_amplitude</div><div class="ttdoc">Initial free surface amplitude magnitude.</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:66</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a2ec7e2a0f9a389c39b77f9dd9a268d33"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a2ec7e2a0f9a389c39b77f9dd9a268d33">kynema_sgf::BreakingWaves::post_regrid_actions</a></div><div class="ttdeci">void post_regrid_actions() override</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:46</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a309038699ec3e61b320a53209231020d"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a309038699ec3e61b320a53209231020d">kynema_sgf::BreakingWaves::m_levelset</a></div><div class="ttdeci">Field &amp; m_levelset</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:56</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a3961c0ab2ed7ba7c2852c920782d46cf"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a3961c0ab2ed7ba7c2852c920782d46cf">kynema_sgf::BreakingWaves::m_wavelength</a></div><div class="ttdeci">amrex::Real m_wavelength</div><div class="ttdoc">Initial free surface wavelength.</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:71</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a3cdb03da8223bcca2866a5785a8af949"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a3cdb03da8223bcca2866a5785a8af949">kynema_sgf::BreakingWaves::m_sdr0</a></div><div class="ttdeci">amrex::Real m_sdr0</div><div class="ttdoc">initial sdr value</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:63</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a3d51229df9c2179668bcfab7d116ad29"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a3d51229df9c2179668bcfab7d116ad29">kynema_sgf::BreakingWaves::m_velocity</a></div><div class="ttdeci">Field &amp; m_velocity</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a527542f538af2e3794e3b33b7dfcbe06"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a527542f538af2e3794e3b33b7dfcbe06">kynema_sgf::BreakingWaves::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:36</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a6161a738878dcc7ecf575830a374080c"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a6161a738878dcc7ecf575830a374080c">kynema_sgf::BreakingWaves::m_tke0</a></div><div class="ttdeci">amrex::Real m_tke0</div><div class="ttdoc">initial tke value</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:60</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a661ce35caf9ed5b633b7bb53826041eb"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a661ce35caf9ed5b633b7bb53826041eb">kynema_sgf::BreakingWaves::post_init_actions</a></div><div class="ttdeci">void post_init_actions() override</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:44</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a722eeecee9d046e2a21ce4d1af0f38d9"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a722eeecee9d046e2a21ce4d1af0f38d9">kynema_sgf::BreakingWaves::m_sim</a></div><div class="ttdeci">const CFDSim &amp; m_sim</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:53</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a771f992592fafcaa4be5d9ac7e5e0c8c"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a771f992592fafcaa4be5d9ac7e5e0c8c">kynema_sgf::BreakingWaves::m_air_vel_shear_rate</a></div><div class="ttdeci">amrex::Real m_air_vel_shear_rate</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:68</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a80fb9f0b6786e1fc958bbb6f9be98119"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a80fb9f0b6786e1fc958bbb6f9be98119">kynema_sgf::BreakingWaves::m_density</a></div><div class="ttdeci">Field &amp; m_density</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:57</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a86fcd4618b24cc768fcbe319b7a24fe8"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a86fcd4618b24cc768fcbe319b7a24fe8">kynema_sgf::BreakingWaves::m_laminar</a></div><div class="ttdeci">bool m_laminar</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:76</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_a9079e7941b7d3a348ae03b092ff1728d"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#a9079e7941b7d3a348ae03b092ff1728d">kynema_sgf::BreakingWaves::~BreakingWaves</a></div><div class="ttdeci">~BreakingWaves() override</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_ae7cd75b42b161333c9105c07f4a8b0db"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#ae7cd75b42b161333c9105c07f4a8b0db">kynema_sgf::BreakingWaves::post_advance_work</a></div><div class="ttdeci">void post_advance_work() override</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:50</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_aeac98c53f58476397a19ccdf01bf9f0f"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#aeac98c53f58476397a19ccdf01bf9f0f">kynema_sgf::BreakingWaves::BreakingWaves</a></div><div class="ttdeci">BreakingWaves(CFDSim &amp;sim)</div><div class="ttdef"><b>Definition</b> BreakingWaves.cpp:13</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_breaking_waves_html_aef61211eee446f63f6f60160ab03ec46"><div class="ttname"><a href="classkynema__sgf_1_1_breaking_waves.html#aef61211eee446f63f6f60160ab03ec46">kynema_sgf::BreakingWaves::m_waterlevel</a></div><div class="ttdeci">amrex::Real m_waterlevel</div><div class="ttdoc">Initial zero-level free-surface water depth.</div><div class="ttdef"><b>Definition</b> BreakingWaves.H:74</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_c_f_d_sim_html"><div class="ttname"><a href="classkynema__sgf_1_1_c_f_d_sim.html">kynema_sgf::CFDSim</a></div><div class="ttdef"><b>Definition</b> CFDSim.H:55</div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1_field_html"><div class="ttname"><a href="classkynema__sgf_1_1_field.html">kynema_sgf::Field</a></div><div class="ttdef"><b>Definition</b> Field.H:112</div></div>
+<div class="ttc" id="anamespacekynema__sgf_html"><div class="ttname"><a href="namespacekynema__sgf.html">kynema_sgf</a></div><div class="ttdoc">This test case is intended as an evaluation of the momentum advection scheme.</div><div class="ttdef"><b>Definition</b> BCInterface.cpp:10</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

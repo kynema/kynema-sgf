@@ -1,0 +1,1027 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::utils Namespace Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::utils Namespace Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/namespacekynema__sgf_1_1utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utils-namespace-reference">
+<h1>utils Namespace Reference<a class="headerlink" href="#utils-namespace-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::utils Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1utils.html">utils</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::utils Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:MultiParser" id="r_MultiParser"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkynema__sgf_1_1utils_1_1_multi_parser.html">MultiParser</a></td></tr>
+<tr class="memitem:Slice" id="r_Slice"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac426ccedd11799f79ed9e3f176cde864" id="r_ac426ccedd11799f79ed9e3f176cde864"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:ac426ccedd11799f79ed9e3f176cde864 template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac426ccedd11799f79ed9e3f176cde864">slice</a> (std::vector&lt; T &gt; &amp;vec, const size_t start, const size_t count)</td></tr>
+<tr class="memitem:a8effc327ea14a602bae69b8788aae88b" id="r_a8effc327ea14a602bae69b8788aae88b"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a8effc327ea14a602bae69b8788aae88b template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8effc327ea14a602bae69b8788aae88b">slice</a> (std::vector&lt; T &gt; &amp;vec, const size_t start)</td></tr>
+<tr class="memitem:a56fbeceb6cb8a79e139ab785e5c32e23" id="r_a56fbeceb6cb8a79e139ab785e5c32e23"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a56fbeceb6cb8a79e139ab785e5c32e23 template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56fbeceb6cb8a79e139ab785e5c32e23">slice</a> (amrex::Vector&lt; T &gt; &amp;vec, const size_t start, const size_t count)</td></tr>
+<tr class="memitem:a111aa05fcc9c50dac88899fa6b9b052b" id="r_a111aa05fcc9c50dac88899fa6b9b052b"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a111aa05fcc9c50dac88899fa6b9b052b template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a111aa05fcc9c50dac88899fa6b9b052b">slice</a> (amrex::Vector&lt; T &gt; &amp;vec, const size_t start)</td></tr>
+<tr class="memitem:a410ee3ed435439b598e4880202ede22a" id="r_a410ee3ed435439b598e4880202ede22a"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a410ee3ed435439b598e4880202ede22a template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a410ee3ed435439b598e4880202ede22a">slice</a> (amrex::Gpu::DeviceVector&lt; T &gt; &amp;vec, const size_t start, const size_t count)</td></tr>
+<tr class="memitem:a34bb168849de3ba2378620d3f06713f6" id="r_a34bb168849de3ba2378620d3f06713f6"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a34bb168849de3ba2378620d3f06713f6 template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34bb168849de3ba2378620d3f06713f6">slice</a> (amrex::Gpu::DeviceVector&lt; T &gt; &amp;vec, const size_t start)</td></tr>
+<tr class="memitem:aef39db308f7029cb143951885b3d4f69" id="r_aef39db308f7029cb143951885b3d4f69"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef39db308f7029cb143951885b3d4f69">has_extdir</a> (amrex::BCRec const *bcrec, int ncomp, int dir)</td></tr>
+<tr class="memdesc:aef39db308f7029cb143951885b3d4f69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pair of bools, value is true if at least one boundary has an ext_dir specified.  <br /></td></tr>
+<tr class="memitem:a9de47da4444591aa428fbe4a3afe6b29" id="r_a9de47da4444591aa428fbe4a3afe6b29"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9de47da4444591aa428fbe4a3afe6b29">has_extdir_or_ho</a> (amrex::BCRec const *bcrec, int ncomp, int dir)</td></tr>
+<tr class="memitem:acf5d69603806c14c1145feaf0e12fe09" id="r_acf5d69603806c14c1145feaf0e12fe09"><td class="memItemLeft" align="right" valign="top">amrex::Box&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf5d69603806c14c1145feaf0e12fe09">realbox_to_box</a> (const amrex::RealBox &amp;rbx, const amrex::Geometry &amp;geom)</td></tr>
+<tr class="memitem:a83678a24c595d7649a5f507e52ec7de3" id="r_a83678a24c595d7649a5f507e52ec7de3"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83678a24c595d7649a5f507e52ec7de3">closest_index</a> (const amrex::Vector&lt; amrex::Real &gt; &amp;vec, const amrex::Real value, const amrex::Real tol=0.0_rt)</td></tr>
+<tr class="memdesc:a83678a24c595d7649a5f507e52ec7de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return closest index (from lower) of value in vector.  <br /></td></tr>
+<tr class="memitem:ad76b924f623ba43ff0baff323c5dec9b" id="r_ad76b924f623ba43ff0baff323c5dec9b"><td class="memTemplParams" colspan="2">template&lt;typename T = amrex::GpuArray&lt;int, 2&gt;&gt; </td></tr>
+<tr class="memitem:ad76b924f623ba43ff0baff323c5dec9b template"><td class="memItemLeft" align="right" valign="top">AMREX_FORCE_INLINE T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad76b924f623ba43ff0baff323c5dec9b">perpendicular_idx</a> (const int normal)</td></tr>
+<tr class="memdesc:ad76b924f623ba43ff0baff323c5dec9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return indices perpendicular to normal.  <br /></td></tr>
+<tr class="memitem:a7a0aee198696e45cc101c0e38bdf8120" id="r_a7a0aee198696e45cc101c0e38bdf8120"><td class="memItemLeft" align="right" valign="top">AMREX_INLINE amrex::Box&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a0aee198696e45cc101c0e38bdf8120">face_aware_boundary_box_intersection</a> (amrex::IntVect &amp;shift_to_cc, amrex::Box grown_interior_box, const amrex::Box &amp;domain_boundary_box, const amrex::Orientation &amp;ori)</td></tr>
+<tr class="memitem:a64f72c1b03c95a29631e6c9463ea744b" id="r_a64f72c1b03c95a29631e6c9463ea744b"><td class="memItemLeft" align="right" valign="top">AMREX_INLINE amrex::Box&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64f72c1b03c95a29631e6c9463ea744b">face_aware_boundary_box_intersection</a> (amrex::Box grown_interior_box, const amrex::Box &amp;domain_boundary_box, const amrex::Orientation &amp;ori)</td></tr>
+<tr class="memitem:ac3ba0cf99589c0ec312a1b7f6775609c" id="r_ac3ba0cf99589c0ec312a1b7f6775609c"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3ba0cf99589c0ec312a1b7f6775609c">contains</a> (const amrex::Box &amp;box, const amrex::RealVect &amp;pos, const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;prob_lo, const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;dxinv)</td></tr>
+<tr class="memdesc:ac3ba0cf99589c0ec312a1b7f6775609c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a point is inside a box.  <br /></td></tr>
+<tr class="memitem:a320ca6363a87996730806fd419bf3b04" id="r_a320ca6363a87996730806fd419bf3b04"><td class="memTemplParams" colspan="2">template&lt;typename Function&gt; </td></tr>
+<tr class="memitem:a320ca6363a87996730806fd419bf3b04 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a320ca6363a87996730806fd419bf3b04">trapz</a> (const amrex::Real xa, const amrex::Real xb, const int n, const Function &amp;f)</td></tr>
+<tr class="memitem:a73ecfff57758d636a850a3c46966416e" id="r_a73ecfff57758d636a850a3c46966416e"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73ecfff57758d636a850a3c46966416e">powi</a> (const amrex::Real &amp;x, const int &amp;y)</td></tr>
+<tr class="memdesc:a73ecfff57758d636a850a3c46966416e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to do pow() with integer exponents and output amrex::Real.  <br /></td></tr>
+<tr class="memitem:a24583edd5e43940f533c9d8127589e1f" id="r_a24583edd5e43940f533c9d8127589e1f"><td class="memTemplParams" colspan="2">template&lt;typename T, typename U&gt; </td></tr>
+<tr class="memitem:a24583edd5e43940f533c9d8127589e1f template"><td class="memItemLeft" align="right" valign="top">amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24583edd5e43940f533c9d8127589e1f">powi</a> (T, U)=delete</td></tr>
+<tr class="memdesc:a24583edd5e43940f533c9d8127589e1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prevent other argument types from accidentally being used.  <br /></td></tr>
+<tr class="memitem:a05c6993bc674a7c9cb7cbc69fb6e0abd" id="r_a05c6993bc674a7c9cb7cbc69fb6e0abd"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a05c6993bc674a7c9cb7cbc69fb6e0abd template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05c6993bc674a7c9cb7cbc69fb6e0abd">dot_prod</a> (const T *x, const T *y)</td></tr>
+<tr class="memitem:a4ea3f34ee887b9c40a902303726e625e" id="r_a4ea3f34ee887b9c40a902303726e625e"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a4ea3f34ee887b9c40a902303726e625e template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ea3f34ee887b9c40a902303726e625e">vec_mag</a> (const T *x)</td></tr>
+<tr class="memitem:ab0366881526bc00479eb518abc125fdc" id="r_ab0366881526bc00479eb518abc125fdc"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:ab0366881526bc00479eb518abc125fdc template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0366881526bc00479eb518abc125fdc">vec_normalize</a> (T *x)</td></tr>
+<tr class="memitem:ae250fa2e8a414a8583d9e4fbc34a5b5e" id="r_ae250fa2e8a414a8583d9e4fbc34a5b5e"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:ae250fa2e8a414a8583d9e4fbc34a5b5e template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae250fa2e8a414a8583d9e4fbc34a5b5e">dot_prod</a> (const T *x, const T *y, const int ndim)</td></tr>
+<tr class="memitem:a677966066a8f99a4659f09331b682965" id="r_a677966066a8f99a4659f09331b682965"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a677966066a8f99a4659f09331b682965 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a677966066a8f99a4659f09331b682965">cross_prod</a> (const T *a, const T *b, T *c)</td></tr>
+<tr class="memitem:a819777b5438baf633dd3dfa5b2790d03" id="r_a819777b5438baf633dd3dfa5b2790d03"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a819777b5438baf633dd3dfa5b2790d03 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_DEVICE AMREX_FORCE_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a819777b5438baf633dd3dfa5b2790d03">transform_vec</a> (const amrex::Array2D&lt; T, 0, AMREX_SPACEDIM, 0, AMREX_SPACEDIM &gt; &amp;tmat, const T *x, T *y)</td></tr>
+<tr class="memitem:a882b72d8767ca523da06938353a3af54" id="r_a882b72d8767ca523da06938353a3af54"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a882b72d8767ca523da06938353a3af54 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_DEVICE AMREX_FORCE_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a882b72d8767ca523da06938353a3af54">inv_transform_vec</a> (const amrex::Array2D&lt; T, 0, AMREX_SPACEDIM, 0, AMREX_SPACEDIM &gt; &amp;tmat, const T *x, T *y)</td></tr>
+<tr class="memitem:a79ea196a854680a25fecf2b9d3e360d9" id="r_a79ea196a854680a25fecf2b9d3e360d9"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79ea196a854680a25fecf2b9d3e360d9">two_pi</a> ()</td></tr>
+<tr class="memdesc:a79ea196a854680a25fecf2b9d3e360d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return \(2 \pi\).  <br /></td></tr>
+<tr class="memitem:abad53669c01c9dcca5f4b2778d8cbdc1" id="r_abad53669c01c9dcca5f4b2778d8cbdc1"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abad53669c01c9dcca5f4b2778d8cbdc1">half_pi</a> ()</td></tr>
+<tr class="memdesc:abad53669c01c9dcca5f4b2778d8cbdc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return \(\pi / 2\).  <br /></td></tr>
+<tr class="memitem:a81fe10d65ce02ab93844b0c98dc4732f" id="r_a81fe10d65ce02ab93844b0c98dc4732f"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81fe10d65ce02ab93844b0c98dc4732f">radians</a> (const amrex::Real deg_val)</td></tr>
+<tr class="memdesc:a81fe10d65ce02ab93844b0c98dc4732f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from degrees to radians.  <br /></td></tr>
+<tr class="memitem:a6d8d231e4d64a58b058faee910228966" id="r_a6d8d231e4d64a58b058faee910228966"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d8d231e4d64a58b058faee910228966">degrees</a> (const amrex::Real rad_val)</td></tr>
+<tr class="memdesc:a6d8d231e4d64a58b058faee910228966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from radians to degrees.  <br /></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a83678a24c595d7649a5f507e52ec7de3" name="a83678a24c595d7649a5f507e52ec7de3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83678a24c595d7649a5f507e52ec7de3">&#9670;&#160;</a></span>closest_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE int kynema_sgf::utils::closest_index </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>tol</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.0_rt</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return closest index (from lower) of value in vector. </p>
+
+</div>
+</div>
+<a id="ac3ba0cf99589c0ec312a1b7f6775609c" name="ac3ba0cf99589c0ec312a1b7f6775609c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3ba0cf99589c0ec312a1b7f6775609c">&#9670;&#160;</a></span>contains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool kynema_sgf::utils::contains </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>box</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::RealVect &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>prob_lo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::GpuArray&lt; amrex::Real, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>dxinv</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a point is inside a box. </p>
+
+</div>
+</div>
+<a id="a677966066a8f99a4659f09331b682965" name="a677966066a8f99a4659f09331b682965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a677966066a8f99a4659f09331b682965">&#9670;&#160;</a></span>cross_prod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void kynema_sgf::utils::cross_prod </td>
+          <td>(</td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>c</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the cross product of two vectors <span class="tt">a</span>, <span class="tt">b</span> and update <span class="tt">c</span> </p>
+
+</div>
+</div>
+<a id="a6d8d231e4d64a58b058faee910228966" name="a6d8d231e4d64a58b058faee910228966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d8d231e4d64a58b058faee910228966">&#9670;&#160;</a></span>degrees()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real kynema_sgf::utils::degrees </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>rad_val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert from radians to degrees. </p>
+
+</div>
+</div>
+<a id="a05c6993bc674a7c9cb7cbc69fb6e0abd" name="a05c6993bc674a7c9cb7cbc69fb6e0abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05c6993bc674a7c9cb7cbc69fb6e0abd">&#9670;&#160;</a></span>dot_prod() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T kynema_sgf::utils::dot_prod </td>
+          <td>(</td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the dot product of two vectors </p>
+
+</div>
+</div>
+<a id="ae250fa2e8a414a8583d9e4fbc34a5b5e" name="ae250fa2e8a414a8583d9e4fbc34a5b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae250fa2e8a414a8583d9e4fbc34a5b5e">&#9670;&#160;</a></span>dot_prod() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T kynema_sgf::utils::dot_prod </td>
+          <td>(</td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ndim</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64f72c1b03c95a29631e6c9463ea744b" name="a64f72c1b03c95a29631e6c9463ea744b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f72c1b03c95a29631e6c9463ea744b">&#9670;&#160;</a></span>face_aware_boundary_box_intersection() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_INLINE amrex::Box kynema_sgf::utils::face_aware_boundary_box_intersection </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Box</td>          <td class="paramname"><span class="paramname"><em>grown_interior_box</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>domain_boundary_box</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Orientation &amp;</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a0aee198696e45cc101c0e38bdf8120" name="a7a0aee198696e45cc101c0e38bdf8120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a0aee198696e45cc101c0e38bdf8120">&#9670;&#160;</a></span>face_aware_boundary_box_intersection() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_INLINE amrex::Box kynema_sgf::utils::face_aware_boundary_box_intersection </td>
+          <td>(</td>
+          <td class="paramtype">amrex::IntVect &amp;</td>          <td class="paramname"><span class="paramname"><em>shift_to_cc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">amrex::Box</td>          <td class="paramname"><span class="paramname"><em>grown_interior_box</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Box &amp;</td>          <td class="paramname"><span class="paramname"><em>domain_boundary_box</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Orientation &amp;</td>          <td class="paramname"><span class="paramname"><em>ori</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the intersection with a boundary box while considering if on face or cell. Intended for auxiliary boundary fill calls.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shift_to_cc</td><td>output index vector to shift from output box to a cell-centered representation. </td></tr>
+    <tr><td class="paramname">grown_interior_box</td><td>box grown from domain interior to overlap with boundary </td></tr>
+    <tr><td class="paramname">domain_boundary_box</td><td>box representing domain boundary containing data </td></tr>
+    <tr><td class="paramname">ori</td><td>orientation of current boundary condition being evaluated </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Box instance representing the intersection of the two inputs with shifts added to consider the location of the field associated with the grown_interior_box </dd></dl>
+
+</div>
+</div>
+<a id="abad53669c01c9dcca5f4b2778d8cbdc1" name="abad53669c01c9dcca5f4b2778d8cbdc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abad53669c01c9dcca5f4b2778d8cbdc1">&#9670;&#160;</a></span>half_pi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real kynema_sgf::utils::half_pi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return \(\pi / 2\). </p>
+
+</div>
+</div>
+<a id="aef39db308f7029cb143951885b3d4f69" name="aef39db308f7029cb143951885b3d4f69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef39db308f7029cb143951885b3d4f69">&#9670;&#160;</a></span>has_extdir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, bool &gt; kynema_sgf::utils::has_extdir </td>
+          <td>(</td>
+          <td class="paramtype">amrex::BCRec const *</td>          <td class="paramname"><span class="paramname"><em>bcrec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a pair of bools, value is true if at least one boundary has an ext_dir specified. </p>
+
+</div>
+</div>
+<a id="a9de47da4444591aa428fbe4a3afe6b29" name="a9de47da4444591aa428fbe4a3afe6b29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9de47da4444591aa428fbe4a3afe6b29">&#9670;&#160;</a></span>has_extdir_or_ho()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, bool &gt; kynema_sgf::utils::has_extdir_or_ho </td>
+          <td>(</td>
+          <td class="paramtype">amrex::BCRec const *</td>          <td class="paramname"><span class="paramname"><em>bcrec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>dir</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a882b72d8767ca523da06938353a3af54" name="a882b72d8767ca523da06938353a3af54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a882b72d8767ca523da06938353a3af54">&#9670;&#160;</a></span>inv_transform_vec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_DEVICE AMREX_FORCE_INLINE void kynema_sgf::utils::inv_transform_vec </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Array2D&lt; T, 0, AMREX_SPACEDIM, 0, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>tmat</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the transformation <span class="tt">{y} = {x}^T [A]</span> </p>
+
+</div>
+</div>
+<a id="ad76b924f623ba43ff0baff323c5dec9b" name="ad76b924f623ba43ff0baff323c5dec9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad76b924f623ba43ff0baff323c5dec9b">&#9670;&#160;</a></span>perpendicular_idx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T = amrex::GpuArray&lt;int, 2&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_FORCE_INLINE T kynema_sgf::utils::perpendicular_idx </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>normal</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return indices perpendicular to normal. </p>
+
+</div>
+</div>
+<a id="a73ecfff57758d636a850a3c46966416e" name="a73ecfff57758d636a850a3c46966416e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ecfff57758d636a850a3c46966416e">&#9670;&#160;</a></span>powi() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real kynema_sgf::utils::powi </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Helper function to do pow() with integer exponents and output amrex::Real. </p>
+
+</div>
+</div>
+<a id="a24583edd5e43940f533c9d8127589e1f" name="a24583edd5e43940f533c9d8127589e1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24583edd5e43940f533c9d8127589e1f">&#9670;&#160;</a></span>powi() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename U&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Real kynema_sgf::utils::powi </td>
+          <td>(</td>
+          <td class="paramtype">T</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel delete">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prevent other argument types from accidentally being used. </p>
+
+</div>
+</div>
+<a id="a81fe10d65ce02ab93844b0c98dc4732f" name="a81fe10d65ce02ab93844b0c98dc4732f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81fe10d65ce02ab93844b0c98dc4732f">&#9670;&#160;</a></span>radians()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real kynema_sgf::utils::radians </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>deg_val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert from degrees to radians. </p>
+
+</div>
+</div>
+<a id="acf5d69603806c14c1145feaf0e12fe09" name="acf5d69603806c14c1145feaf0e12fe09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf5d69603806c14c1145feaf0e12fe09">&#9670;&#160;</a></span>realbox_to_box()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::Box kynema_sgf::utils::realbox_to_box </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::RealBox &amp;</td>          <td class="paramname"><span class="paramname"><em>rbx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Geometry &amp;</td>          <td class="paramname"><span class="paramname"><em>geom</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Convert a bounding box into amrex::Box index space at a given level</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rbx</td><td>Bounding box as defined in global domain coordinates </td></tr>
+    <tr><td class="paramname">geom</td><td>AMReX geometry information for a given level </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Box instance that defines the index space equivalent to bounding box </dd></dl>
+
+</div>
+</div>
+<a id="a34bb168849de3ba2378620d3f06713f6" name="a34bb168849de3ba2378620d3f06713f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34bb168849de3ba2378620d3f06713f6">&#9670;&#160;</a></span>slice() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt; kynema_sgf::utils::slice </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Gpu::DeviceVector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a410ee3ed435439b598e4880202ede22a" name="a410ee3ed435439b598e4880202ede22a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a410ee3ed435439b598e4880202ede22a">&#9670;&#160;</a></span>slice() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt; kynema_sgf::utils::slice </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Gpu::DeviceVector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a111aa05fcc9c50dac88899fa6b9b052b" name="a111aa05fcc9c50dac88899fa6b9b052b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a111aa05fcc9c50dac88899fa6b9b052b">&#9670;&#160;</a></span>slice() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt; kynema_sgf::utils::slice </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Vector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56fbeceb6cb8a79e139ab785e5c32e23" name="a56fbeceb6cb8a79e139ab785e5c32e23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56fbeceb6cb8a79e139ab785e5c32e23">&#9670;&#160;</a></span>slice() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt; kynema_sgf::utils::slice </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Vector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8effc327ea14a602bae69b8788aae88b" name="a8effc327ea14a602bae69b8788aae88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8effc327ea14a602bae69b8788aae88b">&#9670;&#160;</a></span>slice() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt; kynema_sgf::utils::slice </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac426ccedd11799f79ed9e3f176cde864" name="ac426ccedd11799f79ed9e3f176cde864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac426ccedd11799f79ed9e3f176cde864">&#9670;&#160;</a></span>slice() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structkynema__sgf_1_1utils_1_1_slice.html">Slice</a>&lt; T &gt; kynema_sgf::utils::slice </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a819777b5438baf633dd3dfa5b2790d03" name="a819777b5438baf633dd3dfa5b2790d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a819777b5438baf633dd3dfa5b2790d03">&#9670;&#160;</a></span>transform_vec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_DEVICE AMREX_FORCE_INLINE void kynema_sgf::utils::transform_vec </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Array2D&lt; T, 0, AMREX_SPACEDIM, 0, AMREX_SPACEDIM &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>tmat</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the transformation <span class="tt">{y} = [A] {x}</span> </p>
+
+</div>
+</div>
+<a id="a320ca6363a87996730806fd419bf3b04" name="a320ca6363a87996730806fd419bf3b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a320ca6363a87996730806fd419bf3b04">&#9670;&#160;</a></span>trapz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Function&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real kynema_sgf::utils::trapz </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>xa</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const amrex::Real</td>          <td class="paramname"><span class="paramname"><em>xb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Function &amp;</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Trapezoid integration</p>
+<p>Prefer exact evaluation of the integral over using this function </p>
+
+</div>
+</div>
+<a id="a79ea196a854680a25fecf2b9d3e360d9" name="a79ea196a854680a25fecf2b9d3e360d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79ea196a854680a25fecf2b9d3e360d9">&#9670;&#160;</a></span>two_pi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real kynema_sgf::utils::two_pi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return \(2 \pi\). </p>
+
+</div>
+</div>
+<a id="a4ea3f34ee887b9c40a902303726e625e" name="a4ea3f34ee887b9c40a902303726e625e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ea3f34ee887b9c40a902303726e625e">&#9670;&#160;</a></span>vec_mag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T kynema_sgf::utils::vec_mag </td>
+          <td>(</td>
+          <td class="paramtype">const T *</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return the magnitude of a 3-D vector </p>
+
+</div>
+</div>
+<a id="ab0366881526bc00479eb518abc125fdc" name="ab0366881526bc00479eb518abc125fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0366881526bc00479eb518abc125fdc">&#9670;&#160;</a></span>vec_normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void kynema_sgf::utils::vec_normalize </td>
+          <td>(</td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Convert a given vector to a unit vector </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
