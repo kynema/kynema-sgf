@@ -503,6 +503,38 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void fit_plane(
             amrex::min<amrex::Real>(0.0_rt, mz);
 }
 
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void fit_plane(
+    const int i,
+    const int j,
+    const int k,
+    const int ibdy,
+    const int jbdy,
+    const int kbdy,
+    amrex::Array4<amrex::Real const> const& volfrac,
+    amrex::Real& mx,
+    amrex::Real& my,
+    amrex::Real& mz,
+    amrex::Real& alpha)
+{
+    youngs_finite_difference_normal_neumann(
+        i, j, k, ibdy, jbdy, kbdy, volfrac, mx, my, mz);
+
+    amrex::Real norm = std::abs(mx) + std::abs(my) + std::abs(mz);
+    if (norm <= std::numeric_limits<amrex::Real>::epsilon()) {
+        mx = -1.0_rt;
+        my = 0.0_rt;
+        mz = 0.0_rt;
+        norm = 1.0_rt;
+    }
+    mx /= norm;
+    my /= norm;
+    mz /= norm;
+    alpha = volume_intercept(
+        std::abs(mx), std::abs(my), std::abs(mz), volfrac(i, j, k));
+    alpha += amrex::min(0.0_rt, mx) + amrex::min(0.0_rt, my) +
+             amrex::min(0.0_rt, mz);
+}
+
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool interface_band(
     const int i,
     const int j,
