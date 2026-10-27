@@ -116,9 +116,7 @@ void Actuator::post_init_actions()
     sample_fields();
     update_actuator_data_from_particles();
     compute_actuator_loads();
-    advance_model(); // should this be removed?
     accumulate_actuator_source_terms_for_fluid();
-    // communicate_turbine_io; ??? only for helics
     prepare_outputs();
 }
 
@@ -153,9 +151,9 @@ void Actuator::pre_advance_work()
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     // predict_actuator_loads
+    advance_model();
     m_container->reset_container();
     update_positions();
-    advance_model();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
 }
