@@ -36,7 +36,6 @@ void refresh_wing_position(VecList& vpoints, VecList fpoints, int npts);
 
 vs::Vector new_wing_displacement_motion(
     vs::Vector& vtr,
-    int npts,
     amrex::Real tn,
     amrex::Real tnp1,
     const std::string& motion,
@@ -136,7 +135,7 @@ struct ComputeLoadsOp<
         // (will be unchanged for "none" and "linear" motion)
         // Positions are updated later
         actuator::wing::new_wing_displacement_motion(
-            wdata.vel_tr, npts, time.current_time(), time.new_time(),
+            wdata.vel_tr, time.current_time(), time.new_time(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
 
         // Build the local reference frame
@@ -252,14 +251,11 @@ struct AdvanceModelOp<
         auto& grid = data.grid();
         auto& wdata = data.meta();
         const int npts = wdata.num_pts;
-        const auto& dx = wdata.dx;
-        const auto& chord = wdata.chord;
-        const auto& aflookup = airfoil_lookup<ActTrait>(data);
         const auto& time = data.sim().time();
 
         // Move force points to location at n+1 using displacement vector
         auto disp = actuator::wing::new_wing_displacement_motion(
-            wdata.vel_tr, npts, time.current_time(), time.new_time(),
+            wdata.vel_tr, time.current_time(), time.new_time(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
         for (int ip = 0; ip < npts; ++ip) {
             grid.pos[ip].x() = grid.pos[ip].x() + disp.x();
