@@ -112,7 +112,8 @@ void Actuator::post_init_actions()
     }
 
     setup_particle_container();
-    update_positions_and_sample_fields();
+    update_positions();
+    sample_fields();
     update_actuator_data_from_particles();
     compute_actuator_loads();
     advance_model(); // should this be removed?
@@ -152,9 +153,27 @@ void Actuator::pre_advance_work()
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     // predict_actuator_loads
+    m_container->reset_container();
+    update_positions();
     advance_model();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
+}
+
+void Actuator::post_advance_work()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::post_advance_work");
+
+    const int iproc = amrex::ParallelDescriptor::MyProc();
+    for (auto& ac : m_actuators) {
+        if (ac->info().root_proc == iproc) {
+            ac->write_outputs();
+        }
+    }
+
+    sample_fields();
+    update_actuator_data_from_particles();
+    compute_actuator_loads();
 }
 
 void Actuator::communicate_turbine_io()
@@ -231,11 +250,9 @@ void Actuator::setup_particle_container()
  *
  *  \sa Actuator::update_actuator_data_from_particles
  */
-void Actuator::update_positions_and_sample_fields()
+void Actuator::update_positions()
 {
-    BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::update_actuator_positions_and_sample_"
-        "fields");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::update_positions");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -245,6 +262,11 @@ void Actuator::update_positions_and_sample_fields()
         ic += pinfo.num_pts[i];
     }
     m_container->update_positions();
+}
+
+void Actuator::sample_fields()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::sample_fields");
 
     // Sample the local velocity and density at the updated actuator locations
     const auto& vel = m_sim.repo().get_field("velocity");
@@ -349,23 +371,6 @@ void Actuator::prepare_outputs()
             ac->prepare_outputs(sname);
         }
     }
-}
-
-void Actuator::post_advance_work()
-{
-    BL_PROFILE("kynema-sgf::actuator::Actuator::post_advance_work");
-
-    const int iproc = amrex::ParallelDescriptor::MyProc();
-    for (auto& ac : m_actuators) {
-        if (ac->info().root_proc == iproc) {
-            ac->write_outputs();
-        }
-    }
-
-    m_container->reset_container();
-    update_positions_and_sample_fields();
-    update_actuator_data_from_particles();
-    compute_actuator_loads();
 }
 
 ActuatorModel& Actuator::get_act_bylabel(const std::string& actlabel) const

@@ -73,7 +73,9 @@ protected:
 private:
     void setup_particle_container();
 
-    void update_positions_and_sample_fields();
+    void update_positions();
+
+    void sample_fields();
 
     void update_actuator_data_from_particles();
 
