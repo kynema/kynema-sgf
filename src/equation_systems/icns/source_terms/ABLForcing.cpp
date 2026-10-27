@@ -3,6 +3,7 @@
 #include "src/wind_energy/ABL.H"
 #include "src/physics/multiphase/MultiPhase.H"
 #include "src/equation_systems/vof/volume_fractions.H"
+#include "src/utilities/constants.H"
 #include "src/utilities/trig_ops.H"
 
 #include "AMReX_ParmParse.H"
@@ -126,9 +127,7 @@ void ABLForcing::operator()(
                 }
                 if (multiphase::interface_band(
                         i, j, k, vof_arrs[nbx], n_band) ||
-                    vof_arrs[nbx](i, j, k) >
-                        1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt)) {
+                    vof_arrs[nbx](i, j, k) > 1.0_rt - constants::VOF_TOL) {
                     fac = 0.0_rt;
                 }
             }

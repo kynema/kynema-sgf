@@ -4,6 +4,7 @@
 #include "src/core/MultiParser.H"
 #include "src/physics/multiphase/MultiPhase.H"
 #include "src/utilities/IOManager.H"
+#include "src/utilities/constants.H"
 #include "src/ocean_waves/utils/wave_utils_K.H"
 
 #include <algorithm>
@@ -52,7 +53,7 @@ void FreeSurfaceDamping::post_advance_work()
     auto& velocity = m_repo.get_field("velocity");
     auto& density = m_repo.get_field("density");
 
-    constexpr amrex::Real vof_tiny = 1.0e-12_rt;
+    constexpr amrex::Real vof_tol = constants::VOF_TOL;
     const auto vertical_velocity_damping = m_vertical_velocity_damping;
     const auto volume_fraction_damping = m_volume_fraction_damping;
     const auto global_damping = m_global_damping;
@@ -120,8 +121,8 @@ void FreeSurfaceDamping::post_advance_work()
 
                 // Determine if cell is multiphase
                 bool is_multiphase =
-                    (volfrac(i, j, k) > vof_tiny &&
-                     volfrac(i, j, k) < 1.0_rt - vof_tiny);
+                    (volfrac(i, j, k) > vof_tol &&
+                     volfrac(i, j, k) < 1.0_rt - vof_tol);
 
                 if (!outside_zones && is_multiphase) {
 

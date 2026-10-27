@@ -72,9 +72,9 @@ vof_matches(const phase condition, const amrex::Real vof)
 {
     switch (condition) {
     case phase::liquid:
-        return vof > constants::TIGHT_TOL;
+        return vof > constants::VOF_TOL;
     case phase::gas:
-        return vof < (1.0_rt - constants::TIGHT_TOL);
+        return vof < (1.0_rt - constants::VOF_TOL);
     case phase::both:
         return true;
     }

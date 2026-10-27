@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include "src/equation_systems/vof/volume_fractions.H"
+#include "src/utilities/constants.H"
 #include "AMReX_FArrayBox.H"
 #include "AMReX_BCRec.H"
 #include "AMReX_REAL.H"
@@ -19,13 +20,14 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE void eulerian_implicit(
     const amrex::Real dtdx,
     const amrex::Real velL,
     const amrex::Real velR,
+    const amrex::Real mx,
+    const amrex::Real my,
+    const amrex::Real mz,
+    const amrex::Real alpha,
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Array4<amrex::Real> const& vofL,
     amrex::Array4<amrex::Real> const& vofR)
 {
-    constexpr amrex::Real tiny =
-        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
-    amrex::Real mx = 0.0_rt, my = 0.0_rt, mz = 0.0_rt, alpha = 0.0_rt;
     amrex::Real x0, deltax;
     amrex::Real aL = velL * dtdx;
     amrex::Real aR = velR * dtdx;
@@ -33,15 +35,14 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE void eulerian_implicit(
     vofL(i, j, k) = 0.0_rt;
     vofR(i, j, k) = 0.0_rt;
 
-    if (std::abs(volfrac(i, j, k) - 1.0_rt) <= tiny) {
+    if (std::abs(volfrac(i, j, k) - 1.0_rt) <= constants::VOF_TOL) {
         if (aL < 0.0_rt) {
             vofL(i, j, k) = 1.0_rt;
         }
         if (aR > 0.0_rt) {
             vofR(i, j, k) = 1.0_rt;
         }
-    } else if (volfrac(i, j, k) > tiny) {
-        fit_plane(i, j, k, volfrac, mx, my, mz, alpha);
+    } else if (volfrac(i, j, k) > constants::VOF_TOL) {
         // Eulerian advection
         x0 = 0.0_rt;
         if (dir == 0) {
