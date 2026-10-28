@@ -22,20 +22,19 @@ private:
     typename ActTrait::DataType& m_data;
     Field& m_act_src;
 
+    // Device copies of the actuator grid data. The component views in the
+    // turbine meta data hold host pointers and cannot be used in kernels.
     DeviceVecList m_pos;
     DeviceVecList m_force;
     DeviceVecList m_epsilon;
     DeviceTensorList m_orientation;
 
-    DeviceVecComponent m_blades;
-    DeviceVecComponent m_tower;
-    DeviceVecComponent m_hub;
+    //! Index of the first point of each component in the actuator grid
+    int m_hub_start{0};
+    int m_blade_start{0};
+    int m_tower_start{0};
 
     void copy_to_device();
-
-    //! Map a component view that points into host grid data onto the
-    //! equivalent locations in the device copies of the grid data
-    ComponentView to_device_view(const ComponentView& host_cv);
 
 public:
     explicit ActSrcOp(typename ActTrait::DataType& data)
@@ -58,49 +57,24 @@ void ActSrcOp<
     std::enable_if_t<std::is_base_of_v<TurbineType, ActTrait>>>::initialize()
 {
     const auto& grid = m_data.grid();
+    const auto& meta = m_data.meta();
     m_pos.resize(grid.pos.size());
     m_force.resize(grid.force.size());
     m_epsilon.resize(grid.epsilon.size());
     m_orientation.resize(grid.orientation.size());
 
-    const auto& meta = m_data.meta();
-    m_blades.resize(meta.num_blades);
-    m_tower.resize(1);
-    m_hub.resize(1);
-}
-
-namespace detail {
-template <typename T, typename HostVec, typename DevVec>
-::kynema_sgf::utils::Slice<T> rebase_slice(
-    const ::kynema_sgf::utils::Slice<T>& host_slice, const HostVec& host, DevVec& dev)
-{
-    if (host_slice.size() == 0) {
-        return ::kynema_sgf::utils::Slice<T>{};
+    // Locate the components within the actuator grid arrays
+    const auto* gpos = grid.pos.data();
+    m_hub_start = static_cast<int>(meta.hub.pos.data() - gpos);
+    m_blade_start = static_cast<int>(meta.blades[0].pos.data() - gpos);
+    for (int ib = 0; ib < meta.num_blades; ++ib) {
+        AMREX_ALWAYS_ASSERT(
+            meta.blades[ib].pos.data() ==
+            gpos + m_blade_start + (ib * meta.num_pts_blade));
     }
-    const auto offset = host_slice.data() - host.data();
-    AMREX_ALWAYS_ASSERT(
-        (offset >= 0) &&
-        (static_cast<std::size_t>(offset) + host_slice.size() <=
-         static_cast<std::size_t>(dev.size())));
-    return ::kynema_sgf::utils::Slice<T>{dev.data() + offset, host_slice.size()};
-}
-} // namespace detail
-
-template <typename ActTrait>
-ComponentView ActSrcOp<
-    ActTrait,
-    ActSrcDisk,
-    std::enable_if_t<std::is_base_of_v<TurbineType, ActTrait>>>::
-    to_device_view(const ComponentView& host_cv)
-{
-    const auto& grid = m_data.grid();
-    ComponentView cv;
-    cv.pos = detail::rebase_slice(host_cv.pos, grid.pos, m_pos);
-    cv.force = detail::rebase_slice(host_cv.force, grid.force, m_force);
-    cv.epsilon = detail::rebase_slice(host_cv.epsilon, grid.epsilon, m_epsilon);
-    cv.orientation = detail::rebase_slice(
-        host_cv.orientation, grid.orientation, m_orientation);
-    return cv;
+    if (meta.num_pts_tower > 0) {
+        m_tower_start = static_cast<int>(meta.tower.pos.data() - gpos);
+    }
 }
 
 template <typename ActTrait>
@@ -123,27 +97,6 @@ void ActSrcOp<
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, grid.orientation.begin(),
         grid.orientation.end(), m_orientation.begin());
-
-    // The component views stored in the metadata point to host memory, so
-    // build equivalent views that point to the device copies above
-    const auto& meta = m_data.meta();
-    std::vector<ComponentView> blades_vec;
-    blades_vec.reserve(meta.blades.size());
-    for (const auto& cv : meta.blades) {
-        blades_vec.push_back(to_device_view(cv));
-    }
-    std::vector<ComponentView> tower_vec(1, to_device_view(meta.tower));
-    std::vector<ComponentView> hub_vec(1, to_device_view(meta.hub));
-
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, blades_vec.begin(), blades_vec.end(),
-        m_blades.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, tower_vec.begin(), tower_vec.end(),
-        m_tower.begin());
-    amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, hub_vec.begin(), hub_vec.end(),
-        m_hub.begin());
 }
 
 template <typename ActTrait>
@@ -174,9 +127,13 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
     const int nBlades = tdata.num_blades;
     const int nPB = tdata.num_pts_blade;
     const int nPT = tdata.num_pts_tower;
-    const auto* blades = m_blades.data();
-    const auto* tower = m_tower.data();
-    const auto* hub = m_hub.data();
+    const auto* pos = m_pos.data();
+    const auto* force = m_force.data();
+    const auto* eps = m_epsilon.data();
+    const auto* tmat = m_orientation.data();
+    const int hub_start = m_hub_start;
+    const int blade_start = m_blade_start;
+    const int tower_start = m_tower_start;
     // assume constant dr same for all blades
     const auto* host_pos = tdata.blades[0].pos.data();
     const amrex::Real dR = vs::mag_sqr(host_pos[0] - host_pos[1]);
@@ -197,11 +154,8 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
         for (int ib = 0; ib < nBlades; ++ib) {
             // blade/disk contribution
             {
-                const auto* pos = blades[ib].pos.data();
-                const auto* force = blades[ib].force.data();
-                const auto* eps = blades[ib].epsilon.data();
-
-                for (int ip = 0; ip < nPB; ++ip) {
+                const int ioff = blade_start + (ib * nPB);
+                for (int ip = ioff; ip < ioff + nPB; ++ip) {
                     const auto R = utils::delta_pnts_cyl(
                                        m_origin, m_normal, m_origin, pos[ip])
                                        .x();
@@ -225,11 +179,7 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
             }
             // tower contribution
             {
-                const auto* pos = tower[0].pos.data();
-                const auto* force = tower[0].force.data();
-                const auto* eps = tower[0].epsilon.data();
-                const auto* tmat = tower[0].orientation.data();
-                for (int ip = 0; ip < nPT; ++ip) {
+                for (int ip = tower_start; ip < tower_start + nPT; ++ip) {
                     const auto dist = cc - pos[ip];
                     const auto dist_local = tmat[ip] & dist;
                     const auto gauss_fac =
@@ -243,14 +193,11 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
             }
             // hub
             {
-                const auto* pos = hub[0].pos.data();
-                const auto* force = hub[0].force.data();
-                const auto* eps = hub[0].epsilon.data();
-                const auto* tmat = hub[0].orientation.data();
-                const auto dist = cc - pos[0];
-                const auto dist_local = tmat[0] & dist;
-                const auto gauss_fac = utils::gaussian3d(dist_local, eps[0]);
-                const auto& pforce = force[0];
+                const auto dist = cc - pos[hub_start];
+                const auto dist_local = tmat[hub_start] & dist;
+                const auto gauss_fac =
+                    utils::gaussian3d(dist_local, eps[hub_start]);
+                const auto& pforce = force[hub_start];
                 src_force[0] += gauss_fac * pforce.x();
                 src_force[1] += gauss_fac * pforce.y();
                 src_force[2] += gauss_fac * pforce.z();
