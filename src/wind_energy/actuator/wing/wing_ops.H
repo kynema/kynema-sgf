@@ -135,9 +135,8 @@ struct ComputeLoadsOp<
         // (will be unchanged for "none" and "linear" motion)
         // Positions are updated later
         actuator::wing::new_wing_displacement_motion(
-            wdata.vel_tr, time.current_time(),
-            time.current_time() + time.delta_t(), wdata.motion_type,
-            wdata.s_period, wdata.s_vector);
+            wdata.vel_tr, time.new_time(), time.new_time() + time.delta_t(),
+            wdata.motion_type, wdata.s_period, wdata.s_vector);
 
         // Build the local reference frame
         const vs::Vector wspan = wdata.end - wdata.start;
