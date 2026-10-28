@@ -65,12 +65,6 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
     }
 };
 
-template <>
-struct PrescribeModelMotionOp<UniformCt, ActSrcDisk>
-{
-    void operator()(UniformCt::DataType& /*data*/) {}
-};
-
 // compute the total force over a given radial section
 // this will then be spread uniformly over that area in the
 // projection step
@@ -163,7 +157,6 @@ private:
 
 public:
     explicit ProcessOutputsOp(const UniformCt::DataType& data) : m_data(data) {}
-    void operator()(UniformCt::DataType& /*unused*/) {}
     void read_io_options(const utils::ActParser& pp)
     {
         pp.query("output_frequency", m_out_freq);

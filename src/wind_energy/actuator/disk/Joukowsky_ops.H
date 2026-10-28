@@ -122,12 +122,6 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
     }
 };
 
-template <>
-struct PrescribeModelMotionOp<Joukowsky, ActSrcDisk>
-{
-    void operator()(Joukowsky::DataType& /*data*/) {}
-};
-
 /**
   \brief Compute Forces following procedures of Sorenson 2020
 
@@ -381,7 +375,6 @@ private:
 
 public:
     explicit ProcessOutputsOp(const Joukowsky::DataType& data) : m_data(data) {}
-    void operator()(Joukowsky::DataType& /*data*/) {}
     void read_io_options(const utils::ActParser& pp)
     {
         pp.query("output_frequency", m_out_freq);

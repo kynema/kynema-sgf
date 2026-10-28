@@ -58,7 +58,10 @@ struct UpdateFieldsOp;
  *  \ingroup actuator
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
-struct PrescribeModelMotionOp;
+struct PrescribeModelMotionOp
+{
+    void operator()(typename ActTrait::DataType& /*data*/) {}
+};
 
 /** Compute actuator loads and scatter them to the relevant processes.
  *
