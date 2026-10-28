@@ -250,6 +250,37 @@ if(KYNEMA_SGF_ENABLE_CUDA)
   foreach(tgt IN LISTS kstargets)
     set_cuda_build_properties(${tgt})
   endforeach()
+  if(KYNEMA_SGF_ENABLE_KYNEMA_FMB)
+    # KynemaFMBHost.cpp is the only source that uses Kynema-FMB/Kokkos types.
+    # It must be compiled by the same compiler front end as Kynema-FMB/Kokkos,
+    # since nvcc and the host compiler lay out Kokkos::View differently and
+    # mixing them corrupts memory.
+    if(Kokkos_ENABLE_CUDA)
+      # Kokkos/Kynema-FMB built with nvcc: keep compiling it as CUDA
+      if(NOT Kokkos_CXX_COMPILER_ID STREQUAL "NVIDIA")
+        message(WARNING
+          "Kokkos was built with CUDA using ${Kokkos_CXX_COMPILER_ID}, but "
+          "Kynema-SGF compiles CUDA sources with nvcc. The Kokkos data layout "
+          "may differ between these compilers.")
+      endif()
+      if(Kokkos_ENABLE_CUDA_RELOCATABLE_DEVICE_CODE AND NOT KYNEMA_SGF_ENABLE_CUDA_RDC)
+        message(FATAL_ERROR
+          "Kokkos was built with CUDA relocatable device code; "
+          "configure Kynema-SGF with -DKYNEMA_SGF_ENABLE_CUDA_RDC=ON")
+      endif()
+    else()
+      # Kokkos/Kynema-FMB built for the host only: use the host compiler
+      if(NOT CMAKE_CXX_COMPILER_ID STREQUAL Kokkos_CXX_COMPILER_ID)
+        message(WARNING
+          "Kokkos was built with ${Kokkos_CXX_COMPILER_ID}, but Kynema-SGF "
+          "uses ${CMAKE_CXX_COMPILER_ID} as the host compiler. The Kokkos data "
+          "layout may differ between these compilers.")
+      endif()
+      set_source_files_properties(
+        ${CMAKE_SOURCE_DIR}/src/wind_energy/actuator/turbine/kynema_fmb/KynemaFMBHost.cpp
+        PROPERTIES LANGUAGE CXX)
+    endif()
+  endif()
 endif()
 
 if(KYNEMA_SGF_ENABLE_UNIT_TESTS OR KYNEMA_SGF_ENABLE_TESTS)

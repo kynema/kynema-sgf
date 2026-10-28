@@ -22,11 +22,20 @@ private:
     typename ActTrait::DataType& m_data;
     Field& m_act_src;
 
+    DeviceVecList m_pos;
+    DeviceVecList m_force;
+    DeviceVecList m_epsilon;
+    DeviceTensorList m_orientation;
+
     DeviceVecComponent m_blades;
     DeviceVecComponent m_tower;
     DeviceVecComponent m_hub;
 
     void copy_to_device();
+
+    //! Map a component view that points into host grid data onto the
+    //! equivalent locations in the device copies of the grid data
+    ComponentView to_device_view(const ComponentView& host_cv);
 
 public:
     explicit ActSrcOp(typename ActTrait::DataType& data)
@@ -48,10 +57,50 @@ void ActSrcOp<
     ActSrcDisk,
     std::enable_if_t<std::is_base_of_v<TurbineType, ActTrait>>>::initialize()
 {
+    const auto& grid = m_data.grid();
+    m_pos.resize(grid.pos.size());
+    m_force.resize(grid.force.size());
+    m_epsilon.resize(grid.epsilon.size());
+    m_orientation.resize(grid.orientation.size());
+
     const auto& meta = m_data.meta();
     m_blades.resize(meta.num_blades);
     m_tower.resize(1);
     m_hub.resize(1);
+}
+
+namespace detail {
+template <typename T, typename HostVec, typename DevVec>
+::kynema_sgf::utils::Slice<T> rebase_slice(
+    const ::kynema_sgf::utils::Slice<T>& host_slice, const HostVec& host, DevVec& dev)
+{
+    if (host_slice.size() == 0) {
+        return ::kynema_sgf::utils::Slice<T>{};
+    }
+    const auto offset = host_slice.data() - host.data();
+    AMREX_ALWAYS_ASSERT(
+        (offset >= 0) &&
+        (static_cast<std::size_t>(offset) + host_slice.size() <=
+         static_cast<std::size_t>(dev.size())));
+    return ::kynema_sgf::utils::Slice<T>{dev.data() + offset, host_slice.size()};
+}
+} // namespace detail
+
+template <typename ActTrait>
+ComponentView ActSrcOp<
+    ActTrait,
+    ActSrcDisk,
+    std::enable_if_t<std::is_base_of_v<TurbineType, ActTrait>>>::
+    to_device_view(const ComponentView& host_cv)
+{
+    const auto& grid = m_data.grid();
+    ComponentView cv;
+    cv.pos = detail::rebase_slice(host_cv.pos, grid.pos, m_pos);
+    cv.force = detail::rebase_slice(host_cv.force, grid.force, m_force);
+    cv.epsilon = detail::rebase_slice(host_cv.epsilon, grid.epsilon, m_epsilon);
+    cv.orientation = detail::rebase_slice(
+        host_cv.orientation, grid.orientation, m_orientation);
+    return cv;
 }
 
 template <typename ActTrait>
@@ -61,12 +110,33 @@ void ActSrcOp<
     std::enable_if_t<std::is_base_of_v<TurbineType, ActTrait>>>::
     copy_to_device()
 {
+    const auto& grid = m_data.grid();
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, grid.pos.begin(), grid.pos.end(),
+        m_pos.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, grid.force.begin(), grid.force.end(),
+        m_force.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, grid.epsilon.begin(), grid.epsilon.end(),
+        m_epsilon.begin());
+    amrex::Gpu::copy(
+        amrex::Gpu::hostToDevice, grid.orientation.begin(),
+        grid.orientation.end(), m_orientation.begin());
+
+    // The component views stored in the metadata point to host memory, so
+    // build equivalent views that point to the device copies above
     const auto& meta = m_data.meta();
-    std::vector<ComponentView> tower_vec(1, meta.tower);
-    std::vector<ComponentView> hub_vec(1, meta.hub);
+    std::vector<ComponentView> blades_vec;
+    blades_vec.reserve(meta.blades.size());
+    for (const auto& cv : meta.blades) {
+        blades_vec.push_back(to_device_view(cv));
+    }
+    std::vector<ComponentView> tower_vec(1, to_device_view(meta.tower));
+    std::vector<ComponentView> hub_vec(1, to_device_view(meta.hub));
 
     amrex::Gpu::copy(
-        amrex::Gpu::hostToDevice, meta.blades.begin(), meta.blades.end(),
+        amrex::Gpu::hostToDevice, blades_vec.begin(), blades_vec.end(),
         m_blades.begin());
     amrex::Gpu::copy(
         amrex::Gpu::hostToDevice, tower_vec.begin(), tower_vec.end(),
