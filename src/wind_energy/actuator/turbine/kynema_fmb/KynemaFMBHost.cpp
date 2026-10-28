@@ -28,16 +28,14 @@ void KynemaFMBTurbine::populate_buffers(bool one_way_coupled)
     // Get position directly from node information
     buffer_pf[0] = interface->Turbine().hub_node.position[0];
     buffer_pf[length_force(0)] = interface->Turbine().hub_node.position[1];
-    buffer_pf[2 * length_force(0)] =
-        interface->Turbine().hub_node.position[2];
+    buffer_pf[2 * length_force(0)] = interface->Turbine().hub_node.position[2];
     buffer_pv[0] = buffer_pf[0];
     buffer_pv[length_force(0)] = buffer_pf[length_force(0)];
     buffer_pv[2 * length_force(0)] = buffer_pf[2 * length_force(0)];
     // Get solid velocity as well, not used at the moment though
     buffer_sv[0] = interface->Turbine().hub_node.velocity[0];
     buffer_sv[length_force(0)] = interface->Turbine().hub_node.velocity[1];
-    buffer_sv[2 * length_force(0)] =
-        interface->Turbine().hub_node.velocity[2];
+    buffer_sv[2 * length_force(0)] = interface->Turbine().hub_node.velocity[2];
 
     // Get blade and tower information
     int idx = 0;
@@ -71,8 +69,7 @@ void KynemaFMBTurbine::populate_buffers(bool one_way_coupled)
         // convert quaternions to rotation matrix
         for (int iq = 0; iq < 4; ++iq) {
             if (n == 0) {
-                q[iq] =
-                    (float)interface->Turbine().hub_node.position[iq + 3];
+                q[iq] = (float)interface->Turbine().hub_node.position[iq + 3];
             } else {
                 q[iq] = (float)interface->Aerodynamics()
                             .bodies[body_index(n)]
@@ -133,9 +130,8 @@ void KynemaFMBTurbine::save_and_zero_aerodynamic_loads()
             buffer_f[idx] = (float)interface->Aerodynamics()
                                 .bodies[body_index(n)]
                                 .loads[node_index(n)][dir];
-            interface->Aerodynamics()
-                .bodies[body_index(n)]
-                .loads[node_index(n)][dir] = 0.0_rt;
+            interface->Aerodynamics().bodies[body_index(n)].loads[node_index(n)]
+                                                                 [dir] = 0.0_rt;
             ++idx;
         }
     }
@@ -152,8 +148,8 @@ int KynemaFMBTurbine::body_index(int id) const
     int b_id = 0;
     int id_diff = id;
     for (int b = 0; b < (int)interface->Aerodynamics().bodies.size(); ++b) {
-        id_diff -= static_cast<int>(
-            interface->Aerodynamics().bodies[b].loads.size());
+        id_diff -=
+            static_cast<int>(interface->Aerodynamics().bodies[b].loads.size());
         if (id_diff < 0) {
             b_id = b;
             break;
@@ -171,20 +167,18 @@ int KynemaFMBTurbine::node_index(int id) const
     for (int b = 0; b < (int)interface->Aerodynamics().bodies.size(); ++b) {
         id_diff -= (int)interface->Aerodynamics().bodies[b].loads.size();
         if (id_diff < 0) {
-            n_id = id_diff +
-                   (int)interface->Aerodynamics().bodies[b].loads.size();
+            n_id =
+                id_diff + (int)interface->Aerodynamics().bodies[b].loads.size();
             break;
         }
     }
     return n_id;
 }
 
-
 int KynemaFMBTurbine::length_force(int /*dir*/) const
 {
     unsigned int n_sect{1};
-    for (unsigned int n = 0; n < interface->Aerodynamics().bodies.size();
-         ++n) {
+    for (unsigned int n = 0; n < interface->Aerodynamics().bodies.size(); ++n) {
         n_sect += interface->Aerodynamics().bodies[n].loads.size();
     }
     return static_cast<int>(n_sect);
@@ -628,8 +622,8 @@ std::vector<int> build_aero(
                                    .as<std::vector<amrex::Real>>()
                                    .size()) {
             std::cout << "WARNING: number of tower aero sections does not "
-                              "match number of cd tower data. Linearly "
-                              "interpolating cd to tower aero sections.\n";
+                         "match number of cd tower data. Linearly "
+                         "interpolating cd to tower aero sections.\n";
         }
         id = 0UL;
         for (const auto& chord : tower_os["outer_diameter"]["values"]

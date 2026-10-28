@@ -228,7 +228,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
     // Write the checkpoint file
     ::sgf_fmb::write_checkpoint_file(
         fi, sgf_fmb::checkpoint_filename(
-            fi.time_index / fi.num_substeps, fi.tlabel));
+                fi.time_index / fi.num_substeps, fi.tlabel));
 }
 
 template <>
