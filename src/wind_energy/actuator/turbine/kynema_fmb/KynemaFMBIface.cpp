@@ -2,12 +2,10 @@
 #include <cmath>
 #include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
 #include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_host.H"
 #include "src/CFDSim.H"
 #include "src/core/SimTime.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/ncutils/nc_interface.H"
-#include "src/utilities/linear_interpolation.H"
 
 #include "AMReX.H"
 #include "AMReX_ParmParse.H"
@@ -15,64 +13,6 @@
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
-
-namespace sgf_fmb {
-
-void abort_run(const std::string& msg) { amrex::Abort(msg); }
-
-void print_message(const std::string& msg) { amrex::Print() << msg; }
-
-amrex::Real interp_linear(
-    const amrex::Real* xinp,
-    const amrex::Real* yinp,
-    const int n,
-    const amrex::Real xout)
-{
-    return ::kynema_sgf::interp::linear(xinp, xinp + n, yinp, xout);
-}
-
-void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
-{
-    ++fi.substep_counter;
-    // Operations that only need to be done once
-    if (fi.substep_counter == 1) {
-        calculate_motion(*fi.interface);
-        // copy fluid velocity to turbine solver (set inflow)
-        fi.pass_fluid_velocity_and_hub_load();
-        calculate_aerodynamic_loads(*fi.interface, fi.fluid_density);
-        if (fi.one_way_coupled) {
-            fi.save_and_zero_aerodynamic_loads();
-        }
-        calculate_nodal_loads(*fi.interface);
-    }
-    if (advance) {
-        // individual turbine step, do not output every step
-        bool converged = step(*fi.interface);
-        if (!converged) {
-            amrex::Abort("Kynema-FMB did not converge\n");
-        }
-        if (fi.controller_input_file.size() > 0) {
-            const amrex::Real t = fi.time_index * fi.dt_ext;
-            apply_controller(*fi.interface, t);
-        }
-    }
-
-    if (fi.substep_counter == fi.num_substeps) {
-        calculate_motion(*fi.interface);
-        fi.substep_counter = 0;
-    } else if (!advance) {
-        fi.substep_counter = 0;
-    }
-
-    if (fi.substep_counter == 0) {
-        // Output once per kynema-sgf timestep
-        write_output(*fi.interface);
-        // Populate buffers with turbine data
-        fi.populate_buffers(fi.one_way_coupled);
-    }
-}
-
-} // namespace sgf_fmb
 
 namespace ext_turb {
 
@@ -144,8 +84,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::get_hub_stats(
 
     auto& fi = *m_turbine_data[local_id];
 
-    ::sgf_fmb::get_hub_state(
-        *fi.interface, fi.hub_abs_pos.data(), fi.hub_rot_vel.data());
+    ::sgf_fmb::get_hub_state(fi);
     // Orientation of hub is already in turbine data as first point
     for (int comp = 0; comp < AMREX_SPACEDIM * AMREX_SPACEDIM; ++comp) {
         fi.hub_orient[comp] = fi.orientation()[comp];
@@ -288,8 +227,8 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::
 
     // Write the checkpoint file
     ::sgf_fmb::write_checkpoint_file(
-        *fi.interface, sgf_fmb::checkpoint_filename(
-                fi.time_index / fi.num_substeps, fi.tlabel));
+        fi, sgf_fmb::checkpoint_filename(
+            fi.time_index / fi.num_substeps, fi.tlabel));
 }
 
 template <>
@@ -298,36 +237,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
 {
     BL_PROFILE("kynema-sgf::KynemaFMBIface::init_turbine");
 
-    {
-        ::sgf_fmb::TurbineSetup setup;
-        setup.label = fi.tlabel;
-        setup.input_file = fi.input_file;
-        setup.checkpoint_file = fi.checkpoint_file;
-        setup.controller_shared_lib_path = fi.controller_shared_lib_path;
-        setup.controller_input_file = fi.controller_input_file;
-        setup.num_blades = fi.num_blades;
-        setup.num_blade_elem = fi.num_blade_elem;
-        setup.num_tower_elem = fi.num_tower_elem;
-        setup.num_pts_blade = fi.num_pts_blade;
-        setup.num_pts_tower = fi.num_pts_tower;
-        setup.section_refinement_blade = fi.section_refinement_blade;
-        setup.section_refinement_tower = fi.section_refinement_tower;
-        setup.dt_ext = fi.dt_ext;
-        setup.rotational_speed = fi.rotational_speed;
-        setup.generator_power = fi.generator_power;
-        setup.wind_speed = fi.wind_speed;
-        setup.yaw = fi.yaw;
-        setup.generator_efficiency = fi.generator_efficiency;
-        setup.damping_factor = m_solver_data.damping_factor;
-        setup.nl_iter_max = m_solver_data.nl_iter_max;
-        setup.abs_err_tol = m_solver_data.abs_err_tol;
-        setup.rel_err_tol = m_solver_data.rel_err_tol;
-        AMREX_ALWAYS_ASSERT(m_solver_data.gravity.size() == 3);
-        for (int i = 0; i < 3; ++i) {
-            setup.gravity[i] = m_solver_data.gravity[i];
-        }
-        fi.interface = ::sgf_fmb::create_turbine_interface(setup);
-    }
+    ::sgf_fmb::init_turbine_interface(fi, m_solver_data);
 
     // Determine the number of substeps for Kynema per CFD timestep
     fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
@@ -347,7 +257,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     // Offset time index if restarting from a checkpoint file
     if (!fi.checkpoint_file.empty()) {
         fi.time_index *= fi.num_substeps;
-        ::sgf_fmb::set_time_step_index(*fi.interface, fi.time_index);
+        ::sgf_fmb::set_time_step_index(fi);
     }
 
     fi.allocate_buffers();

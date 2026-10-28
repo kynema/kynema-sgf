@@ -1,37 +1,159 @@
-#include <array>
+#include <algorithm>
 #include <cmath>
-#include <numbers>
-#include <ranges>
+#include <iostream>
+#include <limits>
 #include <stdexcept>
-#include <string>
 #include <vector>
-
-// This file is compiled with the host compiler when Kokkos is host-only (see
-// CMakeLists.txt), so it must not include AMReX headers that contain GPU code
-// (e.g. AMReX_Vector.H, AMReX_Array.H); standard containers are used instead.
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_host.H"
+#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
 #include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
+
+// This is the only file that uses Kynema-FMB types. It is compiled with the
+// same compiler as Kokkos (see CMakeLists.txt), which can be the host compiler,
+// so it must not include AMReX headers that contain GPU code.
 
 using namespace amrex::literals;
 
-namespace sgf_fmb {
+namespace ext_turb {
 
-void TurbineInterfaceDeleter::operator()(TurbineInterface* ptr) const
+KynemaFMBTurbine::KynemaFMBTurbine() = default;
+
+KynemaFMBTurbine::~KynemaFMBTurbine() = default;
+
+void KynemaFMBTurbine::populate_buffers(bool one_way_coupled)
 {
-    delete ptr;
+    // Get hub information for nacelle force
+    // Chord is not used, set it to zero
+    buffer_cf[0] = 0.;
+    // Force is calculated by Kynema-SGF, passed to Kynema-FMB
+    // Get position directly from node information
+    buffer_pf[0] = interface->Turbine().hub_node.position[0];
+    buffer_pf[length_force(0)] = interface->Turbine().hub_node.position[1];
+    buffer_pf[2 * length_force(0)] =
+        interface->Turbine().hub_node.position[2];
+    buffer_pv[0] = buffer_pf[0];
+    buffer_pv[length_force(0)] = buffer_pf[length_force(0)];
+    buffer_pv[2 * length_force(0)] = buffer_pf[2 * length_force(0)];
+    // Get solid velocity as well, not used at the moment though
+    buffer_sv[0] = interface->Turbine().hub_node.velocity[0];
+    buffer_sv[length_force(0)] = interface->Turbine().hub_node.velocity[1];
+    buffer_sv[2 * length_force(0)] =
+        interface->Turbine().hub_node.velocity[2];
+
+    // Get blade and tower information
+    int idx = 0;
+    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+        // Skip hub node
+        ++idx;
+        for (int n = 1; n < length_force(0); ++n) {
+            if (dir == 0) {
+                buffer_cf[n] = (float)interface->Aerodynamics()
+                                   .bodies[body_index(n)]
+                                   .chord[node_index(n)];
+            }
+            if (!one_way_coupled) {
+                buffer_f[idx] = (float)interface->Aerodynamics()
+                                    .bodies[body_index(n)]
+                                    .loads[node_index(n)][dir];
+            }
+            buffer_pf[idx] = (float)interface->Aerodynamics()
+                                 .bodies[body_index(n)]
+                                 .x_motion[node_index(n)][dir];
+            buffer_pv[idx] = buffer_pf[idx];
+            buffer_sv[idx] = (float)interface->Aerodynamics()
+                                 .bodies[body_index(n)]
+                                 .v_motion[node_index(n)][dir];
+            ++idx;
+        }
+    }
+    // Orientation stores a 3x3 tensor (9 elements) for every point
+    std::array<float, 4> q;
+    for (int n = 0; n < length_force(0); ++n) {
+        // convert quaternions to rotation matrix
+        for (int iq = 0; iq < 4; ++iq) {
+            if (n == 0) {
+                q[iq] =
+                    (float)interface->Turbine().hub_node.position[iq + 3];
+            } else {
+                q[iq] = (float)interface->Aerodynamics()
+                            .bodies[body_index(n)]
+                            .qqr_motion_map[node_index(n)][iq];
+            }
+        }
+        idx = n * 9;
+        buffer_ori[idx + 0] =
+            q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];
+        buffer_ori[idx + 1] = 2. * (q[1] * q[2] - q[0] * q[3]);
+        buffer_ori[idx + 2] = 2. * (q[1] * q[3] + q[0] * q[2]);
+        buffer_ori[idx + 3] = 2. * (q[1] * q[2] + q[0] * q[3]);
+        buffer_ori[idx + 4] =
+            (q[0] * q[0] - q[1] * q[1] + q[2] * q[2] - q[3] * q[3]);
+        buffer_ori[idx + 5] = 2. * (q[2] * q[3] - q[0] * q[1]);
+        buffer_ori[idx + 6] = 2. * (q[1] * q[3] - q[0] * q[2]);
+        buffer_ori[idx + 7] = 2. * (q[2] * q[3] + q[0] * q[1]);
+        buffer_ori[idx + 8] =
+            (q[0] * q[0] - q[1] * q[1] - q[2] * q[2] + q[3] * q[3]);
+    }
 }
 
-namespace {
-//! Index of the aerodynamic body for actuator point id (hub is point 0)
-int body_index(TurbineInterface& ti, int id)
+void KynemaFMBTurbine::pass_fluid_velocity_and_hub_load()
+{
+    // Fluid velocity at hub does not need to be passed, loads computed
+    // internally in Kynema-SGF
+    int idx = 0;
+    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+        // Skip hub node
+        ++idx;
+        for (int n = 1; n < length_fluid_velocity(0); ++n) {
+            interface->Aerodynamics()
+                .bodies[body_index(n)]
+                .v_inflow[node_index(n)][dir] = buffer_fv[idx];
+            ++idx;
+        }
+    }
+    // Hub load (also called nacelle_force) does need to be passed
+    interface->Turbine().hub_node.loads[0] = buffer_f[0];
+    interface->Turbine().hub_node.loads[1] = buffer_f[length_force(0)];
+    interface->Turbine().hub_node.loads[2] =
+        buffer_f[length_force(0) + length_force(1)];
+    // Fluid velocity at hub is passed separately for the sake of controller
+    std::array<amrex::Real, 3> hub_inflow{
+        buffer_fv[0], buffer_fv[length_force(0)],
+        buffer_fv[length_force(0) + length_force(1)]};
+    interface->SetHubInflow(hub_inflow);
+}
+
+void KynemaFMBTurbine::save_and_zero_aerodynamic_loads()
+{
+    // Zero blade and tower aero loads
+    int idx = 0;
+    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+        // Skip hub node
+        ++idx;
+        for (int n = 1; n < length_force(0); ++n) {
+            buffer_f[idx] = (float)interface->Aerodynamics()
+                                .bodies[body_index(n)]
+                                .loads[node_index(n)][dir];
+            interface->Aerodynamics()
+                .bodies[body_index(n)]
+                .loads[node_index(n)][dir] = 0.0_rt;
+            ++idx;
+        }
+    }
+    // Hub load
+    interface->Turbine().hub_node.loads[0] = 0.0_rt;
+    interface->Turbine().hub_node.loads[1] = 0.0_rt;
+    interface->Turbine().hub_node.loads[2] = 0.0_rt;
+}
+
+int KynemaFMBTurbine::body_index(int id) const
 {
     // Considering hub, which is 1 node, subtract
     id -= 1;
     int b_id = 0;
     int id_diff = id;
-    const auto& bodies = ti.Aerodynamics().bodies;
-    for (int b = 0; b < static_cast<int>(bodies.size()); ++b) {
-        id_diff -= static_cast<int>(bodies[b].loads.size());
+    for (int b = 0; b < (int)interface->Aerodynamics().bodies.size(); ++b) {
+        id_diff -= static_cast<int>(
+            interface->Aerodynamics().bodies[b].loads.size());
         if (id_diff < 0) {
             b_id = b;
             break;
@@ -40,165 +162,61 @@ int body_index(TurbineInterface& ti, int id)
     return b_id;
 }
 
-//! Index of the node within its aerodynamic body for actuator point id
-int node_index(TurbineInterface& ti, int id)
+int KynemaFMBTurbine::node_index(int id) const
 {
     // Considering hub, which is 1 node, subtract
     id -= 1;
     int n_id = 0;
     int id_diff = id;
-    const auto& bodies = ti.Aerodynamics().bodies;
-    for (int b = 0; b < static_cast<int>(bodies.size()); ++b) {
-        id_diff -= static_cast<int>(bodies[b].loads.size());
+    for (int b = 0; b < (int)interface->Aerodynamics().bodies.size(); ++b) {
+        id_diff -= (int)interface->Aerodynamics().bodies[b].loads.size();
         if (id_diff < 0) {
-            n_id = id_diff + static_cast<int>(bodies[b].loads.size());
+            n_id = id_diff +
+                   (int)interface->Aerodynamics().bodies[b].loads.size();
             break;
         }
     }
     return n_id;
 }
-} // namespace
 
-int num_force_points(TurbineInterface& ti)
+
+int KynemaFMBTurbine::length_force(int /*dir*/) const
 {
     unsigned int n_sect{1};
-    for (const auto& body : ti.Aerodynamics().bodies) {
-        n_sect += body.loads.size();
+    for (unsigned int n = 0; n < interface->Aerodynamics().bodies.size();
+         ++n) {
+        n_sect += interface->Aerodynamics().bodies[n].loads.size();
     }
     return static_cast<int>(n_sect);
 }
 
-void populate_buffers(
-    TurbineInterface& ti,
-    const int npts,
-    const bool one_way_coupled,
-    float* chord,
-    float* pos_force,
-    float* pos_vel,
-    float* solid_vel,
-    float* force,
-    float* orientation)
-{
-    const auto& hub_node = ti.Turbine().hub_node;
-    const auto& bodies = ti.Aerodynamics().bodies;
+} // namespace ext_turb
 
-    // Get hub information for nacelle force
-    // Chord is not used, set it to zero
-    chord[0] = 0.;
-    // Force is calculated by Kynema-SGF, passed to Kynema-FMB
-    // Get position directly from node information
-    pos_force[0] = hub_node.position[0];
-    pos_force[npts] = hub_node.position[1];
-    pos_force[2 * npts] = hub_node.position[2];
-    pos_vel[0] = pos_force[0];
-    pos_vel[npts] = pos_force[npts];
-    pos_vel[2 * npts] = pos_force[2 * npts];
-    // Get solid velocity as well, not used at the moment though
-    solid_vel[0] = hub_node.velocity[0];
-    solid_vel[npts] = hub_node.velocity[1];
-    solid_vel[2 * npts] = hub_node.velocity[2];
-
-    // Get blade and tower information
-    int idx = 0;
-    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
-        // Skip hub node
-        ++idx;
-        for (int n = 1; n < npts; ++n) {
-            const auto& body = bodies[body_index(ti, n)];
-            const int in = node_index(ti, n);
-            if (dir == 0) {
-                chord[n] = (float)body.chord[in];
-            }
-            if (!one_way_coupled) {
-                force[idx] = (float)body.loads[in][dir];
-            }
-            pos_force[idx] = (float)body.x_motion[in][dir];
-            pos_vel[idx] = pos_force[idx];
-            solid_vel[idx] = (float)body.v_motion[in][dir];
-            ++idx;
-        }
-    }
-    // Orientation stores a 3x3 tensor (9 elements) for every point
-    std::array<float, 4> q;
-    for (int n = 0; n < npts; ++n) {
-        // convert quaternions to rotation matrix
-        for (int iq = 0; iq < 4; ++iq) {
-            if (n == 0) {
-                q[iq] = (float)hub_node.position[iq + 3];
-            } else {
-                q[iq] = (float)bodies[body_index(ti, n)]
-                            .qqr_motion_map[node_index(ti, n)][iq];
-            }
-        }
-        idx = n * 9;
-        orientation[idx + 0] =
-            q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];
-        orientation[idx + 1] = 2. * (q[1] * q[2] - q[0] * q[3]);
-        orientation[idx + 2] = 2. * (q[1] * q[3] + q[0] * q[2]);
-        orientation[idx + 3] = 2. * (q[1] * q[2] + q[0] * q[3]);
-        orientation[idx + 4] =
-            (q[0] * q[0] - q[1] * q[1] + q[2] * q[2] - q[3] * q[3]);
-        orientation[idx + 5] = 2. * (q[2] * q[3] - q[0] * q[1]);
-        orientation[idx + 6] = 2. * (q[1] * q[3] - q[0] * q[2]);
-        orientation[idx + 7] = 2. * (q[2] * q[3] + q[0] * q[1]);
-        orientation[idx + 8] =
-            (q[0] * q[0] - q[1] * q[1] - q[2] * q[2] + q[3] * q[3]);
-    }
-}
-
-void pass_fluid_velocity_and_hub_load(
-    TurbineInterface& ti,
-    const int npts,
-    const float* fluid_vel,
-    const float* force)
-{
-    // Fluid velocity at hub does not need to be passed, loads computed
-    // internally in Kynema-SGF
-    int idx = 0;
-    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
-        // Skip hub node
-        ++idx;
-        for (int n = 1; n < npts; ++n) {
-            ti.Aerodynamics()
-                .bodies[body_index(ti, n)]
-                .v_inflow[node_index(ti, n)][dir] = fluid_vel[idx];
-            ++idx;
-        }
-    }
-    // Hub load (also called nacelle_force) does need to be passed
-    ti.Turbine().hub_node.loads[0] = force[0];
-    ti.Turbine().hub_node.loads[1] = force[npts];
-    ti.Turbine().hub_node.loads[2] = force[2 * npts];
-    // Fluid velocity at hub is passed separately for the sake of controller
-    std::array<amrex::Real, 3> hub_inflow{
-        fluid_vel[0], fluid_vel[npts], fluid_vel[2 * npts]};
-    ti.SetHubInflow(hub_inflow);
-}
-
-void save_and_zero_aerodynamic_loads(
-    TurbineInterface& ti, const int npts, float* force)
-{
-    // Zero blade and tower aero loads
-    int idx = 0;
-    for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
-        // Skip hub node
-        ++idx;
-        for (int n = 1; n < npts; ++n) {
-            auto& load =
-                ti.Aerodynamics().bodies[body_index(ti, n)].loads[node_index(
-                    ti, n)][dir];
-            force[idx] = (float)load;
-            load = 0.0_rt;
-            ++idx;
-        }
-    }
-    // Hub load
-    ti.Turbine().hub_node.loads[0] = 0.0_rt;
-    ti.Turbine().hub_node.loads[1] = 0.0_rt;
-    ti.Turbine().hub_node.loads[2] = 0.0_rt;
-}
+namespace sgf_fmb {
 
 namespace {
+//! Linear interpolation, constant beyond the end points
+amrex::Real interp_linear(
+    const std::vector<amrex::Real>& xinp,
+    const std::vector<amrex::Real>& yinp,
+    const amrex::Real xout)
+{
+    if ((xinp.size() < 2) || (xout <= xinp.front())) {
+        return yinp.front();
+    }
+    if (xout >= xinp.back()) {
+        return yinp.back();
+    }
+    const auto j =
+        std::upper_bound(xinp.begin(), xinp.end(), xout) - xinp.begin() - 1;
+    const auto denom = xinp[j + 1] - xinp[j];
+    const auto fac = (denom > std::numeric_limits<float>::epsilon())
+                         ? ((xout - xinp[j]) / denom)
+                         : 1.0_rt;
+    return ((1.0_rt - fac) * yinp[j]) + (fac * yinp[j + 1]);
+}
+} // namespace
+
 void build_turbine(
     kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
@@ -216,7 +234,7 @@ void build_turbine(
     // Number of blades
     const auto& n_blades_wio = wio["assembly"]["number_of_blades"];
     if (n_blades_wio && (n_blades != n_blades_wio.as<int>())) {
-        abort_run(
+        throw std::runtime_error(
             "Number of blades in the YAML input to Kynema-FMB (" +
             std::to_string(n_blades_wio.as<int>()) + ") does not match " +
             "the expected number of blades from the Kynema-SGF input file "
@@ -532,7 +550,7 @@ void build_turbine(
           {0., 0., 0., hub_inertia[4], hub_inertia[5], hub_inertia[2]}}});
 }
 
-std::array<int, 2> build_aero(
+std::vector<int> build_aero(
     kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,
     const YAML::Node wio,
     const int n_blades,
@@ -609,18 +627,16 @@ std::array<int, 2> build_aero(
         if (tower_os.size() != tower_os["outer_diameter"]["values"]
                                    .as<std::vector<amrex::Real>>()
                                    .size()) {
-            print_message(
-                "WARNING: number of tower aero sections does not "
-                "match number of cd tower data. Linearly "
-                "interpolating cd to tower aero sections.\n");
+            std::cout << "WARNING: number of tower aero sections does not "
+                              "match number of cd tower data. Linearly "
+                              "interpolating cd to tower aero sections.\n";
         }
         id = 0UL;
         for (const auto& chord : tower_os["outer_diameter"]["values"]
                                      .as<std::vector<amrex::Real>>()) {
             const auto s = tower_os["outer_diameter"]["grid"]
                                .as<std::vector<amrex::Real>>()[id];
-            const auto cd = interp_linear(
-                s_cd.data(), cd_vec.data(), static_cast<int>(s_cd.size()), s);
+            const auto cd = interp_linear(s_cd, cd_vec, s);
             const auto cd_vec_wrapped = std::vector<amrex::Real>{cd, cd};
             tower_aero_sections.emplace_back(
                 id, static_cast<double>(s), static_cast<double>(chord),
@@ -638,7 +654,7 @@ std::array<int, 2> build_aero(
         aero_builder.SetAirfoilSections(1UL, tower_aero_sections);
     }
 
-    return std::array<int, 2>{
+    return std::vector<int>{
         (int)blade_aero_sections.size(), (int)tower_aero_sections.size()};
 }
 
@@ -657,128 +673,146 @@ void build_controller(
                                   .SetInputFilePath(controller_input_file)
                                   .SetOutputFilePath(controller_output_file);
 }
-} // namespace
 
-TurbineInterfacePtr create_turbine_interface(const TurbineSetup& setup)
+void update_turbine(::ext_turb::KynemaFMBTurbine& fi, bool advance)
+{
+    ++fi.substep_counter;
+    // Operations that only need to be done once
+    if (fi.substep_counter == 1) {
+        fi.interface->Aerodynamics().CalculateMotion(
+            fi.interface->GetHostState());
+        // copy fluid velocity to turbine solver (set inflow)
+        fi.pass_fluid_velocity_and_hub_load();
+        fi.interface->Aerodynamics().CalculateAerodynamicLoads(
+            fi.fluid_density);
+        if (fi.one_way_coupled) {
+            fi.save_and_zero_aerodynamic_loads();
+        }
+        fi.interface->Aerodynamics().CalculateNodalLoads();
+    }
+    if (advance) {
+        // individual turbine step, do not output every step
+        bool converged = fi.interface->Step();
+        if (!converged) {
+            throw std::runtime_error("Kynema-FMB did not converge");
+        }
+        if (fi.controller_input_file.size() > 0) {
+            const amrex::Real t = fi.time_index * fi.dt_ext;
+            fi.interface->ApplyController(t);
+        }
+    }
+
+    if (fi.substep_counter == fi.num_substeps) {
+        fi.interface->Aerodynamics().CalculateMotion(
+            fi.interface->GetHostState());
+        fi.substep_counter = 0;
+    } else if (!advance) {
+        fi.substep_counter = 0;
+    }
+
+    if (fi.substep_counter == 0) {
+        // Output once per kynema-sgf timestep
+        fi.interface->OpenOutputFile();
+        fi.interface->WriteOutput();
+        fi.interface->CloseOutputFile();
+        // Populate buffers with turbine data
+        fi.populate_buffers(fi.one_way_coupled);
+    }
+}
+
+void init_turbine_interface(
+    ::ext_turb::KynemaFMBTurbine& fi,
+    const ::ext_turb::KynemaFMBSolverData& solver_data)
 {
     auto builder = kynema_fmb::interfaces::TurbineInterfaceBuilder{};
 
     builder.Solution()
         .EnableDynamicSolve()
-        .SetTimeStep(setup.dt_ext)
-        .SetDampingFactor(setup.damping_factor)
-        .SetGravity({setup.gravity[0], setup.gravity[1], setup.gravity[2]})
-        .SetMaximumNonlinearIterations(static_cast<size_t>(setup.nl_iter_max))
-        .SetAbsoluteErrorTolerance(setup.abs_err_tol)
-        .SetRelativeErrorTolerance(setup.rel_err_tol);
+        .SetTimeStep(fi.dt_ext)
+        .SetDampingFactor(solver_data.damping_factor)
+        .SetGravity(
+            {solver_data.gravity[0], solver_data.gravity[1],
+             solver_data.gravity[2]})
+        .SetMaximumNonlinearIterations(
+            static_cast<size_t>(solver_data.nl_iter_max))
+        .SetAbsoluteErrorTolerance(solver_data.abs_err_tol)
+        .SetRelativeErrorTolerance(solver_data.rel_err_tol);
 
-    const YAML::Node wio = YAML::LoadFile(setup.input_file);
+    const YAML::Node wio = YAML::LoadFile(fi.input_file);
 
     // Builds turbine, including blades, nacelle, and tower
-    build_turbine(
-        builder, wio, setup.num_blades, setup.num_blade_elem,
-        setup.num_tower_elem, setup.section_refinement_blade,
-        setup.section_refinement_tower, setup.rotational_speed,
-        setup.generator_power, setup.wind_speed, setup.yaw,
-        setup.generator_efficiency);
+    sgf_fmb::build_turbine(
+        builder, wio, fi.num_blades, fi.num_blade_elem, fi.num_tower_elem,
+        fi.section_refinement_blade, fi.section_refinement_tower,
+        fi.rotational_speed, fi.generator_power, fi.wind_speed, fi.yaw,
+        fi.generator_efficiency);
 
-    auto n_aero_sections =
-        build_aero(builder, wio, setup.num_blades, (setup.num_pts_tower != 0));
+    auto n_aero_sections = sgf_fmb::build_aero(
+        builder, wio, fi.num_blades, (fi.num_pts_tower != 0));
 
-    if (n_aero_sections[0] != setup.num_pts_blade) {
-        abort_run(
+    if (n_aero_sections[0] != fi.num_pts_blade) {
+        throw std::runtime_error(
             "KynemaFMBIface: number of points per blade (from Kynema-SGF input "
             "file: " +
-            std::to_string(setup.num_pts_blade) +
+            std::to_string(fi.num_pts_blade) +
             ") does not match number of aerodynamic sections per blade (from "
             "Kynema-FMB input file: " +
             std::to_string(n_aero_sections[0]) + ").");
     }
 
-    if (n_aero_sections[1] != setup.num_pts_tower) {
-        abort_run(
+    if (n_aero_sections[1] != fi.num_pts_tower) {
+        throw std::runtime_error(
             "KynemaFMBIface: number of tower points (from Kynema-SGF input "
             "file: " +
-            std::to_string(setup.num_pts_tower) +
+            std::to_string(fi.num_pts_tower) +
             ") does not match number of aerodynamic tower sections (from "
             "Kynema-FMB input file: " +
             std::to_string(n_aero_sections[1]) + ").");
     }
 
-    if (setup.controller_input_file.size() > 0) {
-        build_controller(
-            builder, setup.controller_shared_lib_path,
-            setup.controller_input_file, setup.label);
+    if (fi.controller_input_file.size() > 0) {
+        sgf_fmb::build_controller(
+            builder, fi.controller_shared_lib_path, fi.controller_input_file,
+            fi.tlabel);
         // Should this enable controller checkpoint reading if it is a restart?
         // TODO? No Kynema-FMB examples to reference for this
     }
 
     // Create output
-    builder.Outputs().SetOutputFilePath("kynema_fmb_" + setup.label);
+    builder.Outputs().SetOutputFilePath("kynema_fmb_" + fi.tlabel);
 
     // Create checkpoint file
-    if (!setup.checkpoint_file.empty()) {
-        builder.Turbine().SetRestartFilePath(setup.checkpoint_file);
+    if (!fi.checkpoint_file.empty()) {
+        builder.Turbine().SetRestartFilePath(fi.checkpoint_file);
     }
 
-    TurbineInterfacePtr ti(new TurbineInterface(
+    fi.interface = std::make_unique<kynema_fmb::interfaces::TurbineInterface>(
         builder.Solution().Input(), builder.Turbine().Input(),
         builder.Aerodynamics().Input(), builder.Controller().Input(),
-        builder.Outputs().Config()));
+        builder.Outputs().Config());
 
     // Close file
-    ti->CloseOutputFile();
-
-    return ti;
+    fi.interface->CloseOutputFile();
 }
 
-void set_time_step_index(TurbineInterface& ti, const int time_index)
+void get_hub_state(::ext_turb::KynemaFMBTurbine& fi)
 {
-    ti.SetTimeStepIndex(time_index);
-}
-
-void get_hub_state(
-    TurbineInterface& ti, float* hub_abs_pos, float* hub_rot_vel)
-{
-    const auto& hub_node = ti.Turbine().hub_node;
     for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
-        hub_abs_pos[dir] = hub_node.position[dir];
-        hub_rot_vel[dir] = hub_node.velocity[dir + AMREX_SPACEDIM];
+        fi.hub_abs_pos[dir] = fi.interface->Turbine().hub_node.position[dir];
+        fi.hub_rot_vel[dir] =
+            fi.interface->Turbine().hub_node.velocity[dir + AMREX_SPACEDIM];
     }
 }
 
-void write_checkpoint_file(TurbineInterface& ti, const std::string& fname)
+void set_time_step_index(::ext_turb::KynemaFMBTurbine& fi)
 {
-    ti.WriteCheckpointFile(fname);
+    fi.interface->SetTimeStepIndex(fi.time_index);
 }
 
-void calculate_motion(TurbineInterface& ti)
+void write_checkpoint_file(
+    ::ext_turb::KynemaFMBTurbine& fi, const std::string& fname)
 {
-    ti.Aerodynamics().CalculateMotion(ti.GetHostState());
-}
-
-void calculate_aerodynamic_loads(TurbineInterface& ti, const amrex::Real density)
-{
-    ti.Aerodynamics().CalculateAerodynamicLoads(density);
-}
-
-void calculate_nodal_loads(TurbineInterface& ti)
-{
-    ti.Aerodynamics().CalculateNodalLoads();
-}
-
-bool step(TurbineInterface& ti) { return ti.Step(); }
-
-void apply_controller(TurbineInterface& ti, const amrex::Real time)
-{
-    ti.ApplyController(time);
-}
-
-void write_output(TurbineInterface& ti)
-{
-    ti.OpenOutputFile();
-    ti.WriteOutput();
-    ti.CloseOutputFile();
+    fi.interface->WriteCheckpointFile(fname);
 }
 
 } // namespace sgf_fmb

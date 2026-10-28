@@ -2,15 +2,23 @@
 #define KYNEMA_FMB_TYPES_H
 
 #include <iomanip>
+#include <memory>
 #include <sstream>
 #include <string>
 #include <vector>
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_host.H"
 #include "src/wind_energy/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
-#include "AMReX_Vector.H"
 
 using namespace amrex::literals;
+
+/** Kynema-FMB types are only used in KynemaFMBHost.cpp, which is compiled with
+ *  the same compiler as Kokkos (see CMakeLists.txt), since nvcc and the host
+ *  compiler lay out Kokkos::View differently. This header is also compiled by
+ *  that file, so it must not include AMReX headers that contain GPU code.
+ */
+namespace kynema_fmb::interfaces {
+class TurbineInterface;
+} // namespace kynema_fmb::interfaces
 
 namespace sgf_fmb {
 
@@ -31,9 +39,10 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 {
     /** Variables exclusive to KynemaFMB turbine type
      */
-    //! Kynema-FMB turbine, only accessed through the functions declared in
-    //! kynema_fmb_host.H
-    sgf_fmb::TurbineInterfacePtr interface;
+    std::unique_ptr<kynema_fmb::interfaces::TurbineInterface> interface;
+
+    KynemaFMBTurbine();
+    ~KynemaFMBTurbine();
 
     // Need buffers to make data contiguous to fit into coupling
     void allocate_buffers()
@@ -64,24 +73,16 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         ptr_ori = &buffer_ori[0];
     }
 
-    void populate_buffers(bool one_way)
-    {
-        sgf_fmb::populate_buffers(
-            *interface, length_force(0), one_way, ptr_cf, ptr_pf, ptr_pv,
-            ptr_sv, ptr_f, ptr_ori);
-    }
+    void populate_buffers(bool one_way_coupled);
 
-    void pass_fluid_velocity_and_hub_load()
-    {
-        sgf_fmb::pass_fluid_velocity_and_hub_load(
-            *interface, length_force(0), ptr_fv, ptr_f);
-    }
+    void pass_fluid_velocity_and_hub_load();
 
-    void save_and_zero_aerodynamic_loads()
-    {
-        sgf_fmb::save_and_zero_aerodynamic_loads(
-            *interface, length_force(0), ptr_f);
-    }
+    void save_and_zero_aerodynamic_loads();
+
+    /** Helper functions for navigating indices */
+    int body_index(int id) const;
+
+    int node_index(int id) const;
 
     /** Data access functions needed for every turbine type */
 
@@ -119,10 +120,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         return length_force(dir);
     }
 
-    int length_force(int /*dir*/) const override
-    {
-        return sgf_fmb::num_force_points(*interface);
-    }
+    int length_force(int /*dir*/) const override;
 
     int length_position_at_force(int dir) const override
     {
@@ -175,9 +173,25 @@ struct KynemaFMBSolverData
     int nl_iter_max{12};
     amrex::Real abs_err_tol{1.0e-5_rt};
     amrex::Real rel_err_tol{1.0e-4_rt};
-    amrex::Vector<amrex::Real> gravity{0.0_rt, 0.0_rt, -9.81_rt};
+    std::vector<amrex::Real> gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace ext_turb
+
+//! Functions that use Kynema-FMB types, defined in KynemaFMBHost.cpp
+namespace sgf_fmb {
+void init_turbine_interface(
+    ext_turb::KynemaFMBTurbine& fi,
+    const ext_turb::KynemaFMBSolverData& solver_data);
+
+void update_turbine(ext_turb::KynemaFMBTurbine& fi, bool advance);
+
+void get_hub_state(ext_turb::KynemaFMBTurbine& fi);
+
+void set_time_step_index(ext_turb::KynemaFMBTurbine& fi);
+
+void write_checkpoint_file(
+    ext_turb::KynemaFMBTurbine& fi, const std::string& fname);
+} // namespace sgf_fmb
 
 #endif /* KYNEMA_FMB_TYPES_H */
