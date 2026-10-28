@@ -133,7 +133,7 @@ struct PrescribeModelVelocityOp<
 
         // Move force points to location at n+1 using displacement vector
         auto disp = actuator::wing::new_wing_displacement_motion(
-            wdata.vel_tr, time.new_time(), time.new_time() + time.delta_t(),
+            wdata.vel_tr, time.current_time(), time.new_time(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
         for (int ip = 0; ip < npts; ++ip) {
             grid.pos[ip].x() = grid.pos[ip].x() + disp.x();

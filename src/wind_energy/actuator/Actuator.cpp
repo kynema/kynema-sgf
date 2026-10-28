@@ -115,10 +115,10 @@ void Actuator::post_init_actions()
     update_actuator_and_container_positions();
     sample_fields();
     update_actuator_data_from_particles();
-    compute_actuator_loads();
-    accumulate_actuator_source_terms_for_fluid();
+    advance_actuator_models();
     prescribe_actuator_velocities();
     compute_actuator_loads();
+    accumulate_actuator_source_terms_for_fluid();
     prepare_outputs();
 }
 
@@ -152,10 +152,13 @@ void Actuator::pre_advance_work()
 {
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
-    // predict_actuator_loads
-    advance_actuator_models();
     m_container->reset_container();
     update_actuator_and_container_positions();
+    sample_fields();
+    update_actuator_data_from_particles();
+    advance_actuator_models();
+    prescribe_actuator_velocities();
+    compute_actuator_loads();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
 }
@@ -170,11 +173,6 @@ void Actuator::post_advance_work()
             ac->write_outputs();
         }
     }
-
-    sample_fields();
-    update_actuator_data_from_particles();
-    prescribe_actuator_velocities();
-    compute_actuator_loads();
 }
 
 void Actuator::communicate_turbine_io()
