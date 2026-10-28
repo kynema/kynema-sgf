@@ -123,12 +123,7 @@ struct PrescribeModelVelocityOp<
 {
     void operator()(typename ActTrait::DataType& data)
     {
-        auto& grid = data.grid();
         auto& wdata = data.meta();
-        const int npts = wdata.num_pts;
-        const auto& dx = wdata.dx;
-        const auto& chord = wdata.chord;
-        const auto& aflookup = airfoil_lookup<ActTrait>(data);
         const auto& time = data.sim().time();
 
         // Get velocity of actuator from n to n+1
