@@ -159,12 +159,13 @@ struct UpdatePosOp<TurbineKynemaFMB, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<TurbineKynemaFMB, SrcTrait>
+struct UpdateFieldsOp<TurbineKynemaFMB, SrcTrait>
 {
     void operator()(typename TurbineKynemaFMB::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineKynemaFMB>");
-        update_vel_op<TurbineKynemaFMB::DataType>(data);
+        BL_PROFILE(
+            "kynema-sgf::actuator::UpdateFieldsOp<TurbineKynemaFMB>");
+        update_fields_op<TurbineKynemaFMB::DataType>(data);
     }
 };
 

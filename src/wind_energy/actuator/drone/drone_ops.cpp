@@ -276,7 +276,7 @@ void UpdatePosOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
     }
 }
 
-void UpdateVelOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
+void UpdateFieldsOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
 {
     auto& grid = data.grid();
     int offset = 0;

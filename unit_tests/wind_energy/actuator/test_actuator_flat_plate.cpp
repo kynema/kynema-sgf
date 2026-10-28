@@ -72,7 +72,7 @@ struct UseDefaultOp<
     ::kynema_sgf::actuator::ActSrcLine>
 {
     static constexpr bool update_pos = true;
-    static constexpr bool update_vel = false;
+    static constexpr bool update_fields = false;
     static constexpr bool compute_force = false;
     static constexpr bool process_outputs = true;
 };
@@ -146,7 +146,7 @@ struct InitDataOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+struct UpdateFieldsOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {

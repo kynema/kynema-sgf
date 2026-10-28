@@ -73,7 +73,7 @@ template <typename ActTrait, typename SrcTrait>
 struct UseDefaultOp
 {
     static constexpr bool update_pos = true;
-    static constexpr bool update_vel = true;
+    static constexpr bool update_fields = true;
     static constexpr bool compute_force = true;
     static constexpr bool process_outputs = true;
 };
@@ -96,12 +96,12 @@ struct UpdatePosOp<
 };
 
 template <typename ActTrait>
-struct UpdateVelOp<
+struct UpdateFieldsOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::update_vel>>
+        UseDefaultOp<ActTrait, ActSrcLine>::update_fields>>
 {
 
     void operator()(typename ActTrait::DataType& data)

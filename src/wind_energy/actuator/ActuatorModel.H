@@ -165,7 +165,7 @@ public:
         std::copy(vel.begin(), vel.end(), m_data.grid().vel.begin());
         std::copy(
             density.begin(), density.end(), m_data.grid().density.begin());
-        ops::UpdateVelOp<ActTrait, SrcTrait>()(m_data);
+        ops::UpdateFieldsOp<ActTrait, SrcTrait>()(m_data);
     }
 
     void prescribe_model_velocity() override

@@ -51,7 +51,7 @@ struct UpdatePosOp;
  *  instance data.
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
-struct UpdateVelOp;
+struct UpdateFieldsOp;
 
 /** Update the model velocity if it is prescribed (as opposed to being solved)
  *

@@ -221,12 +221,12 @@ struct UpdatePosOp<TurbineFast, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<TurbineFast, SrcTrait>
+struct UpdateFieldsOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineFast>");
-        update_vel_op<TurbineFast::DataType>(data);
+        BL_PROFILE("kynema-sgf::actuator::UpdateFieldsOp<TurbineFast>");
+        update_fields_op<TurbineFast::DataType>(data);
     }
 };
 

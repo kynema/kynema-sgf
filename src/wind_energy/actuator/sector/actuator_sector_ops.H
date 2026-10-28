@@ -120,7 +120,7 @@ struct UpdatePosOp<ActuatorSector, ActSrcSector>
 };
 
 template <>
-struct UpdateVelOp<ActuatorSector, ActSrcSector>
+struct UpdateFieldsOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& /*data*/) {}
 };

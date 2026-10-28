@@ -173,7 +173,7 @@ void update_pos_op(datatype& data)
 }
 
 template <typename datatype>
-void update_vel_op(datatype& data)
+void update_fields_op(datatype& data)
 {
     // Return early if this is not the root process for this turbine
     //
