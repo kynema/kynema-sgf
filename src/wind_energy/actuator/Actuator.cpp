@@ -112,12 +112,12 @@ void Actuator::post_init_actions()
     }
 
     setup_particle_container();
-    update_positions();
+    update_actuator_and_container_positions();
     sample_fields();
     update_actuator_data_from_particles();
     compute_actuator_loads();
     accumulate_actuator_source_terms_for_fluid();
-    prescribe_model_velocity();
+    prescribe_actuator_velocities();
     compute_actuator_loads();
     prepare_outputs();
 }
@@ -153,9 +153,9 @@ void Actuator::pre_advance_work()
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     // predict_actuator_loads
-    advance_model();
+    advance_actuator_models();
     m_container->reset_container();
-    update_positions();
+    update_actuator_and_container_positions();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
 }
@@ -173,7 +173,7 @@ void Actuator::post_advance_work()
 
     sample_fields();
     update_actuator_data_from_particles();
-    prescribe_model_velocity();
+    prescribe_actuator_velocities();
     compute_actuator_loads();
 }
 
@@ -248,11 +248,13 @@ void Actuator::setup_particle_container()
  *  This physics-level method asks each relevant ActuatorModel to update its
  *  position vectors, then updates the sampling container positions.
  *
- *  \sa Actuator::update_actuator_data_from_particles
+ *  \sa Actuator::update_actuator_and_container_positions
  */
-void Actuator::update_positions()
+void Actuator::update_actuator_and_container_positions()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::update_positions");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::update_actuator_and_container_"
+        "positions");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -301,9 +303,9 @@ void Actuator::update_actuator_data_from_particles()
     }
 }
 
-void Actuator::prescribe_model_velocity()
+void Actuator::prescribe_actuator_velocities()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::prescribe_model_velocity");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::prescribe_actuator_velocities");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
             ac->prescribe_model_velocity();
@@ -321,9 +323,9 @@ void Actuator::compute_actuator_loads()
     }
 }
 
-void Actuator::advance_model()
+void Actuator::advance_actuator_models()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::advance_model");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::advance_actuator_models");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
             ac->advance_model();

@@ -76,17 +76,17 @@ protected:
 private:
     void setup_particle_container();
 
-    void update_positions();
+    void update_actuator_and_container_positions();
 
     void sample_fields();
 
     void update_actuator_data_from_particles();
 
-    void prescribe_model_velocity();
+    void prescribe_actuator_velocities();
 
     void compute_actuator_loads();
 
-    void advance_model();
+    void advance_actuator_models();
 
     void accumulate_actuator_source_terms_for_fluid();
 
