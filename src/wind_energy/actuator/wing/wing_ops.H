@@ -233,15 +233,6 @@ struct ComputeLoadsOp<
             const auto lift_dir = (drag_dir ^ blade_y).unit();
 
             // Compute force on fluid from this section of wing
-            if (ip == 0) {
-                amrex::Print()
-                    << "lift_dir: " << lift_dir.data()[0] << " "
-                    << lift_dir.data()[1] << " " << lift_dir.data()[2] << '\n';
-                amrex::Print()
-                    << "drag_dir: " << drag_dir.data()[0] << " "
-                    << drag_dir.data()[1] << " " << drag_dir.data()[2] << '\n';
-                amrex::Print() << "lift: " << lift << " drag: " << drag << '\n';
-            }
             grid.force[ip] = -((lift_dir * lift) + (drag * drag_dir));
 
             // In global coords, zero disabled force components
@@ -357,9 +348,6 @@ public:
         if (tidx % m_out_freq != 0) {
             return;
         }
-
-        amrex::Print() << m_data.meta().vel_rel[0].data()[0] << " "
-                       << m_data.grid().force[0].data()[0] << '\n';
 
         wing::write_netcdf(
             m_nc_filename, m_data.meta(), m_data.info(), m_data.grid(),
