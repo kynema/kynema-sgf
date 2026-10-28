@@ -122,6 +122,12 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
     }
 };
 
+template <>
+struct PrescribeModelVelocityOp<Joukowsky, ActSrcDisk>
+{
+    void operator()(Joukowsky::DataType& /*data*/) {}
+};
+
 /**
   \brief Compute Forces following procedures of Sorenson 2020
 

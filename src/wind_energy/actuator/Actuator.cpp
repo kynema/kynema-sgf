@@ -117,6 +117,8 @@ void Actuator::post_init_actions()
     update_actuator_data_from_particles();
     compute_actuator_loads();
     accumulate_actuator_source_terms_for_fluid();
+    prescribe_model_velocity();
+    compute_actuator_loads();
     prepare_outputs();
 }
 
@@ -171,6 +173,7 @@ void Actuator::post_advance_work()
 
     sample_fields();
     update_actuator_data_from_particles();
+    prescribe_model_velocity();
     compute_actuator_loads();
 }
 
@@ -293,6 +296,16 @@ void Actuator::update_actuator_data_from_particles()
 
         m_actuators[ig]->update_fields(vel, density);
         ic += pinfo.num_pts[i];
+    }
+}
+
+void Actuator::prescribe_model_velocity()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::prescribe_model_velocity");
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->prescribe_model_velocity();
+        }
     }
 }
 

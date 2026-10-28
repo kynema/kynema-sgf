@@ -55,6 +55,8 @@ public:
 
     virtual void update_fields(const VecSlice&, const RealSlice&) = 0;
 
+    virtual void prescribe_model_velocity() = 0;
+
     virtual void compute_loads() = 0;
 
     virtual void advance_model() = 0;
@@ -161,6 +163,11 @@ public:
         std::copy(
             density.begin(), density.end(), m_data.grid().density.begin());
         ops::UpdateVelOp<ActTrait, SrcTrait>()(m_data);
+    }
+
+    void prescribe_model_velocity() override
+    {
+        ops::PrescribeModelVelocityOp<ActTrait, SrcTrait>()(m_data);
     }
 
     void compute_loads() override

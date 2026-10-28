@@ -231,6 +231,12 @@ struct UpdateVelOp<TurbineFast, SrcTrait>
 };
 
 template <typename SrcTrait>
+struct PrescribeModelVelocityOp<TurbineFast, SrcTrait>
+{
+    void operator()(typename TurbineFast::DataType& /*data*/) {}
+};
+
+template <typename SrcTrait>
 struct ComputeLoadsOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)

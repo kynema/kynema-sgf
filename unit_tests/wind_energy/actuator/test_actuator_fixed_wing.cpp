@@ -186,6 +186,17 @@ struct InitDataOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 };
 
 template <>
+struct PrescribeModelVelocityOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
+{
+    void operator()(::kynema_sgf_tests::FixedWing::DataType& data)
+    {
+        PrescribeModelVelocityOp<::kynema_sgf::actuator::FixedWing, ActSrcLine>
+            actual_op;
+        EXPECT_NO_FATAL_FAILURE(actual_op(data));
+    }
+};
+
+template <>
 struct ComputeLoadsOp<::kynema_sgf_tests::FixedWing, ActSrcLine>
 {
     void operator()(::kynema_sgf_tests::FixedWing::DataType& data)

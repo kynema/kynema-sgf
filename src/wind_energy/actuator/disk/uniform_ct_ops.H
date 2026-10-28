@@ -64,6 +64,13 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 #endif
     }
 };
+
+template <>
+struct PrescribeModelVelocityOp<UniformCt, ActSrcDisk>
+{
+    void operator()(UniformCt::DataType& /*data*/) {}
+};
+
 // compute the total force over a given radial section
 // this will then be spread uniformly over that area in the
 // projection step

@@ -169,6 +169,12 @@ struct UpdateVelOp<TurbineKynemaFMB, SrcTrait>
 };
 
 template <typename SrcTrait>
+struct PrescribeModelVelocityOp<TurbineKynemaFMB, SrcTrait>
+{
+    void operator()(typename TurbineKynemaFMB::DataType& /*data*/) {}
+};
+
+template <typename SrcTrait>
 struct ComputeLoadsOp<TurbineKynemaFMB, SrcTrait>
 {
     void operator()(typename TurbineKynemaFMB::DataType& data)

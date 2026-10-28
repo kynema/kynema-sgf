@@ -208,6 +208,12 @@ struct AdvanceModelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& /*data*/) {}
 };
 
+template <typename SrcTrait>
+struct PrescribeModelVelocityOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+{
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& /*data*/) {}
+};
+
 } // namespace ops
 
 template class ::kynema_sgf::actuator::

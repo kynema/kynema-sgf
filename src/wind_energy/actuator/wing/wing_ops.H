@@ -114,7 +114,7 @@ struct UpdateVelOp<
 };
 
 template <typename ActTrait>
-struct ComputeLoadsOp<
+struct PrescribeModelVelocityOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
@@ -137,6 +137,26 @@ struct ComputeLoadsOp<
         actuator::wing::new_wing_displacement_motion(
             wdata.vel_tr, time.new_time(), time.new_time() + time.delta_t(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
+    }
+};
+
+template <typename ActTrait>
+struct ComputeLoadsOp<
+    ActTrait,
+    ActSrcLine,
+    typename std::enable_if_t<
+        std::is_base_of_v<WingType, ActTrait> &&
+        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+{
+    void operator()(typename ActTrait::DataType& data)
+    {
+        auto& grid = data.grid();
+        auto& wdata = data.meta();
+        const int npts = wdata.num_pts;
+        const auto& dx = wdata.dx;
+        const auto& chord = wdata.chord;
+        const auto& aflookup = airfoil_lookup<ActTrait>(data);
+        const auto& time = data.sim().time();
 
         // Build the local reference frame
         const vs::Vector wspan = wdata.end - wdata.start;
@@ -218,6 +238,15 @@ struct ComputeLoadsOp<
             const auto lift_dir = (drag_dir ^ blade_y).unit();
 
             // Compute force on fluid from this section of wing
+            if (ip == 0) {
+                amrex::Print()
+                    << "lift_dir: " << lift_dir.data()[0] << " "
+                    << lift_dir.data()[1] << " " << lift_dir.data()[2] << '\n';
+                amrex::Print()
+                    << "drag_dir: " << drag_dir.data()[0] << " "
+                    << drag_dir.data()[1] << " " << drag_dir.data()[2] << '\n';
+                amrex::Print() << "lift: " << lift << " drag: " << drag << '\n';
+            }
             grid.force[ip] = -((lift_dir * lift) + (drag * drag_dir));
 
             // In global coords, zero disabled force components
@@ -333,6 +362,9 @@ public:
         if (tidx % m_out_freq != 0) {
             return;
         }
+
+        amrex::Print() << m_data.meta().vel_rel[0].data()[0] << " "
+                       << m_data.grid().force[0].data()[0] << '\n';
 
         wing::write_netcdf(
             m_nc_filename, m_data.meta(), m_data.info(), m_data.grid(),
