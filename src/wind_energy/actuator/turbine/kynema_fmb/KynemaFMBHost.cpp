@@ -1,16 +1,14 @@
-#include <algorithm>
 #include <array>
 #include <cmath>
-#include <memory>
 #include <numbers>
 #include <ranges>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
-// This file is always compiled with the host compiler (see CMakeLists.txt) and
-// must not include AMReX headers that contain GPU code (e.g. AMReX_Vector.H,
-// AMReX_Array.H), which is why standard containers are used here.
+// This file is compiled with the host compiler when Kokkos is host-only (see
+// CMakeLists.txt), so it must not include AMReX headers that contain GPU code
+// (e.g. AMReX_Vector.H, AMReX_Array.H); standard containers are used instead.
 #include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_host.H"
 #include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
 
@@ -200,9 +198,6 @@ void save_and_zero_aerodynamic_loads(
     ti.Turbine().hub_node.loads[2] = 0.0_rt;
 }
 
-} // namespace sgf_fmb
-
-namespace sgf_fmb {
 namespace {
 void build_turbine(
     kynema_fmb::interfaces::TurbineInterfaceBuilder& builder,

@@ -7,12 +7,12 @@
 
 /** Boundary between Kynema-SGF and the Kynema-FMB library
  *
- *  Kynema-FMB and Kokkos may be built for the host only, and nvcc does not lay
- *  out Kokkos::View the same way as the host compiler. All code that uses
- *  Kynema-FMB types therefore lives in KynemaFMBHost.cpp, which is always
- *  compiled with the host compiler. That file cannot include AMReX headers
- *  containing GPU code, so this header only uses plain C++ types and
- *  Kynema-FMB types are only forward declared.
+ *  nvcc does not lay out Kokkos::View the same way as the host compiler, so
+ *  all code that uses Kynema-FMB types lives in KynemaFMBHost.cpp, which is
+ *  compiled with the same compiler as Kokkos (see CMakeLists.txt). With a
+ *  host-only Kokkos that file cannot include AMReX headers containing GPU
+ *  code, so this header only uses plain C++ types and Kynema-FMB types are
+ *  only forward declared.
  */
 namespace kynema_fmb::interfaces {
 class TurbineInterface;
