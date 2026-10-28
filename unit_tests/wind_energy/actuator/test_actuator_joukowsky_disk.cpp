@@ -190,11 +190,11 @@ struct AdvanceModelOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
 };
 
 template <>
-struct PrescribeModelVelocityOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
+struct PrescribeModelMotionOp<::kynema_sgf_tests::Joukowsky, ActSrcDisk>
 {
     void operator()(::kynema_sgf_tests::Joukowsky::DataType& data)
     {
-        PrescribeModelVelocityOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk>
+        PrescribeModelMotionOp<::kynema_sgf::actuator::Joukowsky, ActSrcDisk>
             actual_op;
         EXPECT_NO_FATAL_FAILURE(actual_op(data));
     }

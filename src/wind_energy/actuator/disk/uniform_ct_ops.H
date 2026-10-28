@@ -66,7 +66,7 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 };
 
 template <>
-struct PrescribeModelVelocityOp<UniformCt, ActSrcDisk>
+struct PrescribeModelMotionOp<UniformCt, ActSrcDisk>
 {
     void operator()(UniformCt::DataType& /*data*/) {}
 };

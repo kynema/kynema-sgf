@@ -231,7 +231,7 @@ struct UpdateFieldsOp<TurbineFast, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct PrescribeModelVelocityOp<TurbineFast, SrcTrait>
+struct PrescribeModelMotionOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& /*data*/) {}
 };

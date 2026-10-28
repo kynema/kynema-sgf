@@ -123,7 +123,7 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
 };
 
 template <>
-struct PrescribeModelVelocityOp<Joukowsky, ActSrcDisk>
+struct PrescribeModelMotionOp<Joukowsky, ActSrcDisk>
 {
     void operator()(Joukowsky::DataType& /*data*/) {}
 };

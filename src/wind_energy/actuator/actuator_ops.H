@@ -53,12 +53,12 @@ struct UpdatePosOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdateFieldsOp;
 
-/** Update the model velocity if it is prescribed (as opposed to being solved)
+/** Update the model motion if it is prescribed (as opposed to being solved)
  *
  *  \ingroup actuator
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
-struct PrescribeModelVelocityOp;
+struct PrescribeModelMotionOp;
 
 /** Compute actuator loads and scatter them to the relevant processes.
  *

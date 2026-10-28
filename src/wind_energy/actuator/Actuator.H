@@ -82,7 +82,7 @@ private:
 
     void update_actuator_data_from_particles();
 
-    void prescribe_actuator_velocities();
+    void prescribe_actuator_motion();
 
     void compute_actuator_loads();
 

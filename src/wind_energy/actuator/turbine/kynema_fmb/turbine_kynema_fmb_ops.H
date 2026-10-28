@@ -169,7 +169,7 @@ struct UpdateFieldsOp<TurbineKynemaFMB, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct PrescribeModelVelocityOp<TurbineKynemaFMB, SrcTrait>
+struct PrescribeModelMotionOp<TurbineKynemaFMB, SrcTrait>
 {
     void operator()(typename TurbineKynemaFMB::DataType& /*data*/) {}
 };

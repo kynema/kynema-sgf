@@ -114,7 +114,7 @@ struct UpdateFieldsOp<
 };
 
 template <typename ActTrait>
-struct PrescribeModelVelocityOp<
+struct PrescribeModelMotionOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<

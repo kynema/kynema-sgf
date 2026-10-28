@@ -58,7 +58,7 @@ public:
 
     virtual void update_fields(const VecSlice&, const RealSlice&) = 0;
 
-    virtual void prescribe_model_velocity() = 0;
+    virtual void prescribe_model_motion() = 0;
 
     virtual void compute_loads() = 0;
 
@@ -168,9 +168,9 @@ public:
         ops::UpdateFieldsOp<ActTrait, SrcTrait>()(m_data);
     }
 
-    void prescribe_model_velocity() override
+    void prescribe_model_motion() override
     {
-        ops::PrescribeModelVelocityOp<ActTrait, SrcTrait>()(m_data);
+        ops::PrescribeModelMotionOp<ActTrait, SrcTrait>()(m_data);
     }
 
     void compute_loads() override

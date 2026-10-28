@@ -209,7 +209,7 @@ struct AdvanceModelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct PrescribeModelVelocityOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+struct PrescribeModelMotionOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& /*data*/) {}
 };

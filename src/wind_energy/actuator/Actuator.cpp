@@ -116,7 +116,7 @@ void Actuator::post_init_actions()
     sample_fields();
     update_actuator_data_from_particles();
     advance_actuator_models();
-    prescribe_actuator_velocities();
+    prescribe_actuator_motion();
     compute_actuator_loads();
     accumulate_actuator_source_terms_for_fluid();
     prepare_outputs();
@@ -157,7 +157,7 @@ void Actuator::pre_advance_work()
     sample_fields();
     update_actuator_data_from_particles();
     advance_actuator_models();
-    prescribe_actuator_velocities();
+    prescribe_actuator_motion();
     compute_actuator_loads();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
@@ -301,12 +301,12 @@ void Actuator::update_actuator_data_from_particles()
     }
 }
 
-void Actuator::prescribe_actuator_velocities()
+void Actuator::prescribe_actuator_motion()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::prescribe_actuator_velocities");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::prescribe_actuator_motion");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
-            ac->prescribe_model_velocity();
+            ac->prescribe_model_motion();
         }
     }
 }
