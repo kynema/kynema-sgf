@@ -163,8 +163,7 @@ struct UpdateFieldsOp<TurbineKynemaFMB, SrcTrait>
 {
     void operator()(typename TurbineKynemaFMB::DataType& data)
     {
-        BL_PROFILE(
-            "kynema-sgf::actuator::UpdateFieldsOp<TurbineKynemaFMB>");
+        BL_PROFILE("kynema-sgf::actuator::UpdateFieldsOp<TurbineKynemaFMB>");
         update_fields_op<TurbineKynemaFMB::DataType>(data);
     }
 };
