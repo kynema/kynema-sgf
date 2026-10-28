@@ -23,7 +23,10 @@ namespace actuator {
  *  wing) that exists in the computational domain. A collection of source
  *  objects (e.g., turbines in a wind farm) is modeled using the
  *  kynema_sgf::Actuator physics class that holds a collection of instances of
- *  ActuatorModel and acts on them.
+ *  ActuatorModel and coordinates their work. Actuator physics-level methods
+ *  handle the collection (e.g., Actuator::sample_fields()); ActuatorModel
+ *  methods such as ActuatorModel::update_fields() handle one instance and
+ *  dispatch to its actuator-type operations.
  */
 class ActuatorModel
     : public Factory<ActuatorModel, CFDSim&, const std::string&, const int>
@@ -76,10 +79,10 @@ public:
  *  \ingroup actuator
  *
  *  \tparam ActTrait An actuator type trait that defines the behavior of the
- *  different actions (initialization, velocity sampling, load computation and
+ *  different actions (initialization, field sampling, load computation and
  *  state updates, and momentum source term computations) that are executed by
- *  the ActuatorModel
- *  class through the kynema_sgf::Actuator physics driver class.
+ *  the ActuatorModel class through the kynema_sgf::Actuator physics driver
+ *  class.
  *
  *  \tparam SrcTrait A source type trait that defines how the forcing term is
  *  computed, e.g., if the turbine rotor is represented as a line or a disk. For

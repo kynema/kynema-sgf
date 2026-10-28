@@ -25,7 +25,7 @@ struct ReadInputsOp;
  *  This operator is responsible for allocating memory ensuring that the
  *  actuator instance has been initialized and ready to be used by the Actuator
  *  physics instance. This function is called once during
- * Actuator::post_init_actions
+ *  Actuator::post_init_actions().
  *
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
@@ -35,20 +35,20 @@ struct InitDataOp;
  *
  *  \ingroup actuator
  *
- *  After this call, the interface expects updated position vectors in the
- *  vel_pos array of the actuator grid instance. These positions will be used
- *  the sample the velocity field during the simulation.
+ *  After this call, the actuator grid's vel_pos array contains the updated
+ *  position vectors. The Actuator physics-level method coordinates this
+ *  actuator-type operation and updates the sampling container.
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdatePosOp;
 
-/** Process updated velocities from CFD flow field.
+/** Update actuator fields from sampled flow data.
  *
  *  \ingroup actuator
  *
- *  The actuator physics interface will populate the `vel` array of the
- *  actuator grid instance before calling this function. The updated velocities
- *  can be further processed by specializing this function.
+ *  ActuatorModel::update_fields() copies sampled velocity and density into the
+ *  actuator grid, then dispatches to this actuator-type operation to update
+ *  instance data.
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdateVelOp;
@@ -87,9 +87,8 @@ struct ProcessOutputsOp;
 /** Determine the list of processes (MPI ranks) that is expected to be
  *  influenced by this actuator source.
  *
- *  The list of processes is used to determine where velocity sampling data is
- *  too be gathered, as well as ensuring that all actuator data is properly
- *  mapped.
+ *  The list of processes determines where sampled fields are gathered and
+ *  ensures that all actuator data is properly mapped.
  */
 template <typename T>
 void determine_influenced_procs(typename T::DataType& /*data*/);

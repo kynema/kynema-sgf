@@ -25,6 +25,9 @@ class ActuatorContainer;
  *  This class provides an interface to model wind turbines in a wind farm as
  *  actuator line/disk source terms.
  *
+ *  Actuator methods coordinate work across all instances; ActuatorModel
+ *  methods such as update_fields() operate on one instance.
+ *
  *  \sa ActuatorModel, ActuatorContainer
  */
 class Actuator : public Physics::Register<Actuator>

@@ -212,10 +212,10 @@ void Actuator::communicate_turbine_io()
 #endif
 }
 
-/** Set up the container for sampling velocities
+/** Set up the container for sampling fields.
  *
  *  Allocates memory and initializes the particles corresponding to actuator
- *  nodes for all turbines that influence the current MPI rank. This method is
+ *  nodes for all actuators that influence the current MPI rank. This method is
  *  invoked once during initialization and during regrid step.
  */
 void Actuator::setup_particle_container()
@@ -243,11 +243,10 @@ void Actuator::setup_particle_container()
     m_container->initialize_container();
 }
 
-/** Update actuator-node positions and sample the local flow field there.
+/** Update actuator-node positions.
  *
- *  This method loops over all turbine nodes local to this MPI rank, updates
- *  the position vectors, pushes them into the sampling container, and samples
- *  velocity and density from the CFD mesh at those new locations.
+ *  This physics-level method asks each relevant ActuatorModel to update its
+ *  position vectors, then updates the sampling container positions.
  *
  *  \sa Actuator::update_actuator_data_from_particles
  */
@@ -269,21 +268,24 @@ void Actuator::sample_fields()
 {
     BL_PROFILE("kynema-sgf::actuator::Actuator::sample_fields");
 
-    // Sample the local velocity and density at the updated actuator locations
+    // Sample velocity and density at the updated actuator locations.
     const auto& vel = m_sim.repo().get_field("velocity");
     const auto& density = m_sim.repo().get_field("density");
     m_container->sample_fields(vel, density);
 }
 
-/** Copy the sampled flow data back into each actuator instance.
+/** Copy sampled fields back into each actuator instance.
  *
- *  \sa Actuator::update_positions_and_sample_fields
+ *  ActuatorModel::update_fields passes those fields to the actuator-type
+ *  operation that updates its instance data.
+ *
+ *  \sa Actuator::sample_fields
  */
 void Actuator::update_actuator_data_from_particles()
 {
     BL_PROFILE(
-        "kynema-sgf::actuator::Actuator::update_actuator_state_from_sampled_"
-        "fields");
+        "kynema-sgf::actuator::Actuator::update_actuator_data_from_"
+        "particles");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
