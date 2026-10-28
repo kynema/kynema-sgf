@@ -11,6 +11,8 @@
 #include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
+#include <type_traits>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf::actuator {
@@ -74,7 +76,9 @@ struct UseDefaultOp
 {
     static constexpr bool update_pos = true;
     static constexpr bool update_fields = true;
-    static constexpr bool compute_force = true;
+    static constexpr bool prescribe_motion = true;
+    static constexpr bool compute_loads = true;
+    static constexpr bool advance_model = true;
     static constexpr bool process_outputs = true;
 };
 
@@ -119,16 +123,13 @@ struct PrescribeModelMotionOp<
     ActSrcLine,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+        UseDefaultOp<ActTrait, ActSrcLine>::prescribe_motion>>
 {
     void operator()(typename ActTrait::DataType& data)
     {
         auto& grid = data.grid();
         auto& wdata = data.meta();
         const int npts = wdata.num_pts;
-        const auto& dx = wdata.dx;
-        const auto& chord = wdata.chord;
-        const auto& aflookup = airfoil_lookup<ActTrait>(data);
         const auto& time = data.sim().time();
 
         // Move force points to location at n+1 using displacement vector
@@ -167,7 +168,7 @@ struct ComputeLoadsOp<
     ActSrcLine,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+        UseDefaultOp<ActTrait, ActSrcLine>::compute_loads>>
 {
     void operator()(typename ActTrait::DataType& data)
     {
@@ -177,7 +178,6 @@ struct ComputeLoadsOp<
         const auto& dx = wdata.dx;
         const auto& chord = wdata.chord;
         const auto& aflookup = airfoil_lookup<ActTrait>(data);
-        const auto& time = data.sim().time();
 
         // Build the local reference frame
         const vs::Vector wspan = wdata.end - wdata.start;
@@ -275,7 +275,7 @@ struct AdvanceModelOp<
     ActSrcLine,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+        UseDefaultOp<ActTrait, ActSrcLine>::advance_model>>
 {
     void operator()(typename ActTrait::DataType& data)
     {
@@ -301,7 +301,7 @@ struct ProcessOutputsOp<
     SrcTrait,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::process_outputs>>
+        UseDefaultOp<ActTrait, SrcTrait>::process_outputs>>
 {
 private:
     typename ActTrait::DataType& m_data;
