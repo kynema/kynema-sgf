@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::interp Namespace Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::interp Namespace Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/namespacekynema__sgf_1_1interp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interp-namespace-reference">
+<h1>interp Namespace Reference<a class="headerlink" href="#interp-namespace-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::interp Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="namespacekynema__sgf_1_1interp.html">interp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::interp Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Index" id="r_Index"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a4d454c0ac0d38c2efc4e92b5d7ab419c" id="r_a4d454c0ac0d38c2efc4e92b5d7ab419c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d454c0ac0d38c2efc4e92b5d7ab419c">Limits</a> : int { <a class="el" href="#a4d454c0ac0d38c2efc4e92b5d7ab419caee3e9e533a2530a35ae6092ff5ac6f16">LOWLIM</a> = -2
+, <a class="el" href="#a4d454c0ac0d38c2efc4e92b5d7ab419ca26c3945e7c9cf7dc79efc95e8f3a118d">UPLIM</a> = -1
+, <a class="el" href="#a4d454c0ac0d38c2efc4e92b5d7ab419cac9f1a6384b1c466d4612f513bd8e13ea">VALID</a> = 0
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a3da97f674f95c19ed1d4a5f132ca86ae" id="r_a3da97f674f95c19ed1d4a5f132ca86ae"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a3da97f674f95c19ed1d4a5f132ca86ae template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3da97f674f95c19ed1d4a5f132ca86ae">check_bounds</a> (const It begin, const It end, const T &amp;x)</td></tr>
+<tr class="memitem:a485e0ea02297bf9cd67cad9eff8703b6" id="r_a485e0ea02297bf9cd67cad9eff8703b6"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a485e0ea02297bf9cd67cad9eff8703b6 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a485e0ea02297bf9cd67cad9eff8703b6">bisection_search</a> (const It begin, const It end, const T &amp;x)</td></tr>
+<tr class="memitem:a34f9693f33eee16883d272160777665c" id="r_a34f9693f33eee16883d272160777665c"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a34f9693f33eee16883d272160777665c template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34f9693f33eee16883d272160777665c">nearest_search</a> (const It begin, const It end, const T &amp;x)</td></tr>
+<tr class="memitem:a7c434522f93314e3081247a9b386c395" id="r_a7c434522f93314e3081247a9b386c395"><td class="memTemplParams" colspan="2">template&lt;typename It, typename T&gt; </td></tr>
+<tr class="memitem:a7c434522f93314e3081247a9b386c395 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c434522f93314e3081247a9b386c395">find_index</a> (const It begin, const It end, const T &amp;x, const int hint=1)</td></tr>
+<tr class="memitem:a4eeb25bd2638eacbdff7fb9d11259cb3" id="r_a4eeb25bd2638eacbdff7fb9d11259cb3"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a4eeb25bd2638eacbdff7fb9d11259cb3 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eeb25bd2638eacbdff7fb9d11259cb3">linear_impl</a> (const C1 xbegin, const C2 yinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;idx, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:a07559a548d527f576e9c24e302ed8ba5" id="r_a07559a548d527f576e9c24e302ed8ba5"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a07559a548d527f576e9c24e302ed8ba5 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07559a548d527f576e9c24e302ed8ba5">linear</a> (const C1 xbegin, const C1 xend, const C2 yinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:aee0ba5f8d6b8e5ca370c372db374375e" id="r_aee0ba5f8d6b8e5ca370c372db374375e"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:aee0ba5f8d6b8e5ca370c372db374375e template"><td class="memItemLeft" align="right" valign="top">C2::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee0ba5f8d6b8e5ca370c372db374375e">linear</a> (const C1 &amp;xinp, const C2 &amp;yinp, const typename C1::value_type &amp;xout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:a7fab6457712b89310d71ed2bb57d3c26" id="r_a7fab6457712b89310d71ed2bb57d3c26"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a7fab6457712b89310d71ed2bb57d3c26 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fab6457712b89310d71ed2bb57d3c26">linear_monotonic</a> (const C1 &amp;xinp, const C2 &amp;yinp, const C1 &amp;xout, C2 &amp;yout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:a95dde3c8f8723432f08d08458cb9d206" id="r_a95dde3c8f8723432f08d08458cb9d206"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a95dde3c8f8723432f08d08458cb9d206 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95dde3c8f8723432f08d08458cb9d206">linear</a> (const C1 &amp;xinp, const C2 &amp;yinp, const C1 &amp;xout, C2 &amp;yout, const int ncomp=1, const int comp=0)</td></tr>
+<tr class="memitem:adf5f737239fadc849f22752e6ad0e682" id="r_adf5f737239fadc849f22752e6ad0e682"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:adf5f737239fadc849f22752e6ad0e682 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf5f737239fadc849f22752e6ad0e682">linear_angle</a> (const C1 xbegin, const C1 xend, const C2 yinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;upper_bound)</td></tr>
+<tr class="memitem:a4bcd0b6daec58c1ac45d8f4393437ebe" id="r_a4bcd0b6daec58c1ac45d8f4393437ebe"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a4bcd0b6daec58c1ac45d8f4393437ebe template"><td class="memItemLeft" align="right" valign="top">C2::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bcd0b6daec58c1ac45d8f4393437ebe">linear_angle</a> (const C1 &amp;xinp, const C2 &amp;yinp, const typename C1::value_type &amp;xout, const typename C1::value_type &amp;upper_bound)</td></tr>
+<tr class="memitem:a56f5af954038e254ec4f5ce2d30a78a1" id="r_a56f5af954038e254ec4f5ce2d30a78a1"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a56f5af954038e254ec4f5ce2d30a78a1 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56f5af954038e254ec4f5ce2d30a78a1">linear_angle</a> (const C1 &amp;xinp, const C2 &amp;yinp, const C1 &amp;xout, C2 &amp;yout, const typename C1::value_type &amp;upper_bound)</td></tr>
+<tr class="memitem:abf15f1f6275f92c8839f0988aaec1d16" id="r_abf15f1f6275f92c8839f0988aaec1d16"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:abf15f1f6275f92c8839f0988aaec1d16 template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf15f1f6275f92c8839f0988aaec1d16">bilinear_impl</a> (const C1 xbegin, const C1 ybegin, const int ny, const C2 zinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;yout, const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;xidx, const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;yidx)</td></tr>
+<tr class="memitem:a618fb20104411ebaa857207115715efe" id="r_a618fb20104411ebaa857207115715efe"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a618fb20104411ebaa857207115715efe template"><td class="memItemLeft" align="right" valign="top">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a618fb20104411ebaa857207115715efe">bilinear</a> (const C1 xbegin, const C1 xend, const C1 ybegin, const C1 yend, const C2 zinp, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;xout, const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;yout)</td></tr>
+<tr class="memitem:a1aaf71264d1543a3f7c36047071d68db" id="r_a1aaf71264d1543a3f7c36047071d68db"><td class="memTemplParams" colspan="2">template&lt;typename C1, typename C2&gt; </td></tr>
+<tr class="memitem:a1aaf71264d1543a3f7c36047071d68db template"><td class="memItemLeft" align="right" valign="top">C2::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aaf71264d1543a3f7c36047071d68db">bilinear</a> (const C1 &amp;xinp, const C1 &amp;yinp, const C2 &amp;zinp, const typename C1::value_type &amp;xout, const typename C1::value_type &amp;yout)</td></tr>
+</table>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="a4d454c0ac0d38c2efc4e92b5d7ab419c" name="a4d454c0ac0d38c2efc4e92b5d7ab419c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d454c0ac0d38c2efc4e92b5d7ab419c">&#9670;&#160;</a></span>Limits</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a4d454c0ac0d38c2efc4e92b5d7ab419c">kynema_sgf::interp::Limits</a> : int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a4d454c0ac0d38c2efc4e92b5d7ab419caee3e9e533a2530a35ae6092ff5ac6f16" name="a4d454c0ac0d38c2efc4e92b5d7ab419caee3e9e533a2530a35ae6092ff5ac6f16"></a>LOWLIM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a4d454c0ac0d38c2efc4e92b5d7ab419ca26c3945e7c9cf7dc79efc95e8f3a118d" name="a4d454c0ac0d38c2efc4e92b5d7ab419ca26c3945e7c9cf7dc79efc95e8f3a118d"></a>UPLIM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a4d454c0ac0d38c2efc4e92b5d7ab419cac9f1a6384b1c466d4612f513bd8e13ea" name="a4d454c0ac0d38c2efc4e92b5d7ab419cac9f1a6384b1c466d4612f513bd8e13ea"></a>VALID&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a1aaf71264d1543a3f7c36047071d68db" name="a1aaf71264d1543a3f7c36047071d68db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aaf71264d1543a3f7c36047071d68db">&#9670;&#160;</a></span>bilinear() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">C2::value_type kynema_sgf::interp::bilinear </td>
+          <td>(</td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>zinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename C1::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename C1::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>yout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a618fb20104411ebaa857207115715efe" name="a618fb20104411ebaa857207115715efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a618fb20104411ebaa857207115715efe">&#9670;&#160;</a></span>bilinear() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type kynema_sgf::interp::bilinear </td>
+          <td>(</td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xend</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>ybegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>yend</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2</td>          <td class="paramname"><span class="paramname"><em>zinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>yout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf15f1f6275f92c8839f0988aaec1d16" name="abf15f1f6275f92c8839f0988aaec1d16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf15f1f6275f92c8839f0988aaec1d16">&#9670;&#160;</a></span>bilinear_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type kynema_sgf::interp::bilinear_impl </td>
+          <td>(</td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>ybegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ny</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2</td>          <td class="paramname"><span class="paramname"><em>zinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>yout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xidx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>yidx</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a485e0ea02297bf9cd67cad9eff8703b6" name="a485e0ea02297bf9cd67cad9eff8703b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a485e0ea02297bf9cd67cad9eff8703b6">&#9670;&#160;</a></span>bisection_search()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename It, typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> kynema_sgf::interp::bisection_search </td>
+          <td>(</td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>begin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3da97f674f95c19ed1d4a5f132ca86ae" name="a3da97f674f95c19ed1d4a5f132ca86ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3da97f674f95c19ed1d4a5f132ca86ae">&#9670;&#160;</a></span>check_bounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename It, typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> kynema_sgf::interp::check_bounds </td>
+          <td>(</td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>begin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c434522f93314e3081247a9b386c395" name="a7c434522f93314e3081247a9b386c395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c434522f93314e3081247a9b386c395">&#9670;&#160;</a></span>find_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename It, typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> kynema_sgf::interp::find_index </td>
+          <td>(</td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>begin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>hint</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95dde3c8f8723432f08d08458cb9d206" name="a95dde3c8f8723432f08d08458cb9d206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95dde3c8f8723432f08d08458cb9d206">&#9670;&#160;</a></span>linear() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::interp::linear </td>
+          <td>(</td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee0ba5f8d6b8e5ca370c372db374375e" name="aee0ba5f8d6b8e5ca370c372db374375e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee0ba5f8d6b8e5ca370c372db374375e">&#9670;&#160;</a></span>linear() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">C2::value_type kynema_sgf::interp::linear </td>
+          <td>(</td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename C1::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07559a548d527f576e9c24e302ed8ba5" name="a07559a548d527f576e9c24e302ed8ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07559a548d527f576e9c24e302ed8ba5">&#9670;&#160;</a></span>linear() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type kynema_sgf::interp::linear </td>
+          <td>(</td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xend</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56f5af954038e254ec4f5ce2d30a78a1" name="a56f5af954038e254ec4f5ce2d30a78a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f5af954038e254ec4f5ce2d30a78a1">&#9670;&#160;</a></span>linear_angle() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::interp::linear_angle </td>
+          <td>(</td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename C1::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>upper_bound</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4bcd0b6daec58c1ac45d8f4393437ebe" name="a4bcd0b6daec58c1ac45d8f4393437ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bcd0b6daec58c1ac45d8f4393437ebe">&#9670;&#160;</a></span>linear_angle() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">C2::value_type kynema_sgf::interp::linear_angle </td>
+          <td>(</td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename C1::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename C1::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>upper_bound</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf5f737239fadc849f22752e6ad0e682" name="adf5f737239fadc849f22752e6ad0e682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf5f737239fadc849f22752e6ad0e682">&#9670;&#160;</a></span>linear_angle() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type kynema_sgf::interp::linear_angle </td>
+          <td>(</td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xend</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>upper_bound</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4eeb25bd2638eacbdff7fb9d11259cb3" name="a4eeb25bd2638eacbdff7fb9d11259cb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eeb25bd2638eacbdff7fb9d11259cb3">&#9670;&#160;</a></span>linear_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE std::iterator_traits&lt; C2 &gt;::value_type kynema_sgf::interp::linear_impl </td>
+          <td>(</td>
+          <td class="paramtype">const C1</td>          <td class="paramname"><span class="paramname"><em>xbegin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename std::iterator_traits&lt; C1 &gt;::value_type &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>idx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fab6457712b89310d71ed2bb57d3c26" name="a7fab6457712b89310d71ed2bb57d3c26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fab6457712b89310d71ed2bb57d3c26">&#9670;&#160;</a></span>linear_monotonic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename C1, typename C2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::interp::linear_monotonic </td>
+          <td>(</td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yinp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const C1 &amp;</td>          <td class="paramname"><span class="paramname"><em>xout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">C2 &amp;</td>          <td class="paramname"><span class="paramname"><em>yout</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>ncomp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>comp</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34f9693f33eee16883d272160777665c" name="a34f9693f33eee16883d272160777665c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f9693f33eee16883d272160777665c">&#9670;&#160;</a></span>nearest_search()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename It, typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE <a class="el" href="structkynema__sgf_1_1interp_1_1_index.html">Index</a> kynema_sgf::interp::nearest_search </td>
+          <td>(</td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>begin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const It</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
