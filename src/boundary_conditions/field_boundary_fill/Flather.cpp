@@ -606,6 +606,7 @@ void Flather::set_velocity(
                     arr(iv, fcomp) = local_vel;
                 }
             });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, fcomp, 1);
         }
     }
 }

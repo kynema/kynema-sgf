@@ -1588,6 +1588,8 @@ void BoundaryPlane::populate_data(
                         dest(iv, n + dcomp) = 0.0_rt;
                     }
                 });
+            utils::extend_boundary_ghost_layers(
+                bx, dest, ori, dcomp, static_cast<int>(nc));
         }
     }
 

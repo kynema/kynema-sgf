@@ -24,10 +24,13 @@ The boundary conditions that can be specified in the input file are:
 
 - =mass_inflow= :: This is an inflow or inlet BC. The user must specify a value
   for the solution variable when using this boundary condition. The =BCRec= is
-  =ext_dir= and the user-specified value is filled in the ghost cell, and
-  interpreted as the value on the boundary face, during fillpatch operations.
-  The =LinOpBCType= is set to Dirichlet. When specifying =mass_inflow=, the user
-  *must* specify the values for the variable in the input file.
+  =ext_dir= and the user-specified value is filled in all the ghost cell layers,
+  and interpreted as the value on the boundary face, during fillpatch
+  operations. Auxiliary inflow fills (e.g., boundary planes, Flather, ocean
+  waves) compute the first ghost layer and replicate it outward through the
+  remaining ghost layers. The =LinOpBCType= is set to Dirichlet. When specifying
+  =mass_inflow=, the user *must* specify the values for the variable in the
+  input file.
 
 - =pressure_outflow= :: =BCRec = foextrap= and =LinOpBCType = Neumann=. This is
   the standard outflow BC for velocity and scalars. For MAC projection and

@@ -205,6 +205,7 @@ void ModulatedPowerLaw::set_velocity(
                     arr(i, j, k, dcomp + n) = vels[orig_comp + n];
                 }
             });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, dcomp, numcomp);
         }
     }
 }
@@ -281,6 +282,7 @@ void ModulatedPowerLaw::set_temperature(
                                                       theta_gauss_var, engine);
                     }
                 });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, 0, 1);
         }
     }
 }

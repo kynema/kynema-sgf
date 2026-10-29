@@ -8,6 +8,9 @@
 #include "AMReX_RealBox.H"
 #include "AMReX_RealVect.H"
 #include "AMReX_Geometry.H"
+#include "AMReX_Array4.H"
+#include "AMReX_Gpu.H"
+#include "AMReX_Orientation.H"
 
 using namespace amrex::literals;
 
@@ -92,6 +95,50 @@ AMREX_INLINE amrex::Box face_aware_boundary_box_intersection(
     amrex::IntVect shift_to_cc = {0, 0, 0};
     return face_aware_boundary_box_intersection(
         shift_to_cc, grown_interior_box, domain_boundary_box, ori);
+}
+
+/** Replicate the first boundary ghost layer outward through all remaining
+ * ghost layers available in the array along the boundary normal.
+ *
+ * This matches the AMReX ext_dir convention, where every ghost layer of a
+ * Dirichlet boundary holds the boundary value. Intended for auxiliary
+ * boundary fill calls that compute only the first ghost layer.
+ *
+ *  \param bx single-layer box of the first ghost cells (or ghost faces) that
+ * have already been filled, in the index space of arr
+ *  \param arr array holding the data, including ghost cells
+ *  \param ori orientation of the boundary being filled
+ *  \param scomp first component to replicate
+ *  \param ncomp number of components to replicate
+ */
+AMREX_INLINE void extend_boundary_ghost_layers(
+    const amrex::Box& bx,
+    amrex::Array4<amrex::Real> const& arr,
+    const amrex::Orientation& ori,
+    const int scomp,
+    const int ncomp)
+{
+    if (!bx.ok()) {
+        return;
+    }
+    const int idir = ori.coordDir();
+    AMREX_ASSERT(bx.length(idir) == 1);
+    const amrex::IntVect alo(amrex::lbound(arr));
+    const amrex::IntVect ahi(amrex::ubound(arr));
+    const int nlayers = ori.isLow() ? (bx.smallEnd(idir) - alo[idir])
+                                    : (ahi[idir] - bx.bigEnd(idir));
+    if (nlayers <= 0) {
+        return;
+    }
+    const amrex::IntVect outward =
+        amrex::IntVect::TheDimensionVector(idir) * (ori.isLow() ? -1 : 1);
+    amrex::ParallelFor(
+        bx, ncomp, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+            const amrex::IntVect iv{i, j, k};
+            for (int g = 1; g <= nlayers; ++g) {
+                arr(iv + (g * outward), scomp + n) = arr(iv, scomp + n);
+            }
+        });
 }
 
 //! Check if a point is inside a box
