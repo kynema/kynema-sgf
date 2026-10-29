@@ -80,7 +80,8 @@ void kynema_sgf::nodal_projection::enforce_inout_solvability(
     const amrex::Vector<amrex::Geometry>& geom,
     const int num_levels)
 {
-    amrex::BCRec const* bc_type = velocity.bcrec().data();
+    const auto bcrec = velocity.inout_bcrec();
+    amrex::BCRec const* bc_type = bcrec.data();
     amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>> vel_vec(
         num_levels);
 
@@ -313,13 +314,12 @@ void incflo::ApplyProjection(
 
             // fill periodic boundaries to avoid corner cell issues
             vel[lev]->FillBoundary(geom[lev].periodicity());
-        }
-    }
 
-    // Need to apply custom Neumann funcs for inflow-outflow BC
-    // after setting the inflow vels above
-    if (!proj_for_small_dt and !incremental and velocity.has_inout_bndry()) {
-        velocity.apply_bc_funcs(kynema_sgf::FieldState::New);
+            // Extrapolate at outflow portions of inflow-outflow boundaries
+            // after setting the inflow vels above
+            velocity.fill_inout_outflow(
+                lev, time, *vel[lev], amrex::IntVect(1));
+        }
     }
 
     if (is_anelastic) {

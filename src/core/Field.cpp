@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <utility>
 
 #include "src/core/Field.H"
@@ -179,6 +180,7 @@ void Field::fillpatch(
     for (const auto& fop : m_info->m_fillpatch_ops) {
         fop->fillpatch(lev, time, mfab, nghost, field_state());
     }
+    fill_inout_outflow(lev, time, mfab, nghost);
 }
 
 void Field::fillpatch_from_coarse(
@@ -193,6 +195,7 @@ void Field::fillpatch_from_coarse(
     for (const auto& fop : m_info->m_fillpatch_ops) {
         fop->fillpatch_from_coarse(lev, time, mfab, nghost, field_state());
     }
+    fill_inout_outflow(lev, time, mfab, nghost);
 }
 
 void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng)
@@ -206,6 +209,7 @@ void Field::fillpatch(const amrex::Real time, const amrex::IntVect ng)
             fop->fillpatch(
                 lev, time, m_repo.get_multifab(m_id, lev), ng, field_state());
         }
+        fill_inout_outflow(lev, time, m_repo.get_multifab(m_id, lev), ng);
     }
 }
 
@@ -251,6 +255,7 @@ void Field::fillphysbc(
     for (const auto& fop : m_info->m_fillpatch_ops) {
         fop->fillphysbc(lev, time, mfab, ng, field_state());
     }
+    fill_inout_outflow(lev, time, mfab, ng);
 }
 
 void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng)
@@ -264,6 +269,7 @@ void Field::fillphysbc(const amrex::Real time, const amrex::IntVect ng)
             fop->fillphysbc(
                 lev, time, m_repo.get_multifab(m_id, lev), ng, field_state());
         }
+        fill_inout_outflow(lev, time, m_repo.get_multifab(m_id, lev), ng);
     }
 }
 
@@ -286,6 +292,137 @@ void Field::fillphysbc_type(
                 field_state());
         }
     }
+}
+
+bool Field::has_inout_bndry() const
+{
+    const auto& bctype = bc_type();
+    return std::any_of(bctype.begin(), bctype.end(), [](const BC bct) {
+        return bct == BC::mass_inflow_outflow;
+    });
+}
+
+void Field::fill_inout_outflow(
+    const int lev,
+    const amrex::Real time,
+    amrex::MultiFab& mfab,
+    const amrex::IntVect& nghost)
+{
+    if (!has_inout_bndry() || !mfab.ixType().cellCentered() ||
+        m_info->m_bcrec.empty()) {
+        return;
+    }
+    BL_PROFILE("kynema-sgf::Field::fill_inout_outflow");
+
+    const auto ng = amrex::min(nghost, mfab.nGrowVect());
+    const auto& bctype = bc_type();
+    const auto& bcrec = m_info->m_bcrec[0];
+    amrex::Vector<amrex::Orientation> oris;
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        const int idir = ori.coordDir();
+        const int bcr = ori.isLow() ? bcrec.lo(idir) : bcrec.hi(idir);
+        if ((bctype[ori] == BC::mass_inflow_outflow) && (ng[idir] > 0) &&
+            (bcr == amrex::BCType::ext_dir)) {
+            oris.push_back(ori);
+        }
+    }
+    if (oris.empty() || !m_repo.field_exists("velocity")) {
+        return;
+    }
+
+    // The flow direction is set by the prescribed boundary-normal velocity.
+    // The velocity field reads it from its own first ghost layer, which holds
+    // the prescribed values after its fill operations. Other fields evaluate
+    // the velocity fill operations on a temporary buffer.
+    auto& velocity = m_repo.get_field("velocity");
+    const bool is_velocity = (m_info == velocity.m_info);
+    amrex::MultiFab vel_bndry;
+    if (!is_velocity) {
+        BL_ASSERT(velocity.m_info->m_bc_copied_to_device);
+        if (velocity.m_info->m_fillpatch_ops.empty()) {
+            return;
+        }
+        vel_bndry.define(
+            mfab.boxArray(), mfab.DistributionMap(), velocity.num_comp(), ng);
+        vel_bndry.setVal(0.0_rt);
+        for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
+            fop->fillphysbc(lev, time, vel_bndry, ng, velocity.field_state());
+        }
+    }
+    const amrex::MultiFab& vel_mf = is_velocity ? mfab : vel_bndry;
+
+    const auto& domain = m_repo.mesh().Geom(lev).Domain();
+    const int ncomp = mfab.nComp();
+    for (const auto& ori : oris) {
+        const int idir = ori.coordDir();
+        const bool is_low = ori.isLow();
+        amrex::Box tdomain(domain);
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            if (d != idir) {
+                tdomain.grow(d, ng[d]);
+            }
+        }
+        const auto dbx = is_low ? amrex::adjCellLo(tdomain, idir, ng[idir])
+                                : amrex::adjCellHi(tdomain, idir, ng[idir]);
+        const int iint = is_low ? domain.smallEnd(idir) : domain.bigEnd(idir);
+        const int ighost = is_low ? iint - 1 : iint + 1;
+        const amrex::Real outward = is_low ? -1.0_rt : 1.0_rt;
+
+#ifdef AMREX_USE_OMP
+#pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
+#endif
+        for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
+            const auto bx = amrex::grow(mfi.validbox(), ng) & dbx;
+            if (!bx.ok()) {
+                continue;
+            }
+            const int glo = bx.smallEnd(idir);
+            const int ghi = bx.bigEnd(idir);
+            auto plane = bx;
+            plane.setRange(idir, ighost);
+
+            const auto& arr = mfab.array(mfi);
+            const auto& vel = vel_mf.const_array(mfi);
+            amrex::ParallelFor(
+                plane, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
+                    const amrex::IntVect iv{AMREX_D_DECL(i, j, k)};
+                    if (outward * vel(iv, idir) <= 0.0_rt) {
+                        return;
+                    }
+                    amrex::IntVect ivi(iv);
+                    ivi[idir] = iint;
+                    for (int m = glo; m <= ghi; ++m) {
+                        amrex::IntVect ivg(iv);
+                        ivg[idir] = m;
+                        for (int n = 0; n < ncomp; ++n) {
+                            arr(ivg, n) = arr(ivi, n);
+                        }
+                    }
+                });
+        }
+    }
+}
+
+amrex::Vector<amrex::BCRec> Field::inout_bcrec() const
+{
+    auto bcrec = m_info->m_bcrec;
+    const auto& bctype = bc_type();
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        if (bctype[ori] != BC::mass_inflow_outflow) {
+            continue;
+        }
+        const int idir = ori.coordDir();
+        for (auto& bcr : bcrec) {
+            if (ori.isLow()) {
+                bcr.setLo(idir, amrex::BCType::direction_dependent);
+            } else {
+                bcr.setHi(idir, amrex::BCType::direction_dependent);
+            }
+        }
+    }
+    return bcrec;
 }
 
 void Field::apply_bc_funcs(const FieldState rho_state)
