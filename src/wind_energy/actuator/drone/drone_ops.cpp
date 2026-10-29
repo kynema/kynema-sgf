@@ -201,7 +201,7 @@ void ReadInputsOp<Drone, ActSrcDrone>::operator()(
     for (int i = 0; i < meta.num_rotors; ++i) {
         const std::string rotor_label = label + ".R" + std::to_string(i + 1);
         auto rotor = std::make_unique<DroneRotor>(
-            data.sim(), rotor_label, data.info().id * 100000 + i);
+            data.sim(), rotor_label, (data.info().id * 100000) + i);
         rotor->body_offset = offsets[i];
 
         // A drone owns its rotor configuration. Reuse the same default and
@@ -271,8 +271,7 @@ void UpdatePosOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
     for (auto& rotor : data.meta().rotors) {
         UpdatePosOp<ActuatorSector, ActSrcSector>()(rotor->data);
         const auto& positions = rotor->data.grid().vel_pos;
-        std::copy(
-            positions.begin(), positions.end(), grid.vel_pos.begin() + offset);
+        std::ranges::copy(positions, grid.vel_pos.begin() + offset);
         offset += static_cast<int>(positions.size());
     }
 }
@@ -296,7 +295,7 @@ void ComputeForceOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
     auto& meta = data.meta();
     const auto& time = data.sim().time();
     const amrex::Real midpoint_time =
-        time.current_time() + 0.5_rt * sector::timestep_width(data.sim());
+        time.current_time() + (0.5_rt * sector::timestep_width(data.sim()));
     const auto drone_center = meta.body_motion->position(midpoint_time);
     meta.total_force = vs::Vector::zero();
     meta.total_moment = vs::Vector::zero();

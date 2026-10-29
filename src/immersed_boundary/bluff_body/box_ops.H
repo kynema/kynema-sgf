@@ -53,9 +53,7 @@ struct InitDataOp<Box>
         const auto& wdata = data.meta();
 
         auto& sim = data.sim();
-        // cppcheck-suppress constVariableReference
         auto& mask_node = sim.repo().get_int_field("mask_node");
-        // cppcheck-suppress constVariableReference
         auto& levelset = sim.repo().get_field("ib_levelset");
 
         auto nlevels = sim.repo().num_active_levels();

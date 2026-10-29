@@ -307,8 +307,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
     amrex::Real mm, V3;
     if (m3 < m12) {
         mm = m3;
-        V3 = (m3 * m3 * (3.0_rt * m12 - m3) + m1 * m1 * (m1 - 3.0_rt * m3) +
-              m2 * m2 * (m2 - 3.0_rt * m3)) /
+        V3 = ((m3 * m3 * ((3.0_rt * m12) - m3)) +
+              (m1 * m1 * (m1 - (3.0_rt * m3))) +
+              (m2 * m2 * (m2 - (3.0_rt * m3)))) /
              pr;
     } else {
         mm = m12;
@@ -325,26 +326,27 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
                 (m1 + std::sqrt((m1 * m1) + (8.0_rt * m2 * m3 * (ch - V1))));
     } else if (ch < V3) {
         p = 2.0_rt * m1 * m2;
-        q = 1.5_rt * m1 * m2 * (m12 - 2.0_rt * m3 * ch);
+        q = 1.5_rt * m1 * m2 * (m12 - (2.0_rt * m3 * ch));
         p12 = std::sqrt(amrex::max(0.0_rt, p));
-        teta =
-            std::acos(
-                amrex::max(-1.0_rt, amrex::min(1.0_rt, q / (p * p12 + tiny)))) /
-            3.0_rt;
+        teta = std::acos(
+                   amrex::max(
+                       -1.0_rt, amrex::min(1.0_rt, q / ((p * p12) + tiny)))) /
+               3.0_rt;
         cs = std::cos(teta);
-        alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + m12;
+        alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - (cs * cs))) - cs)) + m12;
     } else if (m12 < m3) {
         alpha = (m3 * ch) + (0.5_rt * mm);
     } else {
         p = (m1 * (m2 + m3)) + (m2 * m3) - 0.25_rt;
         q = 1.5_rt * m1 * m2 * m3 * (0.5_rt - ch);
         p12 = std::sqrt(amrex::max(0.0_rt, p));
-        teta =
-            std::acos(
-                amrex::max(-1.0_rt, amrex::min(1.0_rt, q / (p * p12 + tiny)))) /
-            3.0_rt;
+        teta = std::acos(
+                   amrex::max(
+                       -1.0_rt, amrex::min(1.0_rt, q / ((p * p12) + tiny)))) /
+               3.0_rt;
         cs = std::cos(teta);
-        alpha = (p12 * (std::sqrt(3.0_rt * (1.0_rt - cs * cs)) - cs)) + 0.5_rt;
+        alpha =
+            (p12 * (std::sqrt(3.0_rt * (1.0_rt - (cs * cs))) - cs)) + 0.5_rt;
     }
 
     if (volF > 0.5_rt) {
@@ -426,19 +428,20 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real cut_volume(
             v = a * a * a / (6.0_rt * vm1 * vm2 * vm3);
         } else if (a < vm2) {
             v = (a * (a - vm1) / (2.0_rt * vm2 * vm3)) +
-                (vm1 * vm1 / (6.0_rt * vm2 * vm3 + tiny));
+                (vm1 * vm1 / ((6.0_rt * vm2 * vm3) + tiny));
         } else if (a < amrex::min(vm12, vm3)) {
-            v = (a * a * (3.0_rt * vm12 - a) + vm1 * vm1 * (vm1 - 3.0_rt * a) +
-                 vm2 * vm2 * (vm2 - 3.0_rt * a)) /
+            v = ((a * a * ((3.0_rt * vm12) - a)) +
+                 (vm1 * vm1 * (vm1 - (3.0_rt * a))) +
+                 (vm2 * vm2 * (vm2 - (3.0_rt * a)))) /
                 (6.0_rt * vm1 * vm2 * vm3);
         } else if (vm3 < vm12) {
-            v = (a * a * (3.0_rt - 2.0_rt * a) +
-                 vm1 * vm1 * (vm1 - 3.0_rt * a) +
-                 vm2 * vm2 * (vm2 - 3.0_rt * a) +
-                 vm3 * vm3 * (vm3 - 3.0_rt * a)) /
+            v = ((a * a * (3.0_rt - (2.0_rt * a))) +
+                 (vm1 * vm1 * (vm1 - (3.0_rt * a))) +
+                 (vm2 * vm2 * (vm2 - (3.0_rt * a))) +
+                 (vm3 * vm3 * (vm3 - (3.0_rt * a)))) /
                 (6.0_rt * vm1 * vm2 * vm3);
         } else {
-            v = (a - 0.5_rt * vm12) / vm3;
+            v = (a - (0.5_rt * vm12)) / vm3;
         }
     }
 
@@ -500,13 +503,45 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void fit_plane(
             amrex::min<amrex::Real>(0.0_rt, mz);
 }
 
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void fit_plane(
+    const int i,
+    const int j,
+    const int k,
+    const int ibdy,
+    const int jbdy,
+    const int kbdy,
+    amrex::Array4<amrex::Real const> const& volfrac,
+    amrex::Real& mx,
+    amrex::Real& my,
+    amrex::Real& mz,
+    amrex::Real& alpha)
+{
+    youngs_finite_difference_normal_neumann(
+        i, j, k, ibdy, jbdy, kbdy, volfrac, mx, my, mz);
+
+    amrex::Real norm = std::abs(mx) + std::abs(my) + std::abs(mz);
+    if (norm <= std::numeric_limits<amrex::Real>::epsilon()) {
+        mx = -1.0_rt;
+        my = 0.0_rt;
+        mz = 0.0_rt;
+        norm = 1.0_rt;
+    }
+    mx /= norm;
+    my /= norm;
+    mz /= norm;
+    alpha = volume_intercept(
+        std::abs(mx), std::abs(my), std::abs(mz), volfrac(i, j, k));
+    alpha += amrex::min(0.0_rt, mx) + amrex::min(0.0_rt, my) +
+             amrex::min(0.0_rt, mz);
+}
+
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool interface_band(
     const int i,
     const int j,
     const int k,
     amrex::Array4<amrex::Real const> const& volfrac,
     const int n_band = 1,
-    const amrex::Real tiny = constants::TIGHT_TOL)
+    const amrex::Real vof_tol = constants::VOF_TOL)
 {
     // n_band must be <= number of vof ghost cells (3)
 
@@ -520,13 +555,13 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool interface_band(
                 amrex::Real VOF = volfrac(i + ii, j + jj, k + kk);
                 VOF_max = amrex::max<amrex::Real>(VOF_max, VOF);
                 VOF_min = amrex::min<amrex::Real>(VOF_min, VOF);
-                if (VOF < 1.0_rt - tiny && VOF > tiny) {
+                if (VOF < 1.0_rt - vof_tol && VOF > vof_tol) {
                     VOF_mid = true;
                 }
             }
         }
     }
-    return (std::abs(VOF_max - VOF_min) > tiny || VOF_mid);
+    return (std::abs(VOF_max - VOF_min) > vof_tol || VOF_mid);
 }
 
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real levelset_to_vof(

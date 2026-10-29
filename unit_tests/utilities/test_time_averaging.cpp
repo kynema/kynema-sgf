@@ -79,7 +79,7 @@ TEST_F(TimeAveragingTest, every_step)
             amrex::min<amrex::Real>(time.new_time(), m_fwidth), m_dt);
         const amrex::Real old_avg_time =
             amrex::max<amrex::Real>(avg_time - m_dt, 0.0_rt);
-        avg_val = (avg_val * (old_avg_time) + m_dt * fval) / avg_time;
+        avg_val = ((avg_val * (old_avg_time)) + (m_dt * fval)) / avg_time;
         EXPECT_NEAR(max_f, avg_val, m_tol);
     }
 }
@@ -120,8 +120,8 @@ TEST_F(TimeAveragingTest, phase_linear)
                 2.0_rt * m_dt);
             const amrex::Real old_avg_time =
                 amrex::max<amrex::Real>(avg_time - (2.0_rt * m_dt), 0.0_rt);
-            avg_val =
-                (avg_val * (old_avg_time) + 2.0_rt * m_dt * fval) / avg_time;
+            avg_val = ((avg_val * (old_avg_time)) + (2.0_rt * m_dt * fval)) /
+                      avg_time;
             EXPECT_NEAR(max_f, avg_val, m_tol);
         }
     }
@@ -201,16 +201,16 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
     // Times when averaging should occur:
     // 0.2_rt, 0.3_rt, 0.5_rt, 0.6_rt, 0.8_rt, 0.9_rt
     amrex::Real avg_val = 0.2_rt * 2.0_rt / 0.2_rt;
-    avg_val = (avg_val * (0.3_rt - 0.1_rt) + 3.0_rt * 0.1_rt) / 0.3_rt;
-    avg_val = (avg_val * (0.5_rt - 0.2_rt) + 5.0_rt * 0.2_rt) / 0.5_rt;
-    avg_val = (avg_val * (0.6_rt - 0.1_rt) + 6.0_rt * 0.1_rt) / 0.6_rt;
-    avg_val = (avg_val * (0.8_rt - 0.2_rt) + 8.0_rt * 0.2_rt) / 0.8_rt;
-    avg_val = (avg_val * (0.9_rt - 0.1_rt) + 9.0_rt * 0.1_rt) / 0.9_rt;
+    avg_val = ((avg_val * (0.3_rt - 0.1_rt)) + (3.0_rt * 0.1_rt)) / 0.3_rt;
+    avg_val = ((avg_val * (0.5_rt - 0.2_rt)) + (5.0_rt * 0.2_rt)) / 0.5_rt;
+    avg_val = ((avg_val * (0.6_rt - 0.1_rt)) + (6.0_rt * 0.1_rt)) / 0.6_rt;
+    avg_val = ((avg_val * (0.8_rt - 0.2_rt)) + (8.0_rt * 0.2_rt)) / 0.8_rt;
+    avg_val = ((avg_val * (0.9_rt - 0.1_rt)) + (9.0_rt * 0.1_rt)) / 0.9_rt;
     EXPECT_NEAR(max_f, avg_val, m_tol);
 
     const amrex::Real avg_val_ideal =
-        (0.2_rt * 2.0_rt + 0.1_rt * 3.0_rt + 0.2_rt * 5.0_rt + 0.1_rt * 6.0_rt +
-         0.2_rt * 8.0_rt + 0.1_rt * 9.0_rt) /
+        ((0.2_rt * 2.0_rt) + (0.1_rt * 3.0_rt) + (0.2_rt * 5.0_rt) +
+         (0.1_rt * 6.0_rt) + (0.2_rt * 8.0_rt) + (0.1_rt * 9.0_rt)) /
         0.9_rt;
 
     EXPECT_NEAR(max_f, avg_val_ideal, m_tol);

@@ -23,7 +23,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real eval_fac(
                   (1.0_rt -
                    utils::powi(
                        std::tanh(
-                           beta * (1.0_rt - 2.0_rt * (x - prob_lo) / len)),
+                           beta * (1.0_rt - (2.0_rt * (x - prob_lo) / len))),
                        2)) /
                   std::tanh(beta));
 }
@@ -39,8 +39,9 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real eval_coord(
                : (prob_lo +
                   (len / 2.0_rt *
                    (1.0_rt -
-                    std::tanh(beta * (1.0_rt - 2.0_rt * (x - prob_lo) / len)) /
-                        std::tanh(beta))));
+                    (std::tanh(
+                         beta * (1.0_rt - (2.0_rt * (x - prob_lo) / len))) /
+                     std::tanh(beta)))));
 }
 
 } // namespace

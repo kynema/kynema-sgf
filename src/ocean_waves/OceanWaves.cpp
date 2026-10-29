@@ -79,7 +79,7 @@ OceanWaves::OceanWaves(CFDSim& sim)
                        << "BoundaryPlane; removing OceanWavesBoundary from "
                        << "field boundaries list\n";
         fb_names.erase(
-            std::remove(fb_names.begin(), fb_names.end(), "OceanWavesBoundary"),
+            std::ranges::remove(fb_names, "OceanWavesBoundary").begin(),
             fb_names.end());
     }
 

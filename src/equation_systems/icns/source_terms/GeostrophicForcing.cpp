@@ -5,6 +5,7 @@
 #include "src/physics/multiphase/MultiPhase.H"
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/utilities/linear_interpolation.H"
+#include "src/utilities/constants.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_REAL.H"
@@ -152,9 +153,7 @@ void GeostrophicForcing::operator()(
                 }
                 if (multiphase::interface_band(
                         i, j, k, vof_arrs[nbx], n_band) ||
-                    vof_arrs[nbx](i, j, k) >
-                        1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt)) {
+                    vof_arrs[nbx](i, j, k) > 1.0_rt - constants::VOF_TOL) {
                     wfac = 0.0_rt;
                 }
             }

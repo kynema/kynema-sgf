@@ -362,7 +362,6 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
     }
 }
 
-// cppcheck-suppress constParameterReference
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(

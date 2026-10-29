@@ -94,13 +94,13 @@ void RectangularSubvolume::evaluate_inputs()
 
         const bool aligned_origin =
             std::abs(
-                geom[i].ProbLo(0) + i0 * geom[i].CellSize(0) - m_origin[0]) <
+                geom[i].ProbLo(0) + (i0 * geom[i].CellSize(0)) - m_origin[0]) <
                 tol &&
             std::abs(
-                geom[i].ProbLo(1) + j0 * geom[i].CellSize(1) - m_origin[1]) <
+                geom[i].ProbLo(1) + (j0 * geom[i].CellSize(1)) - m_origin[1]) <
                 tol &&
             std::abs(
-                geom[i].ProbLo(2) + k0 * geom[i].CellSize(2) - m_origin[2]) <
+                geom[i].ProbLo(2) + (k0 * geom[i].CellSize(2)) - m_origin[2]) <
                 tol;
 
         if (!aligned_origin) {
@@ -110,9 +110,9 @@ void RectangularSubvolume::evaluate_inputs()
         amrex::Box bx(
             amrex::IntVect(i0, j0, k0),
             amrex::IntVect(
-                i0 + (m_npts_vec[0] - 1) * stride[0],
-                j0 + (m_npts_vec[1] - 1) * stride[1],
-                k0 + (m_npts_vec[2] - 1) * stride[2]));
+                i0 + ((m_npts_vec[0] - 1) * stride[0]),
+                j0 + ((m_npts_vec[1] - 1) * stride[1]),
+                k0 + ((m_npts_vec[2] - 1) * stride[2])));
 
         if (!m_sim.mesh().boxArray()[i].contains(bx)) {
             continue;
@@ -177,13 +177,13 @@ void RectangularSubvolume::evaluate_inputs()
     for (int ib = 0; ib < ba_src.size(); ++ib) {
         const auto b = ba_src[ib];
         const amrex::IntVect lo(
-            best_start[0] + b.smallEnd(0) * m_stride[0],
-            best_start[1] + b.smallEnd(1) * m_stride[1],
-            best_start[2] + b.smallEnd(2) * m_stride[2]);
+            best_start[0] + (b.smallEnd(0) * m_stride[0]),
+            best_start[1] + (b.smallEnd(1) * m_stride[1]),
+            best_start[2] + (b.smallEnd(2) * m_stride[2]));
         const amrex::IntVect hi(
-            best_start[0] + b.bigEnd(0) * m_stride[0],
-            best_start[1] + b.bigEnd(1) * m_stride[1],
-            best_start[2] + b.bigEnd(2) * m_stride[2]);
+            best_start[0] + (b.bigEnd(0) * m_stride[0]),
+            best_start[1] + (b.bigEnd(1) * m_stride[1]),
+            best_start[2] + (b.bigEnd(2) * m_stride[2]));
         ba_src.set(ib, amrex::Box(lo, hi));
     }
 
@@ -197,15 +197,15 @@ void RectangularSubvolume::evaluate_inputs()
     m_dx_vec[2] = dx2;
 
     amrex::RealBox out_real_box(
-        {m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - dx0),
-         m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - dx1),
-         m_origin[2] + 0.5_rt * (geom[m_lev_for_sub].CellSize(2) - dx2)},
-        {m_origin[0] + 0.5_rt * (geom[m_lev_for_sub].CellSize(0) - dx0) +
-             m_npts_vec[0] * dx0,
-         m_origin[1] + 0.5_rt * (geom[m_lev_for_sub].CellSize(1) - dx1) +
-             m_npts_vec[1] * dx1,
-         m_origin[2] + 0.5_rt * (geom[m_lev_for_sub].CellSize(2) - dx2) +
-             m_npts_vec[2] * dx2});
+        {m_origin[0] + (0.5_rt * (geom[m_lev_for_sub].CellSize(0) - dx0)),
+         m_origin[1] + (0.5_rt * (geom[m_lev_for_sub].CellSize(1) - dx1)),
+         m_origin[2] + (0.5_rt * (geom[m_lev_for_sub].CellSize(2) - dx2))},
+        {m_origin[0] + (0.5_rt * (geom[m_lev_for_sub].CellSize(0) - dx0)) +
+             (m_npts_vec[0] * dx0),
+         m_origin[1] + (0.5_rt * (geom[m_lev_for_sub].CellSize(1) - dx1)) +
+             (m_npts_vec[1] * dx1),
+         m_origin[2] + (0.5_rt * (geom[m_lev_for_sub].CellSize(2) - dx2)) +
+             (m_npts_vec[2] * dx2)});
 
     m_out_geom = amrex::Geometry(
         out_box, out_real_box, geom[m_lev_for_sub].Coord(),

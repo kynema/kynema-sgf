@@ -69,9 +69,9 @@ amrex::Real KineticEnergy::calculate_kinetic_energy()
                 amrex::Loop(bx, [=, &Kinetic_Energy_Fab](int i, int j, int k) {
                     Kinetic_Energy_Fab +=
                         cell_vol * mask_arr(i, j, k) * den_arr(i, j, k) *
-                        (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
-                         vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
-                         vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
+                        ((vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0)) +
+                         (vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1)) +
+                         (vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2)));
                 });
                 return Kinetic_Energy_Fab;
             });

@@ -2,6 +2,7 @@
 #define EXTERNAL_BASE_TYPES_H
 
 #include <string>
+#include <array>
 #include <cstdint>
 #include "AMReX_REAL.H"
 
@@ -40,14 +41,14 @@ struct ExternalTurbine
     int num_pts_tower;
 
     //! Position of tower base in global coordinate system
-    amrex::Array<float, ndim> base_pos;
+    std::array<float, ndim> base_pos;
 
     //! Hub stats for Spinner Lidar
-    amrex::Array<float, 3> hub_abs_pos;
+    std::array<float, 3> hub_abs_pos;
 
-    amrex::Array<float, 3> hub_rot_vel;
+    std::array<float, 3> hub_rot_vel;
 
-    amrex::Array<amrex::Real, 9> hub_orient;
+    std::array<amrex::Real, 9> hub_orient;
 
     SimMode sim_mode{SimMode::init};
 

@@ -194,6 +194,7 @@ add_test_u(unit_tests 122.19)
 # Subset of regression tests for both debug and release CI
 #=============================================================================
 add_test_rd(abl_godunov 483.65)
+add_test_rd(abl_godunov_amg 480)
 add_test_rd(abl_godunov_timetable 488.01)
 add_test_rd(abl_godunov_static_refinement 568.44)
 add_test_rd(abl_multiphase_laminar 2544.41)
@@ -430,6 +431,7 @@ endif()
 if(KYNEMA_SGF_ENABLE_KYNEMA_FMB)
   add_test_re(act_kynema_fmb_alm)
   add_test_re(act_kynema_fmb_adm)
+  add_test_re(act_kynema_fmb_underwater_decoupled)
   add_test_red(act_kynema_fmb_alm_restart act_kynema_fmb_alm)
 endif()
 

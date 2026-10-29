@@ -174,7 +174,6 @@ operator&&(const TensorT<T>& t1, const TensorT<T>& t2)
 template <typename T>
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE T mag_sqr(const TensorT<T>& t)
 {
-    // cppcheck-suppress duplicateExpression
     return (t && t);
 }
 

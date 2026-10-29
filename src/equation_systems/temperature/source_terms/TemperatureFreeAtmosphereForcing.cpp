@@ -171,7 +171,7 @@ void TemperatureFreeAtmosphereForcing::operator()(
                 src_arrs[nbx](i, j, k, 0) -=
                     (xstart_damping + xend_damping + ystart_damping +
                      yend_damping) *
-                    (temperature(i, j, k) - sponge_density * ref_temp);
+                    (temperature(i, j, k) - (sponge_density * ref_temp));
             });
     }
     amrex::Gpu::streamSynchronize();

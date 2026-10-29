@@ -222,11 +222,11 @@ void Subvolume::output_actions()
                 out_box, n_out,
                 [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) noexcept {
                     const int ii =
-                        src_small[0] + (i - out_small[0]) * stride[0];
+                        src_small[0] + ((i - out_small[0]) * stride[0]);
                     const int jj =
-                        src_small[1] + (j - out_small[1]) * stride[1];
+                        src_small[1] + ((j - out_small[1]) * stride[1]);
                     const int kk =
-                        src_small[2] + (k - out_small[2]) * stride[2];
+                        src_small[2] + ((k - out_small[2]) * stride[2]);
                     out_arr(i, j, k, n) = src_arr(ii, jj, kk, n);
                 });
         }

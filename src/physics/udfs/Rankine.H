@@ -38,14 +38,14 @@ struct Rankine
             const auto* dx = geom.CellSize();
             const auto x = problo[0] + ((iv[0] + 0.5_rt) * dx[0]);
             const auto y = problo[1] + ((iv[1] + 0.5_rt) * dx[1]);
-            const auto xr = x - (start_location[0] + vel_ref[0] * time);
-            const auto yr = y - (start_location[1] + vel_ref[1] * time);
+            const auto xr = x - (start_location[0] + (vel_ref[0] * time));
+            const auto yr = y - (start_location[1] + (vel_ref[1] * time));
             const auto r = sqrt((xr * xr) + (yr * yr));
             const auto Vazi = Umax * ((r <= Rmax) ? (r / Rmax) : (Rmax / r));
             const amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> vel = {
                 AMREX_D_DECL(
-                    static_cast<amrex::Real>(vel_ref[0] - Vazi * (yr / r)),
-                    static_cast<amrex::Real>(vel_ref[1] + Vazi * (xr / r)),
+                    static_cast<amrex::Real>(vel_ref[0] - (Vazi * (yr / r))),
+                    static_cast<amrex::Real>(vel_ref[1] + (Vazi * (xr / r))),
                     static_cast<amrex::Real>(vel_ref[2] + 0.0_rt))};
 
             field(iv[0], iv[1], iv[2], dcomp + comp) = vel[orig_comp + comp];

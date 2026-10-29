@@ -29,7 +29,6 @@ struct PrismParameters
 class DTUSpinnerSampler : public LidarSampler
 {
 public:
-    // cppcheck-suppress duplInheritedMember
     static std::string identifier() { return "DTUSpinnerSampler"; }
 
     explicit DTUSpinnerSampler(const CFDSim& /*sim*/);

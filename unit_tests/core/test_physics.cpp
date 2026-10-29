@@ -9,6 +9,7 @@ class PhysicsTest : public MeshTest
 
 TEST_F(PhysicsTest, physics_example)
 {
+    initialize_mesh();
     PhysicsEx obj(sim());
     EXPECT_EQ("PhysicsEx", obj.identifier());
 }

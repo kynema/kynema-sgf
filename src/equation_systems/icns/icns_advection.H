@@ -253,7 +253,6 @@ struct AdvectionOp<ICNS, fvm::Godunov>
         const auto& geom = repo.mesh().Geom();
 
         const auto& src_term = fields.src_term;
-        // cppcheck-suppress constVariableReference
         auto& conv_term = fields.conv_term;
         const auto& dof_field = fields.field.state(fstate);
         const auto& dof_nph = fields.field.state(kynema_sgf::FieldState::NPH);
@@ -531,7 +530,6 @@ struct AdvectionOp<ICNS, fvm::MOL>
 
         const auto& repo = fields.repo;
         const auto& geom = repo.mesh().Geom();
-        // cppcheck-suppress constVariableReference
         auto& conv_term = fields.conv_term.state(fstate);
         const auto& dof_field = fields.field.state(fstate);
         const auto& rho = repo.get_field("density").state(fstate);

@@ -425,16 +425,16 @@ TEST_F(FieldNormsTest, levelmask_off)
     tool.output_actions();
     // Both levels will be counted
     amrex::Real unorm = std::sqrt(
-        ((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_u * m_u +
-         m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_u * m_u) /
+        (((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_u * m_u) +
+         (m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_u * m_u)) /
         m_dv);
     amrex::Real vnorm = std::sqrt(
-        ((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_v * m_v +
-         m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_v * m_v) /
+        (((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_v * m_v) +
+         (m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_v * m_v)) /
         m_dv);
     amrex::Real wnorm = std::sqrt(
-        ((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_w * m_w +
-         m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_w * m_w) /
+        (((m_ncell0 * 8.0_rt) * (m_cv0 / 8.0_rt) * m_w * m_w) +
+         (m_ncell0 * m_cv0 * lev0_fac * lev0_fac * m_w * m_w)) /
         m_dv);
     tool.check_output(unorm, vnorm, wnorm);
 
@@ -624,8 +624,8 @@ TEST_F(FieldNormsTest, norm_types)
     tool_l2.output_actions();
 
     const amrex::Real l2_factor = std::sqrt(
-        0.5_rt * ((1.0_rt - factor) * (1.0_rt - factor) +
-                  (1.0_rt + factor) * (1.0_rt + factor)));
+        0.5_rt * (((1.0_rt - factor) * (1.0_rt - factor)) +
+                  ((1.0_rt + factor) * (1.0_rt + factor))));
     amrex::Real unorm = m_u * l2_factor;
     amrex::Real vnorm = m_v * l2_factor;
     amrex::Real wnorm = m_w * l2_factor;
@@ -693,8 +693,8 @@ TEST_F(FieldNormsTest, norm_vector_magnitude)
     tool_l2.output_actions();
 
     const amrex::Real l2_factor = std::sqrt(
-        0.5_rt * ((1.0_rt - factor) * (1.0_rt - factor) +
-                  (1.0_rt + factor) * (1.0_rt + factor)));
+        0.5_rt * (((1.0_rt - factor) * (1.0_rt - factor)) +
+                  ((1.0_rt + factor) * (1.0_rt + factor))));
     const amrex::Real vmag = std::sqrt((m_u * m_u) + (m_v * m_v) + (m_w * m_w));
     amrex::Real vmag_norm = vmag * l2_factor;
     tool_l2.check_output(vmag_norm);

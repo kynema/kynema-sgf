@@ -214,7 +214,7 @@ TEST_F(FieldPlaneAveragingFineTest, test_linear)
     const amrex::Real L = z_fine_hi - z_fine_lo;
     const amrex::Real dz = L / (static_cast<amrex::Real>(n));
     const amrex::Real half_dz_pa = 0.25_rt;
-    const int n_more = static_cast<int>((8.0_rt - 2.0_rt * half_dz_pa) / dz);
+    const int n_more = static_cast<int>((8.0_rt - (2.0_rt * half_dz_pa)) / dz);
 
     // test along a line spanning domain, from first point to last
     for (int i = 0; i < n_more; ++i) {
@@ -273,7 +273,7 @@ TEST_F(FieldPlaneAveragingFineTest, test_linear_ignores_domain_ghosts)
     const amrex::Real L = z_fine_hi - z_fine_lo;
     const amrex::Real dz = L / (static_cast<amrex::Real>(n));
     const amrex::Real half_dz_pa = 0.25_rt;
-    const int n_more = static_cast<int>((8.0_rt - 2.0_rt * half_dz_pa) / dz);
+    const int n_more = static_cast<int>((8.0_rt - (2.0_rt * half_dz_pa)) / dz);
 
     for (int i = 0; i < n_more; ++i) {
 

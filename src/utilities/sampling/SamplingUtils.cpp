@@ -17,11 +17,12 @@ amrex::Real snap_to_nearest_cell_center(
     const auto& dxi = geom.InvCellSizeArray();
     const auto& dom = geom.Domain();
 
-    int idx = static_cast<int>(std::lround((x - plo[dir]) * dxi[dir] - 0.5_rt));
+    int idx =
+        static_cast<int>(std::lround(((x - plo[dir]) * dxi[dir]) - 0.5_rt));
     idx = amrex::max<int>(
         dom.smallEnd(dir), amrex::min<int>(dom.bigEnd(dir), idx));
 
-    return plo[dir] + (static_cast<amrex::Real>(idx) + 0.5_rt) * dx[dir];
+    return plo[dir] + ((static_cast<amrex::Real>(idx) + 0.5_rt) * dx[dir]);
 }
 
 vs::Vector reflect(vs::Vector line, vs::Vector vec)

@@ -23,9 +23,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real free_surface_to_vof(
         volfrac = 0.0_rt;
     } else if (std::abs(eta - z) < dz / 2.0_rt) {
         if (eta <= z) {
-            volfrac = 1.0_rt - ((z - eta + dz / 2.0_rt) / dz);
+            volfrac = 1.0_rt - ((z - eta + (dz / 2.0_rt)) / dz);
         } else {
-            volfrac = (eta - z + dz / 2.0_rt) / dz;
+            volfrac = (eta - z + (dz / 2.0_rt)) / dz;
         }
     }
 
@@ -95,7 +95,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE WaveVec harmonize_profiles_1d(
     const amrex::Real Gamma_left =
         gamma_generate(x - (left_bdy + left_length), 0.5_rt * left_length);
     const amrex::Real Gamma_right = gamma_absorb(
-        x - (right_bdy - 1.5_rt * right_length), 0.5_rt * right_length, 1.0_rt);
+        x - (right_bdy - (1.5_rt * right_length)), 0.5_rt * right_length,
+        1.0_rt);
     const bool right_inactive = Gamma_right > 1.0_rt - constants::TIGHT_TOL;
     WaveVec combo;
     for (int n = 0; n < 4; ++n) {

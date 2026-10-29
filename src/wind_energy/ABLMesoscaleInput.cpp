@@ -6,7 +6,6 @@
 
 namespace kynema_sgf {
 
-// cppcheck-suppress uninitMemberVar
 ABLMesoscaleInput::ABLMesoscaleInput(std::string ncfile, std::string var_prefix)
     : m_filename{std::move(ncfile)}, m_var_prefix{std::move(var_prefix)}
 {

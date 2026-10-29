@@ -234,7 +234,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
         const amrex::Real term1 =
             kynema_sgf::utils::powi((a2 * lambda) + (a3 * S0), 2);
         const amrex::Real term2 =
-            a1 * (0.5_rt * Ct - 2.0_rt * a4 * lambda * S0 - a5 * S0 * S0);
+            a1 * ((0.5_rt * Ct) - (2.0_rt * a4 * lambda * S0) - (a5 * S0 * S0));
         const amrex::Real term3 = (a2 * lambda) + (a3 * S0);
 
         const amrex::Real numerator = std::sqrt(term1 + term2) - term3;
@@ -265,8 +265,8 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
                 amrex::max<amrex::Real>((i + 0.5_rt) * dx, machine_eps);
 
             const amrex::Real f_z =
-                (q0 / x + S0 * x) * g * F *
-                (lambda * x + 0.5_rt * (q0 / x + S0 * x) * g * F);
+                ((q0 / x) + (S0 * x)) * g * F *
+                ((lambda * x) + (0.5_rt * ((q0 / x) + (S0 * x)) * g * F));
 
             ddata.f_normal[i] = f_z;
 
@@ -288,7 +288,7 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
                     -ddata.normal_vec & disk_velocity[ip];
 
                 const amrex::Real f_theta =
-                    u_disk_ij / U_ref * (q0 / x + S0 * x) * g * F;
+                    u_disk_ij / U_ref * ((q0 / x) + (S0 * x)) * g * F;
                 ddata.f_theta[ip] = f_theta;
 
                 // eq 18
@@ -354,7 +354,6 @@ template <>
 struct ProcessOutputsOp<Joukowsky, ActSrcDisk>
 {
 private:
-    // cppcheck-suppress uninitMemberVarPrivate
     const Joukowsky::DataType& m_data;
     //! Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
@@ -366,11 +365,7 @@ private:
     int m_out_freq{10};
 
 public:
-    // cppcheck-suppress constParameter
-    explicit ProcessOutputsOp<Joukowsky, ActSrcDisk>(
-        const Joukowsky::DataType& data)
-        : m_data(data)
-    {}
+    explicit ProcessOutputsOp(const Joukowsky::DataType& data) : m_data(data) {}
     void operator()(Joukowsky::DataType& /*data*/) {}
     void read_io_options(const utils::ActParser& pp)
     {

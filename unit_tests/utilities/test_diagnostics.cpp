@@ -115,7 +115,7 @@ void init_vof(kynema_sgf::Field& vof, bool bounded)
     amrex::Gpu::streamSynchronize();
 }
 
-void modify_vof(kynema_sgf::Field& vof, amrex::Vector<int> ncell)
+void modify_vof(kynema_sgf::Field& vof, const amrex::GpuArray<int, 3>& ncell)
 {
     const int nlevels = vof.repo().num_active_levels();
     const int nx = ncell[0];
@@ -388,10 +388,10 @@ TEST_F(DiagnosticsTest, Field_Extrema)
     // Lowest and highest possible values according to init_vof
     const amrex::Real gold_fmin =
         -0.5_rt *
-        (1.0_rt / m_ncell[0] + 1.0_rt / m_ncell[1] + 1.0_rt / m_ncell[2]);
+        ((1.0_rt / m_ncell[0]) + (1.0_rt / m_ncell[1]) + (1.0_rt / m_ncell[2]));
     const amrex::Real gold_fmax =
-        3.0_rt + (0.5_rt * (1.0_rt / m_ncell[0] + 1.0_rt / m_ncell[1] +
-                            1.0_rt / m_ncell[2]));
+        3.0_rt + (0.5_rt * ((1.0_rt / m_ncell[0]) + (1.0_rt / m_ncell[1]) +
+                            (1.0_rt / m_ncell[2])));
 
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
@@ -422,7 +422,7 @@ TEST_F(DiagnosticsTest, Field_Extrema)
     EXPECT_LT(fmax_l, gold_fmax_l);
 
     // Modify vof to ensure some single-phase cells while remaining unbounded
-    modify_vof(vof, m_ncell);
+    modify_vof(vof, {m_ncell[0], m_ncell[1], m_ncell[2]});
     // Get max and min using masking for phase
     found_g = kynema_sgf::diagnostics::get_field_extrema(
         fmax_g, fmin_g, vof, vof, 0.0_rt, 0, 1, 1);

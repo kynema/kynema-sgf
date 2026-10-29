@@ -118,17 +118,17 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
                     (std::exp(4.0_rt * wavenumber * water_depth) + 1.0_rt);
     amrex::Real C = 1.0_rt - S;
     amrex::Real C0 = std::sqrt(std::tanh(wavenumber * water_depth));
-    amrex::Real C2 = C0 * (2.0_rt + 7.0_rt * kynema_sgf::utils::powi(S, 2)) /
+    amrex::Real C2 = C0 * (2.0_rt + (7.0_rt * kynema_sgf::utils::powi(S, 2))) /
                      (4.0_rt * kynema_sgf::utils::powi(C, 2));
     amrex::Real C4 =
         C0 *
-        (4.0_rt + 32.0_rt * S - 116.0_rt * kynema_sgf::utils::powi(S, 2) -
-         400.0_rt * kynema_sgf::utils::powi(S, 3) -
-         71.0_rt * kynema_sgf::utils::powi(S, 4) +
-         146.0_rt * kynema_sgf::utils::powi(S, 5)) /
+        (4.0_rt + (32.0_rt * S) - (116.0_rt * kynema_sgf::utils::powi(S, 2)) -
+         (400.0_rt * kynema_sgf::utils::powi(S, 3)) -
+         (71.0_rt * kynema_sgf::utils::powi(S, 4)) +
+         (146.0_rt * kynema_sgf::utils::powi(S, 5))) /
         (32.0_rt * kynema_sgf::utils::powi(C, 5));
-    amrex::Real wave_speed = (C0 + kynema_sgf::utils::powi(eps, 2) * C2 +
-                              kynema_sgf::utils::powi(eps, 4) * C4) *
+    amrex::Real wave_speed = (C0 + (kynema_sgf::utils::powi(eps, 2) * C2) +
+                              (kynema_sgf::utils::powi(eps, 4) * C4)) *
                              std::sqrt(g / wavenumber);
 
     amrex::Real omega = wave_speed * wavenumber;
@@ -136,15 +136,17 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
 
     // Check against Eq. (14) from Fenton 1985
     amrex::Real eta_theory =
-        ((eps * std::cos(phase) +
-          kynema_sgf::utils::powi(eps, 2) * B22 * std::cos(2.0_rt * phase) +
-          kynema_sgf::utils::powi(eps, 3) * B31 *
-              (std::cos(phase) - std::cos(3.0_rt * phase)) +
-          kynema_sgf::utils::powi(eps, 4) * (B42 * std::cos(2.0_rt * phase) +
-                                             B44 * std::cos(4.0_rt * phase)) +
-          kynema_sgf::utils::powi(eps, 5) *
-              (-(B53 + B55) * std::cos(phase) + B53 * std::cos(3.0_rt * phase) +
-               B55 * std::cos(5.0_rt * phase))) /
+        (((eps * std::cos(phase)) +
+          (kynema_sgf::utils::powi(eps, 2) * B22 * std::cos(2.0_rt * phase)) +
+          (kynema_sgf::utils::powi(eps, 3) * B31 *
+           (std::cos(phase) - std::cos(3.0_rt * phase))) +
+          (kynema_sgf::utils::powi(eps, 4) *
+           ((B42 * std::cos(2.0_rt * phase)) +
+            (B44 * std::cos(4.0_rt * phase)))) +
+          (kynema_sgf::utils::powi(eps, 5) *
+           ((-(B53 + B55) * std::cos(phase)) +
+            (B53 * std::cos(3.0_rt * phase)) +
+            (B55 * std::cos(5.0_rt * phase))))) /
          wavenumber) +
         zsl;
 
@@ -189,8 +191,8 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
     C0 = 1.0_rt;
     C2 = 0.5_rt;
     C4 = 0.125_rt;
-    wave_speed = (C0 + kynema_sgf::utils::powi(eps, 2) * C2 +
-                  kynema_sgf::utils::powi(eps, 4) * C4) *
+    wave_speed = (C0 + (kynema_sgf::utils::powi(eps, 2) * C2) +
+                  (kynema_sgf::utils::powi(eps, 4) * C4)) *
                  std::sqrt(g / wavenumber);
 
     omega = wave_speed * wavenumber;
@@ -198,15 +200,17 @@ TEST_F(WaveTheoriesTest, StokesWavesFreeSurfaceProfile)
 
     // Matches Eq. (18) from Fenton 1985
     eta_theory =
-        ((eps * std::cos(phase) +
-          kynema_sgf::utils::powi(eps, 2) * B22 * std::cos(2.0_rt * phase) +
-          kynema_sgf::utils::powi(eps, 3) * B31 *
-              (std::cos(phase) - std::cos(3.0_rt * phase)) +
-          kynema_sgf::utils::powi(eps, 4) * (B42 * std::cos(2.0_rt * phase) +
-                                             B44 * std::cos(4.0_rt * phase)) +
-          kynema_sgf::utils::powi(eps, 5) *
-              (-(B53 + B55) * std::cos(phase) + B53 * std::cos(3.0_rt * phase) +
-               B55 * std::cos(5.0_rt * phase))) /
+        (((eps * std::cos(phase)) +
+          (kynema_sgf::utils::powi(eps, 2) * B22 * std::cos(2.0_rt * phase)) +
+          (kynema_sgf::utils::powi(eps, 3) * B31 *
+           (std::cos(phase) - std::cos(3.0_rt * phase))) +
+          (kynema_sgf::utils::powi(eps, 4) *
+           ((B42 * std::cos(2.0_rt * phase)) +
+            (B44 * std::cos(4.0_rt * phase)))) +
+          (kynema_sgf::utils::powi(eps, 5) *
+           ((-(B53 + B55) * std::cos(phase)) +
+            (B53 * std::cos(3.0_rt * phase)) +
+            (B55 * std::cos(5.0_rt * phase))))) /
          wavenumber) +
         zsl;
 
@@ -265,18 +269,19 @@ TEST_F(WaveTheoriesTest, StokesWavesVelocityComponents)
     const amrex::Real C = 1.0_rt - S;
     const amrex::Real C0 = std::sqrt(std::tanh(wavenumber * water_depth));
     const amrex::Real C2 = C0 *
-                           (2.0_rt + 7.0_rt * kynema_sgf::utils::powi(S, 2)) /
+                           (2.0_rt + (7.0_rt * kynema_sgf::utils::powi(S, 2))) /
                            (4.0_rt * kynema_sgf::utils::powi(C, 2));
     const amrex::Real C4 =
         C0 *
-        (4.0_rt + 32.0_rt * S - 116.0_rt * kynema_sgf::utils::powi(S, 2) -
-         400.0_rt * kynema_sgf::utils::powi(S, 3) -
-         71.0_rt * kynema_sgf::utils::powi(S, 4) +
-         146.0_rt * kynema_sgf::utils::powi(S, 5)) /
+        (4.0_rt + (32.0_rt * S) - (116.0_rt * kynema_sgf::utils::powi(S, 2)) -
+         (400.0_rt * kynema_sgf::utils::powi(S, 3)) -
+         (71.0_rt * kynema_sgf::utils::powi(S, 4)) +
+         (146.0_rt * kynema_sgf::utils::powi(S, 5))) /
         (32.0_rt * kynema_sgf::utils::powi(C, 5));
-    const amrex::Real wave_speed = (C0 + kynema_sgf::utils::powi(eps, 2) * C2 +
-                                    kynema_sgf::utils::powi(eps, 4) * C4) *
-                                   std::sqrt(g / wavenumber);
+    const amrex::Real wave_speed =
+        (C0 + (kynema_sgf::utils::powi(eps, 2) * C2) +
+         (kynema_sgf::utils::powi(eps, 4) * C4)) *
+        std::sqrt(g / wavenumber);
 
     const amrex::Real omega = wave_speed * wavenumber;
     const amrex::Real phase = (wavenumber * x) - (omega * time) - phase_offset;
@@ -372,13 +377,13 @@ TEST_F(WaveTheoriesTest, StokesWaveLength)
     amrex::Real eps = k * wave_height / 2.0_rt;
 
     amrex::Real C0 = std::sqrt(std::tanh(k * water_depth));
-    amrex::Real C2 = C0 * (2.0_rt + 7.0_rt * S * S) / (4.0_rt * C * C);
+    amrex::Real C2 = C0 * (2.0_rt + (7.0_rt * S * S)) / (4.0_rt * C * C);
     const amrex::Real C4 =
         C0 *
-        (4.0_rt + 32.0_rt * S - 116.0_rt * kynema_sgf::utils::powi(S, 2) -
-         400.0_rt * kynema_sgf::utils::powi(S, 3) -
-         71.0_rt * kynema_sgf::utils::powi(S, 4) +
-         146.0_rt * kynema_sgf::utils::powi(S, 5)) /
+        (4.0_rt + (32.0_rt * S) - (116.0_rt * kynema_sgf::utils::powi(S, 2)) -
+         (400.0_rt * kynema_sgf::utils::powi(S, 3)) -
+         (71.0_rt * kynema_sgf::utils::powi(S, 4)) +
+         (146.0_rt * kynema_sgf::utils::powi(S, 5))) /
         (32.0_rt * kynema_sgf::utils::powi(C, 5));
     const amrex::Real LHS1 = C0 + (kynema_sgf::utils::powi(eps, 2) * C2) +
                              (kynema_sgf::utils::powi(eps, 4) * C4);
@@ -404,7 +409,7 @@ TEST_F(WaveTheoriesTest, StokesWaveLength)
     eps = k * wave_height / 2.0_rt;
 
     C0 = std::sqrt(std::tanh(k * water_depth));
-    C2 = C0 * (2.0_rt + 7.0_rt * S * S) / (4.0_rt * C * C);
+    C2 = C0 * (2.0_rt + (7.0_rt * S * S)) / (4.0_rt * C * C);
     const amrex::Real LHS2 = C0 + (kynema_sgf::utils::powi(eps, 2) * C2);
     EXPECT_NEAR(
         LHS2, RHS2, std::numeric_limits<amrex::Real>::epsilon() * 1.0e8_rt);

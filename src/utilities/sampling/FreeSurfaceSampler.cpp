@@ -3,6 +3,7 @@
 #include "src/utilities/io_utils.H"
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/utilities/index_operations.H"
+#include "src/utilities/constants.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
@@ -170,9 +171,9 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                        : 0;
                         } else {
                             n0_f = static_cast<int>(std::ceil(
-                                (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                                (xm[gc0] - (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
                             n0_a = static_cast<int>(std::ceil(
-                                (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                                (xm[gc0] + (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
                             // Edge case of phi
                             if (std::abs(
                                     xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
@@ -198,9 +199,9 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                        : 0;
                         } else {
                             n1_f = static_cast<int>(std::ceil(
-                                (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                                (xm[gc1] - (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
                             n1_a = static_cast<int>(std::ceil(
-                                (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                                (xm[gc1] + (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
                             // Edge case of phi
                             if (std::abs(
                                     xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
@@ -285,10 +286,10 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                ? 1
                                : 0;
                 } else {
-                    n0_f = static_cast<int>(
-                        std::ceil((xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0));
-                    n0_a = static_cast<int>(
-                        std::ceil((xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0));
+                    n0_f = static_cast<int>(std::ceil(
+                        (xm[gc0] - (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
+                    n0_a = static_cast<int>(std::ceil(
+                        (xm[gc0] + (0.5_rt * dx[gc0]) - s_gc0) / dxs0));
                     // Edge case of phi
                     if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
                             eps &&
@@ -311,10 +312,10 @@ void FreeSurfaceSampler::initialize(const std::string& key)
                                ? 1
                                : 0;
                 } else {
-                    n1_f = static_cast<int>(
-                        std::ceil((xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1));
-                    n1_a = static_cast<int>(
-                        std::ceil((xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1));
+                    n1_f = static_cast<int>(std::ceil(
+                        (xm[gc1] - (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
+                    n1_a = static_cast<int>(std::ceil(
+                        (xm[gc1] + (0.5_rt * dx[gc1]) - s_gc1) / dxs1));
                     // Edge case of phi
                     if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
                             eps &&
@@ -538,23 +539,13 @@ bool FreeSurfaceSampler::update_sampling_locations()
                                 const bool single_phase_below_interface =
                                     (ni % 2 == 0 &&
                                      vof_arr(i, j, k) >=
-                                         1.0_rt - (std::numeric_limits<
-                                                       amrex::Real>::epsilon() *
-                                                   1.0e4_rt)) ||
+                                         1.0_rt - constants::VOF_TOL) ||
                                     (ni % 2 != 0 &&
-                                     vof_arr(i, j, k) <=
-                                         std::numeric_limits<
-                                             amrex::Real>::epsilon() *
-                                             1.0e4_rt);
+                                     vof_arr(i, j, k) <= constants::VOF_TOL);
                                 const bool multiphase =
                                     vof_arr(i, j, k) <
-                                        (1.0_rt - (std::numeric_limits<
-                                                       amrex::Real>::epsilon() *
-                                                   1.0e4_rt)) &&
-                                    vof_arr(i, j, k) >
-                                        std::numeric_limits<
-                                            amrex::Real>::epsilon() *
-                                            1.0e4_rt;
+                                        (1.0_rt - constants::VOF_TOL) &&
+                                    vof_arr(i, j, k) > constants::VOF_TOL;
                                 const bool use_linear_interp =
                                     (has_overset && ibl_arr(i, j, k) == -1) ||
                                     linear_on;
@@ -629,14 +620,14 @@ bool FreeSurfaceSampler::update_sampling_locations()
                                     } else {
                                         // Intersect 2D point with plane
                                         ht =
-                                            (xm[dir] - 0.5_rt * dx[dir]) +
+                                            (xm[dir] - (0.5_rt * dx[dir])) +
                                             ((alpha -
-                                              mg1 * dxi[gc0] *
-                                                  (loc0 - (xm[gc0] -
-                                                           0.5_rt * dx[gc0])) -
-                                              mg2 * dxi[gc1] *
-                                                  (loc1 - (xm[gc1] -
-                                                           0.5_rt * dx[gc1]))) /
+                                              (mg1 * dxi[gc0] *
+                                               (loc0 - (xm[gc0] -
+                                                        (0.5_rt * dx[gc0])))) -
+                                              (mg2 * dxi[gc1] *
+                                               (loc1 - (xm[gc1] -
+                                                        (0.5_rt * dx[gc1]))))) /
                                              (mdr * dxi[dir]));
                                     }
                                 }
@@ -826,9 +817,9 @@ void FreeSurfaceSampler::post_regrid_actions()
                                : 0;
                 } else {
                     n0_f = (int)std::ceil(
-                        (xm[gc0] - 0.5_rt * dx[gc0] - s_gc0) / dxs0);
+                        (xm[gc0] - (0.5_rt * dx[gc0]) - s_gc0) / dxs0);
                     n0_a = (int)std::ceil(
-                        (xm[gc0] + 0.5_rt * dx[gc0] - s_gc0) / dxs0);
+                        (xm[gc0] + (0.5_rt * dx[gc0]) - s_gc0) / dxs0);
                     // Edge case of phi
                     if (std::abs(xm[gc0] + (0.5_rt * dx[gc0]) - phi[gc0]) <
                             eps &&
@@ -852,9 +843,9 @@ void FreeSurfaceSampler::post_regrid_actions()
                                : 0;
                 } else {
                     n1_f = (int)std::ceil(
-                        (xm[gc1] - 0.5_rt * dx[gc1] - s_gc1) / dxs1);
+                        (xm[gc1] - (0.5_rt * dx[gc1]) - s_gc1) / dxs1);
                     n1_a = (int)std::ceil(
-                        (xm[gc1] + 0.5_rt * dx[gc1] - s_gc1) / dxs1);
+                        (xm[gc1] + (0.5_rt * dx[gc1]) - s_gc1) / dxs1);
                     // Edge case of phi
                     if (std::abs(xm[gc1] + (0.5_rt * dx[gc1]) - phi[gc1]) <
                             eps &&

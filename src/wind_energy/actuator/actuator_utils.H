@@ -96,9 +96,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE vs::Vector delta_pnts_cyl(
     const auto d1 = point1 - origin;
     const auto d2 = point2 - origin;
 
-    // cppcheck-suppress duplicateExpression
     const amrex::Real norm_dist1 = (d1 & normal) / (normal & normal);
-    // cppcheck-suppress duplicateExpression
     const amrex::Real norm_dist2 = (d2 & normal) / (normal & normal);
 
     const auto proj1 = normal * norm_dist1;
@@ -112,8 +110,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE vs::Vector delta_pnts_cyl(
     const amrex::Real r1 = vs::mag(v1);
     const amrex::Real r2 = vs::mag(v2);
 
-    const amrex::Real theta =
-        std::acos(amrex::min<amrex::Real>((v1 & v2) / (r1 * r2 + eps), 1.0_rt));
+    const amrex::Real theta = std::acos(
+        amrex::min<amrex::Real>((v1 & v2) / ((r1 * r2) + eps), 1.0_rt));
 
     return {std::abs(r1 - r2), theta, norm_dist1 - norm_dist2};
 }

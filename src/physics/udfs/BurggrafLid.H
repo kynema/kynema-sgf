@@ -33,7 +33,7 @@ struct BurggrafLid
             const auto* dx = geom.CellSize();
             const auto x = problo[idir] + ((iv[idir] + 0.5_rt) * dx[idir]);
             amrex::Real val =
-                16.0_rt * (utils::powi(x, 4) - 2.0_rt * utils::powi(x, 3) +
+                16.0_rt * (utils::powi(x, 4) - (2.0_rt * utils::powi(x, 3)) +
                            utils::powi(x, 2));
             amrex::RealArray uvec = {val};
 

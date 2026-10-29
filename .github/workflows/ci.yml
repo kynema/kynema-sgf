@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   Formatting:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
@@ -29,7 +29,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-24.04, macos-latest]
+        os: [ubuntu-26.04, macos-latest]
         build_type: [Release, Debug]
         openmp_flag: [OpenMP, NoOpenMP]
         include:
@@ -38,9 +38,9 @@ jobs:
             comp: llvm
             procs: $(sysctl -n hw.ncpu)
             ccache_cache: /Users/runner/Library/Caches/ccache
-          - os: ubuntu-24.04
-            #Note mpich on ubuntu-24.04 does not run mpiexec correctly so we are using openmpi
-            install_deps: sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
+          - os: ubuntu-26.04
+            #Note mpich on ubuntu-26.04 does not run mpiexec correctly so we are using openmpi
+            install_deps: sudo apt-get update; sudo apt-get install -y libopenmpi-dev openmpi-bin libfftw3-dev
             comp: gnu
             procs: $(nproc)
             ccache_cache: ~/.cache/ccache
@@ -123,14 +123,14 @@ jobs:
         working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}
         run: |
           echo "::add-matcher::.github/problem-matchers/gcc.json"
-          egrep "Warning:|Error:|warning:|error:" build-output.txt | egrep -v "submods" \
+          egrep "Warning:|Error:|warning:|error:" build-output.txt | egrep -v "submods" | egrep -v "/usr/include" \
             | egrep -v "ld: warning:" | egrep -v "lto-wrapper: warning:" | sort | uniq \
             | awk 'BEGIN{i=0}{print $0}{i++}END{print "Warnings: "i}' > build-output-warnings.txt
           cat build-output-warnings.txt
           exit $(tail -n 1 build-output-warnings.txt | awk '{print $2}')
       - name: Test
         working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}
-        run: ctest ${{matrix.ctest_args}} -VV --output-on-failure
+        run: ctest ${{matrix.ctest_args}} -VV -j ${{env.NPROCS}} --output-on-failure
       - name: Reference Checkout
         if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
         run: |
@@ -168,18 +168,18 @@ jobs:
       - name: Reference Test
         if: ${{matrix.build_type == 'Release' && github.event_name != 'push'}}
         working-directory: ${{runner.workspace}}/build-ci-${{matrix.build_type}}-${{matrix.openmp_flag}}-reference
-        run: ctest ${{matrix.ctest_args}} -VV --output-on-failure
+        run: ctest ${{matrix.ctest_args}} -VV -j ${{env.NPROCS}} --output-on-failure
 
   CPU-SINGLE:
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
         with: 
           submodules: true
       - name: Dependencies
-        run: sudo apt-get install -y libopenmpi-dev openmpi-bin
+        run: sudo apt-get update; sudo apt-get install -y libopenmpi-dev openmpi-bin
       - name: Setup
         run: |
           mkdir -p ${{runner.workspace}}/golds-single
@@ -232,14 +232,14 @@ jobs:
         working-directory: ${{runner.workspace}}/build-ci-single
         run: |
           echo "::add-matcher::.github/problem-matchers/gcc.json"
-          egrep "Warning:|Error:|warning:|error:" build-output.txt | egrep -v "submods" \
+          egrep "Warning:|Error:|warning:|error:" build-output.txt | egrep -v "submods" | egrep -v "/usr/include" \
             | egrep -v "ld: warning:" | egrep -v "lto-wrapper: warning:" | sort | uniq \
             | awk 'BEGIN{i=0}{print $0}{i++}END{print "Warnings: "i}' > build-output-warnings.txt
           cat build-output-warnings.txt
           exit $(tail -n 1 build-output-warnings.txt | awk '{print $2}')
       - name: Test
         working-directory: ${{runner.workspace}}/build-ci-single
-        run: ctest -LE no_ci -VV --output-on-failure
+        run: ctest -LE no_ci -VV -j ${{env.NPROCS}} --output-on-failure
       - name: Print AMReX backtraces
         if: failure()
         working-directory: ${{runner.workspace}}/build-ci-single
@@ -253,7 +253,7 @@ jobs:
   GPU-Nvidia:
     name: GPU-CUDA
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
@@ -281,14 +281,14 @@ jobs:
       - name: Prepare CUDA environment
         run: |
           ${{github.workspace}}/submods/amrex/.github/workflows/dependencies/ubuntu_free_disk_space.sh
-          wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+          wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/cuda-keyring_1.1-1_all.deb
           sudo dpkg -i cuda-keyring_1.1-1_all.deb
           sudo apt-get update
-          sudo apt-get install -y cuda-command-line-tools-12-6 cuda-compiler-12-6 cuda-minimal-build-12-6 cuda-nvml-dev-12-6 cuda-nvtx-12-6 libcurand-dev-12-6 cuda-cupti-dev-12-6 libcusparse-dev-12-6
+          sudo apt-get install -y cuda-command-line-tools-13-3 cuda-compiler-13-3 cuda-minimal-build-13-3 cuda-nvml-dev-13-3 cuda-nvtx-13-3 libcurand-dev-13-3 cuda-cupti-dev-13-3 libcusparse-dev-13-3
       - name: Configure and build
         run: |
-          export PATH=/usr/local/nvidia/bin:/usr/local/cuda-12.6/bin:${PATH}
-          export LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-12.6/lib:${LD_LIBRARY_PATH}
+          export PATH=/usr/local/nvidia/bin:/usr/local/cuda-13.3/bin:${PATH}
+          export LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda-13.3/lib:${LD_LIBRARY_PATH}
           cmake -B build-cuda \
             -DCMAKE_BUILD_TYPE:STRING=Release \
             -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
@@ -340,7 +340,7 @@ jobs:
           ${{github.workspace}}/submods/amrex/.github/workflows/dependencies/ubuntu_free_disk_space.sh
           sudo mkdir --parents --mode=0755 /etc/apt/keyrings
           wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
-          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/6.3.3 noble main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
+          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/7.2.4 noble main" | sudo tee --append /etc/apt/sources.list.d/rocm.list
           echo -e 'Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600' | sudo tee /etc/apt/preferences.d/rocm-pin-600
           echo 'export PATH=/opt/rocm/llvm/bin:/opt/rocm/bin:/opt/rocm/profiler/bin:/opt/rocm/opencl/bin:$PATH' | sudo tee -a /etc/profile.d/rocm.sh
           sudo apt-get update
@@ -375,7 +375,7 @@ jobs:
   GPU-Intel:
     name: GPU-SYCL
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
@@ -405,9 +405,11 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           ${{github.workspace}}/submods/amrex/.github/workflows/dependencies/ubuntu_free_disk_space.sh
-          sudo wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-          echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+          sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+          wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB \
+            | gpg --dearmor | sudo tee /etc/apt/keyrings/oneapi-archive-keyring.gpg > /dev/null
+          echo "deb [signed-by=/etc/apt/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" \
+            | sudo tee /etc/apt/sources.list.d/oneAPI.list
           sudo apt-get update
           sudo apt-get install -y intel-oneapi-compiler-dpcpp-cpp intel-oneapi-mkl-devel
       - name: Configure and build
@@ -431,42 +433,9 @@ jobs:
           ccache -s
           ls ~/.cache/ccache
           du -hs ~/.cache/ccache
-#  Lint-cppcheck:
-#    needs: Formatting
-#    runs-on: macos-latest
-#    steps:
-#      - name: Clone
-#        uses: actions/checkout@v6
-#        with:
-#          submodules: true
-#      - name: Dependencies
-#        run: brew install cppcheck
-#      - name: Configure
-#        run: |
-#          echo "NPROCS=$(sysctl -n hw.ncpu)" >> $GITHUB_ENV
-#          cmake \
-#          -B ${{runner.workspace}}/build-cppcheck \
-#          -DKYNEMA_SGF_ENABLE_MPI:BOOL=OFF \
-#          -DKYNEMA_SGF_ENABLE_TESTS:BOOL=ON \
-#          -DKYNEMA_SGF_TEST_WITH_FCOMPARE:BOOL=OFF \
-#          -DKYNEMA_SGF_ENABLE_MASA:BOOL=OFF \
-#          -DKYNEMA_SGF_ENABLE_CPPCHECK:BOOL=ON \
-#          ${{github.workspace}}
-#      - name: Check
-#        working-directory: ${{runner.workspace}}/build-cppcheck
-#        run: make cppcheck-ci
-#      - name: Full report
-#        working-directory: ${{runner.workspace}}/build-cppcheck
-#        run: cat cppcheck/cppcheck-full-report.txt
-#      - name: Short report
-#        working-directory: ${{runner.workspace}}/build-cppcheck
-#        run: |
-#          echo "::add-matcher::.github/problem-matchers/cppcheck.json"
-#          cat cppcheck-ci-report.txt
-#          exit $(tail -n 1 cppcheck-ci-report.txt | awk '{print $2}')
   Lint-clang-tidy:
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
@@ -515,7 +484,8 @@ jobs:
         working-directory: ${{runner.workspace}}/build-clang-tidy
         run: |
           cmake --build . --parallel ${{env.NPROCS}} 2>&1 | tee -a clang-tidy-full-report.txt
-          cat clang-tidy-full-report.txt | egrep "Warning:|Error:|warning:|error:" | grep -v "submods" | sort | uniq | \
+          cat clang-tidy-full-report.txt | egrep "Warning:|Error:|warning:|error:" | grep -v "submods" \
+            | egrep -v "/usr/include" | sort | uniq | \
             awk 'BEGIN{i=0}{print $0}{i++}END{print "Warnings: "i}' > clang-tidy-ci-report.txt
       - name: Ccache Report
         run: |
@@ -536,7 +506,7 @@ jobs:
           exit $(tail -n 1 clang-tidy-ci-report.txt | awk '{print $2}')
   Lint-codeql:
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
@@ -584,7 +554,7 @@ jobs:
           sarif_file: sarif-results/cpp.sarif
   Lint-codespell:
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Clone
         uses: actions/checkout@v6
@@ -603,7 +573,7 @@ jobs:
         run: codespell
   Docker:
     needs: Formatting
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     container:
       image: roodj/kynema-snapshot:latest
       env:

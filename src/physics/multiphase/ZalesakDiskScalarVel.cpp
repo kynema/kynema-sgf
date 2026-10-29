@@ -159,11 +159,11 @@ void ZalesakDiskScalarVel::initialize_fields(
                 smooth_heaviside = 0.0_rt;
             } else {
                 smooth_heaviside =
-                    0.5_rt * (1.0_rt + phi_arrs[nbx](i, j, k) / eps +
-                              1.0_rt / std::numbers::pi_v<amrex::Real> *
-                                  std::sin(
-                                      phi_arrs[nbx](i, j, k) *
-                                      std::numbers::pi_v<amrex::Real> / eps));
+                    0.5_rt * (1.0_rt + (phi_arrs[nbx](i, j, k) / eps) +
+                              (1.0_rt / std::numbers::pi_v<amrex::Real> *
+                               std::sin(
+                                   phi_arrs[nbx](i, j, k) *
+                                   std::numbers::pi_v<amrex::Real> / eps)));
             }
             rho_arrs[nbx](i, j, k) = (rho1 * smooth_heaviside) +
                                      (rho2 * (1.0_rt - smooth_heaviside));

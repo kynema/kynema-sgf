@@ -21,10 +21,10 @@ namespace kynema_sgf::channelbuilder {
     const amrex::Real& vcoord)
 {
     return (vcoord >= -height / 2.0_rt) && (vcoord <= height / 2.0_rt) &&
-           (hcoord >= (-(top + bottom) / 4.0_rt +
-                       ((bottom - top) / (2.0_rt * height)) * vcoord)) &&
-           (hcoord <= ((top + bottom) / 4.0_rt -
-                       ((bottom - top) / (2.0_rt * height)) * vcoord));
+           (hcoord >= ((-(top + bottom) / 4.0_rt) +
+                       (((bottom - top) / (2.0_rt * height)) * vcoord))) &&
+           (hcoord <= (((top + bottom) / 4.0_rt) -
+                       (((bottom - top) / (2.0_rt * height)) * vcoord)));
 }
 
 [[nodiscard]] AMREX_GPU_HOST_DEVICE bool ellipse(
@@ -34,8 +34,8 @@ namespace kynema_sgf::channelbuilder {
     const amrex::Real& vcoord)
 {
     return (
-        (hcoord * hcoord) / (ax_horz * ax_horz) +
-            (vcoord * vcoord) / (ax_vert * ax_vert) <=
+        ((hcoord * hcoord) / (ax_horz * ax_horz)) +
+            ((vcoord * vcoord) / (ax_vert * ax_vert)) <=
         0.25_rt);
 }
 
@@ -57,8 +57,9 @@ namespace kynema_sgf::channelbuilder {
 
     // Dot product with plane normal at start and end
     const amrex::Real p1 =
-        a * (x - start_x) + b * (y - start_y) + c * (z - start_z);
-    const amrex::Real p2 = a * (x - end_x) + b * (y - end_y) + c * (z - end_z);
+        (a * (x - start_x)) + (b * (y - start_y)) + (c * (z - start_z));
+    const amrex::Real p2 =
+        (a * (x - end_x)) + (b * (y - end_y)) + (c * (z - end_z));
 
     // Point is within planes if it's on opposite sides or on a plane
     return (p1 * p2 <= 0.0_rt);
@@ -88,21 +89,21 @@ get_local_dimensions(
     const amrex::Real seg_dy = end_y - start_y;
     const amrex::Real seg_dz = end_z - start_z;
     const amrex::Real seg_length_sq =
-        seg_dx * seg_dx + seg_dy * seg_dy + seg_dz * seg_dz;
+        (seg_dx * seg_dx) + (seg_dy * seg_dy) + (seg_dz * seg_dz);
     const amrex::Real point_dx = x - start_x;
     const amrex::Real point_dy = y - start_y;
     const amrex::Real point_dz = z - start_z;
     const amrex::Real projected_t =
-        (seg_length_sq > 0.0_rt)
-            ? ((point_dx * seg_dx + point_dy * seg_dy + point_dz * seg_dz) /
-               seg_length_sq)
-            : 0.0_rt;
+        (seg_length_sq > 0.0_rt) ? (((point_dx * seg_dx) + (point_dy * seg_dy) +
+                                     (point_dz * seg_dz)) /
+                                    seg_length_sq)
+                                 : 0.0_rt;
     const amrex::Real t = (projected_t < 0.0_rt)
                               ? 0.0_rt
                               : ((projected_t > 1.0_rt) ? 1.0_rt : projected_t);
-    const amrex::Real dim0 = dim0_s + t * (dim0_e - dim0_s);
-    const amrex::Real dim1 = dim1_s + t * (dim1_e - dim1_s);
-    const amrex::Real dim2 = dim2_s + t * (dim2_e - dim2_s);
+    const amrex::Real dim0 = dim0_s + (t * (dim0_e - dim0_s));
+    const amrex::Real dim1 = dim1_s + (t * (dim1_e - dim1_s));
+    const amrex::Real dim2 = dim2_s + (t * (dim2_e - dim2_s));
 
     return amrex::GpuArray<amrex::Real, 3>{{dim0, dim1, dim2}};
 }
@@ -140,7 +141,7 @@ transform_to_local_coordinates(
     const amrex::Real s = is_active ? 1.0_rt : -1.0_rt;
 
     // Rotate around z-axis based on xy component of direction
-    const amrex::Real mag_xy = std::sqrt(a * a + b * b);
+    const amrex::Real mag_xy = std::sqrt((a * a) + (b * b));
     amrex::Real cos_theta_xy = a / (mag_xy + constants::EPS);
     const amrex::Real sin_theta_xy = b / (mag_xy + constants::EPS);
 
@@ -149,17 +150,17 @@ transform_to_local_coordinates(
         cos_theta_xy = 1.0_rt;
     }
 
-    const amrex::Real xpp = xp * cos_theta_xy - s * yp * sin_theta_xy;
-    const amrex::Real ypp = s * xp * sin_theta_xy + yp * cos_theta_xy;
+    const amrex::Real xpp = (xp * cos_theta_xy) - (s * yp * sin_theta_xy);
+    const amrex::Real ypp = (s * xp * sin_theta_xy) + (yp * cos_theta_xy);
 
     // Rotate around y-axis based on z component
-    const amrex::Real mag = std::sqrt(a * a + b * b + c * c);
+    const amrex::Real mag = std::sqrt((a * a) + (b * b) + (c * c));
     const amrex::Real cos_theta_xpz = mag_xy / mag;
     const amrex::Real sin_theta_xpz = c / mag;
 
     // Local coordinates: xloc along segment, yloc lateral, zloc vertical
-    const amrex::Real xloc = xpp * cos_theta_xpz - s * zp * sin_theta_xpz;
-    const amrex::Real zloc = s * xpp * sin_theta_xpz + zp * cos_theta_xpz;
+    const amrex::Real xloc = (xpp * cos_theta_xpz) - (s * zp * sin_theta_xpz);
+    const amrex::Real zloc = (s * xpp * sin_theta_xpz) + (zp * cos_theta_xpz);
     const amrex::Real yloc = ypp;
 
     return amrex::GpuArray<amrex::Real, 3>{{xloc, yloc, zloc}};
@@ -474,30 +475,30 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                             if (velocity_profile ==
                                 ChannelVelocityProfile::Linear) {
                                 const auto d =
-                                    std::sqrt(yloc * yloc + zloc * zloc);
+                                    std::sqrt((yloc * yloc) + (zloc * zloc));
                                 const auto d_ext = std::sqrt(
                                     utils::powi(
                                         (dim0 * yloc) /
-                                            (2.0_rt * d + constants::EPS),
+                                            ((2.0_rt * d) + constants::EPS),
                                         2) +
                                     utils::powi(
                                         (dim1 * zloc) /
-                                            (2.0_rt * d + constants::EPS),
+                                            ((2.0_rt * d) + constants::EPS),
                                         2));
                                 speed_factor -= (d / (d_ext + constants::EPS));
                             } else if (
                                 velocity_profile ==
                                 ChannelVelocityProfile::Parabolic) {
                                 const auto d =
-                                    std::sqrt(yloc * yloc + zloc * zloc);
+                                    std::sqrt((yloc * yloc) + (zloc * zloc));
                                 const auto d_ext = std::sqrt(
                                     utils::powi(
                                         (dim0 * yloc) /
-                                            (2.0_rt * d + constants::EPS),
+                                            ((2.0_rt * d) + constants::EPS),
                                         2) +
                                     utils::powi(
                                         (dim1 * zloc) /
-                                            (2.0_rt * d + constants::EPS),
+                                            ((2.0_rt * d) + constants::EPS),
                                         2));
                                 speed_factor -= utils::powi(
                                     d / (d_ext + constants::EPS), 2);
@@ -531,9 +532,9 @@ void ChannelBuilder::initialize_fields(int level, const amrex::Geometry& geom)
                                 // for multiphase case
                                 zmod = amrex::min<amrex::Real>(
                                     water_level_loc[2] - zloc,
-                                    0.5_rt * dim2 - zloc);
+                                    (0.5_rt * dim2) - zloc);
                                 dim = amrex::min<amrex::Real>(
-                                    0.5_rt * dim2 + water_level_loc[2], dim2);
+                                    (0.5_rt * dim2) + water_level_loc[2], dim2);
                             }
                             if (velocity_profile ==
                                 ChannelVelocityProfile::Linear) {

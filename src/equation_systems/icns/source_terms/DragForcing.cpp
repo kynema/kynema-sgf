@@ -462,7 +462,7 @@ void DragForcing::operator()(
                     (1 - blank_arrs[nbx](i, j, k)) *
                     ((xstart_damping + xend_damping + ystart_damping +
                       yend_damping) *
-                     (vel_n - sponge_density * spongeVel_n));
+                     (vel_n - (sponge_density * spongeVel_n)));
             }
 
             if (has_terrain_damping != 0 && n == 2) {
