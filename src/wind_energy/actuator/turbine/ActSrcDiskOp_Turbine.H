@@ -136,7 +136,7 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
     const int tower_start = m_tower_start;
     // assume constant dr same for all blades
     const auto* host_pos = tdata.blades[0].pos.data();
-    const amrex::Real dR = vs::mag_sqr(host_pos[0] - host_pos[1]);
+    const amrex::Real dR = vs::mag(host_pos[0] - host_pos[1]);
     const amrex::Real dT =
         2.0_rt * std::numbers::pi_v<amrex::Real> / tdata.num_blades;
     // assume these will be copied to device by the lambda capture...
@@ -151,57 +151,51 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
         };
 
         amrex::RealArray src_force = {0.0_rt};
+        // blade/disk contribution
         for (int ib = 0; ib < nBlades; ++ib) {
-            // blade/disk contribution
-            {
-                const int ioff = blade_start + (ib * nPB);
-                for (int ip = ioff; ip < ioff + nPB; ++ip) {
-                    const auto R = utils::delta_pnts_cyl(
-                                       m_origin, m_normal, m_origin, pos[ip])
-                                       .x();
-                    const auto dist_on_disk =
-                        utils::delta_pnts_cyl(m_origin, m_normal, cc, pos[ip]);
-                    const auto& pforce = force[ip];
+            const int ioff = blade_start + (ib * nPB);
+            for (int ip = ioff; ip < ioff + nPB; ++ip) {
+                const auto R =
+                    utils::delta_pnts_cyl(m_origin, m_normal, m_origin, pos[ip])
+                        .x();
+                const auto dist_on_disk =
+                    utils::delta_pnts_cyl(m_origin, m_normal, cc, pos[ip]);
+                const auto& pforce = force[ip];
 
-                    const amrex::Real weight_R =
-                        utils::linear_basis_1d(dist_on_disk.x(), dR);
-                    const amrex::Real weight_T =
-                        utils::linear_basis_1d(R * dist_on_disk.y(), dT * R);
-                    const amrex::Real weight_N =
-                        utils::gaussian1d(dist_on_disk.z(), eps[ip].x());
-                    const auto projection_weight =
-                        weight_R * weight_T * weight_N;
+                const amrex::Real weight_R =
+                    utils::linear_basis_1d(dist_on_disk.x(), dR);
+                const amrex::Real weight_T =
+                    utils::linear_basis_1d(R * dist_on_disk.y(), dT * R);
+                const amrex::Real weight_N =
+                    utils::gaussian1d(dist_on_disk.z(), eps[ip].x());
+                const auto projection_weight = weight_R * weight_T * weight_N;
 
-                    src_force[0] += projection_weight * pforce.x();
-                    src_force[1] += projection_weight * pforce.y();
-                    src_force[2] += projection_weight * pforce.z();
-                }
+                src_force[0] += projection_weight * pforce.x();
+                src_force[1] += projection_weight * pforce.y();
+                src_force[2] += projection_weight * pforce.z();
             }
-            // tower contribution
-            {
-                for (int ip = tower_start; ip < tower_start + nPT; ++ip) {
-                    const auto dist = cc - pos[ip];
-                    const auto dist_local = tmat[ip] & dist;
-                    const auto gauss_fac =
-                        utils::gaussian3d(dist_local, eps[ip]);
-                    const auto& pforce = force[ip];
+        }
+        // tower contribution
+        for (int ip = tower_start; ip < tower_start + nPT; ++ip) {
+            const auto dist = cc - pos[ip];
+            const auto dist_local = tmat[ip] & dist;
+            const auto gauss_fac = utils::gaussian3d(dist_local, eps[ip]);
+            const auto& pforce = force[ip];
 
-                    src_force[0] += gauss_fac * pforce.x();
-                    src_force[1] += gauss_fac * pforce.y();
-                    src_force[2] += gauss_fac * pforce.z();
-                }
-            }
-            // hub
-            {
-                const auto dist = cc - pos[hub_start];
-                const auto dist_local = tmat[hub_start] & dist;
-                const auto gauss_fac =
-                    utils::gaussian3d(dist_local, eps[hub_start]);
-                const auto& pforce = force[hub_start];
-                src_force[0] += gauss_fac * pforce.x();
-                src_force[1] += gauss_fac * pforce.y();
-                src_force[2] += gauss_fac * pforce.z();
-            }
+            src_force[0] += gauss_fac * pforce.x();
+            src_force[1] += gauss_fac * pforce.y();
+            src_force[2] += gauss_fac * pforce.z();
+        }
+        // hub
+        {
+            const auto dist = cc - pos[hub_start];
+            const auto dist_local = tmat[hub_start] & dist;
+            const auto gauss_fac =
+                utils::gaussian3d(dist_local, eps[hub_start]);
+            const auto& pforce = force[hub_start];
+            src_force[0] += gauss_fac * pforce.x();
+            src_force[1] += gauss_fac * pforce.y();
+            src_force[2] += gauss_fac * pforce.z();
         }
 
         sarr(i, j, k, 0) += src_force[0];

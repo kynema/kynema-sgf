@@ -125,6 +125,15 @@ max_diff(const amrex::MultiFab& lhs, const amrex::MultiFab& rhs, const int comp)
     return diff.norm0(0);
 }
 
+// Set up a source op for the current actuator data and spread its forces
+void compute_source(DiskTurbine::DataType& data, kynema_sgf::Field& src)
+{
+    DiskSrcOp op(data);
+    op.initialize();
+    op.setup_op();
+    spread_source(op, data.sim().mesh().Geom(0), src);
+}
+
 } // namespace turbine_disk
 
 class TurbineDiskSrcTest : public MeshTest
@@ -207,6 +216,85 @@ TEST_F(TurbineDiskSrcTest, spreads_device_copy_of_actuator_data)
     td::spread_source(op, geom, src);
     EXPECT_FALSE(src(0).contains_nan());
     EXPECT_GT(td::max_diff(src(0), ref, 0), 0.1_rt * ref.norm0(0));
+}
+
+TEST_F(TurbineDiskSrcTest, conserves_total_force)
+{
+    namespace td = turbine_disk;
+    initialize_mesh();
+    auto& src = sim().repo().declare_field("actuator_src_term", 3, 0);
+
+    td::DiskTurbine::DataType data(sim(), "disk", 0);
+    td::init_disk_turbine(data);
+
+    auto& grid = data.grid();
+    td::vs::Vector total_force = td::vs::Vector::zero();
+    for (int ip = 0; ip < grid.force.size(); ++ip) {
+        grid.force[ip] =
+            td::vs::Vector(1.0_rt + (0.1_rt * ip), 0.2_rt, -0.1_rt * (ip % 3));
+        total_force = total_force + grid.force[ip];
+    }
+
+    td::compute_source(data, src);
+
+    const auto& dx = sim().mesh().Geom(0).CellSizeArray();
+    const amrex::Real vol = dx[0] * dx[1] * dx[2];
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        const amrex::Real integral = src(0).sum(n) * vol;
+        EXPECT_NEAR(
+            integral, total_force[n], 5.0e-3_rt * td::vs::mag(total_force))
+            << "component " << n;
+    }
+}
+
+TEST_F(TurbineDiskSrcTest, blade_point_radial_support)
+{
+    namespace td = turbine_disk;
+    initialize_mesh();
+    auto& src = sim().repo().declare_field("actuator_src_term", 3, 0);
+
+    td::DiskTurbine::DataType data(sim(), "disk", 0);
+    td::init_disk_turbine(data);
+
+    // Load a single blade point
+    const int ipt = 1 + 3;
+    const amrex::Real rpt = td::blade_dr * 4;
+    data.grid().force[ipt] = td::vs::Vector(1.0_rt, 0.0_rt, 0.0_rt);
+
+    td::compute_source(data, src);
+
+    amrex::MultiFab hsrc(
+        src(0).boxArray(), src(0).DistributionMap(), 3, 0,
+        amrex::MFInfo().SetArena(amrex::The_Pinned_Arena()));
+    amrex::dtoh_memcpy(hsrc, src(0));
+
+    const auto& geom = sim().mesh().Geom(0);
+    const auto& problo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    int ninside = 0;
+    int noutside = 0;
+    for (amrex::MFIter mfi(hsrc); mfi.isValid(); ++mfi) {
+        const auto& sarr = hsrc.const_array(mfi);
+        amrex::LoopOnCpu(mfi.validbox(), [&](int i, int j, int k) {
+            const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
+            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+            const amrex::Real r =
+                std::hypot(y - td::rotor_center.y(), z - td::rotor_center.z());
+            if (std::abs(r - rpt) > td::blade_dr + 1.0e-6_rt) {
+                if (sarr(i, j, k, 0) >=
+                    std::numeric_limits<amrex::Real>::epsilon()) {
+                    ++noutside;
+                }
+            } else if (
+                sarr(i, j, k, 0) >=
+                std::numeric_limits<amrex::Real>::epsilon()) {
+                ++ninside;
+            }
+        });
+    }
+    // The force spreads to cells within one point spacing of the point only
+    EXPECT_GT(ninside, 0);
+    EXPECT_EQ(noutside, 0);
 }
 
 } // namespace kynema_sgf_tests
