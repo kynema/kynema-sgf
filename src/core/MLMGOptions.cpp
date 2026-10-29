@@ -32,6 +32,22 @@ void MLMGOptions::parse_options(const std::string& prefix)
     pp.query("max_order", max_order);
 
     // MLMG options
+    m_prefix = prefix;
+    std::string multigrid_type;
+    if (pp.query("multigrid_type", multigrid_type) != 0) {
+        if (multigrid_type == "geometric") {
+            m_multigrid_type = amrex::MLMG::MultigridType::geometric;
+        } else if (multigrid_type == "algebraic") {
+            m_multigrid_type = amrex::MLMG::MultigridType::algebraic;
+        } else if (multigrid_type == "hybrid") {
+            m_multigrid_type = amrex::MLMG::MultigridType::hybrid;
+        } else {
+            amrex::Abort(
+                "MLMGOptions: invalid " + prefix + ".multigrid_type = " +
+                multigrid_type + ". Valid options: geometric algebraic hybrid");
+        }
+        m_multigrid_type_prefix = prefix;
+    }
     pp.query("verbose", m_verbose);
     pp.query("bottom_verbose", m_bottom_verbose);
 
@@ -48,7 +64,9 @@ void MLMGOptions::parse_options(const std::string& prefix)
 
     pp.query("bottom_maxiter", m_bottom_max_iter);
     pp.query("bottom_rtol", m_bottom_rel_tol);
-    pp.query("bottom_atol", m_bottom_abs_tol);
+    if (pp.query("bottom_atol", m_bottom_abs_tol) != 0) {
+        m_bottom_abs_tol_set = true;
+    }
     pp.query("bottom_solver", m_bottom_solver_type);
     pp.query("hypre_namespace", m_hypre_namespace);
     pp.query("hypre_interface", m_hypre_interface);
@@ -73,9 +91,43 @@ void MLMGOptions::operator()(amrex::MLMG& mlmg)
     mlmg.setFinalSmooth(m_num_final_smooth);
     mlmg.setBottomSmooth(m_num_bottom_smooth);
 
+    if (m_multigrid_type != amrex::MLMG::MultigridType::geometric) {
+        const std::string key = m_multigrid_type_prefix + ".multigrid_type";
+        const auto& linop = mlmg.getLinOp();
+        if (!linop.supportsAlgMG() || (linop.getNComp() != 1)) {
+            amrex::Abort(
+                "MLMGOptions: " + key +
+                " = algebraic or hybrid requires a single-component operator "
+                "that supports AlgMG, which the " +
+                m_prefix + " solve does not have. Set " + m_prefix +
+                ".multigrid_type = geometric");
+        }
+        if (m_do_nsolve) {
+            amrex::Abort(
+                "MLMGOptions: " + key + " = algebraic or hybrid requires " +
+                m_prefix + ".do_nsolve = false");
+        }
+        if ((m_multigrid_type == amrex::MLMG::MultigridType::hybrid) &&
+            m_do_fixed_iters) {
+            amrex::Abort(
+                "MLMGOptions: " + key + " = hybrid requires " + m_prefix +
+                ".do_fixed_iters = false");
+        }
+    }
+    mlmg.setMultigridType(m_multigrid_type);
+
+    // AlgMG solves AMR level 0 with the bottom tolerances. The default
+    // absolute bottom tolerance can stop it before the MLMG target is met, so
+    // the MLMG iterations stall. Disable it unless the user set it.
+    const amrex::Real bottom_abs_tol =
+        ((m_multigrid_type != amrex::MLMG::MultigridType::geometric) &&
+         !m_bottom_abs_tol_set)
+            ? -1.0_rt
+            : m_bottom_abs_tol;
+
     mlmg.setBottomVerbose(m_bottom_verbose);
     mlmg.setBottomTolerance(m_bottom_rel_tol);
-    mlmg.setBottomToleranceAbs(m_bottom_abs_tol);
+    mlmg.setBottomToleranceAbs(bottom_abs_tol);
 
     if (m_bottom_solver_type == "smoother") {
         mlmg.setBottomSolver(amrex::MLMG::BottomSolver::smoother);

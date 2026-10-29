@@ -8,6 +8,7 @@ target_sources(
   test_field_fillpatch_ops.cpp
   test_physics.cpp
   test_auxiliary_fill.cpp
+  test_mlmg_options.cpp
   )
 
 add_subdirectory(vs)
