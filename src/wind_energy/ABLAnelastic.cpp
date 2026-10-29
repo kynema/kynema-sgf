@@ -67,9 +67,21 @@ void ABLAnelastic::initialize_data()
     m_pressure.resize(m_axis, m_sim.mesh().Geom());
     m_theta.resize(m_axis, m_sim.mesh().Geom());
 
-    AMREX_ALWAYS_ASSERT(m_sim.repo().num_active_levels() == m_density.size());
-    AMREX_ALWAYS_ASSERT(m_sim.repo().num_active_levels() == m_pressure.size());
-    AMREX_ALWAYS_ASSERT(m_sim.repo().num_active_levels() == m_theta.size());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_sim.repo().num_active_levels() == m_density.size(),
+        "num_active_levels() = " +
+            std::to_string(m_sim.repo().num_active_levels()) +
+            ", m_density.size() = " + std::to_string(m_density.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_sim.repo().num_active_levels() == m_pressure.size(),
+        "num_active_levels() = " +
+            std::to_string(m_sim.repo().num_active_levels()) +
+            ", m_pressure.size() = " + std::to_string(m_pressure.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_sim.repo().num_active_levels() == m_theta.size(),
+        "num_active_levels() = " +
+            std::to_string(m_sim.repo().num_active_levels()) +
+            ", m_theta.size() = " + std::to_string(m_theta.size()));
 
     initialize_isentropic_hse();
 

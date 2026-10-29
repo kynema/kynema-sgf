@@ -34,7 +34,11 @@ RealList uniform_arm_angles(const int num_rotors, const amrex::Real phase)
 VecList
 rotor_body_offsets(const RealList& lengths, const RealList& angles_degrees)
 {
-    AMREX_ALWAYS_ASSERT(lengths.size() == angles_degrees.size());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        lengths.size() == angles_degrees.size(),
+        "lengths.size() = " + std::to_string(lengths.size()) +
+            ", angles_degrees.size() = " +
+            std::to_string(angles_degrees.size()));
     // Arms lie in the body x-y plane; rigid-body motion maps these fixed
     // offsets into the CFD frame at runtime.
     VecList offsets(lengths.size());

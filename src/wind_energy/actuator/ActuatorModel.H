@@ -195,8 +195,13 @@ void ActModel<ActTrait, SrcTrait>::determine_root_proc(
         // Sanity checks
         const auto& linfo = m_data.info();
         const auto& plist = linfo.procs;
-        AMREX_ALWAYS_ASSERT(linfo.root_proc > -1);
-        AMREX_ALWAYS_ASSERT(plist.find(linfo.root_proc) != plist.end());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            linfo.root_proc > -1,
+            "linfo.root_proc = " + std::to_string(linfo.root_proc));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            plist.find(linfo.root_proc) != plist.end(),
+            "linfo.root_proc = " + std::to_string(linfo.root_proc) +
+                ", plist.size() = " + std::to_string(plist.size()));
     }
 }
 

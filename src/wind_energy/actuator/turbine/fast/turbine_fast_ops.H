@@ -62,7 +62,10 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
     {
         const auto& time = data.sim().time();
         // Ensure that we are using fixed timestepping scheme
-        AMREX_ALWAYS_ASSERT(!time.adaptive_timestep());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            !time.adaptive_timestep(),
+            "time.adaptive_timestep() = " +
+                std::to_string(time.adaptive_timestep()));
     }
 
     // Check other density parsing arguments against turbine air density
