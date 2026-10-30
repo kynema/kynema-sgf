@@ -1595,10 +1595,6 @@ void BoundaryPlane::populate_data(
             mfab, m_mesh.Geom(lev), fld.bcrec(), ori, dcomp,
             static_cast<int>(nc), orig_comp);
     }
-
-    const auto& geom = fld.repo().mesh().Geom();
-    mfab.EnforcePeriodicity(
-        0, mfab.nComp(), amrex::IntVect(1), geom[lev].periodicity());
 }
 
 void BoundaryPlane::set_velocity(
