@@ -139,7 +139,10 @@ void OceanWavesBoundary::set_velocity(
                     }
                 }
             });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, dcomp, numcomp);
         }
+        utils::fill_transverse_ghosts(
+            mfab, geom, fld.bcrec(), ori, dcomp, mfab.nComp(), orig_comp);
     }
 }
 
@@ -182,7 +185,9 @@ void OceanWavesBoundary::set_vof(
             amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                 arr(i, j, k) = targ_arr(i, j, k);
             });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, 0, 1);
         }
+        utils::fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
     }
 }
 
@@ -233,7 +238,9 @@ void OceanWavesBoundary::set_density(
                 arr(i, j, k) = (targ_vof(i, j, k) * rho1) +
                                ((1.0_rt - targ_vof(i, j, k)) * arr(i, j, k));
             });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, 0, 1);
         }
+        utils::fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
     }
 }
 

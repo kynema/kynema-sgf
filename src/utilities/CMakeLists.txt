@@ -6,6 +6,7 @@ target_sources(${kynema_sgf_lib_name}
       bc_ops.cpp
       console_io.cpp
       index_operations.cpp
+      ghost_fill.cpp
       io_utils.cpp
       IOManager.cpp
       FieldPlaneAveraging.cpp
