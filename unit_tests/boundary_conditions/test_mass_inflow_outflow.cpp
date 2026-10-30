@@ -3,6 +3,7 @@
 #include "src/boundary_conditions/BCInterface.H"
 #include "src/core/FieldFillPatchOps.H"
 #include "AMReX_REAL.H"
+#include "AMReX_Reduce.H"
 
 using namespace amrex::literals;
 
@@ -50,16 +51,20 @@ amrex::Real ghost_error(
     const kynema_sgf::Field& velocity,
     const kynema_sgf::Field& temperature,
     const amrex::Real ux_bc,
-    const bool lo_outflow)
+    const bool lo_outflow,
+    const bool check_velocity = true)
 {
     const auto& domain = velocity.repo().mesh().Geom(0).Domain();
     const int ilo = domain.smallEnd(0);
     const int ihi = domain.bigEnd(0);
-    amrex::Real err = 0.0_rt;
+    amrex::ReduceOps<amrex::ReduceOpMax> reduce_op;
+    amrex::ReduceData<amrex::Real> reduce_data(reduce_op);
+    using ReduceTuple = typename decltype(reduce_data)::Type;
+
     for (amrex::MFIter mfi(velocity(0)); mfi.isValid(); ++mfi) {
         const auto& vbx = mfi.validbox();
-        const auto& varr = velocity(0).const_array(mfi);
-        const auto& tarr = temperature(0).const_array(mfi);
+        const auto varr = velocity(0).const_array(mfi);
+        const auto tarr = temperature(0).const_array(mfi);
         for (const bool is_low : {true, false}) {
             const bool outflow = (is_low == lo_outflow);
             const int iint = is_low ? ilo : ihi;
@@ -67,25 +72,30 @@ amrex::Real ghost_error(
                 (!is_low && vbx.bigEnd(0) != ihi)) {
                 continue;
             }
-            for (int ng = 1; ng <= nghost; ++ng) {
-                const int ig = is_low ? ilo - ng : ihi + ng;
-                for (int k = vbx.smallEnd(2); k <= vbx.bigEnd(2); ++k) {
-                    for (int j = vbx.smallEnd(1); j <= vbx.bigEnd(1); ++j) {
+            const auto bx = is_low ? amrex::adjCellLo(vbx, 0, nghost)
+                                   : amrex::adjCellHi(vbx, 0, nghost);
+            reduce_op.eval(
+                bx, reduce_data,
+                [=] AMREX_GPU_DEVICE(
+                    int i, int j, int k) noexcept -> ReduceTuple {
+                    amrex::Real err = 0.0_rt;
+                    if (check_velocity) {
                         for (int n = 0; n < AMREX_SPACEDIM; ++n) {
                             const amrex::Real ref =
                                 outflow ? vel_interior(iint, j, k, n)
                                         : ((n == 0) ? ux_bc : 0.0_rt);
                             err = amrex::max(
-                                err, std::abs(varr(ig, j, k, n) - ref));
+                                err, amrex::Math::abs(varr(i, j, k, n) - ref));
                         }
-                        const amrex::Real tref =
-                            outflow ? temp_interior(iint, j, k) : temp_bc;
-                        err = amrex::max(err, std::abs(tarr(ig, j, k) - tref));
                     }
-                }
-            }
+                    const amrex::Real tref =
+                        outflow ? temp_interior(iint, j, k) : temp_bc;
+                    return {amrex::max(
+                        err, amrex::Math::abs(tarr(i, j, k) - tref))};
+                });
         }
     }
+    amrex::Real err = amrex::get<0>(reduce_data.value(reduce_op));
     amrex::ParallelDescriptor::ReduceRealMax(err);
     return err;
 }
@@ -95,7 +105,9 @@ amrex::Real ghost_error(
 class MassInflowOutflowTest : public MeshTest
 {
 protected:
-    void setup(const amrex::Real ux_bc)
+    void setup(
+        const amrex::Real ux_bc,
+        const bool high_velocity_pressure_outflow = false)
     {
         MeshTest::populate_parameters();
         {
@@ -105,7 +117,14 @@ protected:
         }
         for (const std::string face : {"xlo", "xhi"}) {
             amrex::ParmParse pp(face);
-            pp.add("type", std::string("mass_inflow_outflow"));
+            const bool high_face = face == "xhi";
+            pp.add(
+                "type", high_face && high_velocity_pressure_outflow
+                            ? std::string("pressure_outflow")
+                            : std::string("mass_inflow_outflow"));
+            if (high_face && high_velocity_pressure_outflow) {
+                pp.add("temperature_type", std::string("mass_inflow_outflow"));
+            }
             pp.addarr("velocity", amrex::Vector<amrex::Real>{ux_bc, 0.0, 0.0});
             pp.addarr("temperature", amrex::Vector<amrex::Real>{temp_bc});
         }
@@ -172,6 +191,16 @@ TEST_F(MassInflowOutflowTest, fillphysbc_outflow_low)
     m_vel->fillphysbc(0.0_rt);
     m_temp->fillphysbc(0.0_rt);
     EXPECT_EQ(ghost_error(*m_vel, *m_temp, ux_bc, true), 0.0_rt);
+}
+
+TEST_F(MassInflowOutflowTest, scalar_outflow_uses_extrapolated_velocity)
+{
+    constexpr amrex::Real ux_bc = 1.0_rt;
+    setup(ux_bc, true);
+    m_vel->fillpatch(0.0_rt);
+    m_temp->fillpatch(0.0_rt);
+
+    EXPECT_EQ(ghost_error(*m_vel, *m_temp, ux_bc, false, false), 0.0_rt);
 }
 
 } // namespace kynema_sgf_tests
