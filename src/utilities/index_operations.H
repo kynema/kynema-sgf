@@ -123,10 +123,10 @@ AMREX_INLINE void extend_boundary_ghost_layers(
     }
     const int idir = ori.coordDir();
     AMREX_ASSERT(bx.length(idir) == 1);
-    const amrex::IntVect alo(amrex::lbound(arr));
-    const amrex::IntVect ahi(amrex::ubound(arr));
-    const int nlayers = ori.isLow() ? (bx.smallEnd(idir) - alo[idir])
-                                    : (ahi[idir] - bx.bigEnd(idir));
+    const amrex::IntVect arr_lo(amrex::lbound(arr));
+    const amrex::IntVect arr_hi(amrex::ubound(arr));
+    const int nlayers = ori.isLow() ? (bx.smallEnd(idir) - arr_lo[idir])
+                                    : (arr_hi[idir] - bx.bigEnd(idir));
     if (nlayers <= 0) {
         return;
     }
