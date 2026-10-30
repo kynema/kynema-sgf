@@ -255,9 +255,11 @@ TEST_F(BCInputTest, redundant_constants_produce_a_warning)
     testing::internal::CaptureStdout();
     EXPECT_NO_THROW(validate());
     const auto output = testing::internal::GetCapturedStdout();
-    EXPECT_NE(
-        output.find("Warning: xlo.temperature is overridden"),
-        std::string::npos);
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        EXPECT_NE(
+            output.find("Warning: xlo.temperature is overridden"),
+            std::string::npos);
+    }
 }
 
 TEST_F(BCInputTest, profile_constants_produce_a_warning_once_per_face)
@@ -273,9 +275,12 @@ TEST_F(BCInputTest, profile_constants_produce_a_warning_once_per_face)
     testing::internal::CaptureStdout();
     EXPECT_NO_THROW(validate());
     const auto output = testing::internal::GetCapturedStdout();
-    const auto warning = output.find("Warning: xlo.temperature is overridden");
-    ASSERT_NE(warning, std::string::npos);
-    EXPECT_EQ(output.find("Warning:", warning + 1), std::string::npos);
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        const auto warning =
+            output.find("Warning: xlo.temperature is overridden");
+        ASSERT_NE(warning, std::string::npos);
+        EXPECT_EQ(output.find("Warning:", warning + 1), std::string::npos);
+    }
 }
 
 TEST_F(BCInputTest, modulated_power_law_supplies_velocity_and_temperature_only)
