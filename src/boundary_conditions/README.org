@@ -98,6 +98,10 @@ the field's component-specific AMReX BCRec rules at physical edges and corners.
 Thus, extrapolation or reflection uses the auxiliary face values rather than the
 earlier base fill. This also covers transverse MAC nodes and all allocated ghost
 layers.
+Only valid same-level face data and its physical-boundary extensions are copied
+between grids. At partial refined boundaries, locations without such a donor
+retain their existing auxiliary or coarse/fine fallback values; scratch ghosts
+are not used as donors.
 
 At intersections of prescribed-value faces (=ext_dir= or =direction_dependent=),
 the existing Dirichlet orientation precedence is retained: the later face in

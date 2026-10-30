@@ -146,7 +146,9 @@ AMREX_INLINE void extend_boundary_ghost_layers(
 /** Extend an auxiliary-filled face across transverse grid, periodic, and
  * physical boundaries using component-specific BCRec rules. Later Dirichlet
  * orientations retain precedence. Normal ghosts must already be filled over
- * valid transverse cell-centered indices.
+ * valid transverse cell-centered indices. Existing coarse/fine fallback values
+ * are preserved wherever no valid same-level face donor or physical extension
+ * is available.
  */
 void fill_transverse_ghosts(
     amrex::MultiFab& mfab,

@@ -100,6 +100,89 @@ amrex::Long count_outflow_edge_mismatches(
     return errors;
 }
 
+amrex::Long partial_transverse_fill_errors(
+    const amrex::Orientation ori,
+    const amrex::IntVect& nodal,
+    const bool periodic)
+{
+    constexpr int ng = 3;
+    const amrex::Box domain(amrex::IntVect(0), amrex::IntVect(15));
+    const amrex::RealBox physical_box(
+        {0.0_rt, 0.0_rt, 0.0_rt}, {1.0_rt, 1.0_rt, 1.0_rt});
+    const int dir = ori.coordDir();
+    const int transverse = (dir + 1) % AMREX_SPACEDIM;
+    amrex::Array<int, 3> periodicity{0, 0, 0};
+    periodicity[transverse] = periodic;
+    const amrex::Geometry geom(domain, physical_box, 0, periodicity);
+    amrex::BoxList boxes;
+    for (const int start : {0, 4, 12}) {
+        auto box = domain;
+        box.setRange(dir, ori.isLow() ? 0 : 12, 4);
+        box.setRange(transverse, start, 4);
+        boxes.push_back(box);
+    }
+    amrex::BoxArray ba(std::move(boxes));
+    ba.convert(nodal);
+    amrex::MultiFab mfab(ba, amrex::DistributionMapping(ba), 2, ng);
+    for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
+        const auto arr = mfab.array(mfi);
+        const amrex::Real fallback = -100.0_rt - mfi.index();
+        const auto valid = amrex::enclosedCells(mfi.validbox());
+        const int boundary = ori.isLow() ? -1 : 16 + nodal[dir];
+        amrex::ParallelFor(
+            mfab[mfi].box(), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::IntVect iv(i, j, k);
+                const bool normal_ghost =
+                    ori.isLow() ? iv[dir] < 0 : iv[dir] > 15 + nodal[dir];
+                auto sample = iv;
+                sample[dir] = valid.smallEnd(dir);
+                arr(iv, 0) = fallback;
+                arr(iv, 1) =
+                    normal_ghost && valid.contains(sample)
+                        ? 10.0_rt + 2.0_rt * boundary + 3.0_rt * iv[transverse]
+                        : fallback;
+            });
+    }
+    amrex::Vector<amrex::BCRec> bcrec(1);
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        const int type =
+            periodicity[d] ? amrex::BCType::int_dir : amrex::BCType::foextrap;
+        bcrec[0].setLo(d, type);
+        bcrec[0].setHi(d, type);
+    }
+    bcrec[0].set(ori, amrex::BCType::ext_dir);
+    kynema_sgf::utils::fill_transverse_ghosts(mfab, geom, bcrec, ori, 1, 1);
+
+    amrex::ReduceOps<amrex::ReduceOpSum> reduce_op;
+    amrex::ReduceData<amrex::Long> reduce_data(reduce_op);
+    using ReduceTuple = typename decltype(reduce_data)::Type;
+    for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
+        const auto arr = mfab.const_array(mfi);
+        const amrex::Real fallback = -100.0_rt - mfi.index();
+        reduce_op.eval(
+            mfab[mfi].box(), reduce_data,
+            [=] AMREX_GPU_DEVICE(int i, int j, int k) -> ReduceTuple {
+                const amrex::IntVect iv(i, j, k);
+                const bool normal_ghost =
+                    ori.isLow() ? iv[dir] < 0 : iv[dir] > 15 + nodal[dir];
+                int sample = iv[transverse];
+                sample = periodic ? (sample + 16) % 16
+                                  : amrex::min(15, amrex::max(0, sample));
+                const bool covered = sample < 8 || sample >= 12;
+                const int boundary = ori.isLow() ? -1 : 16 + nodal[dir];
+                const amrex::Real expected =
+                    normal_ghost && covered
+                        ? 10.0_rt + 2.0_rt * boundary + 3.0_rt * sample
+                        : fallback;
+                return {static_cast<amrex::Long>(
+                    arr(iv, 0) != fallback || arr(iv, 1) != expected)};
+            });
+    }
+    auto errors = amrex::get<0>(reduce_data.value());
+    amrex::ParallelDescriptor::ReduceLongSum(errors);
+    return errors;
+}
+
 amrex::Long transverse_fill_errors(
     const amrex::Geometry& geom,
     const amrex::Orientation ori,
@@ -408,6 +491,26 @@ TEST_F(GhostLayerFillTest, transverse_periodic_boundaries)
                         (ori.coordDir() + 1) % AMREX_SPACEDIM),
                     amrex::BCType::foextrap),
                 0);
+        }
+    }
+}
+
+TEST_F(GhostLayerFillTest, transverse_partial_refinement_preserves_fallback)
+{
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        for (const bool periodic : {false, true}) {
+            for (int node_dir = -1; node_dir < AMREX_SPACEDIM; ++node_dir) {
+                SCOPED_TRACE(
+                    ::testing::Message()
+                    << "face " << int(ori) << ", periodic " << periodic
+                    << ", nodal direction " << node_dir);
+                const auto nodal =
+                    node_dir < 0 ? amrex::IntVect(0)
+                                 : amrex::IntVect::TheDimensionVector(node_dir);
+                EXPECT_EQ(
+                    partial_transverse_fill_errors(ori, nodal, periodic), 0);
+            }
         }
     }
 }

@@ -114,11 +114,50 @@ void fill_transverse_ghosts(
             transverse_bc, 0, 0);
     }
 
+    // Only valid face data and its physical extensions may be donors. Internal
+    // scratch ghosts can contain stale coarse/fine fallback values.
+    amrex::BoxList donor_boxes;
+    for (int idx = 0; idx < slab.boxArray().size(); ++idx) {
+        auto box = slab.boxArray()[idx];
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            if (d == dir || geom.isPeriodic(d)) {
+                continue;
+            }
+            if (box.smallEnd(d) == domain.smallEnd(d)) {
+                box.growLo(d, transverse_ng[d]);
+            }
+            if (box.bigEnd(d) == domain.bigEnd(d)) {
+                box.growHi(d, transverse_ng[d]);
+            }
+        }
+        donor_boxes.push_back(box);
+    }
+    amrex::MultiFab donors(
+        amrex::BoxArray(std::move(donor_boxes)), slab.DistributionMap(), ncomp,
+        0);
+    for (amrex::MFIter mfi(donors); mfi.isValid(); ++mfi) {
+        const auto src = slab.const_array(mfi);
+        const auto dst = donors.array(mfi);
+        amrex::ParallelFor(
+            mfi.validbox(), ncomp,
+            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                dst(i, j, k, n) = src(i, j, k, n);
+            });
+    }
     amrex::MultiFab completed(
         amrex::BoxArray(std::move(destination_boxes)),
         amrex::DistributionMapping(destination_owners), ncomp, 0);
+    for (amrex::MFIter mfi(completed); mfi.isValid(); ++mfi) {
+        const auto src = mfab[destination_indices[mfi.index()]].const_array();
+        const auto dst = completed.array(mfi);
+        amrex::ParallelFor(
+            mfi.validbox(), ncomp,
+            [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+                dst(i, j, k, n) = src(i, j, k, dcomp + n);
+            });
+    }
     completed.ParallelCopy(
-        slab, 0, 0, ncomp, transverse_ng, amrex::IntVect(0),
+        donors, 0, 0, ncomp, amrex::IntVect(0), amrex::IntVect(0),
         geom.periodicity());
     for (amrex::MFIter mfi(completed); mfi.isValid(); ++mfi) {
         const auto dst = mfab[destination_indices[mfi.index()]].array();
