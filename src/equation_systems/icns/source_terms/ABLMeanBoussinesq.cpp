@@ -3,6 +3,7 @@
 #include "src/core/FieldUtils.H"
 #include "src/wind_energy/ABL.H"
 #include "src/utilities/linear_interpolation.H"
+#include "AMReX_FileSystem.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
@@ -82,6 +83,10 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
             !tprofile_filename.empty(),
             "ABLMeanBoussinesq.temperature_profile_filename must be provided "
             "when read_temperature_profile is true");
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            amrex::FileSystem::Exists(tprofile_filename),
+            "ABLMeanBoussinesq: cannot find temperature profile file: " +
+                tprofile_filename);
         m_const_profile = true;
         read_temperature_profile(tprofile_filename);
     } else {
