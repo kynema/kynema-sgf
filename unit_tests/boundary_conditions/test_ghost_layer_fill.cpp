@@ -57,6 +57,18 @@ void set_pattern_and_extend(
     }
 }
 
+void initialize_interior_pattern(amrex::MultiFab& mfab)
+{
+    for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
+        const auto& bx = mfi.validbox();
+        const auto& arr = mfab.array(mfi);
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            arr(i, j, k) =
+                1.0_rt + (20.0_rt * j) + (30.0_rt * k) + (1000.0_rt * i);
+        });
+    }
+}
+
 } // namespace
 
 class GhostLayerFillTest : public MeshTest
@@ -136,14 +148,7 @@ TEST_F(GhostLayerFillTest, mass_inflow_outflow_all_ghost_layers)
 
     // Interior pattern offset by 1000 i
     scalar.setVal(sentinel);
-    for (amrex::MFIter mfi(scalar(0)); mfi.isValid(); ++mfi) {
-        const auto& bx = mfi.validbox();
-        const auto& arr = scalar(0).array(mfi);
-        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            arr(i, j, k) =
-                1.0_rt + (20.0_rt * j) + (30.0_rt * k) + (1000.0_rt * i);
-        });
-    }
+    initialize_interior_pattern(scalar(0));
 
     for (const auto side :
          {amrex::Orientation::low, amrex::Orientation::high}) {
