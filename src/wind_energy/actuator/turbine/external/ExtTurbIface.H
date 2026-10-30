@@ -36,6 +36,8 @@ public:
 
     void advance_turbine(const int local_id);
 
+    void advance_aero_loads(const int local_id);
+
     int num_local_turbines() const
     {
         return static_cast<int>(m_turbine_data.size());
@@ -56,6 +58,8 @@ public:
     void init_solution(const int local_id);
 
     void get_hub_stats(const int local_id);
+
+    void calc_aero_loads(SolverTurbine& fi);
 
     void do_turbine_step(SolverTurbine& fi);
 
@@ -146,6 +150,18 @@ void ExtTurbIface<SolverTurbine, SolverData>::init_turbine(const int local_id)
 }
 
 template <typename SolverTurbine, typename SolverData>
+void ExtTurbIface<SolverTurbine, SolverData>::advance_aero_loads(
+    const int local_id)
+{
+    BL_PROFILE("kynema-sgf::ExtTurbIface::advance_turbine");
+    AMREX_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
+
+    auto& fi = *m_turbine_data[local_id];
+    write_velocity_data(fi);
+    calc_aero_loads(fi);
+}
+
+template <typename SolverTurbine, typename SolverData>
 void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
     const int local_id)
 {
@@ -170,7 +186,6 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
         }
     }
 
-    write_velocity_data(fi);
     for (int i = 0; i < fi.num_substeps; ++i, ++fi.time_index) {
         do_turbine_step(fi);
     }

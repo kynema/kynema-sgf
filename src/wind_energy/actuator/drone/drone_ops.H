@@ -25,7 +25,7 @@ struct UpdatePosOp<Drone, ActSrcDrone>
 };
 
 template <>
-struct UpdateVelOp<Drone, ActSrcDrone>
+struct UpdateFieldsOp<Drone, ActSrcDrone>
 {
     void operator()(Drone::DataType& data);
 };

@@ -111,11 +111,14 @@ void Actuator::post_init_actions()
         vel(lev).FillBoundary(m_sim.mesh().Geom()[lev].periodicity());
     }
 
-    setup_container();
-    update_positions();
-    update_velocities();
-    compute_forces();
-    compute_source_term();
+    setup_particle_container();
+    update_actuator_and_container_positions();
+    sample_fields();
+    update_actuator_data_from_particles();
+    advance_actuator_models();
+    prescribe_actuator_motion();
+    compute_actuator_loads();
+    accumulate_actuator_source_terms_for_fluid();
     prepare_outputs();
 }
 
@@ -142,7 +145,7 @@ void Actuator::post_regrid_actions()
         act->determine_influenced_procs();
     }
 
-    setup_container();
+    setup_particle_container();
 }
 
 void Actuator::pre_advance_work()
@@ -150,11 +153,26 @@ void Actuator::pre_advance_work()
     BL_PROFILE("kynema-sgf::actuator::Actuator::pre_advance_work");
 
     m_container->reset_container();
-    update_positions();
-    update_velocities();
-    compute_forces();
-    compute_source_term();
+    update_actuator_and_container_positions();
+    sample_fields();
+    update_actuator_data_from_particles();
+    advance_actuator_models();
+    prescribe_actuator_motion();
+    compute_actuator_loads();
+    accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
+}
+
+void Actuator::post_advance_work()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::post_advance_work");
+
+    const int iproc = amrex::ParallelDescriptor::MyProc();
+    for (auto& ac : m_actuators) {
+        if (ac->info().root_proc == iproc) {
+            ac->write_outputs();
+        }
+    }
 }
 
 void Actuator::communicate_turbine_io()
@@ -192,15 +210,15 @@ void Actuator::communicate_turbine_io()
 #endif
 }
 
-/** Set up the container for sampling velocities
+/** Set up the container for sampling fields.
  *
  *  Allocates memory and initializes the particles corresponding to actuator
- *  nodes for all turbines that influence the current MPI rank. This method is
+ *  nodes for all actuators that influence the current MPI rank. This method is
  *  invoked once during initialization and during regrid step.
  */
-void Actuator::setup_container()
+void Actuator::setup_particle_container()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::setup_container");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::setup_particle_container");
 
     const int ntotal = num_actuators();
     const int nlocal = static_cast<int>(std::count_if(
@@ -223,17 +241,18 @@ void Actuator::setup_container()
     m_container->initialize_container();
 }
 
-/** Update actuator positions and sample velocities at new locations.
+/** Update actuator-node positions.
  *
- *  This method loops over all the turbines local to this MPI rank and updates
- *  the position vectors. These new locations are provided to the sampling
- *  container that samples velocities at these new locations.
+ *  This physics-level method asks each relevant ActuatorModel to update its
+ *  position vectors, then updates the sampling container positions.
  *
- *  \sa Actuator::update_velocities
+ *  \sa Actuator::update_actuator_and_container_positions
  */
-void Actuator::update_positions()
+void Actuator::update_actuator_and_container_positions()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::update_positions");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::update_actuator_and_container_"
+        "positions");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -243,20 +262,30 @@ void Actuator::update_positions()
         ic += pinfo.num_pts[i];
     }
     m_container->update_positions();
+}
 
-    // Sample velocities at the new locations
+void Actuator::sample_fields()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::sample_fields");
+
+    // Sample velocity and density at the updated actuator locations.
     const auto& vel = m_sim.repo().get_field("velocity");
     const auto& density = m_sim.repo().get_field("density");
     m_container->sample_fields(vel, density);
 }
 
-/** Provide updated velocities from container to actuator instances
+/** Copy sampled fields back into each actuator instance.
  *
- *  \sa Acuator::update_positions
+ *  ActuatorModel::update_fields passes those fields to the actuator-type
+ *  operation that updates its instance data.
+ *
+ *  \sa Actuator::sample_fields
  */
-void Actuator::update_velocities()
+void Actuator::update_actuator_data_from_particles()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::update_velocities");
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::update_actuator_data_from_"
+        "particles");
     auto& pinfo = m_container->m_data;
     for (int i = 0, ic = 0; i < pinfo.num_objects; ++i) {
         const auto ig = pinfo.global_id[i];
@@ -272,21 +301,48 @@ void Actuator::update_velocities()
     }
 }
 
-/** Helper method to compute forces on all actuator components
- */
-void Actuator::compute_forces()
+void Actuator::prescribe_actuator_motion()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_forces");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::prescribe_actuator_motion");
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
-            ac->compute_forces();
+            ac->prescribe_model_motion();
         }
     }
 }
 
-void Actuator::compute_source_term()
+void Actuator::compute_actuator_loads()
 {
-    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_source_term");
+    BL_PROFILE("kynema-sgf::actuator::Actuator::compute_actuator_loads");
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->compute_loads();
+        }
+    }
+}
+
+void Actuator::advance_actuator_models()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::advance_actuator_models");
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->advance_model();
+        }
+    }
+}
+
+void Actuator::accumulate_actuator_source_terms_for_fluid()
+{
+    BL_PROFILE(
+        "kynema-sgf::actuator::Actuator::accumulate_actuator_source_terms_for_"
+        "fluid");
+
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->prepare_source_term_data();
+        }
+    }
+
     m_act_source.setVal(0.0_rt);
     const int nlevels = m_sim.repo().num_active_levels();
 
@@ -326,18 +382,6 @@ void Actuator::prepare_outputs()
     for (auto& ac : m_actuators) {
         if (ac->info().root_proc == iproc) {
             ac->prepare_outputs(sname);
-        }
-    }
-}
-
-void Actuator::post_advance_work()
-{
-    BL_PROFILE("kynema-sgf::actuator::Actuator::post_advance_work");
-
-    const int iproc = amrex::ParallelDescriptor::MyProc();
-    for (auto& ac : m_actuators) {
-        if (ac->info().root_proc == iproc) {
-            ac->write_outputs();
         }
     }
 }

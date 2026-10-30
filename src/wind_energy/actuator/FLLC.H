@@ -61,7 +61,7 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data);
 
 /**
  * \brief Initialize FLLC data structure. This should be called at the end of
- * the first ComputeForceOp to ensure the data is fully populated
+ * the first ComputeLoadsAndUpdateStateOp to ensure the data is fully populated
  *
  * \param data FLLC specific data and scratch fields
  * \param view Component view that has references to the grid data

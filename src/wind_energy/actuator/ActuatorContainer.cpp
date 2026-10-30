@@ -33,11 +33,11 @@ ActuatorContainer::ActuatorContainer(
 /** Allocate memory and initialize the particles within the container
  *
  *  This method is only called once during the simulation. It allocates the
- *  arrays for holding the position vector and velocity data on host memory and
+ *  arrays for holding positions and sampled flow fields on host memory and
  *  also initializes corresponding particles within the first available particle
- *  tile within the container. It is expected that the actuator manager instance
- *  has already populated the number of points per turbine before invoking this
- *  method.
+ *  tile within the container. It is expected that the Actuator physics
+ *  instance has already populated the number of points per actuator before
+ *  invoking this method.
  */
 void ActuatorContainer::initialize_container()
 {
@@ -84,8 +84,8 @@ void ActuatorContainer::initialize_particles(const int total_pts)
     // We assign all particles into the first available container within this
     // MPI rank and let redistribute take care of scattering the particles into
     // the respective MPI rank containing the cell enclosing this particle. The
-    // actual redistribution happens after position vectors are updated in
-    // update_positions.
+    // actual redistribution happens after positions are updated in
+    // update_positions().
 
     // query the particle ID from the container. We should always be starting
     // from 1.
@@ -146,13 +146,12 @@ void ActuatorContainer::reset_container()
     initialize_particles(total_pts);
 }
 
-/** Update position vectors of the particles within a container based on the
- *  data provided by actuator instances.
+/** Update particle positions using data provided by actuator instances.
  *
  *  This method assumes that the particles have been restored to their
  *  originating MPI ranks after any scattering. This happens during
- *  initialization (after AcutatorContainer::initialize_particles) and after
- *  ActuatorContainer::sample_velocities.
+ *  initialization (after ActuatorContainer::initialize_particles()) and after
+ *  ActuatorContainer::sample_fields().
  *
  *  After executing this method, the particles have been scattered across the
  *  domain such that each particle is contained within a tile that has the cell
@@ -187,47 +186,48 @@ void ActuatorContainer::update_positions()
     // Scatter particles to appropriate MPI ranks
     Redistribute();
 
-    // Indicate that it is safe to sample velocities
+    // Indicate that it is safe to sample fields.
     m_is_scattered = true;
 }
 
-/** Interpolate the velocity field using a trilinear interpolation
+/** Interpolate velocity and density fields using trilinear interpolation.
  *
  *  This method performs three tasks:
- *    - Sample the velocity field and interpolate onto particle location
+ *    - Sample velocity and density and interpolate them onto particle locations
  *    - Restore the particles back to their original MPI rank
  *    - Copy data from particles into the buffer used by actuator instances
  *
- *  After invocation if this method, the particles are back in their original
- *  rank and the position vectors can be updated safely.
+ *  After this method returns, the particles are back on their original ranks
+ *  and their positions can be updated safely.
  */
 void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
 {
-    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::sample_velocities");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::sample_fields");
     AMREX_ALWAYS_ASSERT(m_container_initialized && m_is_scattered);
 
-    // Sample velocity field
+    // Sample velocity and density fields.
     interpolate_fields(vel, density);
 
     // Recall particles to the MPI ranks that contains their corresponding
     // turbines
     // Redistribute();
 
-    // Populate the velocity buffer that all actuator instances can access
+    // Populate the field buffers that all actuator instances can access.
     populate_field_buffers();
 
     // Indicate that the particles have been restored to their original MPI rank
     m_is_scattered = false;
 }
 
-/** Helper method for ActuatorContainer::sample_fields
+/** Helper method for ActuatorContainer::sample_fields().
  *
- *  Loops over the particle tiles and copies velocity data from particles to the
- *  velocity and density arrays.
+ *  Copies sampled velocity and density from the particle tiles to the
+ *  corresponding arrays.
  */
 void ActuatorContainer::populate_field_buffers()
 {
-    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::populate_vel_buffer");
+    BL_PROFILE(
+        "kynema-sgf::actuator::ActuatorContainer::populate_field_buffers");
     const size_t num_buff_entries =
         m_proc_offsets.back() * static_cast<size_t>(NumPStructReal);
 
@@ -281,18 +281,16 @@ void ActuatorContainer::populate_field_buffers()
     }
 }
 
-/** Helper method for ActuatorContainer::sample_fields
+/** Helper method for ActuatorContainer::sample_fields().
  *
- *  Performs a trilinear interpolation of the velocity/density field to particle
- *  locations. It also updates the particle locations such that the next
- *  Redistribute call restores the particles back to their original MPI rank
- *  where they were created.
+ *  Interpolates velocity and density at particle locations, then restores the
+ *  particle locations so the next Redistribute call returns them to their
+ *  original MPI rank.
  */
 void ActuatorContainer::interpolate_fields(
     const Field& vel, const Field& density)
 {
-    BL_PROFILE(
-        "kynema-sgf::actuator::ActuatorContainer::interpolate_velocities");
+    BL_PROFILE("kynema-sgf::actuator::ActuatorContainer::interpolate_fields");
     auto* dptr = m_pos_device.data();
     const int nlevels = m_mesh.finestLevel() + 1;
     for (int lev = 0; lev < nlevels; ++lev) {
@@ -333,7 +331,7 @@ void ActuatorContainer::interpolate_fields(
 
                 const int iproc = pp.cpu();
 
-                // velocity
+                // Interpolate velocity.
                 for (int ic = 0; ic < AMREX_SPACEDIM; ++ic) {
                     pp.rdata(ic) =
                         (wx_lo * wy_lo * wz_lo * varr(i, j, k, ic)) +
@@ -350,7 +348,7 @@ void ActuatorContainer::interpolate_fields(
                     pp.pos(ic) = dptr[iproc][ic];
                 }
 
-                // density
+                // Interpolate density.
                 pp.rdata(AMREX_SPACEDIM) =
                     (wx_lo * wy_lo * wz_lo * darr(i, j, k)) +
                     (wx_lo * wy_lo * wz_hi * darr(i, j, k + 1)) +

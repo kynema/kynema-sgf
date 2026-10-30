@@ -160,10 +160,8 @@ void refresh_wing_position(VecList& vpoints, VecList fpoints, const int npts)
     }
 }
 
-void new_wing_position_velocity(
-    VecList& points,
+vs::Vector new_wing_displacement_motion(
     vs::Vector& vtr,
-    const int npts,
     const amrex::Real tn,
     const amrex::Real tnp1,
     const std::string& motion,
@@ -206,12 +204,7 @@ void new_wing_position_velocity(
                   (tnp1 - tn + std::numeric_limits<amrex::Real>::epsilon());
         // The tiny number in the denominator is important for initialization
     }
-    for (int ip = 0; ip < npts; ++ip) {
-        // Move points according to displacement
-        points[ip].x() = points[ip].x() + disp.x();
-        points[ip].y() = points[ip].y() + disp.y();
-        points[ip].z() = points[ip].z() + disp.z();
-    }
+    return disp;
 }
 
 } // namespace kynema_sgf::actuator::wing

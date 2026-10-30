@@ -221,22 +221,32 @@ struct UpdatePosOp<TurbineFast, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<TurbineFast, SrcTrait>
+struct UpdateFieldsOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::UpdateVelOp<TurbineFast>");
-        update_vel_op<TurbineFast::DataType>(data);
+        BL_PROFILE("kynema-sgf::actuator::UpdateFieldsOp<TurbineFast>");
+        update_fields_op<TurbineFast::DataType>(data);
     }
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<TurbineFast, SrcTrait>
+struct ComputeLoadsOp<TurbineFast, SrcTrait>
 {
     void operator()(typename TurbineFast::DataType& data)
     {
-        BL_PROFILE("kynema-sgf::actuator::ComputeForceOp<TurbineFast>");
-        compute_force_op<TurbineFast::DataType>(data);
+        BL_PROFILE("kynema-sgf::actuator::ComputeLoadsOp<TurbineFast>");
+        update_external_turbine_loads<TurbineFast::DataType>(data);
+    }
+};
+
+template <typename SrcTrait>
+struct AdvanceModelOp<TurbineFast, SrcTrait>
+{
+    void operator()(typename TurbineFast::DataType& data)
+    {
+        BL_PROFILE("kynema-sgf::actuator::AdvanceModelOp<TurbineFast>");
+        advance_external_turbine<TurbineFast::DataType>(data);
     }
 };
 

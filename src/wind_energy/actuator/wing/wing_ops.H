@@ -11,6 +11,8 @@
 #include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
+#include <type_traits>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf::actuator {
@@ -34,10 +36,8 @@ void write_netcdf(
 
 void refresh_wing_position(VecList& vpoints, VecList fpoints, int npts);
 
-void new_wing_position_velocity(
-    VecList& points,
+vs::Vector new_wing_displacement_motion(
     vs::Vector& vtr,
-    int npts,
     amrex::Real tn,
     amrex::Real tnp1,
     const std::string& motion,
@@ -75,8 +75,10 @@ template <typename ActTrait, typename SrcTrait>
 struct UseDefaultOp
 {
     static constexpr bool update_pos = true;
-    static constexpr bool update_vel = true;
-    static constexpr bool compute_force = true;
+    static constexpr bool update_fields = true;
+    static constexpr bool prescribe_motion = true;
+    static constexpr bool compute_loads = true;
+    static constexpr bool advance_model = true;
     static constexpr bool process_outputs = true;
 };
 
@@ -98,12 +100,12 @@ struct UpdatePosOp<
 };
 
 template <typename ActTrait>
-struct UpdateVelOp<
+struct UpdateFieldsOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::update_vel>>
+        UseDefaultOp<ActTrait, ActSrcLine>::update_fields>>
 {
 
     void operator()(typename ActTrait::DataType& data)
@@ -116,39 +118,32 @@ struct UpdateVelOp<
 };
 
 template <typename ActTrait>
-struct ComputeForceOp<
+struct PrescribeModelMotionOp<
     ActTrait,
     ActSrcLine,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::compute_force>>
+        UseDefaultOp<ActTrait, ActSrcLine>::prescribe_motion>>
 {
     void operator()(typename ActTrait::DataType& data)
     {
         auto& grid = data.grid();
         auto& wdata = data.meta();
         const int npts = wdata.num_pts;
-        const auto& dx = wdata.dx;
-        const auto& chord = wdata.chord;
-        const auto& aflookup = airfoil_lookup<ActTrait>(data);
         const auto& time = data.sim().time();
 
-        // Move force points to location at n+1
-        // Also, get velocity of actuator from n to n+1
-        // (will be unchanged for "none" and "linear" motion)
-        actuator::wing::new_wing_position_velocity(
-            grid.pos, wdata.vel_tr, npts, time.current_time(), time.new_time(),
+        // Move force points to location at n+1 using displacement vector
+        auto disp = actuator::wing::new_wing_displacement_motion(
+            wdata.vel_tr, time.current_time(), time.new_time(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
+        for (int ip = 0; ip < npts; ++ip) {
+            grid.pos[ip].x() = grid.pos[ip].x() + disp.x();
+            grid.pos[ip].y() = grid.pos[ip].y() + disp.y();
+            grid.pos[ip].z() = grid.pos[ip].z() + disp.z();
+        }
 
         // Build the local reference frame
         const vs::Vector wspan = wdata.end - wdata.start;
-
-        // Use the global coord to orient the blade
-        // The default is for inflow in the x direction
-        const auto blade_y = wspan.unit();
-        const auto blade_z = (wdata.blade_x.unit() ^ blade_y).unit();
-        // Ensure orthogonality for new reference frame
-        const auto blade_x = (blade_y ^ blade_z).unit();
 
         // Calculate the aoa based on the pitch actuation table if supplied
         // (interpolate pitch angle at step n+1/2) or the initial pitch angle
@@ -164,6 +159,35 @@ struct ComputeForceOp<
             auto tmat = vs::quaternion(wspan, wdata.pitch);
             grid.orientation.assign(npts, tmat);
         }
+    }
+};
+
+template <typename ActTrait>
+struct ComputeLoadsOp<
+    ActTrait,
+    ActSrcLine,
+    typename std::enable_if_t<
+        std::is_base_of_v<WingType, ActTrait> &&
+        UseDefaultOp<ActTrait, ActSrcLine>::compute_loads>>
+{
+    void operator()(typename ActTrait::DataType& data)
+    {
+        auto& grid = data.grid();
+        auto& wdata = data.meta();
+        const int npts = wdata.num_pts;
+        const auto& dx = wdata.dx;
+        const auto& chord = wdata.chord;
+        const auto& aflookup = airfoil_lookup<ActTrait>(data);
+
+        // Build the local reference frame
+        const vs::Vector wspan = wdata.end - wdata.start;
+
+        // Use the global coord to orient the blade
+        // The default is for inflow in the x direction
+        const auto blade_y = wspan.unit();
+        const auto blade_z = (wdata.blade_x.unit() ^ blade_y).unit();
+        // Ensure orthogonality for new reference frame
+        const auto blade_x = (blade_y ^ blade_z).unit();
 
         // Get flags for each coordinate of force and put in vs::Vector
         const vs::Vector force_coord_flags_vec = {
@@ -242,7 +266,21 @@ struct ComputeForceOp<
 
         wdata.lift = total_lift;
         wdata.drag = total_drag;
+    }
+};
 
+template <typename ActTrait>
+struct AdvanceModelOp<
+    ActTrait,
+    ActSrcLine,
+    typename std::enable_if_t<
+        std::is_base_of_v<WingType, ActTrait> &&
+        UseDefaultOp<ActTrait, ActSrcLine>::advance_model>>
+{
+    void operator()(typename ActTrait::DataType& data)
+    {
+        auto& wdata = data.meta();
+        const auto& time = data.sim().time();
         if (wdata.fllc) {
             if (!(wdata.fllc->initialized) &&
                 (time.current_time() > wdata.fllc->fllc_start_time)) {
@@ -263,7 +301,7 @@ struct ProcessOutputsOp<
     SrcTrait,
     typename std::enable_if_t<
         std::is_base_of_v<WingType, ActTrait> &&
-        UseDefaultOp<ActTrait, ActSrcLine>::process_outputs>>
+        UseDefaultOp<ActTrait, SrcTrait>::process_outputs>>
 {
 private:
     typename ActTrait::DataType& m_data;

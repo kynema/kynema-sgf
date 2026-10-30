@@ -23,7 +23,10 @@ namespace actuator {
  *  wing) that exists in the computational domain. A collection of source
  *  objects (e.g., turbines in a wind farm) is modeled using the
  *  kynema_sgf::Actuator physics class that holds a collection of instances of
- *  ActuatorModel and acts on them.
+ *  ActuatorModel and coordinates their work. Actuator physics-level methods
+ *  handle the collection (e.g., Actuator::sample_fields()); ActuatorModel
+ *  methods such as ActuatorModel::update_fields() handle one instance and
+ *  dispatch to its actuator-type operations.
  */
 class ActuatorModel
     : public Factory<ActuatorModel, CFDSim&, const std::string&, const int>
@@ -55,7 +58,13 @@ public:
 
     virtual void update_fields(const VecSlice&, const RealSlice&) = 0;
 
-    virtual void compute_forces() = 0;
+    virtual void prescribe_model_motion() = 0;
+
+    virtual void compute_loads() = 0;
+
+    virtual void advance_model() = 0;
+
+    virtual void prepare_source_term_data() = 0;
 
     virtual void compute_source_term(
         int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom) = 0;
@@ -70,9 +79,10 @@ public:
  *  \ingroup actuator
  *
  *  \tparam ActTrait An actuator type trait that defines the behavior of the
- *  different actions (initialization, velocity sampling, force computation, and
- *  momentum source term computations) that are executed by the ActuatorModel
- *  class through the kynema_sgf::Actuator physics driver class.
+ *  different actions (initialization, field sampling, load computation and
+ *  state updates, and momentum source term computations) that are executed by
+ *  the ActuatorModel class through the kynema_sgf::Actuator physics driver
+ *  class.
  *
  *  \tparam SrcTrait A source type trait that defines how the forcing term is
  *  computed, e.g., if the turbine rotor is represented as a line or a disk. For
@@ -155,14 +165,27 @@ public:
         std::copy(vel.begin(), vel.end(), m_data.grid().vel.begin());
         std::copy(
             density.begin(), density.end(), m_data.grid().density.begin());
-        ops::UpdateVelOp<ActTrait, SrcTrait>()(m_data);
+        ops::UpdateFieldsOp<ActTrait, SrcTrait>()(m_data);
     }
 
-    void compute_forces() override
+    void prescribe_model_motion() override
     {
-        ops::ComputeForceOp<ActTrait, SrcTrait>()(m_data);
-        m_src_op.setup_op();
+        ops::PrescribeModelMotionOp<ActTrait, SrcTrait>()(m_data);
     }
+
+    void compute_loads() override
+    {
+        ops::ComputeLoadsOp<ActTrait, SrcTrait>()(m_data);
+        // communicate loads
+    }
+
+    void advance_model() override
+    {
+        ops::AdvanceModelOp<ActTrait, SrcTrait>()(m_data);
+        // communicate positions
+    }
+
+    void prepare_source_term_data() override { m_src_op.setup_op(); }
 
     void compute_source_term(
         const int lev,

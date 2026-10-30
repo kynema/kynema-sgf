@@ -72,8 +72,10 @@ struct UseDefaultOp<
     ::kynema_sgf::actuator::ActSrcLine>
 {
     static constexpr bool update_pos = true;
-    static constexpr bool update_vel = false;
-    static constexpr bool compute_force = false;
+    static constexpr bool update_fields = false;
+    static constexpr bool prescribe_motion = false;
+    static constexpr bool compute_loads = false;
+    static constexpr bool advance_model = false;
     static constexpr bool process_outputs = true;
 };
 
@@ -146,7 +148,7 @@ struct InitDataOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+struct UpdateFieldsOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
@@ -166,7 +168,7 @@ struct UpdateVelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 };
 
 template <typename SrcTrait>
-struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+struct ComputeLoadsOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
 {
     void operator()(::kynema_sgf_tests::FlatPlate::DataType& data)
     {
@@ -200,6 +202,18 @@ struct ComputeForceOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
             grid.force[ip] = -(lift_dir * lift + drag * drag_dir);
         }
     }
+};
+
+template <typename SrcTrait>
+struct AdvanceModelOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+{
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& /*data*/) {}
+};
+
+template <typename SrcTrait>
+struct PrescribeModelMotionOp<::kynema_sgf_tests::FlatPlate, SrcTrait>
+{
+    void operator()(::kynema_sgf_tests::FlatPlate::DataType& /*data*/) {}
 };
 
 } // namespace ops
