@@ -40,9 +40,7 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
                    "option has been deprecated in favor of "
                    "ABLMeanBoussinesq.read_temperature_profile. Ignoring the "
                    "BoussinesqBuoyancy option in favor of the "
-                   "ABLMeanBoussinesq "
-                   "option."
-                << '\n';
+                   "ABLMeanBoussinesq option.\n";
         }
     } else if (pp_boussinesq_buoyancy.contains("read_temperature_profile")) {
         amrex::Print()
@@ -62,19 +60,14 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
             amrex::Print() << "WARNING: BoussinesqBuoyancy.tprofile_filename "
                               "option has been deprecated in favor of "
                               "ABLMeanBoussinesq.temperature_profile_filename. "
-                              "Ignoring the "
-                              "BoussinesqBuoyancy option in favor of the "
-                              "ABLMeanBoussinesq "
-                              "option."
-                           << '\n';
+                              "Ignoring the BoussinesqBuoyancy option in favor "
+                              "of the ABLMeanBoussinesq option.\n";
         }
     } else if (pp_boussinesq_buoyancy.contains("tprofile_filename")) {
-        amrex::Print()
-            << "WARNING: BoussinesqBuoyancy.tprofile_filename option "
-               "has been deprecated in favor of "
-               "ABLMeanBoussinesq.temperature_profile_filename. Please replace "
-               "this option."
-            << '\n';
+        amrex::Print() << "WARNING: BoussinesqBuoyancy.tprofile_filename "
+                          "option has been deprecated in favor of "
+                          "ABLMeanBoussinesq.temperature_profile_filename. "
+                          "Please replace this option.\n";
         pp_boussinesq_buoyancy.get("tprofile_filename", tprofile_filename);
         read_temp_prof = true;
     }
