@@ -3,6 +3,7 @@
 #include "src/utilities/io_utils.H"
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/utilities/index_operations.H"
+#include "src/utilities/constants.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
@@ -520,23 +521,13 @@ bool FreeSurfaceSampler::update_sampling_locations()
                                 const bool single_phase_below_interface =
                                     (ni % 2 == 0 &&
                                      vof_arr(i, j, k) >=
-                                         1.0_rt - (std::numeric_limits<
-                                                       amrex::Real>::epsilon() *
-                                                   1.0e4_rt)) ||
+                                         1.0_rt - constants::VOF_TOL) ||
                                     (ni % 2 != 0 &&
-                                     vof_arr(i, j, k) <=
-                                         std::numeric_limits<
-                                             amrex::Real>::epsilon() *
-                                             1.0e4_rt);
+                                     vof_arr(i, j, k) <= constants::VOF_TOL);
                                 const bool multiphase =
                                     vof_arr(i, j, k) <
-                                        (1.0_rt - (std::numeric_limits<
-                                                       amrex::Real>::epsilon() *
-                                                   1.0e4_rt)) &&
-                                    vof_arr(i, j, k) >
-                                        std::numeric_limits<
-                                            amrex::Real>::epsilon() *
-                                            1.0e4_rt;
+                                        (1.0_rt - constants::VOF_TOL) &&
+                                    vof_arr(i, j, k) > constants::VOF_TOL;
                                 const bool use_linear_interp =
                                     (has_overset && ibl_arr(i, j, k) == -1) ||
                                     linear_on;

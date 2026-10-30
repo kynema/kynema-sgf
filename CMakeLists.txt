@@ -250,6 +250,14 @@ if(KYNEMA_SGF_ENABLE_CUDA)
   foreach(tgt IN LISTS kstargets)
     set_cuda_build_properties(${tgt})
   endforeach()
+  if(KYNEMA_SGF_ENABLE_KYNEMA_FMB AND NOT Kokkos_ENABLE_CUDA)
+    # KynemaFMBHost.cpp is the only source that uses Kynema-FMB/Kokkos types and
+    # must be compiled by the same compiler as Kokkos, since nvcc and the host
+    # compiler lay out Kokkos::View differently
+    set_source_files_properties(
+      ${CMAKE_SOURCE_DIR}/src/wind_energy/actuator/turbine/kynema_fmb/KynemaFMBHost.cpp
+      PROPERTIES LANGUAGE CXX)
+  endif()
 endif()
 
 if(KYNEMA_SGF_ENABLE_UNIT_TESTS OR KYNEMA_SGF_ENABLE_TESTS)
