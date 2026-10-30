@@ -203,4 +203,31 @@ TEST_F(MassInflowOutflowTest, scalar_outflow_uses_extrapolated_velocity)
     EXPECT_EQ(ghost_error(*m_vel, *m_temp, ux_bc, false, false), 0.0_rt);
 }
 
+TEST_F(MassInflowOutflowTest, scalar_fills_preserve_velocity)
+{
+    constexpr amrex::Real ux_bc = 1.0_rt;
+    setup(ux_bc);
+    auto& velocity = (*m_vel)(0);
+    amrex::MultiFab difference(
+        velocity.boxArray(), velocity.DistributionMap(), velocity.nComp(),
+        velocity.nGrowVect());
+
+    for (const bool fillpatch : {true, false}) {
+        SCOPED_TRACE(fillpatch ? "fillpatch" : "fillphysbc");
+        amrex::MultiFab::Copy(
+            difference, velocity, 0, 0, velocity.nComp(), velocity.nGrowVect());
+        if (fillpatch) {
+            m_temp->fillpatch(0.0_rt);
+        } else {
+            m_temp->fillphysbc(0.0_rt);
+        }
+        EXPECT_EQ(ghost_error(*m_vel, *m_temp, ux_bc, false, false), 0.0_rt);
+        amrex::MultiFab::Subtract(
+            difference, velocity, 0, 0, velocity.nComp(), velocity.nGrowVect());
+        EXPECT_EQ(
+            difference.norm0(0, velocity.nComp(), velocity.nGrowVect()),
+            0.0_rt);
+    }
+}
+
 } // namespace kynema_sgf_tests

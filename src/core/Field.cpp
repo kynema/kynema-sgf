@@ -363,46 +363,24 @@ void Field::fill_inout_outflow(
 
     // The flow direction is set by the prescribed boundary-normal velocity.
     // The velocity field reads it from its own first ghost layer, which holds
-    // the prescribed values after its fill operations. Other fields apply the
-    // velocity fillpatch operations before evaluating its boundary values.
+    // the prescribed values after its fill operations. Other fields evaluate
+    // velocity fillpatch operations on a disposable buffer, leaving the
+    // velocity field unchanged.
     auto& velocity = m_repo.get_field("velocity");
     const bool is_velocity = (m_info == velocity.m_info);
-    auto& velocity_mfab = velocity(lev);
-    const amrex::MultiFab* vel_mf = &mfab;
     amrex::MultiFab vel_bndry;
-    bool restore_velocity_outflow = false;
     if (!is_velocity) {
         BL_ASSERT(velocity.m_info->m_bc_copied_to_device);
         if (velocity.m_info->m_fillpatch_ops.empty()) {
             return;
         }
-        bool enough_velocity_ghosts = true;
-        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-            enough_velocity_ghosts = enough_velocity_ghosts &&
-                                     (ng[d] <= velocity_mfab.nGrowVect()[d]);
-        }
-        const bool same_layout =
-            mfab.boxArray() == velocity_mfab.boxArray() &&
-            mfab.DistributionMap() == velocity_mfab.DistributionMap() &&
-            enough_velocity_ghosts;
-        if (same_layout) {
-            for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
-                fop->fillphysbc(
-                    lev, time, velocity_mfab, ng, velocity.field_state());
-            }
-            vel_mf = &velocity_mfab;
-            restore_velocity_outflow = velocity.has_inout_bndry();
-        } else {
-            vel_bndry.define(
-                mfab.boxArray(), mfab.DistributionMap(), velocity.num_comp(),
-                ng);
-            for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
-                fop->fillpatch(
-                    lev, time, vel_bndry, ng, velocity.field_state());
-            }
-            vel_mf = &vel_bndry;
+        vel_bndry.define(
+            mfab.boxArray(), mfab.DistributionMap(), velocity.num_comp(), ng);
+        for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
+            fop->fillpatch(lev, time, vel_bndry, ng, velocity.field_state());
         }
     }
+    const amrex::MultiFab& vel_mf = is_velocity ? mfab : vel_bndry;
 
     const int ncomp = mfab.nComp();
     for (const auto& ori : oris) {
@@ -434,7 +412,7 @@ void Field::fill_inout_outflow(
             plane.setRange(idir, ighost);
 
             const auto& arr = mfab.array(mfi);
-            const auto& vel = vel_mf->const_array(mfi);
+            const auto& vel = vel_mf.const_array(mfi);
             amrex::ParallelFor(
                 plane, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
                     const amrex::IntVect iv{AMREX_D_DECL(i, j, k)};
@@ -452,9 +430,6 @@ void Field::fill_inout_outflow(
                     }
                 });
         }
-    }
-    if (restore_velocity_outflow) {
-        velocity.fill_inout_outflow(lev, time, velocity_mfab, ng);
     }
 }
 
