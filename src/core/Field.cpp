@@ -306,9 +306,8 @@ void Field::fill_inout_outflow(
     const int lev,
     const amrex::Real time,
     amrex::MultiFab& mfab,
-    const amrex::IntVect& /*nghost*/)
+    const amrex::IntVect& nghost)
 {
-    const auto nghost = amrex::IntVect(1);
     if (!has_inout_bndry() || !mfab.ixType().cellCentered() ||
         m_info->m_bcrec.empty()) {
         return;
