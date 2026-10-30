@@ -65,6 +65,16 @@ void OceanWavesBoundary::pre_advance_work()
     record_boundary_data_time(adv_bdy_time);
 }
 
+bool OceanWavesBoundary::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    // Velocity is liquid-only; density blends with the base fill.
+    return m_vof_exists && field.name() == "vof" &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow ||
+            bct == BC::wave_generation);
+}
+
 void OceanWavesBoundary::pre_predictor_work()
 {
     BL_PROFILE("kynema-sgf::OceanWavesBoundary::pre_predictor_work");

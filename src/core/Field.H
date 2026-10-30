@@ -60,6 +60,8 @@ struct FieldInfo
     //! Boundary condition data
     amrex::GpuArray<BC, AMREX_SPACEDIM * 2> m_bc_type;
     amrex::Vector<amrex::Vector<amrex::Real>> m_bc_values;
+    amrex::GpuArray<InflowValueSource, AMREX_SPACEDIM * 2>
+        m_inflow_value_source{};
     amrex::GpuArray<const amrex::Real*, AMREX_SPACEDIM * 2> m_bc_values_d;
     amrex::Gpu::DeviceVector<amrex::Real> m_bc_values_dview;
 
@@ -187,6 +189,12 @@ public:
     amrex::Vector<amrex::Vector<amrex::Real>>& bc_values()
     {
         return m_info->m_bc_values;
+    }
+
+    auto& inflow_value_source() { return m_info->m_inflow_value_source; }
+    [[nodiscard]] const auto& inflow_value_source() const
+    {
+        return m_info->m_inflow_value_source;
     }
 
     //! Return reference to host view of BCRec array
