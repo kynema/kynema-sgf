@@ -500,8 +500,7 @@ bool BoundaryPlane::provides_inflow_values(
     const auto bct = field.bc_type()[ori];
     return m_io_mode == io_mode::input && m_in_data.is_populated(ori) &&
            (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) &&
-           std::find(m_var_names.begin(), m_var_names.end(), field.name()) !=
-               m_var_names.end() &&
+           std::ranges::find(m_var_names, field.name()) != m_var_names.end() &&
            (m_phase == phase::both || field.name() == "density" ||
             field.name() == "vof");
 }
