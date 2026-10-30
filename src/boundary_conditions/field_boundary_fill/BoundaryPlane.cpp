@@ -1,4 +1,5 @@
 #include "src/CFDSim.H"
+#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
 #include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
 #include "src/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
 #include "AMReX_Gpu.H"
@@ -1591,6 +1592,9 @@ void BoundaryPlane::populate_data(
             utils::extend_boundary_ghost_layers(
                 bx, dest, ori, dcomp, static_cast<int>(nc));
         }
+        fill_transverse_ghosts(
+            mfab, m_mesh.Geom(lev), fld.bcrec(), ori, dcomp,
+            static_cast<int>(nc), orig_comp);
     }
 
     const auto& geom = fld.repo().mesh().Geom();

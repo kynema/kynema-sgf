@@ -1,4 +1,5 @@
 #include "src/CFDSim.H"
+#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
 #include "src/boundary_conditions/field_boundary_fill/Flather.H"
 #include "src/boundary_conditions/field_boundary_fill/FillFlather.H"
 #include "src/utilities/index_operations.H"
@@ -608,6 +609,9 @@ void Flather::set_velocity(
             });
             utils::extend_boundary_ghost_layers(bx, arr, ori, fcomp, 1);
         }
+        fill_transverse_ghosts(
+            mfab, geom, fld.bcrec(), ori, fcomp, 1,
+            numcomp == 1 ? orig_comp : fcomp);
     }
 }
 

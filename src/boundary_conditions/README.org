@@ -88,6 +88,25 @@ possible for scalars and tangential component of velocity.
 
 ** fillpatch
 
+Auxiliary boundary fills (BoundaryPlane, ModulatedPowerLaw, OceanWavesBoundary,
+Flather, and mass-inflow/outflow extrapolation) complete the normal ghost layers
+and then extend the updated face into its transverse ghosts. Boundary-sized
+scratch slabs exchange data across grid and periodic boundaries before applying
+the field's component-specific AMReX BCRec rules at physical edges and corners.
+Thus, extrapolation or reflection uses the auxiliary face values rather than the
+earlier base fill. This also covers transverse MAC nodes and all allocated ghost
+layers.
+
+At intersections of prescribed-value faces (=ext_dir= or =direction_dependent=),
+the existing Dirichlet orientation precedence is retained: the later face in
+=xlo, ylo, zlo, xhi, yhi, zhi= order wins. Values belonging to a later prescribed
+face are intentionally preserved; an earlier prescribed face is extrapolated
+when extending the current auxiliary face. Phase/terrain gates and Flather's
+liquid-only applicability continue to select the face values before extension,
+including their intentional fallback values. Solver-only gradient and wall-stress
+fills are not auxiliary solution-value ghost fills and retain their existing
+face-only interpretation.
+
 | Name             | Short | V_n         | V_t      | Scalar   | Source   |
 |------------------+-------+-------------+----------+----------+----------|
 | pressure_outflow | po    | foextrap    | foextrap | foextrap | foextrap |

@@ -8,4 +8,5 @@ target_sources(${kynema_sgf_lib_name}
   Flather.cpp
   FillMPL.cpp
   ModulatedPowerLaw.cpp
+  TransverseGhostFill.cpp
   )

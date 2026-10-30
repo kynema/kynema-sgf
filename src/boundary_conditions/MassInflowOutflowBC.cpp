@@ -1,4 +1,5 @@
 #include "src/boundary_conditions/MassInflowOutflowBC.H"
+#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
 
 namespace kynema_sgf {
 
@@ -76,6 +77,9 @@ void MassInflowOutflowBC::operator()(
                     });
             }
         }
+        fill_transverse_ghosts(
+            m_field(lev), repo.mesh().Geom(lev), m_field.bcrec(), m_ori, 0,
+            ncomp);
     }
 }
 
