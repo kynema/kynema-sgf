@@ -133,21 +133,17 @@ protected:
     kynema_sgf::Field* m_temp{nullptr};
 };
 
-TEST_F(MassInflowOutflowTest, bcrec_is_ext_dir)
+TEST_F(MassInflowOutflowTest, bcrec_is_direction_dependent)
 {
     setup(1.0_rt);
     EXPECT_TRUE(m_vel->has_inout_bndry());
     EXPECT_TRUE(m_vel->state(kynema_sgf::FieldState::Old).has_inout_bndry());
     for (const auto* fld : {m_vel, m_temp}) {
         for (const auto& bcr : fld->bcrec()) {
-            EXPECT_EQ(bcr.lo(0), amrex::BCType::ext_dir);
-            EXPECT_EQ(bcr.hi(0), amrex::BCType::ext_dir);
+            EXPECT_EQ(bcr.lo(0), amrex::BCType::direction_dependent);
+            EXPECT_EQ(bcr.hi(0), amrex::BCType::direction_dependent);
+            EXPECT_EQ(bcr.lo(1), amrex::BCType::int_dir);
         }
-    }
-    for (const auto& bcr : m_vel->inout_bcrec()) {
-        EXPECT_EQ(bcr.lo(0), amrex::BCType::direction_dependent);
-        EXPECT_EQ(bcr.hi(0), amrex::BCType::direction_dependent);
-        EXPECT_EQ(bcr.lo(1), amrex::BCType::int_dir);
     }
 }
 

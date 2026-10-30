@@ -71,8 +71,7 @@ void MacProjOp::enforce_inout_solvability(
     const amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>>& a_umac)
 {
     auto& velocity = m_repo.get_field("velocity");
-    const auto bcrec = velocity.inout_bcrec();
-    amrex::BCRec const* bc_type = bcrec.data();
+    amrex::BCRec const* bc_type = velocity.bcrec().data();
     const amrex::Vector<amrex::Geometry>& geom = m_repo.mesh().Geom();
 
     HydroUtils::enforceInOutSolvability(a_umac, bc_type, geom);

@@ -181,7 +181,8 @@ It uses a Dirichlet condition for the diffusion solver.
 
 Both the approaches mentioned above for the mass inflow condition,
 constant values and UDFs, can be used to specify the boundary values.
-The boundary is treated as a Dirichlet (``ext_dir``) boundary for all fields.
+The boundary uses the ``direction_dependent`` boundary type, so the advection schemes
+treat it as a Dirichlet boundary at inflow and as an extrapolation boundary at outflow.
 During every fillpatch and physical boundary fill, wherever the prescribed boundary-normal velocity
 points out of the domain, all ghost cell values are automatically replaced by the value from the adjacent interior cell
 to enforce the Neumann type behavior.

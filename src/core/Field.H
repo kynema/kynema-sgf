@@ -431,9 +431,11 @@ public:
     /** Overwrite ghost cells at mass-inflow-outflow boundaries where the flow
      *  leaves the domain
      *
-     *  Mass-inflow-outflow boundaries are Dirichlet (ext_dir) boundaries.
-     *  Where the prescribed boundary-normal velocity points out of the domain,
-     *  all ghost layers are set to the value of the adjacent interior cell.
+     *  Mass-inflow-outflow boundaries are direction_dependent boundaries
+     *  (ext_dir for fields such as VOF and density that set their own BCRec).
+     *  The fill operations treat them as Dirichlet boundaries; then, where
+     *  the prescribed boundary-normal velocity points out of the domain, all
+     *  ghost layers are set to the value of the adjacent interior cell.
      *  This is called automatically at the end of the fillpatch and fillphysbc
      *  operations.
      */
@@ -442,12 +444,6 @@ public:
         amrex::Real time,
         amrex::MultiFab& mfab,
         const amrex::IntVect& nghost);
-
-    /** BCRec copy where mass-inflow-outflow boundaries are marked as
-     *  direction_dependent, for use with
-     *  HydroUtils::enforceInOutSolvability
-     */
-    [[nodiscard]] amrex::Vector<amrex::BCRec> inout_bcrec() const;
 
 protected:
     Field(

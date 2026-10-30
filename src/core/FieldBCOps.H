@@ -167,9 +167,10 @@ struct DirichletOp
                 auto ori = oit();
                 const int idir = ori.coordDir();
 
-                // Check if this boundary is a dirichlet type
+                // Check if this boundary is a dirichlet or mixed type
                 const auto bctyp = (ori.isLow() ? bc.lo(idir) : bc.hi(idir));
-                if (bctyp != amrex::BCType::ext_dir) {
+                if ((bctyp != amrex::BCType::ext_dir) &&
+                    (bctyp != amrex::BCType::direction_dependent)) {
                     continue;
                 }
 

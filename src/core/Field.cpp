@@ -323,7 +323,8 @@ void Field::fill_inout_outflow(
         const int idir = ori.coordDir();
         const int bcr = ori.isLow() ? bcrec.lo(idir) : bcrec.hi(idir);
         if ((bctype[ori] == BC::mass_inflow_outflow) && (ng[idir] > 0) &&
-            (bcr == amrex::BCType::ext_dir)) {
+            ((bcr == amrex::BCType::direction_dependent) ||
+             (bcr == amrex::BCType::ext_dir))) {
             oris.push_back(ori);
         }
     }
@@ -402,27 +403,6 @@ void Field::fill_inout_outflow(
                 });
         }
     }
-}
-
-amrex::Vector<amrex::BCRec> Field::inout_bcrec() const
-{
-    auto bcrec = m_info->m_bcrec;
-    const auto& bctype = bc_type();
-    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
-        const auto ori = oit();
-        if (bctype[ori] != BC::mass_inflow_outflow) {
-            continue;
-        }
-        const int idir = ori.coordDir();
-        for (auto& bcr : bcrec) {
-            if (ori.isLow()) {
-                bcr.setLo(idir, amrex::BCType::direction_dependent);
-            } else {
-                bcr.setHi(idir, amrex::BCType::direction_dependent);
-            }
-        }
-    }
-    return bcrec;
 }
 
 void Field::apply_bc_funcs(const FieldState rho_state)

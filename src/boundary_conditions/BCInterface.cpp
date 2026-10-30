@@ -208,12 +208,19 @@ void BCVelocity::set_bcrec()
 
         case BC::wave_generation:
         case BC::mass_inflow:
-        case BC::mass_inflow_outflow:
         case BC::no_slip_wall:
             if (side == amrex::Orientation::low) {
                 set_bcrec_lo(dir, amrex::BCType::ext_dir);
             } else {
                 set_bcrec_hi(dir, amrex::BCType::ext_dir);
+            }
+            break;
+
+        case BC::mass_inflow_outflow:
+            if (side == amrex::Orientation::low) {
+                set_bcrec_lo(dir, amrex::BCType::direction_dependent);
+            } else {
+                set_bcrec_hi(dir, amrex::BCType::direction_dependent);
             }
             break;
 
@@ -301,12 +308,19 @@ void BCScalar::set_bcrec()
 
         case BC::wave_generation:
         case BC::mass_inflow:
-        case BC::mass_inflow_outflow:
         case BC::no_slip_wall:
             if (side == amrex::Orientation::low) {
                 set_bcrec_lo(dir, amrex::BCType::ext_dir);
             } else {
                 set_bcrec_hi(dir, amrex::BCType::ext_dir);
+            }
+            break;
+
+        case BC::mass_inflow_outflow:
+            if (side == amrex::Orientation::low) {
+                set_bcrec_lo(dir, amrex::BCType::direction_dependent);
+            } else {
+                set_bcrec_hi(dir, amrex::BCType::direction_dependent);
             }
             break;
 

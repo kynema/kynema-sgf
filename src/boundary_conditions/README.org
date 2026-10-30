@@ -29,17 +29,18 @@ The boundary conditions that can be specified in the input file are:
   The =LinOpBCType= is set to Dirichlet. When specifying =mass_inflow=, the user
   *must* specify the values for the variable in the input file.
 
-- =mass_inflow_outflow= :: Like =mass_inflow=, the =BCRec= is =ext_dir= and
-  the user-specified (or UDF) value is filled in the ghost cells during
-  fillpatch and fillphysbc operations. As a final step of those operations,
-  wherever the prescribed boundary-normal velocity points out of the domain,
-  all ghost layers are overwritten with the value of the adjacent interior
-  cell (=Field::fill_inout_outflow=). Fields other than velocity determine
-  the flow direction by evaluating the velocity boundary fill on a temporary
-  buffer. Because the =BCRec= is =ext_dir=, the advection schemes only use the
-  first ghost cell as the boundary face value. The =LinOpBCType= is Dirichlet
-  for diffusion and inflow for the projections, and solvability is enforced
-  before the projections.
+- =mass_inflow_outflow= :: The =BCRec= is =direction_dependent= (VOF and
+  density use =ext_dir=). As for =mass_inflow=, the user-specified (or UDF)
+  value is filled in the ghost cells during fillpatch and fillphysbc
+  operations. As a final step of those operations, wherever the prescribed
+  boundary-normal velocity points out of the domain, all ghost layers are
+  overwritten with the value of the adjacent interior cell
+  (=Field::fill_inout_outflow=). Fields other than velocity determine the flow
+  direction by evaluating the velocity boundary fill on a temporary buffer.
+  The advection schemes use the ghost values as the boundary face value where
+  the face velocity is inflow and extrapolate from the interior where it is
+  outflow. The =LinOpBCType= is Dirichlet for diffusion and inflow for the
+  projections, and solvability is enforced before the projections.
 
 - =pressure_outflow= :: =BCRec = foextrap= and =LinOpBCType = Neumann=. This is
   the standard outflow BC for velocity and scalars. For MAC projection and
@@ -97,18 +98,18 @@ possible for scalars and tangential component of velocity.
 
 ** fillpatch
 
-| Name             | Short | V_n         | V_t      | Scalar   | Source   |
-|------------------+-------+-------------+----------+----------+----------|
-| pressure_outflow | po    | foextrap    | foextrap | foextrap | foextrap |
-| mass_inflow      | mi    | ext_dir     | ext_dir  | ext_dir  | foextrap |
-| mass_inflow_outflow | mio | ext_dir  | ext_dir  | ext_dir  | foextrap |
-| no_slip_wall     | nsw   | ext_dir (0) | ext_dir  | ext_dir  | foextrap |
-| symmetric_wall   | symw  | ext_dir (0) | foextrap | foextrap | foextrap |
-| zero_gradient    | zg    | foextrap    | foextrap | foextrap | foextrap |
-| slip_wall        | sw    | ext_dir (0) | hoextrap | hoextrap | foextrap |
-| wall_model       | wm    | ext_dir (0) | hoextrap | hoextrap | foextrap |
-| fixed_gradient   | fg    | hoextrap    | hoextrap | hoextrap | foextrap |
-|                  |       |             |          |          |          |
+| Name                | Short | V_n                 | V_t                 | Scalar              | Source   |
+|---------------------+-------+---------------------+---------------------+---------------------+----------|
+| pressure_outflow    | po    | foextrap            | foextrap            | foextrap            | foextrap |
+| mass_inflow         | mi    | ext_dir             | ext_dir             | ext_dir             | foextrap |
+| mass_inflow_outflow | mio   | direction_dependent | direction_dependent | direction_dependent | foextrap |
+| no_slip_wall        | nsw   | ext_dir (0)         | ext_dir             | ext_dir             | foextrap |
+| symmetric_wall      | symw  | ext_dir (0)         | foextrap            | foextrap            | foextrap |
+| zero_gradient       | zg    | foextrap            | foextrap            | foextrap            | foextrap |
+| slip_wall           | sw    | ext_dir (0)         | hoextrap            | hoextrap            | foextrap |
+| wall_model          | wm    | ext_dir (0)         | hoextrap            | hoextrap            | foextrap |
+| fixed_gradient      | fg    | hoextrap            | hoextrap            | hoextrap            | foextrap |
+|                     |       |                     |                     |                     |          |
 
 ** projection
 

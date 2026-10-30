@@ -80,8 +80,7 @@ void kynema_sgf::nodal_projection::enforce_inout_solvability(
     const amrex::Vector<amrex::Geometry>& geom,
     const int num_levels)
 {
-    const auto bcrec = velocity.inout_bcrec();
-    amrex::BCRec const* bc_type = bcrec.data();
+    amrex::BCRec const* bc_type = velocity.bcrec().data();
     amrex::Vector<amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM>> vel_vec(
         num_levels);
 
