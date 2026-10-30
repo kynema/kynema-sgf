@@ -7,6 +7,8 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
+#include <fstream>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
@@ -35,7 +37,7 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
             amrex::Print()
                 << "WARNING: BoussinesqBuoyancy.read_temperature_profile "
                    "option has been deprecated in favor of "
-                   "ABLMeanBoussinesq.read_temperature_profile. Ignoring the"
+                   "ABLMeanBoussinesq.read_temperature_profile. Ignoring the "
                    "BoussinesqBuoyancy option in favor of the "
                    "ABLMeanBoussinesq "
                    "option."
@@ -58,7 +60,7 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
             amrex::Print() << "WARNING: BoussinesqBuoyancy.tprofile_filename "
                               "option has been deprecated in favor of "
                               "ABLMeanBoussinesq.temperature_profile_filename. "
-                              "Ignoring the"
+                              "Ignoring the "
                               "BoussinesqBuoyancy option in favor of the "
                               "ABLMeanBoussinesq "
                               "option."
@@ -74,7 +76,12 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
         pp_boussinesq_buoyancy.get("tprofile_filename", tprofile_filename);
     }
 
-    if ((read_temp_prof) && (tprofile_filename.empty())) {
+    m_axis = abl.abl_statistics().theta_profile().axis();
+    if (read_temp_prof) {
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            !tprofile_filename.empty(),
+            "ABLMeanBoussinesq.temperature_profile_filename must be provided "
+            "when read_temperature_profile is true");
         m_const_profile = true;
         read_temperature_profile(tprofile_filename);
     } else {
@@ -162,16 +169,28 @@ void ABLMeanBoussinesq::read_temperature_profile(
 {
 
     amrex::Vector<amrex::Real> theta_ht, theta_vals;
-    std::ifstream infile;
-    int n_hts;
-    infile.open(profile_file_name.c_str(), std::ios_base::in);
-    infile >> n_hts;
+    std::ifstream infile(profile_file_name);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        infile.is_open(),
+        "ABLMeanBoussinesq: cannot open temperature profile " +
+            profile_file_name);
+    int n_hts = 0;
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        (infile >> n_hts) && n_hts > 0,
+        "ABLMeanBoussinesq: temperature profile must start with a positive "
+        "point count");
     theta_ht.resize(n_hts);
     theta_vals.resize(n_hts);
     m_theta_ht.resize(n_hts);
     m_theta_vals.resize(n_hts);
     for (int i = 0; i < n_hts; i++) {
-        infile >> theta_ht[i] >> theta_vals[i];
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            infile >> theta_ht[i] >> theta_vals[i],
+            "ABLMeanBoussinesq: invalid temperature profile data");
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            i == 0 || theta_ht[i] > theta_ht[i - 1],
+            "ABLMeanBoussinesq: temperature profile heights must be strictly "
+            "increasing");
     }
     infile.close();
 
