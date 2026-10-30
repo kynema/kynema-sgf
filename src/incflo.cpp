@@ -2,6 +2,7 @@
 #include "src/wind_energy/ABL.H"
 #include "src/utilities/tagging/RefinementCriteria.H"
 #include "src/equation_systems/PDEBase.H"
+#include "src/boundary_conditions/BCInterface.H"
 #include "src/turbulence/TurbulenceModel.H"
 #include "src/equation_systems/SchemeTraits.H"
 #include "src/utilities/IOManager.H"
@@ -158,6 +159,9 @@ void incflo::init_kynema_sgf_modules()
     for (auto& fb : m_sim.field_boundaries()) {
         fb->post_init_actions();
     }
+
+    kynema_sgf::BCIface::validate_inflow_values(
+        m_repo, m_sim.field_boundary_manager());
 
     icns().initialize();
     for (auto& eqn : scalar_eqns()) {

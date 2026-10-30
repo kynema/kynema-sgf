@@ -70,26 +70,7 @@ protected:
             }
         }
     }
-    // Copied from BC interface for scalars
-    void read_values() override
-    {
-        const auto& fname = m_field.name();
-        const auto& bctype = m_field.bc_type();
-        auto& bcval = m_field.bc_values();
-        const int ndim = m_field.num_comp();
-        for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
-            auto ori = oit();
-            const auto& bcid = bcnames[ori];
-            const auto bct = bctype[ori];
-
-            amrex::ParmParse pp(bcid);
-            if (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) {
-                pp.getarr(fname, bcval[ori], 0, ndim);
-            } else {
-                pp.queryarr(fname, bcval[ori], 0, ndim);
-            }
-        }
-    }
+    void read_values() override { read_inflow_values(false); }
 };
 
 class BCDensityMod : public BCIface
@@ -152,25 +133,7 @@ protected:
         }
     }
 
-    void read_values() override
-    {
-        const auto& fname = m_field.name();
-        const auto& bctype = m_field.bc_type();
-        auto& bcval = m_field.bc_values();
-        const int ndim = m_field.num_comp();
-        for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
-            auto ori = oit();
-            const auto& bcid = bcnames[ori];
-            const auto bct = bctype[ori];
-
-            amrex::ParmParse pp(bcid);
-            if (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) {
-                pp.getarr(fname, bcval[ori], 0, ndim);
-            } else {
-                pp.queryarr(fname, bcval[ori], 0, ndim);
-            }
-        }
-    }
+    void read_values() override { read_inflow_values(false); }
 };
 
 } // namespace kynema_sgf

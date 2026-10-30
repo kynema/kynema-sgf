@@ -107,6 +107,14 @@ void ModulatedPowerLaw::pre_advance_work()
 
 void ModulatedPowerLaw::post_advance_work() {}
 
+bool ModulatedPowerLaw::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    return (field.name() == "velocity" || field.name() == "temperature") &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow);
+}
+
 void ModulatedPowerLaw::set_velocity(
     const int lev,
     const amrex::Real /*time*/,

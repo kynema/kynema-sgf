@@ -494,6 +494,17 @@ void BoundaryPlane::pre_predictor_work() { read_file(false); }
 
 void BoundaryPlane::post_advance_work() { write_file(); }
 
+bool BoundaryPlane::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    return m_io_mode == io_mode::input && m_in_data.is_populated(ori) &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) &&
+           std::ranges::find(m_var_names, field.name()) != m_var_names.end() &&
+           (m_phase == phase::both || field.name() == "density" ||
+            field.name() == "vof");
+}
+
 void BoundaryPlane::initialize_data()
 {
     BL_PROFILE("kynema-sgf::BoundaryPlane::initialize_data");
