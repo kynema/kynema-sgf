@@ -313,13 +313,12 @@ void incflo::ApplyProjection(
 
             // fill periodic boundaries to avoid corner cell issues
             vel[lev]->FillBoundary(geom[lev].periodicity());
-        }
-    }
 
-    // Need to apply custom Neumann funcs for inflow-outflow BC
-    // after setting the inflow vels above
-    if (!proj_for_small_dt and !incremental and velocity.has_inout_bndry()) {
-        velocity.apply_bc_funcs(kynema_sgf::FieldState::New);
+            // Extrapolate at outflow portions of inflow-outflow boundaries
+            // after setting the inflow vels above
+            velocity.fill_inout_outflow(
+                lev, time, *vel[lev], amrex::IntVect(1));
+        }
     }
 
     if (is_anelastic) {

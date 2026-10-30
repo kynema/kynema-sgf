@@ -1,7 +1,6 @@
 #include "src/boundary_conditions/BCInterface.H"
 #include "src/core/FieldRepo.H"
 #include "src/boundary_conditions/FixedGradientBC.H"
-#include "src/boundary_conditions/MassInflowOutflowBC.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
@@ -104,13 +103,6 @@ void BCIface::set_bcfuncs()
 
         if (bct == BC::fixed_gradient) {
             m_field.register_custom_bc<FixedGradientBC>(ori);
-        }
-
-        if (((m_field.name() == "velocity") ||
-             (m_field.name() == "temperature")) &&
-            (bct == BC::mass_inflow_outflow)) {
-
-            m_field.register_custom_bc<MassInflowOutflowBC>(ori);
         }
     }
 }
@@ -225,7 +217,6 @@ void BCVelocity::set_bcrec()
             break;
 
         case BC::mass_inflow_outflow:
-            m_field.set_inout_bndry();
             if (side == amrex::Orientation::low) {
                 set_bcrec_lo(dir, amrex::BCType::direction_dependent);
             } else {
@@ -326,7 +317,6 @@ void BCScalar::set_bcrec()
             break;
 
         case BC::mass_inflow_outflow:
-            m_field.set_inout_bndry();
             if (side == amrex::Orientation::low) {
                 set_bcrec_lo(dir, amrex::BCType::direction_dependent);
             } else {

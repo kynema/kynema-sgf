@@ -426,10 +426,24 @@ public:
     [[nodiscard]] bool in_uniform_space() const { return m_mesh_mapped; }
 
     //! Check if any of the boundaries is a mass-inflow-outflow
-    [[nodiscard]] bool has_inout_bndry() const { return m_inout_bndry; }
+    [[nodiscard]] bool has_inout_bndry() const;
 
-    //! Set the inout_bndry flag
-    void set_inout_bndry() { m_inout_bndry = true; }
+    /** Overwrite ghost cells at mass-inflow-outflow boundaries where the flow
+     *  leaves the domain
+     *
+     *  Mass-inflow-outflow boundaries are direction_dependent boundaries
+     *  (ext_dir for fields such as VOF and density that set their own BCRec).
+     *  The fill operations treat them as Dirichlet boundaries; then, where
+     *  the prescribed boundary-normal velocity points out of the domain, all
+     *  ghost layers are set to the value of the adjacent interior cell.
+     *  This is called automatically at the end of the fillpatch and fillphysbc
+     *  operations.
+     */
+    void fill_inout_outflow(
+        int lev,
+        amrex::Real time,
+        amrex::MultiFab& mfab,
+        const amrex::IntVect& nghost);
 
 protected:
     Field(
@@ -460,9 +474,6 @@ protected:
 
     //! Flag to track mesh mapping (to uniform space) of field
     bool m_mesh_mapped{false};
-
-    //! Flag to indicate whether any of the boundaries is mass-inflow-outflow
-    bool m_inout_bndry{false};
 };
 
 } // namespace kynema_sgf
