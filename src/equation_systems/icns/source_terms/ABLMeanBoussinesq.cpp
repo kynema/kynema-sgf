@@ -57,6 +57,7 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
     std::string tprofile_filename;
     if (pp_abl.contains("temperature_profile_filename")) {
         pp_abl.get("temperature_profile_filename", tprofile_filename);
+        read_temp_prof = true;
         if (pp_boussinesq_buoyancy.contains("tprofile_filename")) {
             amrex::Print() << "WARNING: BoussinesqBuoyancy.tprofile_filename "
                               "option has been deprecated in favor of "
@@ -75,6 +76,7 @@ ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
                "this option."
             << '\n';
         pp_boussinesq_buoyancy.get("tprofile_filename", tprofile_filename);
+        read_temp_prof = true;
     }
 
     m_axis = abl.abl_statistics().theta_profile().axis();
