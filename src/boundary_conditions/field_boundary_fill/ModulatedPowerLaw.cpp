@@ -1,5 +1,4 @@
 #include "src/CFDSim.H"
-#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
 #include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 #include "src/boundary_conditions/field_boundary_fill/FillMPL.H"
 #include "AMReX_Gpu.H"
@@ -208,7 +207,7 @@ void ModulatedPowerLaw::set_velocity(
             });
             utils::extend_boundary_ghost_layers(bx, arr, ori, dcomp, numcomp);
         }
-        fill_transverse_ghosts(
+        utils::fill_transverse_ghosts(
             mfab, geom, fld.bcrec(), ori, dcomp, mfab.nComp(), orig_comp);
     }
 }
@@ -287,7 +286,7 @@ void ModulatedPowerLaw::set_temperature(
                 });
             utils::extend_boundary_ghost_layers(bx, arr, ori, 0, 1);
         }
-        fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
+        utils::fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
     }
 }
 

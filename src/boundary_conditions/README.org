@@ -90,7 +90,9 @@ possible for scalars and tangential component of velocity.
 
 Auxiliary boundary fills (BoundaryPlane, ModulatedPowerLaw, OceanWavesBoundary,
 Flather, and mass-inflow/outflow extrapolation) complete the normal ghost layers
-and then extend the updated face into its transverse ghosts. Boundary-sized
+and then extend the updated face into its transverse ghosts using
+=utils::fill_transverse_ghosts= (declared in =src/utilities/index_operations.H=).
+Boundary-sized
 scratch slabs exchange data across grid and periodic boundaries before applying
 the field's component-specific AMReX BCRec rules at physical edges and corners.
 Thus, extrapolation or reflection uses the auxiliary face values rather than the

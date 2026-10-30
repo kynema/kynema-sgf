@@ -1,7 +1,7 @@
-#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
-#include "src/core/FieldBCOps.H"
+#include "src/utilities/index_operations.H"
+#include "AMReX_PhysBCFunct.H"
 
-namespace kynema_sgf {
+namespace kynema_sgf::utils {
 
 using namespace amrex::literals;
 
@@ -34,8 +34,22 @@ void fill_transverse_ghosts(
     amrex::BoxList boxes;
     amrex::Vector<int> owners;
     amrex::Vector<int> source_indices;
+    amrex::BoxList destination_boxes;
+    amrex::Vector<int> destination_owners;
+    amrex::Vector<int> destination_indices;
     for (int idx = 0; idx < mfab.boxArray().size(); ++idx) {
         auto box = mfab.boxArray()[idx];
+        auto destination = amrex::grow(box, ng);
+        destination.setType(amrex::IndexType::TheCellType());
+        destination.setSmall(
+            dir, amrex::max(destination.smallEnd(dir), face.smallEnd(dir)));
+        destination.setBig(
+            dir, amrex::min(destination.bigEnd(dir), face.bigEnd(dir)));
+        if (destination.ok()) {
+            destination_boxes.push_back(destination);
+            destination_owners.push_back(mfab.DistributionMap()[idx]);
+            destination_indices.push_back(idx);
+        }
         if (ori.isLow() ? box.smallEnd(dir) != field_domain.smallEnd(dir)
                         : box.bigEnd(dir) != field_domain.bigEnd(dir)) {
             continue;
@@ -93,28 +107,13 @@ void fill_transverse_ghosts(
             }
         }
     }
-    amrex::GpuBndryFuncFab<FieldBCNoOp> boundary_fill{FieldBCNoOp{}};
+    amrex::GpuBndryFuncFab<amrex::FabFillNoOp> boundary_fill;
     for (amrex::MFIter mfi(slab); mfi.isValid(); ++mfi) {
         boundary_fill(
             slab[mfi].box(), slab[mfi], 0, ncomp, extended_geom, 0.0_rt,
             transverse_bc, 0, 0);
     }
 
-    amrex::BoxList destination_boxes;
-    amrex::Vector<int> destination_owners;
-    amrex::Vector<int> destination_indices;
-    for (int idx = 0; idx < mfab.boxArray().size(); ++idx) {
-        auto box = amrex::grow(mfab.boxArray()[idx], ng);
-        box.setType(amrex::IndexType::TheCellType());
-        auto extent = box;
-        extent.setRange(dir, face.smallEnd(dir), face.length(dir));
-        box &= extent;
-        if (box.ok()) {
-            destination_boxes.push_back(box);
-            destination_owners.push_back(mfab.DistributionMap()[idx]);
-            destination_indices.push_back(idx);
-        }
-    }
     amrex::MultiFab completed(
         amrex::BoxArray(std::move(destination_boxes)),
         amrex::DistributionMapping(destination_owners), ncomp, 0);
@@ -124,32 +123,30 @@ void fill_transverse_ghosts(
     for (amrex::MFIter mfi(completed); mfi.isValid(); ++mfi) {
         const auto dst = mfab[destination_indices[mfi.index()]].array();
         const auto src = completed.const_array(mfi);
-        const auto box = mfi.validbox();
         for (int n = 0; n < ncomp; ++n) {
             const auto bc = bcrec[orig_comp + n];
-            amrex::ParallelFor(box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                const amrex::IntVect iv(i, j, k);
-                for (int side = int(ori) + 1; side < 2 * AMREX_SPACEDIM;
-                     ++side) {
-                    const amrex::Orientation other(
-                        side % AMREX_SPACEDIM, side < AMREX_SPACEDIM
-                                                   ? amrex::Orientation::low
-                                                   : amrex::Orientation::high);
-                    const int d = other.coordDir();
-                    const int type = other.isLow() ? bc.lo(d) : bc.hi(d);
-                    const bool outside = other.isLow()
-                                             ? iv[d] < domain.smallEnd(d)
-                                             : iv[d] > domain.bigEnd(d);
-                    if (outside &&
-                        (type == amrex::BCType::ext_dir ||
-                         type == amrex::BCType::direction_dependent)) {
-                        return;
-                    }
+            auto box = mfi.validbox();
+            for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+                const auto other = oit();
+                const int d = other.coordDir();
+                const int type = other.isLow() ? bc.lo(d) : bc.hi(d);
+                if (int(other) <= int(ori) || d == dir ||
+                    (type != amrex::BCType::ext_dir &&
+                     type != amrex::BCType::direction_dependent)) {
+                    continue;
                 }
-                dst(iv, dcomp + n) = src(iv, n);
+                if (other.isLow()) {
+                    box.setSmall(
+                        d, amrex::max(box.smallEnd(d), domain.smallEnd(d)));
+                } else {
+                    box.setBig(d, amrex::min(box.bigEnd(d), domain.bigEnd(d)));
+                }
+            }
+            amrex::ParallelFor(box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                dst(i, j, k, dcomp + n) = src(i, j, k, n);
             });
         }
     }
 }
 
-} // namespace kynema_sgf
+} // namespace kynema_sgf::utils

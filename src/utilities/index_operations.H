@@ -11,6 +11,8 @@
 #include "AMReX_Array4.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_Orientation.H"
+#include "AMReX_MultiFab.H"
+#include "AMReX_BCRec.H"
 
 using namespace amrex::literals;
 
@@ -140,6 +142,20 @@ AMREX_INLINE void extend_boundary_ghost_layers(
             }
         });
 }
+
+/** Extend an auxiliary-filled face across transverse grid, periodic, and
+ * physical boundaries using component-specific BCRec rules. Later Dirichlet
+ * orientations retain precedence. Normal ghosts must already be filled over
+ * valid transverse cell-centered indices.
+ */
+void fill_transverse_ghosts(
+    amrex::MultiFab& mfab,
+    const amrex::Geometry& geom,
+    const amrex::Vector<amrex::BCRec>& bcrec,
+    amrex::Orientation ori,
+    int dcomp,
+    int ncomp,
+    int orig_comp = 0);
 
 //! Check if a point is inside a box
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool contains(

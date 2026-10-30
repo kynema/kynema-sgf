@@ -1,5 +1,4 @@
 #include "src/CFDSim.H"
-#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesFillInflow.H"
 #include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
@@ -142,7 +141,7 @@ void OceanWavesBoundary::set_velocity(
             });
             utils::extend_boundary_ghost_layers(bx, arr, ori, dcomp, numcomp);
         }
-        fill_transverse_ghosts(
+        utils::fill_transverse_ghosts(
             mfab, geom, fld.bcrec(), ori, dcomp, mfab.nComp(), orig_comp);
     }
 }
@@ -188,7 +187,7 @@ void OceanWavesBoundary::set_vof(
             });
             utils::extend_boundary_ghost_layers(bx, arr, ori, 0, 1);
         }
-        fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
+        utils::fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
     }
 }
 
@@ -241,7 +240,7 @@ void OceanWavesBoundary::set_density(
             });
             utils::extend_boundary_ghost_layers(bx, arr, ori, 0, 1);
         }
-        fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
+        utils::fill_transverse_ghosts(mfab, geom, fld.bcrec(), ori, 0, 1);
     }
 }
 

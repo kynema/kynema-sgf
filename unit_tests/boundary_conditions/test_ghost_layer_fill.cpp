@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
 #include "ks_test_utils/MeshTest.H"
 #include "src/boundary_conditions/MassInflowOutflowBC.H"
-#include "src/boundary_conditions/field_boundary_fill/TransverseGhostFill.H"
 #include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 #include "src/utilities/index_operations.H"
 #include "AMReX_REAL.H"
@@ -151,7 +150,7 @@ amrex::Long transverse_fill_errors(
         bcrec[2].setHi(d2, amrex::BCType::foextrap);
     }
     bcrec[2].set(ori, amrex::BCType::ext_dir);
-    kynema_sgf::fill_transverse_ghosts(mfab, geom, bcrec, ori, 1, 1, 2);
+    kynema_sgf::utils::fill_transverse_ghosts(mfab, geom, bcrec, ori, 1, 1, 2);
 
     const auto geometry = geom.data();
     const auto bc = bcrec[2];
