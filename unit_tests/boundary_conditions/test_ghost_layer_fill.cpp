@@ -88,9 +88,9 @@ amrex::Long count_outflow_edge_mismatches(
                     domain.bigEnd(1), amrex::max(domain.smallEnd(1), j));
                 const int kk = amrex::min(
                     domain.bigEnd(2), amrex::max(domain.smallEnd(2), k));
-                const amrex::Real expected = 1.0_rt + 20.0_rt * jj +
-                                             30.0_rt * kk +
-                                             1000.0_rt * domain.bigEnd(0);
+                const amrex::Real expected = 1.0_rt + (20.0_rt * jj) +
+                                             (30.0_rt * kk) +
+                                             (1000.0_rt * domain.bigEnd(0));
                 return {static_cast<amrex::Long>(
                     std::abs(arr(i, j, k) - expected) > 1.0e-12_rt)};
             });
@@ -112,7 +112,7 @@ amrex::Long partial_transverse_fill_errors(
     const int dir = ori.coordDir();
     const int transverse = (dir + 1) % AMREX_SPACEDIM;
     amrex::Array<int, 3> periodicity{0, 0, 0};
-    periodicity[transverse] = periodic;
+    periodicity[transverse] = static_cast<int>(periodic);
     const amrex::Geometry geom(domain, physical_box, 0, periodicity);
     amrex::BoxList boxes;
     for (const int start : {0, 4, 12}) {
@@ -137,16 +137,17 @@ amrex::Long partial_transverse_fill_errors(
                 auto sample = iv;
                 sample[dir] = valid.smallEnd(dir);
                 arr(iv, 0) = fallback;
-                arr(iv, 1) =
-                    normal_ghost && valid.contains(sample)
-                        ? 10.0_rt + 2.0_rt * boundary + 3.0_rt * iv[transverse]
-                        : fallback;
+                arr(iv, 1) = normal_ghost && valid.contains(sample)
+                                 ? 10.0_rt + (2.0_rt * boundary) +
+                                       (3.0_rt * iv[transverse])
+                                 : fallback;
             });
     }
     amrex::Vector<amrex::BCRec> bcrec(1);
     for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-        const int type =
-            periodicity[d] ? amrex::BCType::int_dir : amrex::BCType::foextrap;
+        const int type = static_cast<bool>(periodicity[d])
+                             ? amrex::BCType::int_dir
+                             : amrex::BCType::foextrap;
         bcrec[0].setLo(d, type);
         bcrec[0].setHi(d, type);
     }
@@ -172,7 +173,7 @@ amrex::Long partial_transverse_fill_errors(
                 const int boundary = ori.isLow() ? -1 : 16 + nodal[dir];
                 const amrex::Real expected =
                     normal_ghost && covered
-                        ? 10.0_rt + 2.0_rt * boundary + 3.0_rt * sample
+                        ? 10.0_rt + (2.0_rt * boundary) + (3.0_rt * sample)
                         : fallback;
                 return {static_cast<amrex::Long>(
                     arr(iv, 0) != fallback || arr(iv, 1) != expected)};
@@ -213,7 +214,8 @@ amrex::Long transverse_fill_errors(
         plane.setRange(dir, first);
         const auto arr = mfab.array(mfi);
         amrex::ParallelFor(plane, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-            arr(i, j, k, 1) = 10.0_rt + 2.0_rt * i + 3.0_rt * j + 5.0_rt * k;
+            arr(i, j, k, 1) =
+                10.0_rt + (2.0_rt * i) + (3.0_rt * j) + (5.0_rt * k);
         });
         kynema_sgf::utils::extend_boundary_ghost_layers(plane, arr, ori, 1, 1);
     }
@@ -287,8 +289,8 @@ amrex::Long transverse_fill_errors(
                         } else if (
                             type == amrex::BCType::reflect_even ||
                             type == amrex::BCType::reflect_odd) {
-                            sample[d] =
-                                low ? 2 * lo - iv[d] - 1 : 2 * hi - iv[d] + 1;
+                            sample[d] = low ? (2 * lo) - iv[d] - 1
+                                            : (2 * hi) - iv[d] + 1;
                             if (type == amrex::BCType::reflect_odd) {
                                 sign = -sign;
                             }
@@ -301,9 +303,9 @@ amrex::Long transverse_fill_errors(
                         }
                     }
                     if (!preserve) {
-                        expected =
-                            sign * (10.0_rt + 2.0_rt * sample[0] +
-                                    3.0_rt * sample[1] + 5.0_rt * sample[2]);
+                        expected = sign * (10.0_rt + (2.0_rt * sample[0]) +
+                                           (3.0_rt * sample[1]) +
+                                           (5.0_rt * sample[2]));
                     }
                 }
                 return {static_cast<amrex::Long>(
