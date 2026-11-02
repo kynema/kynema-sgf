@@ -201,6 +201,10 @@ add_test_rd(abl_multiphase_laminar 2544.41)
 add_test_rd(abl_sampling 727.79)
 add_test_rd(abl_specifiedmol_neutral 565.48)
 add_test_rd(act_fixed_wing 334.44)
+add_test_rd(act_drone_refinement 800)
+set_tests_properties(
+  act_drone_refinement
+  PROPERTIES PASS_REGULAR_EXPRESSION "Level 2")
 add_test_rd(boussinesq_bubble_godunov 307.55)
 add_test_rd(channel_builder_single_phase_periodic 357.76)
 add_test_rd(channel_godunov_laminar 19.24)
@@ -223,7 +227,6 @@ add_test_rd(terrain_box 1065.55)
 add_test_rd(udf_refinement 1125.3)
 add_test_rd(uniform_ct_disk_dynamic_adaptation 891.22)
 add_test_rd(vortex_patch_godunov 154.76)
-
 
 #=============================================================================
 # Regression tests (release CI)

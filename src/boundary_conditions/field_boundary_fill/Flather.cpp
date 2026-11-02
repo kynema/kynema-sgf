@@ -606,7 +606,11 @@ void Flather::set_velocity(
                     arr(iv, fcomp) = local_vel;
                 }
             });
+            utils::extend_boundary_ghost_layers(bx, arr, ori, fcomp, 1);
         }
+        utils::fill_transverse_ghosts(
+            mfab, geom, fld.bcrec(), ori, fcomp, 1,
+            numcomp == 1 ? orig_comp : fcomp);
     }
 }
 
