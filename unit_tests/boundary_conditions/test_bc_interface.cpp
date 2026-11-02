@@ -39,7 +39,7 @@ amrex::Real ghost_value(
         [=] AMREX_GPU_HOST_DEVICE(
             const amrex::Box& bx,
             const amrex::Array4<const amrex::Real>& arr) -> amrex::Real {
-            return bx.contains(iv) ? arr(iv, component) : 0.0;
+            return bx.contains(iv) ? arr(iv, component) : 0.0_rt;
         });
     amrex::ParallelDescriptor::ReduceRealSum(value);
     return value;
