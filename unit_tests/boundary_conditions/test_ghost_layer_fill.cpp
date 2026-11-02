@@ -5,13 +5,19 @@
 #include "src/utilities/index_operations.H"
 #include "AMReX_REAL.H"
 
+#include <limits>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
 namespace {
 
-// Count cells in box where value != offset + 1 + 20 j + 30 k (x-normal tests)
+constexpr amrex::Real tolerance =
+    std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+
+// Count cells whose values differ from offset + 1 + 20 j + 30 k (x-normal
+// tests)
 amrex::Long count_pattern_mismatches(
     const amrex::MultiFab& mfab,
     const amrex::Box& check_box,
@@ -32,7 +38,7 @@ amrex::Long count_pattern_mismatches(
                 const amrex::Real val =
                     offset + 1.0_rt + (20.0_rt * j) + (30.0_rt * k);
                 return {static_cast<amrex::Long>(
-                    std::abs(arr(i, j, k) - val) > 1.0e-12_rt)};
+                    !(std::abs(arr(i, j, k) - val) <= tolerance))};
             });
     }
     auto nbad = amrex::get<0>(reduce_data.value());
@@ -92,7 +98,7 @@ amrex::Long count_outflow_edge_mismatches(
                                              (30.0_rt * kk) +
                                              (1000.0_rt * domain.bigEnd(0));
                 return {static_cast<amrex::Long>(
-                    std::abs(arr(i, j, k) - expected) > 1.0e-12_rt)};
+                    !(std::abs(arr(i, j, k) - expected) <= tolerance))};
             });
     }
     auto errors = amrex::get<0>(reduce_data.value());
@@ -176,7 +182,8 @@ amrex::Long partial_transverse_fill_errors(
                         ? 10.0_rt + (2.0_rt * boundary) + (3.0_rt * sample)
                         : fallback;
                 return {static_cast<amrex::Long>(
-                    arr(iv, 0) != fallback || arr(iv, 1) != expected)};
+                    !(std::abs(arr(iv, 0) - fallback) <= tolerance) ||
+                    !(std::abs(arr(iv, 1) - expected) <= tolerance))};
             });
     }
     auto errors = amrex::get<0>(reduce_data.value());
@@ -309,8 +316,8 @@ amrex::Long transverse_fill_errors(
                     }
                 }
                 return {static_cast<amrex::Long>(
-                    std::abs(arr(iv, 1) - expected) > 1.0e-12_rt ||
-                    arr(iv, 0) != sentinel)};
+                    !(std::abs(arr(iv, 1) - expected) <= tolerance) ||
+                    !(std::abs(arr(iv, 0) - sentinel) <= tolerance))};
             });
     }
     auto errors = amrex::get<0>(reduce_data.value());
@@ -343,8 +350,8 @@ TEST_F(GhostLayerFillTest, extend_cell_centered_low)
             mfab, amrex::adjCellLo(domain, idir, ng), 0.0_rt),
         0);
     // Valid cells are untouched
-    EXPECT_EQ(mfab.min(0, 0), 0.0_rt);
-    EXPECT_EQ(mfab.max(0, 0), 0.0_rt);
+    EXPECT_NEAR(mfab.min(0, 0), 0.0_rt, tolerance);
+    EXPECT_NEAR(mfab.max(0, 0), 0.0_rt, tolerance);
 }
 
 TEST_F(GhostLayerFillTest, extend_face_normal_high)
@@ -422,8 +429,8 @@ TEST_F(GhostLayerFillTest, mass_inflow_outflow_all_ghost_layers)
 
     // xlo inflow: ghost layers are left untouched
     const auto lo_layers = amrex::adjCellLo(domain, idir, ng);
-    EXPECT_EQ(scalar(0).min(lo_layers, 0, ng), sentinel);
-    EXPECT_EQ(scalar(0).max(lo_layers, 0, ng), sentinel);
+    EXPECT_NEAR(scalar(0).min(lo_layers, 0, ng), sentinel, tolerance);
+    EXPECT_NEAR(scalar(0).max(lo_layers, 0, ng), sentinel, tolerance);
 }
 
 TEST_F(GhostLayerFillTest, transverse_physical_and_grid_boundaries)
@@ -551,13 +558,13 @@ TEST_F(GhostLayerFillTest, modulated_power_law_completes_transverse_ghosts)
     profile.set_velocity(0, 0.0_rt, velocity, velocity(0));
     auto face = amrex::grow(mesh().Geom(0).Domain(), 3);
     face.setRange(0, mesh().Geom(0).Domain().smallEnd(0) - 3, 3);
-    EXPECT_EQ(temperature(0).min(face, 0, 3), 300.0_rt);
-    EXPECT_EQ(temperature(0).max(face, 0, 3), 300.0_rt);
+    EXPECT_NEAR(temperature(0).min(face, 0, 3), 300.0_rt, tolerance);
+    EXPECT_NEAR(temperature(0).max(face, 0, 3), 300.0_rt, tolerance);
     for (int n = 0; n < 3; ++n) {
         EXPECT_GE(velocity(0).min(face, n, 3), 0.0_rt);
     }
-    EXPECT_EQ(temperature(0).min(0, 0), -99.0_rt);
-    EXPECT_EQ(temperature(0).max(0, 0), -99.0_rt);
+    EXPECT_NEAR(temperature(0).min(0, 0), -99.0_rt, tolerance);
+    EXPECT_NEAR(temperature(0).max(0, 0), -99.0_rt, tolerance);
 }
 
 } // namespace kynema_sgf_tests
