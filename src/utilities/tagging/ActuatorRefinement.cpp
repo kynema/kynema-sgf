@@ -9,6 +9,7 @@
 #include <cmath>
 
 #include "AMReX.H"
+#include "AMReX_iMultiFab.H"
 #include "AMReX_ParmParse.H"
 
 using namespace amrex::literals;
@@ -209,9 +210,14 @@ void ActuatorRefinement::operator()(
 
     const auto& geom = m_sim.mesh().Geom(level);
     const auto& field_fab = (*m_sim.repo().fields()[0])(level);
+    amrex::iMultiFab cylinder_union(
+        field_fab.boxArray(), field_fab.DistributionMap(), 1, 0);
+    cylinder_union.setVal(0);
+    const auto op = tag_operator();
     for (amrex::MFIter mfi(field_fab); mfi.isValid(); ++mfi) {
         const auto& bx = mfi.tilebox();
         const auto& tag = tags.array(mfi);
+        const auto& current = cylinder_union.array(mfi);
         for (const auto& cylinder : cylinders) {
             const auto tagged_box =
                 bx & utils::realbox_to_box(cylinder.bound_box, geom);
@@ -239,10 +245,15 @@ void ActuatorRefinement::operator()(
                         0.0_rt, (relative & relative) - (axial * axial));
                     if (axial <= forward && axial >= -backward &&
                         radial_sq <= radius_sq) {
-                        tag(i, j, k) = amrex::TagBox::SET;
+                        current(i, j, k) = 1;
                     }
                 });
         }
+        amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+            const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
+            tag(i, j, k) =
+                tagging::tag_val(previous_tag, current(i, j, k) != 0, op);
+        });
     }
 }
 
