@@ -439,17 +439,12 @@ Combining refinement criteria with logical operators
 ``or_not``         Tag cells where previous is tagged or current is not tagged
 ================== ====================================================================
 
-   All refinement criteria support these operators. Each label generates one
-   predicate, which is combined with the existing tags once across all cells,
-   including cells outside any geometric bounding boxes. Multiple shapes or
-   actuator cylinders within a label form a union. For ``FieldRefinement``,
-   matching either the field threshold or the gradient threshold satisfies
-   the predicate. Use separate labels to apply different logical operators
-   to individual shapes or thresholds.
+   All criteria support these operators, applied once per label to every cell.
+   Shapes, actuator cylinders, and field or gradient matches within a label
+   form a union. Use separate labels for other combinations.
 
-   Criteria that are inactive on the current refinement level are skipped
-   without changing existing tags. An active criterion that matches no cells
-   still applies its operator with a false predicate everywhere.
+   Criteria inactive on the current level leave tags unchanged. Active criteria
+   with no matches still apply their operator.
 
    In this context, previous refers to the tag state resulting from all criteria applied
    before the current one.
