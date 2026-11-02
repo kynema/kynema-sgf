@@ -56,8 +56,7 @@ CylinderRefiner::CylinderRefiner(
 void CylinderRefiner::operator()(
     const amrex::Box& bx,
     const amrex::Geometry& geom,
-    const amrex::Array4<amrex::TagBox::TagType>& tag,
-    const tagging::TaggingOperator& op) const
+    const amrex::Array4<amrex::TagBox::TagType>& tag) const
 {
     const auto axis = m_end - m_start;
     const auto start = m_start;
@@ -90,9 +89,9 @@ void CylinderRefiner::operator()(
             }
         }
 
-        const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
-
-        tag(i, j, k) = tagging::tag_val(previous_tag, current_tag, op);
+        if (current_tag) {
+            tag(i, j, k) = amrex::TagBox::SET;
+        }
     });
 }
 

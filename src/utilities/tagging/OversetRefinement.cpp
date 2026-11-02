@@ -21,7 +21,7 @@ void OversetRefinement::initialize(const std::string& key)
 void OversetRefinement::operator()(
     int level, amrex::TagBoxArray& tags, amrex::Real /*time*/, int /*ngrow*/)
 {
-    if (level > m_max_lev) {
+    if (!active(level)) {
         return;
     }
 
@@ -33,7 +33,6 @@ void OversetRefinement::operator()(
 
     const auto& ibarrs = ibfab.const_arrays();
     const auto& tag_arrs = tags.arrays();
-    const auto op = tag_operator();
 
     amrex::ParallelFor(
         ibfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -58,10 +57,9 @@ void OversetRefinement::operator()(
                 (tag_hole && ibarrs[nbx](i, j, k) == 0)) {
                 current_tag = true;
             }
-            const auto previous_tag =
-                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
-            tag_arrs[nbx](i, j, k) =
-                tagging::tag_val(previous_tag, current_tag, op);
+            if (current_tag) {
+                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+            }
         });
 }
 

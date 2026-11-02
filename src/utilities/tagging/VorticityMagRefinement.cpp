@@ -49,9 +49,7 @@ void VorticityMagRefinement::initialize(const std::string& key)
 void VorticityMagRefinement::operator()(
     int level, amrex::TagBoxArray& tags, amrex::Real time, int /*ngrow*/)
 {
-    const bool tag_field = level <= m_max_lev_field;
-
-    if (!tag_field) {
+    if (!active(level)) {
         return;
     }
 
@@ -63,7 +61,6 @@ void VorticityMagRefinement::operator()(
     const auto& tag_arrs = tags.arrays();
     const auto& vel_arrs = mfab.const_arrays();
     const auto vort_val = m_vort_value[level];
-    const auto op = tag_operator();
 
     amrex::ParallelFor(
         mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -99,12 +96,11 @@ void VorticityMagRefinement::operator()(
                 utils::powi(uy - vx, 2) + utils::powi(vz - wy, 2) +
                 utils::powi(wx - uz, 2));
 
-            const auto previous_tag =
-                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
             const auto current_tag = (vort > vort_val);
 
-            tag_arrs[nbx](i, j, k) =
-                tagging::tag_val(previous_tag, current_tag, op);
+            if (current_tag) {
+                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+            }
         });
 }
 

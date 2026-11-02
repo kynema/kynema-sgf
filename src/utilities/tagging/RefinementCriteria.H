@@ -88,16 +88,6 @@ class RefinementCriteria : public Factory<RefinementCriteria, CFDSim&>
 public:
     static std::string base_identifier() { return "RefinementCriteria"; }
 
-    [[nodiscard]] tagging::TaggingOperator tag_operator() const
-    {
-        return m_tag_operator;
-    }
-
-    void tag_operator(const tagging::TaggingOperator& op)
-    {
-        m_tag_operator = op;
-    }
-
     RefinementCriteria() = default;
 
     ~RefinementCriteria() override = default;
@@ -106,15 +96,17 @@ public:
     //! mesh is initialized
     virtual void initialize(const std::string& key) = 0;
 
-    /** Perform tagging operation based on refinement criteria
+    //! Inactive criteria are skipped rather than combined as false predicates.
+    [[nodiscard]] virtual bool active(int /*level*/) const { return true; }
+
+    /** Accumulate matching cells into a predicate mask using TagBox::SET.
      *
-     *  Interface is the same as amrex::AmrCore::ErrorEst
+     *  The manager supplies a cleared mask and combines it with existing tags.
+     *  Multiple matches within one criterion form a union.
      */
     virtual void operator()(
         int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow) = 0;
 
-private:
-    tagging::TaggingOperator m_tag_operator{tagging::TaggingOperator::OR};
 };
 
 /** A collection of refinement criteria instances that are active during a
@@ -135,7 +127,13 @@ public:
 private:
     CFDSim& m_sim;
 
-    amrex::Vector<std::unique_ptr<RefinementCriteria>> m_refiners;
+    struct RefinementStep
+    {
+        std::unique_ptr<RefinementCriteria> criterion;
+        tagging::TaggingOperator op;
+    };
+
+    amrex::Vector<RefinementStep> m_refiners;
 };
 
 } // namespace kynema_sgf

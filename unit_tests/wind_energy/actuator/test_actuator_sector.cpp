@@ -288,10 +288,6 @@ TEST_F(ActuatorSectorRefinementTest, logical_operators_use_cylinder_union)
     pp.add("forward_padding_diameter", 0.8_rt);
     pp.add("backward_padding_diameter", 0.3_rt);
 
-    auto refiner =
-        ::kynema_sgf::RefinementCriteria::create("ActuatorRefinement", sim());
-    refiner->initialize("tagging.rotor_tracking");
-
     const auto& field = sim().repo().get_field("velocity")(0);
     amrex::TagBoxArray tags(field.boxArray(), field.DistributionMap());
     const auto& geom = sim().mesh().Geom(0);
@@ -301,13 +297,25 @@ TEST_F(ActuatorSectorRefinementTest, logical_operators_use_cylinder_union)
     constexpr std::size_t union_cells = 72;
 
     for (const std::string op : {"or", "and", "and_not", "or_not"}) {
-        refiner->tag_operator(::kynema_sgf::tagging::string_to_operator(op));
+        amrex::ParmParse pp_tagging("tagging");
+        pp_tagging.addarr(
+            "labels", amrex::Vector<std::string>{"rotor_tracking"});
+        pp.add("type", std::string("ActuatorRefinement"));
+        pp.add("operator", op);
+        ::kynema_sgf::RefineCriteriaManager manager(sim());
+        manager.initialize();
         for (const bool previous_tag : {false, true}) {
             SCOPED_TRACE(
                 op + (previous_tag ? " initially set" : " initially clear"));
             tags.setVal(
                 previous_tag ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
-            (*refiner)(0, tags, 0.0_rt, 0);
+            manager.tag_cells(1, tags, 0.0_rt, 0);
+            amrex::Gpu::PinnedVector<amrex::IntVect> inactive_cells;
+            tags.collate(inactive_cells);
+            EXPECT_EQ(inactive_cells.size(), previous_tag ? total_cells : 0);
+            tags.setVal(
+                previous_tag ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+            manager.tag_cells(0, tags, 0.0_rt, 0);
             amrex::Gpu::streamSynchronize();
 
             amrex::Gpu::PinnedVector<amrex::IntVect> tagged_cells;

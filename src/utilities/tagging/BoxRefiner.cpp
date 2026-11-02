@@ -134,8 +134,7 @@ BoxRefiner::BoxRefiner(const CFDSim& /*unused*/, const std::string& key)
 void BoxRefiner::operator()(
     const amrex::Box& bx,
     const amrex::Geometry& geom,
-    const amrex::Array4<amrex::TagBox::TagType>& tag,
-    const tagging::TaggingOperator& op) const
+    const amrex::Array4<amrex::TagBox::TagType>& tag) const
 {
     const auto* hex_corners = m_hex_corners.data();
     const auto* face_normals = m_face_normals.data();
@@ -165,10 +164,9 @@ void BoxRefiner::operator()(
             }
         }
 
-        const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
-        const auto current_tag = inside;
-
-        tag(i, j, k) = tagging::tag_val(previous_tag, current_tag, op);
+        if (inside) {
+            tag(i, j, k) = amrex::TagBox::SET;
+        }
     });
 }
 

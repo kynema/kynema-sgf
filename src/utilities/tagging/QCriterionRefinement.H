@@ -33,6 +33,11 @@ public:
     //! Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
 
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level <= m_max_lev_field;
+    }
+
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
         override;

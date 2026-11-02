@@ -28,8 +28,7 @@ public:
     void operator()(
         const amrex::Box& /*bx*/,
         const amrex::Geometry& geom,
-        const amrex::Array4<amrex::TagBox::TagType>& tags,
-        const tagging::TaggingOperator& op) const override;
+        const amrex::Array4<amrex::TagBox::TagType>& tags) const override;
 
     [[nodiscard]] const amrex::RealBox& bound_box() const override
     {
