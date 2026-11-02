@@ -33,14 +33,14 @@ amrex::RealBox cylinder_bound_box(
     const amrex::Real forward,
     const amrex::Real backward)
 {
-    const auto start = center - backward * normal;
-    const auto end = center + forward * normal;
+    const auto start = center - (backward * normal);
+    const auto end = center + (forward * normal);
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> lo;
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> hi;
     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
         const amrex::Real radial_extent =
             radius *
-            std::sqrt(amrex::max(0.0_rt, 1.0_rt - normal[n] * normal[n]));
+            std::sqrt(amrex::max(0.0_rt, 1.0_rt - (normal[n] * normal[n])));
         lo[n] = amrex::min(start[n], end[n]) - radial_extent;
         hi[n] = amrex::max(start[n], end[n]) + radial_extent;
     }
@@ -190,7 +190,7 @@ void ActuatorRefinement::operator()(
         for (const auto& geometry : actuator->refinement_geometries(time)) {
             const amrex::Real radius =
                 geometry.rotor_radius +
-                m_radial_padding_epsilon * geometry.epsilon_max +
+                (m_radial_padding_epsilon * geometry.epsilon_max) +
                 m_radial_padding;
             amrex::Real axial_scale = 1.0_rt;
             if (m_axial_padding_type == AxialPaddingType::Epsilon) {
@@ -231,13 +231,13 @@ void ActuatorRefinement::operator()(
             amrex::ParallelFor(
                 tagged_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                     const vs::Vector point(
-                        problo[0] + (i + 0.5_rt) * dx[0],
-                        problo[1] + (j + 0.5_rt) * dx[1],
-                        problo[2] + (k + 0.5_rt) * dx[2]);
+                        problo[0] + ((i + 0.5_rt) * dx[0]),
+                        problo[1] + ((j + 0.5_rt) * dx[1]),
+                        problo[2] + ((k + 0.5_rt) * dx[2]));
                     const auto relative = point - center;
                     const amrex::Real axial = relative & normal;
                     const amrex::Real radial_sq = amrex::max(
-                        0.0_rt, (relative & relative) - axial * axial);
+                        0.0_rt, (relative & relative) - (axial * axial));
                     if (axial <= forward && axial >= -backward &&
                         radial_sq <= radius_sq) {
                         tag(i, j, k) = amrex::TagBox::SET;

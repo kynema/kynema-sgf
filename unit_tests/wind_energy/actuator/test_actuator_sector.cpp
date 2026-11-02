@@ -254,7 +254,7 @@ TEST_F(ActuatorSectorRefinementTest, asymmetric_actuator_refinement)
     amrex::Real xmin = std::numeric_limits<amrex::Real>::max();
     amrex::Real xmax = std::numeric_limits<amrex::Real>::lowest();
     for (const auto& cell : tagged_cells) {
-        const amrex::Real x = problo[0] + (cell[0] + 0.5_rt) * dx[0];
+        const amrex::Real x = problo[0] + ((cell[0] + 0.5_rt) * dx[0]);
         xmin = amrex::min(xmin, x);
         xmax = amrex::max(xmax, x);
     }
