@@ -24,10 +24,13 @@ The boundary conditions that can be specified in the input file are:
 
 - =mass_inflow= :: This is an inflow or inlet BC. The user must specify a value
   for the solution variable when using this boundary condition. The =BCRec= is
-  =ext_dir= and the user-specified value is filled in the ghost cell, and
-  interpreted as the value on the boundary face, during fillpatch operations.
-  The =LinOpBCType= is set to Dirichlet. When specifying =mass_inflow=, the user
-  *must* specify the values for the variable in the input file.
+  =ext_dir= and the user-specified value is filled in all the ghost cell layers,
+  and interpreted as the value on the boundary face, during fillpatch
+  operations. Auxiliary inflow fills (e.g., boundary planes, Flather, ocean
+  waves) compute the first ghost layer and replicate it outward through the
+  remaining ghost layers. The =LinOpBCType= is set to Dirichlet. When specifying
+  =mass_inflow=, the user *must* specify the values for the variable in the
+  input file.
 
 - =pressure_outflow= :: =BCRec = foextrap= and =LinOpBCType = Neumann=. This is
   the standard outflow BC for velocity and scalars. For MAC projection and
@@ -84,6 +87,31 @@ possible for scalars and tangential component of velocity.
 |          |              |               |                 |
 
 ** fillpatch
+
+Auxiliary boundary fills (BoundaryPlane, ModulatedPowerLaw, OceanWavesBoundary,
+Flather, and mass-inflow/outflow extrapolation) complete the normal ghost layers
+and then extend the updated face into its transverse ghosts using
+=utils::fill_transverse_ghosts= (declared in =src/utilities/index_operations.H=).
+Boundary-sized
+scratch slabs exchange data across grid and periodic boundaries before applying
+the field's component-specific AMReX BCRec rules at physical edges and corners.
+Thus, extrapolation or reflection uses the auxiliary face values rather than the
+earlier base fill. This also covers transverse MAC nodes and all allocated ghost
+layers.
+Only valid same-level face data and its physical-boundary extensions are copied
+between grids. At partial refined boundaries, locations without such a donor
+retain their existing auxiliary or coarse/fine fallback values; scratch ghosts
+are not used as donors.
+
+At intersections of prescribed-value faces (=ext_dir= or =direction_dependent=),
+the existing Dirichlet orientation precedence is retained: the later face in
+=xlo, ylo, zlo, xhi, yhi, zhi= order wins. Values belonging to a later prescribed
+face are intentionally preserved; an earlier prescribed face is extrapolated
+when extending the current auxiliary face. Phase/terrain gates and Flather's
+liquid-only applicability continue to select the face values before extension,
+including their intentional fallback values. Solver-only gradient and wall-stress
+fills are not auxiliary solution-value ghost fills and retain their existing
+face-only interpretation.
 
 | Name             | Short | V_n         | V_t      | Scalar   | Source   |
 |------------------+-------+-------------+----------+----------+----------|
