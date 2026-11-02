@@ -70,7 +70,7 @@ void fill_transverse_ghosts(
                     continue;
                 }
                 if (box.smallEnd(d) == domain.smallEnd(d)) {
-                    box.growLo(d, transverse_ng[d]);
+                    box.growLo(d, ng[d]);
                 }
                 if (box.bigEnd(d) == domain.bigEnd(d)) {
                     box.growHi(d, transverse_ng[d]);
@@ -120,9 +120,18 @@ void fill_transverse_ghosts(
     }
     amrex::GpuBndryFuncFab<amrex::FabFillNoOp> boundary_fill;
     for (amrex::MFIter mfi(slab); mfi.isValid(); ++mfi) {
+        auto box = slab[mfi].box();
+        // Extra transverse MAC nodes exist only on the high side. The unused
+        // low-side scratch cells have no field data and must not be
+        // extrapolated.
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            if (d != dir) {
+                box.growLo(d, -mfab.ixType().toIntVect()[d]);
+            }
+        }
         boundary_fill(
-            slab[mfi].box(), slab[mfi], 0, ncomp, extended_geom, 0.0_rt,
-            transverse_bc, 0, 0);
+            box, slab[mfi], 0, ncomp, extended_geom, 0.0_rt, transverse_bc, 0,
+            0);
     }
 
     amrex::MultiFab donors(
