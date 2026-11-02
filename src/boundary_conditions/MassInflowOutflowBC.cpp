@@ -1,4 +1,5 @@
 #include "src/boundary_conditions/MassInflowOutflowBC.H"
+#include "src/utilities/index_operations.H"
 
 namespace kynema_sgf {
 
@@ -39,35 +40,46 @@ void MassInflowOutflowBC::operator()(
             const auto& vel = velocity(lev).array(mfi);
 
             if (islow && (bx.smallEnd(idim) == domain.smallEnd(idim))) {
+                const int glo = amrex::IntVect(amrex::lbound(bc_a))[idim];
                 amrex::ParallelFor(
                     amrex::bdryLo(bx, idim),
                     [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::IntVect iv = {i, j, k};
                         const amrex::IntVect ivm = iv - iv_dir;
                         if (vel(ivm[0], ivm[1], ivm[2], idim) < 0) {
-                            for (int n = 0; n < ncomp; n++) {
-                                bc_a(ivm[0], ivm[1], ivm[2], n) =
-                                    bc_a(i, j, k, n);
+                            for (amrex::IntVect ivg = ivm; ivg[idim] >= glo;
+                                 ivg -= iv_dir) {
+                                for (int n = 0; n < ncomp; n++) {
+                                    bc_a(ivg[0], ivg[1], ivg[2], n) =
+                                        bc_a(i, j, k, n);
+                                }
                             }
                         }
                     });
             }
 
             if (ishigh && (bx.bigEnd(idim) == domain.bigEnd(idim))) {
+                const int ghi = amrex::IntVect(amrex::ubound(bc_a))[idim];
                 amrex::ParallelFor(
                     amrex::bdryHi(bx, idim),
                     [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         const amrex::IntVect iv = {i, j, k};
                         const amrex::IntVect ivm = iv - iv_dir;
                         if (vel(i, j, k, idim) > 0) {
-                            for (int n = 0; n < ncomp; n++) {
-                                bc_a(i, j, k, n) =
-                                    bc_a(ivm[0], ivm[1], ivm[2], n);
+                            for (amrex::IntVect ivg = iv; ivg[idim] <= ghi;
+                                 ivg += iv_dir) {
+                                for (int n = 0; n < ncomp; n++) {
+                                    bc_a(ivg[0], ivg[1], ivg[2], n) =
+                                        bc_a(ivm[0], ivm[1], ivm[2], n);
+                                }
                             }
                         }
                     });
             }
         }
+        utils::fill_transverse_ghosts(
+            m_field(lev), repo.mesh().Geom(lev), m_field.bcrec(), m_ori, 0,
+            ncomp);
     }
 }
 
