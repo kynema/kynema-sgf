@@ -274,8 +274,7 @@ TEST_F(ActuatorSectorRefinementTest, logical_operators_use_cylinder_union)
     amrex::ParmParse pp_a("Actuator");
     pp_a.addarr("labels", amrex::Vector<std::string>{"R1", "R2"});
     amrex::ParmParse pp_r("Actuator.R2");
-    pp_r.addarr(
-        "center", amrex::Vector<amrex::Real>{0.05_rt, 0.0_rt, 0.0_rt});
+    pp_r.addarr("center", amrex::Vector<amrex::Real>{0.05_rt, 0.0_rt, 0.0_rt});
     pp_r.addarr(
         "rotor_normal", amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
 
