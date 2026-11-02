@@ -186,15 +186,10 @@ TEST_F(ABLMeshTest, stats_energy_budget)
     populate_parameters();
     initialize_mesh();
 
-    // Register icns
     auto& icns = sim().pde_manager().register_icns();
-    icns.initialize();
-
-    // Initialize fields
     sim().init_physics();
-
-    // Initialize turbulence model
     sim().create_turbulence_model();
+    icns.initialize();
     sim().turbulence_model().post_init_actions();
 
     // Initialize ABL velocity

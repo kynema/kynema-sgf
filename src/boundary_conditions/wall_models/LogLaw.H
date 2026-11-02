@@ -45,7 +45,7 @@ struct LogLaw
             utau_iter = utau;
             zplus = zref * utau / nu;
             // Get wspd for a given utau from log-law
-            wspd_pred = utau * (std::log(zplus) / kappa + B);
+            wspd_pred = utau * ((std::log(zplus) / kappa) + B);
             wspd_deriv =
                 ((1.0_rt + std::log(zplus)) / kappa) + B; // d(wspd)/d(utau)
             utau = utau -

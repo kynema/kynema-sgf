@@ -87,7 +87,8 @@ void CoriolisForcing::operator()(
                                    (up[1] * vel_arrs[nbx](i, j, k, 1)) +
                                    (up[2] * vel_arrs[nbx](i, j, k, 2));
 
-            const amrex::Real ae = +corfac * (un * sinphi - fac * uu * cosphi);
+            const amrex::Real ae =
+                +corfac * ((un * sinphi) - (fac * uu * cosphi));
             const amrex::Real an = -corfac * ue * sinphi;
             const amrex::Real au = +fac * corfac * ue * cosphi;
 

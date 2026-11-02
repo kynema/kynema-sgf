@@ -85,7 +85,7 @@ amrex::Real pressure_test_impl(
                         amrex::max<amrex::Real>(ht_l, ht_min), ht_max);
                     // Integrated (-rho*g*z)
                     const amrex::Real irhogz =
-                        -gz * (rho1 * ht_l + rho2 * ht_g);
+                        -gz * ((rho1 * ht_l) + (rho2 * ht_g));
                     error += std::abs(p0_arr(i, j, k) - irhogz);
                 });
 

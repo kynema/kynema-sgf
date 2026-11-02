@@ -121,7 +121,6 @@ struct AdvectionOp<
         const auto& geom = repo.mesh().Geom();
 
         const auto& src_term = fields.src_term;
-        // cppcheck-suppress constVariableReference
         auto& conv_term = fields.conv_term;
         const auto& dof_field = fields.field.state(fstate);
         const auto& dof_nph = fields.field.state(kynema_sgf::FieldState::NPH);

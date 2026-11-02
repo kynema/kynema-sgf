@@ -197,7 +197,7 @@ TEST_F(ChannelBuilderTest, transform_to_local_coordinates)
     end[2] = 5.0_rt;
 
     auto both_xy = kynema_sgf::channelbuilder::transform_to_local_coordinates(
-        true, false, 2.0_rt + 2.0_rt / std::sqrt(2.0_rt), 3.0_rt, 5.0_rt,
+        true, false, 2.0_rt + (2.0_rt / std::sqrt(2.0_rt)), 3.0_rt, 5.0_rt,
         start[0], start[1], start[2], end[0], end[1], end[2]);
     EXPECT_NEAR(both_xy[0], 1.0_rt, m_tol);
     EXPECT_NEAR(both_xy[1], -1.0_rt, m_tol);
@@ -208,7 +208,7 @@ TEST_F(ChannelBuilderTest, transform_to_local_coordinates)
     end[2] = 10.0_rt;
 
     auto both_xz = kynema_sgf::channelbuilder::transform_to_local_coordinates(
-        true, false, 2.0_rt + 2.0_rt / std::sqrt(2.0_rt), 3.0_rt, 5.0_rt,
+        true, false, 2.0_rt + (2.0_rt / std::sqrt(2.0_rt)), 3.0_rt, 5.0_rt,
         start[0], start[1], start[2], end[0], end[1], end[2]);
     EXPECT_NEAR(both_xz[0], 1.0_rt, m_tol);
     EXPECT_NEAR(both_xz[1], 0.0_rt, m_tol);

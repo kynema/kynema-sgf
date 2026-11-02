@@ -41,9 +41,9 @@ struct GammaLaw
         const auto rhotheta = rho * theta;
         return m_p0 * std::pow(
                           m_air_gas_constant * rhotheta *
-                              (1.0_rt + (m_water_vapor_gas_constant /
-                                         m_air_gas_constant) *
-                                            qv) *
+                              (1.0_rt + ((m_water_vapor_gas_constant /
+                                          m_air_gas_constant) *
+                                         qv)) *
                               m_ip0,
                           m_gamma);
     }
@@ -65,7 +65,7 @@ struct GammaLaw
                std::pow(
                    (m_air_gas_constant * theta *
                     (1.0_rt +
-                     m_water_vapor_gas_constant / m_air_gas_constant * qv) *
+                     (m_water_vapor_gas_constant / m_air_gas_constant * qv)) *
                     m_ip0),
                    m_gamma) *
                std::pow(rho, m_gamma - 1.0_rt);

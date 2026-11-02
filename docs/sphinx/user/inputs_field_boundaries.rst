@@ -134,7 +134,8 @@ the gravitational constant when computing the wave speed.
    computed scaling factor exceeds this value, the externally specified profile is
    used instead of the rescaled interior profile. This limit prevents overly
    aggressive acceleration of the flow, which is most likely to occur during
-   startup or when the interior and exterior states differ substantially.
+   startup or when the interior and exterior states differ substantially. This parameter
+   also limits the scale applied to the exterior profile calculated by the Flather condition.
 
 .. input_param:: Flather.min_velocity_scale_factor
 
@@ -142,7 +143,10 @@ the gravitational constant when computing the wave speed.
 
    Lower bound on the factor used to rescale the interior velocity profile. If the
    computed scaling factor falls below this value, the externally specified profile
-   is used instead of the rescaled interior profile.
+   is used instead of the rescaled interior profile. This parameter
+   does not affect the scale applied to the exterior profile calculated by the Flather condition;
+   that minimum limit is 0, preventing the Flather condition from reversing the flow direction
+   dictated by the exterior velocity.
 
 **ModulatedPowerLaw**
 

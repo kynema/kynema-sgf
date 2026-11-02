@@ -25,8 +25,8 @@ RealList uniform_arm_angles(const int num_rotors, const amrex::Real phase)
 {
     RealList angles(num_rotors);
     for (int i = 0; i < num_rotors; ++i) {
-        angles[i] = phase + 360.0_rt * static_cast<amrex::Real>(i) /
-                                static_cast<amrex::Real>(num_rotors);
+        angles[i] = phase + (360.0_rt * static_cast<amrex::Real>(i) /
+                             static_cast<amrex::Real>(num_rotors));
     }
     return angles;
 }

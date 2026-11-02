@@ -362,7 +362,7 @@ void SecondMomentAveragingTest::test_dir(int dir)
     uu();
 
     amrex::Real x =
-        (0.5_rt + 0.01_rt * amrex::Random()) * (problo[dir] + probhi[dir]);
+        (0.5_rt + (0.01_rt * amrex::Random())) * (problo[dir] + probhi[dir]);
 
     // used symbolic tool to find this
     EXPECT_NEAR(1.0_rt, uu.line_average_interpolated(x, 0, 0), tol);

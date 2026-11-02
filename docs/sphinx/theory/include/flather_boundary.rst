@@ -66,7 +66,8 @@ height between the interior and the boundary is what radiates the outgoing wave.
 Rather than imposing a uniform velocity, the interior velocity profile is rescaled
 so that its depth integral matches the target. Only fully liquid cells are
 rescaled; interfacial cells are left unchanged, because scaling interfacial cells
-have the undesirable consequence of accelerating the gas phase. The scaling factor is
+have the undesirable consequence of accelerating the gas phase. The scaling factor 
+applied to the interior profile is
 
 .. math::
 
@@ -76,6 +77,16 @@ have the undesirable consequence of accelerating the gas phase. The scaling fact
 The interior velocity is also clipped so that it never drives inflow at an
 outflow boundary, which keeps the applied profile consistent with the column
 integrals used to construct it.
+
+The Flather boundary condition does not only act on outflow conditions; it also
+modifies inflow velocities according to the target depth-integrated flux. This
+helps reduce reflections at inflow boundaries. Because these values are prescribed
+and not extrapolated from the interior, the mixture and liquid cells can be grouped together without
+concern for stability problems. The scaling factor applied to the exterior profile is
+
+.. math::
+
+   f = \frac{(uh)^{\rm target}}{(uh)^{\rm ext}}.
 
 Limiting and edge cases
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,3 +112,11 @@ Finally, when the depth-integrated boundary flux indicates inflow, the externall
 prescribed profile is used. Inflow is assessed from the column integral rather than
 from individual cells, so a single cell does not switch the character of the
 boundary.
+
+Additional limits are considered when the external profile is being used,
+which happens when inflow is indicated or when the interior scaling factor falls
+outside the specified limits.In these cases, the external scaling factor :math:`f`
+is limited by :input_param:`Flather.max_velocity_scale_factor` as its upper bound
+to prevent rapid accelerations or large dramatic deviations from the external profile,
+and by 0 as its lower bound to prevent the Flather condition from reversing the flow
+direction dictated by the known exterior velocity.

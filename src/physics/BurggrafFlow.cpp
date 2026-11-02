@@ -17,17 +17,17 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 UExact::operator()(const amrex::Real x, const amrex::Real y) const
 {
     return 8.0_rt *
-           (utils::powi(x, 4) - 2.0_rt * utils::powi(x, 3) +
+           (utils::powi(x, 4) - (2.0_rt * utils::powi(x, 3)) +
             utils::powi(x, 2)) *
-           (4.0_rt * utils::powi(y, 3) - 2.0_rt * y);
+           ((4.0_rt * utils::powi(y, 3)) - (2.0_rt * y));
 }
 
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 VExact::operator()(const amrex::Real x, const amrex::Real y) const
 {
     return -8.0_rt *
-           (4.0_rt * utils::powi(x, 3) - 6.0_rt * utils::powi(x, 2) +
-            2.0_rt * x) *
+           ((4.0_rt * utils::powi(x, 3)) - (6.0_rt * utils::powi(x, 2)) +
+            (2.0_rt * x)) *
            (utils::powi(y, 4) - utils::powi(y, 2));
 }
 
@@ -104,8 +104,9 @@ void BurggrafFlow::initialize_fields(int level, const amrex::Geometry& geom)
 
             src_arrs[nbx](i, j, k, 0) = 0.0_rt;
             src_arrs[nbx](i, j, k, 1) =
-                ((8.0_rt / Re * (24.0_rt * F + 2.0_rt * f1 * g2 + f3 * g)) +
-                 (64.0_rt * (F2 * G1 - g * g1 * F1)));
+                ((8.0_rt / Re *
+                  ((24.0_rt * F) + (2.0_rt * f1 * g2) + (f3 * g))) +
+                 (64.0_rt * ((F2 * G1) - (g * g1 * F1))));
             src_arrs[nbx](i, j, k, 2) = 0.0_rt;
         });
     amrex::Gpu::streamSynchronize();

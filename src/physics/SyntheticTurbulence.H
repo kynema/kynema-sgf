@@ -185,7 +185,6 @@ private:
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
     Field& m_velocity;
-    Field& m_density;
     Field& m_turb_force;
 
     // Turbulence file name

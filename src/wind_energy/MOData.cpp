@@ -25,7 +25,7 @@ amrex::Real MOData::calc_psi_m(
     }
     const amrex::Real x = std::sqrt(std::sqrt(1.0_rt - (beta_m * zeta)));
     return (2.0_rt * std::log(0.5_rt * (1.0_rt + x))) +
-           std::log(0.5_rt * (1.0_rt + x * x)) - (2.0_rt * std::atan(x)) +
+           std::log(0.5_rt * (1.0_rt + (x * x))) - (2.0_rt * std::atan(x)) +
            utils::half_pi();
 }
 

@@ -1,12 +1,24 @@
 #ifndef KYNEMA_FMB_TYPES_H
 #define KYNEMA_FMB_TYPES_H
 
+#include <iomanip>
+#include <memory>
+#include <sstream>
 #include <string>
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
+#include <vector>
 #include "src/wind_energy/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
+
+/** Kynema-FMB types are only used in KynemaFMBHost.cpp, which is compiled with
+ *  the same compiler as Kokkos (see CMakeLists.txt), since nvcc and the host
+ *  compiler lay out Kokkos::View differently. This header is also compiled by
+ *  that file, so it must not include AMReX headers that contain GPU code.
+ */
+namespace kynema_fmb::interfaces {
+class TurbineInterface;
+} // namespace kynema_fmb::interfaces
 
 namespace sgf_fmb {
 
@@ -28,6 +40,9 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
     /** Variables exclusive to KynemaFMB turbine type
      */
     std::unique_ptr<kynema_fmb::interfaces::TurbineInterface> interface;
+
+    KynemaFMBTurbine();
+    ~KynemaFMBTurbine();
 
     // Need buffers to make data contiguous to fit into coupling
     void allocate_buffers()
@@ -58,141 +73,16 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         ptr_ori = &buffer_ori[0];
     }
 
-    void populate_buffers()
-    {
-        // Get hub information for nacelle force
-        // Chord is not used, set it to zero
-        buffer_cf[0] = 0.;
-        // Force is calculated by Kynema-SGF, passed to Kynema-FMB
-        // Get position directly from node information
-        buffer_pf[0] = interface->Turbine().hub_node.position[0];
-        buffer_pf[length_force(0)] = interface->Turbine().hub_node.position[1];
-        buffer_pf[2 * length_force(0)] =
-            interface->Turbine().hub_node.position[2];
-        buffer_pv[0] = buffer_pf[0];
-        buffer_pv[length_force(0)] = buffer_pf[length_force(0)];
-        buffer_pv[2 * length_force(0)] = buffer_pf[2 * length_force(0)];
-        // Get solid velocity as well, not used at the moment though
-        buffer_sv[0] = interface->Turbine().hub_node.velocity[0];
-        buffer_sv[length_force(0)] = interface->Turbine().hub_node.velocity[1];
-        buffer_sv[2 * length_force(0)] =
-            interface->Turbine().hub_node.velocity[2];
+    void populate_buffers(bool one_way_coupled);
 
-        // Get blade and tower information
-        int idx = 0;
-        for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
-            // Skip hub node
-            ++idx;
-            for (int n = 1; n < length_force(0); ++n) {
-                if (dir == 0) {
-                    buffer_cf[n] = (float)interface->Aerodynamics()
-                                       .bodies[body_index(n)]
-                                       .chord[node_index(n)];
-                }
-                buffer_f[idx] = (float)interface->Aerodynamics()
-                                    .bodies[body_index(n)]
-                                    .loads[node_index(n)][dir];
-                buffer_pf[idx] = (float)interface->Aerodynamics()
-                                     .bodies[body_index(n)]
-                                     .x_motion[node_index(n)][dir];
-                buffer_pv[idx] = buffer_pf[idx];
-                buffer_sv[idx] = (float)interface->Aerodynamics()
-                                     .bodies[body_index(n)]
-                                     .v_motion[node_index(n)][dir];
-                ++idx;
-            }
-        }
-        // Orientation stores a 3x3 tensor (9 elements) for every point
-        std::array<float, 4> q;
-        for (int n = 0; n < length_force(0); ++n) {
-            // convert quaternions to rotation matrix
-            for (int iq = 0; iq < 4; ++iq) {
-                if (n == 0) {
-                    q[iq] =
-                        (float)interface->Turbine().hub_node.position[iq + 3];
-                } else {
-                    q[iq] = (float)interface->Aerodynamics()
-                                .bodies[body_index(n)]
-                                .qqr_motion_map[node_index(n)][iq];
-                }
-            }
-            idx = n * 9;
-            buffer_ori[idx + 0] =
-                q[0] * q[0] + q[1] * q[1] - q[2] * q[2] - q[3] * q[3];
-            buffer_ori[idx + 1] = 2. * (q[1] * q[2] - q[0] * q[3]);
-            buffer_ori[idx + 2] = 2. * (q[1] * q[3] + q[0] * q[2]);
-            buffer_ori[idx + 3] = 2. * (q[1] * q[2] + q[0] * q[3]);
-            buffer_ori[idx + 4] =
-                (q[0] * q[0] - q[1] * q[1] + q[2] * q[2] - q[3] * q[3]);
-            buffer_ori[idx + 5] = 2. * (q[2] * q[3] - q[0] * q[1]);
-            buffer_ori[idx + 6] = 2. * (q[1] * q[3] - q[0] * q[2]);
-            buffer_ori[idx + 7] = 2. * (q[2] * q[3] + q[0] * q[1]);
-            buffer_ori[idx + 8] =
-                (q[0] * q[0] - q[1] * q[1] - q[2] * q[2] + q[3] * q[3]);
-        }
-    }
+    void pass_fluid_velocity_and_hub_load();
 
-    void pass_fluid_velocity_and_hub_load()
-    {
-        // Fluid velocity at hub does not need to be passed, loads computed
-        // internally in Kynema-SGF
-        int idx = 0;
-        for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
-            // Skip hub node
-            ++idx;
-            for (int n = 1; n < length_fluid_velocity(0); ++n) {
-                interface->Aerodynamics()
-                    .bodies[body_index(n)]
-                    .v_inflow[node_index(n)][dir] = buffer_fv[idx];
-                ++idx;
-            }
-        }
-        // Hub load (also called nacelle_force) does need to be passed
-        interface->Turbine().hub_node.loads[0] = buffer_f[0];
-        interface->Turbine().hub_node.loads[1] = buffer_f[length_force(0)];
-        interface->Turbine().hub_node.loads[2] =
-            buffer_f[length_force(0) + length_force(1)];
-        // Fluid velocity at hub is passed separately for the sake of controller
-        std::array<amrex::Real, 3> hub_inflow{
-            buffer_fv[0], buffer_fv[length_force(0)],
-            buffer_fv[length_force(0) + length_force(1)]};
-        interface->SetHubInflow(hub_inflow);
-    }
+    void save_and_zero_aerodynamic_loads();
 
     /** Helper functions for navigating indices */
-    int body_index(int id) const
-    {
-        // Considering hub, which is 1 node, subtract
-        id -= 1;
-        int b_id = 0;
-        int id_diff = id;
-        for (int b = 0; b < (int)interface->Aerodynamics().bodies.size(); ++b) {
-            id_diff -= static_cast<int>(
-                interface->Aerodynamics().bodies[b].loads.size());
-            if (id_diff < 0) {
-                b_id = b;
-                break;
-            }
-        }
-        return b_id;
-    }
+    int body_index(int id) const;
 
-    int node_index(int id) const
-    {
-        // Considering hub, which is 1 node, subtract
-        id -= 1;
-        int n_id = 0;
-        int id_diff = id;
-        for (int b = 0; b < (int)interface->Aerodynamics().bodies.size(); ++b) {
-            id_diff -= (int)interface->Aerodynamics().bodies[b].loads.size();
-            if (id_diff < 0) {
-                n_id = id_diff +
-                       (int)interface->Aerodynamics().bodies[b].loads.size();
-                break;
-            }
-        }
-        return n_id;
-    }
+    int node_index(int id) const;
 
     /** Data access functions needed for every turbine type */
 
@@ -230,15 +120,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         return length_force(dir);
     }
 
-    int length_force(int /*dir*/) const override
-    {
-        unsigned int n_sect{1};
-        for (unsigned int n = 0; n < interface->Aerodynamics().bodies.size();
-             ++n) {
-            n_sect += interface->Aerodynamics().bodies[n].loads.size();
-        }
-        return static_cast<int>(n_sect);
-    }
+    int length_force(int /*dir*/) const override;
 
     int length_position_at_force(int dir) const override
     {
@@ -258,7 +140,10 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
     amrex::Real wind_speed{0.0_rt};
     amrex::Real yaw{0.0_rt};
     amrex::Real generator_efficiency{1.0_rt};
+    int section_refinement_blade{0};
+    int section_refinement_tower{2};
     int substep_counter{0};
+    bool one_way_coupled{false};
 
     std::string controller_shared_lib_path{""};
     std::string controller_input_file{""};
@@ -288,9 +173,25 @@ struct KynemaFMBSolverData
     int nl_iter_max{12};
     amrex::Real abs_err_tol{1.0e-5_rt};
     amrex::Real rel_err_tol{1.0e-4_rt};
-    amrex::Vector<amrex::Real> gravity{0.0_rt, 0.0_rt, -9.81_rt};
+    std::vector<amrex::Real> gravity{0.0_rt, 0.0_rt, -9.81_rt};
 };
 
 } // namespace ext_turb
+
+//! Functions that use Kynema-FMB types, defined in KynemaFMBHost.cpp
+namespace sgf_fmb {
+void init_turbine_interface(
+    ext_turb::KynemaFMBTurbine& fi,
+    const ext_turb::KynemaFMBSolverData& solver_data);
+
+void update_turbine(ext_turb::KynemaFMBTurbine& fi, bool advance);
+
+void get_hub_state(ext_turb::KynemaFMBTurbine& fi);
+
+void set_time_step_index(ext_turb::KynemaFMBTurbine& fi);
+
+void write_checkpoint_file(
+    ext_turb::KynemaFMBTurbine& fi, const std::string& fname);
+} // namespace sgf_fmb
 
 #endif /* KYNEMA_FMB_TYPES_H */

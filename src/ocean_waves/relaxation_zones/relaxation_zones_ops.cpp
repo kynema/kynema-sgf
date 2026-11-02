@@ -4,6 +4,7 @@
 #include "src/core/MultiParser.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/io_utils.H"
+#include "src/utilities/constants.H"
 #include "src/fvm/gradient.H"
 #include "src/core/field_ops.H"
 #include "AMReX_ParmParse.H"
@@ -139,7 +140,6 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
     const auto& mphase = sim.physics_manager().get<MultiPhase>();
     const amrex::Real rho1 = mphase.rho1();
     const amrex::Real rho2 = mphase.rho2();
-    constexpr amrex::Real vof_tiny = 1.0e-12_rt;
 
     // Get time
     const auto& time = sim.time().new_time();
@@ -223,7 +223,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                     Gamma_yhi = utils::gamma_absorb(
                         y - (probhi[1] - zone_length_y), zone_length_y, 1.0_rt);
                     const amrex::Real Gamma_y_to_xhi = utils::gamma_generate(
-                        x - (probhi[0] - 1.5_rt * beach_length),
+                        x - (probhi[0] - (1.5_rt * beach_length)),
                         0.5_rt * beach_length);
                     if (has_beach) {
                         Gamma_ylo =
@@ -252,16 +252,18 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                     // Nudge solution toward target
                     amrex::Real new_vof = utils::combine_linear(
                         Gamma, target_profile[3], volfrac(i, j, k));
-                    new_vof = (new_vof > 1.0_rt - vof_tiny)
-                                  ? 1.0_rt
-                                  : (new_vof < vof_tiny ? 0.0_rt : new_vof);
+                    new_vof =
+                        (new_vof > 1.0_rt - constants::VOF_TOL)
+                            ? 1.0_rt
+                            : (new_vof < constants::VOF_TOL ? 0.0_rt : new_vof);
                     const amrex::Real dvf = new_vof - volfrac(i, j, k);
                     volfrac(i, j, k) += rampf * dvf;
                     // Liquid velocity forced only where velocity is known
                     //  - in most of domain, that is where target vof is nonzero
                     //  - in numerical beach, that is anywhere
                     amrex::Real fvel_liq =
-                        (target_volfrac(i, j, k) > vof_tiny) ? 1.0_rt : 0.0_rt;
+                        (target_volfrac(i, j, k) > constants::VOF_TOL) ? 1.0_rt
+                                                                       : 0.0_rt;
                     fvel_liq = in_beach ? 1.0_rt : fvel_liq;
                     amrex::Real rho_ = (rho1 * volfrac(i, j, k)) +
                                        (rho2 * (1.0_rt - volfrac(i, j, k)));
@@ -281,9 +283,9 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                             amrex::max<amrex::Real>(0.0_rt, dvf) *
                             (target_profile[n] - vel(i, j, k, n));
                         // Update overall velocity using momentum
-                        vel(i, j, k, n) = (rho1 * integrated_vel_liq +
-                                           rho2 * (1.0_rt - volfrac(i, j, k)) *
-                                               vel(i, j, k, n)) /
+                        vel(i, j, k, n) = ((rho1 * integrated_vel_liq) +
+                                           (rho2 * (1.0_rt - volfrac(i, j, k)) *
+                                            vel(i, j, k, n))) /
                                           rho_;
                     }
 

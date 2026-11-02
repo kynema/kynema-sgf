@@ -167,7 +167,6 @@ struct DiffusionOp
 template <typename PDE>
 struct TurbulenceOp
 {
-    // cppcheck-suppress uninitMemberVar
     TurbulenceOp(turbulence::TurbulenceModel& tmodel, PDEFields& fields)
         : m_tmodel(tmodel), m_fields(fields)
     {}

@@ -138,14 +138,14 @@ struct ShearStressMoeng
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_vel_x(amrex::Real u, amrex::Real wspd) const
     {
-        return ((u - u_mean) * wspd_mean + wspd * u_mean) /
+        return (((u - u_mean) * wspd_mean) + (wspd * u_mean)) /
                (wspd_mean * wspd_mean) * utau2;
     };
 
     AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
     calc_vel_y(amrex::Real v, amrex::Real wspd) const
     {
-        return ((v - v_mean) * wspd_mean + wspd * v_mean) /
+        return (((v - v_mean) * wspd_mean) + (wspd * v_mean)) /
                (wspd_mean * wspd_mean) * utau2;
     };
 

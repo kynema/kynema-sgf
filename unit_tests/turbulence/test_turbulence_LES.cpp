@@ -427,7 +427,7 @@ TEST_F(TurbLESTest, test_AMD_setup_calc)
     const amrex::Real amd_answer =
         C *
         (-1.0_rt * kynema_sgf::utils::powi(scale / std::sqrt(6.0_rt), 3) *
-         (m_dx * m_dx - 8.0_rt * m_dy * m_dy - m_dz * m_dz)) /
+         ((m_dx * m_dx) - (8.0_rt * m_dy * m_dy) - (m_dz * m_dz))) /
         (1.0_rt * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
     EXPECT_NEAR(max_val, amd_answer, tol);
@@ -507,7 +507,7 @@ TEST_F(TurbLESTest, test_AMDNoTherm_setup_calc)
 
     const amrex::Real amd_answer =
         -C * kynema_sgf::utils::powi(scale, 3) *
-        (m_dx * m_dx - 8.0_rt * m_dy * m_dy + m_dz * m_dz) /
+        ((m_dx * m_dx) - (8.0_rt * m_dy * m_dy) + (m_dz * m_dz)) /
         (6 * scale * scale);
     EXPECT_NEAR(min_val, amd_answer, tol);
     EXPECT_NEAR(max_val, amd_answer, tol);

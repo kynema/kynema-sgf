@@ -95,7 +95,7 @@ void Flather::accumulate_boundary(
     amrex::Gpu::DeviceVector<amrex::Real> uh_sum_d(nline, 0.0_rt);
     amrex::Gpu::DeviceVector<amrex::Real> vof_sum_d(nline, 0.0_rt);
 
-    const amrex::Real tiny = constants::TIGHT_TOL;
+    const amrex::Real vof_tol = constants::VOF_TOL;
 
     // Loop through current level and all below
     for (int lev = current_level; lev >= 0; --lev) {
@@ -195,12 +195,12 @@ void Flather::accumulate_boundary(
                         &vof_sum[idx], liquid_height);
                     auto vel_height = liquid_height;
                     if (phase_switch == 0 &&
-                        vof_arr(ii, jj, k) < 1.0_rt - tiny) {
+                        vof_arr(ii, jj, k) < 1.0_rt - vof_tol) {
                         // Needs to be fully liquid to be counted
                         vel_height = 0.0_rt;
                     }
                     if (phase_switch == 1 &&
-                        vof_arr(ii, jj, k) >= 1.0_rt - tiny) {
+                        vof_arr(ii, jj, k) >= 1.0_rt - vof_tol) {
                         // Needs to be mixture to be counted
                         vel_height = 0.0_rt;
                     }
@@ -365,7 +365,7 @@ void Flather::set_velocity(
     const auto& domain = geom.growPeriodicDomain(nghost);
 
     const auto fstate = time > 0.0_rt ? FieldState::Old : FieldState::New;
-    const amrex::Real tiny = constants::TIGHT_TOL;
+    const amrex::Real vof_tol = constants::VOF_TOL;
     const amrex::Real v_threshold = 1.0e-6_rt;
     const auto grav_z = -m_gravity[2];
     const auto vscale_min = m_velocity_scale_factor_min;
@@ -490,7 +490,7 @@ void Flather::set_velocity(
                 const amrex::Real interior_vof = vof_arr(iv_adj_cc);
                 const amrex::Real boundary_vof = vof_arr(iv_cc);
                 // Do nothing here if not liquid
-                if ((interior_vof < tiny) && (boundary_vof < tiny)) {
+                if ((interior_vof < vof_tol) && (boundary_vof < vof_tol)) {
                     return;
                 }
 
@@ -498,9 +498,17 @@ void Flather::set_velocity(
                 const amrex::Real c = std::sqrt(grav_z * interior_h);
 
                 // Calculation of Flather formula. "val" = velocity * h
-                const auto Flather_val =
-                    boundary_val + (ori.isLow() ? -1.0_rt : 1.0_rt) * c *
-                                       (interior_h - boundary_h);
+                auto Flather_val =
+                    boundary_val + ((ori.isLow() ? -1.0_rt : 1.0_rt) * c *
+                                    (interior_h - boundary_h));
+
+                // Prevent Flather_val from changing signs
+                if (boundary_val > 0.0_rt) {
+                    Flather_val = amrex::max<amrex::Real>(Flather_val, 0.0_rt);
+                }
+                if (boundary_val < 0.0_rt) {
+                    Flather_val = amrex::min<amrex::Real>(Flather_val, 0.0_rt);
+                }
 
                 // Use external (prescribed) velocity if inflow:
                 // - Assesses inflow by the whole column, not the local value
@@ -570,7 +578,11 @@ void Flather::set_velocity(
                 // Apply scale to velocity, depends on direction
                 if (prescribed_inflow || override_interior) {
                     local_vel = arr(iv, fcomp);
-                    scaled_vel = local_vel * (Flather_val / boundary_val);
+                    auto scale_exterior = (Flather_val / boundary_val);
+                    scale_exterior =
+                        amrex::min<amrex::Real>(scale_exterior, vscale_max);
+                    // minimum scale is 0, enforced by sign guard
+                    scaled_vel = local_vel * scale_exterior;
                 } else {
                     local_vel = local_internal_vel;
                     scaled_vel = local_vel * scale_interior;
@@ -582,14 +594,15 @@ void Flather::set_velocity(
                 // of the velocity is only valid on those cells.
                 const bool outflow =
                     ori.isLow() ? scaled_vel <= 0.0_rt : scaled_vel >= 0.0_rt;
-                const bool inflow_any_liq = !outflow && boundary_vof > tiny;
+                const bool inflow_any_liq = !outflow && boundary_vof > vof_tol;
                 const bool outflow_only_liq =
-                    outflow && interior_vof >= 1.0_rt - tiny;
-                if (boundary_h > tiny && (outflow_only_liq || inflow_any_liq ||
-                                          (outflow && override_interior))) {
+                    outflow && interior_vof >= 1.0_rt - vof_tol;
+                if (boundary_h > vof_tol &&
+                    (outflow_only_liq || inflow_any_liq ||
+                     (outflow && override_interior))) {
                     arr(iv, fcomp) = scaled_vel;
                 } else if (outflow) {
-                    // edge case 4 (boundary_h <= tiny)
+                    // edge case 4 (boundary_h <= vof_tol)
                     arr(iv, fcomp) = local_vel;
                 }
             });
