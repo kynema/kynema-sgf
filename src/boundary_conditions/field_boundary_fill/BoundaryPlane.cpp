@@ -328,7 +328,8 @@ void InletData::interpolate(const amrex::Real time)
 
 bool InletData::is_populated(amrex::Orientation ori) const
 {
-    return m_data_n[ori] != nullptr;
+    return static_cast<amrex::Long>(ori) < m_data_n.size() &&
+           m_data_n[ori] != nullptr;
 }
 
 BoundaryPlane::BoundaryPlane(CFDSim& sim)
@@ -497,8 +498,14 @@ void BoundaryPlane::post_advance_work() { write_file(); }
 bool BoundaryPlane::provides_inflow_values(
     const Field& field, const amrex::Orientation ori) const
 {
+    return may_provide_inflow_values(field, ori) && m_in_data.is_populated(ori);
+}
+
+bool BoundaryPlane::may_provide_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
     const auto bct = field.bc_type()[ori];
-    return m_io_mode == io_mode::input && m_in_data.is_populated(ori) &&
+    return m_io_mode == io_mode::input &&
            (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) &&
            std::ranges::find(m_var_names, field.name()) != m_var_names.end() &&
            (m_phase == phase::both || field.name() == "density" ||

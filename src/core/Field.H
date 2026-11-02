@@ -60,6 +60,7 @@ struct FieldInfo
     //! Boundary condition data
     amrex::GpuArray<BC, AMREX_SPACEDIM * 2> m_bc_type;
     amrex::Vector<amrex::Vector<amrex::Real>> m_bc_values;
+    //! Parsed policy, including BC specializations that do not support UDFs.
     amrex::GpuArray<InflowValueSource, AMREX_SPACEDIM * 2>
         m_inflow_value_source{};
     amrex::GpuArray<const amrex::Real*, AMREX_SPACEDIM * 2> m_bc_values_d;

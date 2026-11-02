@@ -70,9 +70,8 @@ bool OceanWavesBoundary::provides_inflow_values(
 {
     const auto bct = field.bc_type()[ori];
     // Velocity is liquid-only; density blends with the base fill.
-    return m_vof_exists && field.name() == "vof" &&
-           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow ||
-            bct == BC::wave_generation);
+    return m_repo.field_exists("vof") && field.name() == "vof" &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow);
 }
 
 void OceanWavesBoundary::pre_predictor_work()

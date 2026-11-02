@@ -70,7 +70,12 @@ protected:
             }
         }
     }
-    void read_values() override { read_inflow_values(false); }
+    amrex::Array<const std::string, 3> inflow_udfs() override
+    {
+        return {"ConstDirichlet", "ConstDirichlet", "ConstDirichlet"};
+    }
+
+    void read_values() override { read_inflow_values(); }
 };
 
 class BCDensityMod : public BCIface
@@ -133,7 +138,12 @@ protected:
         }
     }
 
-    void read_values() override { read_inflow_values(false); }
+    amrex::Array<const std::string, 3> inflow_udfs() override
+    {
+        return {"ConstDirichlet", "ConstDirichlet", "ConstDirichlet"};
+    }
+
+    void read_values() override { read_inflow_values(); }
 };
 
 } // namespace kynema_sgf

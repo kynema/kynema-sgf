@@ -6,6 +6,8 @@
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
+#include <algorithm>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf {
@@ -349,16 +351,13 @@ void BCScalar::set_bcrec()
 
 void BCScalar::read_values() { read_inflow_values(); }
 
-void BCIface::read_inflow_values(const bool use_udfs)
+void BCIface::read_inflow_values()
 {
     const auto& fname = m_field.name();
     const auto& bctype = m_field.bc_type();
     auto& bcval = m_field.bc_values();
     const int ndim = m_field.num_comp();
-    const auto udfs =
-        use_udfs ? get_dirichlet_udfs()
-                 : amrex::Array<const std::string, 3>{
-                       "ConstDirichlet", "ConstDirichlet", "ConstDirichlet"};
+    const auto udfs = inflow_udfs();
     auto& sources = m_field.inflow_value_source();
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
@@ -378,7 +377,9 @@ void BCIface::read_inflow_values(const bool use_udfs)
 }
 
 void BCIface::validate_inflow_values(
-    const FieldRepo& repo, const FieldBoundaryMgr& boundaries)
+    const FieldRepo& repo,
+    const FieldBoundaryMgr& boundaries,
+    const InflowValidationStage stage)
 {
     for (const auto& field : repo.fields()) {
         if (field->field_state() != FieldState::New) {
@@ -390,10 +391,12 @@ void BCIface::validate_inflow_values(
             if (source == InflowValueSource::none) {
                 continue;
             }
-            const bool supplied = std::any_of(
-                boundaries.objects().begin(), boundaries.objects().end(),
-                [&](const auto& boundary) {
-                    return boundary->provides_inflow_values(*field, ori);
+            const bool supplied = std::ranges::any_of(
+                boundaries.objects(), [&](const auto& boundary) {
+                    return stage == InflowValidationStage::configuration
+                               ? boundary->may_provide_inflow_values(
+                                     *field, ori)
+                               : boundary->provides_inflow_values(*field, ori);
                 });
             amrex::ParmParse pp(bcnames[ori]);
             const bool has_constant = pp.contains(field->name());
@@ -406,13 +409,16 @@ void BCIface::validate_inflow_values(
                     "field-boundary fill covering the entire face. "
                     "Phase-limited fills still require a fallback.");
             }
-            if (has_constant &&
+            if (stage == InflowValidationStage::initialized && has_constant &&
                 (supplied || source == InflowValueSource::profile)) {
-                amrex::Print() << "Warning: " << bcnames[ori] << "."
-                               << field->name() << " is overridden by "
-                               << (supplied ? "a field-boundary fill"
-                                            : "an inflow profile")
-                               << " and is not needed for this inflow face.\n";
+                amrex::Print()
+                    << "Warning: " << bcnames[ori] << "." << field->name()
+                    << " is overridden by "
+                    << (source == InflowValueSource::profile
+                            ? "an inflow profile and is not needed for this "
+                              "inflow face.\n"
+                            : "a field-boundary fill and is not needed for "
+                              "this inflow face.\n");
             }
         }
     }

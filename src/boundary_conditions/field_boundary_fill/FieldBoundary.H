@@ -37,11 +37,18 @@ public:
     virtual void post_advance_work() = 0;
 
     //! Whether this fill replaces all components over the entire inflow face.
-    //! Partial fills and corrections that use the base fill must return false.
+    //! Phase-limited fills and corrections that use the base fill return false.
     [[nodiscard]] virtual bool provides_inflow_values(
         const Field& /*field*/, amrex::Orientation /*ori*/) const
     {
         return false;
+    }
+
+    //! Conservative coverage estimate before mesh and input data are loaded.
+    [[nodiscard]] virtual bool
+    may_provide_inflow_values(const Field& field, amrex::Orientation ori) const
+    {
+        return provides_inflow_values(field, ori);
     }
 
     //! Velocity fill function to be used by nodal projection

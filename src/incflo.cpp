@@ -525,6 +525,10 @@ void incflo::init_physics_and_pde()
 
     // Post-processing actions that need to declare fields
     m_sim.post_manager().pre_init_actions();
+
+    kynema_sgf::BCIface::validate_inflow_values(
+        m_repo, m_sim.field_boundary_manager(),
+        kynema_sgf::InflowValidationStage::configuration);
 }
 
 void incflo::ErrorEst(
