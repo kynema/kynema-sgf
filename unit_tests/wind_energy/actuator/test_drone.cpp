@@ -733,7 +733,7 @@ TEST_F(
     amrex::Real reference_force_normal = 0.0_rt;
     for (int i = 0; i < 4; ++i) {
         auto& rotor_data = drone.meta().rotors[i]->data;
-        act::ops::ComputeForceOp<act::ActuatorSector, act::ActSrcSector>()(
+        act::ops::ComputeLoadsOp<act::ActuatorSector, act::ActSrcSector>()(
             rotor_data);
         const auto& rotor_meta = rotor_data.meta();
         const amrex::Real force_normal =

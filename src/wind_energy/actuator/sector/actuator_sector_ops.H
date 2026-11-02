@@ -143,9 +143,16 @@ struct UpdateFieldsOp<ActuatorSector, ActSrcSector>
 };
 
 template <>
-struct ComputeForceOp<ActuatorSector, ActSrcSector>
+struct ComputeLoadsOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& data);
+};
+
+// Prescribed histories are evaluated during position and load updates.
+template <>
+struct AdvanceModelOp<ActuatorSector, ActSrcSector>
+{
+    void operator()(ActuatorSector::DataType& /*data*/) {}
 };
 
 template <>

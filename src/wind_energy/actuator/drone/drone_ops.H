@@ -31,9 +31,16 @@ struct UpdateFieldsOp<Drone, ActSrcDrone>
 };
 
 template <>
-struct ComputeForceOp<Drone, ActSrcDrone>
+struct ComputeLoadsOp<Drone, ActSrcDrone>
 {
     void operator()(Drone::DataType& data);
+};
+
+// Prescribed histories are evaluated by the child-sector operations.
+template <>
+struct AdvanceModelOp<Drone, ActSrcDrone>
+{
+    void operator()(Drone::DataType& /*data*/) {}
 };
 
 template <>
