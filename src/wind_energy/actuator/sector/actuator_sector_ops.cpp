@@ -797,7 +797,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             // equivalent to the positive-rotation propeller, while preserving
             // opposite tangential force for torque cancellation.
             const amrex::Real raw_aoa =
-                std::atan2(vnormal, -spin_sign * vtheta) +
+                -std::atan2(vnormal, -spin_sign * vtheta) +
                 (spin_sign * ::kynema_sgf::utils::radians(meta.twist[ir]));
             const amrex::Real aoa =
                 std::remainder(raw_aoa, ::kynema_sgf::utils::two_pi());
