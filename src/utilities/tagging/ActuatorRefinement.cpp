@@ -59,9 +59,8 @@ void require_nonnegative(
 bool contains_any(
     amrex::ParmParse& pp, const std::initializer_list<const char*>& names)
 {
-    return std::any_of(names.begin(), names.end(), [&pp](const char* name) {
-        return pp.contains(name);
-    });
+    return std::ranges::any_of(
+        names, [&pp](const char* name) { return pp.contains(name); });
 }
 
 } // namespace

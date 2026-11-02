@@ -325,7 +325,12 @@ ActuatorRefinementGeometry refinement_geometry(
     normal /= vs::mag(normal);
 
     const amrex::Real epsilon_max = local_epsilon(meta, max_interp_chord(meta));
-    return {label, center, normal, meta.rotor_radius, epsilon_max};
+    return {
+        .label = label,
+        .center = center,
+        .normal = normal,
+        .rotor_radius = meta.rotor_radius,
+        .epsilon_max = epsilon_max};
 }
 
 void prepare_netcdf_group(

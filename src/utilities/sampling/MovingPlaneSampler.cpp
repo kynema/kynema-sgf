@@ -39,7 +39,11 @@ MovingPlaneSampler::MovingPlaneSampler(const CFDSim& sim) : PlaneSampler(sim) {}
 void MovingPlaneSampler::initialize(const std::string& key)
 {
     PlaneSampler::initialize(key);
-    m_reference = {m_origin, m_axis1, m_axis2, m_offset_vector};
+    m_reference = {
+        .origin = m_origin,
+        .axis1 = m_axis1,
+        .axis2 = m_axis2,
+        .offset_vector = m_offset_vector};
 
     amrex::ParmParse pp(key);
     pp.get("actuator_label", m_actuator_label);

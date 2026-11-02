@@ -117,8 +117,10 @@ bool MovingVolumeSampler::update_geometry(const amrex::Real time)
                                   changed(axis3, m_geometry.axis3);
 
     m_geometry = {
-        std::move(origin), std::move(axis1), std::move(axis2),
-        std::move(axis3)};
+        .origin = std::move(origin),
+        .axis1 = std::move(axis1),
+        .axis2 = std::move(axis2),
+        .axis3 = std::move(axis3)};
     check_bounds();
     return geometry_changed;
 }
