@@ -266,17 +266,18 @@ struct ComputeLoadsOp<
 
         wdata.lift = total_lift;
         wdata.drag = total_drag;
-    }
 
-    const auto& time = data.sim().time();
-    if (wdata.fllc) {
-        if (!(wdata.fllc->initialized) &&
-            (time.current_time() > wdata.fllc->fllc_start_time)) {
-            wdata.component_view =
-                kynema_sgf::actuator::wing::make_component_view<ActTrait>(data);
-            fllc_init(
-                *(wdata.fllc.get()), wdata.component_view,
-                wdata.epsilon_chord[0]);
+        const auto& time = data.sim().time();
+        if (wdata.fllc) {
+            if (!(wdata.fllc->initialized) &&
+                (time.current_time() > wdata.fllc->fllc_start_time)) {
+                wdata.component_view =
+                    kynema_sgf::actuator::wing::make_component_view<ActTrait>(
+                        data);
+                fllc_init(
+                    *(wdata.fllc.get()), wdata.component_view,
+                    wdata.epsilon_chord[0]);
+            }
         }
     }
 };
