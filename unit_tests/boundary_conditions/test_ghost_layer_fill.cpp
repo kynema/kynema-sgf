@@ -5,6 +5,7 @@
 #include "src/utilities/index_operations.H"
 #include "AMReX_REAL.H"
 
+#include <cfenv>
 #include <limits>
 
 using namespace amrex::literals;
@@ -197,9 +198,9 @@ amrex::Long transverse_fill_errors(
     const amrex::IntVect& nodal,
     const int transverse_type,
     const bool mixed = false,
-    const int grid_size = 4)
+    const int grid_size = 4,
+    const int ng = 3)
 {
-    constexpr int ng = 3;
     constexpr amrex::Real sentinel = -999.0_rt;
     const int dir = ori.coordDir();
     auto domain = geom.Domain();
@@ -242,7 +243,14 @@ amrex::Long transverse_fill_errors(
         bcrec[2].setHi(d2, amrex::BCType::foextrap);
     }
     bcrec[2].set(ori, amrex::BCType::ext_dir);
+#ifndef AMREX_USE_GPU
+    std::feclearexcept(FE_INVALID);
+#endif
     kynema_sgf::utils::fill_transverse_ghosts(mfab, geom, bcrec, ori, 1, 1, 2);
+#ifndef AMREX_USE_GPU
+    // Debug scratch NaNs must not enter arithmetic, even outside copy-back.
+    EXPECT_EQ(std::fetestexcept(FE_INVALID), 0);
+#endif
 
     const auto geometry = geom.data();
     const auto bc = bcrec[2];
@@ -447,6 +455,19 @@ TEST_F(GhostLayerFillTest, transverse_physical_and_grid_boundaries)
             transverse_fill_errors(
                 geom, ori, amrex::IntVect(0), amrex::BCType::foextrap, true),
             0);
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            for (const int ng : {1, 3}) {
+                SCOPED_TRACE(
+                    ::testing::Message()
+                    << "face " << int(ori) << ", nodal direction " << d
+                    << ", ghost width " << ng);
+                EXPECT_EQ(
+                    transverse_fill_errors(
+                        geom, ori, amrex::IntVect::TheDimensionVector(d),
+                        amrex::BCType::foextrap, true, 4, ng),
+                    0);
+            }
+        }
         EXPECT_EQ(
             transverse_fill_errors(
                 geom, ori, amrex::IntVect(0), amrex::BCType::foextrap, false,
