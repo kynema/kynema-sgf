@@ -267,6 +267,18 @@ struct ComputeLoadsOp<
         wdata.lift = total_lift;
         wdata.drag = total_drag;
     }
+
+    const auto& time = data.sim().time();
+    if (wdata.fllc) {
+        if (!(wdata.fllc->initialized) &&
+            (time.current_time() > wdata.fllc->fllc_start_time)) {
+            wdata.component_view =
+                kynema_sgf::actuator::wing::make_component_view<ActTrait>(data);
+            fllc_init(
+                *(wdata.fllc.get()), wdata.component_view,
+                wdata.epsilon_chord[0]);
+        }
+    }
 };
 
 template <typename ActTrait>
@@ -277,22 +289,7 @@ struct AdvanceModelOp<
         std::is_base_of_v<WingType, ActTrait> &&
         UseDefaultOp<ActTrait, ActSrcLine>::advance_model>>
 {
-    void operator()(typename ActTrait::DataType& data)
-    {
-        auto& wdata = data.meta();
-        const auto& time = data.sim().time();
-        if (wdata.fllc) {
-            if (!(wdata.fllc->initialized) &&
-                (time.current_time() > wdata.fllc->fllc_start_time)) {
-                wdata.component_view =
-                    kynema_sgf::actuator::wing::make_component_view<ActTrait>(
-                        data);
-                fllc_init(
-                    *(wdata.fllc.get()), wdata.component_view,
-                    wdata.epsilon_chord[0]);
-            }
-        }
-    }
+    void operator()(typename ActTrait::DataType& /*data*/) {}
 };
 
 template <typename ActTrait, typename SrcTrait>
