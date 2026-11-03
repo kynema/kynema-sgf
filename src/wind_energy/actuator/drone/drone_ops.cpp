@@ -315,13 +315,22 @@ void UpdateFieldsOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
     }
 }
 
-void ComputeLoadsOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
+void PrescribeModelMotionOp<Drone, ActSrcDrone>::operator()(
+    Drone::DataType& data)
 {
     auto& meta = data.meta();
     const auto& time = data.sim().time();
     const amrex::Real midpoint_time =
         time.current_time() + (0.5_rt * sector::timestep_width(data.sim()));
-    const auto drone_center = meta.body_motion->position(midpoint_time);
+    meta.center = meta.body_motion->position(midpoint_time);
+    for (auto& rotor : meta.rotors) {
+        PrescribeModelMotionOp<ActuatorSector, ActSrcSector>()(rotor->data);
+    }
+}
+
+void ComputeLoadsOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
+{
+    auto& meta = data.meta();
     meta.total_force = vs::Vector::zero();
     meta.total_moment = vs::Vector::zero();
     for (auto& rotor : meta.rotors) {
@@ -332,7 +341,7 @@ void ComputeLoadsOp<Drone, ActSrcDrone>::operator()(Drone::DataType& data)
         meta.total_force = meta.total_force - rotor_meta.integrated_force;
         meta.total_moment =
             meta.total_moment - rotor_meta.integrated_moment -
-            ((rotor_meta.center - drone_center) ^ rotor_meta.integrated_force);
+            ((rotor_meta.center - meta.center) ^ rotor_meta.integrated_force);
     }
 }
 

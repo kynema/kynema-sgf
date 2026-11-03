@@ -143,12 +143,18 @@ struct UpdateFieldsOp<ActuatorSector, ActSrcSector>
 };
 
 template <>
+struct PrescribeModelMotionOp<ActuatorSector, ActSrcSector>
+{
+    void operator()(ActuatorSector::DataType& data);
+};
+
+template <>
 struct ComputeLoadsOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& data);
 };
 
-// Prescribed histories are evaluated during position and load updates.
+// Motion is prescribed rather than advanced by a dynamics solver.
 template <>
 struct AdvanceModelOp<ActuatorSector, ActSrcSector>
 {

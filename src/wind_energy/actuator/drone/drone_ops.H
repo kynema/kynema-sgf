@@ -31,12 +31,18 @@ struct UpdateFieldsOp<Drone, ActSrcDrone>
 };
 
 template <>
+struct PrescribeModelMotionOp<Drone, ActSrcDrone>
+{
+    void operator()(Drone::DataType& data);
+};
+
+template <>
 struct ComputeLoadsOp<Drone, ActSrcDrone>
 {
     void operator()(Drone::DataType& data);
 };
 
-// Prescribed histories are evaluated by the child-sector operations.
+// Motion is prescribed rather than advanced by a dynamics solver.
 template <>
 struct AdvanceModelOp<Drone, ActSrcDrone>
 {
