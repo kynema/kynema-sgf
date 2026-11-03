@@ -184,7 +184,9 @@ void init_turbine_interface(
     ext_turb::KynemaFMBTurbine& fi,
     const ext_turb::KynemaFMBSolverData& solver_data);
 
-void update_turbine(ext_turb::KynemaFMBTurbine& fi, bool advance);
+void calculate_aerodynamic_loads(ext_turb::KynemaFMBTurbine& fi);
+
+void update_turbine_model(ext_turb::KynemaFMBTurbine& fi, bool advance);
 
 void get_hub_state(ext_turb::KynemaFMBTurbine& fi);
 
