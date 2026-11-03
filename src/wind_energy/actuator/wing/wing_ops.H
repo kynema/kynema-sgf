@@ -36,8 +36,10 @@ void write_netcdf(
 
 void refresh_wing_position(VecList& vpoints, VecList fpoints, int npts);
 
-vs::Vector new_wing_displacement_motion(
+void new_wing_position_velocity(
+    VecList& points,
     vs::Vector& vtr,
+    int npts,
     amrex::Real tn,
     amrex::Real tnp1,
     const std::string& motion,
@@ -132,15 +134,12 @@ struct PrescribeModelMotionOp<
         const int npts = wdata.num_pts;
         const auto& time = data.sim().time();
 
-        // Move force points to location at n+1 using displacement vector
-        auto disp = actuator::wing::new_wing_displacement_motion(
-            wdata.vel_tr, time.current_time(), time.new_time(),
+        // Move force points to location at n+1
+        // Also, get velocity of actuator from n to n+1
+        // (will be unchanged for "none" and "linear" motion)
+        actuator::wing::new_wing_position_velocity(
+            grid.pos, wdata.vel_tr, npts, time.current_time(), time.new_time(),
             wdata.motion_type, wdata.s_period, wdata.s_vector);
-        for (int ip = 0; ip < npts; ++ip) {
-            grid.pos[ip].x() = grid.pos[ip].x() + disp.x();
-            grid.pos[ip].y() = grid.pos[ip].y() + disp.y();
-            grid.pos[ip].z() = grid.pos[ip].z() + disp.z();
-        }
 
         // Build the local reference frame
         const vs::Vector wspan = wdata.end - wdata.start;
