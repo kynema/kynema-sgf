@@ -3,6 +3,7 @@
 
 #include "src/core/vs/quaternion.H"
 #include "src/wind_energy/actuator/ActParser.H"
+#include "src/wind_energy/actuator/motion/RigidTransform.H"
 #include "src/wind_energy/actuator/motion/TimeTable.H"
 
 #include <cstdint>
@@ -28,6 +29,7 @@ public:
     [[nodiscard]] vs::Vector translation_velocity(amrex::Real time) const;
     [[nodiscard]] vs::Tensor orientation(amrex::Real time) const;
     [[nodiscard]] vs::Vector angular_velocity(amrex::Real time) const;
+    [[nodiscard]] RigidTransform pose(amrex::Real time) const;
 
     [[nodiscard]] bool moves() const;
 
