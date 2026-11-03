@@ -30,7 +30,7 @@ using namespace amrex::literals;
 namespace kynema_sgf {
 class FieldBoundaryMgr;
 
-enum class InflowValidationStage { configuration, initialized };
+enum class InflowValidationStage : std::uint8_t { configuration, initialized };
 
 namespace {
 amrex::Vector<std::string> bcnames = {"xlo", "ylo", "zlo", "xhi", "yhi", "zhi"};
