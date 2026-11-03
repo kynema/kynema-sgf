@@ -182,13 +182,11 @@ public:
     void compute_loads() override
     {
         ops::ComputeLoadsOp<ActTrait, SrcTrait>()(m_data);
-        // communicate loads
     }
 
     void advance_model() override
     {
         ops::AdvanceModelOp<ActTrait, SrcTrait>()(m_data);
-        // communicate positions
     }
 
     void prepare_source_term_data() override { m_src_op.setup_op(); }
