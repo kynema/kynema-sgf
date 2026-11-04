@@ -750,8 +750,8 @@ void PrescribeModelMotionOp<ActuatorSector, ActSrcSector>::operator()(
     meta.center = body_position + hub_offset;
     meta.omega = meta.rotor_motion->omega(meta.rotor_index, tmid);
 
+    meta.blade_velocity.resize(meta.radius.size() * meta.num_blades);
     const int nr = static_cast<int>(meta.radius.size());
-    meta.blade_velocity.resize(meta.num_blades * nr);
     for (int ib = 0; ib < meta.num_blades; ++ib) {
         const amrex::Real phase = ::kynema_sgf::utils::two_pi() *
                                   static_cast<amrex::Real>(ib) /
