@@ -198,8 +198,6 @@ void ext_step(datatype& data)
     if (!tf.is_solution0) {
         meta.ext_ptr->advance_turbine(tf.tid_local);
     }
-
-    meta.ext_ptr->get_hub_stats(tf.tid_local);
 }
 
 template <typename datatype>
@@ -223,6 +221,8 @@ void scatter_data(datatype& data)
             "kynema-sgf::actuator::external::advance_external_turbine::"
             "scatter1");
         const auto& ext_tdata = data.meta().ext_data;
+        // Update hub data prior to copy
+        data.meta().ext_ptr->get_hub_stats(ext_tdata.tid_local);
         auto it = buf.begin();
         for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
             std::copy(
