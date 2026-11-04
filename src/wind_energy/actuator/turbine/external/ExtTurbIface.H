@@ -153,7 +153,7 @@ template <typename SolverTurbine, typename SolverData>
 void ExtTurbIface<SolverTurbine, SolverData>::advance_aero_loads(
     const int local_id)
 {
-    BL_PROFILE("kynema-sgf::ExtTurbIface::advance_turbine");
+    BL_PROFILE("kynema-sgf::ExtTurbIface::advance_aero_loads");
     AMREX_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
 
     auto& fi = *m_turbine_data[local_id];

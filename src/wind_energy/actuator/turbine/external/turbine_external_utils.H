@@ -195,9 +195,7 @@ void ext_step(datatype& data)
 
     auto& meta = data.meta();
     auto& tf = data.meta().ext_data;
-    if (!tf.is_solution0) {
-        meta.ext_ptr->advance_turbine(tf.tid_local);
-    }
+    meta.ext_ptr->advance_turbine(tf.tid_local);
 }
 
 template <typename datatype>

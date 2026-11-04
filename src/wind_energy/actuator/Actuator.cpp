@@ -115,8 +115,6 @@ void Actuator::post_init_actions()
     update_actuator_and_container_positions();
     sample_fields();
     update_actuator_data_from_particles();
-    advance_actuator_models();
-    communicate_actuator_data();
     prescribe_actuator_motion();
     compute_actuator_loads();
     communicate_actuator_data();
