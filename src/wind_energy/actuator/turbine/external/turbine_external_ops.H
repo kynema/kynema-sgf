@@ -217,8 +217,11 @@ void update_external_turbine_loads(datatype& data)
 {
     // Update external turbine loads
     ext_loads<datatype>(data);
-
     const auto& time = data.sim().time();
+    if (time.current_time() < 1e-8_rt) {
+        scatter_data<datatype>(data);
+    }
+
     auto& tdata = data.meta();
     if (!tdata.fllc.empty()) {
         for (int i = 0; i < tdata.num_blades; ++i) {

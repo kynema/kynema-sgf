@@ -178,12 +178,11 @@ void ext_loads(datatype& data)
 
     auto& meta = data.meta();
     auto& tf = data.meta().ext_data;
+    meta.ext_ptr->advance_aero_loads(tf.tid_local);
     if (tf.is_solution0) {
         meta.ext_ptr->init_solution(tf.tid_local);
     }
 
-    meta.ext_ptr->advance_aero_loads(tf.tid_local);
-    meta.ext_ptr->get_hub_stats(tf.tid_local);
     compute_nacelle_force<datatype>(data);
 }
 
@@ -200,9 +199,7 @@ void ext_step(datatype& data)
         meta.ext_ptr->advance_turbine(tf.tid_local);
     }
 
-    // Refactoring changed order of this, will modify results
-    /* meta.ext_ptr->get_hub_stats(tf.tid_local);
-       compute_nacelle_force<datatype>(data); */
+    meta.ext_ptr->get_hub_stats(tf.tid_local);
 }
 
 template <typename datatype>

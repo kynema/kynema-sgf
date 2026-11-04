@@ -156,9 +156,9 @@ void Actuator::pre_advance_work()
     update_actuator_and_container_positions();
     sample_fields();
     update_actuator_data_from_particles();
-    advance_actuator_models();
     prescribe_actuator_motion();
     compute_actuator_loads();
+    advance_actuator_models();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
 }

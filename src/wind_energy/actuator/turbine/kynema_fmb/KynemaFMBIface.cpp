@@ -71,7 +71,6 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
 
     auto& fi = *m_turbine_data[local_id];
 
-    ::sgf_fmb::calculate_aerodynamic_loads(fi);
     ::sgf_fmb::update_turbine_model(fi, false);
 
     fi.is_solution0 = false;
