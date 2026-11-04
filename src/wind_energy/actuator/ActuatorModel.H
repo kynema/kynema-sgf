@@ -64,6 +64,8 @@ public:
 
     virtual void advance_model() = 0;
 
+    virtual void communicate_model_data() = 0;
+
     virtual void prepare_source_term_data() = 0;
 
     virtual void compute_source_term(
@@ -187,6 +189,11 @@ public:
     void advance_model() override
     {
         ops::AdvanceModelOp<ActTrait, SrcTrait>()(m_data);
+    }
+
+    void communicate_model_data() override
+    {
+        ops::CommunicateModelDataOp<ActTrait, SrcTrait>()(m_data);
     }
 
     void prepare_source_term_data() override { m_src_op.setup_op(); }

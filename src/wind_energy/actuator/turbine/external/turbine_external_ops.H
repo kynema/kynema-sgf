@@ -218,9 +218,6 @@ void update_external_turbine_loads(datatype& data)
     // Update external turbine loads
     ext_loads<datatype>(data);
     const auto& time = data.sim().time();
-    if (time.current_time() < 1e-8_rt) {
-        scatter_data<datatype>(data);
-    }
 
     auto& tdata = data.meta();
     if (!tdata.fllc.empty()) {
@@ -238,10 +235,23 @@ void advance_external_turbine(datatype& data)
 {
     // Advance external solver by specified number of sub-steps
     ext_step<datatype>(data);
-    // Broadcast data to all the processes that contain patches influenced
-    // by this turbine
-    scatter_data<datatype>(data);
 }
+
+template <typename SolverTurbine, typename SolverData, typename SrcTrait>
+struct CommunicateModelDataOp<
+    TurbineFromExtSolver<SolverTurbine, SolverData>, SrcTrait>
+{
+    using DataType =
+        typename TurbineFromExtSolver<SolverTurbine, SolverData>::DataType;
+
+    void operator()(DataType& data)
+    {
+        BL_PROFILE(
+            "kynema-sgf::actuator::CommunicateModelDataOp<"
+            "TurbineFromExtSolver>");
+        scatter_data<DataType>(data);
+    }
+};
 
 } // namespace kynema_sgf::actuator::ops
 

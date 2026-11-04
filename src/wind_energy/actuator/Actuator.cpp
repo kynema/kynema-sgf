@@ -116,8 +116,10 @@ void Actuator::post_init_actions()
     sample_fields();
     update_actuator_data_from_particles();
     advance_actuator_models();
+    communicate_actuator_data();
     prescribe_actuator_motion();
     compute_actuator_loads();
+    communicate_actuator_data();
     accumulate_actuator_source_terms_for_fluid();
     prepare_outputs();
 }
@@ -159,6 +161,7 @@ void Actuator::pre_advance_work()
     prescribe_actuator_motion();
     compute_actuator_loads();
     advance_actuator_models();
+    communicate_actuator_data();
     accumulate_actuator_source_terms_for_fluid();
     communicate_turbine_io();
 }
@@ -327,6 +330,16 @@ void Actuator::advance_actuator_models()
     for (auto& ac : m_actuators) {
         if (ac->info().actuator_in_proc) {
             ac->advance_model();
+        }
+    }
+}
+
+void Actuator::communicate_actuator_data()
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::communicate_actuator_data");
+    for (auto& ac : m_actuators) {
+        if (ac->info().actuator_in_proc) {
+            ac->communicate_model_data();
         }
     }
 }

@@ -66,19 +66,29 @@ struct PrescribeModelMotionOp
     void operator()(typename ActTrait::DataType& /*data*/) {}
 };
 
-/** Compute actuator loads and scatter them to the relevant processes.
+/** Compute actuator loads.
  *
  *  \ingroup actuator
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct ComputeLoadsOp;
 
-/** Advance the actuator model by one CFD time step then scatter new position.
+/** Advance the actuator model by one CFD time step.
  *
  *  \ingroup actuator
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct AdvanceModelOp;
+
+/** Communicate actuator model data to the relevant processes.
+ *
+ *  \ingroup actuator
+ */
+template <typename ActTrait, typename SrcTrait, typename = void>
+struct CommunicateModelDataOp
+{
+    void operator()(typename ActTrait::DataType& /*data*/) {}
+};
 
 /** Compute source term for the momentum equation.
  *

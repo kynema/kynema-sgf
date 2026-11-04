@@ -88,6 +88,8 @@ private:
 
     void advance_actuator_models();
 
+    void communicate_actuator_data();
+
     void accumulate_actuator_source_terms_for_fluid();
 
     void communicate_turbine_io();
