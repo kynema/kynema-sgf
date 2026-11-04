@@ -31,8 +31,14 @@ void MultiLevelVector::copy_host_to_device()
 
 void MultiLevelVector::copy_to_field(Field& fld)
 {
-    AMREX_ALWAYS_ASSERT(fld.repo().num_active_levels() == m_data_h.size());
-    AMREX_ALWAYS_ASSERT(fld.num_comp() == 1);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fld.repo().num_active_levels() == m_data_h.size(),
+        "fld.repo().num_active_levels() = " +
+            std::to_string(fld.repo().num_active_levels()) +
+            ", m_data_h.size() = " + std::to_string(m_data_h.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fld.num_comp() == 1,
+        "fld.num_comp() = " + std::to_string(fld.num_comp()));
     for (int lev = 0; lev < m_data_h.size(); ++lev) {
         auto const& farrs = fld(lev).arrays();
         const amrex::IntVect ngs(0);

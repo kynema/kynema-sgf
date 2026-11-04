@@ -134,6 +134,12 @@ public:
 
     void pre_predictor_work() override;
 
+    [[nodiscard]] bool provides_inflow_values(
+        const Field& field, amrex::Orientation ori) const override;
+
+    [[nodiscard]] bool may_provide_inflow_values(
+        const Field& field, amrex::Orientation ori) const override;
+
     void set_velocity(
         int lev,
         amrex::Real time,

@@ -64,11 +64,9 @@ geometry.is_periodic    =   0   0   0   # Periodicity x y z (0/1)
 # Boundary conditions
 xlo.type = "mass_inflow"
 xlo.density = 1.0
-xlo.temperature = 0.0
 xhi.type = "pressure_outflow"
 ylo.type = "mass_inflow"
 ylo.density = 1.0
-ylo.temperature = 0.0
 yhi.type = "pressure_outflow"
 zlo.type =   "wall_model"
 zhi.type =   "slip_wall"
