@@ -243,7 +243,7 @@ TEST_F(ActuatorSectorTest, prescribed_motion_prepares_load_kinematics)
     const auto sample_positions = grid.vel_pos;
     const auto& time = sim().time();
     const auto dt = act::sector::timestep_width(sim());
-    const auto tmid = time.current_time() + 0.5_rt * dt;
+    const auto tmid = time.current_time() + (0.5_rt * dt);
     constexpr auto tol = kynema_sgf::constants::TIGHT_TOL;
     EXPECT_NEAR(meta.center.z(), tmid, tol);
     EXPECT_NEAR(meta.azimuth, 2500.0_rt * tmid, tol);
@@ -267,12 +267,13 @@ TEST_F(ActuatorSectorTest, prescribed_motion_prepares_load_kinematics)
                 e_theta * (meta.omega * meta.radius[ir]);
             for (int n = 0; n < AMREX_SPACEDIM; ++n) {
                 EXPECT_NEAR(
-                    meta.blade_velocity[ib * nr + ir][n], velocity[n], tol);
+                    meta.blade_velocity[(ib * nr) + ir][n], velocity[n], tol);
             }
             for (int it = 0; it < counts[ir]; ++it, ++iq) {
                 const auto t =
                     time.current_time() +
-                    (static_cast<amrex::Real>(it) + 0.5_rt) / counts[ir] * dt;
+                    (((static_cast<amrex::Real>(it) + 0.5_rt) / counts[ir]) *
+                     dt);
                 const auto orientation = meta.body_motion->orientation(t);
                 act::sector::blade_basis(
                     meta.rotor_motion->azimuth(meta.rotor_index, t) + phase,

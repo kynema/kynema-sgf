@@ -734,7 +734,7 @@ TEST_F(
     sim().time().advance_time();
     drone.prescribe_model_motion();
     const auto tmid = sim().time().current_time() +
-                      0.5_rt * act::sector::timestep_width(sim());
+                      (0.5_rt * act::sector::timestep_width(sim()));
     const auto body_center = drone.meta().body_motion->position(tmid);
     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
         EXPECT_NEAR(drone.meta().center[n], body_center[n], test_tol);
