@@ -239,7 +239,8 @@ void advance_external_turbine(datatype& data)
 
 template <typename SolverTurbine, typename SolverData, typename SrcTrait>
 struct CommunicateModelDataOp<
-    TurbineFromExtSolver<SolverTurbine, SolverData>, SrcTrait>
+    TurbineFromExtSolver<SolverTurbine, SolverData>,
+    SrcTrait>
 {
     using DataType =
         typename TurbineFromExtSolver<SolverTurbine, SolverData>::DataType;
