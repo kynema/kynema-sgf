@@ -86,7 +86,8 @@ void Flather::accumulate_boundary(
     FieldState fstate,
     bool use_mac_fields) const
 {
-    AMREX_ALWAYS_ASSERT(idir == 0 || idir == 1);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        idir == 0 || idir == 1, "idir = " + std::to_string(idir));
 
     auto& int_h = out_uvec.host_data(current_level);
     auto& dist_h = out_hvec.host_data(current_level);
@@ -127,8 +128,16 @@ void Flather::accumulate_boundary(
         const auto& src_vel =
             use_mac_fields ? ((idir == 0) ? m_u_mac : m_v_mac) : m_velocity;
         if (shift_to_boundary != 0) {
-            AMREX_ALWAYS_ASSERT(src_vel.num_grow()[idir] > 0);
-            AMREX_ALWAYS_ASSERT(m_vof.num_grow()[idir] > 0);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                src_vel.num_grow()[idir] > 0,
+                "idir = " + std::to_string(idir) +
+                    ", src_vel.num_grow()[idir] = " +
+                    std::to_string(src_vel.num_grow()[idir]));
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                m_vof.num_grow()[idir] > 0,
+                "idir = " + std::to_string(idir) +
+                    ", m_vof.num_grow()[idir] = " +
+                    std::to_string(m_vof.num_grow()[idir]));
         }
 
         const auto& vel_mf =
