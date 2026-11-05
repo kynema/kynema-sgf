@@ -296,10 +296,8 @@ void Field::fillphysbc_type(
 
 bool Field::has_inout_bndry() const
 {
-    const auto& bctype = bc_type();
-    return std::any_of(bctype.begin(), bctype.end(), [](const BC bct) {
-        return bct == BC::mass_inflow_outflow;
-    });
+    return std::ranges::any_of(
+        bc_type(), [](const BC bct) { return bct == BC::mass_inflow_outflow; });
 }
 
 void Field::fill_inout_outflow(

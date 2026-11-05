@@ -40,7 +40,7 @@ public:
 
     void fillphysbc(
         int lev,
-        amrex::Real,
+        amrex::Real /*time*/,
         amrex::MultiFab& mfab,
         const amrex::IntVect&,
         kynema_sgf::FieldState state) override
