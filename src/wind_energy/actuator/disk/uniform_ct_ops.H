@@ -64,11 +64,12 @@ struct UpdatePosOp<UniformCt, ActSrcDisk>
 #endif
     }
 };
+
 // compute the total force over a given radial section
 // this will then be spread uniformly over that area in the
 // projection step
 template <>
-struct ComputeForceOp<UniformCt, ActSrcDisk>
+struct ComputeLoadsOp<UniformCt, ActSrcDisk>
 {
     void operator()(UniformCt::DataType& data)
     {
@@ -123,6 +124,15 @@ struct ComputeForceOp<UniformCt, ActSrcDisk>
 };
 
 template <>
+struct AdvanceModelOp<UniformCt, ActSrcDisk>
+{
+    void operator()(UniformCt::DataType& /* data */)
+    { // Actuator disk model does not evolve in space; it only changes positions
+      // due to controller input, which occurs in UpdatePosOp
+    }
+};
+
+template <>
 struct InitDataOp<UniformCt, ActSrcDisk>
 {
     void operator()(typename UniformCt::DataType& data)
@@ -147,7 +157,6 @@ private:
 
 public:
     explicit ProcessOutputsOp(const UniformCt::DataType& data) : m_data(data) {}
-    void operator()(UniformCt::DataType& /*unused*/) {}
     void read_io_options(const utils::ActParser& pp)
     {
         pp.query("output_frequency", m_out_freq);

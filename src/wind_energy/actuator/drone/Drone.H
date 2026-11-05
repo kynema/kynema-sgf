@@ -32,6 +32,7 @@ struct DroneData
     RealList arm_lengths;
     RealList arm_angles_degrees;
     amrex::Real arm_phase_degrees{0.0_rt};
+    //! Body center at the load-evaluation midpoint (initial center on input)
     vs::Vector center{vs::Vector::zero()};
     vs::Vector translation_velocity{vs::Vector::zero()};
     vs::Vector body_orientation_degrees{vs::Vector::zero()};

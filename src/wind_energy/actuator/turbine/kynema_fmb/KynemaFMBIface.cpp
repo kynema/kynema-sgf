@@ -76,7 +76,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::init_solution(
 
     auto& fi = *m_turbine_data[local_id];
 
-    ::sgf_fmb::update_turbine(fi, false);
+    ::sgf_fmb::update_turbine_model(fi, false);
 
     fi.is_solution0 = false;
 }
@@ -217,10 +217,17 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::read_velocity_data(
 #endif
 
 template <>
+void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::calc_aero_loads(
+    KynemaFMBTurbine& fi)
+{
+    ::sgf_fmb::calculate_aerodynamic_loads(fi);
+}
+
+template <>
 void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::do_turbine_step(
     KynemaFMBTurbine& fi)
 {
-    ::sgf_fmb::update_turbine(fi, true);
+    ::sgf_fmb::update_turbine_model(fi, true);
 }
 
 template <>
@@ -268,7 +275,8 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
     }
 
     fi.allocate_buffers();
-    ::sgf_fmb::update_turbine(fi, false);
+    ::sgf_fmb::calculate_aerodynamic_loads(fi);
+    ::sgf_fmb::update_turbine_model(fi, false);
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)

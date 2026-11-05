@@ -138,7 +138,7 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
   https://wes.copernicus.org/preprints/wes-2022-108/
  */
 template <>
-struct ComputeForceOp<Joukowsky, ActSrcDisk>
+struct ComputeLoadsOp<Joukowsky, ActSrcDisk>
 {
     void operator()(Joukowsky::DataType& data)
     {
@@ -351,6 +351,15 @@ struct ComputeForceOp<Joukowsky, ActSrcDisk>
 };
 
 template <>
+struct AdvanceModelOp<Joukowsky, ActSrcDisk>
+{
+    void operator()(Joukowsky::DataType& /*data*/)
+    { // Actuator disk model does not evolve in space; it only changes positions
+      // due to controller input, which occurs in UpdatePosOp
+    }
+};
+
+template <>
 struct ProcessOutputsOp<Joukowsky, ActSrcDisk>
 {
 private:
@@ -366,7 +375,6 @@ private:
 
 public:
     explicit ProcessOutputsOp(const Joukowsky::DataType& data) : m_data(data) {}
-    void operator()(Joukowsky::DataType& /*data*/) {}
     void read_io_options(const utils::ActParser& pp)
     {
         pp.query("output_frequency", m_out_freq);

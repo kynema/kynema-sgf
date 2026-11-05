@@ -25,15 +25,28 @@ struct UpdatePosOp<Drone, ActSrcDrone>
 };
 
 template <>
-struct UpdateVelOp<Drone, ActSrcDrone>
+struct UpdateFieldsOp<Drone, ActSrcDrone>
 {
     void operator()(Drone::DataType& data);
 };
 
 template <>
-struct ComputeForceOp<Drone, ActSrcDrone>
+struct PrescribeModelMotionOp<Drone, ActSrcDrone>
 {
     void operator()(Drone::DataType& data);
+};
+
+template <>
+struct ComputeLoadsOp<Drone, ActSrcDrone>
+{
+    void operator()(Drone::DataType& data);
+};
+
+// Motion is prescribed rather than advanced by a dynamics solver.
+template <>
+struct AdvanceModelOp<Drone, ActSrcDrone>
+{
+    void operator()(Drone::DataType& /*data*/) {}
 };
 
 template <>

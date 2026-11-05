@@ -15,6 +15,13 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator {
 
+struct SectorProjectionBasis
+{
+    vs::Vector radial;
+    vs::Vector tangential;
+    vs::Vector normal;
+};
+
 /** Persistent data for the actuator-sector rotor model.
  *
  *  Frame convention:
@@ -67,7 +74,7 @@ struct ActuatorSectorData
     //! Rotor hub center at the current force-evaluation midpoint [m]
     vs::Vector center{0.0_rt, 0.0_rt, 0.0_rt};
 
-    //! Constant drone/body translation velocity in the CFD frame [m/s]
+    //! Body translation velocity at the load-evaluation midpoint [m/s]
     vs::Vector translation_velocity{0.0_rt, 0.0_rt, 0.0_rt};
 
     //! Initial rotor normal direction in the CFD frame [-]
@@ -87,6 +94,13 @@ struct ActuatorSectorData
 
     //! Blade azimuth swept over the current timestep [rad]
     amrex::Real delta_azimuth{0.0_rt};
+
+    //! Prescribed kinematics at the load-evaluation midpoint
+    vs::Tensor midpoint_orientation{vs::Tensor::identity()};
+    VecList blade_velocity;
+
+    //! Prescribed blade bases at swept force-projection points
+    amrex::Vector<SectorProjectionBasis> projection_basis;
 
     //! Non-dimensional locations for chord/twist interpolation [-]
     RealList span_locs{0.0_rt, 1.0_rt};
