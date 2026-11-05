@@ -42,7 +42,7 @@ public:
         int lev,
         amrex::Real /*time*/,
         amrex::MultiFab& mfab,
-        const amrex::IntVect&,
+        const amrex::IntVect& /*nghost*/,
         kynema_sgf::FieldState state) override
     {
         ++m_stats.calls;
