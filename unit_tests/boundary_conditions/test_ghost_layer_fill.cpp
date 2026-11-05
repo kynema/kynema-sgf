@@ -2,6 +2,7 @@
 #include "ks_test_utils/MeshTest.H"
 #include "src/boundary_conditions/BCInterface.H"
 #include "src/core/FieldFillPatchOps.H"
+#include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
 #include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 #include "src/utilities/index_operations.H"
 #include "AMReX_REAL.H"
@@ -338,6 +339,224 @@ amrex::Long transverse_fill_errors(
 
 class GhostLayerFillTest : public MeshTest
 {};
+
+namespace {
+
+void boundary_plane_interpolates_coarse_ghosts_impl()
+{
+    const amrex::RealBox physical_box(
+        {0.0_rt, 0.0_rt, 0.0_rt}, {1.0_rt, 1.0_rt, 1.0_rt});
+    const amrex::Box coarse_domain(amrex::IntVect(0), amrex::IntVect(15));
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        const int dir = ori.coordDir();
+        const int transverse = (dir + 1) % AMREX_SPACEDIM;
+        const int periodic_dir = (dir + 2) % AMREX_SPACEDIM;
+        for (const int refinement : {2, 3}) {
+            amrex::IntVect ratio(refinement);
+            ratio[periodic_dir] = 2;
+            const auto fine_domain = amrex::refine(coarse_domain, ratio);
+            amrex::Array<int, 3> periodic{0, 0, 0};
+            periodic[periodic_dir] = 1;
+            const amrex::Geometry coarse_geom(
+                coarse_domain, physical_box, 0, periodic);
+            const amrex::Geometry fine_geom(
+                fine_domain, physical_box, 0, periodic);
+            auto coarse_box = coarse_domain;
+            coarse_box.setRange(dir, ori.isLow() ? -1 : 16, 1);
+            auto fine_box = fine_domain;
+            fine_box.setRange(
+                dir, ori.isLow() ? -1 : fine_domain.bigEnd(dir) + 1, 1);
+            fine_box.setRange(transverse, 4 * refinement, 4 * refinement);
+            amrex::FArrayBox coarse(coarse_box, 2);
+            amrex::FArrayBox fine(fine_box, 2);
+            const auto coarse_arr = coarse.array();
+            const auto fine_arr = fine.array();
+            amrex::ParallelFor(
+                coarse_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                    const amrex::IntVect iv(i, j, k);
+                    const amrex::Real value =
+                        10.0_rt + (2.0_rt * (iv[transverse] + 0.5_rt));
+                    coarse_arr(iv, 0) = value;
+                    coarse_arr(iv, 1) = 3.0_rt * value;
+                });
+            amrex::ParallelFor(
+                fine_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                    const amrex::IntVect iv(i, j, k);
+                    const amrex::Real value =
+                        99.0_rt + (0.125_rt * iv[periodic_dir]);
+                    fine_arr(iv, 0) = value;
+                    fine_arr(iv, 1) = 3.0_rt * value;
+                });
+            auto completed = kynema_sgf::utils::interpolate_boundary_plane(
+                coarse, fine, ori, ratio, coarse_geom, fine_geom, 3);
+            amrex::FArrayBox host(
+                completed.box(), 2, amrex::The_Pinned_Arena());
+            amrex::Gpu::copy(
+                amrex::Gpu::deviceToHost, completed.dataPtr(),
+                completed.dataPtr() + (completed.box().numPts() * 2),
+                host.dataPtr());
+            const auto values = host.const_array();
+            amrex::LoopOnCpu(completed.box(), [&](int i, int j, int k) {
+                const amrex::IntVect iv(i, j, k);
+                const bool recorded =
+                    iv[transverse] >= fine_box.smallEnd(transverse) &&
+                    iv[transverse] <= fine_box.bigEnd(transverse);
+                const int length = fine_domain.length(periodic_dir);
+                const int periodic_index =
+                    (iv[periodic_dir] % length + length) % length;
+                const amrex::Real expected =
+                    recorded ? 99.0_rt + (0.125_rt * periodic_index)
+                             : 10.0_rt + ((2.0_rt * (iv[transverse] + 0.5_rt)) /
+                                          refinement);
+                EXPECT_NEAR(values(iv, 0), expected, tolerance);
+                EXPECT_NEAR(values(iv, 1), 3.0_rt * expected, tolerance);
+            });
+        }
+    }
+}
+
+} // namespace
+
+TEST_F(GhostLayerFillTest, boundary_plane_interpolates_coarse_ghosts)
+{
+    boundary_plane_interpolates_coarse_ghosts_impl();
+}
+
+TEST_F(GhostLayerFillTest, boundary_plane_refreshes_nested_level_cache)
+{
+    populate_parameters();
+    amrex::ParmParse("amr").add("max_level", 2);
+    amrex::ParmParse("amr").addarr("n_cell", amrex::Vector<int>{16, 16, 16});
+    amrex::ParmParse("geometry")
+        .addarr("is_periodic", amrex::Vector<int>{0, 1, 0});
+    create_mesh_instance<RefineMesh>();
+    initialize_mesh();
+    auto& field = sim().repo().declare_field("plane_test", 1, 3);
+    kynema_sgf::InletData inlet;
+    inlet.resize(2 * AMREX_SPACEDIM);
+    amrex::OrientationIter oit;
+    const auto ori = oit();
+    ASSERT_EQ(ori.coordDir(), 0);
+    ASSERT_TRUE(ori.isLow());
+    inlet.define_plane(ori);
+    inlet.component(static_cast<int>(field.id())) = 0;
+    amrex::Vector<amrex::Box> recorded_boxes;
+    amrex::Real scale = 10.0_rt;
+    for (int lev = 0; lev < 3; ++lev) {
+        auto grids = mesh().Geom(lev).Domain();
+        if (lev == 1) {
+            grids.setRange(2, 8, 8);
+        } else if (lev == 2) {
+            grids.setRange(2, 18, 6);
+        }
+        auto plane_box = grids;
+        plane_box.setRange(0, -1, 1);
+        recorded_boxes.push_back(plane_box);
+        inlet.define_level_data(ori, plane_box, 1);
+        const amrex::BoxArray ba(grids);
+        const amrex::DistributionMapping dm(ba);
+        amrex::BndryRegister old_data(ba, dm, 1, 1, 0, 1);
+        amrex::BndryRegister new_data(ba, dm, 1, 1, 0, 1);
+        old_data.setVal(scale);
+        new_data.setVal(2.0_rt * scale);
+        inlet.read_data_native(
+            oit, old_data, new_data, lev, &field, 0.25_rt, {0.0_rt, 1.0_rt});
+        scale *= 10.0_rt;
+    }
+    for (const auto time : {0.25_rt, 0.75_rt}) {
+        inlet.interpolate(time);
+        for (int lev = 0; lev < 3; ++lev) {
+            EXPECT_EQ(
+                inlet.interpolate_data(ori, lev).box(), recorded_boxes[lev]);
+        }
+        inlet.complete_boundary_planes(mesh(), 3);
+        scale = 10.0_rt;
+        for (int lev = 0; lev < 3; ++lev) {
+            const auto& completed = inlet.interpolate_data(ori, lev);
+            amrex::FArrayBox host(
+                completed.box(), 1, amrex::The_Pinned_Arena());
+            amrex::Gpu::copy(
+                amrex::Gpu::deviceToHost, completed.dataPtr(),
+                completed.dataPtr() + completed.box().numPts(), host.dataPtr());
+            const auto values = host.const_array();
+            const amrex::Real expected = scale * (1.0_rt + time);
+            amrex::LoopOnCpu(recorded_boxes[lev], [&](int i, int j, int k) {
+                EXPECT_NEAR(values(i, j, k), expected, tolerance);
+            });
+            if (lev != 0) {
+                const int k = recorded_boxes[lev].bigEnd(2) + 3;
+                EXPECT_NEAR(values(-1, -1, k), expected / 10.0_rt, tolerance);
+            }
+            scale *= 10.0_rt;
+        }
+    }
+}
+
+namespace {
+
+void boundary_plane_preserves_phase_density_bounds_impl()
+{
+    const amrex::Box coarse_domain(amrex::IntVect(0), amrex::IntVect(15));
+    const amrex::IntVect ratio(2);
+    const auto fine_domain = amrex::refine(coarse_domain, ratio);
+    const amrex::RealBox physical_box(
+        {0.0_rt, 0.0_rt, 0.0_rt}, {1.0_rt, 1.0_rt, 1.0_rt});
+    const amrex::Array<int, 3> periodic{0, 1, 0};
+    const amrex::Geometry coarse_geom(coarse_domain, physical_box, 0, periodic);
+    const amrex::Geometry fine_geom(fine_domain, physical_box, 0, periodic);
+    auto coarse_box = coarse_domain;
+    coarse_box.setRange(0, -1, 1);
+    auto fine_box = fine_domain;
+    fine_box.setRange(0, -1, 1);
+    fine_box.setRange(2, 12, 4);
+    amrex::FArrayBox coarse(coarse_box, 2);
+    amrex::FArrayBox fine(fine_box, 2);
+    constexpr amrex::Real liquid_density = 1020.0_rt;
+    constexpr amrex::Real gas_density = 1.3223_rt;
+    const auto coarse_arr = coarse.array();
+    const auto fine_arr = fine.array();
+    amrex::ParallelFor(coarse_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        const amrex::Real vof = k < 6 ? 0.0_rt : 1.0_rt;
+        coarse_arr(i, j, k, 0) = vof;
+        coarse_arr(i, j, k, 1) =
+            gas_density + (vof * (liquid_density - gas_density));
+    });
+    amrex::ParallelFor(fine_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+        fine_arr(i, j, k, 0) = 0.25_rt;
+        fine_arr(i, j, k, 1) =
+            gas_density + (0.25_rt * (liquid_density - gas_density));
+    });
+    auto completed = kynema_sgf::utils::interpolate_boundary_plane(
+        coarse, fine, amrex::Orientation(0, amrex::Orientation::low), ratio,
+        coarse_geom, fine_geom, 3);
+    amrex::FArrayBox host(completed.box(), 2, amrex::The_Pinned_Arena());
+    amrex::Gpu::copy(
+        amrex::Gpu::deviceToHost, completed.dataPtr(),
+        completed.dataPtr() + (completed.box().numPts() * 2), host.dataPtr());
+    const auto values = host.const_array();
+    amrex::LoopOnCpu(completed.box(), [&](int i, int j, int k) {
+        const amrex::Real vof = values(i, j, k, 0);
+        const amrex::Real density = values(i, j, k, 1);
+        EXPECT_GE(vof, 0.0_rt);
+        EXPECT_LE(vof, 1.0_rt);
+        EXPECT_GE(density, gas_density - tolerance);
+        EXPECT_LE(density, liquid_density + tolerance);
+        EXPECT_NEAR(
+            density, gas_density + (vof * (liquid_density - gas_density)),
+            tolerance);
+        if (k >= 12 && k <= 15) {
+            EXPECT_NEAR(vof, 0.25_rt, tolerance);
+        }
+    });
+}
+
+} // namespace
+
+TEST_F(GhostLayerFillTest, boundary_plane_preserves_phase_density_bounds)
+{
+    boundary_plane_preserves_phase_density_bounds_impl();
+}
 
 TEST_F(GhostLayerFillTest, extend_cell_centered_low)
 {
