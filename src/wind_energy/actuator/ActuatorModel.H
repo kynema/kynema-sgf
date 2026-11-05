@@ -63,6 +63,12 @@ public:
     virtual void prepare_outputs(const std::string&) = 0;
 
     virtual void write_outputs() = 0;
+
+    [[nodiscard]] virtual amrex::Vector<ActuatorRefinementGeometry>
+    refinement_geometries(amrex::Real time) const = 0;
+
+    [[nodiscard]] virtual std::optional<motion::RigidTransform>
+    reference_frame(amrex::Real time) const = 0;
 };
 
 /** Concrete implementation of the ActuatorModel for different actuator types.
@@ -179,6 +185,18 @@ public:
 
     void write_outputs() override { m_out_op.write_outputs(); }
 
+    [[nodiscard]] amrex::Vector<ActuatorRefinementGeometry>
+    refinement_geometries(const amrex::Real time) const override
+    {
+        return ops::RefinementGeometryOp<ActTrait, SrcTrait>()(m_data, time);
+    }
+
+    [[nodiscard]] std::optional<motion::RigidTransform>
+    reference_frame(const amrex::Real time) const override
+    {
+        return ops::ReferenceFrameOp<ActTrait, SrcTrait>()(m_data, time);
+    }
+
     void init_actuator_source() override
     {
         ops::InitDataOp<ActTrait, SrcTrait>()(m_data);
@@ -195,8 +213,13 @@ void ActModel<ActTrait, SrcTrait>::determine_root_proc(
         // Sanity checks
         const auto& linfo = m_data.info();
         const auto& plist = linfo.procs;
-        AMREX_ALWAYS_ASSERT(linfo.root_proc > -1);
-        AMREX_ALWAYS_ASSERT(plist.find(linfo.root_proc) != plist.end());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            linfo.root_proc > -1,
+            "linfo.root_proc = " + std::to_string(linfo.root_proc));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            plist.find(linfo.root_proc) != plist.end(),
+            "linfo.root_proc = " + std::to_string(linfo.root_proc) +
+                ", plist.size() = " + std::to_string(plist.size()));
     }
 }
 

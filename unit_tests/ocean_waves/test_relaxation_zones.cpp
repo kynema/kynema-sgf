@@ -181,9 +181,7 @@ amrex::Real gas_velocity_error(
 
                 amrex::Loop(bx, nc, [=, &error](int i, int j, int k, int n) {
                     error +=
-                        (vof_arr(i, j, k) <
-                                 std::numeric_limits<amrex::Real>::epsilon() *
-                                     1.0e4_rt
+                        (vof_arr(i, j, k) <= kynema_sgf::constants::VOF_TOL
                              ? std::abs(vel_arr(i, j, k, n) - gvel)
                              : 0.0_rt);
                 });
@@ -208,7 +206,7 @@ void make_target_velocity(
             ow_vof(lev), amrex::IntVect(2), velocity.num_comp(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 if (ow_vof_arrs[nbx](i, j, k) <=
-                    kynema_sgf::constants::TIGHT_TOL) {
+                    kynema_sgf::constants::VOF_TOL) {
                     ow_vel_arrs[nbx](i, j, k, n) = vel_arrs[nbx](i, j, k, n);
                 }
             });

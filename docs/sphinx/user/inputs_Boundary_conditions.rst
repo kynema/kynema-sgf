@@ -28,6 +28,32 @@ For the mass_inflow boundary condition type, the user can specify constant value
   xlo.velocity = 1.0 1.0 0.0
   xlo.temperature = 300.0
 
+Constant values are required for each field on ``mass_inflow`` and
+``mass_inflow_outflow`` faces unless an inflow profile or an active
+field-boundary fill supplies that field over the entire face. This applies to
+velocity as well as scalars. In particular, a missing inflow velocity no longer
+silently defaults to zero: specify ``velocity = 0.0 0.0 0.0`` for a deliberately
+stationary inflow if no profile or field-boundary fill supplies it.
+
+Configuration is checked before mesh creation; only checks requiring loaded
+boundary data are deferred until the field-boundary models have initialized.
+The final check accounts for the fields and faces actually supplied by
+boundary-plane input. Boundary-plane output does not supply inflow values.
+A warning is printed when a supplied constant is overridden by a profile or
+by a full-face field-boundary fill.
+
+Boundary planes restricted to one fluid phase still require a constant or
+profile for the other phase. The phase restriction does not apply to
+``density`` and ``vof``: if included in the plane input, those fields are
+replaced over the entire face regardless of phase. ModulatedPowerLaw supplies
+velocity and temperature, but not other scalars. OceanWavesBoundary supplies
+``vof`` over the entire face. Its liquid-only velocity and blended density still
+need base values. A gas-only plane and OceanWavesBoundary are not treated as
+complementary coverage: the plane uses ``vof`` while OceanWavesBoundary uses
+``ow_vof``, and those masks need not agree. Normal OceanWaves setup also disables
+OceanWavesBoundary when plane input is active. Corrections such as Flather do
+not replace the base inflow.
+
 In addition to being able to specify constant values, the user has access to a variety of included complex boundary conditions (e.g., LinearProfile, PowerLawProfile, Rankine) that are activated in the input file. For example::
 
   xlo.type = "mass_inflow"

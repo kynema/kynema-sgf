@@ -141,11 +141,8 @@ levelset_to_vof_test_impl(const amrex::Real deltax, kynema_sgf::Field& levelset)
                         i, j, k, 2.0_rt * dx, levelset_arr);
 
                     // Perform checks in multiphase cells
-                    if (vof > std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt &&
-                        vof < 1.0_rt -
-                                  (std::numeric_limits<amrex::Real>::epsilon() *
-                                   1.0e4_rt)) {
+                    if (vof > kynema_sgf::constants::VOF_TOL &&
+                        vof < 1.0_rt - kynema_sgf::constants::VOF_TOL) {
                         // Integrate to get VOF, check error
                         amrex::Real approx_vof = amrex::min<amrex::Real>(
                             1.0_rt,
@@ -156,16 +153,13 @@ levelset_to_vof_test_impl(const amrex::Real deltax, kynema_sgf::Field& levelset)
                     }
 
                     // Perform checks in single-phase cells
-                    if (vof <= std::numeric_limits<amrex::Real>::epsilon() *
-                                   1.0e4_rt) {
+                    if (vof <= kynema_sgf::constants::VOF_TOL) {
                         // Interface should be more than half cell away,
                         // negative levelset value
                         error += amrex::max<amrex::Real>(
                             0.0_rt, (0.5_rt * dx) + levelset_arr(i, j, k));
                     }
-                    if (vof >=
-                        1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt)) {
+                    if (vof >= 1.0_rt - kynema_sgf::constants::VOF_TOL) {
                         // Interface should be more than half cell away,
                         // positive levelset value
                         error += amrex::max<amrex::Real>(
