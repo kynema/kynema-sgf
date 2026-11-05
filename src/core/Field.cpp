@@ -332,40 +332,10 @@ void Field::fill_inout_outflow(
         return;
     }
 
-    const auto& domain = m_repo.mesh().Geom(lev).Domain();
-    bool has_boundary_intersection = false;
-    for (const auto& ori : oris) {
-        const int idir = ori.coordDir();
-        amrex::Box tdomain(domain);
-        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-            if (d != idir) {
-                tdomain.grow(d, ng[d]);
-            }
-        }
-        const auto dbx = ori.isLow()
-                             ? amrex::adjCellLo(tdomain, idir, ng[idir])
-                             : amrex::adjCellHi(tdomain, idir, ng[idir]);
-        const auto& grids = mfab.boxArray();
-        for (int i = 0; i < grids.size(); ++i) {
-            const auto& grid = grids[i];
-            if ((amrex::grow(grid, ng) & dbx).ok()) {
-                has_boundary_intersection = true;
-                break;
-            }
-        }
-        if (has_boundary_intersection) {
-            break;
-        }
-    }
-    if (!has_boundary_intersection) {
-        return;
-    }
-
     // The flow direction is set by the prescribed boundary-normal velocity.
     // The velocity field reads it from its own first ghost layer, which holds
     // the prescribed values after its fill operations. Other fields evaluate
-    // velocity fillpatch operations on a disposable buffer, leaving the
-    // velocity field unchanged.
+    // the velocity fill operations on a temporary buffer.
     auto& velocity = m_repo.get_field("velocity");
     const bool is_velocity = (m_info == velocity.m_info);
     amrex::MultiFab vel_bndry;
@@ -376,12 +346,14 @@ void Field::fill_inout_outflow(
         }
         vel_bndry.define(
             mfab.boxArray(), mfab.DistributionMap(), velocity.num_comp(), ng);
+        vel_bndry.setVal(0.0_rt);
         for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
-            fop->fillpatch(lev, time, vel_bndry, ng, velocity.field_state());
+            fop->fillphysbc(lev, time, vel_bndry, ng, velocity.field_state());
         }
     }
     const amrex::MultiFab& vel_mf = is_velocity ? mfab : vel_bndry;
 
+    const auto& domain = m_repo.mesh().Geom(lev).Domain();
     const int ncomp = mfab.nComp();
     for (const auto& ori : oris) {
         const int idir = ori.coordDir();
