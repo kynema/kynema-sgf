@@ -332,27 +332,10 @@ void Field::fill_inout_outflow(
         return;
     }
 
-    // The flow direction is set by the prescribed boundary-normal velocity.
-    // The velocity field reads it from its own first ghost layer, which holds
-    // the prescribed values after its fill operations. Other fields evaluate
-    // the velocity fill operations on a temporary buffer.
     auto& velocity = m_repo.get_field("velocity");
     const bool is_velocity = (m_info == velocity.m_info);
-    amrex::MultiFab vel_bndry;
-    if (!is_velocity) {
-        BL_ASSERT(velocity.m_info->m_bc_copied_to_device);
-        if (velocity.m_info->m_fillpatch_ops.empty()) {
-            return;
-        }
-        vel_bndry.define(
-            mfab.boxArray(), mfab.DistributionMap(), velocity.num_comp(), ng);
-        vel_bndry.setVal(0.0_rt);
-        for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
-            fop->fillphysbc(lev, time, vel_bndry, ng, velocity.field_state());
-        }
-    }
-    const amrex::MultiFab& vel_mf = is_velocity ? mfab : vel_bndry;
-
+    const auto vstate =
+        velocity.query_state(field_state()) ? field_state() : FieldState::New;
     const auto& domain = m_repo.mesh().Geom(lev).Domain();
     const int ncomp = mfab.nComp();
     for (const auto& ori : oris) {
@@ -370,11 +353,53 @@ void Field::fill_inout_outflow(
         const int ighost = is_low ? iint - 1 : iint + 1;
         const amrex::Real outward = is_low ? -1.0_rt : 1.0_rt;
 
+        amrex::MultiFab vel_bndry;
+        amrex::Vector<int> source_indices;
+        if (!is_velocity) {
+            amrex::BoxList boxes;
+            amrex::Vector<int> owners;
+            auto boundary_ng = ng;
+            boundary_ng[idir] = 1;
+            for (int idx = 0; idx < mfab.boxArray().size(); ++idx) {
+                auto box = mfab.boxArray()[idx];
+                if (!(amrex::grow(box, ng) & dbx).ok()) {
+                    continue;
+                }
+                boundary_ng[idir] = amrex::max(
+                    boundary_ng[idir], is_low ? box.smallEnd(idir) - ighost
+                                              : ighost - box.bigEnd(idir));
+                // Only the first interior plane and boundary ghosts are needed.
+                box.setRange(
+                    idir, is_low ? box.smallEnd(idir) : box.bigEnd(idir), 1);
+                boxes.push_back(box);
+                owners.push_back(mfab.DistributionMap()[idx]);
+                source_indices.push_back(idx);
+            }
+            if (owners.empty()) {
+                continue;
+            }
+            BL_ASSERT(velocity.m_info->m_bc_copied_to_device);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                !velocity.m_info->m_fillpatch_ops.empty(),
+                "MIO boundary direction requires velocity fill operations");
+            vel_bndry.define(
+                amrex::BoxArray(std::move(boxes)),
+                amrex::DistributionMapping(owners), velocity.num_comp(),
+                boundary_ng);
+            vel_bndry.setVal(0.0_rt);
+            for (const auto& fop : velocity.m_info->m_fillpatch_ops) {
+                fop->fillphysbc(lev, time, vel_bndry, boundary_ng, vstate);
+            }
+        }
+        const auto& work = is_velocity ? mfab : vel_bndry;
+
 #ifdef AMREX_USE_OMP
 #pragma omp parallel if (amrex::Gpu::notInLaunchRegion())
 #endif
-        for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
-            const auto bx = amrex::grow(mfi.validbox(), ng) & dbx;
+        for (amrex::MFIter mfi(work); mfi.isValid(); ++mfi) {
+            const int idx =
+                is_velocity ? mfi.index() : source_indices[mfi.index()];
+            const auto bx = amrex::grow(mfab.boxArray()[idx], ng) & dbx;
             if (!bx.ok()) {
                 continue;
             }
@@ -383,8 +408,8 @@ void Field::fill_inout_outflow(
             auto plane = bx;
             plane.setRange(idir, ighost);
 
-            const auto& arr = mfab.array(mfi);
-            const auto& vel = vel_mf.const_array(mfi);
+            const auto& arr = mfab.array(idx);
+            const auto& vel = work.const_array(mfi);
             amrex::ParallelFor(
                 plane, [=] AMREX_GPU_DEVICE(int i, int j, int k) noexcept {
                     const amrex::IntVect iv{AMREX_D_DECL(i, j, k)};

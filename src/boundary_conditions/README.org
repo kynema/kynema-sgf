@@ -156,6 +156,11 @@ after fillpatch and fillphysbc operations, rather than by an =apply_bc_funcs=
 callback. It fills the requested normal and transverse ghost layers according
 to the boundary-normal velocity. For other fields, velocity boundary values are
 evaluated in a disposable buffer without modifying the actual velocity field.
+This buffer contains only boundary-adjacent strips of grids whose requested
+ghosts reach an inflow/outflow face. There is no volume copy or coarse/fine
+interpolation for this direction check. Physical velocity fills use the
+requesting field's state when that velocity state exists, otherwise =New=.
+All velocity components are retained because auxiliary fills can require them.
 
 | Name                | Short | V_n                 | V_t                 | Scalar              | Source   |
 |---------------------+-------+---------------------+---------------------+---------------------+----------|
