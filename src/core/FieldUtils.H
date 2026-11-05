@@ -7,6 +7,27 @@
 
 namespace kynema_sgf::field_impl {
 
+// Boundary scratch grids can be subsets of the repository's grids.
+AMREX_INLINE int
+matching_grid_index(const amrex::MFIter& mfi, const amrex::MultiFab& source)
+{
+    const auto box = amrex::enclosedCells(mfi.validbox());
+    const int index = mfi.index();
+    if (index < source.boxArray().size() &&
+        source.DistributionMap()[index] ==
+            amrex::ParallelDescriptor::MyProc() &&
+        amrex::enclosedCells(source.boxArray()[index]).contains(box)) {
+        return index;
+    }
+    for (const int idx : source.IndexArray()) {
+        if (amrex::enclosedCells(source.boxArray()[idx]).contains(box)) {
+            return idx;
+        }
+    }
+    amrex::Abort("Boundary scratch grid has no local repository grid");
+    return -1;
+}
+
 /** Convert kynema_sgf::FieldLoc to index type for use with AMReX objects.
  *  \ingroup field_ops
  */

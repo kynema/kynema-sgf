@@ -35,6 +35,19 @@ The boundary conditions that can be specified in the input file are:
   longer silently selects zero. For an intentionally stationary inflow without
   another provider, specify =velocity = 0.0 0.0 0.0=.
 
+- =mass_inflow_outflow= :: The =BCRec= is =direction_dependent= (VOF and
+  density use =ext_dir=). As for =mass_inflow=, the user-specified (or UDF)
+  value is filled in the ghost cells during fillpatch and fillphysbc
+  operations. As a final step of those operations, wherever the prescribed
+  boundary-normal velocity points out of the domain, all ghost layers are
+  overwritten with the value of the adjacent interior cell
+  (=Field::fill_inout_outflow=). Fields other than velocity determine the flow
+  direction by evaluating the velocity boundary fill on a temporary buffer.
+  The advection schemes use the ghost values as the boundary face value where
+  the face velocity is inflow and extrapolate from the interior where it is
+  outflow. The =LinOpBCType= is Dirichlet for diffusion and inflow for the
+  projections, and solvability is enforced before the projections.
+
 - =pressure_outflow= :: =BCRec = foextrap= and =LinOpBCType = Neumann=. This is
   the standard outflow BC for velocity and scalars. For MAC projection and
   nodal-projection, it uses a Dirichlet BC for pressure. The value of pressure
@@ -120,15 +133,15 @@ possible for scalars and tangential component of velocity.
 ** fillpatch
 
 Auxiliary boundary fills (BoundaryPlane, ModulatedPowerLaw, OceanWavesBoundary,
-Flather, and mass-inflow/outflow extrapolation) complete the normal ghost layers
-and then extend the updated face into its transverse ghosts using
-=utils::fill_transverse_ghosts= (declared in =src/utilities/index_operations.H=).
-Boundary-sized
-scratch slabs exchange data across grid and periodic boundaries before applying
-the field's component-specific AMReX BCRec rules at physical edges and corners.
+and Flather) complete the normal ghost layers and then extend the updated face
+into its transverse ghosts using =utils::fill_transverse_ghosts= (declared in
+=src/utilities/index_operations.H=). Boundary-sized scratch slabs exchange data
+across grid and periodic boundaries before applying the field's
+component-specific AMReX BCRec rules at physical edges and corners.
 Thus, extrapolation or reflection uses the auxiliary face values rather than the
 earlier base fill. This also covers transverse MAC nodes and all allocated ghost
-layers.
+layers. The extra transverse MAC node extends only the high side; unused
+low-side scratch cells are excluded from physical fills and donor regions.
 Only valid same-level face data and its physical-boundary extensions are copied
 between grids. At partial refined boundaries, locations without such a donor
 retain their existing auxiliary or coarse/fine fallback values; scratch ghosts
@@ -144,17 +157,29 @@ including their intentional fallback values. Solver-only gradient and wall-stres
 fills are not auxiliary solution-value ghost fills and retain their existing
 face-only interpretation.
 
-| Name             | Short | V_n         | V_t      | Scalar   | Source   |
-|------------------+-------+-------------+----------+----------+----------|
-| pressure_outflow | po    | foextrap    | foextrap | foextrap | foextrap |
-| mass_inflow      | mi    | ext_dir     | ext_dir  | ext_dir  | foextrap |
-| no_slip_wall     | nsw   | ext_dir (0) | ext_dir  | ext_dir  | foextrap |
-| symmetric_wall   | symw  | ext_dir (0) | foextrap | foextrap | foextrap |
-| zero_gradient    | zg    | foextrap    | foextrap | foextrap | foextrap |
-| slip_wall        | sw    | ext_dir (0) | hoextrap | hoextrap | foextrap |
-| wall_model       | wm    | ext_dir (0) | hoextrap | hoextrap | foextrap |
-| fixed_gradient   | fg    | hoextrap    | hoextrap | hoextrap | foextrap |
-|                  |       |             |          |          |          |
+Mass-inflow/outflow extrapolation is performed by =Field::fill_inout_outflow=
+after fillpatch and fillphysbc operations, rather than by an =apply_bc_funcs=
+callback. It fills the requested normal and transverse ghost layers according
+to the boundary-normal velocity. For other fields, velocity boundary values are
+evaluated in a disposable buffer without modifying the actual velocity field.
+This buffer contains only boundary-adjacent strips of grids whose requested
+ghosts reach an inflow/outflow face. There is no volume copy or coarse/fine
+interpolation for this direction check. Physical velocity fills use the
+requesting field's state when that velocity state exists, otherwise =New=.
+All velocity components are retained because auxiliary fills can require them.
+
+| Name                | Short | V_n                 | V_t                 | Scalar              | Source   |
+|---------------------+-------+---------------------+---------------------+---------------------+----------|
+| pressure_outflow    | po    | foextrap            | foextrap            | foextrap            | foextrap |
+| mass_inflow         | mi    | ext_dir             | ext_dir             | ext_dir             | foextrap |
+| mass_inflow_outflow | mio   | direction_dependent | direction_dependent | direction_dependent | foextrap |
+| no_slip_wall        | nsw   | ext_dir (0)         | ext_dir             | ext_dir             | foextrap |
+| symmetric_wall      | symw  | ext_dir (0)         | foextrap            | foextrap            | foextrap |
+| zero_gradient       | zg    | foextrap            | foextrap            | foextrap            | foextrap |
+| slip_wall           | sw    | ext_dir (0)         | hoextrap            | hoextrap            | foextrap |
+| wall_model          | wm    | ext_dir (0)         | hoextrap            | hoextrap            | foextrap |
+| fixed_gradient      | fg    | hoextrap            | hoextrap            | hoextrap            | foextrap |
+|                     |       |                     |                     |                     |          |
 
 ** projection
 
