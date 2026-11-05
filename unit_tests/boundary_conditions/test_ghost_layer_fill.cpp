@@ -393,7 +393,7 @@ void boundary_plane_interpolates_coarse_ghosts_impl()
                 completed.box(), 2, amrex::The_Pinned_Arena());
             amrex::Gpu::copy(
                 amrex::Gpu::deviceToHost, completed.dataPtr(),
-                completed.dataPtr() + completed.box().numPts() * 2,
+                completed.dataPtr() + (completed.box().numPts() * 2),
                 host.dataPtr());
             const auto values = host.const_array();
             amrex::LoopOnCpu(completed.box(), [&](int i, int j, int k) {
