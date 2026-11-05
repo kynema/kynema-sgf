@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/field_ops.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/field_ops.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/field__ops_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-core-field-ops-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/core/field_ops.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-core-field-ops-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/core/field_ops.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_b275fe914c86728e4bacb4b0e2726274.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">field_ops.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="field__ops_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FIELD_OPS_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FIELD_OPS_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_field_8_h.html">src/core/Field.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AMReX_MultiFab.H&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespacekynema__sgf_1_1field__ops.html">   23</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1field__ops.html">kynema_sgf::field_ops</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga9fd09fa1607e4df9cb669ad9ce8ccc65">   39</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga9fd09fa1607e4df9cb669ad9ce8ccc65">add</a>(</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> amrex::IntVect&amp; nghost)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = dst.repo().num_active_levels();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        amrex::MultiFab::Add(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            dst(lev), src(lev), srccomp, dstcomp, numcomp, nghost);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga8ab181375e85d0e0f1b7a3732803d6dc">   67</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga9fd09fa1607e4df9cb669ad9ce8ccc65">add</a>(</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    T1&amp; dst, <span class="keyword">const</span> T2&amp; src, <span class="keywordtype">int</span> srccomp, <span class="keywordtype">int</span> dstcomp, <span class="keywordtype">int</span> numcomp, <span class="keywordtype">int</span> nghost)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <a class="code hl_function" href="group__field__ops.html#ga9fd09fa1607e4df9cb669ad9ce8ccc65">add</a>(dst, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga6a13172a3a3e21dce7b7a89b82c30327">   87</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga6a13172a3a3e21dce7b7a89b82c30327">divide</a>(</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> ncomp_src,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> ncomp_dst,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">const</span> amrex::IntVect&amp; nghost)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = dst.repo().num_active_levels();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">if</span> (ncomp_dst == ncomp_src) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            amrex::MultiFab::Divide(</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                dst(lev), src(lev), srccomp, dstcomp, ncomp_dst, nghost);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ncomp_src == 1) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n &lt; ncomp_dst; ++n) {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                amrex::MultiFab::Divide(</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    dst(lev), src(lev), srccomp, dstcomp + n, ncomp_src,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    nghost);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            amrex::Abort(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                <span class="stringliteral">&quot;field_ops::divide : number of divisor components (ncomp_src) &quot;</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="stringliteral">&quot;must either be 1 or match number of dividend components &quot;</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                <span class="stringliteral">&quot;(ncomp_dst).&quot;</span>);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga9c8a61c1708bb473353c456e67ad212c">  130</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga6a13172a3a3e21dce7b7a89b82c30327">divide</a>(</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> ncomp_src,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> ncomp_dst,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nghost)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_function" href="group__field__ops.html#ga6a13172a3a3e21dce7b7a89b82c30327">divide</a>(</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        dst, src, srccomp, dstcomp, ncomp_src, ncomp_dst,</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        amrex::IntVect(nghost));</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga0dc61187f784c242736521fb4a96afd5">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga0dc61187f784c242736521fb4a96afd5">copy</a>(</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keyword">const</span> amrex::IntVect&amp; nghost)</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>{</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = dst.repo().num_active_levels();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        amrex::MultiFab::Copy(</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            dst(lev), src(lev), srccomp, dstcomp, numcomp, nghost);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
+</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00185" data-start="{" data-end="}">
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="group__field__ops.html#gae36868e9f0fb64e4e398812deec15720">  185</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga0dc61187f784c242736521fb4a96afd5">copy</a>(</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    T1&amp; dst, <span class="keyword">const</span> T2&amp; src, <span class="keywordtype">int</span> srccomp, <span class="keywordtype">int</span> dstcomp, <span class="keywordtype">int</span> numcomp, <span class="keywordtype">int</span> nghost)</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>{</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <a class="code hl_function" href="group__field__ops.html#ga0dc61187f784c242736521fb4a96afd5">copy</a>(dst, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>}</div>
+</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga2571a940da58382a2dd40ab592d9de20">  205</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga2571a940da58382a2dd40ab592d9de20">saxpy</a>(</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">const</span> amrex::Real a,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keyword">const</span> amrex::IntVect&amp; nghost)</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>{</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = dst.repo().num_active_levels();</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        amrex::MultiFab::Saxpy(</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            dst(lev), a, src(lev), srccomp, dstcomp, numcomp, nghost);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>}</div>
+</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00235" data-start="{" data-end="}">
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga51369c7b226a293fb91581d110f9bbab">  235</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga2571a940da58382a2dd40ab592d9de20">saxpy</a>(</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keyword">const</span> amrex::Real a,</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nghost)</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>{</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <a class="code hl_function" href="group__field__ops.html#ga2571a940da58382a2dd40ab592d9de20">saxpy</a>(dst, a, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>}</div>
+</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00261" data-start="{" data-end="}">
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga008944d97eb1dddebb965f10e3897e3c">  261</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga008944d97eb1dddebb965f10e3897e3c">xpay</a>(</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keyword">const</span> amrex::Real a,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keyword">const</span> amrex::IntVect&amp; nghost)</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>{</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = dst.repo().num_active_levels();</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        amrex::MultiFab::Xpay(</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            dst(lev), a, src(lev), srccomp, dstcomp, numcomp, nghost);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    }</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>}</div>
+</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
+<div class="foldopen" id="foldopen00291" data-start="{" data-end="}">
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga8a429f0fe98ec4046fe99abfa0ed59a1">  291</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga008944d97eb1dddebb965f10e3897e3c">xpay</a>(</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keyword">const</span> amrex::Real a,</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keyword">const</span> T2&amp; src,</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> srccomp,</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nghost)</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>{</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <a class="code hl_function" href="group__field__ops.html#ga008944d97eb1dddebb965f10e3897e3c">xpay</a>(dst, a, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>}</div>
+</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;</div>
+<div class="foldopen" id="foldopen00320" data-start="{" data-end="}">
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="group__field__ops.html#gaadf2a0461348e11fef018f92b73036f0">  320</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#gaadf2a0461348e11fef018f92b73036f0">lincomb</a>(</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keyword">const</span> amrex::Real a,</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keyword">const</span> T2&amp; x,</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> xcomp,</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keyword">const</span> amrex::Real b,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keyword">const</span> T3&amp; y,</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> ycomp,</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keyword">const</span> amrex::IntVect&amp; nghost)</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>{</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = dst.repo().num_active_levels();</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        amrex::MultiFab::LinComb(</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>            dst(lev), a, x(lev), xcomp, b, y(lev), ycomp, dstcomp, numcomp,</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>            nghost);</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    }</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>}</div>
+</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> T3&gt;</div>
+<div class="foldopen" id="foldopen00357" data-start="{" data-end="}">
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga1f28b01ee3e7893471afb51ceeb10c72">  357</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#gaadf2a0461348e11fef018f92b73036f0">lincomb</a>(</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    T1&amp; dst,</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keyword">const</span> amrex::Real a,</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    <span class="keyword">const</span> T2&amp; x,</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> xcomp,</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keyword">const</span> amrex::Real b,</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keyword">const</span> T3&amp; y,</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> ycomp,</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> dstcomp,</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> numcomp,</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nghost)</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>{</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <a class="code hl_function" href="group__field__ops.html#gaadf2a0461348e11fef018f92b73036f0">lincomb</a>(</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        dst, a, x, xcomp, b, y, ycomp, dstcomp, numcomp,</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        amrex::IntVect(nghost));</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}</div>
+</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FType&gt;</div>
+<div class="foldopen" id="foldopen00382" data-start="{" data-end="}">
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga964d15cd55a291c6d278e45d14f7d179">  382</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga964d15cd55a291c6d278e45d14f7d179">lower_bound</a>(FType&amp; field, <span class="keyword">const</span> amrex::Real min_value, <span class="keyword">const</span> <span class="keywordtype">int</span> icomp = 0)</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>{</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; repo = field.repo();</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = repo.num_active_levels();</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; farrs = field(lev).arrays();</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        amrex::ParallelFor(</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>            field(lev), [=] AMREX_GPU_DEVICE(<span class="keywordtype">int</span> nbx, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> k) {</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>                farrs[nbx](i, j, k, icomp) =</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>                    amrex::max(min_value, farrs[nbx](i, j, k, icomp));</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>            });</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    }</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    amrex::Gpu::streamSynchronize();</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>}</div>
+</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FType&gt;</div>
+<div class="foldopen" id="foldopen00403" data-start="{" data-end="}">
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="group__field__ops.html#gafa4af06ce1b216eb595dc470b5451c90">  403</a></span>amrex::Real <a class="code hl_function" href="group__field__ops.html#gafa4af06ce1b216eb595dc470b5451c90">global_max_magnitude</a>(FType&amp; field)</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>{</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; repo = field.repo();</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="keyword">const</span> <span class="keyword">auto</span> ncomp = field.num_comp();</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    amrex::Real maxglobal = 0.0_rt;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = repo.num_active_levels();</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        amrex::Real maxglobal_lev = 0.0_rt;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        maxglobal_lev = amrex::ReduceMax(</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>            field(lev), 0.,</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>            [=] AMREX_GPU_HOST_DEVICE(</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>                amrex::Box <span class="keyword">const</span>&amp; b,</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>                amrex::Array4&lt;amrex::Real const&gt; <span class="keyword">const</span>&amp; field_arr)</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>                -&gt; amrex::Real {</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>                amrex::Real mx = 0.0_rt;</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>                amrex::Loop(b, [=, &amp;mx](<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> k) {</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>                    amrex::Real mag = 0.0_rt;</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> icomp = 0; icomp &lt; ncomp; ++icomp) {</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>                        mag = mag + (field_arr(i, j, k, icomp) *</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>                                     field_arr(i, j, k, icomp));</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>                    }</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                    mx = amrex::max(std::sqrt(mag), mx);</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>                });</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>                <span class="keywordflow">return</span> mx;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>            });</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        maxglobal = amrex::max(maxglobal, maxglobal_lev);</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    }</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    amrex::ParallelAllReduce::Max&lt;amrex::Real&gt;(</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        maxglobal, amrex::ParallelContext::CommunicatorSub());</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    <span class="keywordflow">return</span> maxglobal;</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>}</div>
+</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FType&gt;</div>
+<div class="foldopen" id="foldopen00443" data-start="{" data-end="}">
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno"><a class="line" href="group__field__ops.html#ga7b9841e40867d50df2ffdae8d7822954">  443</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__field__ops.html#ga7b9841e40867d50df2ffdae8d7822954">normalize</a>(FType&amp; field)</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>{</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="keyword">const</span> amrex::Real eps =</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>        std::numeric_limits&lt;amrex::Real&gt;::epsilon() * 1.0e4_rt;</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; repo = field.repo();</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    <span class="keyword">const</span> <span class="keyword">auto</span> ncomp = field.num_comp();</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> </div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> nlevels = repo.num_active_levels();</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> lev = 0; lev &lt; nlevels; ++lev) {</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>        <span class="keyword">const</span> <span class="keyword">auto</span>&amp; farrs = field(lev).arrays();</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>        amrex::ParallelFor(</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>            field(lev), [=] AMREX_GPU_DEVICE(<span class="keywordtype">int</span> nbx, <span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j, <span class="keywordtype">int</span> k) {</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>                <span class="keyword">auto</span> farr = farrs[nbx];</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>                <span class="comment">// Compute magnitude</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>                amrex::Real mag = 0.0_rt;</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> icomp = 0; icomp &lt; ncomp; ++icomp) {</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>                    mag = mag + (farr(i, j, k, icomp) * farr(i, j, k, icomp));</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>                }</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>                <span class="keywordflow">if</span> (mag &gt; eps) {</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> icomp = 0; icomp &lt; ncomp; ++icomp) {</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>                        farr(i, j, k, icomp) =</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>                            farr(i, j, k, icomp) / std::sqrt(mag);</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>                    }</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>                }</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>            });</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    }</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>    amrex::Gpu::streamSynchronize();</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>}</div>
+</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span> </div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>} <span class="comment">// namespace kynema_sgf::field_ops</span></div>
+</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span> </div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="preprocessor">#endif </span><span class="comment">/* FIELD_OPS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_field_8_h_html"><div class="ttname"><a href="_field_8_h.html">Field.H</a></div></div>
+<div class="ttc" id="agroup__field__ops_html_ga008944d97eb1dddebb965f10e3897e3c"><div class="ttname"><a href="group__field__ops.html#ga008944d97eb1dddebb965f10e3897e3c">kynema_sgf::field_ops::xpay</a></div><div class="ttdeci">void xpay(T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</div><div class="ttdef"><b>Definition</b> field_ops.H:261</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga0dc61187f784c242736521fb4a96afd5"><div class="ttname"><a href="group__field__ops.html#ga0dc61187f784c242736521fb4a96afd5">kynema_sgf::field_ops::copy</a></div><div class="ttdeci">void copy(T1 &amp;dst, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</div><div class="ttdef"><b>Definition</b> field_ops.H:157</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga2571a940da58382a2dd40ab592d9de20"><div class="ttname"><a href="group__field__ops.html#ga2571a940da58382a2dd40ab592d9de20">kynema_sgf::field_ops::saxpy</a></div><div class="ttdeci">void saxpy(T1 &amp;dst, const amrex::Real a, const T2 &amp;src, const int srccomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</div><div class="ttdef"><b>Definition</b> field_ops.H:205</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga6a13172a3a3e21dce7b7a89b82c30327"><div class="ttname"><a href="group__field__ops.html#ga6a13172a3a3e21dce7b7a89b82c30327">kynema_sgf::field_ops::divide</a></div><div class="ttdeci">void divide(T1 &amp;dst, const T2 &amp;src, const int srccomp, const int dstcomp, const int ncomp_src, const int ncomp_dst, const amrex::IntVect &amp;nghost)</div><div class="ttdef"><b>Definition</b> field_ops.H:87</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga7b9841e40867d50df2ffdae8d7822954"><div class="ttname"><a href="group__field__ops.html#ga7b9841e40867d50df2ffdae8d7822954">kynema_sgf::field_ops::normalize</a></div><div class="ttdeci">void normalize(FType &amp;field)</div><div class="ttdef"><b>Definition</b> field_ops.H:443</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga964d15cd55a291c6d278e45d14f7d179"><div class="ttname"><a href="group__field__ops.html#ga964d15cd55a291c6d278e45d14f7d179">kynema_sgf::field_ops::lower_bound</a></div><div class="ttdeci">void lower_bound(FType &amp;field, const amrex::Real min_value, const int icomp=0)</div><div class="ttdef"><b>Definition</b> field_ops.H:382</div></div>
+<div class="ttc" id="agroup__field__ops_html_ga9fd09fa1607e4df9cb669ad9ce8ccc65"><div class="ttname"><a href="group__field__ops.html#ga9fd09fa1607e4df9cb669ad9ce8ccc65">kynema_sgf::field_ops::add</a></div><div class="ttdeci">void add(T1 &amp;dst, const T2 &amp;src, int srccomp, int dstcomp, int numcomp, const amrex::IntVect &amp;nghost)</div><div class="ttdef"><b>Definition</b> field_ops.H:39</div></div>
+<div class="ttc" id="agroup__field__ops_html_gaadf2a0461348e11fef018f92b73036f0"><div class="ttname"><a href="group__field__ops.html#gaadf2a0461348e11fef018f92b73036f0">kynema_sgf::field_ops::lincomb</a></div><div class="ttdeci">void lincomb(T1 &amp;dst, const amrex::Real a, const T2 &amp;x, const int xcomp, const amrex::Real b, const T3 &amp;y, const int ycomp, const int dstcomp, const int numcomp, const amrex::IntVect &amp;nghost)</div><div class="ttdef"><b>Definition</b> field_ops.H:320</div></div>
+<div class="ttc" id="agroup__field__ops_html_gafa4af06ce1b216eb595dc470b5451c90"><div class="ttname"><a href="group__field__ops.html#gafa4af06ce1b216eb595dc470b5451c90">kynema_sgf::field_ops::global_max_magnitude</a></div><div class="ttdeci">amrex::Real global_max_magnitude(FType &amp;field)</div><div class="ttdef"><b>Definition</b> field_ops.H:403</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1field__ops_html"><div class="ttname"><a href="namespacekynema__sgf_1_1field__ops.html">kynema_sgf::field_ops</a></div><div class="ttdef"><b>Definition</b> field_ops.H:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
