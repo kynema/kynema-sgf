@@ -5,4 +5,5 @@ target_sources(${kynema_sgf_unit_test_exe_name}
   test_icns_gravityforcing.cpp
   test_icns_init.cpp
   test_explicit_diffusion_rk2.cpp
+  test_damping_layer_source.cpp
   )
