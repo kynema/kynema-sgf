@@ -1,5 +1,6 @@
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
+#include "src/core/FieldUtils.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesFillInflow.H"
 #include "src/boundary_conditions/field_boundary_fill/FieldBoundary.H"
 #include "src/utilities/index_operations.H"
@@ -65,6 +66,15 @@ void OceanWavesBoundary::pre_advance_work()
     record_boundary_data_time(adv_bdy_time);
 }
 
+bool OceanWavesBoundary::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    // Velocity is liquid-only; density blends with the base fill.
+    return m_repo.field_exists("vof") && field.name() == "vof" &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow);
+}
+
 void OceanWavesBoundary::pre_predictor_work()
 {
     BL_PROFILE("kynema-sgf::OceanWavesBoundary::pre_predictor_work");
@@ -114,14 +124,17 @@ void OceanWavesBoundary::set_velocity(
                 continue;
             }
 
-            const auto& targ_vof = (*m_ow_vof)(lev).const_array(mfi);
-            const auto& targ_arr = (*m_ow_velocity)(lev).const_array(mfi);
+            const int source_idx =
+                field_impl::matching_grid_index(mfi, (*m_ow_velocity)(lev));
+            const auto& targ_vof = (*m_ow_vof)(lev).const_array(source_idx);
+            const auto& targ_arr =
+                (*m_ow_velocity)(lev).const_array(source_idx);
             const auto& arr = mfab[mfi].array();
             const int numcomp = mfab.nComp();
 
             const auto terrain_blank_flags =
                 terrain_and_vof_exist
-                    ? (*m_terrain_blank_ptr)(lev).const_array(mfi)
+                    ? (*m_terrain_blank_ptr)(lev).const_array(source_idx)
                     : amrex::Array4<int const>();
 
             amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {

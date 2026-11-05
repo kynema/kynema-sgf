@@ -1,5 +1,6 @@
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/core/FieldUtils.H"
 #include "src/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
@@ -89,6 +90,7 @@ void InletData::resize(const int size)
     m_data_n.resize(size);
     m_data_np1.resize(size);
     m_data_interp.resize(size);
+    m_data_complete.resize(size);
 }
 
 void InletData::define_plane(const amrex::Orientation ori)
@@ -96,6 +98,7 @@ void InletData::define_plane(const amrex::Orientation ori)
     m_data_n[ori] = std::make_unique<PlaneVector>();
     m_data_np1[ori] = std::make_unique<PlaneVector>();
     m_data_interp[ori] = std::make_unique<PlaneVector>();
+    m_data_complete[ori].reset();
 }
 
 void InletData::define_level_data(
@@ -317,6 +320,7 @@ void InletData::interpolate(const amrex::Real time)
         if (!this->is_populated(ori)) {
             continue;
         }
+        m_data_complete[ori].reset();
 
         const int lnlevels = static_cast<int>(m_data_n[ori]->size());
         for (int lev = 0; lev < lnlevels; ++lev) {
@@ -331,9 +335,45 @@ void InletData::interpolate(const amrex::Real time)
     }
 }
 
+void InletData::complete_boundary_planes(
+    const amrex::AmrCore& mesh, const int nghost)
+{
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        if (!is_populated(ori)) {
+            continue;
+        }
+        auto completed = std::make_unique<PlaneVector>();
+        const auto& planes = *m_data_interp[ori];
+        for (int lev = 0; lev < static_cast<int>(planes.size()); ++lev) {
+            if (lev == 0) {
+                completed->emplace_back(planes[lev].box(), planes[lev].nComp());
+                completed->back().copy<amrex::RunOn::Device>(planes[lev]);
+            } else {
+                completed->push_back(
+                    utils::interpolate_boundary_plane(
+                        completed->back(), planes[lev], ori,
+                        mesh.refRatio(lev - 1), mesh.Geom(lev - 1),
+                        mesh.Geom(lev), nghost));
+            }
+        }
+        m_data_complete[ori] = std::move(completed);
+    }
+}
+
+void BoundaryPlane::complete_input_planes()
+{
+    int nghost = 0;
+    for (const auto* field : m_fields) {
+        nghost = amrex::max(nghost, field->num_grow().max());
+    }
+    m_in_data.complete_boundary_planes(m_mesh, nghost);
+}
+
 bool InletData::is_populated(amrex::Orientation ori) const
 {
-    return m_data_n[ori] != nullptr;
+    return static_cast<amrex::Long>(ori) < m_data_n.size() &&
+           m_data_n[ori] != nullptr;
 }
 
 BoundaryPlane::BoundaryPlane(CFDSim& sim)
@@ -498,6 +538,23 @@ void BoundaryPlane::pre_advance_inner_calls() { read_file(true); }
 void BoundaryPlane::pre_predictor_work() { read_file(false); }
 
 void BoundaryPlane::post_advance_work() { write_file(); }
+
+bool BoundaryPlane::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    return may_provide_inflow_values(field, ori) && m_in_data.is_populated(ori);
+}
+
+bool BoundaryPlane::may_provide_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    return m_io_mode == io_mode::input &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) &&
+           std::ranges::find(m_var_names, field.name()) != m_var_names.end() &&
+           (m_phase == phase::both || field.name() == "density" ||
+            field.name() == "vof");
+}
 
 void BoundaryPlane::initialize_data()
 {
@@ -1398,6 +1455,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
         ReadERFFunction read_erf = *m_read_erf;
         if (read_erf != nullptr) {
             read_erf(time, m_in_times, m_in_data, m_fields, mbc());
+            complete_input_planes();
         } else {
             amrex::Abort("read_erf function is undefined.");
         }
@@ -1422,6 +1480,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
     // return early if current data files can still be interpolated in time
     if ((m_in_data.tn() <= time) && (time < m_in_data.tnp1())) {
         m_in_data.interpolate(time);
+        complete_input_planes();
         return;
     }
 
@@ -1539,6 +1598,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
     }
 
     m_in_data.interpolate(time);
+    complete_input_planes();
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
@@ -1649,12 +1709,16 @@ void BoundaryPlane::populate_data(
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
 
-            const auto& vof_arr = m_vof_ptr != nullptr
-                                      ? (*m_vof_ptr)(lev).const_array(mfi)
-                                      : amrex::Array4<const amrex::Real>{};
+            const int source_idx =
+                use_vof_condition || use_terrain_condition
+                    ? field_impl::matching_grid_index(mfi, fld(lev))
+                    : 0;
+            const auto& vof_arr =
+                use_vof_condition ? (*m_vof_ptr)(lev).const_array(source_idx)
+                                  : amrex::Array4<const amrex::Real>{};
             const auto& terrain_blank_flags =
-                m_terrain_blank_ptr != nullptr
-                    ? (*m_terrain_blank_ptr)(lev).const_array(mfi)
+                use_terrain_condition
+                    ? (*m_terrain_blank_ptr)(lev).const_array(source_idx)
                     : amrex::Array4<const int>{};
             amrex::ParallelFor(
                 bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
