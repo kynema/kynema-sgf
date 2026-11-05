@@ -65,7 +65,7 @@ Example for ``FixedWingLine``::
    Actuator.FixedWingLine.airfoil_type = openfast
    Actuator.F1.start = 0.0 -4.0 0.0
    Actuator.F1.end = 0.0 4.0 0.0
-   Actuator.F1.output_frequency = 10
+   Actuator.F1.output_interval = 10
    ICNS.source_terms = ActuatorForcing
 
 .. input_param:: Actuator.FixedWingLine.num_points
@@ -197,11 +197,13 @@ Example for ``FixedWingLine``::
 
    This is the end point of the wing where the last actuator point will be.
 
-.. input_param:: Actuator.F1.output_frequency
+.. input_param:: Actuator.F1.output_interval
 
    **type:** int, optional
 
-   This is how often to write actuator output. The default is ``10``.
+   Number of time steps between actuator outputs. The legacy input argument
+   ``output_frequency`` is still accepted with a warning; use
+   ``output_interval`` instead. The default is ``10``.
 
 .. input_param:: Actuator.FixedWingLine.motion_type
 
@@ -414,7 +416,7 @@ Example for ``ActuatorSector``::
    Actuator.ActuatorSector.airfoil_type = openfast
    Actuator.ActuatorSector.gaussian_type = table
    Actuator.ActuatorSector.gaussian_table_error = 1.0e-4
-   Actuator.ActuatorSector.output_frequency = 1
+   Actuator.ActuatorSector.output_interval = 1
 
 .. input_param:: Actuator.ActuatorSector.rotor_diameter
 
@@ -613,11 +615,13 @@ Example for ``ActuatorSector``::
    intervals from the linear interpolation error bound over
    ``0 <= x <= support_radius_over_epsilon^2``.
 
-.. input_param:: Actuator.ActuatorSector.output_frequency
+.. input_param:: Actuator.ActuatorSector.output_interval
 
    **type:** int, optional, default = 1
 
-   Blade-load NetCDF output interval in timesteps. The output is written under
+   Blade-load NetCDF output interval in timesteps. The legacy input argument
+   ``output_frequency`` is still accepted with a warning; use
+   ``output_interval`` instead. The output is written under
    ``post_processing/actuatorXXXXX/<label>.nc`` and includes the blade radial
    grid, section loads, integrated thrust and torque, local relative velocity
    components ``vel_rel_theta`` and ``vel_rel_normal``, angle of attack, and
@@ -792,10 +796,10 @@ either the ``Actuator.Drone`` defaults or the individual
 ``epsilon_chord``, ``epsilon_min``, ``epsilon_dr``, ``epsilon_dl``,
 ``min_chord_dr``, ``span_locs``, ``chord``, ``twist``, ``airfoil_table``,
 ``airfoil_type``, quadrature options, Gaussian options, and
-``output_frequency``. See the ``ActuatorSector`` parameter descriptions for
+``output_interval``. See the ``ActuatorSector`` parameter descriptions for
 their units and defaults.
 
-At ``output_frequency``, the Drone writes the standard actuator NetCDF file
+At ``output_interval``, the Drone writes the standard actuator NetCDF file
 ``<label>.nc``. The ``force`` and ``moment`` variables contain the total
 aerodynamic load acting on the vehicle in global-frame coordinates. These loads
 are equal and opposite to the force applied to the fluid, and the moment is
@@ -831,7 +835,7 @@ Example for ``TurbineFastLine``::
    Actuator.TurbineFastLine.openfast_stop_time = 1.0
    Actuator.TurbineFastLine.nacelle_drag_coeff = 0.0
    Actuator.TurbineFastLine.nacelle_area = 0.0
-   Actuator.TurbineFastLine.output_frequency = 10
+   Actuator.TurbineFastLine.output_interval = 10
    Actuator.TurbineFastLine.density = 1.225
    Actuator.WTG01.base_position = 5.0191 0. -89.56256
    Actuator.WTG01.openfast_input_file = "fast_inp/nrel5mw.fst"
@@ -909,11 +913,13 @@ Example for ``TurbineFastLine``::
 
    This is the frontal area of the nacelle which is used to compute the force.
 
-.. input_param:: Actuator.TurbineFastLine.output_frequency
+.. input_param:: Actuator.TurbineFastLine.output_interval
 
    **type:** int, optional, default=10
 
-   This is how often to write actuator output.
+   Number of time steps between actuator outputs. The legacy input argument
+   ``output_frequency`` is still accepted with a warning; use
+   ``output_interval`` instead.
 
 .. input_param:: Actuator.TurbineFastLine.density
 
@@ -971,7 +977,7 @@ Example for ``TurbineKynemaLine``::
    Actuator.TurbineKynemaLine.dt = 0.01
    Kynema.abs_err_tol = 1e-6
 
-   Actuator.TurbineKynemaLine.output_frequency = 10
+   Actuator.TurbineKynemaLine.output_interval = 10
 
    ICNS.source_terms = ActuatorForcing
 
@@ -1084,11 +1090,13 @@ Example for ``TurbineKynemaLine``::
    step size will be the same as the flow solver time step, and, due to the
    robustness of Kynema, this is typically fine.
 
-.. input_param:: Actuator.TurbineKynemaLine.output_frequency
+.. input_param:: Actuator.TurbineKynemaLine.output_interval
 
    **type:** Int, optional, default = 10
 
-   This is how often, in time steps, to output actuator data from Kynema-SGF.
+   Number of time steps between Kynema-SGF actuator outputs. The legacy input
+   argument ``output_frequency`` is still accepted with a warning; use
+   ``output_interval`` instead.
    Note, this does not govern how often Kynema outputs turbine data. Kynema
    automatically outputs data every Kynema-SGF time step.
 

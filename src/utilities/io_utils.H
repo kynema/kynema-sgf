@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <unordered_set>
+#include "AMReX_Print.H"
 #include "AMReX_Vector.H"
 
 namespace amrex {
@@ -15,6 +16,36 @@ const char* buildInfoGetGitHash(int i);
 namespace kynema_sgf::ioutils {
 
 void goto_next_line(std::istream& is);
+
+template <typename Parser, typename T>
+void query_with_legacy_name(
+    const Parser& pp,
+    const std::string& name,
+    const std::string& legacy_name,
+    T& value)
+{
+    const bool has_name = pp.contains(name);
+    const bool has_legacy_name = pp.contains(legacy_name);
+
+    if (has_name) {
+        pp.query(name, value);
+    } else if (has_legacy_name) {
+        pp.query(legacy_name, value);
+    }
+
+    if (has_legacy_name) {
+        if (has_name) {
+            amrex::Print()
+                << "WARNING: both " << name << " and legacy input argument "
+                << legacy_name << " are specified; " << legacy_name
+                << " will be ignored. Please update to " << name << ".\n";
+        } else {
+            amrex::Print()
+                << "WARNING: legacy input argument " << legacy_name
+                << " was specified; please update to " << name << ".\n";
+        }
+    }
+}
 
 AMREX_INLINE std::string kynema_sgf_version()
 {

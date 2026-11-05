@@ -551,17 +551,10 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
                                 rotor_orientation_degrees) &
                             vs::Vector::khat();
     }
-    pp.query(
-        "rotor_rotation_degrees_per_revolution",
+    ioutils::query_with_legacy_name(
+        pp, "rotor_rotation_degrees_per_revolution",
+        "rotor_rotation_per_revolution",
         meta.rotor_rotation_degrees_per_revolution);
-    if (pp.contains("rotor_rotation_per_revolution")) {
-        amrex::Print() << "WARNING: ActuatorSector input "
-                          "'rotor_rotation_per_revolution' is deprecated. Use "
-                          "'rotor_rotation_degrees_per_revolution' instead.\n";
-        pp.get(
-            "rotor_rotation_per_revolution",
-            meta.rotor_rotation_degrees_per_revolution);
-    }
     if (pp.contains("rotor_angular_velocity")) {
         pp.get("rotor_angular_velocity", meta.rotor_angular_velocity);
         meta.user_rotor_angular_velocity = true;
@@ -926,7 +919,8 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
 void ProcessOutputsOp<ActuatorSector, ActSrcSector>::read_io_options(
     const utils::ActParser& pp)
 {
-    pp.query("output_frequency", m_out_freq);
+    ioutils::query_with_legacy_name(
+        pp, "output_interval", "output_frequency", m_out_freq);
 }
 
 void ProcessOutputsOp<ActuatorSector, ActSrcSector>::prepare_outputs(

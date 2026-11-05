@@ -16,5 +16,5 @@ Actuator.TurbineKynemaFMBDisk.fllc                   = false
 Actuator.TurbineKynemaFMBDisk.density                = 1.225
 Actuator.TurbineKynemaFMBDisk.nacelle_drag_coeff     = 1.0                 
 Actuator.TurbineKynemaFMBDisk.nacelle_area           = 8.0                 
-Actuator.TurbineKynemaFMBDisk.output_frequency       = 1                   
+Actuator.TurbineKynemaFMBDisk.output_interval        = 1
 Actuator.TurbineKynemaFMBDisk.num_blades             = 3
