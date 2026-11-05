@@ -159,6 +159,18 @@ void fill_transverse_ghosts(
     int ncomp,
     int orig_comp = 0);
 
+/** Complete a partial fine boundary plane with limited conservative
+ * interpolation of its coarse plane. Recorded fine values take precedence.
+ */
+amrex::FArrayBox interpolate_boundary_plane(
+    const amrex::FArrayBox& coarse,
+    const amrex::FArrayBox& fine,
+    amrex::Orientation ori,
+    amrex::IntVect ratio,
+    const amrex::Geometry& coarse_geom,
+    const amrex::Geometry& fine_geom,
+    int nghost);
+
 //! Check if a point is inside a box
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool contains(
     const amrex::Box& box,

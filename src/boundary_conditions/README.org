@@ -79,6 +79,12 @@ different phases of the solution process.
 
 ** Inflow input validation
 
+Partial fine-level boundary planes are completed from the coarser plane using
+limited conservative interpolation before they are applied to fields. Recorded
+fine values, including their periodic images, take precedence. Coarse/fine
+boundary ghosts therefore do not depend on redundant constant inflow inputs.
+Existing boundary files remain compatible.
+
 The boundary parser loads constants and records whether the base fill uses a
 constant or a profile. This per-face policy is retained on =FieldInfo= because
 BC specializations (notably VOF and VOF-compatible density) can disallow profiles
