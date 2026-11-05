@@ -219,17 +219,6 @@ void update_external_turbine_loads(datatype& data)
 {
     // Update external turbine loads
     ext_loads<datatype>(data);
-    const auto& time = data.sim().time();
-
-    auto& tdata = data.meta();
-    if (!tdata.fllc.empty()) {
-        for (int i = 0; i < tdata.num_blades; ++i) {
-            if (!(tdata.fllc[i].initialized) &&
-                (time.current_time() > tdata.fllc[i].fllc_start_time)) {
-                fllc_init(tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0]);
-            }
-        }
-    }
 }
 
 template <typename datatype>
@@ -253,6 +242,18 @@ struct CommunicateModelDataOp<
             "kynema-sgf::actuator::CommunicateModelDataOp<"
             "TurbineFromExtSolver>");
         scatter_data<DataType>(data);
+
+        const auto& time = data.sim().time();
+        auto& tdata = data.meta();
+        if (!tdata.fllc.empty()) {
+            for (int i = 0; i < tdata.num_blades; ++i) {
+                if (!(tdata.fllc[i].initialized) &&
+                    (time.current_time() > tdata.fllc[i].fllc_start_time)) {
+                    fllc_init(
+                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0]);
+                }
+            }
+        }
     }
 };
 

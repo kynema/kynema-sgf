@@ -163,7 +163,6 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_aero_loads(
     AMREX_ASSERT(local_id < static_cast<int>(m_turbine_data.size()));
 
     auto& fi = *m_turbine_data[local_id];
-    write_velocity_data(fi);
     calc_aero_loads(fi);
 }
 
@@ -176,6 +175,7 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
 
     auto& fi = *m_turbine_data[local_id];
     AMREX_ASSERT(!fi.is_solution0);
+    write_velocity_data(fi);
     {
         // Default is off, unless a turbine model reads, populates stop_time
         const auto& tmax = fi.stop_time;
