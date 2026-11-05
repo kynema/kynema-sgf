@@ -339,7 +339,9 @@ amrex::Long transverse_fill_errors(
 class GhostLayerFillTest : public MeshTest
 {};
 
-TEST_F(GhostLayerFillTest, boundary_plane_interpolates_coarse_ghosts)
+namespace {
+
+void boundary_plane_interpolates_coarse_ghosts_impl()
 {
     const amrex::RealBox physical_box(
         {0.0_rt, 0.0_rt, 0.0_rt}, {1.0_rt, 1.0_rt, 1.0_rt});
@@ -373,7 +375,7 @@ TEST_F(GhostLayerFillTest, boundary_plane_interpolates_coarse_ghosts)
                 coarse_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                     const amrex::IntVect iv(i, j, k);
                     const amrex::Real value =
-                        10.0_rt + 2.0_rt * (iv[transverse] + 0.5_rt);
+                        10.0_rt + (2.0_rt * (iv[transverse] + 0.5_rt));
                     coarse_arr(iv, 0) = value;
                     coarse_arr(iv, 1) = 3.0_rt * value;
                 });
@@ -381,7 +383,7 @@ TEST_F(GhostLayerFillTest, boundary_plane_interpolates_coarse_ghosts)
                 fine_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                     const amrex::IntVect iv(i, j, k);
                     const amrex::Real value =
-                        99.0_rt + 0.125_rt * iv[periodic_dir];
+                        99.0_rt + (0.125_rt * iv[periodic_dir]);
                     fine_arr(iv, 0) = value;
                     fine_arr(iv, 1) = 3.0_rt * value;
                 });
@@ -403,14 +405,21 @@ TEST_F(GhostLayerFillTest, boundary_plane_interpolates_coarse_ghosts)
                 const int periodic_index =
                     (iv[periodic_dir] % length + length) % length;
                 const amrex::Real expected =
-                    recorded ? 99.0_rt + 0.125_rt * periodic_index
-                             : 10.0_rt + 2.0_rt * (iv[transverse] + 0.5_rt) /
-                                             refinement;
+                    recorded ? 99.0_rt + (0.125_rt * periodic_index)
+                             : 10.0_rt + ((2.0_rt * (iv[transverse] + 0.5_rt)) /
+                                          refinement);
                 EXPECT_NEAR(values(iv, 0), expected, tolerance);
                 EXPECT_NEAR(values(iv, 1), 3.0_rt * expected, tolerance);
             });
         }
     }
+}
+
+} // namespace
+
+TEST_F(GhostLayerFillTest, boundary_plane_interpolates_coarse_ghosts)
+{
+    boundary_plane_interpolates_coarse_ghosts_impl();
 }
 
 TEST_F(GhostLayerFillTest, boundary_plane_refreshes_nested_level_cache)
@@ -483,7 +492,9 @@ TEST_F(GhostLayerFillTest, boundary_plane_refreshes_nested_level_cache)
     }
 }
 
-TEST_F(GhostLayerFillTest, boundary_plane_preserves_phase_density_bounds)
+namespace {
+
+void boundary_plane_preserves_phase_density_bounds_impl()
 {
     const amrex::Box coarse_domain(amrex::IntVect(0), amrex::IntVect(15));
     const amrex::IntVect ratio(2);
@@ -508,12 +519,12 @@ TEST_F(GhostLayerFillTest, boundary_plane_preserves_phase_density_bounds)
         const amrex::Real vof = k < 6 ? 0.0_rt : 1.0_rt;
         coarse_arr(i, j, k, 0) = vof;
         coarse_arr(i, j, k, 1) =
-            gas_density + vof * (liquid_density - gas_density);
+            gas_density + (vof * (liquid_density - gas_density));
     });
     amrex::ParallelFor(fine_box, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         fine_arr(i, j, k, 0) = 0.25_rt;
         fine_arr(i, j, k, 1) =
-            gas_density + 0.25_rt * (liquid_density - gas_density);
+            gas_density + (0.25_rt * (liquid_density - gas_density));
     });
     auto completed = kynema_sgf::utils::interpolate_boundary_plane(
         coarse, fine, amrex::Orientation(0, amrex::Orientation::low), ratio,
@@ -521,7 +532,7 @@ TEST_F(GhostLayerFillTest, boundary_plane_preserves_phase_density_bounds)
     amrex::FArrayBox host(completed.box(), 2, amrex::The_Pinned_Arena());
     amrex::Gpu::copy(
         amrex::Gpu::deviceToHost, completed.dataPtr(),
-        completed.dataPtr() + completed.box().numPts() * 2, host.dataPtr());
+        completed.dataPtr() + (completed.box().numPts() * 2), host.dataPtr());
     const auto values = host.const_array();
     amrex::LoopOnCpu(completed.box(), [&](int i, int j, int k) {
         const amrex::Real vof = values(i, j, k, 0);
@@ -531,12 +542,19 @@ TEST_F(GhostLayerFillTest, boundary_plane_preserves_phase_density_bounds)
         EXPECT_GE(density, gas_density - tolerance);
         EXPECT_LE(density, liquid_density + tolerance);
         EXPECT_NEAR(
-            density, gas_density + vof * (liquid_density - gas_density),
+            density, gas_density + (vof * (liquid_density - gas_density)),
             tolerance);
         if (k >= 12 && k <= 15) {
             EXPECT_NEAR(vof, 0.25_rt, tolerance);
         }
     });
+}
+
+} // namespace
+
+TEST_F(GhostLayerFillTest, boundary_plane_preserves_phase_density_bounds)
+{
+    boundary_plane_preserves_phase_density_bounds_impl();
 }
 
 TEST_F(GhostLayerFillTest, extend_cell_centered_low)

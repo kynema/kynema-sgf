@@ -78,11 +78,11 @@ amrex::FArrayBox interpolate_boundary_plane(
             for (int d = 0; d < AMREX_SPACEDIM; ++d) {
                 if (d == dir) {
                     sample[d] = normal;
-                } else if (periodic[d]) {
+                } else if (periodic[d] == 1) {
                     const int length = hi[d] - lo[d] + 1;
                     sample[d] =
                         lo[d] +
-                        ((sample[d] - lo[d]) % length + length) % length;
+                        ((((sample[d] - lo[d]) % length) + length) % length);
                 } else {
                     sample[d] = amrex::min(hi[d], amrex::max(lo[d], sample[d]));
                 }
@@ -98,8 +98,9 @@ amrex::FArrayBox interpolate_boundary_plane(
     amrex::Vector<amrex::BCRec> bcrec(fine.nComp());
     for (auto& bc : bcrec) {
         for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-            const int type = periodic[d] || d == dir ? amrex::BCType::int_dir
-                                                     : amrex::BCType::foextrap;
+            const int type = periodic[d] == 1 || d == dir
+                                 ? amrex::BCType::int_dir
+                                 : amrex::BCType::foextrap;
             bc.setLo(d, type);
             bc.setHi(d, type);
         }
@@ -124,11 +125,12 @@ amrex::FArrayBox interpolate_boundary_plane(
         region, fine.nComp(), [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
             amrex::IntVect sample(i, j, k);
             for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-                if (d != dir && periodic[d]) {
+                if (d != dir && periodic[d] == 1) {
                     const int length = fine_hi[d] - fine_lo[d] + 1;
                     sample[d] =
                         fine_lo[d] +
-                        ((sample[d] - fine_lo[d]) % length + length) % length;
+                        ((((sample[d] - fine_lo[d]) % length) + length) %
+                         length);
                 }
             }
             if (recorded_box.contains(sample)) {
