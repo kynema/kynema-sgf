@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "src/core/Factory.H"
+#include "src/utilities/io_utils.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
@@ -58,7 +59,8 @@ public:
 
     void populate_output_parameters(amrex::ParmParse& pp)
     {
-        pp.query("output_interval", m_out_interval);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_out_interval);
         pp.query("output_time_interval", m_out_time_interval);
         pp.query("output_delay", m_out_delay);
         pp.query("output_time_delay", m_out_time_delay);
@@ -73,22 +75,6 @@ public:
         const bool has_interval = pp.contains("output_interval");
         const bool has_time_int = pp.contains("output_time_interval");
         const bool has_frequency = pp.contains("output_frequency");
-
-        if (has_frequency) {
-            if (has_interval) {
-                amrex::Print()
-                    << "WARNING: output_interval and output_frequency "
-                       "(legacy argument) are both specified; "
-                       "output_frequency will be ignored.\n";
-            } else {
-                pp.get("output_frequency", m_out_interval);
-                amrex::Print()
-                    << "WARNING: legacy input argument of output_frequency has "
-                       "been specified; the code will function as normal, but "
-                       "the new input argument of output_interval is "
-                       "preferred.\n";
-            }
-        }
 
         if (m_out_from_restart &&
             (pp.contains("output_start") || pp.contains("output_start_time"))) {

@@ -40,7 +40,7 @@ Actuator.FlatPlateLine.epsilon = 3.0 3.0 3.0
 Actuator.FlatPlateLine.pitch = 4.0
 Actuator.F1.start = 0.0 -4.0 0.0
 Actuator.F1.end = 0.0 4.0 0.0
-Actuator.F1.output_frequency = 10
+Actuator.F1.output_interval = 10
 
 ICNS.source_terms = ActuatorForcing
 

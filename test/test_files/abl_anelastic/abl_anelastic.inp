@@ -44,7 +44,7 @@ incflo.physics = ABL
 ICNS.source_terms = GravityForcing
 ABL.perturb_temperature = false
 ABL.perturb_velocity = false
-ABL.stats_output_frequency = 1
+ABL.stats_output_interval = 1
 
 incflo.velocity = 0.0 0.0 0.0
 

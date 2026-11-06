@@ -2,6 +2,7 @@
 #include "src/CFDSim.H"
 #include "src/utilities/trig_ops.H"
 #include "src/utilities/linear_interpolation.H"
+#include "src/utilities/io_utils.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
@@ -30,11 +31,8 @@ BodyForce::BodyForce(const CFDSim& sim) : m_time(sim.time()), m_mesh(sim.mesh())
     // Prepare type of body force distribution
     if (m_type == "height_varying" || m_type == "height-varying") {
         // Constant in time, varies with z
-        // Using underscores is preferred, remains backwards compatible
-        pp.query("bodyforce-file", m_bforce_file);
-        if (m_bforce_file.empty()) {
-            pp.get("bodyforce_file", m_bforce_file);
-        }
+        ioutils::query_with_legacy_name(
+            pp, "bodyforce_file", "bodyforce-file", m_bforce_file);
         read_bforce_profile(m_bforce_file);
     } else if (
         m_type == "uniform_timetable" ||
