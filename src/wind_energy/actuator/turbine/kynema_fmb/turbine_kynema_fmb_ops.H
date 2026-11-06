@@ -114,8 +114,7 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
             vel_vec[0] * vel_vec[0] + vel_vec[1] * vel_vec[1] +
             vel_vec[2] * vel_vec[2]);
         // Initial or constant nacelle yaw
-        ioutils::query_with_legacy_name(
-            pp, "yaw_rad", "yaw_deg", tf.yaw);
+        ioutils::query_with_legacy_name(pp, "yaw_rad", "yaw_deg", tf.yaw);
         if (!pp.contains("yaw_rad") && pp.contains("yaw_deg")) {
             tf.yaw *= std::numbers::pi_v<amrex::Real> / 180.0_rt;
         }

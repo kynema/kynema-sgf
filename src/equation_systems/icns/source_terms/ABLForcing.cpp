@@ -54,8 +54,8 @@ ABLForcing::ABLForcing(const CFDSim& sim)
     if (m_write_force_timetable) {
         pp_abl.get("forcing_timetable_output_file", m_force_timetable);
         ioutils::query_with_legacy_name(
-            pp_abl, "forcing_timetable_interval",
-            "forcing_timetable_frequency", m_force_outfreq);
+            pp_abl, "forcing_timetable_interval", "forcing_timetable_frequency",
+            m_force_outfreq);
         pp_abl.query("forcing_timetable_start_time", m_force_outstart);
         if (amrex::ParallelDescriptor::IOProcessor()) {
             std::ofstream outfile;

@@ -35,14 +35,15 @@ void query_with_legacy_name(
 
     if (has_legacy_name) {
         if (has_name) {
-            amrex::Print()
-                << "WARNING: both " << name << " and legacy input argument "
-                << legacy_name << " are specified; " << legacy_name
-                << " will be ignored. Please update to " << name << ".\n";
+            amrex::Print() << "WARNING: both " << name
+                           << " and legacy input argument " << legacy_name
+                           << " are specified; " << legacy_name
+                           << " will be ignored. Please update to " << name
+                           << ".\n";
         } else {
-            amrex::Print()
-                << "WARNING: legacy input argument " << legacy_name
-                << " was specified; please update to " << name << ".\n";
+            amrex::Print() << "WARNING: legacy input argument " << legacy_name
+                           << " was specified; please update to " << name
+                           << ".\n";
         }
     }
 }
