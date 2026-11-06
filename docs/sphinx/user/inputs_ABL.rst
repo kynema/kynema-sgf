@@ -236,7 +236,33 @@ This section is for setting atmospheric boundary layer parameters.
    **type:** String, optional, default = "Moeng"
 
    Wall shear stress model: options include
-   "constant", "local", "Schumann", and "Moeng"
+   "constant", "local", "Schumann", "Moeng", and "Donelan"
+
+   The "Moeng" model combines the velocity and temperature of the first
+   cell above the wall with their plane averages; the "Schumann" model
+   divides the first-cell velocity by the plane-mean wind speed and uses
+   the first-cell temperature difference to the surface, and the heat flux
+   of the "local" model is that of the "Schumann" model. The
+   "constant" model does not use the first-cell values: its stress and heat
+   flux follow from the plane averages alone. On a mesh where a refinement
+   level touches the wall-modeled boundary, the first cells of the levels
+   sit at different heights, so the plane averages at
+   :input_param:`ABL.log_law_height` are carried to the first-cell height
+   of each level along the Monin-Obukhov profile of the surface layer. The mean
+   surface stress of the "Moeng", "Schumann" and "constant" models is then the
+   same on every level, and so is the mean surface heat flux, as long as the
+   plane-mean profiles follow the Monin-Obukhov profile. The friction velocity,
+   the Obukhov length and the surface heat flux are computed once, from the
+   plane average at :input_param:`ABL.log_law_height`. The "Donelan" model
+   selects its drag coefficient from the mean wind at
+   :input_param:`ABL.log_law_height` and keeps that plane average on every
+   level. Meshes whose refinement does not reach the wall use the plane
+   averages at :input_param:`ABL.log_law_height` on every level, as before,
+   and so does a level whose first cell sits at or below the roughness
+   height (the larger of the aerodynamic and thermal roughness lengths), or
+   where the log-profile functions are not positive (with a warning), and
+   every level in inflow-outflow mode. Heights
+   are measured from :input_param:`ABL.wall_position`.
 
 .. input_param:: ABL.bndry_output_format
 
