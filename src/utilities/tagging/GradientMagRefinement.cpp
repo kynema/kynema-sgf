@@ -48,10 +48,10 @@ void GradientMagRefinement::initialize(const std::string& key)
 void GradientMagRefinement::operator()(
     int level, amrex::TagBoxArray& tags, amrex::Real time, int /*ngrow*/)
 {
-    const bool tag_field = level <= m_max_lev_field;
-    if (tag_field) {
-        m_field->fillpatch(level, time, (*m_field)(level), 1);
+    if (!active(level)) {
+        return;
     }
+    m_field->fillpatch(level, time, (*m_field)(level), 1);
 
     const auto& mfab = (*m_field)(level);
     const auto& idx = m_sim.repo().mesh().Geom(level).InvCellSizeArray();
@@ -59,7 +59,6 @@ void GradientMagRefinement::operator()(
     const auto& tag_arrs = tags.arrays();
     const auto& farrs = mfab.const_arrays();
     const auto gradmag_val = m_gradmag_value[level];
-    const auto op = tag_operator();
 
     amrex::ParallelFor(
         mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -80,10 +79,9 @@ void GradientMagRefinement::operator()(
             if (grad_mag > gradmag_val) {
                 current_tag = true;
             }
-            const auto previous_tag =
-                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
-            tag_arrs[nbx](i, j, k) =
-                tagging::tag_val(previous_tag, current_tag, op);
+            if (current_tag) {
+                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+            }
         });
 }
 

@@ -6,6 +6,7 @@
 
 #include "AMReX_Box.H"
 #include "AMReX_BoxArray.H"
+#include "AMReX_BoxIterator.H"
 #include "AMReX_BoxList.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_RealBox.H"
@@ -20,6 +21,39 @@ namespace kynema_sgf_tests {
 
 namespace {
 
+template <typename Predicate>
+void expect_tag_predicate(
+    amrex::TagBoxArray& tags,
+    const amrex::Box& domain,
+    const Predicate& predicate)
+{
+    amrex::Gpu::PinnedVector<amrex::IntVect> cells;
+    tags.collate(cells);
+    std::size_t expected_count = 0;
+    for (amrex::BoxIterator cell(domain); cell.ok(); ++cell) {
+        if (predicate(cell())) {
+            ++expected_count;
+        }
+    }
+    EXPECT_EQ(cells.size(), expected_count);
+    for (const auto& cell : cells) {
+        EXPECT_TRUE(predicate(cell));
+    }
+}
+
+void tag_parity(amrex::TagBoxArray& tags, const int parity)
+{
+    for (amrex::MFIter mfi(tags); mfi.isValid(); ++mfi) {
+        const auto& tag = tags.array(mfi);
+        amrex::ParallelFor(
+            mfi.validbox(), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                if (i % 2 == parity) {
+                    tag(i, j, k) = amrex::TagBox::SET;
+                }
+            });
+    }
+}
+
 class DummyOperatorRefinement
     : public kynema_sgf::RefinementCriteria::Register<DummyOperatorRefinement>
 {
@@ -28,31 +62,28 @@ public:
 
     explicit DummyOperatorRefinement(kynema_sgf::CFDSim& /*sim*/) {}
 
-    static void reset_seen_ops() { s_seen_ops.clear(); }
-
-    static const amrex::Vector<kynema_sgf::tagging::TaggingOperator>& seen_ops()
+    void initialize(const std::string& key) override
     {
-        return s_seen_ops;
+        amrex::ParmParse pp(key);
+        pp.query("parity", m_parity);
+        pp.query("max_level", m_max_level);
     }
 
-    void initialize(const std::string& /*key*/) override
-    {
-        s_seen_ops.push_back(tag_operator());
-    }
+    bool active(int level) const override { return level <= m_max_level; }
 
     void operator()(
         int /*level*/,
-        amrex::TagBoxArray& /*tags*/,
+        amrex::TagBoxArray& tags,
         amrex::Real /*time*/,
         int /*ngrow*/) override
-    {}
+    {
+        tag_parity(tags, m_parity);
+    }
 
 private:
-    static amrex::Vector<kynema_sgf::tagging::TaggingOperator> s_seen_ops;
+    int m_parity{0};
+    int m_max_level{32};
 };
-
-amrex::Vector<kynema_sgf::tagging::TaggingOperator>
-    DummyOperatorRefinement::s_seen_ops;
 
 } // namespace
 
@@ -224,49 +255,196 @@ TEST(RefinementTaggingLogic, tag_val_truth_table)
     EXPECT_TRUE(is_set(tag_val(true, true, TaggingOperator::OR_NOT)));
 }
 
-TEST_F(NestRefineTest, manager_parses_operator_per_label)
+TEST_F(NestRefineTest, manager_applies_operator_per_label)
 {
     setup_refinement_inputs();
     create_mesh_instance<RefineMesh>();
+    initialize_mesh();
+    amrex::TagBoxArray tags(mesh().boxArray(0), mesh().DistributionMap(0));
+    amrex::ParmParse pp_tagging("tagging");
+    pp_tagging.addarr("labels", amrex::Vector<std::string>{"criterion"});
+    amrex::ParmParse pp("tagging.criterion");
+    pp.add("type", std::string("DummyOperatorRefinement"));
 
-    DummyOperatorRefinement::reset_seen_ops();
+    for (const std::string input_op : {"and", "OR", "and_not", "Or_Not", ""}) {
+        pp.remove("operator");
+        if (!input_op.empty()) {
+            pp.add("operator", input_op);
+        }
+        const auto op = input_op.empty() ? "or" : amrex::toLower(input_op);
+        kynema_sgf::RefineCriteriaManager manager(sim());
+        manager.initialize();
+        for (const bool previous : {false, true}) {
+            SCOPED_TRACE(input_op + (previous ? " set" : " clear"));
+            tags.setVal(previous ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+            manager.tag_cells(0, tags, 0.0_rt, 0);
+            expect_tag_predicate(
+                tags, mesh().Geom(0).Domain(), [=](const amrex::IntVect& cell) {
+                    const bool current = cell[0] % 2 == 0;
+                    if (op == "and") {
+                        return previous && current;
+                    }
+                    if (op == "and_not") {
+                        return previous && !current;
+                    }
+                    if (op == "or_not") {
+                        return previous || !current;
+                    }
+                    return previous || current;
+                });
+        }
+    }
+}
 
-    {
+TEST_F(NestRefineTest, manager_preserves_order_and_clears_scratch)
+{
+    setup_refinement_inputs();
+    create_mesh_instance<RefineMesh>();
+    initialize_mesh();
+    amrex::TagBoxArray tags(mesh().boxArray(0), mesh().DistributionMap(0));
+    amrex::ParmParse pp_even("tagging.even");
+    pp_even.add("type", std::string("DummyOperatorRefinement"));
+    pp_even.add("operator", std::string("or"));
+    pp_even.add("parity", 0);
+    amrex::ParmParse pp_odd("tagging.odd");
+    pp_odd.add("type", std::string("DummyOperatorRefinement"));
+    pp_odd.add("operator", std::string("and"));
+    pp_odd.add("parity", 1);
+
+    for (const bool reverse : {false, true}) {
+        SCOPED_TRACE(reverse ? "odd then even" : "even then odd");
         amrex::ParmParse pp("tagging");
-        amrex::Vector<std::string> labels{
-            {"t_and", "t_or", "t_and_not", "t_or_not"}};
-        pp.addarr("labels", labels);
+        pp.addarr(
+            "labels", reverse ? amrex::Vector<std::string>{"odd", "even"}
+                              : amrex::Vector<std::string>{"even", "odd"});
+        kynema_sgf::RefineCriteriaManager manager(sim());
+        manager.initialize();
+        tags.setVal(amrex::TagBox::CLEAR);
+        manager.tag_cells(0, tags, 0.0_rt, 0);
+        expect_tag_predicate(
+            tags, mesh().Geom(0).Domain(), [=](const amrex::IntVect& cell) {
+                return reverse && cell[0] % 2 == 0;
+            });
     }
-    {
-        amrex::ParmParse pp("tagging.t_and");
-        pp.add("type", (std::string) "DummyOperatorRefinement");
-        pp.add("operator", (std::string) "and");
-    }
-    {
-        amrex::ParmParse pp("tagging.t_or");
-        pp.add("type", (std::string) "DummyOperatorRefinement");
-        pp.add("operator", (std::string) "OR");
-    }
-    {
-        amrex::ParmParse pp("tagging.t_and_not");
-        pp.add("type", (std::string) "DummyOperatorRefinement");
-        pp.add("operator", (std::string) "and_not");
-    }
-    {
-        amrex::ParmParse pp("tagging.t_or_not");
-        pp.add("type", (std::string) "DummyOperatorRefinement");
-        pp.add("operator", (std::string) "Or_Not");
+}
+
+TEST_F(NestRefineTest, manager_distinguishes_inactive_and_empty)
+{
+    setup_refinement_inputs();
+    create_mesh_instance<RefineMesh>();
+    initialize_mesh();
+    amrex::TagBoxArray tags(mesh().boxArray(0), mesh().DistributionMap(0));
+    amrex::ParmParse pp_tagging("tagging");
+    pp_tagging.addarr("labels", amrex::Vector<std::string>{"empty"});
+    amrex::ParmParse pp("tagging.empty");
+    pp.add("type", std::string("DummyOperatorRefinement"));
+    pp.add("parity", -1);
+
+    for (const std::string op : {"and", "or_not"}) {
+        pp.add("operator", op);
+        for (const bool active : {false, true}) {
+            SCOPED_TRACE(op + (active ? " active" : " inactive"));
+            pp.add("max_level", active ? 0 : -1);
+            kynema_sgf::RefineCriteriaManager manager(sim());
+            manager.initialize();
+            const bool previous = op == "and";
+            tags.setVal(previous ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+            manager.tag_cells(0, tags, 0.0_rt, 0);
+            expect_tag_predicate(
+                tags, mesh().Geom(0).Domain(), [=](const amrex::IntVect&) {
+                    return active ? !previous : previous;
+                });
+        }
     }
 
+    pp_tagging.addarr("labels", amrex::Vector<std::string>{});
     kynema_sgf::RefineCriteriaManager manager(sim());
     manager.initialize();
+    tags.setVal(amrex::TagBox::SET);
+    manager.tag_cells(0, tags, 0.0_rt, 0);
+    expect_tag_predicate(
+        tags, mesh().Geom(0).Domain(),
+        [](const amrex::IntVect&) { return true; });
+}
 
-    const auto& ops = DummyOperatorRefinement::seen_ops();
-    ASSERT_EQ(ops.size(), 4U);
-    EXPECT_EQ(ops[0], kynema_sgf::tagging::TaggingOperator::AND);
-    EXPECT_EQ(ops[1], kynema_sgf::tagging::TaggingOperator::OR);
-    EXPECT_EQ(ops[2], kynema_sgf::tagging::TaggingOperator::AND_NOT);
-    EXPECT_EQ(ops[3], kynema_sgf::tagging::TaggingOperator::OR_NOT);
+TEST_F(NestRefineTest, manager_combines_geometry_union_once)
+{
+    setup_refinement_inputs();
+    create_mesh_instance<RefineMesh>();
+    initialize_mesh();
+    sim().repo().declare_field("tagging_test", 1, 0);
+    amrex::TagBoxArray tags(mesh().boxArray(0), mesh().DistributionMap(0));
+    amrex::ParmParse pp_tagging("tagging");
+    pp_tagging.addarr("labels", amrex::Vector<std::string>{"geometry"});
+    amrex::ParmParse pp("tagging.geometry");
+    pp.add("type", std::string("GeometryRefinement"));
+    pp.addarr("shapes", amrex::Vector<std::string>{"left", "right"});
+    pp.add("max_level", 0);
+    for (const std::string shape : {"left", "right"}) {
+        amrex::ParmParse pp_shape("tagging.geometry." + shape);
+        pp_shape.add("type", std::string("cylinder"));
+        const bool left = shape == "left";
+        pp_shape.addarr(
+            "start", amrex::Vector<amrex::Real>{
+                         left ? -15.0_rt : -5.0_rt, 0.0_rt, 15.0_rt});
+        pp_shape.addarr(
+            "end", amrex::Vector<amrex::Real>{
+                       left ? 5.0_rt : 15.0_rt, 0.0_rt, 15.0_rt});
+        pp_shape.add("outer_radius", 10.0_rt);
+    }
+    const auto& geom = mesh().Geom(0);
+    const auto problo = geom.ProbLoArray();
+    const auto dx = geom.CellSizeArray();
+    for (const std::string op : {"and", "and_not", "or_not"}) {
+        pp.add("operator", op);
+        kynema_sgf::RefineCriteriaManager manager(sim());
+        manager.initialize();
+        const bool previous = op != "or_not";
+        tags.setVal(previous ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+        manager.tag_cells(0, tags, 0.0_rt, 0);
+        expect_tag_predicate(
+            tags, geom.Domain(), [=](const amrex::IntVect& cell) {
+                const auto xpos = problo[0] + (cell[0] + 0.5_rt) * dx[0];
+                const auto ypos = problo[1] + (cell[1] + 0.5_rt) * dx[1];
+                const auto zpos =
+                    problo[2] + (cell[2] + 0.5_rt) * dx[2] - 15.0_rt;
+                const bool inside = xpos >= -15.0_rt && xpos <= 15.0_rt &&
+                                    ypos * ypos + zpos * zpos <= 100.0_rt;
+                return op == "and" ? inside : !inside;
+            });
+    }
+}
+
+TEST_F(NestRefineTest, manager_combines_field_and_gradient_union_once)
+{
+    setup_refinement_inputs();
+    create_mesh_instance<RefineMesh>();
+    initialize_mesh();
+    auto& field = sim().repo().declare_int_field("indicator", 1, 1);
+    field.setVal(1);
+    amrex::TagBoxArray tags(mesh().boxArray(0), mesh().DistributionMap(0));
+    amrex::ParmParse pp_tagging("tagging");
+    pp_tagging.addarr("labels", amrex::Vector<std::string>{"field"});
+    amrex::ParmParse pp("tagging.field");
+    pp.add("type", std::string("FieldRefinement"));
+    pp.add("field_name", std::string("indicator"));
+    pp.addarr("field_error", amrex::Vector<amrex::Real>{0.5_rt});
+    pp.addarr("grad_error", amrex::Vector<amrex::Real>{1.0_rt});
+    for (const std::string op : {"and", "or_not"}) {
+        pp.add("operator", op);
+        kynema_sgf::RefineCriteriaManager manager(sim());
+        manager.initialize();
+        const bool previous = op == "and";
+        tags.setVal(previous ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+        manager.tag_cells(0, tags, 0.0_rt, 0);
+        expect_tag_predicate(
+            tags, mesh().Geom(0).Domain(),
+            [=](const amrex::IntVect&) { return previous; });
+        manager.tag_cells(1, tags, 0.0_rt, 0);
+        expect_tag_predicate(
+            tags, mesh().Geom(0).Domain(),
+            [=](const amrex::IntVect&) { return previous; });
+    }
 }
 
 } // namespace kynema_sgf_tests

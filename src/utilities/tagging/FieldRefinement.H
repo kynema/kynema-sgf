@@ -38,6 +38,11 @@ public:
     //! Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
 
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level <= m_max_lev_field || level <= m_max_lev_grad;
+    }
+
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
         override;
@@ -51,7 +56,6 @@ public:
         const auto& prob_lo = geom.ProbLoArray();
         const auto& dx = geom.CellSizeArray();
         const auto tagging_box = m_tagging_box;
-        const auto op = tag_operator();
 
         const auto& tag_arrs = tags.arrays();
         const auto& farrs = mfab.const_arrays();
@@ -69,11 +73,9 @@ public:
                         (tagging_box.contains(coord))) {
                         current_tag = true;
                     }
-                    const auto previous_tag =
-                        (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
-
-                    tag_arrs[nbx](i, j, k) =
-                        tagging::tag_val(previous_tag, current_tag, op);
+                    if (current_tag) {
+                        tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                    }
                 });
         }
 
@@ -107,10 +109,9 @@ public:
                         current_tag = true;
                     }
 
-                    const auto previous_tag =
-                        (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
-                    tag_arrs[nbx](i, j, k) =
-                        tagging::tag_val(previous_tag, current_tag, op);
+                    if (current_tag) {
+                        tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+                    }
                 });
         }
     }
