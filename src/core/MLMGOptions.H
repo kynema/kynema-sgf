@@ -74,6 +74,16 @@ private:
 
     // MLMG options
 
+    //! Prefix of the last parsed namespace, used in error messages
+    std::string m_prefix;
+
+    //! Prefix that set multigrid_type, used in error messages
+    std::string m_multigrid_type_prefix;
+
+    //! How MLMG solves AMR level 0: geometric, algebraic, or hybrid
+    amrex::MLMG::MultigridType m_multigrid_type{
+        amrex::MLMG::MultigridType::geometric};
+
     //! Bottom solver type bicgstab, cg, hypre, etc.
     std::string m_bottom_solver_type{"bicgstab"};
 
@@ -100,6 +110,9 @@ private:
     amrex::Real m_bottom_abs_tol{
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt};
 #endif
+
+    //! True if the user set bottom_atol in any parsed namespace
+    bool m_bottom_abs_tol_set{false};
 
     /** Verbosity of the MLMG and Projector interfaces
      */
