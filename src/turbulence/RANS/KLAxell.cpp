@@ -45,6 +45,8 @@ KLAxell<Transport>::KLAxell(CFDSim& sim)
     // TKE source term to be added to PDE
     turb_utils::inject_turbulence_src_terms(
         pde::TKE::pde_name(), {"KransAxell"});
+
+    m_canopy = forestdrag::parse_canopy_turbulence();
 }
 
 template <typename Transport>
@@ -288,6 +290,20 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                     shear_prod_arrs[nbx](i, j, k) *=
                         shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
                 });
+        }
+
+        // Canopy drag length limit, l <= alpha / (C_d LAD)
+        if (m_canopy.m_enabled && m_canopy.m_length_alpha > 0.0_rt) {
+            if (!this->m_sim.repo().field_exists("forest_drag")) {
+                amrex::Abort(
+                    "KLAxell: ForestDrag.canopy_tke needs ForestDrag in "
+                    "incflo.physics");
+            }
+            forestdrag::limit_canopy_length_scale(
+                this->m_sim.repo().get_field("forest_drag")(lev),
+                m_canopy.m_length_alpha, (this->m_turb_lscale)(lev),
+                mu_turb(lev), (this->m_shear_prod)(lev),
+                (this->m_buoy_prod)(lev));
         }
     }
     amrex::Gpu::streamSynchronize();

@@ -81,6 +81,8 @@ KransAxell::KransAxell(const CFDSim& sim)
     if (m_sponge_north) {
         pp_drag.get("sponge_distance_north", m_sponge_distance_north);
     }
+
+    m_canopy = forestdrag::parse_canopy_turbulence();
 }
 
 KransAxell::~KransAxell() = default;
@@ -329,6 +331,19 @@ void KransAxell::operator()(
                     src_arrs[nbx](i, j, k, 0) -= sponge_forcing;
                 });
         }
+    }
+
+    // Wake production and short-circuit dissipation in the forest canopy
+    if (m_canopy.m_enabled) {
+        if (!m_sim.repo().field_exists("forest_drag")) {
+            amrex::Abort(
+                "KransAxell: ForestDrag.canopy_tke needs ForestDrag in "
+                "incflo.physics");
+        }
+        forestdrag::add_canopy_tke_source(
+            src_term, m_sim.repo().get_field("forest_drag")(lev),
+            m_velocity.state(field_impl::dof_state(fstate))(lev), m_tke(lev),
+            m_canopy.m_beta_p, m_canopy.m_beta_d, dt);
     }
     amrex::Gpu::streamSynchronize();
 }

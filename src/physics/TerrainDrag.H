@@ -36,6 +36,10 @@ public:
 
     void convert_waves_to_terrain_fields();
 
+    //! True when the terrain is built from the OceanWaves fields
+    //! (single-phase waves) instead of the terrain file
+    [[nodiscard]] bool terrain_is_waves() const { return m_terrain_is_waves; }
+
     [[nodiscard]] std::string wave_velocity_field_name() const
     {
         return m_wave_velocity_name;

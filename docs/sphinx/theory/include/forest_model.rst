@@ -87,3 +87,85 @@ The point-cloud model is useful when remote-sensing products or preprocessed can
 individual forest patches. Compared with the simplified uniform or analytical vertical-profile models, this approach allows the drag field
 to vary in all three spatial directions while still using a compact set of scattered sample points.
 
+Canopy turbulence
+~~~~~~~~~~~~~~~~~
+
+The canopy drag removes mean kinetic energy from the flow. Part of it becomes
+turbulence in the wakes of leaves and branches at scales much smaller than the
+mesh, which then dissipates quickly (the spectral short cut). With the
+one-equation ``KLAxell`` model, ``ForestDrag.canopy_tke = true`` adds these
+effects to the ``KransAxell`` TKE source,
+
+.. math::
+
+   S_k = C_d L \left( \beta_p |U|^3 - \beta_d |U| k \right),
+
+where :math:`C_d L` is the ``forest_drag`` field, :math:`\beta_p` is the
+fraction of the drag work converted to TKE (``ForestDrag.canopy_beta_p``,
+default 1) and :math:`\beta_d` sets the short-circuit dissipation
+(``ForestDrag.canopy_beta_d``, default 4, following
+:cite:t:`green:1992`, :cite:t:`liu-etal:1996` and :cite:t:`sanz:2003`). The sink is a relaxation of :math:`k` at
+the rate :math:`c = \beta_d C_d L |U|`. It is integrated exactly over a time
+step,
+
+.. math::
+
+   S_{k,\mathrm{sink}} = -k \, \frac{1 - e^{-c \Delta t}}{\Delta t},
+
+which tends to :math:`-c \, k` for :math:`c \Delta t \ll 1` and never
+removes more than the local :math:`k` in one step, so a dense canopy cannot
+drive :math:`k` negative.
+
+Inside a dense canopy the eddies are limited by the foliage rather than by
+the distance to the ground. ``KLAxell`` computes its length scale
+:math:`l = \lambda \kappa z / (\lambda + \kappa z)` from the height above the
+terrain, which overestimates the mixing near the canopy top. With
+``ForestDrag.canopy_tke = true`` the length scale is limited by the canopy
+drag length :math:`L_c = 1 / (C_d L)`,
+
+.. math::
+
+   l \leftarrow \min \left( l, \ \alpha L_c \right)
+   \qquad \text{where } C_d L > 0,
+
+where :math:`\alpha` is ``ForestDrag.canopy_length_alpha``. :cite:t:`harman-finnigan:2007`
+give the mixing length in the canopy as
+:math:`l = 2 \beta^3 L_c` with :math:`\beta = u_* / U_h` the ratio of the
+friction velocity to the wind speed at the canopy top, so
+:math:`\alpha = 2 \beta^3`. The default :math:`\alpha = 0.04`
+(:math:`\beta \approx 0.27`) was chosen from a sweep of
+:math:`\alpha` = 0.02 to 0.07 in a one-dimensional analogue of the
+:cite:t:`shaw-schumann:1992` large-eddy simulation (canopy depth ratio, drag
+coefficient and leaf area density profiles of their LAI = 2 and 5 cases):
+it gave the smallest combined error in the mean wind and momentum flux
+profiles for both canopies, and the runs settle at
+:math:`\beta = u_*/U_h` of 0.25 to 0.27, consistent with
+:math:`2 \beta^3 \approx 0.04`. The typical :math:`\beta = 0.3` would give
+0.054, which leaves the wind in a sparse canopy too strong. The eddy viscosity, the shear production and the
+buoyancy production of ``KLAxell`` are proportional to :math:`l` and are
+rescaled with it; the dissipation :math:`C_\mu^3 k^{3/2} / l` of the
+``KransAxell`` source uses the limited :math:`l`. Cells without forest drag
+are not changed.
+
+The canopy terms are off by default and are independent of the momentum drag:
+with ``ForestDrag.canopy_tke = false`` the forest only acts through
+``ForestForcing``, as before.
+
+Roughness representation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+When the canopy is not resolved by the mesh, ``ForestDrag.model = roughness``
+replaces the canopy drag by a roughness length in the footprint of each forest.
+The terrain wall model then applies the log law in the first cell above the
+ground,
+
+.. math::
+
+   u_* = \frac{\kappa \, U_1}{\ln \left( z_1 / z_0 \right) - \psi_m},
+
+with the forest :math:`z_0` given directly or as a fraction of the tree
+height, :math:`z_0 = c \, h`. A typical value is :math:`c \approx 0.1`. The
+flow sees the forest as a rough surface at the ground: no displacement height
+:math:`d` is applied, so the mean profile above a tall canopy is the log law
+:math:`\ln(z/z_0)` rather than :math:`\ln((z-d)/z_0)`.
+
