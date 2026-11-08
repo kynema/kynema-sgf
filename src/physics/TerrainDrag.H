@@ -66,7 +66,7 @@ private:
     amrex::Real m_uniform_z0{0.1_rt};
     Field& m_terrainz0;
     Field& m_terrain_height;
-    Field& m_terrain_damping;
+    Field* m_terrain_damping{nullptr};
 
     //! Lateral Damping - X
     amrex::Real m_damp_east_slope{0.0_rt};

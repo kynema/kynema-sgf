@@ -30,6 +30,12 @@ Section: Temperature Sources
    the time step size.
 
 
+When ``DampingLayerSource`` is included in
+:input_param:`temperature.source_terms`, configure it using
+``DampingLayer.temperature.<boundary>.*`` parameters documented in
+:ref:`inputs_damping_layer`.
+
+
 The following list of inputs are used with the `Temperature.source_terms = PerturbationForcing` option to add perturbation to the 
 temperature field to generate flow structures for LES when the inflow data is coarse or uniform flow condition. Not 
 recommended for use with RANS models. 
