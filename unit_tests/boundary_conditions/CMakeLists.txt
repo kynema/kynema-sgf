@@ -3,5 +3,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_log_law.cpp
   test_mosd.cpp
   test_flather.cpp
+  test_mass_inflow_outflow.cpp
+  test_bc_interface.cpp
   test_ghost_layer_fill.cpp
   )

@@ -70,6 +70,8 @@ public:
         return {*this, scomp, ncomp};
     }
 
+    //! Fill ghosts, using additional coarse levels when two-level nesting
+    //! cannot guarantee all interpolation donors are valid.
     void fillpatch(amrex::Real time);
     void fillpatch(amrex::Real time, const amrex::IntVect& ng);
 

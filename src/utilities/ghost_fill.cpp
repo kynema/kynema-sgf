@@ -1,9 +1,145 @@
 #include "src/utilities/index_operations.H"
 #include "AMReX_PhysBCFunct.H"
+#include "AMReX_Interpolater.H"
 
 namespace kynema_sgf::utils {
 
 using namespace amrex::literals;
+
+amrex::FArrayBox interpolate_boundary_plane(
+    const amrex::FArrayBox& coarse,
+    const amrex::FArrayBox& fine,
+    const amrex::Orientation ori,
+    amrex::IntVect ratio,
+    const amrex::Geometry& coarse_geom,
+    const amrex::Geometry& fine_geom,
+    const int nghost)
+{
+    const int dir = ori.coordDir();
+    AMREX_ALWAYS_ASSERT(coarse.nComp() == fine.nComp());
+    AMREX_ALWAYS_ASSERT(coarse.box().length(dir) == 1);
+    AMREX_ALWAYS_ASSERT(fine.box().length(dir) == 1);
+    auto region = fine.box();
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        if (d != dir) {
+            region.grow(d, nghost);
+            if (!fine_geom.isPeriodic(d)) {
+                region.setSmall(
+                    d, amrex::max(
+                           region.smallEnd(d), fine_geom.Domain().smallEnd(d)));
+                region.setBig(
+                    d,
+                    amrex::min(region.bigEnd(d), fine_geom.Domain().bigEnd(d)));
+            }
+        }
+    }
+    amrex::FArrayBox completed(region, fine.nComp());
+    if (region == fine.box()) {
+        completed.copy<amrex::RunOn::Device>(fine);
+        return completed;
+    }
+
+    // Interpolate only transversely: the plane normal is a single cell at
+    // index zero on both levels, including for high-side boundary planes.
+    ratio[dir] = 1;
+    auto flat_region = region;
+    flat_region.setRange(dir, 0, 1);
+    const auto stencil = amrex::cell_cons_interp.CoarseBox(flat_region, ratio);
+    auto domain = coarse_geom.Domain();
+    domain.setRange(dir, 0, 1);
+    auto required = stencil & domain;
+    required.setRange(dir, coarse.box().smallEnd(dir), 1);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        coarse.box().contains(required),
+        "BoundaryPlane: coarse plane does not cover the fine interpolation "
+        "stencil");
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        if (d != dir && coarse_geom.isPeriodic(d) &&
+            (stencil.smallEnd(d) < domain.smallEnd(d) ||
+             stencil.bigEnd(d) > domain.bigEnd(d))) {
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                coarse.box().smallEnd(d) <= domain.smallEnd(d) &&
+                    coarse.box().bigEnd(d) >= domain.bigEnd(d),
+                "BoundaryPlane: coarse plane does not cover a periodic "
+                "interpolation stencil");
+        }
+    }
+    amrex::FArrayBox source(stencil, coarse.nComp());
+    const auto src = source.array();
+    const auto data = coarse.const_array();
+    const auto lo = domain.smallEnd();
+    const auto hi = domain.bigEnd();
+    const auto periodic = coarse_geom.isPeriodicArray();
+    const int normal = coarse.box().smallEnd(dir);
+    amrex::ParallelFor(
+        stencil, coarse.nComp(),
+        [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+            amrex::IntVect sample(i, j, k);
+            for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                if (d == dir) {
+                    sample[d] = normal;
+                } else if (periodic[d] == 1) {
+                    const int length = hi[d] - lo[d] + 1;
+                    sample[d] =
+                        lo[d] +
+                        ((((sample[d] - lo[d]) % length) + length) % length);
+                } else {
+                    sample[d] = amrex::min(hi[d], amrex::max(lo[d], sample[d]));
+                }
+            }
+            src(i, j, k, n) = data(sample, n);
+        });
+    auto flat_coarse_geom = coarse_geom;
+    flat_coarse_geom.Domain(domain);
+    auto flat_fine_geom = fine_geom;
+    auto fine_domain = fine_geom.Domain();
+    fine_domain.setRange(dir, 0, 1);
+    flat_fine_geom.Domain(fine_domain);
+    amrex::Vector<amrex::BCRec> bcrec(fine.nComp());
+    for (auto& bc : bcrec) {
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            const int type = periodic[d] == 1 || d == dir
+                                 ? amrex::BCType::int_dir
+                                 : amrex::BCType::foextrap;
+            bc.setLo(d, type);
+            bc.setHi(d, type);
+        }
+    }
+    amrex::FArrayBox interpolated(flat_region, fine.nComp());
+    amrex::cell_cons_interp.interp(
+        source, 0, interpolated, 0, fine.nComp(), flat_region, ratio,
+        flat_coarse_geom, flat_fine_geom, bcrec, 0, 0, amrex::RunOn::Device);
+    const auto out = completed.array();
+    const auto values = interpolated.const_array();
+    amrex::ParallelFor(
+        region, fine.nComp(), [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+            amrex::IntVect sample(i, j, k);
+            sample[dir] = 0;
+            out(i, j, k, n) = values(sample, n);
+        });
+    const auto recorded = fine.const_array();
+    const auto recorded_box = fine.box();
+    const auto fine_lo = fine_domain.smallEnd();
+    const auto fine_hi = fine_domain.bigEnd();
+    amrex::ParallelFor(
+        region, fine.nComp(), [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
+            amrex::IntVect sample(i, j, k);
+            for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                if (d != dir && periodic[d] == 1) {
+                    const int length = fine_hi[d] - fine_lo[d] + 1;
+                    sample[d] =
+                        fine_lo[d] +
+                        ((((sample[d] - fine_lo[d]) % length) + length) %
+                         length);
+                }
+            }
+            if (recorded_box.contains(sample)) {
+                out(i, j, k, n) = recorded(sample, n);
+            }
+        });
+    amrex::Gpu::streamSynchronize();
+    return completed;
+}
 
 void fill_transverse_ghosts(
     amrex::MultiFab& mfab,
@@ -70,7 +206,7 @@ void fill_transverse_ghosts(
                     continue;
                 }
                 if (box.smallEnd(d) == domain.smallEnd(d)) {
-                    box.growLo(d, transverse_ng[d]);
+                    box.growLo(d, ng[d]);
                 }
                 if (box.bigEnd(d) == domain.bigEnd(d)) {
                     box.growHi(d, transverse_ng[d]);
@@ -120,9 +256,18 @@ void fill_transverse_ghosts(
     }
     amrex::GpuBndryFuncFab<amrex::FabFillNoOp> boundary_fill;
     for (amrex::MFIter mfi(slab); mfi.isValid(); ++mfi) {
+        auto box = slab[mfi].box();
+        // Extra transverse MAC nodes exist only on the high side. The unused
+        // low-side scratch cells have no field data and must not be
+        // extrapolated.
+        for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+            if (d != dir) {
+                box.growLo(d, -mfab.ixType().toIntVect()[d]);
+            }
+        }
         boundary_fill(
-            slab[mfi].box(), slab[mfi], 0, ncomp, extended_geom, 0.0_rt,
-            transverse_bc, 0, 0);
+            box, slab[mfi], 0, ncomp, extended_geom, 0.0_rt, transverse_bc, 0,
+            0);
     }
 
     amrex::MultiFab donors(

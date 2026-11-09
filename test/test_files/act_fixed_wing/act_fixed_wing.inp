@@ -44,7 +44,7 @@ Actuator.FixedWingLine.airfoil_table = DU21_A17.txt
 Actuator.FixedWingLine.airfoil_type = openfast
 Actuator.F1.start = 0.0 -4.0 0.0
 Actuator.F1.end = 0.0 4.0 0.0
-Actuator.F1.output_frequency = 10
+Actuator.F1.output_interval = 10
 
 ICNS.source_terms = ActuatorForcing
 

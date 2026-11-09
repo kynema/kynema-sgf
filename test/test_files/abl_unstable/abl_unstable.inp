@@ -48,7 +48,7 @@ ABL.kappa = .41
 ABL.surface_roughness_z0 = 0.01
 ABL.surface_temp_flux = 0.005
 ABL.normal_direction = 2
-ABL.stats_output_frequency = 100
+ABL.stats_output_interval = 100
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #        ADAPTIVE MESH REFINEMENT       #

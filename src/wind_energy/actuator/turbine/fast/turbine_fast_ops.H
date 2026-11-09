@@ -3,6 +3,7 @@
 
 #include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
 #include "src/wind_energy/actuator/turbine/external/turbine_external_ops.H"
+#include "src/utilities/io_utils.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -62,7 +63,10 @@ struct ReadInputsOp<TurbineFast, SrcTrait>
     {
         const auto& time = data.sim().time();
         // Ensure that we are using fixed timestepping scheme
-        AMREX_ALWAYS_ASSERT(!time.adaptive_timestep());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            !time.adaptive_timestep(),
+            "time.adaptive_timestep() = " +
+                std::to_string(time.adaptive_timestep()));
     }
 
     // Check other density parsing arguments against turbine air density
@@ -252,7 +256,7 @@ private:
     //! NetCDF output filename for this turbine
     std::string m_nc_filename;
 
-    //! Output frequency (specified in input file)
+    //! Output interval (specified in input file)
     int m_out_freq{10};
 
 public:
@@ -262,7 +266,8 @@ public:
 
     void read_io_options(const utils::ActParser& pp)
     {
-        pp.query("output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_out_freq);
     }
 
     void prepare_outputs(const std::string& out_dir)

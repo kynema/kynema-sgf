@@ -93,12 +93,14 @@ Section: Momentum Sources
    an input file for Body Forcing. The output file will contain the time and three vector
    components of the force.
 
-.. input_param:: ABLForcing.forcing_timetable_frequency
+.. input_param:: ABLForcing.forcing_timetable_interval
 
    **type:** Int, optional
    
-   The interval of timesteps for writing to the forcing timetable output file. The default
-   is 1, i.e., writing every step, which is also the default of the boundary plane output feature.
+   Number of time steps between writes to the forcing timetable output file.
+   The legacy input argument ``forcing_timetable_frequency`` is still accepted
+   with a warning; use ``forcing_timetable_interval`` instead. The default is
+   1, i.e., writing every step.
 
 .. input_param:: ABLForcing.forcing_timetable_start_time
 

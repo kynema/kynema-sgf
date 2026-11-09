@@ -56,7 +56,11 @@ ModulatedPowerLaw::ModulatedPowerLaw(CFDSim& sim)
     pp_abl.getarr("temperature_heights", m_theta_heights);
     pp_abl.getarr("temperature_values", m_theta_values);
 
-    AMREX_ALWAYS_ASSERT(m_theta_heights.size() == m_theta_values.size());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_theta_heights.size() == m_theta_values.size(),
+        "m_theta_heights.size() = " + std::to_string(m_theta_heights.size()) +
+            ", m_theta_values.size() = " +
+            std::to_string(m_theta_values.size()));
     int num_theta_values = static_cast<int>(m_theta_heights.size());
     m_thht_d.resize(num_theta_values);
     m_thvv_d.resize(num_theta_values);
@@ -106,6 +110,14 @@ void ModulatedPowerLaw::pre_advance_work()
 }
 
 void ModulatedPowerLaw::post_advance_work() {}
+
+bool ModulatedPowerLaw::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    return (field.name() == "velocity" || field.name() == "temperature") &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow);
+}
 
 void ModulatedPowerLaw::set_velocity(
     const int lev,

@@ -1,5 +1,6 @@
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/Flather.H"
+#include "src/core/FieldUtils.H"
 #include "src/boundary_conditions/field_boundary_fill/FillFlather.H"
 #include "src/utilities/index_operations.H"
 #include "src/utilities/constants.H"
@@ -86,7 +87,8 @@ void Flather::accumulate_boundary(
     FieldState fstate,
     bool use_mac_fields) const
 {
-    AMREX_ALWAYS_ASSERT(idir == 0 || idir == 1);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        idir == 0 || idir == 1, "idir = " + std::to_string(idir));
 
     auto& int_h = out_uvec.host_data(current_level);
     auto& dist_h = out_hvec.host_data(current_level);
@@ -127,8 +129,16 @@ void Flather::accumulate_boundary(
         const auto& src_vel =
             use_mac_fields ? ((idir == 0) ? m_u_mac : m_v_mac) : m_velocity;
         if (shift_to_boundary != 0) {
-            AMREX_ALWAYS_ASSERT(src_vel.num_grow()[idir] > 0);
-            AMREX_ALWAYS_ASSERT(m_vof.num_grow()[idir] > 0);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                src_vel.num_grow()[idir] > 0,
+                "idir = " + std::to_string(idir) +
+                    ", src_vel.num_grow()[idir] = " +
+                    std::to_string(src_vel.num_grow()[idir]));
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                m_vof.num_grow()[idir] > 0,
+                "idir = " + std::to_string(idir) +
+                    ", m_vof.num_grow()[idir] = " +
+                    std::to_string(m_vof.num_grow()[idir]));
         }
 
         const auto& vel_mf =
@@ -436,12 +446,16 @@ void Flather::set_velocity(
             }
 
             const auto& arr = mfab[mfi].array();
-            const auto& ref_arr = fld.state(fstate)(lev)[mfi].const_array();
+            const int source_idx =
+                field_impl::matching_grid_index(mfi, fld(lev));
+            const auto& ref_arr =
+                fld.state(fstate)(lev)[source_idx].const_array();
 
-            const auto vof_arr = m_vof.state(fstate)(lev).const_array(mfi);
+            const auto vof_arr =
+                m_vof.state(fstate)(lev).const_array(source_idx);
             const bool use_terrain = (m_terrain_blank != nullptr);
             const auto terrain_blank_arr =
-                use_terrain ? (*m_terrain_blank)(lev).const_array(mfi)
+                use_terrain ? (*m_terrain_blank)(lev).const_array(source_idx)
                             : amrex::Array4<int const>();
 
             amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
