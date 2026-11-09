@@ -94,6 +94,18 @@ void incflo::ReadCheckpointFile()
         amrex::ParmParse pp("geometry");
         pp.getarr("prob_lo", prob_lo_input);
         pp.getarr("prob_hi", prob_hi_input);
+
+        for (int idir = 0; idir < AMREX_SPACEDIM; ++idir) {
+            std::string strdir = (idir == 0 ? "x" : (idir == 1 ? "y" : "z"));
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                prob_hi_input[idir] >
+                    prob_lo_input[idir] +
+                        std::numeric_limits<amrex::Real>::epsilon(),
+                "in the " + strdir + " direction, prob_hi (" +
+                    std::to_string(prob_hi_input[idir]) +
+                    ") is not greater than prob_lo (" +
+                    std::to_string(prob_lo_input[idir]) + ").");
+        }
     }
 
     amrex::Vector<int> n_cell_input(AMREX_SPACEDIM);

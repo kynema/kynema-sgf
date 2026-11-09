@@ -3,6 +3,7 @@
 #include "src/utilities/io_utils.H"
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/utilities/index_operations.H"
+#include "src/utilities/constants.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
@@ -32,9 +33,17 @@ void FreeSurfaceSampler::initialize(const std::string& key)
         if (m_use_linear) {
             pp.get("linear_interp_extent_from_xhi", m_lx_linear);
         }
-        AMREX_ALWAYS_ASSERT(static_cast<int>(m_start.size()) == AMREX_SPACEDIM);
-        AMREX_ALWAYS_ASSERT(static_cast<int>(m_end.size()) == AMREX_SPACEDIM);
-        AMREX_ALWAYS_ASSERT(static_cast<int>(m_npts_dir.size()) == 2);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            static_cast<int>(m_start.size()) == AMREX_SPACEDIM,
+            "m_start.size() = " + std::to_string(m_start.size()) +
+                ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            static_cast<int>(m_end.size()) == AMREX_SPACEDIM,
+            "m_end.size() = " + std::to_string(m_end.size()) +
+                ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            static_cast<int>(m_npts_dir.size()) == 2,
+            "m_npts_dir.size() = " + std::to_string(m_npts_dir.size()));
         check_bounds();
 
         if (m_vof_str != "vof" && m_vof_str != "ow_vof") {
@@ -385,19 +394,29 @@ void FreeSurfaceSampler::check_bounds()
 
 void FreeSurfaceSampler::sampling_locations(SampleLocType& sample_locs) const
 {
-    AMREX_ALWAYS_ASSERT(sample_locs.locations().empty());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        sample_locs.locations().empty(),
+        "sample_locs.locations().size() = " +
+            std::to_string(sample_locs.locations().size()));
 
     const int lev = 0;
     const auto domain = m_sim.mesh().Geom(lev).Domain();
     sampling_locations(sample_locs, domain);
 
-    AMREX_ALWAYS_ASSERT(sample_locs.locations().size() == num_points());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        sample_locs.locations().size() == num_points(),
+        "sample_locs.locations().size() = " +
+            std::to_string(sample_locs.locations().size()) +
+            ", num_points() = " + std::to_string(num_points()));
 }
 
 void FreeSurfaceSampler::sampling_locations(
     SampleLocType& sample_locs, const amrex::Box& box) const
 {
-    AMREX_ALWAYS_ASSERT(sample_locs.locations().empty());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        sample_locs.locations().empty(),
+        "sample_locs.locations().size() = " +
+            std::to_string(sample_locs.locations().size()));
 
     int idx = 0;
     const int lev = 0;
@@ -520,23 +539,13 @@ bool FreeSurfaceSampler::update_sampling_locations()
                                 const bool single_phase_below_interface =
                                     (ni % 2 == 0 &&
                                      vof_arr(i, j, k) >=
-                                         1.0_rt - (std::numeric_limits<
-                                                       amrex::Real>::epsilon() *
-                                                   1.0e4_rt)) ||
+                                         1.0_rt - constants::VOF_TOL) ||
                                     (ni % 2 != 0 &&
-                                     vof_arr(i, j, k) <=
-                                         std::numeric_limits<
-                                             amrex::Real>::epsilon() *
-                                             1.0e4_rt);
+                                     vof_arr(i, j, k) <= constants::VOF_TOL);
                                 const bool multiphase =
                                     vof_arr(i, j, k) <
-                                        (1.0_rt - (std::numeric_limits<
-                                                       amrex::Real>::epsilon() *
-                                                   1.0e4_rt)) &&
-                                    vof_arr(i, j, k) >
-                                        std::numeric_limits<
-                                            amrex::Real>::epsilon() *
-                                            1.0e4_rt;
+                                        (1.0_rt - constants::VOF_TOL) &&
+                                    vof_arr(i, j, k) > constants::VOF_TOL;
                                 const bool use_linear_interp =
                                     (has_overset && ibl_arr(i, j, k) == -1) ||
                                     linear_on;

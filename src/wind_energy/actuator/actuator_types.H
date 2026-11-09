@@ -97,6 +97,16 @@ using TensorSlice = ::kynema_sgf::utils::Slice<kynema_sgf::vs::Tensor>;
 using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
 using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
 
+/** Rotor geometry exposed to actuator-following mesh refinement. */
+struct ActuatorRefinementGeometry
+{
+    std::string label;
+    vs::Vector center{vs::Vector::zero()};
+    vs::Vector normal{vs::Vector::khat()};
+    amrex::Real rotor_radius{0.0_rt};
+    amrex::Real epsilon_max{0.0_rt};
+};
+
 /** Actuator data at each node for an actuator component.
  *
  *  \ingroup actuator

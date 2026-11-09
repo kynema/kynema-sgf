@@ -1,5 +1,6 @@
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/core/FieldUtils.H"
 #include "src/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
@@ -72,9 +73,9 @@ vof_matches(const phase condition, const amrex::Real vof)
 {
     switch (condition) {
     case phase::liquid:
-        return vof > constants::TIGHT_TOL;
+        return vof > constants::VOF_TOL;
     case phase::gas:
-        return vof < (1.0_rt - constants::TIGHT_TOL);
+        return vof < (1.0_rt - constants::VOF_TOL);
     case phase::both:
         return true;
     }
@@ -89,6 +90,7 @@ void InletData::resize(const int size)
     m_data_n.resize(size);
     m_data_np1.resize(size);
     m_data_interp.resize(size);
+    m_data_complete.resize(size);
 }
 
 void InletData::define_plane(const amrex::Orientation ori)
@@ -96,6 +98,7 @@ void InletData::define_plane(const amrex::Orientation ori)
     m_data_n[ori] = std::make_unique<PlaneVector>();
     m_data_np1[ori] = std::make_unique<PlaneVector>();
     m_data_interp[ori] = std::make_unique<PlaneVector>();
+    m_data_complete[ori].reset();
 }
 
 void InletData::define_level_data(
@@ -239,7 +242,12 @@ void InletData::read_data_native(
             "idx = " +
             std::to_string(idx) + ", idxp1 = " + std::to_string(idxp1));
     }
-    AMREX_ALWAYS_ASSERT(fld->num_comp() == bndry_n[ori].nComp());
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        fld->num_comp() == bndry_n[ori].nComp(),
+        "BoundaryPlane: field component count " +
+            std::to_string(fld->num_comp()) +
+            " does not match boundary component count " +
+            std::to_string(bndry_n[ori].nComp()));
     AMREX_ASSERT(bndry_n[ori].boxArray() == bndry_np1[ori].boxArray());
 
     const int normal = ori.coordDir();
@@ -312,6 +320,7 @@ void InletData::interpolate(const amrex::Real time)
         if (!this->is_populated(ori)) {
             continue;
         }
+        m_data_complete[ori].reset();
 
         const int lnlevels = static_cast<int>(m_data_n[ori]->size());
         for (int lev = 0; lev < lnlevels; ++lev) {
@@ -326,9 +335,45 @@ void InletData::interpolate(const amrex::Real time)
     }
 }
 
+void InletData::complete_boundary_planes(
+    const amrex::AmrCore& mesh, const int nghost)
+{
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        if (!is_populated(ori)) {
+            continue;
+        }
+        auto completed = std::make_unique<PlaneVector>();
+        const auto& planes = *m_data_interp[ori];
+        for (int lev = 0; lev < static_cast<int>(planes.size()); ++lev) {
+            if (lev == 0) {
+                completed->emplace_back(planes[lev].box(), planes[lev].nComp());
+                completed->back().copy<amrex::RunOn::Device>(planes[lev]);
+            } else {
+                completed->push_back(
+                    utils::interpolate_boundary_plane(
+                        completed->back(), planes[lev], ori,
+                        mesh.refRatio(lev - 1), mesh.Geom(lev - 1),
+                        mesh.Geom(lev), nghost));
+            }
+        }
+        m_data_complete[ori] = std::move(completed);
+    }
+}
+
+void BoundaryPlane::complete_input_planes()
+{
+    int nghost = 0;
+    for (const auto* field : m_fields) {
+        nghost = amrex::max(nghost, field->num_grow().max());
+    }
+    m_in_data.complete_boundary_planes(m_mesh, nghost);
+}
+
 bool InletData::is_populated(amrex::Orientation ori) const
 {
-    return m_data_n[ori] != nullptr;
+    return static_cast<amrex::Long>(ori) < m_data_n.size() &&
+           m_data_n[ori] != nullptr;
 }
 
 BoundaryPlane::BoundaryPlane(CFDSim& sim)
@@ -493,6 +538,23 @@ void BoundaryPlane::pre_advance_inner_calls() { read_file(true); }
 void BoundaryPlane::pre_predictor_work() { read_file(false); }
 
 void BoundaryPlane::post_advance_work() { write_file(); }
+
+bool BoundaryPlane::provides_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    return may_provide_inflow_values(field, ori) && m_in_data.is_populated(ori);
+}
+
+bool BoundaryPlane::may_provide_inflow_values(
+    const Field& field, const amrex::Orientation ori) const
+{
+    const auto bct = field.bc_type()[ori];
+    return m_io_mode == io_mode::input &&
+           (bct == BC::mass_inflow || bct == BC::mass_inflow_outflow) &&
+           std::ranges::find(m_var_names, field.name()) != m_var_names.end() &&
+           (m_phase == phase::both || field.name() == "density" ||
+            field.name() == "vof");
+}
 
 void BoundaryPlane::initialize_data()
 {
@@ -932,13 +994,37 @@ void BoundaryPlane::read_header()
 
                 amrex::Vector<amrex::Real> nc_dat{0, 0};
                 lev_grp.var("lengths").get(nc_dat.data());
-                AMREX_ALWAYS_ASSERT(nc_dat == lengths);
+                AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                    nc_dat == lengths, "BoundaryPlane: netCDF lengths are [" +
+                                           std::to_string(nc_dat[0]) + ", " +
+                                           std::to_string(nc_dat[1]) +
+                                           "] but expected [" +
+                                           std::to_string(lengths[0]) + ", " +
+                                           std::to_string(lengths[1]) + "]");
                 lev_grp.var("lo").get(nc_dat.data());
-                AMREX_ALWAYS_ASSERT(nc_dat == los);
+                AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                    nc_dat == los, "BoundaryPlane: netCDF lower bounds are [" +
+                                       std::to_string(nc_dat[0]) + ", " +
+                                       std::to_string(nc_dat[1]) +
+                                       "] but expected [" +
+                                       std::to_string(los[0]) + ", " +
+                                       std::to_string(los[1]) + "]");
                 lev_grp.var("hi").get(nc_dat.data());
-                AMREX_ALWAYS_ASSERT(nc_dat == his);
+                AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                    nc_dat == his, "BoundaryPlane: netCDF upper bounds are [" +
+                                       std::to_string(nc_dat[0]) + ", " +
+                                       std::to_string(nc_dat[1]) +
+                                       "] but expected [" +
+                                       std::to_string(his[0]) + ", " +
+                                       std::to_string(his[1]) + "]");
                 lev_grp.var("dx").get(nc_dat.data());
-                AMREX_ALWAYS_ASSERT(nc_dat == pdx);
+                AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                    nc_dat == pdx, "BoundaryPlane: netCDF cell sizes are [" +
+                                       std::to_string(nc_dat[0]) + ", " +
+                                       std::to_string(nc_dat[1]) +
+                                       "] but expected [" +
+                                       std::to_string(pdx[0]) + ", " +
+                                       std::to_string(pdx[1]) + "]");
 
                 // Create the data structures for the input data
                 amrex::IntVect plo(lo);
@@ -1095,7 +1181,11 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
     const std::string& chkname, const Field& field) const
 {
     BL_PROFILE("kynema-sgf::BoundaryPlane::read_bndry_native_boxarrays");
-    AMREX_ALWAYS_ASSERT(m_io_mode == io_mode::input);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        m_io_mode == io_mode::input,
+        "BoundaryPlane: native boundary data can only be read in input I/O "
+        "mode; m_io_mode=" +
+            std::to_string(static_cast<int>(m_io_mode)));
 
 #ifndef KYNEMA_SGF_USE_NETCDF
     if (m_out_fmt == "netcdf") {
@@ -1163,7 +1253,11 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
         int ncomp = -1;
         is >> ncomp;
         ioutils::goto_next_line(is);
-        AMREX_ALWAYS_ASSERT(ncomp == field.num_comp());
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            ncomp == field.num_comp(),
+            "BoundaryPlane: header component count " + std::to_string(ncomp) +
+                " does not match field '" + field.name() +
+                "' component count " + std::to_string(field.num_comp()));
 
         // Skip the names
         for (int nc = 0; nc < ncomp; nc++) {
@@ -1174,9 +1268,21 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
         amrex::Real time;
         is >> spacedim >> time >> finest_level;
         const int nlevels = finest_level + 1;
-        AMREX_ALWAYS_ASSERT(nlevels <= max_bndry_levels);
-        AMREX_ALWAYS_ASSERT(AMREX_SPACEDIM == spacedim);
-        AMREX_ALWAYS_ASSERT(finest_level >= 0);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            nlevels <= max_bndry_levels,
+            "BoundaryPlane: header level count " + std::to_string(nlevels) +
+                " exceeds available boundary levels " +
+                std::to_string(max_bndry_levels));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            AMREX_SPACEDIM == spacedim,
+            "BoundaryPlane: header spatial dimension " +
+                std::to_string(spacedim) + " does not match AMREX_SPACEDIM=" +
+                std::to_string(AMREX_SPACEDIM));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            finest_level >= 0,
+            "BoundaryPlane: header finest level must be nonnegative; "
+            "finest_level=" +
+                std::to_string(finest_level));
 
         amrex::Array<amrex::Real, AMREX_SPACEDIM> prob_lo{
             {AMREX_D_DECL(0., 0., 0.)}};
@@ -1194,18 +1300,34 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
 
         const int normal = ori.coordDir();
         const amrex::GpuArray<int, 2> perp = utils::perpendicular_idx(normal);
-        AMREX_ALWAYS_ASSERT(
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             constants::is_close(
-                prob_lo[perp[0]], m_mesh.Geom(0).ProbLo(perp[0])));
-        AMREX_ALWAYS_ASSERT(
+                prob_lo[perp[0]], m_mesh.Geom(0).ProbLo(perp[0])),
+            "BoundaryPlane: header lower bound in dimension " +
+                std::to_string(perp[0]) + " is " +
+                std::to_string(prob_lo[perp[0]]) + " but mesh lower bound is " +
+                std::to_string(m_mesh.Geom(0).ProbLo(perp[0])));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             constants::is_close(
-                prob_lo[perp[1]], m_mesh.Geom(0).ProbLo(perp[1])));
-        AMREX_ALWAYS_ASSERT(
+                prob_lo[perp[1]], m_mesh.Geom(0).ProbLo(perp[1])),
+            "BoundaryPlane: header lower bound in dimension " +
+                std::to_string(perp[1]) + " is " +
+                std::to_string(prob_lo[perp[1]]) + " but mesh lower bound is " +
+                std::to_string(m_mesh.Geom(0).ProbLo(perp[1])));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             constants::is_close(
-                prob_hi[perp[0]], m_mesh.Geom(0).ProbHi(perp[0])));
-        AMREX_ALWAYS_ASSERT(
+                prob_hi[perp[0]], m_mesh.Geom(0).ProbHi(perp[0])),
+            "BoundaryPlane: header upper bound in dimension " +
+                std::to_string(perp[0]) + " is " +
+                std::to_string(prob_hi[perp[0]]) + " but mesh upper bound is " +
+                std::to_string(m_mesh.Geom(0).ProbHi(perp[0])));
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
             constants::is_close(
-                prob_hi[perp[1]], m_mesh.Geom(0).ProbHi(perp[1])));
+                prob_hi[perp[1]], m_mesh.Geom(0).ProbHi(perp[1])),
+            "BoundaryPlane: header upper bound in dimension " +
+                std::to_string(perp[1]) + " is " +
+                std::to_string(prob_hi[perp[1]]) + " but mesh upper bound is " +
+                std::to_string(m_mesh.Geom(0).ProbHi(perp[1])));
 
         amrex::Vector<int> ref_ratio;
         ref_ratio.resize(nlevels, 0);
@@ -1217,18 +1339,40 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
         amrex::Vector<amrex::Box> prob_domain(nlevels);
         for (int i = 0; i < nlevels; ++i) {
             is >> prob_domain[i];
-            AMREX_ALWAYS_ASSERT(
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].smallEnd(perp[0]) ==
-                m_mesh.Geom(i).Domain().smallEnd(perp[0]));
-            AMREX_ALWAYS_ASSERT(
+                    m_mesh.Geom(i).Domain().smallEnd(perp[0]),
+                "BoundaryPlane: level " + std::to_string(i) +
+                    " domain small end in dimension " +
+                    std::to_string(perp[0]) + " is " +
+                    std::to_string(prob_domain[i].smallEnd(perp[0])) +
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().smallEnd(perp[0])));
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].smallEnd(perp[1]) ==
-                m_mesh.Geom(i).Domain().smallEnd(perp[1]));
-            AMREX_ALWAYS_ASSERT(
+                    m_mesh.Geom(i).Domain().smallEnd(perp[1]),
+                "BoundaryPlane: level " + std::to_string(i) +
+                    " domain small end in dimension " +
+                    std::to_string(perp[1]) + " is " +
+                    std::to_string(prob_domain[i].smallEnd(perp[1])) +
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().smallEnd(perp[1])));
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].bigEnd(perp[0]) ==
-                m_mesh.Geom(i).Domain().bigEnd(perp[0]));
-            AMREX_ALWAYS_ASSERT(
+                    m_mesh.Geom(i).Domain().bigEnd(perp[0]),
+                "BoundaryPlane: level " + std::to_string(i) +
+                    " domain big end in dimension " + std::to_string(perp[0]) +
+                    " is " + std::to_string(prob_domain[i].bigEnd(perp[0])) +
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().bigEnd(perp[0])));
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
                 prob_domain[i].bigEnd(perp[1]) ==
-                m_mesh.Geom(i).Domain().bigEnd(perp[1]));
+                    m_mesh.Geom(i).Domain().bigEnd(perp[1]),
+                "BoundaryPlane: level " + std::to_string(i) +
+                    " domain big end in dimension " + std::to_string(perp[1]) +
+                    " is " + std::to_string(prob_domain[i].bigEnd(perp[1])) +
+                    " but mesh value is " +
+                    std::to_string(m_mesh.Geom(i).Domain().bigEnd(perp[1])));
         }
 
         amrex::Vector<int> level_steps(nlevels);
@@ -1273,7 +1417,11 @@ amrex::Vector<amrex::BoxArray> BoundaryPlane::read_bndry_native_boxarrays(
             } else {
                 ba.growHi(normal, -1);
             }
-            AMREX_ALWAYS_ASSERT(ba.size() == 1);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                ba.size() == 1, "BoundaryPlane: boundary level " +
+                                    std::to_string(ilev) + " has " +
+                                    std::to_string(ba.size()) +
+                                    " boxes; expected exactly one");
             bndry_boxes[ilev].push_back(ba[0]);
         }
     }
@@ -1307,6 +1455,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
         ReadERFFunction read_erf = *m_read_erf;
         if (read_erf != nullptr) {
             read_erf(time, m_in_times, m_in_data, m_fields, mbc());
+            complete_input_planes();
         } else {
             amrex::Abort("read_erf function is undefined.");
         }
@@ -1331,6 +1480,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
     // return early if current data files can still be interpolated in time
     if ((m_in_data.tn() <= time) && (time < m_in_data.tnp1())) {
         m_in_data.interpolate(time);
+        complete_input_planes();
         return;
     }
 
@@ -1448,6 +1598,7 @@ void BoundaryPlane::read_file(const bool nph_target_time)
     }
 
     m_in_data.interpolate(time);
+    complete_input_planes();
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
@@ -1558,12 +1709,16 @@ void BoundaryPlane::populate_data(
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
 
-            const auto& vof_arr = m_vof_ptr != nullptr
-                                      ? (*m_vof_ptr)(lev).const_array(mfi)
-                                      : amrex::Array4<const amrex::Real>{};
+            const int source_idx =
+                use_vof_condition || use_terrain_condition
+                    ? field_impl::matching_grid_index(mfi, fld(lev))
+                    : 0;
+            const auto& vof_arr =
+                use_vof_condition ? (*m_vof_ptr)(lev).const_array(source_idx)
+                                  : amrex::Array4<const amrex::Real>{};
             const auto& terrain_blank_flags =
-                m_terrain_blank_ptr != nullptr
-                    ? (*m_terrain_blank_ptr)(lev).const_array(mfi)
+                use_terrain_condition
+                    ? (*m_terrain_blank_ptr)(lev).const_array(source_idx)
                     : amrex::Array4<const int>{};
             amrex::ParallelFor(
                 bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {
@@ -1588,12 +1743,13 @@ void BoundaryPlane::populate_data(
                         dest(iv, n + dcomp) = 0.0_rt;
                     }
                 });
+            utils::extend_boundary_ghost_layers(
+                bx, dest, ori, dcomp, static_cast<int>(nc));
         }
+        utils::fill_transverse_ghosts(
+            mfab, m_mesh.Geom(lev), fld.bcrec(), ori, dcomp,
+            static_cast<int>(nc), orig_comp);
     }
-
-    const auto& geom = fld.repo().mesh().Geom();
-    mfab.EnforcePeriodicity(
-        0, mfab.nComp(), amrex::IntVect(1), geom[lev].periodicity());
 }
 
 void BoundaryPlane::set_velocity(
@@ -1640,7 +1796,11 @@ void BoundaryPlane::write_data(
     const auto& dlo = domain.loVect();
     const auto& dhi = domain.hiVect();
 
-    AMREX_ALWAYS_ASSERT(dlo[0] == 0 && dlo[1] == 0 && dlo[2] == 0);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        dlo[0] == 0 && dlo[1] == 0 && dlo[2] == 0,
+        "BoundaryPlane: NetCDF domain lower corner must be [0, 0, 0]; got [" +
+            std::to_string(dlo[0]) + ", " + std::to_string(dlo[1]) + ", " +
+            std::to_string(dlo[2]) + "] at level " + std::to_string(lev));
 
     grp.var(name).par_access(NC_COLLECTIVE);
 

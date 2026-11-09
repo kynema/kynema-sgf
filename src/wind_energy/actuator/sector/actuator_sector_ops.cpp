@@ -80,7 +80,8 @@ void build_radial_grid(ActuatorSectorData& meta)
     RealList dense_r(dense_n);
     RealList metric(dense_n, 0.0_rt);
     const amrex::Real span = meta.rotor_radius - meta.root_radius;
-    AMREX_ALWAYS_ASSERT(span > 0.0_rt);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        span > 0.0_rt, "span = " + std::to_string(span));
 
     for (int i = 0; i < dense_n; ++i) {
         const amrex::Real xi =
@@ -311,6 +312,26 @@ void build_gaussian_table(ActuatorSectorData& meta)
             static_cast<amrex::Real>(meta.gaussian_table_nintervals);
         meta.gaussian_table[i] = std::exp(-x);
     }
+}
+
+ActuatorRefinementGeometry refinement_geometry(
+    const ActuatorSectorData& meta,
+    const std::string& label,
+    const amrex::Real time)
+{
+    const auto orientation = meta.body_motion->orientation(time);
+    const auto center =
+        meta.body_motion->position(time) + (orientation & meta.body_offset);
+    auto normal = orientation & vs::Vector::khat();
+    normal /= vs::mag(normal);
+
+    const amrex::Real epsilon_max = local_epsilon(meta, max_interp_chord(meta));
+    return {
+        .label = label,
+        .center = center,
+        .normal = normal,
+        .rotor_radius = meta.rotor_radius,
+        .epsilon_max = epsilon_max};
 }
 
 void prepare_netcdf_group(
@@ -589,18 +610,45 @@ void ReadInputsOp<ActuatorSector, ActSrcSector>::operator()(
                "are both specified. Using constant 'epsilon'; "
                "'epsilon_chord' and 'epsilon_min' will be ignored.\n";
     }
-    AMREX_ALWAYS_ASSERT(meta.num_blades > 0);
-    AMREX_ALWAYS_ASSERT(meta.rotor_diameter > 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.epsilon >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.epsilon_chord >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.epsilon_min >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.num_blades > 0,
+        "meta.num_blades = " + std::to_string(meta.num_blades));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.rotor_diameter > 0.0_rt,
+        "meta.rotor_diameter = " + std::to_string(meta.rotor_diameter));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.epsilon >= 0.0_rt,
+        "meta.epsilon = " + std::to_string(meta.epsilon));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.epsilon_chord >= 0.0_rt,
+        "meta.epsilon_chord = " + std::to_string(meta.epsilon_chord));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.epsilon_min >= 0.0_rt,
+        "meta.epsilon_min = " + std::to_string(meta.epsilon_min));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         (meta.user_epsilon && (meta.epsilon > 0.0_rt)) ||
-        (!meta.user_epsilon && (meta.epsilon_chord > 0.0_rt)));
-    AMREX_ALWAYS_ASSERT(meta.root_radius_fraction >= 0.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.root_radius_fraction < 1.0_rt);
-    AMREX_ALWAYS_ASSERT(meta.span_locs.size() == meta.chord_inp.size());
-    AMREX_ALWAYS_ASSERT(meta.span_locs.size() == meta.twist_inp.size());
+            (!meta.user_epsilon && (meta.epsilon_chord > 0.0_rt)),
+        "meta.user_epsilon = " + std::to_string(meta.user_epsilon) +
+            ", meta.epsilon = " + std::to_string(meta.epsilon) +
+            ", meta.epsilon_chord = " + std::to_string(meta.epsilon_chord));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.root_radius_fraction >= 0.0_rt,
+        "meta.root_radius_fraction = " +
+            std::to_string(meta.root_radius_fraction));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.root_radius_fraction < 1.0_rt,
+        "meta.root_radius_fraction = " +
+            std::to_string(meta.root_radius_fraction));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.span_locs.size() == meta.chord_inp.size(),
+        "meta.span_locs.size() = " + std::to_string(meta.span_locs.size()) +
+            ", meta.chord_inp.size() = " +
+            std::to_string(meta.chord_inp.size()));
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        meta.span_locs.size() == meta.twist_inp.size(),
+        "meta.span_locs.size() = " + std::to_string(meta.span_locs.size()) +
+            ", meta.twist_inp.size() = " +
+            std::to_string(meta.twist_inp.size()));
 
     meta.rotor_radius = 0.5_rt * meta.rotor_diameter;
     meta.root_radius = meta.root_radius_fraction * meta.rotor_radius;
@@ -689,6 +737,26 @@ void InitDataOp<ActuatorSector, ActSrcSector>::operator()(
     sector::update_midpoint_sample_points(data);
 }
 
+amrex::Vector<ActuatorRefinementGeometry>
+RefinementGeometryOp<ActuatorSector, ActSrcSector>::operator()(
+    const ActuatorSector::DataType& data, const amrex::Real time) const
+{
+    return {sector::refinement_geometry(data.meta(), data.info().label, time)};
+}
+
+std::optional<motion::RigidTransform>
+ReferenceFrameOp<ActuatorSector, ActSrcSector>::operator()(
+    const ActuatorSector::DataType& data, const amrex::Real time) const
+{
+    const auto& motion = data.meta().body_motion;
+    if (motion == nullptr) {
+        return std::nullopt;
+    }
+    auto pose = motion->pose(time);
+    pose.position = pose.apply_point(data.meta().body_offset);
+    return pose;
+}
+
 void UpdatePosOp<ActuatorSector, ActSrcSector>::operator()(
     ActuatorSector::DataType& data)
 {
@@ -757,7 +825,7 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             // equivalent to the positive-rotation propeller, while preserving
             // opposite tangential force for torque cancellation.
             const amrex::Real raw_aoa =
-                std::atan2(vnormal, -spin_sign * vtheta) +
+                -std::atan2(vnormal, -spin_sign * vtheta) +
                 (spin_sign * ::kynema_sgf::utils::radians(meta.twist[ir]));
             const amrex::Real aoa =
                 std::remainder(raw_aoa, ::kynema_sgf::utils::two_pi());
