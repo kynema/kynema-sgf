@@ -50,9 +50,7 @@ void QCriterionRefinement::initialize(const std::string& key)
 void QCriterionRefinement::operator()(
     int level, amrex::TagBoxArray& tags, amrex::Real time, int /*ngrow*/)
 {
-    const bool tag_field = level <= m_max_lev_field;
-
-    if (!tag_field) {
+    if (!active(level)) {
         return;
     }
 
@@ -66,7 +64,6 @@ void QCriterionRefinement::operator()(
     const auto& tag_arrs = tags.arrays();
     const auto& vel_arrs = mfab.const_arrays();
     const auto qc_val = m_qc_value[level];
-    const auto op = tag_operator();
 
     amrex::ParallelFor(
         mfab, [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -132,10 +129,9 @@ void QCriterionRefinement::operator()(
                 (!nondim && std::abs(qc) > qc_val)) {
                 current_tag = true;
             }
-            const auto previous_tag =
-                (tag_arrs[nbx](i, j, k) == amrex::TagBox::SET);
-            tag_arrs[nbx](i, j, k) =
-                tagging::tag_val(previous_tag, current_tag, op);
+            if (current_tag) {
+                tag_arrs[nbx](i, j, k) = amrex::TagBox::SET;
+            }
         });
 }
 

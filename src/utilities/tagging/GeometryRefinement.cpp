@@ -34,14 +34,7 @@ void GeometryRefinement::initialize(const std::string& key)
 void GeometryRefinement::operator()(
     int level, amrex::TagBoxArray& tags, amrex::Real /*time*/, int /*ngrow*/)
 {
-    // If the user has requested a particular level then check for it and exit
-    // early
-    if ((m_set_level > -1) && (level != m_set_level)) {
-        return;
-    }
-
-    // If the user has specified a range of levels, check and return early
-    if ((level < m_min_level) || (level > m_max_level)) {
+    if (!active(level)) {
         return;
     }
 
@@ -62,25 +55,10 @@ void GeometryRefinement::operator()(
             const auto& bxa = utils::realbox_to_box(gg->bound_box(), geom);
             const auto& bxi = bx & bxa;
             if (bxi.isEmpty()) {
-                // Operators OR and AND_NOT will not be affected by an empty box
-                // Operators AND and OR_NOT require modification of tag array
-                if (tag_operator() == tagging::TaggingOperator::AND) {
-                    // Because entire box is false, set all tags to false
-                    amrex::ParallelFor(
-                        bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                            tag(i, j, k) = amrex::TagBox::CLEAR;
-                        });
-                } else if (tag_operator() == tagging::TaggingOperator::OR_NOT) {
-                    // Because entire box is false, set all tags to true
-                    amrex::ParallelFor(
-                        bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                            tag(i, j, k) = amrex::TagBox::SET;
-                        });
-                }
                 continue;
             }
 
-            (*gg)(bx, geom, tag, tag_operator());
+            (*gg)(bx, geom, tag);
         }
     }
 }

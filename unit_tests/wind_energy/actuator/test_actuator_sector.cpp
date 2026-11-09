@@ -265,6 +265,103 @@ TEST_F(ActuatorSectorRefinementTest, asymmetric_actuator_refinement)
     remove_file(m_afname);
 }
 
+TEST_F(ActuatorSectorRefinementTest, logical_operators_use_cylinder_union)
+{
+    write_airfoil_file(m_afname);
+    initialize_domain();
+    populate_actuator_inputs();
+
+    amrex::ParmParse pp_a("Actuator");
+    pp_a.addarr("labels", amrex::Vector<std::string>{"R1", "R2"});
+    amrex::ParmParse pp_r("Actuator.R2");
+    pp_r.addarr("center", amrex::Vector<amrex::Real>{0.05_rt, 0.0_rt, 0.0_rt});
+    pp_r.addarr(
+        "rotor_normal", amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
+
+    auto& physics = sim().physics_manager().create("Actuator", sim());
+    auto& actuator = dynamic_cast<::kynema_sgf::actuator::Actuator&>(physics);
+    actuator.pre_init_actions();
+
+    amrex::ParmParse pp("tagging.rotor_tracking");
+    pp.addarr("actuator_labels", amrex::Vector<std::string>{"R1", "R2"});
+    pp.add("radial_padding_epsilon", 0.0_rt);
+    pp.add("forward_padding_diameter", 0.8_rt);
+    pp.add("backward_padding_diameter", 0.3_rt);
+
+    const auto& field = sim().repo().get_field("velocity")(0);
+    amrex::TagBoxArray tags(field.boxArray(), field.DistributionMap());
+    const auto& geom = sim().mesh().Geom(0);
+    const auto& problo = geom.ProbLoArray();
+    const auto& dx = geom.CellSizeArray();
+    const auto total_cells = static_cast<std::size_t>(geom.Domain().numPts());
+    constexpr std::size_t union_cells = 72;
+
+    for (const std::string op : {"or", "and", "and_not", "or_not"}) {
+        amrex::ParmParse pp_tagging("tagging");
+        pp_tagging.addarr(
+            "labels", amrex::Vector<std::string>{"rotor_tracking"});
+        pp.add("type", std::string("ActuatorRefinement"));
+        pp.add("operator", op);
+        ::kynema_sgf::RefineCriteriaManager manager(sim());
+        manager.initialize();
+        for (const bool previous_tag : {false, true}) {
+            SCOPED_TRACE(
+                op + (previous_tag ? " initially set" : " initially clear"));
+            tags.setVal(
+                previous_tag ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+            manager.tag_cells(1, tags, 0.0_rt, 0);
+            amrex::Gpu::PinnedVector<amrex::IntVect> inactive_cells;
+            tags.collate(inactive_cells);
+            EXPECT_EQ(inactive_cells.size(), previous_tag ? total_cells : 0);
+            tags.setVal(
+                previous_tag ? amrex::TagBox::SET : amrex::TagBox::CLEAR);
+            manager.tag_cells(0, tags, 0.0_rt, 0);
+            amrex::Gpu::streamSynchronize();
+
+            amrex::Gpu::PinnedVector<amrex::IntVect> tagged_cells;
+            tags.collate(tagged_cells);
+            std::size_t expected_count = 0;
+            if (op == "or") {
+                expected_count = previous_tag ? total_cells : union_cells;
+            } else if (op == "and") {
+                expected_count = previous_tag ? union_cells : 0;
+            } else if (op == "and_not") {
+                expected_count = previous_tag ? total_cells - union_cells : 0;
+            } else {
+                expected_count =
+                    previous_tag ? total_cells : total_cells - union_cells;
+            }
+            EXPECT_EQ(tagged_cells.size(), expected_count);
+
+            for (const auto& cell : tagged_cells) {
+                const amrex::Real xpos =
+                    problo[0] + ((cell[0] + 0.5_rt) * dx[0]);
+                const amrex::Real ypos =
+                    problo[1] + ((cell[1] + 0.5_rt) * dx[1]);
+                const amrex::Real zpos =
+                    problo[2] + ((cell[2] + 0.5_rt) * dx[2]);
+                const bool in_union =
+                    ((xpos >= -0.03_rt && xpos <= 0.08_rt) ||
+                     (xpos >= 0.02_rt && xpos <= 0.13_rt)) &&
+                    ((ypos * ypos) + (zpos * zpos)) <= 0.05_rt * 0.05_rt;
+                bool expected_tag = false;
+                if (op == "or") {
+                    expected_tag = previous_tag || in_union;
+                } else if (op == "and") {
+                    expected_tag = previous_tag && in_union;
+                } else if (op == "and_not") {
+                    expected_tag = previous_tag && !in_union;
+                } else {
+                    expected_tag = previous_tag || !in_union;
+                }
+                EXPECT_TRUE(expected_tag);
+            }
+        }
+    }
+
+    remove_file(m_afname);
+}
+
 TEST_F(ActuatorSectorTest, fixed_epsilon_input)
 {
     write_airfoil_file(m_afname);
