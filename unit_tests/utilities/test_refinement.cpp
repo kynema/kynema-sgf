@@ -69,7 +69,10 @@ public:
         pp.query("max_level", m_max_level);
     }
 
-    bool active(int level) const override { return level <= m_max_level; }
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level <= m_max_level;
+    }
 
     void operator()(
         int /*level*/,
@@ -404,12 +407,12 @@ TEST_F(NestRefineTest, manager_combines_geometry_union_once)
         manager.tag_cells(0, tags, 0.0_rt, 0);
         expect_tag_predicate(
             tags, geom.Domain(), [=](const amrex::IntVect& cell) {
-                const auto xpos = problo[0] + (cell[0] + 0.5_rt) * dx[0];
-                const auto ypos = problo[1] + (cell[1] + 0.5_rt) * dx[1];
+                const auto xpos = problo[0] + ((cell[0] + 0.5_rt) * dx[0]);
+                const auto ypos = problo[1] + ((cell[1] + 0.5_rt) * dx[1]);
                 const auto zpos =
-                    problo[2] + (cell[2] + 0.5_rt) * dx[2] - 15.0_rt;
+                    problo[2] + ((cell[2] + 0.5_rt) * dx[2]) - 15.0_rt;
                 const bool inside = xpos >= -15.0_rt && xpos <= 15.0_rt &&
-                                    ypos * ypos + zpos * zpos <= 100.0_rt;
+                                    (ypos * ypos) + (zpos * zpos) <= 100.0_rt;
                 return op == "and" ? inside : !inside;
             });
     }

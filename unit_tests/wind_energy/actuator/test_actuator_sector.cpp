@@ -343,7 +343,7 @@ TEST_F(ActuatorSectorRefinementTest, logical_operators_use_cylinder_union)
                 const bool in_union =
                     ((xpos >= -0.03_rt && xpos <= 0.08_rt) ||
                      (xpos >= 0.02_rt && xpos <= 0.13_rt)) &&
-                    (ypos * ypos + zpos * zpos <= 0.05_rt * 0.05_rt);
+                    ((ypos * ypos) + (zpos * zpos)) <= 0.05_rt * 0.05_rt;
                 bool expected_tag = false;
                 if (op == "or") {
                     expected_tag = previous_tag || in_union;
