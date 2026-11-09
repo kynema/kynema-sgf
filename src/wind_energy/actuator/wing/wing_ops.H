@@ -8,6 +8,7 @@
 #include "src/wind_energy/actuator/ActParser.H"
 #include "src/wind_energy/actuator/FLLCOp.H"
 #include "src/utilities/linear_interpolation.H"
+#include "src/utilities/io_utils.H"
 #include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 
@@ -313,7 +314,8 @@ public:
 
     void read_io_options(const utils::ActParser& pp)
     {
-        pp.query("output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_out_freq);
     }
 
     void prepare_outputs(const std::string& out_dir)

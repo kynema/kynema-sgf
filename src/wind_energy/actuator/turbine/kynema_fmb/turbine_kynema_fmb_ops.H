@@ -5,6 +5,7 @@
 #include <yaml-cpp/yaml.h>
 #include "src/wind_energy/actuator/turbine/kynema_fmb/TurbineKynemaFMB.H"
 #include "src/wind_energy/actuator/turbine/external/turbine_external_ops.H"
+#include "src/utilities/io_utils.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -98,9 +99,9 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
         pp.query("section_ref_blade", tf.section_refinement_blade);
         pp.query("section_ref_tower", tf.section_refinement_tower);
         // Initial or constant angular rotation speed
-        pp.query("rot_speed_radps", tf.rotational_speed);
-        if (!pp.contains("rot_speed_radps")) {
-            pp.query("rot_speed_rpm", tf.rotational_speed);
+        ioutils::query_with_legacy_name(
+            pp, "rot_speed_radps", "rot_speed_rpm", tf.rotational_speed);
+        if (!pp.contains("rot_speed_radps") && pp.contains("rot_speed_rpm")) {
             tf.rotational_speed *=
                 2.0_rt * std::numbers::pi_v<amrex::Real> / 60.0_rt;
         }
@@ -113,9 +114,8 @@ struct ReadInputsOp<TurbineKynemaFMB, SrcTrait>
             vel_vec[0] * vel_vec[0] + vel_vec[1] * vel_vec[1] +
             vel_vec[2] * vel_vec[2]);
         // Initial or constant nacelle yaw
-        pp.query("yaw_rad", tf.yaw);
-        if (!pp.contains("yaw_rad")) {
-            pp.query("yaw_deg", tf.yaw);
+        ioutils::query_with_legacy_name(pp, "yaw_rad", "yaw_deg", tf.yaw);
+        if (!pp.contains("yaw_rad") && pp.contains("yaw_deg")) {
             tf.yaw *= std::numbers::pi_v<amrex::Real> / 180.0_rt;
         }
         // Generator efficiency
@@ -206,7 +206,7 @@ private:
     //! NetCDF output filename for this turbine
     std::string m_nc_filename;
 
-    //! Output frequency (specified in input file)
+    //! Output interval (specified in input file)
     int m_out_freq{10};
 
 public:
@@ -216,7 +216,8 @@ public:
 
     void read_io_options(const utils::ActParser& pp)
     {
-        pp.query("output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_out_freq);
     }
 
     void prepare_outputs(const std::string& out_dir)

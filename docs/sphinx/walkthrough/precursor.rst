@@ -107,8 +107,8 @@ This file is almost identical to the spinup input file, except there are a few d
       Reducing the timestep in the precursor simulation as well (the ``time.fixed_dt`` line) permits the boundary
       plane and body force data to have better temporal resolution. This modification is not required for the 
       precursor, though; this workflow will still function fine with an unmodified precursor time step.
-    * For more detailed analysis in post-processing, the frequency of ``sampling.output_frequency`` is increased.
-      This argument actually refers to the output interval, so a smaller number means files are written more often.
+    * For more detailed analysis in post-processing, the interval of ``sampling.output_interval`` is reduced.
+      A smaller interval means files are written more often.
 
 |
 

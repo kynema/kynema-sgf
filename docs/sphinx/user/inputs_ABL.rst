@@ -72,6 +72,14 @@ This section is for setting atmospheric boundary layer parameters.
    the code. Setting a value of -1 means there is no limit on the maximum level, allowing the code
    to select the finest level available on the mesh.
 
+.. input_param:: ABL.stats_output_interval
+
+   **type:** Integer, optional, default = 100
+
+   Number of time steps between ABL statistics outputs. The legacy input
+   argument ``stats_output_frequency`` is still accepted with a warning; use
+   ``stats_output_interval`` instead.
+
 .. input_param:: ABL.surface_temp_flux
 
    **type:** Real, optional

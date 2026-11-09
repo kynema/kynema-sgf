@@ -230,6 +230,14 @@ add_test_rd(vortex_patch_godunov 154.76)
 #=============================================================================
 add_test_r(abl_amd_wenoz 639.03)
 add_test_r(abl_anelastic 190.32)
+add_test_r(abl_mean_boussinesq)
+add_test(NAME abl_mean_boussinesq_missing_profile
+  COMMAND bash -c "\"${CMAKE_BINARY_DIR}/${kynema_sgf_exe_name}\" \"${CMAKE_CURRENT_SOURCE_DIR}/test_files/abl_mean_boussinesq/abl_mean_boussinesq.inp\" ABLMeanBoussinesq.temperature_profile_filename=missing_temperature_profile.dat amrex.throw_exception=1 amrex.signal_handling=0; exit $?")
+set_tests_properties(abl_mean_boussinesq_missing_profile PROPERTIES
+  WILL_FAIL TRUE
+  TIMEOUT 60
+  LABELS "regression"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test_files/abl_mean_boussinesq")
 add_test_r(abl_bndry_output_amr_native 331.45)
 add_test_r(abl_bndry_output_native 457.36)
 add_test_r(abl_godunov_geostrophic_timetable 505.79)

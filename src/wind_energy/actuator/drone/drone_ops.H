@@ -3,6 +3,7 @@
 
 #include "src/wind_energy/actuator/drone/Drone.H"
 #include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/utilities/io_utils.H"
 
 namespace kynema_sgf::actuator::ops {
 
@@ -69,7 +70,8 @@ struct ProcessOutputsOp<Drone, ActSrcDrone>
     explicit ProcessOutputsOp(Drone::DataType& data) : m_data(data) {}
     void read_io_options(const utils::ActParser& pp)
     {
-        pp.query("output_frequency", m_output_frequency);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_output_frequency);
     }
     void prepare_outputs(const std::string& out_dir);
     void write_outputs();

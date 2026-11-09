@@ -5,6 +5,7 @@
 #include "src/wind_energy/actuator/disk/disk_ops.H"
 #include "src/wind_energy/actuator/disk/UniformCt.H"
 #include "src/utilities/linear_interpolation.H"
+#include "src/utilities/io_utils.H"
 #include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 
@@ -152,14 +153,15 @@ private:
     //! NetCDF output filename for this turbine
     std::string m_nc_filename;
 
-    //! Output frequency (specified in input file)
+    //! Output interval (specified in input file)
     int m_out_freq{10};
 
 public:
     explicit ProcessOutputsOp(const UniformCt::DataType& data) : m_data(data) {}
     void read_io_options(const utils::ActParser& pp)
     {
-        pp.query("output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_out_freq);
     }
     void prepare_outputs(const std::string& out_dir)
     {

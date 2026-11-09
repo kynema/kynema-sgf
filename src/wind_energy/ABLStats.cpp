@@ -63,7 +63,8 @@ void ABLStats::initialize()
 
     {
         amrex::ParmParse pp("ABL");
-        pp.query("stats_output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "stats_output_interval", "stats_output_frequency", m_out_freq);
         pp.query("stats_output_format", m_out_fmt);
         pp.query("normal_direction", m_normal_dir);
         AMREX_ASSERT((0 <= m_normal_dir) && (m_normal_dir < AMREX_SPACEDIM));
