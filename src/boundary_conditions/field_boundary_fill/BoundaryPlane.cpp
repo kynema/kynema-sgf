@@ -416,7 +416,8 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
     if (!original_input) {
         pp.get("file", m_filename);
         pp.getarr("var_names", m_var_names);
-        pp.query("write_frequency", m_write_frequency);
+        ioutils::query_with_legacy_name(
+            pp, "write_interval", "write_frequency", m_write_frequency);
         pp.query("output_start_time", m_out_start_time);
         pp.query("output_format", m_out_fmt);
         pp.query("fluid_phase", m_phase_str);
@@ -429,7 +430,9 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
     } else {
         pp_abl.get("bndry_file", m_filename);
         pp_abl.getarr("bndry_var_names", m_var_names);
-        pp_abl.query("bndry_write_frequency", m_write_frequency);
+        ioutils::query_with_legacy_name(
+            pp_abl, "bndry_write_interval", "bndry_write_frequency",
+            m_write_frequency);
         pp_abl.query("bndry_output_start_time", m_out_start_time);
         pp_abl.query("bndry_output_format", m_out_fmt);
         pp_abl.query("bndry_fluid_phase", m_phase_str);
