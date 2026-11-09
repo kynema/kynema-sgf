@@ -163,7 +163,7 @@ void refresh_wing_position(VecList& vpoints, VecList fpoints, const int npts)
 void new_wing_position_velocity(
     VecList& points,
     vs::Vector& vtr,
-    const int npts,
+    int npts,
     const amrex::Real tn,
     const amrex::Real tnp1,
     const std::string& motion,

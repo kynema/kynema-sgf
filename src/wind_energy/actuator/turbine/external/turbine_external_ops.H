@@ -175,7 +175,7 @@ void update_pos_op(datatype& data)
 }
 
 template <typename datatype>
-void update_vel_op(datatype& data)
+void update_fields_op(datatype& data)
 {
     // Return early if this is not the root process for this turbine
     //
@@ -215,26 +215,47 @@ void update_vel_op(datatype& data)
 }
 
 template <typename datatype>
-void compute_force_op(datatype& data)
+void update_external_turbine_loads(datatype& data)
+{
+    // Update external turbine loads
+    ext_loads<datatype>(data);
+}
+
+template <typename datatype>
+void advance_external_turbine(datatype& data)
 {
     // Advance external solver by specified number of sub-steps
     ext_step<datatype>(data);
-    // Broadcast data to all the processes that contain patches influenced
-    // by this turbine
-    scatter_data<datatype>(data);
+}
 
-    const auto& time = data.sim().time();
+template <typename SolverTurbine, typename SolverData, typename SrcTrait>
+struct CommunicateModelDataOp<
+    TurbineFromExtSolver<SolverTurbine, SolverData>,
+    SrcTrait>
+{
+    using DataType =
+        typename TurbineFromExtSolver<SolverTurbine, SolverData>::DataType;
 
-    auto& tdata = data.meta();
-    if (!tdata.fllc.empty()) {
-        for (int i = 0; i < tdata.num_blades; ++i) {
-            if (!(tdata.fllc[i].initialized) &&
-                (time.current_time() > tdata.fllc[i].fllc_start_time)) {
-                fllc_init(tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0]);
+    void operator()(DataType& data)
+    {
+        BL_PROFILE(
+            "kynema-sgf::actuator::CommunicateModelDataOp<"
+            "TurbineFromExtSolver>");
+        scatter_data<DataType>(data);
+
+        const auto& time = data.sim().time();
+        auto& tdata = data.meta();
+        if (!tdata.fllc.empty()) {
+            for (int i = 0; i < tdata.num_blades; ++i) {
+                if (!(tdata.fllc[i].initialized) &&
+                    (time.current_time() > tdata.fllc[i].fllc_start_time)) {
+                    fllc_init(
+                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0]);
+                }
             }
         }
     }
-}
+};
 
 } // namespace kynema_sgf::actuator::ops
 

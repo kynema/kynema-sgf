@@ -136,7 +136,7 @@ set_thrust_coefficient(DiskBaseData& data, const amrex::Real& uInfSqr)
 } // namespace base
 
 template <typename ActTrait>
-struct UpdateVelOp<
+struct UpdateFieldsOp<
     ActTrait,
     ActSrcDisk,
     std::enable_if_t<std::is_base_of_v<DiskType, ActTrait>>>

@@ -730,12 +730,26 @@ TEST_F(
     drone.init_actuator_source();
     ASSERT_EQ(drone.meta().rotors.size(), 4U);
 
+    sim().time().delta_t() = 0.001_rt;
+    sim().time().advance_time();
+    drone.prescribe_model_motion();
+    const auto tmid = sim().time().current_time() +
+                      (0.5_rt * act::sector::timestep_width(sim()));
+    const auto body_center = drone.meta().body_motion->position(tmid);
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        EXPECT_NEAR(drone.meta().center[n], body_center[n], test_tol);
+    }
+
     amrex::Real reference_force_normal = 0.0_rt;
     for (int i = 0; i < 4; ++i) {
         auto& rotor_data = drone.meta().rotors[i]->data;
-        act::ops::ComputeForceOp<act::ActuatorSector, act::ActSrcSector>()(
+        act::ops::ComputeLoadsOp<act::ActuatorSector, act::ActSrcSector>()(
             rotor_data);
         const auto& rotor_meta = rotor_data.meta();
+        EXPECT_NEAR(
+            rotor_meta.azimuth,
+            rotor_meta.rotor_motion->azimuth(rotor_meta.rotor_index, tmid),
+            test_tol);
         const amrex::Real force_normal =
             rotor_meta.integrated_force & rotor_meta.rotor_normal;
         ASSERT_NE(force_normal, 0.0_rt);
@@ -744,6 +758,20 @@ TEST_F(
         } else {
             EXPECT_GT(force_normal * reference_force_normal, 0.0_rt);
         }
+    }
+
+    drone.compute_loads();
+    auto expected_force = kynema_sgf::vs::Vector::zero();
+    auto expected_moment = kynema_sgf::vs::Vector::zero();
+    for (const auto& rotor : drone.meta().rotors) {
+        const auto& meta = rotor->data.meta();
+        expected_force = expected_force - meta.integrated_force;
+        expected_moment = expected_moment - meta.integrated_moment -
+                          ((meta.center - body_center) ^ meta.integrated_force);
+    }
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        EXPECT_NEAR(drone.meta().total_force[n], expected_force[n], test_tol);
+        EXPECT_NEAR(drone.meta().total_moment[n], expected_moment[n], test_tol);
     }
 
     remove(m_airfoil_file.c_str());

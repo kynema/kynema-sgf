@@ -17,15 +17,15 @@ class Actuator;
  *
  *  \ingroup actuator
  *
- *  Holds the position vector and velocity information for a cloud of actuator
- *  points belonging to all the turbines within a given MPI rank.
+ *  Holds positions and sampled velocity and density for actuator points
+ *  belonging to all actuator instances within a given MPI rank.
  */
 struct ActuatorCloud
 {
-    //! Number of nodes per turbine on this MPI rank
+    //! Number of nodes per actuator instance on this MPI rank
     amrex::Vector<int> num_pts;
 
-    //! Global IDs of the turbines on this MPI rank
+    //! Global IDs of the actuator instances on this MPI rank
     amrex::Vector<int> global_id;
 
     //! Position vectors of all actuator nodes belonging to this MPI rank
@@ -37,7 +37,7 @@ struct ActuatorCloud
     //! Density of all actuator nodes belonging to this MPI rank
     amrex::Vector<amrex::Real> density;
 
-    //! Total number of turbines located on this MPI rank
+    //! Total number of actuator instances on this MPI rank
     int num_objects;
 
     explicit ActuatorCloud(int nobjects);
@@ -52,7 +52,7 @@ static constexpr int NumPArrayReal = 0;
 //! Number of int entries in Struct of Arrays (SOA)
 static constexpr int NumPArrayInt = 0;
 
-/** Specialization of AmrParticleContainer for sampling velocities.
+/** Specialization of AmrParticleContainer for sampling flow fields.
  *
  *  \ingroup actuator
  */

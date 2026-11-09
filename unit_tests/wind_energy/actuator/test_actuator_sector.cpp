@@ -7,6 +7,7 @@
 #include "src/wind_energy/actuator/sector/ActuatorSector.H"
 #include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
 #include "src/utilities/constants.H"
+#include "src/utilities/trig_ops.H"
 #include "src/utilities/tagging/ActuatorRefinement.H"
 
 #include <fstream>
@@ -213,6 +214,98 @@ TEST_F(ActuatorSectorTest, actuator_lifecycle)
     act.post_init_actions();
     act.pre_advance_work();
 
+    remove_file(m_afname);
+}
+
+TEST_F(ActuatorSectorTest, prescribed_motion_prepares_load_kinematics)
+{
+    namespace act = kynema_sgf::actuator;
+    write_airfoil_file(m_afname);
+    initialize_domain();
+    populate_actuator_inputs();
+    amrex::ParmParse pp("Actuator.R1");
+    pp.addarr(
+        "angular_velocity", amrex::Vector<amrex::Real>{0.0_rt, 2.0_rt, 3.0_rt});
+    act::ActModel<act::ActuatorSector, act::ActSrcSector> sector(
+        sim(), "R1", 0);
+    sector.read_inputs(
+        act::utils::ActParser("Actuator.ActuatorSector", "Actuator.R1"));
+    sector.init_actuator_source();
+
+    sim().time().delta_t() = 0.001_rt;
+    sim().time().advance_time();
+    sector.prescribe_model_motion();
+
+    const auto& meta = sector.meta();
+    const auto& grid = sector.grid();
+    const auto positions = grid.pos;
+    const auto counts = meta.theta_counts;
+    const auto sample_positions = grid.vel_pos;
+    const auto& time = sim().time();
+    const auto dt = act::sector::timestep_width(sim());
+    const auto tmid = time.current_time() + (0.5_rt * dt);
+    constexpr auto tol = kynema_sgf::constants::TIGHT_TOL;
+    EXPECT_NEAR(meta.center.z(), tmid, tol);
+    EXPECT_NEAR(meta.azimuth, 2500.0_rt * tmid, tol);
+    ASSERT_EQ(meta.blade_velocity.size(), grid.vel.size());
+    ASSERT_EQ(meta.projection_basis.size(), grid.pos.size());
+    EXPECT_GT(grid.pos.size(), grid.vel.size());
+
+    int iq = 0;
+    const int nr = static_cast<int>(meta.radius.size());
+    for (int ib = 0; ib < meta.num_blades; ++ib) {
+        const auto phase = kynema_sgf::utils::two_pi() *
+                           static_cast<amrex::Real>(ib) / meta.num_blades;
+        for (int ir = 0; ir < nr; ++ir) {
+            kynema_sgf::vs::Vector e_r, e_theta, e_normal;
+            act::sector::blade_basis(
+                meta.azimuth + phase, meta.midpoint_orientation, e_r, e_theta,
+                e_normal);
+            const auto velocity =
+                meta.translation_velocity +
+                (meta.rotor_angular_velocity ^ (e_r * meta.radius[ir])) +
+                e_theta * (meta.omega * meta.radius[ir]);
+            for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+                EXPECT_NEAR(
+                    meta.blade_velocity[(ib * nr) + ir][n], velocity[n], tol);
+            }
+            for (int it = 0; it < counts[ir]; ++it, ++iq) {
+                const auto t =
+                    time.current_time() +
+                    (((static_cast<amrex::Real>(it) + 0.5_rt) / counts[ir]) *
+                     dt);
+                const auto orientation = meta.body_motion->orientation(t);
+                act::sector::blade_basis(
+                    meta.rotor_motion->azimuth(meta.rotor_index, t) + phase,
+                    orientation, e_r, e_theta, e_normal);
+                const auto position =
+                    meta.body_motion->position(t) + e_r * meta.radius[ir];
+                for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+                    EXPECT_NEAR(grid.pos[iq][n], position[n], tol);
+                    EXPECT_NEAR(grid.force[iq][n], 0.0_rt, tol);
+                }
+            }
+        }
+    }
+
+    sector.compute_loads();
+    EXPECT_EQ(meta.theta_counts, counts);
+    auto force = kynema_sgf::vs::Vector::zero();
+    for (int i = 0; i < static_cast<int>(positions.size()); ++i) {
+        force = force + grid.force[i];
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            EXPECT_EQ(grid.pos[i][n], positions[i][n]);
+        }
+    }
+    for (int i = 0; i < static_cast<int>(sample_positions.size()); ++i) {
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            EXPECT_EQ(grid.vel_pos[i][n], sample_positions[i][n]);
+        }
+    }
+    EXPECT_GT(kynema_sgf::vs::mag(force), 0.0_rt);
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        EXPECT_NEAR(meta.integrated_force[n], force[n], tol);
+    }
     remove_file(m_afname);
 }
 

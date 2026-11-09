@@ -137,15 +137,28 @@ struct UpdatePosOp<ActuatorSector, ActSrcSector>
 };
 
 template <>
-struct UpdateVelOp<ActuatorSector, ActSrcSector>
+struct UpdateFieldsOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& /*data*/) {}
 };
 
 template <>
-struct ComputeForceOp<ActuatorSector, ActSrcSector>
+struct PrescribeModelMotionOp<ActuatorSector, ActSrcSector>
 {
     void operator()(ActuatorSector::DataType& data);
+};
+
+template <>
+struct ComputeLoadsOp<ActuatorSector, ActSrcSector>
+{
+    void operator()(ActuatorSector::DataType& data);
+};
+
+// Motion is prescribed rather than advanced by a dynamics solver.
+template <>
+struct AdvanceModelOp<ActuatorSector, ActSrcSector>
+{
+    void operator()(ActuatorSector::DataType& /*data*/) {}
 };
 
 template <>

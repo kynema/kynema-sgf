@@ -221,18 +221,12 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
     const auto& time = data.sim().time();
     // Velocity is sampled at the temporal midpoint, matching the actuator-line
     // convention used elsewhere in the code. The resulting sampled velocity is
-    // then used by ComputeForceOp for this step.
+    // then used by ComputeLoadsOp for this step.
     const amrex::Real tmid = 0.5_rt * (time.current_time() + time.new_time());
     const auto orientation = meta.body_motion->orientation(tmid);
-    meta.center =
+    const auto center =
         meta.body_motion->position(tmid) + (orientation & meta.body_offset);
-    meta.translation_velocity = meta.body_motion->translation_velocity(tmid);
-    meta.rotor_angular_velocity = meta.body_motion->angular_velocity(tmid);
-    meta.omega = meta.rotor_motion->omega(meta.rotor_index, tmid);
-    meta.azimuth = meta.rotor_motion->azimuth(meta.rotor_index, tmid);
-    meta.delta_azimuth =
-        meta.rotor_motion->azimuth(meta.rotor_index, time.new_time()) -
-        meta.rotor_motion->azimuth(meta.rotor_index, time.current_time());
+    const auto azimuth = meta.rotor_motion->azimuth(meta.rotor_index, tmid);
 
     const int nr = static_cast<int>(meta.radius.size());
     const int nvel = meta.num_blades * nr;
@@ -251,9 +245,8 @@ void update_midpoint_sample_points(ActuatorSector::DataType& data)
             vs::Vector e_r;
             vs::Vector e_theta;
             vs::Vector e_normal;
-            blade_basis(
-                meta.azimuth + phase, orientation, e_r, e_theta, e_normal);
-            grid.vel_pos[ip] = meta.center + e_r * meta.radius[ir];
+            blade_basis(azimuth + phase, orientation, e_r, e_theta, e_normal);
+            grid.vel_pos[ip] = center + e_r * meta.radius[ir];
         }
     }
 }
@@ -728,6 +721,7 @@ void InitDataOp<ActuatorSector, ActSrcSector>::operator()(
         grid.density[ip] = 1.0_rt;
     }
     sector::update_midpoint_sample_points(data);
+    PrescribeModelMotionOp<ActuatorSector, ActSrcSector>()(data);
 }
 
 amrex::Vector<ActuatorRefinementGeometry>
@@ -756,7 +750,7 @@ void UpdatePosOp<ActuatorSector, ActSrcSector>::operator()(
     sector::update_midpoint_sample_points(data);
 }
 
-void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
+void PrescribeModelMotionOp<ActuatorSector, ActSrcSector>::operator()(
     ActuatorSector::DataType& data)
 {
     auto& meta = data.meta();
@@ -765,17 +759,97 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     const amrex::Real t0 = time.current_time();
     const amrex::Real dt = sector::timestep_width(data.sim());
     const amrex::Real tmid = t0 + (0.5_rt * dt);
-    // Aerodynamic loads use the same midpoint pose as the CFD velocity samples.
-    const amrex::Real mid_theta =
-        meta.rotor_motion->azimuth(meta.rotor_index, tmid);
-    const auto mid_orientation = meta.body_motion->orientation(tmid);
+    meta.azimuth = meta.rotor_motion->azimuth(meta.rotor_index, tmid);
+    meta.delta_azimuth =
+        meta.rotor_motion->azimuth(meta.rotor_index, time.new_time()) -
+        meta.rotor_motion->azimuth(meta.rotor_index, time.current_time());
+    meta.midpoint_orientation = meta.body_motion->orientation(tmid);
     const auto body_position = meta.body_motion->position(tmid);
-    const auto body_velocity = meta.body_motion->translation_velocity(tmid);
-    const auto body_angular_velocity = meta.body_motion->angular_velocity(tmid);
-    const auto hub_offset = mid_orientation & meta.body_offset;
+    meta.translation_velocity = meta.body_motion->translation_velocity(tmid);
+    meta.rotor_angular_velocity = meta.body_motion->angular_velocity(tmid);
+    const auto hub_offset = meta.midpoint_orientation & meta.body_offset;
     meta.center = body_position + hub_offset;
     meta.omega = meta.rotor_motion->omega(meta.rotor_index, tmid);
 
+    meta.blade_velocity.resize(meta.radius.size() * meta.num_blades);
+    const int nr = static_cast<int>(meta.radius.size());
+    for (int ib = 0; ib < meta.num_blades; ++ib) {
+        const amrex::Real phase = ::kynema_sgf::utils::two_pi() *
+                                  static_cast<amrex::Real>(ib) /
+                                  static_cast<amrex::Real>(meta.num_blades);
+        for (int ir = 0; ir < nr; ++ir) {
+            vs::Vector e_r;
+            vs::Vector e_theta;
+            vs::Vector e_normal;
+            sector::blade_basis(
+                meta.azimuth + phase, meta.midpoint_orientation, e_r, e_theta,
+                e_normal);
+            // Body rotation includes the hub offset as well as blade radius.
+            const auto frame_vel = meta.rotor_angular_velocity ^
+                                   (hub_offset + e_r * meta.radius[ir]);
+            const auto spin_vel = e_theta * (meta.omega * meta.radius[ir]);
+            meta.blade_velocity[(ib * nr) + ir] =
+                meta.translation_velocity + frame_vel + spin_vel;
+        }
+    }
+
+    int nforce = 0;
+    const amrex::Real body_translation_speed =
+        vs::mag(meta.translation_velocity);
+    const amrex::Real body_angular_speed = vs::mag(meta.rotor_angular_velocity);
+    const amrex::Real hub_offset_distance = vs::mag(meta.body_offset);
+    for (int ir = 0; ir < nr; ++ir) {
+        const amrex::Real swept_speed =
+            body_translation_speed + (std::abs(meta.omega) * meta.radius[ir]) +
+            (body_angular_speed * (hub_offset_distance + meta.radius[ir]));
+        const int ntheta = amrex::max(
+            1, static_cast<int>(std::ceil(
+                   swept_speed * dt * meta.epsilon_dl /
+                   meta.epsilon_profile[ir])));
+        meta.theta_counts[ir] = ntheta;
+        nforce += meta.num_blades * ntheta;
+    }
+
+    grid.pos.resize(nforce);
+    grid.force.resize(nforce);
+    grid.epsilon.resize(nforce);
+    grid.orientation.assign(nforce, vs::Tensor::identity());
+    meta.projection_basis.resize(nforce);
+    int iq = 0;
+    for (int ib = 0; ib < meta.num_blades; ++ib) {
+        const amrex::Real phase = ::kynema_sgf::utils::two_pi() *
+                                  static_cast<amrex::Real>(ib) /
+                                  static_cast<amrex::Real>(meta.num_blades);
+        for (int ir = 0; ir < nr; ++ir) {
+            const int ntheta = meta.theta_counts[ir];
+            for (int it = 0; it < ntheta; ++it) {
+                const amrex::Real xi = (static_cast<amrex::Real>(it) + 0.5_rt) /
+                                       static_cast<amrex::Real>(ntheta);
+                const amrex::Real t = t0 + (xi * dt);
+                // Evaluate the histories at each quadrature time, not a
+                // linearized trajectory around the midpoint.
+                const amrex::Real theta =
+                    meta.rotor_motion->azimuth(meta.rotor_index, t) + phase;
+                const auto orientation = meta.body_motion->orientation(t);
+                const auto rotor_center = meta.body_motion->position(t) +
+                                          (orientation & meta.body_offset);
+                auto& basis = meta.projection_basis[iq];
+                sector::blade_basis(
+                    theta, orientation, basis.radial, basis.tangential,
+                    basis.normal);
+                grid.pos[iq] = rotor_center + basis.radial * meta.radius[ir];
+                grid.epsilon[iq] = vs::Vector::one() * meta.epsilon_profile[ir];
+                ++iq;
+            }
+        }
+    }
+}
+
+void ComputeLoadsOp<ActuatorSector, ActSrcSector>::operator()(
+    ActuatorSector::DataType& data)
+{
+    auto& meta = data.meta();
+    auto& grid = data.grid();
     const int nr = static_cast<int>(meta.radius.size());
     const int nvel = meta.num_blades * nr;
     VecList force_theta_normal(nvel, vs::Vector::zero());
@@ -798,16 +872,9 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
             vs::Vector e_theta;
             vs::Vector e_normal;
             sector::blade_basis(
-                mid_theta + phase, mid_orientation, e_r, e_theta, e_normal);
-
-            const auto rel_pos = e_r * meta.radius[ir];
-            // Rigid-body rotation acts about the drone center, so the lever arm
-            // includes both the rotor hub offset and blade-section radius.
-            const auto frame_vel =
-                body_angular_velocity ^ (hub_offset + rel_pos);
-            const auto spin_vel = e_theta * (meta.omega * meta.radius[ir]);
-            const auto blade_vel = body_velocity + frame_vel + spin_vel;
-            const auto rel_wind = grid.vel[ip] - blade_vel;
+                meta.azimuth + phase, meta.midpoint_orientation, e_r, e_theta,
+                e_normal);
+            const auto rel_wind = grid.vel[ip] - meta.blade_velocity[ip];
             const amrex::Real vtheta = rel_wind & e_theta;
             const amrex::Real vnormal = rel_wind & e_normal;
             const auto vplane = e_theta * vtheta + e_normal * vnormal;
@@ -855,61 +922,24 @@ void ComputeForceOp<ActuatorSector, ActSrcSector>::operator()(
     // points over the swept sector for this timestep. If dt is small enough,
     // theta_counts is one and the sector naturally reduces to actuator-line
     // behavior.
-    int nforce = 0;
-    const amrex::Real body_translation_speed = vs::mag(body_velocity);
-    const amrex::Real body_angular_speed = vs::mag(body_angular_velocity);
-    const amrex::Real hub_offset_distance = vs::mag(meta.body_offset);
-    for (int ir = 0; ir < nr; ++ir) {
-        const amrex::Real swept_speed =
-            body_translation_speed + (std::abs(meta.omega) * meta.radius[ir]) +
-            (body_angular_speed * (hub_offset_distance + meta.radius[ir]));
-        const int ntheta = amrex::max(
-            1, static_cast<int>(std::ceil(
-                   swept_speed * dt * meta.epsilon_dl /
-                   meta.epsilon_profile[ir])));
-        meta.theta_counts[ir] = ntheta;
-        nforce += meta.num_blades * ntheta;
-    }
-
-    grid.pos.resize(nforce);
-    grid.force.resize(nforce);
-    grid.epsilon.resize(nforce);
-    grid.orientation.assign(nforce, vs::Tensor::identity());
     int iq = 0;
     for (int ib = 0; ib < meta.num_blades; ++ib) {
-        const amrex::Real phase = ::kynema_sgf::utils::two_pi() *
-                                  static_cast<amrex::Real>(ib) /
-                                  static_cast<amrex::Real>(meta.num_blades);
         for (int ir = 0; ir < nr; ++ir) {
             const int ip = (ib * nr) + ir;
             const int ntheta = meta.theta_counts[ir];
             for (int it = 0; it < ntheta; ++it) {
-                const amrex::Real xi = (static_cast<amrex::Real>(it) + 0.5_rt) /
-                                       static_cast<amrex::Real>(ntheta);
-                const amrex::Real t = t0 + (xi * dt);
-                // Re-evaluate the prescribed pose and azimuth at every swept
-                // quadrature time rather than approximating the trajectory.
-                const amrex::Real theta =
-                    meta.rotor_motion->azimuth(meta.rotor_index, t) + phase;
-                const auto orientation = meta.body_motion->orientation(t);
-                const auto rotor_center = meta.body_motion->position(t) +
-                                          (orientation & meta.body_offset);
-                vs::Vector e_r;
-                vs::Vector e_theta;
-                vs::Vector e_normal;
-                sector::blade_basis(theta, orientation, e_r, e_theta, e_normal);
-                grid.pos[iq] = rotor_center + e_r * meta.radius[ir];
+                const auto& basis = meta.projection_basis[iq];
                 // Split the radial section force uniformly across the swept
                 // quadrature points so the integrated force remains unchanged.
                 const amrex::Real wt =
                     meta.dr[ir] / static_cast<amrex::Real>(ntheta);
-                grid.force[iq] = wt * ((e_theta * force_theta_normal[ip].x()) +
-                                       (e_normal * force_theta_normal[ip].y()));
+                grid.force[iq] =
+                    wt * ((basis.tangential * force_theta_normal[ip].x()) +
+                          (basis.normal * force_theta_normal[ip].y()));
                 meta.integrated_force = meta.integrated_force + grid.force[iq];
                 meta.integrated_moment =
                     meta.integrated_moment +
-                    ((grid.pos[iq] - rotor_center) ^ grid.force[iq]);
-                grid.epsilon[iq] = vs::Vector::one() * meta.epsilon_profile[ir];
+                    ((basis.radial * meta.radius[ir]) ^ grid.force[iq]);
                 ++iq;
             }
         }
