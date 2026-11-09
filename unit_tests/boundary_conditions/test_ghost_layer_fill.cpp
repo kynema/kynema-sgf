@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "ks_test_utils/MeshTest.H"
-#include "src/boundary_conditions/MassInflowOutflowBC.H"
+#include "src/boundary_conditions/BCInterface.H"
+#include "src/core/FieldFillPatchOps.H"
 #include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
 #include "src/boundary_conditions/field_boundary_fill/ModulatedPowerLaw.H"
 #include "src/utilities/index_operations.H"
@@ -617,6 +618,15 @@ TEST_F(GhostLayerFillTest, mass_inflow_outflow_all_ghost_layers)
     populate_parameters();
     amrex::ParmParse("geometry")
         .addarr("is_periodic", amrex::Vector<int>{0, 0, 0});
+    for (const std::string face : {"xlo", "xhi", "ylo", "yhi", "zlo", "zhi"}) {
+        amrex::ParmParse pp(face);
+        pp.add(
+            "type", face[0] == 'x' ? std::string("mass_inflow_outflow")
+                                   : std::string("zero_gradient"));
+        pp.addarr(
+            "velocity", amrex::Vector<amrex::Real>{1.0_rt, 0.0_rt, 0.0_rt});
+        pp.addarr("scalar", amrex::Vector<amrex::Real>{-99.0_rt});
+    }
     initialize_mesh();
 
     constexpr int ng = 3;
@@ -626,10 +636,15 @@ TEST_F(GhostLayerFillTest, mass_inflow_outflow_all_ghost_layers)
     auto& velocity = repo.declare_field("velocity", 3, ng);
     auto& scalar = repo.declare_field("scalar", 1, ng);
     const auto& domain = mesh().Geom(0).Domain();
-    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
-        scalar.bcrec()[0].setLo(d, amrex::BCType::foextrap);
-        scalar.bcrec()[0].setHi(d, amrex::BCType::foextrap);
+    for (auto* field : {&velocity, &scalar}) {
+        field->register_fill_patch_op<
+            kynema_sgf::FieldFillPatchOps<kynema_sgf::FieldBCDirichlet>>(
+            mesh(), time(), kynema_sgf::FieldInterpolator::CellConsLinear);
     }
+    kynema_sgf::BCVelocity velocity_bc(velocity);
+    velocity_bc();
+    kynema_sgf::BCScalar scalar_bc(scalar);
+    scalar_bc();
 
     // Flow in +x everywhere: xhi is outflow, xlo is inflow
     velocity.setVal(1.0_rt, 0, 1, ng);
@@ -639,25 +654,27 @@ TEST_F(GhostLayerFillTest, mass_inflow_outflow_all_ghost_layers)
     scalar.setVal(sentinel);
     initialize_interior_pattern(scalar(0));
 
-    for (const auto side :
-         {amrex::Orientation::low, amrex::Orientation::high}) {
-        kynema_sgf::MassInflowOutflowBC bc(
-            scalar, amrex::Orientation(idir, side));
-        bc(scalar, kynema_sgf::FieldState::New);
+    for (const bool use_fillpatch : {true, false}) {
+        SCOPED_TRACE(use_fillpatch ? "fillpatch" : "fillphysbc");
+        scalar.setVal(sentinel);
+        initialize_interior_pattern(scalar(0));
+        if (use_fillpatch) {
+            scalar.fillpatch(0.0_rt);
+        } else {
+            scalar.fillphysbc(0.0_rt);
+        }
+
+        const amrex::Real hi_offset = 1000.0_rt * domain.bigEnd(idir);
+        EXPECT_EQ(
+            count_pattern_mismatches(
+                scalar(0), amrex::adjCellHi(domain, idir, ng), hi_offset),
+            0);
+        EXPECT_EQ(count_outflow_edge_mismatches(scalar(0), domain), 0);
+
+        const auto lo_layers = amrex::adjCellLo(domain, idir, ng);
+        EXPECT_NEAR(scalar(0).min(lo_layers, 0, ng), sentinel, tolerance);
+        EXPECT_NEAR(scalar(0).max(lo_layers, 0, ng), sentinel, tolerance);
     }
-
-    // xhi outflow: every ghost layer holds the adjacent interior value
-    const amrex::Real hi_offset = 1000.0_rt * domain.bigEnd(idir);
-    EXPECT_EQ(
-        count_pattern_mismatches(
-            scalar(0), amrex::adjCellHi(domain, idir, ng), hi_offset),
-        0);
-    EXPECT_EQ(count_outflow_edge_mismatches(scalar(0), domain), 0);
-
-    // xlo inflow: ghost layers are left untouched
-    const auto lo_layers = amrex::adjCellLo(domain, idir, ng);
-    EXPECT_NEAR(scalar(0).min(lo_layers, 0, ng), sentinel, tolerance);
-    EXPECT_NEAR(scalar(0).max(lo_layers, 0, ng), sentinel, tolerance);
 }
 
 TEST_F(GhostLayerFillTest, transverse_physical_and_grid_boundaries)
