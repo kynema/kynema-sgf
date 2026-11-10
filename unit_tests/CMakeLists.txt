@@ -6,6 +6,7 @@ target_sources(${kynema_sgf_unit_test_exe_name}
 
 add_subdirectory(ks_test_utils)
 add_subdirectory(core)
+add_subdirectory(actuator)
 add_subdirectory(wind_energy)
 add_subdirectory(offshore_wind)
 add_subdirectory(utilities)

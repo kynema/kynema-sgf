@@ -1,6 +1,6 @@
 #include "src/equation_systems/icns/source_terms/ActuatorForcing.H"
 #include "src/CFDSim.H"
-#include "src/wind_energy/actuator/Actuator.H"
+#include "src/actuator/Actuator.H"
 
 #include "AMReX_Gpu.H"
 

@@ -255,7 +255,7 @@ if(KYNEMA_SGF_ENABLE_CUDA)
     # must be compiled by the same compiler as Kokkos, since nvcc and the host
     # compiler lay out Kokkos::View differently
     set_source_files_properties(
-      ${CMAKE_SOURCE_DIR}/src/wind_energy/actuator/turbine/kynema_fmb/KynemaFMBHost.cpp
+      ${CMAKE_SOURCE_DIR}/src/actuator/turbine/kynema_fmb/KynemaFMBHost.cpp
       PROPERTIES LANGUAGE CXX)
   endif()
 endif()

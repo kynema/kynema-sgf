@@ -11,5 +11,3 @@ target_sources(${kynema_sgf_lib_name}
   ABLMesoscaleInput.cpp
   ABLAnelastic.cpp
   )
-
-add_subdirectory(actuator)
