@@ -1,6 +1,6 @@
-#include "src/wind_energy/actuator/drone/Drone.H"
-#include "src/wind_energy/actuator/drone/drone_ops.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/drone/Drone.H"
+#include "src/actuator/drone/drone_ops.H"
+#include "src/actuator/ActuatorModel.H"
 #include "src/utilities/trig_ops.H"
 
 #include <cmath>

@@ -1,7 +1,7 @@
 #include <string>
 #include <numbers>
 #include "ks_test_utils/AmrexTest.H"
-#include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/actuator/aero/AirfoilTable.H"
 #include "src/utilities/trig_ops.H"
 #include "AMReX_REAL.H"
 

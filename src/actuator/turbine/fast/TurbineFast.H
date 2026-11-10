@@ -1,8 +1,8 @@
 #ifndef TURBINEFAST_H
 #define TURBINEFAST_H
 
-#include "src/wind_energy/actuator/turbine/external/TurbineExternal.H"
-#include "src/wind_energy/actuator/turbine/fast/fast_types.H"
+#include "src/actuator/turbine/external/TurbineExternal.H"
+#include "src/actuator/turbine/fast/fast_types.H"
 
 namespace kynema_sgf::actuator {
 

@@ -1,8 +1,8 @@
-#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
+#include "src/actuator/motion/RigidBodyMotion.H"
 
 #include "src/core/vs/quaternion.H"
 #include "src/utilities/constants.H"
-#include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
+#include "src/actuator/sector/actuator_sector_ops.H"
 
 #include <algorithm>
 #include <cmath>

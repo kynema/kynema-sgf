@@ -1,6 +1,6 @@
 #include <algorithm>
-#include "src/wind_energy/actuator/ActuatorContainer.H"
-#include "src/wind_energy/actuator/Actuator.H"
+#include "src/actuator/ActuatorContainer.H"
+#include "src/actuator/Actuator.H"
 #include "src/core/gpu_utils.H"
 #include "src/core/Field.H"
 #include "AMReX_Scan.H"

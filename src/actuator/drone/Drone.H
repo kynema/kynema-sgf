@@ -1,11 +1,11 @@
 #ifndef DRONE_H
 #define DRONE_H
 
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/sector/ActuatorSector.H"
-#include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
-#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
-#include "src/wind_energy/actuator/motion/RotorMotion.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/sector/ActuatorSector.H"
+#include "src/actuator/sector/actuator_sector_ops.H"
+#include "src/actuator/motion/RigidBodyMotion.H"
+#include "src/actuator/motion/RotorMotion.H"
 
 #include <memory>
 #include <string>

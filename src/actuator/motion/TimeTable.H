@@ -1,7 +1,7 @@
 #ifndef ACTUATOR_MOTION_TIME_TABLE_H
 #define ACTUATOR_MOTION_TIME_TABLE_H
 
-#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/actuator/actuator_types.H"
 
 #include <string>
 

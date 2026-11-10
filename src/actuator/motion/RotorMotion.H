@@ -1,8 +1,8 @@
 #ifndef ACTUATOR_ROTOR_MOTION_H
 #define ACTUATOR_ROTOR_MOTION_H
 
-#include "src/wind_energy/actuator/ActParser.H"
-#include "src/wind_energy/actuator/motion/TimeTable.H"
+#include "src/actuator/ActParser.H"
+#include "src/actuator/motion/TimeTable.H"
 
 namespace kynema_sgf::actuator::motion {
 

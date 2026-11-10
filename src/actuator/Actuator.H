@@ -2,7 +2,7 @@
 #define ACTUATOR_H
 
 #include "src/core/Physics.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/ActuatorModel.H"
 
 /** \defgroup actuator Actuator source terms
  *  Actuator source modeling for wind turbines

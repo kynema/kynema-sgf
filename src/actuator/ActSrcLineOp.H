@@ -2,9 +2,9 @@
 #define ACTSRCLINEOP_H
 
 #include "AMReX_REAL.H"
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/actuator_utils.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/actuator_utils.H"
 #include "src/core/FieldRepo.H"
 
 using namespace amrex::literals;

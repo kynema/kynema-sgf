@@ -1,10 +1,10 @@
 #ifndef ACTUATORSECTOR_H
 #define ACTUATORSECTOR_H
 
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/aero/AirfoilTable.H"
-#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
-#include "src/wind_energy/actuator/motion/RotorMotion.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/aero/AirfoilTable.H"
+#include "src/actuator/motion/RigidBodyMotion.H"
+#include "src/actuator/motion/RotorMotion.H"
 
 #include <memory>
 #include <string>

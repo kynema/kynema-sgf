@@ -1,5 +1,5 @@
-#include "src/wind_energy/actuator/wing/wing_ops.H"
-#include "src/wind_energy/actuator/ActParser.H"
+#include "src/actuator/wing/wing_ops.H"
+#include "src/actuator/ActParser.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/io_utils.H"
 #include "AMReX_ParmParse.H"

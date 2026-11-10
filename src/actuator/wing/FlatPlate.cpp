@@ -1,6 +1,6 @@
-#include "src/wind_energy/actuator/wing/FlatPlate.H"
-#include "src/wind_energy/actuator/wing/flat_plate_ops.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/wing/FlatPlate.H"
+#include "src/actuator/wing/flat_plate_ops.H"
+#include "src/actuator/ActuatorModel.H"
 
 namespace kynema_sgf::actuator {
 

@@ -1,6 +1,6 @@
-#include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
-#include "src/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/turbine/fast/TurbineFast.H"
+#include "src/actuator/turbine/fast/turbine_fast_ops.H"
+#include "src/actuator/ActuatorModel.H"
 
 namespace kynema_sgf::actuator {
 

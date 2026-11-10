@@ -1,9 +1,9 @@
 #ifndef ACT_OPS_H
 #define ACT_OPS_H
 
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/ActParser.H"
-#include "src/wind_energy/actuator/motion/RigidTransform.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/ActParser.H"
+#include "src/actuator/motion/RigidTransform.H"
 #include "AMReX_Vector.H"
 
 #include <optional>
@@ -154,6 +154,6 @@ void determine_root_proc(
 
 } // namespace kynema_sgf::actuator::ops
 
-#include "src/wind_energy/actuator/actuator_opsI.H"
+#include "src/actuator/actuator_opsI.H"
 
 #endif /* ACT_OPS_H */

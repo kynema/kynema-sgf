@@ -2,8 +2,8 @@
 #define DISK_SPREADING_H
 
 #include "AMReX_REAL.H"
-#include "src/wind_energy/actuator/actuator_utils.H"
-#include "src/wind_energy/actuator/disk/UniformCt.H"
+#include "src/actuator/actuator_utils.H"
+#include "src/actuator/disk/UniformCt.H"
 #include "src/core/FieldRepo.H"
 
 using namespace amrex::literals;

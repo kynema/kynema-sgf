@@ -1,8 +1,8 @@
 #ifndef TURBINE_UTILS_H
 #define TURBINE_UTILS_H
 
-#include "src/wind_energy/actuator/turbine/turbine_types.H"
-#include "src/wind_energy/actuator/ActParser.H"
+#include "src/actuator/turbine/turbine_types.H"
+#include "src/actuator/ActParser.H"
 
 namespace kynema_sgf::actuator::utils {
 void read_inputs(

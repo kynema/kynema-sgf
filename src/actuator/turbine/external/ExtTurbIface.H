@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 #include "src/core/ExtSolver.H"
-#include "src/wind_energy/actuator/turbine/external/external_base_types.H"
+#include "src/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

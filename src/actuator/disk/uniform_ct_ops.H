@@ -2,8 +2,8 @@
 #define UNIFORM_CT_OPS_H
 
 #include <numbers>
-#include "src/wind_energy/actuator/disk/disk_ops.H"
-#include "src/wind_energy/actuator/disk/UniformCt.H"
+#include "src/actuator/disk/disk_ops.H"
+#include "src/actuator/disk/UniformCt.H"
 #include "src/utilities/linear_interpolation.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/trig_ops.H"

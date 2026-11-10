@@ -1,6 +1,6 @@
-#include "src/wind_energy/actuator/motion/RigidBodyMotion.H"
-#include "src/wind_energy/actuator/motion/RotorMotion.H"
-#include "src/wind_energy/actuator/motion/TimeTable.H"
+#include "src/actuator/motion/RigidBodyMotion.H"
+#include "src/actuator/motion/RotorMotion.H"
+#include "src/actuator/motion/TimeTable.H"
 #include "src/utilities/constants.H"
 
 #include "gtest/gtest.h"

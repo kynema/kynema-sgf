@@ -1,9 +1,9 @@
-#include "src/wind_energy/actuator/disk/UniformCt.H"
-#include "src/wind_energy/actuator/disk/Joukowsky.H"
-#include "src/wind_energy/actuator/disk/uniform_ct_ops.H"
-#include "src/wind_energy/actuator/disk/Joukowsky_ops.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
-#include "src/wind_energy/actuator/disk/disk_spreading.H"
+#include "src/actuator/disk/UniformCt.H"
+#include "src/actuator/disk/Joukowsky.H"
+#include "src/actuator/disk/uniform_ct_ops.H"
+#include "src/actuator/disk/Joukowsky_ops.H"
+#include "src/actuator/ActuatorModel.H"
+#include "src/actuator/disk/disk_spreading.H"
 
 namespace kynema_sgf::actuator {
 template class ActModel<UniformCt, ActSrcDisk>;

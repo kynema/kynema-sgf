@@ -2,12 +2,12 @@
 #define ACTUATORMODEL_H
 
 #include "src/core/Factory.H"
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/ActSrcLineOp.H"
-#include "src/wind_energy/actuator/turbine/ActSrcDiskOp_Turbine.H"
-#include "src/wind_energy/actuator/disk/ActSrcDiskOp.H"
-#include "src/wind_energy/actuator/ActParser.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/ActSrcLineOp.H"
+#include "src/actuator/turbine/ActSrcDiskOp_Turbine.H"
+#include "src/actuator/disk/ActSrcDiskOp.H"
+#include "src/actuator/ActParser.H"
 
 namespace kynema_sgf {
 

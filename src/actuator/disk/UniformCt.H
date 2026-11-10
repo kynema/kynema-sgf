@@ -1,7 +1,7 @@
 #ifndef UNIFORMCT_H
 #define UNIFORMCT_H
 
-#include "src/wind_energy/actuator/disk/ActuatorDisk.H"
+#include "src/actuator/disk/ActuatorDisk.H"
 
 namespace kynema_sgf::actuator {
 

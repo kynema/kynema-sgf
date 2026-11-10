@@ -1,8 +1,8 @@
 #ifndef TURBINEKYNEMAFMB_H
 #define TURBINEKYNEMAFMB_H
 
-#include "src/wind_energy/actuator/turbine/external/TurbineExternal.H"
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
+#include "src/actuator/turbine/external/TurbineExternal.H"
+#include "src/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
 
 namespace kynema_sgf::actuator {
 

@@ -2,8 +2,8 @@
 #define FLLC_H
 
 #include <cstdint>
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/ActParser.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/ActParser.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

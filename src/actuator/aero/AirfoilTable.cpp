@@ -1,4 +1,4 @@
-#include "src/wind_energy/actuator/aero/AirfoilTable.H"
+#include "src/actuator/aero/AirfoilTable.H"
 #include "src/utilities/linear_interpolation.H"
 #include <fstream>
 #include <algorithm>

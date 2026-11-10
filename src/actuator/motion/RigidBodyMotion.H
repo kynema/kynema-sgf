@@ -2,9 +2,9 @@
 #define ACTUATOR_RIGID_BODY_MOTION_H
 
 #include "src/core/vs/quaternion.H"
-#include "src/wind_energy/actuator/ActParser.H"
-#include "src/wind_energy/actuator/motion/RigidTransform.H"
-#include "src/wind_energy/actuator/motion/TimeTable.H"
+#include "src/actuator/ActParser.H"
+#include "src/actuator/motion/RigidTransform.H"
+#include "src/actuator/motion/TimeTable.H"
 
 #include <cstdint>
 

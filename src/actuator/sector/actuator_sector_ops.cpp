@@ -1,4 +1,4 @@
-#include "src/wind_energy/actuator/sector/actuator_sector_ops.H"
+#include "src/actuator/sector/actuator_sector_ops.H"
 
 #include "src/CFDSim.H"
 #include "src/core/Field.H"

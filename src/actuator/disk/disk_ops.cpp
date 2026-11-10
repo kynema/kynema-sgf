@@ -1,4 +1,4 @@
-#include "src/wind_energy/actuator/disk/disk_ops.H"
+#include "src/actuator/disk/disk_ops.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/math_ops.H"

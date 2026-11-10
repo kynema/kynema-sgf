@@ -1,4 +1,4 @@
-#include "src/wind_energy/actuator/motion/RotorMotion.H"
+#include "src/actuator/motion/RotorMotion.H"
 
 #include "src/utilities/trig_ops.H"
 

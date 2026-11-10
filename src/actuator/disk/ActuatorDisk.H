@@ -1,7 +1,7 @@
 #ifndef ACTUATORDISK_H
 #define ACTUATORDISK_H
 
-#include "src/wind_energy/actuator/disk/disk_types.H"
+#include "src/actuator/disk/disk_types.H"
 #include "src/core/vs/vector_space.H"
 #include "AMReX_REAL.H"
 

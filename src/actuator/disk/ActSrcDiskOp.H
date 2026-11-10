@@ -1,10 +1,10 @@
 #ifndef ACTSRCDISKOP_H
 #define ACTSRCDISKOP_H
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/actuator_utils.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/actuator_utils.H"
 #include "src/core/FieldRepo.H"
-#include "src/wind_energy/actuator/disk/disk_types.H"
-#include "src/wind_energy/actuator/disk/disk_spreading.H"
+#include "src/actuator/disk/disk_types.H"
+#include "src/actuator/disk/disk_spreading.H"
 
 namespace kynema_sgf::actuator::ops {
 

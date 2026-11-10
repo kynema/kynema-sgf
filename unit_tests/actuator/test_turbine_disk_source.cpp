@@ -2,9 +2,9 @@
 
 #include "ks_test_utils/MeshTest.H"
 
-#include "src/wind_energy/actuator/FLLC.H"
-#include "src/wind_energy/actuator/turbine/ActSrcDiskOp_Turbine.H"
-#include "src/wind_energy/actuator/turbine/turbine_types.H"
+#include "src/actuator/FLLC.H"
+#include "src/actuator/turbine/ActSrcDiskOp_Turbine.H"
+#include "src/actuator/turbine/turbine_types.H"
 #include "src/core/Slice.H"
 #include "AMReX_REAL.H"
 

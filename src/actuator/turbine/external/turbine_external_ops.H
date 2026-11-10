@@ -1,12 +1,12 @@
 #ifndef TURBINE_EXTERNAL_OPS_H
 #define TURBINE_EXTERNAL_OPS_H
 
-#include "src/wind_energy/actuator/turbine/turbine_utils.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/actuator_utils.H"
-#include "src/wind_energy/actuator/FLLCOp.H"
+#include "src/actuator/turbine/turbine_utils.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/actuator_utils.H"
+#include "src/actuator/FLLCOp.H"
 #include "src/utilities/IOManager.H"
-#include "src/wind_energy/actuator/turbine/external/turbine_external_utils.H"
+#include "src/actuator/turbine/external/turbine_external_utils.H"
 
 using namespace kynema_sgf::actuator::external;
 

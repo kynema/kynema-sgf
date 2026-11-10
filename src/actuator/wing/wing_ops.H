@@ -1,12 +1,12 @@
 #ifndef WING_OPS_H
 #define WING_OPS_H
 
-#include "src/wind_energy/actuator/wing/ActuatorWing.H"
-#include "src/wind_energy/actuator/actuator_types.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/aero/AirfoilTable.H"
-#include "src/wind_energy/actuator/ActParser.H"
-#include "src/wind_energy/actuator/FLLCOp.H"
+#include "src/actuator/wing/ActuatorWing.H"
+#include "src/actuator/actuator_types.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/aero/AirfoilTable.H"
+#include "src/actuator/ActParser.H"
+#include "src/actuator/FLLCOp.H"
 #include "src/utilities/linear_interpolation.H"
 #include "src/utilities/io_utils.H"
 #include "src/core/vs/vector_space.H"

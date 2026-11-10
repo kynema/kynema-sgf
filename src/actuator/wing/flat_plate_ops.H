@@ -3,9 +3,9 @@
 
 #include <algorithm>
 
-#include "src/wind_energy/actuator/wing/FlatPlate.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/wing/wing_ops.H"
+#include "src/actuator/wing/FlatPlate.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/wing/wing_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

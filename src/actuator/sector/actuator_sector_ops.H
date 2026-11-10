@@ -1,9 +1,9 @@
 #ifndef ACTUATOR_SECTOR_OPS_H
 #define ACTUATOR_SECTOR_OPS_H
 
-#include "src/wind_energy/actuator/sector/ActuatorSector.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/actuator_utils.H"
+#include "src/actuator/sector/ActuatorSector.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/actuator_utils.H"
 #include "src/core/FieldRepo.H"
 
 #include <cstddef>

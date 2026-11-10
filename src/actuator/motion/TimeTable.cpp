@@ -1,4 +1,4 @@
-#include "src/wind_energy/actuator/motion/TimeTable.H"
+#include "src/actuator/motion/TimeTable.H"
 
 #include "src/utilities/linear_interpolation.H"
 

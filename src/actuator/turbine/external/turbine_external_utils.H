@@ -2,12 +2,12 @@
 #define TURBINE_EXTERNAL_UTILS_H
 
 #include <numbers>
-#include "src/wind_energy/actuator/turbine/turbine_utils.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
-#include "src/wind_energy/actuator/actuator_utils.H"
-#include "src/wind_energy/actuator/FLLCOp.H"
+#include "src/actuator/turbine/turbine_utils.H"
+#include "src/actuator/actuator_ops.H"
+#include "src/actuator/actuator_utils.H"
+#include "src/actuator/FLLCOp.H"
 #include "src/utilities/IOManager.H"
-#include "src/wind_energy/actuator/turbine/external/TurbineExternal.H"
+#include "src/actuator/turbine/external/TurbineExternal.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

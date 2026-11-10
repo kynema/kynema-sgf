@@ -1,6 +1,6 @@
-#include "src/wind_energy/actuator/turbine/kynema_fmb/TurbineKynemaFMB.H"
-#include "src/wind_energy/actuator/turbine/kynema_fmb/turbine_kynema_fmb_ops.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/turbine/kynema_fmb/TurbineKynemaFMB.H"
+#include "src/actuator/turbine/kynema_fmb/turbine_kynema_fmb_ops.H"
+#include "src/actuator/ActuatorModel.H"
 
 namespace kynema_sgf::actuator {
 

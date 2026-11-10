@@ -1,8 +1,8 @@
 #ifndef DISK_OPS_H
 #define DISK_OPS_H
 
-#include "src/wind_energy/actuator/disk/ActuatorDisk.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/actuator/disk/ActuatorDisk.H"
+#include "src/actuator/actuator_ops.H"
 #include "src/utilities/tensor_ops.H"
 #include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"

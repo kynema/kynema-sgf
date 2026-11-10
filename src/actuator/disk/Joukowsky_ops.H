@@ -3,8 +3,8 @@
 
 #include <algorithm>
 
-#include "src/wind_energy/actuator/disk/Joukowsky.H"
-#include "src/wind_energy/actuator/disk/disk_ops.H"
+#include "src/actuator/disk/Joukowsky.H"
+#include "src/actuator/disk/disk_ops.H"
 #include "src/utilities/linear_interpolation.H"
 #include "src/utilities/io_utils.H"
 #include "src/utilities/trig_ops.H"

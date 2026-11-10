@@ -1,8 +1,8 @@
 #ifndef TURBINEEXTERNAL_H
 #define TURBINEEXTERNAL_H
 
-#include "src/wind_energy/actuator/turbine/turbine_types.H"
-#include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
+#include "src/actuator/turbine/turbine_types.H"
+#include "src/actuator/turbine/external/ExtTurbIface.H"
 #include "src/core/ExtSolver.H"
 #include "AMReX_REAL.H"
 

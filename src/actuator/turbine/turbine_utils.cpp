@@ -1,7 +1,7 @@
-#include "src/wind_energy/actuator/turbine/turbine_utils.H"
+#include "src/actuator/turbine/turbine_utils.H"
 #include "src/utilities/ncutils/nc_interface.H"
 #include "src/utilities/io_utils.H"
-#include "src/wind_energy/actuator/FLLC.H"
+#include "src/actuator/FLLC.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;

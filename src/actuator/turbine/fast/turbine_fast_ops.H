@@ -1,8 +1,8 @@
 #ifndef TURBINE_FAST_OPS_H
 #define TURBINE_FAST_OPS_H
 
-#include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
-#include "src/wind_energy/actuator/turbine/external/turbine_external_ops.H"
+#include "src/actuator/turbine/fast/TurbineFast.H"
+#include "src/actuator/turbine/external/turbine_external_ops.H"
 #include "src/utilities/io_utils.H"
 #include "AMReX_REAL.H"
 

@@ -1,8 +1,8 @@
 #ifndef DRONE_OPS_H
 #define DRONE_OPS_H
 
-#include "src/wind_energy/actuator/drone/Drone.H"
-#include "src/wind_energy/actuator/actuator_ops.H"
+#include "src/actuator/drone/Drone.H"
+#include "src/actuator/actuator_ops.H"
 #include "src/utilities/io_utils.H"
 
 namespace kynema_sgf::actuator::ops {

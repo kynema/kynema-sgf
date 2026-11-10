@@ -1,7 +1,7 @@
 #ifndef ACTUATORWING_H
 #define ACTUATORWING_H
 
-#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/actuator/actuator_types.H"
 #include "src/core/vs/vector_space.H"
 
 #include <string>

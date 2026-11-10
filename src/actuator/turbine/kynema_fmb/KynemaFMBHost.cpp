@@ -4,8 +4,8 @@
 #include <limits>
 #include <stdexcept>
 #include <vector>
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
+#include "src/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
+#include "src/actuator/turbine/kynema_fmb/kynema_fmb_wrapper.H"
 
 // This is the only file that uses Kynema-FMB types. It is compiled with the
 // same compiler as Kokkos (see CMakeLists.txt), which can be the host compiler,

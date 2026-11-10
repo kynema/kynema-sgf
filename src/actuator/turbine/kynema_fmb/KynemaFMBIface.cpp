@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <cmath>
-#include "src/wind_energy/actuator/turbine/external/ExtTurbIface.H"
-#include "src/wind_energy/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
+#include "src/actuator/turbine/external/ExtTurbIface.H"
+#include "src/actuator/turbine/kynema_fmb/kynema_fmb_types.H"
 #include "src/CFDSim.H"
 #include "src/core/SimTime.H"
 #include "src/utilities/io_utils.H"

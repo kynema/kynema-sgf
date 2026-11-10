@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <memory>
-#include "src/wind_energy/actuator/Actuator.H"
-#include "src/wind_energy/actuator/ActParser.H"
-#include "src/wind_energy/actuator/ActuatorContainer.H"
+#include "src/actuator/Actuator.H"
+#include "src/actuator/ActParser.H"
+#include "src/actuator/ActuatorContainer.H"
 #include "src/CFDSim.H"
 #include "src/core/FieldRepo.H"
 #include "src/utilities/io_utils.H"

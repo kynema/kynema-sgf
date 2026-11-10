@@ -1,7 +1,7 @@
 #include <algorithm>
 
-#include "src/wind_energy/actuator/actuator_utils.H"
-#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/actuator/actuator_utils.H"
+#include "src/actuator/actuator_types.H"
 
 namespace kynema_sgf::actuator::utils {
 
