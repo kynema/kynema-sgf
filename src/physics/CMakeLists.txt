@@ -20,6 +20,7 @@ target_sources(${kynema_sgf_lib_name}
   ActuatorSourceTagging.cpp
   Intermittency.cpp
   ForestDrag.cpp
+  ForestCanopy.cpp
   )
 
 add_subdirectory(multiphase)
