@@ -24,6 +24,7 @@ struct W2AWavesData : public RelaxZonesBaseData
     // Number of points in each direction (spatial output)
     int n0_sp{0};
     int n1_sp{0};
+    int max_padding_level{-1};
     // Spatial resolution in each direction
     amrex::Real dx0{0.};
     amrex::Real dx1{0.};
@@ -71,6 +72,24 @@ struct W2AWavesData : public RelaxZonesBaseData
     // ReadModes objects
     ReadModes<std::complex<amrex::Real>> c_rmodes;
     ReadModes<amrex::Real> r_rmodes;
+
+    bool read_ocean_modes(int timestep)
+    {
+        const int ny = c_rmodes.get_first_fft_dimension();
+        const int nx = c_rmodes.get_second_fft_dimension();
+        const auto count = static_cast<std::size_t>(ny) * (nx / 2 + 1);
+        for (auto* modes : {&c_mX, &c_mY, &c_mZ, &c_mFS}) {
+            modes->resize(count);
+        }
+        const bool available =
+            c_rmodes.get_data(timestep, c_mX, c_mY, c_mZ, c_mFS);
+        if (available && (ny != n0 || nx != n1)) {
+            for (auto* modes : {&c_mX, &c_mY, &c_mZ, &c_mFS}) {
+                *modes = modes_hosgrid::pad_ocean_modes(ny, nx, n0, n1, *modes);
+            }
+        }
+        return available;
+    }
 #endif
 
     // Height vector (where velocity is sampled) stuff

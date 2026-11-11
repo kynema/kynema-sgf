@@ -100,9 +100,7 @@ void populate_fields_all_levels(
     // Get data from modes
     bool no_EOF =
         wdata.is_ocean
-            ? wdata.c_rmodes.get_data(
-                  wdata.ntime + wdata.n_offset + ntime_off, wdata.c_mX,
-                  wdata.c_mY, wdata.c_mZ, wdata.c_mFS)
+            ? wdata.read_ocean_modes(wdata.ntime + wdata.n_offset + ntime_off)
             : wdata.r_rmodes.get_data(
                   wdata.ntime + wdata.n_offset + ntime_off, wdata.r_mX,
                   wdata.r_mY, wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
@@ -115,9 +113,8 @@ void populate_fields_all_levels(
                           "detected, resetting to beginning of mode data.\n";
         // Read data again, now from a valid timestep
         no_EOF = wdata.is_ocean
-                     ? wdata.c_rmodes.get_data(
-                           wdata.ntime + wdata.n_offset + ntime_off, wdata.c_mX,
-                           wdata.c_mY, wdata.c_mZ, wdata.c_mFS)
+                     ? wdata.read_ocean_modes(
+                           wdata.ntime + wdata.n_offset + ntime_off)
                      : wdata.r_rmodes.get_data(
                            wdata.ntime + wdata.n_offset + ntime_off, wdata.r_mX,
                            wdata.r_mY, wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
@@ -136,7 +133,7 @@ void populate_fields_all_levels(
         modes_hosgrid::copy_complex(
             wdata.n0, wdata.n1, wdata.c_mFS, wdata.c_eta_mptr);
         modes_hosgrid::populate_hos_eta(
-            wdata.c_rmodes, wdata.plan_vector, wdata.c_eta_mptr,
+            wdata.n0, wdata.n1, wdata.dimL, wdata.plan_vector, wdata.c_eta_mptr,
             wdata.sp_eta_vec);
     } else {
         modes_hosgrid::copy_real(
@@ -152,10 +149,12 @@ void populate_fields_all_levels(
         // Sample velocity
         if (wdata.is_ocean) {
             modes_hosgrid::populate_hos_vel(
-                wdata.c_rmodes, ht, wdata.zsl, wdata.c_mX, wdata.c_mY,
-                wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr, wdata.c_v_mptr,
-                wdata.c_w_mptr, wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
-                iht * wdata.n0 * wdata.n1);
+                wdata.n0, wdata.n1, wdata.c_rmodes.get_xlen(),
+                wdata.c_rmodes.get_ylen(), wdata.c_rmodes.get_depth(), ht,
+                wdata.zsl, wdata.dimL, wdata.c_rmodes.get_T(), wdata.c_mX,
+                wdata.c_mY, wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr,
+                wdata.c_v_mptr, wdata.c_w_mptr, wdata.sp_u_vec, wdata.sp_v_vec,
+                wdata.sp_w_vec, iht * wdata.n0 * wdata.n1);
         } else {
             modes_hosgrid::populate_hos_vel(
                 wdata.r_rmodes, ht, wdata.zsl, wdata.r_mX, wdata.r_mY,
@@ -237,6 +236,11 @@ struct ReadInputsOp<W2AWaves>
         }
         pp.query("HOS_domain_offset_x", wdata.xlo0);
         pp.query("HOS_domain_offset_y", wdata.xlo1);
+        pp.query("fft_max_padding_level", wdata.max_padding_level);
+        if (wdata.max_padding_level < -1) {
+            amrex::Abort(
+                "fft_max_padding_level must be -1, 0, or a positive integer");
+        }
 
         // Default fftw_plan is deterministic
         std::string fftw_planner_flag{"estimate"};
@@ -311,6 +315,27 @@ struct ReadInputsOp<W2AWaves>
             wdata.n1 = wdata.c_rmodes.get_second_fft_dimension();
             wdata.n0_sp = wdata.c_rmodes.get_first_spatial_dimension();
             wdata.n1_sp = wdata.c_rmodes.get_second_spatial_dimension();
+            const auto& mesh = data.sim().mesh();
+            auto target_dx = mesh.Geom(0).CellSizeArray();
+            for (int lev = 0; lev < mesh.maxLevel(); ++lev) {
+                const auto ratio = mesh.refRatio(lev);
+                for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+                    target_dx[dir] /= ratio[dir];
+                }
+            }
+            const auto padded = modes_hosgrid::ocean_fft_dimensions(
+                wdata.n0, wdata.n1, wdata.c_rmodes.get_ylen(),
+                wdata.c_rmodes.get_xlen(), target_dx[1], target_dx[0],
+                wdata.max_padding_level);
+            amrex::Print() << "OceanWaves: FFT grid (nx, ny) " << wdata.n1
+                           << " " << wdata.n0 << " -> " << padded[1] << " "
+                           << padded[0] << ", target spacing " << target_dx[0]
+                           << " " << target_dx[1] << ", fft_max_padding_level "
+                           << wdata.max_padding_level << "\n";
+            wdata.n0 = padded[0];
+            wdata.n1 = padded[1];
+            wdata.n0_sp = wdata.n1;
+            wdata.n1_sp = wdata.n0;
             // Get resolution
             wdata.dx0 = wdata.c_rmodes.get_xlen() / wdata.n0_sp;
             wdata.dx1 = wdata.c_rmodes.get_ylen() / wdata.n1_sp;
@@ -448,6 +473,12 @@ struct ReadInputsOp<W2AWaves>
                 "code " +
                 std::to_string(flag));
         }
+        if (wdata.n0 > std::numeric_limits<int>::max() / wdata.n1 /
+                           static_cast<int>(wdata.hvec.size())) {
+            amrex::Abort(
+                "Waves2AMR: padded velocity arrays exceed supported integer "
+                "indexing");
+        }
 
         amrex::Real z_double{0.0_rt};
         bool found_z_double{false};
@@ -486,9 +517,7 @@ struct ReadInputsOp<W2AWaves>
         // Always get modes on every processor for initialization
         bool no_EOF =
             wdata.is_ocean
-                ? wdata.c_rmodes.get_data(
-                      wdata.ntime + wdata.n_offset, wdata.c_mX, wdata.c_mY,
-                      wdata.c_mZ, wdata.c_mFS)
+                ? wdata.read_ocean_modes(wdata.ntime + wdata.n_offset)
                 : wdata.r_rmodes.get_data(
                       wdata.ntime + wdata.n_offset, wdata.r_mX, wdata.r_mY,
                       wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
@@ -502,9 +531,7 @@ struct ReadInputsOp<W2AWaves>
             // Read data again, now from a valid timestep
             no_EOF =
                 wdata.is_ocean
-                    ? wdata.c_rmodes.get_data(
-                          wdata.ntime + wdata.n_offset, wdata.c_mX, wdata.c_mY,
-                          wdata.c_mZ, wdata.c_mFS)
+                    ? wdata.read_ocean_modes(wdata.ntime + wdata.n_offset)
                     : wdata.r_rmodes.get_data(
                           wdata.ntime + wdata.n_offset, wdata.r_mX, wdata.r_mY,
                           wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
@@ -526,8 +553,8 @@ struct ReadInputsOp<W2AWaves>
                 static_cast<size_t>(wdata.n0) * static_cast<size_t>(wdata.n1),
                 0.0_rt);
             modes_hosgrid::populate_hos_eta(
-                wdata.c_rmodes, wdata.plan_vector, wdata.c_eta_mptr,
-                wdata.sp_eta_vec);
+                wdata.n0, wdata.n1, wdata.dimL, wdata.plan_vector,
+                wdata.c_eta_mptr, wdata.sp_eta_vec);
             // Mesh is not yet created, so get data at every height
             const auto n_hts = wdata.hvec.size();
             wdata.sp_u_vec.resize(
@@ -541,8 +568,10 @@ struct ReadInputsOp<W2AWaves>
                 amrex::Real ht = wdata.hvec[iht];
                 // Sample velocity
                 modes_hosgrid::populate_hos_vel(
-                    wdata.c_rmodes, ht, wdata.zsl, wdata.c_mX, wdata.c_mY,
-                    wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr,
+                    wdata.n0, wdata.n1, wdata.c_rmodes.get_xlen(),
+                    wdata.c_rmodes.get_ylen(), wdata.c_rmodes.get_depth(), ht,
+                    wdata.zsl, wdata.dimL, wdata.c_rmodes.get_T(), wdata.c_mX,
+                    wdata.c_mY, wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr,
                     wdata.c_v_mptr, wdata.c_w_mptr, wdata.sp_u_vec,
                     wdata.sp_v_vec, wdata.sp_w_vec, iht * wdata.n0 * wdata.n1);
             }

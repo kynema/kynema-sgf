@@ -191,6 +191,20 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    The time step in the modes file for the Kynema-SGF simulation to start at.
 
+.. input_param:: OceanWaves.label.fft_max_padding_level
+
+   **type:** Integer, optional, default = -1
+
+   HOS-Ocean only: zero-pad the elevation and velocity modes before the inverse
+   FFT so the reconstructed horizontal spacing is no larger than the finest
+   configured AMR cell spacing. Each direction is doubled independently as
+   needed. ``-1`` allows uncapped padding, ``0`` disables padding (legacy
+   behavior), and a positive integer ``p`` caps expansion at ``2**p`` per
+   direction. A cap can leave reconstruction coarser than the target mesh.
+   Padding preserves the retained Fourier modes; it adds no shorter waves.
+   Memory for the spatial velocity arrays grows with the padded horizontal
+   grid size times the number of interpolation heights. HOS-NWT is unchanged.
+
 .. input_param:: OceanWaves.label.HOS_init_time
 
    **type:** Integer, optional, default = 0
