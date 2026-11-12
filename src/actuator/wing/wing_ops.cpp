@@ -19,6 +19,10 @@ void init_data_structures(WingBaseData& wdata, ActGrid& grid)
     // Compute transformation matrix as a quaternion rotation about wing span
     auto tmat = vs::quaternion(wspan, wdata.pitch);
     // Epsilon (chord, thickness, span) -> (chord, span, thickness)
+    // Component n acts along row n of tmat. Row 1 is the global y axis
+    // turned about the span, so it is the span direction only for a span
+    // along y: for another span the third input value does not act along
+    // the span.
     const auto& epsin = wdata.eps_inp;
     vs::Vector eps{epsin.x(), epsin.z(), epsin.y()};
 
