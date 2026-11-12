@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "src/CFDSim.H"
 #include "src/core/ExtSolver.H"
 #include "src/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
@@ -16,10 +17,6 @@ using namespace amrex::literals;
 
 namespace ncutils {
 class NCFile;
-}
-
-namespace kynema_sgf {
-class CFDSim;
 }
 
 namespace ext_turb {
@@ -133,12 +130,16 @@ protected:
     SolverData m_solver_data;
 
     bool m_is_initialized{false};
+
+    //! Time of the CFD solver, which says when a checkpoint is written
+    const ::kynema_sgf::SimTime& m_time;
 };
 
 // General implementations of some functions
 template <typename SolverTurbine, typename SolverData>
 ExtTurbIface<SolverTurbine, SolverData>::ExtTurbIface(
-    const kynema_sgf::CFDSim& /*unused*/)
+    const kynema_sgf::CFDSim& sim)
+    : m_time(sim.time())
 {}
 
 template <typename SolverTurbine, typename SolverData>
@@ -235,8 +236,12 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
         do_turbine_step(fi);
     }
 
-    if (fi.chkpt_interval > 0 &&
-        (fi.time_index / fi.num_substeps) % fi.chkpt_interval == 0) {
+    // The checkpoint of the external solver goes with the one the CFD solver
+    // writes at the end of this time step: on its step or time interval,
+    // after its delay, counted from the restart, and at the last step of the
+    // run when that one is off the interval
+    if (m_time.write_checkpoint() ||
+        (!m_time.continue_simulation() && m_time.write_last_checkpoint())) {
         write_turbine_checkpoint(fi.tid_local);
     }
 }

@@ -57,6 +57,9 @@ struct CountingTurbine : public ::ext_turb::ExternalTurbine
     //! CFD time step of each velocity record written
     mutable std::vector<int> velocity_records;
 
+    //! CFD time step of each checkpoint written
+    std::vector<int> checkpoint_steps;
+
     //! Velocity at the hub and force of the hub, the only point of the turbine
     mutable std::array<float, 3> fluid_vel{0.0F, 0.0F, 0.0F};
     mutable std::array<float, 3> hub_force{0.0F, 0.0F, 0.0F};
@@ -133,7 +136,9 @@ void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
     ::kynema_sgf_tests::CountingSolverData>::write_turbine_checkpoint(int& tid)
 {
-    ++m_turbine_data[tid]->num_checkpoints;
+    auto& fi = *m_turbine_data[tid];
+    ++fi.num_checkpoints;
+    fi.checkpoint_steps.push_back(fi.time_index / fi.num_substeps);
 }
 
 template <>
@@ -232,7 +237,6 @@ protected:
         fi.dt_cfd = 0.5_rt;
         fi.dt_ext = 0.25_rt;
         fi.num_substeps = m_num_substeps;
-        fi.chkpt_interval = 0;
         fi.time_index_at_restart = cfd_step_at_restart * m_num_substeps;
 
         data.meta().ext_ptr = &iface;
@@ -253,6 +257,45 @@ protected:
     {
         kynema_sgf::actuator::external::ext_loads(data);
         kynema_sgf::actuator::external::ext_step(data);
+    }
+
+    //! Inputs of a CFD run that stops on its step count, with the CFD time
+    //! step of the turbine. A test adds its checkpoint inputs after them.
+    void time_inputs(const int max_step)
+    {
+        populate_parameters();
+        amrex::ParmParse pp("time");
+        pp.add("stop_time", 100.0_rt);
+        pp.add("fixed_dt", 0.5_rt);
+        pp.add("max_step", max_step);
+    }
+
+    /** Time loop of the CFD solver as far as checkpoints go
+     *
+     *  The turbine is advanced once the new time of the step is known. The
+     *  CFD solver writes its checkpoint at the end of the step, and after the
+     *  last step when that one is off the interval. Returns the steps at
+     *  which the CFD solver writes.
+     */
+    std::vector<int> run_time_loop(CountingViewData& data)
+    {
+        // Loads at the initial time, or nothing after a restart
+        post_init(data);
+
+        std::vector<int> cfd_checkpoint_steps;
+        auto& time = sim().time();
+        while (time.new_timestep()) {
+            time.set_current_cfl(0.25_rt, 0.0_rt, 0.0_rt);
+            time.advance_time();
+            pre_advance(data);
+            if (time.write_checkpoint()) {
+                cfd_checkpoint_steps.push_back(time.time_index());
+            }
+        }
+        if (time.write_last_checkpoint()) {
+            cfd_checkpoint_steps.push_back(time.time_index());
+        }
+        return cfd_checkpoint_steps;
     }
 
     const int m_num_substeps{2};
@@ -380,6 +423,87 @@ TEST_F(ExtTurbIfaceTest, replayed_turbine_stays_at_restart_time)
     EXPECT_EQ(fi.time_index, (cfd_step + 1) * m_num_substeps);
     ASSERT_EQ(static_cast<int>(fi.velocity_records.size()), 1);
     EXPECT_EQ(fi.velocity_records[0], cfd_step);
+}
+
+// A checkpoint of the CFD solver can only be restarted from when the external
+// solver wrote one at the same step. The four tests below give the steps the
+// CFD solver writes at, and ask the same of the turbine.
+
+TEST_F(ExtTurbIfaceTest, checkpoint_at_last_step_off_the_interval)
+{
+    time_inputs(7);
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", 5);
+    }
+    initialize_mesh();
+    CountingIface iface(sim());
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
+
+    // On the interval at step 5, and at the end of the run
+    const std::vector<int> expected{5, 7};
+    EXPECT_EQ(run_time_loop(data), expected);
+    EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
+}
+
+TEST_F(ExtTurbIfaceTest, checkpoint_on_time_interval)
+{
+    time_inputs(7);
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", -1);
+        pp.add("checkpoint_time_interval", 1.0_rt);
+    }
+    initialize_mesh();
+    CountingIface iface(sim());
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
+
+    // Every 1.0 of time with a time step of 0.5, and at the end of the run
+    const std::vector<int> expected{2, 4, 6, 7};
+    EXPECT_EQ(run_time_loop(data), expected);
+    EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
+}
+
+TEST_F(ExtTurbIfaceTest, checkpoint_interval_counted_from_restart)
+{
+    const int cfd_step = 3;
+    time_inputs(10);
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", 5);
+    }
+    initialize_mesh();
+    // What reading the checkpoint of step 3 does to the time of the CFD solver
+    sim().time().set_restart_time(cfd_step, 1.5_rt);
+    CountingIface iface(sim());
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::restart, cfd_step);
+
+    // Five steps after the restart, and at the end of the run
+    const std::vector<int> expected{8, 10};
+    EXPECT_EQ(run_time_loop(data), expected);
+    EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
+}
+
+TEST_F(ExtTurbIfaceTest, checkpoint_after_delay)
+{
+    time_inputs(12);
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", 5);
+        pp.add("checkpoint_delay", 6);
+    }
+    initialize_mesh();
+    CountingIface iface(sim());
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
+
+    // Step 5 is before the delay
+    const std::vector<int> expected{10, 12};
+    EXPECT_EQ(run_time_loop(data), expected);
+    EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
 }
 
 } // namespace kynema_sgf_tests
