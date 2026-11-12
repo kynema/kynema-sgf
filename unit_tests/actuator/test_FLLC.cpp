@@ -170,4 +170,38 @@ TEST(TestFLLCOp, kernel_keeps_precision_at_small_distances)
     }
 }
 
+TEST(TestFLLCOp, no_correction_when_force_is_spread_with_optimal_epsilon)
+{
+    const int num_points = 5;
+    const RealList span{0.0_rt, 1.0_rt, 2.0_rt, 3.0_rt, 4.0_rt};
+
+    // The optimal epsilon (chord times epsilon_chord = 1) is larger than
+    // epsilon (0.5): the actuator spreads the force with the optimal one,
+    // and there is nothing to correct
+    for (const auto type :
+         {FLLCType::VariableChord, FLLCType::ConstantChord}) {
+        FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+        blade.set_vel_span(span, vs::Vector::zero());
+        FLLCData data;
+        data.correction_type = type;
+        data.epsilon = 0.5_rt;
+        data.relaxation_factor = 1.0_rt;
+        data.nonuniform = true;
+        data.eps_dr = 1.0_rt;
+        for (int ip = 0; ip < num_points; ++ip) {
+            blade.force[ip] = vs::Vector{0.0_rt, 0.0_rt, 1.0_rt};
+            blade.vel[ip] = vs::Vector{8.0_rt, 0.0_rt, 0.0_rt};
+        }
+        fllc_init(data, blade.view, 1.0_rt);
+
+        FLLCOp()(blade.view, data);
+
+        for (int ip = 0; ip < num_points; ++ip) {
+            EXPECT_EQ(vs::mag(data.correction_velocity[ip]), 0.0_rt);
+            EXPECT_EQ(blade.vel[ip].x(), 8.0_rt);
+            EXPECT_EQ(blade.vel[ip].z(), 0.0_rt);
+        }
+    }
+}
+
 } // namespace kynema_sgf::actuator

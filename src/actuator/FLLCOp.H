@@ -104,8 +104,11 @@ struct FLLCOp
          */
         for (int ip = 0; ip < npts; ++ip) {
 
-            const auto eps_les = fllc.epsilon;
+            // The force is spread with the largest of epsilon and the
+            // optimal epsilon, so that is the width the simulation resolves
             const auto eps_opt = fllc.optimal_epsilon[ip];
+            const auto eps_les =
+                amrex::max<amrex::Real>(fllc.epsilon, eps_opt);
 
             for (int jp = 0; jp < npts; ++jp) {
 
@@ -255,8 +258,12 @@ struct FLLCOp
 
             for (int jp = 0; jp < dr.size(); ++jp) {
 
-                const auto eps_les = fllc.epsilon;
+                // The force is spread with the largest of epsilon and the
+                // optimal epsilon, so that is the width the simulation
+                // resolves
                 const auto eps_opt = optimal_epsilon[jp];
+                const auto eps_les =
+                    amrex::max<amrex::Real>(fllc.epsilon, eps_opt);
                 const auto eps_les2 = eps_les * eps_les;
                 const auto eps_opt2 = eps_opt * eps_opt;
                 const auto& vel = vel_rel[jp];
