@@ -377,22 +377,11 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
 #endif
     }
 
-    // Determine the number of substeps for FAST per CFD timestep
-    fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
-
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-        fi.num_substeps > 0,
-        "fi.num_substeps = " + std::to_string(fi.num_substeps));
-    // Check that the time step sizes are consistent and FAST advances at an
-    // integral multiple of CFD timestep
-    amrex::Real dt_err =
-        fi.dt_cfd / (static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext) -
-        1.0_rt;
-    if (dt_err > 1.0e-12_rt) {
-        amrex::Abort(
-            "FastIFace: OpenFAST timestep is not an integral "
-            "multiple of CFD timestep");
-    }
+    // Number of OpenFAST time steps in one CFD time step
+    fi.num_substeps = num_whole_steps(
+        fi.dt_cfd, fi.dt_ext, "FastIface: the CFD time step of " + fi.tlabel,
+        "OpenFAST time steps");
+    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
 }
 
 // NOLINTNEXTLINE(readability-convert-member-functions-to-static)
@@ -403,11 +392,14 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
 #ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::FastIface::replay_turbine");
 
-    // Determine the number of timesteps we should advance this turbine
-    const auto num_steps =
-        static_cast<int>(std::floor(fi.start_time / fi.dt_ext));
-    // Compute the number of CFD steps to read velocity data
-    const auto num_cfd_steps = num_steps / fi.num_substeps;
+    // Number of CFD time steps up to the start time: one velocity record is
+    // read for each
+    const int num_cfd_steps = num_whole_steps(
+        fi.start_time, fi.dt_cfd,
+        "FastIface: the start time of the replay of " + fi.tlabel,
+        "CFD time steps");
+    // Number of OpenFAST time steps this turbine is advanced by
+    const int num_steps = num_cfd_steps * fi.num_substeps;
 
     // Ensure that the NetCDF file exists and contains the required number of
     // timesteps for restart.
@@ -499,22 +491,11 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
 #endif
     }
 
-    // Determine the number of substeps for FAST per CFD timestep
-    fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
-
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-        fi.num_substeps > 0,
-        "fi.num_substeps = " + std::to_string(fi.num_substeps));
-    // Check that the time step sizes are consistent and FAST advances at an
-    // integral multiple of CFD timestep
-    amrex::Real dt_err =
-        fi.dt_cfd / (static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext) -
-        1.0_rt;
-    if (dt_err > 1.0e-4_rt) {
-        amrex::Abort(
-            "FastIFace: OpenFAST timestep is not an integral "
-            "multiple of CFD timestep");
-    }
+    // Number of OpenFAST time steps in one CFD time step
+    fi.num_substeps = num_whole_steps(
+        fi.dt_cfd, fi.dt_ext, "FastIface: the CFD time step of " + fi.tlabel,
+        "OpenFAST time steps");
+    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
 }
 
 template class ExtTurbIface<FastTurbine, FastSolverData>;

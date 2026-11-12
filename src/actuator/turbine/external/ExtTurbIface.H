@@ -1,7 +1,12 @@
 #ifndef EXTTURBIFACE_H
 #define EXTTURBIFACE_H
 
+#include <cmath>
+#include <iomanip>
+#include <limits>
 #include <map>
+#include <sstream>
+#include <string>
 #include <vector>
 #include "src/core/ExtSolver.H"
 #include "src/actuator/turbine/external/external_base_types.H"
@@ -18,6 +23,43 @@ class CFDSim;
 }
 
 namespace ext_turb {
+
+/** Number of time steps that make up a time interval, which has to be whole
+ *
+ *  Gives the steps of the external solver in one CFD time step and the CFD
+ *  time steps up to the start time of a replay. The ratio is computed in
+ *  floating point, where 0.3 / 0.1 is 2.9999999999999996: the nearest integer
+ *  is taken, and the run stops when the ratio is further from it than
+ *  rounding explains.
+ *
+ *  \param interval Length of the interval
+ *  \param dt Time step
+ *  \param interval_name What the interval is, the start of the abort message
+ *  \param dt_name What the time steps are, in the plural
+ */
+inline int num_whole_steps(
+    const amrex::Real interval,
+    const amrex::Real dt,
+    const std::string& interval_name,
+    const std::string& dt_name)
+{
+    // The rounding error of the ratio is a few units of machine precision
+    constexpr amrex::Real tol =
+        1.0e4_rt * std::numeric_limits<amrex::Real>::epsilon();
+    constexpr auto max_steps =
+        static_cast<amrex::Real>(std::numeric_limits<int>::max());
+
+    const amrex::Real ratio = (dt > 0.0_rt) ? interval / dt : -1.0_rt;
+    const amrex::Real nearest = std::round(ratio);
+    if (!(ratio >= 0.0_rt) || !(nearest < max_steps) ||
+        (std::abs(ratio - nearest) > tol * ratio)) {
+        std::ostringstream msg;
+        msg << std::setprecision(12) << interval_name << " (" << interval
+            << ") is not a whole number of " << dt_name << " (" << dt << ")";
+        amrex::Abort(msg.str());
+    }
+    return static_cast<int>(nearest);
+}
 
 template <typename SolverTurbine, typename SolverData>
 class ExtTurbIface
