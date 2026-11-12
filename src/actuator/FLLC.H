@@ -43,7 +43,7 @@ struct FLLCData
 
     // non-uniform variables
     bool nonuniform{true};      // non-uniform flag
-    amrex::Real eps_dr{1.};     // the ratio of epsilon to actuator width
+    amrex::Real eps_dr{3.0_rt}; // the ratio of epsilon to actuator width
     RealList nonuniform_r;      // non-uniform radius
     RealList nonuniform_dr;     // non-uniform spacing
     VecList vel_rel;            // uniform relative velocity

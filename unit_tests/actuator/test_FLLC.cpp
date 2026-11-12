@@ -402,6 +402,17 @@ TEST_F(FLLCParseTest, reads_inputs_in_range)
     EXPECT_EQ(data.eps_dr, 3.0_rt);
 }
 
+TEST_F(FLLCParseTest, epsilon_dr_ratio_defaults_to_documented_value)
+{
+    const utils::ActParser ap("Actuator.FixedWingLine", "Actuator.F1");
+    FLLCData data;
+
+    fllc_parse(ap, data);
+
+    // alm_fllc.rst recommends 3 for the non-uniform points
+    EXPECT_EQ(data.eps_dr, 3.0_rt);
+}
+
 TEST_F(FLLCParseTest, rejects_relaxation_factor_of_zero)
 {
     // With a factor of 0 the correction stays at zero, without a word

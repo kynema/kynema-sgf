@@ -152,8 +152,8 @@ Example for ``FixedWingLine``::
   **type:** Double, optional
 
   The ratio of epsilon to actuator point spacing used to create a non-uniform distribution.
-  A value of `1` or greater is recommended. It must be larger than `0`.
-  The default value is `1`.
+  A value between `1` and `3` is recommended. It must be larger than `0`.
+  The default value is `3`.
 
 .. input_param:: Actuator.FixedWingLine.pitch
 
