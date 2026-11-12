@@ -123,6 +123,44 @@ void fllc_init(
             << std::endl;
     }
 
+    // The correction is handed over at the velocity points. Where these are
+    // not the actuator points they have to resolve the optimal epsilon too:
+    // the correction can vary over that length, as it does at the tip of a
+    // blade, and coarser points show only a few values of it.
+    if (data.mismatched_points) {
+        int num_coarse_vel = 0;
+        amrex::Real ratio_lowest_vel = std::numeric_limits<amrex::Real>::max();
+        for (int i = 0; i < npts_vel; ++i) {
+            const auto s = data.span_distance_vel[i];
+            const auto before =
+                (i > 0) ? s - data.span_distance_vel[i - 1] : 0.0_rt;
+            const auto after = (i < npts_vel - 1)
+                                   ? data.span_distance_vel[i + 1] - s
+                                   : 0.0_rt;
+            const auto spacing = amrex::max<amrex::Real>(before, after);
+            const auto eps_opt =
+                interp::linear(data.r, data.optimal_epsilon, s);
+            if (eps_opt < min_eps_spacing_ratio * spacing) {
+                ++num_coarse_vel;
+                ratio_lowest_vel = amrex::min<amrex::Real>(
+                    ratio_lowest_vel, eps_opt / spacing);
+            }
+        }
+        if (print_warnings && (num_coarse_vel > 0)) {
+            amrex::OutStream()
+                << "\nWARNING: " << who << "the optimal epsilon (chord times "
+                << "epsilon_chord) is smaller than the spacing of the "
+                << "velocity points at " << num_coarse_vel << " of "
+                << npts_vel << " points; the lowest ratio of the two is "
+                << ratio_lowest_vel << ". The correction can vary over the "
+                << "length of the optimal epsilon, as it does at the tip of "
+                << "a blade: the velocity handed over at these points then "
+                << "depends on where they are. Use more velocity points "
+                << "there (the blade nodes of an external solver) or a "
+                << "larger epsilon_chord." << std::endl;
+        }
+    }
+
     // Central difference
     for (int i = 1; i < npts - 1; ++i) {
         data.dr[i] = vs::mag(view.pos[i + 1] - view.pos[i - 1]) / 2.0_rt;

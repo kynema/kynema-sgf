@@ -650,4 +650,72 @@ TEST(TestFLLCData, init_is_silent_when_points_resolve_optimal_epsilon)
     EXPECT_EQ(out.find("WARNING"), std::string::npos);
 }
 
+TEST(TestFLLCData, init_warns_when_velocity_points_are_too_coarse)
+{
+    const int num_points = 9;
+    const int num_vel_points = 3;
+
+    // Actuator points one unit apart and an optimal epsilon of twice that:
+    // they resolve it. The velocity points are four units apart: they do not
+    FLLCTestBlade blade(num_points, num_vel_points, vs::Vector::zero());
+    blade.set_vel_span({0.0_rt, 4.0_rt, 8.0_rt}, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    testing::internal::CaptureStdout();
+    fllc_init(data, blade.view, 2.0_rt);
+    const std::string out = testing::internal::GetCapturedStdout();
+    EXPECT_NE(out.find("spacing of the velocity points"), std::string::npos);
+    EXPECT_NE(out.find("at 3 of 3 points"), std::string::npos);
+    EXPECT_NE(out.find("ratio of the two is 0.5"), std::string::npos);
+    EXPECT_EQ(out.find("spacing of the actuator points"), std::string::npos);
+}
+
+TEST(TestFLLCData, init_is_silent_when_velocity_points_resolve_optimal_epsilon)
+{
+    const int num_points = 9;
+    const int num_vel_points = 5;
+
+    // Actuator points one unit apart, velocity points two units apart, and
+    // an optimal epsilon of two and a half units
+    FLLCTestBlade blade(num_points, num_vel_points, vs::Vector::zero());
+    blade.set_vel_span(
+        {0.0_rt, 2.0_rt, 4.0_rt, 6.0_rt, 8.0_rt}, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    testing::internal::CaptureStdout();
+    fllc_init(data, blade.view, 2.5_rt);
+    const std::string out = testing::internal::GetCapturedStdout();
+    EXPECT_TRUE(data.mismatched_points);
+    EXPECT_EQ(out.find("WARNING"), std::string::npos);
+}
+
+TEST(TestFLLCData, init_warns_once_when_velocity_points_are_actuator_points)
+{
+    const int num_points = 5;
+
+    // The same five points for the force and the velocity, one unit apart,
+    // and an optimal epsilon of a quarter of that: one warning, about the
+    // actuator points
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.set_vel_span(
+        {0.0_rt, 1.0_rt, 2.0_rt, 3.0_rt, 4.0_rt}, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    testing::internal::CaptureStdout();
+    fllc_init(data, blade.view, 0.25_rt);
+    const std::string out = testing::internal::GetCapturedStdout();
+    EXPECT_FALSE(data.mismatched_points);
+    EXPECT_NE(out.find("spacing of the actuator points"), std::string::npos);
+    EXPECT_EQ(out.find("spacing of the velocity points"), std::string::npos);
+}
+
 } // namespace kynema_sgf::actuator
