@@ -348,6 +348,25 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
          (nonuniform_dr.size() != nonuniform_r.size()))) {
         return false;
     }
+    // The state of a line with other positions of the points does not fit
+    // either, whatever the numbers of points and the chords. The distances
+    // of the state are not those of the data to the last digit: the data
+    // come from the positions at the restart, which an external solver
+    // sends in single precision and for another instant of the rotation,
+    // and a blade that bends changes its straight-line distances. Hence a
+    // tolerance far above these differences and below a change of the line.
+    const amrex::Real length = data.r.empty() ? 0.0_rt : data.r.back();
+    const amrex::Real dtol = 0.02_rt * length;
+    for (int i = 0; i < static_cast<int>(r.size()); ++i) {
+        if (std::abs(r[i] - data.r[i]) > dtol) {
+            return false;
+        }
+    }
+    for (int i = 0; i < static_cast<int>(span_distance_vel.size()); ++i) {
+        if (std::abs(span_distance_vel[i] - data.span_distance_vel[i]) > dtol) {
+            return false;
+        }
+    }
 
     data.correction_velocity = correction;
     data.r = r;

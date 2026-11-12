@@ -98,8 +98,9 @@ void write_checkpoint(typename T::DataType& data, const std::string& chkname)
  *  Every process that computes the forces of the wing reads it.
  *
  *  \return False when the checkpoint has no state of this wing for the
- *  current time, or when the state is for another number of points or for
- *  other inputs of the correction. Nothing is changed then.
+ *  current time, or when the state is for another number of points, for
+ *  other positions of the points or for other inputs of the correction.
+ *  Nothing is changed then.
  */
 template <typename T>
 bool read_checkpoint(typename T::DataType& data, const std::string& chkname)

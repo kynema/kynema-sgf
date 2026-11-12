@@ -113,7 +113,9 @@ void fllc_write_state(std::ostream& os, const FLLCData& data);
  * \param data FLLC data, initialized for the current points and inputs
  * \return False when the state is for other numbers of points, another
  * optimal epsilon or another ratio of the non-uniform points than those of
- * ``data``, which is then left as it was
+ * ``data``, or for points whose distances along the line differ from those
+ * of ``data`` by more than 2 % of the length of the line. ``data`` is then
+ * left as it was
  */
 bool fllc_read_state(std::istream& is, FLLCData& data);
 

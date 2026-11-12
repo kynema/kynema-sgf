@@ -317,8 +317,9 @@ void external_write_checkpoint(datatype& data, const std::string& chkname)
  *  turbine from the checkpoint that the run restarts from
  *
  *  \return False when the checkpoint has no state of this turbine for the
- *  current time, or when the state is for other numbers of blades or points
- *  or for other inputs of the correction. Nothing is changed then.
+ *  current time, or when the state is for other numbers of blades or points,
+ *  for other positions of the points or for other inputs of the correction.
+ *  Nothing is changed then.
  */
 template <typename datatype>
 bool external_read_checkpoint(datatype& data, const std::string& chkname)

@@ -129,39 +129,76 @@ TEST(ActuatorRestart, fllc_state_that_does_not_fit_is_refused)
     kynema_sgf::actuator::fllc_write_state(ss, written);
     const std::string state = ss.str();
 
+    // The data of the restarted run have distances 1 % away from those of
+    // the state, which is within what a blade that has turned and bent
+    // gives: each case below is refused for the reason it names
+
     // Another number of force points
     {
-        auto data = make_fllc_data(6, 6, 9, 2.0_rt);
+        auto data = make_fllc_data(6, 6, 9, 1.01_rt);
         std::stringstream is(state);
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
-        EXPECT_EQ(data.r[0], 2.0_rt / 3.0_rt);
+        EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
     }
     // Another number of velocity points
     {
-        auto data = make_fllc_data(5, 5, 9, 2.0_rt);
+        auto data = make_fllc_data(5, 5, 9, 1.01_rt);
         std::stringstream is(state);
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
-        EXPECT_EQ(data.r[0], 2.0_rt / 3.0_rt);
+        EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
     }
     // Another epsilon_chord or chord
     {
-        auto data = make_fllc_data(5, 6, 9, 2.0_rt);
+        auto data = make_fllc_data(5, 6, 9, 1.01_rt);
         data.optimal_epsilon[2] *= 1.01_rt;
         std::stringstream is(state);
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
-        EXPECT_EQ(data.r[0], 2.0_rt / 3.0_rt);
+        EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
     }
     // Another fllc_epsilon_dr_ratio
     {
-        auto data = make_fllc_data(5, 6, 9, 2.0_rt);
+        auto data = make_fllc_data(5, 6, 9, 1.01_rt);
         data.eps_dr = 2.0_rt;
         std::stringstream is(state);
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
-        EXPECT_EQ(data.r[0], 2.0_rt / 3.0_rt);
+        EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
     }
     // The same line and the same inputs
     {
-        auto data = make_fllc_data(5, 6, 9, 2.0_rt);
+        auto data = make_fllc_data(5, 6, 9, 1.01_rt);
+        std::stringstream is(state);
+        EXPECT_TRUE(kynema_sgf::actuator::fllc_read_state(is, data));
+        EXPECT_EQ(data.r[0], 1.0_rt / 3.0_rt);
+    }
+}
+
+TEST(ActuatorRestart, fllc_state_of_other_positions_is_refused)
+{
+    const auto written = make_fllc_data(5, 6, 9, 1.0_rt);
+    std::stringstream ss;
+    ss << std::setprecision(std::numeric_limits<amrex::Real>::max_digits10);
+    kynema_sgf::actuator::fllc_write_state(ss, written);
+    const std::string state = ss.str();
+
+    // The same numbers of points and the same chords on a line that is 5 %
+    // longer
+    {
+        auto data = make_fllc_data(5, 6, 9, 1.05_rt);
+        std::stringstream is(state);
+        EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
+        EXPECT_EQ(data.r[0], 1.05_rt / 3.0_rt);
+    }
+    // The same force points, and a velocity point at another place
+    {
+        auto data = make_fllc_data(5, 6, 9, 1.0_rt);
+        data.span_distance_vel[3] += 0.1_rt;
+        std::stringstream is(state);
+        EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
+        EXPECT_EQ(data.span_distance_vel[3], 3.0_rt / 7.0_rt + 0.1_rt);
+    }
+    // Distances 0.5 % away from those of the state: the same line
+    {
+        auto data = make_fllc_data(5, 6, 9, 1.005_rt);
         std::stringstream is(state);
         EXPECT_TRUE(kynema_sgf::actuator::fllc_read_state(is, data));
         EXPECT_EQ(data.r[0], 1.0_rt / 3.0_rt);
