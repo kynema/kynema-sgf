@@ -86,7 +86,7 @@ public:
     /** Number of points of this process that are outside of the domain
      *
      *  Counts the points beyond a boundary that is not periodic. No velocity
-     *  can be sampled there: these points get a velocity of zero.
+     *  can be sampled there, and update_positions stops the run.
      */
     int num_points_outside_domain() const;
 
@@ -126,9 +126,6 @@ private:
     //! Flag indicating whether the particles are scattered throughout the
     //! domain, or if they have been recalled to the original MPI rank
     bool m_is_scattered{false};
-
-    //! True once the user was told that points are outside of the domain
-    bool m_outside_domain_warned{false};
 };
 
 } // namespace actuator

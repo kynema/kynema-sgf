@@ -191,19 +191,20 @@ void ActuatorContainer::update_positions()
         "m_container_initialized = " + std::to_string(m_container_initialized) +
             ", m_is_scattered = " + std::to_string(m_is_scattered));
 
-    if (!m_outside_domain_warned) {
-        const int num_out = num_points_outside_domain();
-        if (num_out > 0) {
-            m_outside_domain_warned = true;
-            amrex::OutStream()
-                << "\nWARNING: Actuator: " << num_out << " of the "
-                << m_data.position.size() << " points where process "
-                << amrex::ParallelDescriptor::MyProc()
-                << " samples the velocity for its actuators are outside of "
-                << "the domain. No velocity can be sampled there: these "
-                << "points get a velocity of zero for as long as they are "
-                << "outside." << std::endl;
-        }
+    // The particle of a point outside of the domain is removed by
+    // Redistribute, and the point would get a velocity of zero
+    const int num_out = num_points_outside_domain();
+    if (num_out > 0) {
+        amrex::Abort(
+            "Actuator: " + std::to_string(num_out) + " of the " +
+            std::to_string(m_data.position.size()) +
+            " points where process " +
+            std::to_string(amrex::ParallelDescriptor::MyProc()) +
+            " samples the velocity for its actuators are outside of the "
+            "domain, where no velocity can be sampled. Check the positions "
+            "of the actuators against geometry.prob_lo and "
+            "geometry.prob_hi; a point on a high boundary that is not "
+            "periodic counts as outside.");
     }
 
     const auto dpos = gpu::device_view(m_data.position);

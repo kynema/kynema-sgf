@@ -126,17 +126,19 @@ TEST_F(ActuatorBoundsTest, points_outside_domain_are_counted)
     pvec[5] = vs::Vector{64.0_rt, 64.0_rt, -1.0_rt};
     EXPECT_EQ(ac.num_points_outside_domain(), 3);
 
-    // The points outside of the domain get a velocity of zero
+    // With the three points moved into the domain, every point gets the
+    // velocity of the field
+    pvec[3].z() = 100.0_rt;
+    pvec[4].z() = 127.0_rt;
+    pvec[5].z() = 1.0_rt;
+    EXPECT_EQ(ac.num_points_outside_domain(), 0);
     ac.update_positions();
     ac.sample_fields(vel, density);
     const auto& vvec = data.velocity;
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt;
-    for (int ip = 0; ip < 3; ++ip) {
+    for (int ip = 0; ip < num_pts; ++ip) {
         EXPECT_NEAR(vvec[ip].x(), 2.0_rt, tol) << "point " << ip;
-    }
-    for (int ip = 3; ip < num_pts; ++ip) {
-        EXPECT_EQ(vvec[ip].x(), 0.0_rt) << "point " << ip;
     }
 }
 

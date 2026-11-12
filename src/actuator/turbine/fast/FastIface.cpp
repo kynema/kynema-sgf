@@ -311,6 +311,31 @@ void ExtTurbIface<FastTurbine, FastSolverData>::calc_aero_loads(
 template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::do_turbine_step(FastTurbine& fi)
 {
+    // OpenFAST keeps one count of time steps for all the turbines of a
+    // process and moves it on when the last of them is stepped
+    // (FAST_CFD_Step). A turbine takes all its steps of a CFD time step
+    // before the next turbine does, so with several turbines in a process
+    // every one of them must take a single step. Otherwise a turbine repeats
+    // a time step, or gets the time of another turbine.
+    if (m_turbine_data.size() > 1) {
+        for (const auto& td : m_turbine_data) {
+            if (td->num_substeps > 1) {
+                amrex::Abort(
+                    "FastIface: process " +
+                    std::to_string(amrex::ParallelDescriptor::MyProc()) +
+                    " holds " + std::to_string(m_turbine_data.size()) +
+                    " OpenFAST turbines, and " + td->tlabel + " takes " +
+                    std::to_string(td->num_substeps) +
+                    " OpenFAST time steps per CFD time step. OpenFAST "
+                    "counts the time steps of the turbines of a process "
+                    "together, so each of them must take one step per CFD "
+                    "time step: give OpenFAST the time step of the CFD "
+                    "solver, or use at least as many MPI ranks as there "
+                    "are actuators, so that every turbine has a rank of "
+                    "its own.");
+            }
+        }
+    }
     fast_func(FAST_Step, &fi.tid_local);
 }
 
@@ -416,6 +441,20 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
             nt >= num_cfd_steps,
             "OpenFAST velocity timesteps = " + std::to_string(nt) +
                 ", required CFD timesteps = " + std::to_string(num_cfd_steps));
+    }
+
+    // The replay takes all the time steps of this turbine in a row, and
+    // OpenFAST counts the time steps of the turbines of a process together
+    // (see do_turbine_step)
+    if (m_turbine_data.size() > 1) {
+        amrex::Abort(
+            "FastIface: process " +
+            std::to_string(amrex::ParallelDescriptor::MyProc()) + " holds " +
+            std::to_string(m_turbine_data.size()) +
+            " OpenFAST turbines. A replay advances one turbine at a time, "
+            "which OpenFAST cannot do for turbines of the same process: "
+            "use at least as many MPI ranks as there are actuators, so "
+            "that every turbine has a rank of its own.");
     }
 
     // Replay OpenFAST simulation for the desired number of timesteps to mimic
