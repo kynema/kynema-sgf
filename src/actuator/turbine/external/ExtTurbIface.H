@@ -139,12 +139,14 @@ void ExtTurbIface<SolverTurbine, SolverData>::init_turbine(const int local_id)
     case ::ext_turb::SimMode::replay: {
         ext_init_turbine(fi);
         ext_replay_turbine(fi);
+        fi.is_solution0 = false;
         break;
     }
 
     case ::ext_turb::SimMode::restart: {
         ext_restart_turbine(fi);
         prepare_netcdf_file(fi);
+        fi.is_solution0 = false;
         break;
     }
     }

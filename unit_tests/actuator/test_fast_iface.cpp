@@ -3,9 +3,13 @@
 
 #include "src/actuator/turbine/external/ExtTurbIface.H"
 #include "src/actuator/turbine/fast/fast_types.H"
+#include "src/utilities/ncutils/nc_interface.H"
 #include "test_ext_turbine_utils.H"
 
 #include <algorithm>
+#include <string>
+#include <vector>
+#include "AMReX_FileSystem.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -38,6 +42,67 @@ protected:
         }
     }
 };
+
+#ifdef KYNEMA_SGF_USE_NETCDF
+//! Opens the velocity file functions of the OpenFAST interface to the tests
+class FastVelocityFile
+    : public ::ext_turb::ExtTurbIface<
+          ::ext_turb::FastTurbine, ::ext_turb::FastSolverData>
+{
+public:
+    using FastIface = ::ext_turb::ExtTurbIface<
+        ::ext_turb::FastTurbine, ::ext_turb::FastSolverData>;
+
+    explicit FastVelocityFile(const kynema_sgf::CFDSim& sim) : FastIface(sim) {}
+
+    using FastIface::prepare_netcdf_file;
+    using FastIface::read_velocity_data;
+    using FastIface::write_velocity_data;
+
+    std::string file_name(const ::ext_turb::FastTurbine& fi) const
+    {
+        return m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
+    }
+};
+
+/** Turbine whose velocity arrays are held here and not by OpenFAST
+ *
+ *  Two OpenFAST steps of 0.25 s per CFD time step.
+ */
+struct VelocityFileTurbine
+{
+    explicit VelocityFileTurbine(const std::string& label)
+    {
+        fi.tlabel = label;
+        fi.dt_ext = 0.25_rt;
+        fi.num_substeps = 2;
+        fi.to_cfd.pxVel = pos.data();
+        fi.to_cfd.pyVel = pos.data();
+        fi.to_cfd.pzVel = pos.data();
+        fi.from_cfd.u = u.data();
+        fi.from_cfd.v = v.data();
+        fi.from_cfd.w = w.data();
+        fi.from_cfd.u_Len = npts;
+        fi.from_cfd.v_Len = npts;
+        fi.from_cfd.w_Len = npts;
+    }
+
+    //! Write the record of a CFD time step, with one velocity at all points
+    void write_step(FastVelocityFile& fast, const int step, const float vel)
+    {
+        fi.time_index = step * fi.num_substeps;
+        std::fill(u.begin(), u.end(), vel);
+        fast.write_velocity_data(fi);
+    }
+
+    static constexpr int npts = 4;
+    std::vector<float> pos = std::vector<float>(npts, 0.0F);
+    std::vector<float> u = std::vector<float>(npts, 0.0F);
+    std::vector<float> v = std::vector<float>(npts, 0.0F);
+    std::vector<float> w = std::vector<float>(npts, 0.0F);
+    ::ext_turb::FastTurbine fi;
+};
+#endif
 
 } // namespace
 
@@ -156,6 +221,89 @@ TEST_F(FastIfaceTest, fast_velocity_points)
     ::kynema_sgf::actuator::external::make_component_views(data);
 
     check_blade_views_aligned(data);
+}
+
+TEST_F(FastIfaceTest, velocity_record_is_time_step_of_turbine)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    initialize_mesh();
+    FastVelocityFile fast(sim());
+    VelocityFileTurbine turbine("utest_velocity_record");
+    const std::string fname = fast.file_name(turbine.fi);
+    // A file left by an earlier run of the test would be kept
+    amrex::FileSystem::Remove(fname);
+    fast.prepare_netcdf_file(turbine.fi);
+
+    // A run of 6 CFD time steps. The velocity of step n is n.
+    const int nsteps = 6;
+    for (int step = 0; step < nsteps; ++step) {
+        turbine.write_step(fast, step, static_cast<float>(step));
+    }
+    // The run is restarted from the checkpoint written at step 3 and takes
+    // steps 3 and 4 again, with other velocities
+    turbine.write_step(fast, 3, 30.0F);
+    turbine.write_step(fast, 4, 40.0F);
+
+    {
+        const auto ncf = ncutils::NCFile::open(fname);
+        // No record is added for the steps taken again
+        ASSERT_EQ(static_cast<int>(ncf.dim("num_time_steps").len()), nsteps);
+
+        const int npts = VelocityFileTurbine::npts;
+        std::vector<float> time(nsteps, -1.0F);
+        std::vector<float> uvel(nsteps * npts, -1.0F);
+        ncf.var("time").get(time.data(), {0}, {nsteps});
+        ncf.var("uvel").get(uvel.data(), {0, 0}, {nsteps, npts});
+        const std::vector<float> uvel_expected{0.0F,  1.0F,  2.0F,
+                                               30.0F, 40.0F, 5.0F};
+        for (int step = 0; step < nsteps; ++step) {
+            EXPECT_FLOAT_EQ(time[step], 0.5F * static_cast<float>(step));
+            EXPECT_FLOAT_EQ(uvel[step * npts], uvel_expected[step]);
+        }
+    }
+    amrex::FileSystem::Remove(fname);
+#else
+    GTEST_SKIP();
+#endif
+}
+
+TEST_F(FastIfaceTest, replay_rejects_velocity_record_of_another_time)
+{
+#ifdef KYNEMA_SGF_USE_NETCDF
+    initialize_mesh();
+    FastVelocityFile fast(sim());
+    VelocityFileTurbine turbine("utest_velocity_replay");
+    const std::string fname = fast.file_name(turbine.fi);
+    amrex::FileSystem::Remove(fname);
+    fast.prepare_netcdf_file(turbine.fi);
+
+    // File of a run restarted in a new directory from the checkpoint written
+    // at step 5: it holds the velocities of steps 5, 6 and 7 only
+    turbine.write_step(fast, 5, 5.0F);
+    turbine.write_step(fast, 6, 6.0F);
+    turbine.write_step(fast, 7, 7.0F);
+
+    {
+        const auto ncf = ncutils::NCFile::open(fname);
+        // Step 6 is in the file
+        FastVelocityFile::read_velocity_data(turbine.fi, ncf, 6);
+        EXPECT_FLOAT_EQ(turbine.u[0], 6.0F);
+        // Step 2 is not. A replay from the start of the turbine cannot use
+        // this file and has to say so.
+        EXPECT_THROW(
+            FastVelocityFile::read_velocity_data(turbine.fi, ncf, 2),
+            amrex::RuntimeError);
+        // Neither can a turbine with another time step: its step 6 is at
+        // another time than the record
+        turbine.fi.dt_ext = 0.5_rt;
+        EXPECT_THROW(
+            FastVelocityFile::read_velocity_data(turbine.fi, ncf, 6),
+            amrex::RuntimeError);
+    }
+    amrex::FileSystem::Remove(fname);
+#else
+    GTEST_SKIP();
+#endif
 }
 
 } // namespace kynema_sgf_tests
