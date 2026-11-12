@@ -111,10 +111,16 @@ void Actuator::post_init_actions()
         act->init_actuator_source();
     }
 
-    // Ensure velocity fills ghost cells prior to sampling
+    // Fill the ghost cells of the velocity that lie inside each level before
+    // the first sample. The ghost cells at coarse-fine boundaries and at
+    // non-periodic domain faces, and all ghost cells of the density, are
+    // filled later, by fillpatch_state_fields in
+    // incflo::init_kynema_sgf_modules. A point within half a cell of such a
+    // boundary samples stale values here. This sample feeds the initial
+    // solution of a new external turbine. During time stepping the velocity
+    // is filled at the end of the nodal projection.
     auto& vel = m_sim.repo().get_field("velocity");
     for (int lev = 0; lev < m_sim.repo().num_active_levels(); ++lev) {
-        // Just need the interior velocity ghost cells updated
         vel(lev).FillBoundary(m_sim.mesh().Geom()[lev].periodicity());
     }
 

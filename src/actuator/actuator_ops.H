@@ -155,7 +155,7 @@ void determine_root_proc(
 
 /** Write restart data not held in fields, with each CFD checkpoint
  *
- *  Called on every rank. Default: nothing.
+ *  Called on every rank. Default: nothing. \sa actuator_restart.H
  *
  *  \tparam T An actuator traits type
  *  \param  data Data object for the specific actuator instance

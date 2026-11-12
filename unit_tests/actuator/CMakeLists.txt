@@ -16,6 +16,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_ext_turb_iface.cpp
   test_ext_time_steps.cpp
   test_actuator_bounds.cpp
+  test_actuator_restart.cpp
   )
 
 if (KYNEMA_SGF_ENABLE_OPENFAST)

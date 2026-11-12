@@ -2,6 +2,7 @@
 #include <limits>
 #include <sstream>
 #include "src/actuator/FLLC.H"
+#include "src/actuator/actuator_restart.H"
 #include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
@@ -246,6 +247,8 @@ void fllc_init(
 
 void fllc_parse(const utils::ActParser& pp, FLLCData& data)
 {
+    // A scalar: the first value of the epsilon input, in the input order
+    // (not the order init_epsilon stores for the Gaussians)
     pp.query("epsilon", data.epsilon);
     pp.query("fllc_relaxation_factor", data.relaxation_factor);
     pp.query("fllc_start_time", data.fllc_start_time);
@@ -284,6 +287,83 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data)
             "Actuators using the filtered lifting line correction (FLLC) "
             "require specification 'epsilon' and 'epsilon_chord'");
     }
+}
+
+void fllc_write_state(std::ostream& os, const FLLCData& data)
+{
+    restart::write_list(os, "correction_velocity", data.correction_velocity);
+    restart::write_reals(os, "optimal_epsilon", data.optimal_epsilon);
+    restart::write_reals(os, "epsilon_dr_ratio", RealList{data.eps_dr});
+    restart::write_reals(os, "r", data.r);
+    restart::write_reals(os, "dr", data.dr);
+    restart::write_reals(os, "span_distance_force", data.span_distance_force);
+    restart::write_reals(os, "span_distance_vel", data.span_distance_vel);
+    restart::write_value(
+        os, "mismatched_points", data.mismatched_points ? 1 : 0);
+    restart::write_reals(os, "nonuniform_r", data.nonuniform_r);
+    restart::write_reals(os, "nonuniform_dr", data.nonuniform_dr);
+}
+
+bool fllc_read_state(std::istream& is, FLLCData& data)
+{
+    // Everything is read into copies first: the data are changed only when
+    // the whole state fits them
+    VecList correction(data.correction_velocity.size());
+    RealList optimal_epsilon(data.optimal_epsilon.size());
+    RealList eps_dr(1);
+    RealList r(data.r.size());
+    RealList dr(data.dr.size());
+    RealList span_distance_force(data.span_distance_force.size());
+    RealList span_distance_vel(data.span_distance_vel.size());
+    int mismatched = 0;
+    RealList nonuniform_r;
+    RealList nonuniform_dr;
+    if (!restart::read_list(is, "correction_velocity", correction) ||
+        !restart::read_reals(is, "optimal_epsilon", optimal_epsilon) ||
+        !restart::read_reals(is, "epsilon_dr_ratio", eps_dr) ||
+        !restart::read_reals(is, "r", r) ||
+        !restart::read_reals(is, "dr", dr) ||
+        !restart::read_reals(is, "span_distance_force", span_distance_force) ||
+        !restart::read_reals(is, "span_distance_vel", span_distance_vel) ||
+        !restart::read_value(is, "mismatched_points", mismatched) ||
+        !restart::read_reals(is, "nonuniform_r", nonuniform_r, true) ||
+        !restart::read_reals(is, "nonuniform_dr", nonuniform_dr, true)) {
+        return false;
+    }
+
+    // The state of another epsilon_chord, chord or fllc_epsilon_dr_ratio, or
+    // of another distribution of the points, does not fit these data
+    const amrex::Real rtol = 1.0e-6_rt;
+    if (std::abs(eps_dr[0] - data.eps_dr) > rtol * data.eps_dr) {
+        return false;
+    }
+    for (int i = 0; i < static_cast<int>(optimal_epsilon.size()); ++i) {
+        if (std::abs(optimal_epsilon[i] - data.optimal_epsilon[i]) >
+            rtol * data.optimal_epsilon[i]) {
+            return false;
+        }
+    }
+    if (data.nonuniform &&
+        ((nonuniform_r.size() < 2) ||
+         (nonuniform_dr.size() != nonuniform_r.size()))) {
+        return false;
+    }
+
+    data.correction_velocity = correction;
+    data.r = r;
+    data.dr = dr;
+    data.span_distance_force = span_distance_force;
+    data.span_distance_vel = span_distance_vel;
+    data.mismatched_points = (mismatched != 0);
+    if (data.nonuniform) {
+        data.nonuniform_r = nonuniform_r;
+        data.nonuniform_dr = nonuniform_dr;
+        const auto npts_n = nonuniform_r.size();
+        data.nonuniform_vel_rel.resize(npts_n);
+        data.nonuniform_optimal_epsilon.resize(npts_n);
+        data.nonuniform_lift.resize(npts_n);
+    }
+    return true;
 }
 
 } // namespace kynema_sgf::actuator

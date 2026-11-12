@@ -227,6 +227,9 @@ struct InitDataOp<FixedWing, ActSrcLine>
             meta.chord.resize(npts);
             ::kynema_sgf::interp::linear_monotonic(
                 meta.span_locs, meta.chord_inp, wx, meta.chord);
+            // Same order as wing::init_data_structures, (chord, span,
+            // thickness), swapped in place: the epsilon attribute of the
+            // netCDF output is written in this order
             meta.epsilon_chord = {
                 meta.epsilon_chord.x(), meta.epsilon_chord.z(),
                 meta.epsilon_chord.y()};
@@ -256,6 +259,14 @@ AMREX_INLINE const AirfoilTable&
 airfoil_lookup<FixedWing>(FixedWing::DataType& data)
 {
     return *data.meta().aflookup;
+}
+
+// Note: inline is necessary here to avoid duplicate symbol errors
+template <>
+inline void write_checkpoint<FixedWing>(
+    typename FixedWing::DataType& data, const std::string& chkname)
+{
+    wing::write_checkpoint<FixedWing>(data, chkname);
 }
 
 } // namespace kynema_sgf::actuator::ops

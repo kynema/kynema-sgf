@@ -2,6 +2,7 @@
 #define FLLC_H
 
 #include <cstdint>
+#include <iosfwd>
 #include <string>
 #include "src/actuator/actuator_types.H"
 #include "src/actuator/ActParser.H"
@@ -89,6 +90,32 @@ void fllc_init(
     amrex::Real eps_chord,
     const std::string& label = "",
     bool print_warnings = true);
+
+/**
+ * \brief Write what a restart needs of the correction of one line
+ *
+ * The correction velocity, which the relaxation goes on from, and the
+ * distances along the line, which fllc_init took from the positions of the
+ * points at the time the correction started (the points of a blade are
+ * elsewhere at the restart, and their positions come in single precision).
+ * The optimal epsilon and the ratio of the non-uniform points are written
+ * to check that the state fits the inputs of the restarted run.
+ *
+ * \param os Stream of the restart data of the actuator
+ * \param data Initialized FLLC data
+ */
+void fllc_write_state(std::ostream& os, const FLLCData& data);
+
+/**
+ * \brief Read the state written by fllc_write_state into initialized data
+ *
+ * \param is Stream of the restart data of the actuator
+ * \param data FLLC data, initialized for the current points and inputs
+ * \return False when the state is for other numbers of points, another
+ * optimal epsilon or another ratio of the non-uniform points than those of
+ * ``data``, which is then left as it was
+ */
+bool fllc_read_state(std::istream& is, FLLCData& data);
 
 } // namespace kynema_sgf::actuator
 
