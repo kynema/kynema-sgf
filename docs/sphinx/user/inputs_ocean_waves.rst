@@ -202,8 +202,16 @@ The following input arguments are only valid for the W2AWaves wave type:
    behavior), and a positive integer ``p`` caps expansion at ``2**p`` per
    direction. A cap can leave reconstruction coarser than the target mesh.
    Padding preserves the retained Fourier modes; it adds no shorter waves.
-   Memory for the spatial velocity arrays grows with the padded horizontal
-   grid size times the number of interpolation heights. HOS-NWT is unchanged.
+   HOS-Ocean velocity reconstruction streams heights: each rank retains three
+   full horizontal velocity planes plus two sets of local interpolation
+   stencils, rather than full horizontal planes at every height. Stencils
+   require 24 values per local grown-box horizontal cell, summed across boxes
+   and AMR levels (including vertically stacked boxes). Velocity scratch
+   memory is independent of the number of interpolation heights.
+   Initialization is deferred until local mesh boxes exist; processing levels
+   separately can repeat FFTs. Full horizontal FFTs, spectral arrays, and
+   elevation still reside on each rank, so large padding can still be costly.
+   No distributed or pruned FFT is used. HOS-NWT is unchanged.
 
 .. input_param:: OceanWaves.label.HOS_init_time
 

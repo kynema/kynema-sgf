@@ -89,6 +89,27 @@ int update_offset_timestep(const int ntime, const int n0)
     return (-ntime + n0);
 }
 
+void stream_ocean_velocity(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
+    const amrex::Vector<amrex::MultiFab*>& fields,
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& problo,
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& dx,
+    const amrex::Vector<int>& indices)
+{
+    interp_to_mfab::stream_velocity_to_field(
+        wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
+        true, indices, wdata.hvec, fields, problo, dx,
+        [&](int height, auto& u, auto& v, auto& w) {
+            modes_hosgrid::populate_hos_vel(
+                wdata.n0, wdata.n1, wdata.c_rmodes.get_xlen(),
+                wdata.c_rmodes.get_ylen(), wdata.c_rmodes.get_depth(),
+                wdata.hvec[height], wdata.zsl, wdata.dimL,
+                wdata.c_rmodes.get_T(), wdata.c_mX, wdata.c_mY, wdata.c_mZ,
+                wdata.plan_vector, wdata.c_u_mptr, wdata.c_v_mptr,
+                wdata.c_w_mptr, u, v, w);
+        });
+}
+
 void populate_fields_all_levels(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     amrex::Vector<amrex::Geometry>& geom_all,
@@ -143,26 +164,16 @@ void populate_fields_all_levels(
             wdata.sp_eta_vec);
     }
 
-    for (int iht = 0; iht < wdata.indvec.size(); ++iht) {
+    for (int iht = 0; !wdata.is_ocean && iht < wdata.indvec.size(); ++iht) {
         // Get sample height
         amrex::Real ht = wdata.hvec[wdata.indvec[iht]];
         // Sample velocity
-        if (wdata.is_ocean) {
-            modes_hosgrid::populate_hos_vel(
-                wdata.n0, wdata.n1, wdata.c_rmodes.get_xlen(),
-                wdata.c_rmodes.get_ylen(), wdata.c_rmodes.get_depth(), ht,
-                wdata.zsl, wdata.dimL, wdata.c_rmodes.get_T(), wdata.c_mX,
-                wdata.c_mY, wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr,
-                wdata.c_v_mptr, wdata.c_w_mptr, wdata.sp_u_vec, wdata.sp_v_vec,
-                wdata.sp_w_vec, iht * wdata.n0 * wdata.n1);
-        } else {
-            modes_hosgrid::populate_hos_vel(
-                wdata.r_rmodes, ht, wdata.zsl, wdata.r_mX, wdata.r_mY,
-                wdata.r_mZ, wdata.r_mAdd, wdata.plan_vector, wdata.r_u_mptr,
-                wdata.r_v_mptr, wdata.r_w_mptr, wdata.au_mptr, wdata.av_mptr,
-                wdata.aw_mptr, wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
-                iht * wdata.n0 * wdata.n1);
-        }
+        modes_hosgrid::populate_hos_vel(
+            wdata.r_rmodes, ht, wdata.zsl, wdata.r_mX, wdata.r_mY, wdata.r_mZ,
+            wdata.r_mAdd, wdata.plan_vector, wdata.r_u_mptr, wdata.r_v_mptr,
+            wdata.r_w_mptr, wdata.au_mptr, wdata.av_mptr, wdata.aw_mptr,
+            wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
+            iht * wdata.n0 * wdata.n1);
     }
 
     // Interpolate to fields (vector of MultiFabs)
@@ -170,10 +181,22 @@ void populate_fields_all_levels(
         wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
         wdata.zsl, wdata.is_ocean, wdata.sp_eta_vec, lvs_field.vec_ptrs(),
         geom_all);
-    interp_to_mfab::interp_velocity_to_field(
-        wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
-        wdata.is_ocean, wdata.indvec, wdata.hvec, wdata.sp_u_vec,
-        wdata.sp_v_vec, wdata.sp_w_vec, vel_field.vec_ptrs(), geom_all);
+    if (wdata.is_ocean) {
+        const auto fields = vel_field.vec_ptrs();
+        amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>> problo, dx;
+        for (int lev = 0; lev < fields.size(); ++lev) {
+            const auto& geometry = geom_all[lev];
+            problo.push_back(geometry.ProbLoArray());
+            dx.push_back(geometry.CellSizeArray());
+        }
+        stream_ocean_velocity(wdata, fields, problo, dx, wdata.indvec);
+    } else {
+        interp_to_mfab::interp_velocity_to_field(
+            wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
+            wdata.xlo1, wdata.is_ocean, wdata.indvec, wdata.hvec,
+            wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
+            vel_field.vec_ptrs(), geom_all);
+    }
 }
 
 void time_interpolate_wave_fields(
@@ -473,7 +496,8 @@ struct ReadInputsOp<W2AWaves>
                 "code " +
                 std::to_string(flag));
         }
-        if (wdata.n0 > std::numeric_limits<int>::max() / wdata.n1 /
+        if (!wdata.is_ocean &&
+            wdata.n0 > std::numeric_limits<int>::max() / wdata.n1 /
                            static_cast<int>(wdata.hvec.size())) {
             amrex::Abort(
                 "Waves2AMR: padded velocity arrays exceed supported integer "
@@ -555,26 +579,7 @@ struct ReadInputsOp<W2AWaves>
             modes_hosgrid::populate_hos_eta(
                 wdata.n0, wdata.n1, wdata.dimL, wdata.plan_vector,
                 wdata.c_eta_mptr, wdata.sp_eta_vec);
-            // Mesh is not yet created, so get data at every height
-            const auto n_hts = wdata.hvec.size();
-            wdata.sp_u_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            wdata.sp_v_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            wdata.sp_w_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            for (int iht = 0; iht < static_cast<int>(n_hts); ++iht) {
-                // Get sample height
-                amrex::Real ht = wdata.hvec[iht];
-                // Sample velocity
-                modes_hosgrid::populate_hos_vel(
-                    wdata.n0, wdata.n1, wdata.c_rmodes.get_xlen(),
-                    wdata.c_rmodes.get_ylen(), wdata.c_rmodes.get_depth(), ht,
-                    wdata.zsl, wdata.dimL, wdata.c_rmodes.get_T(), wdata.c_mX,
-                    wdata.c_mY, wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr,
-                    wdata.c_v_mptr, wdata.c_w_mptr, wdata.sp_u_vec,
-                    wdata.sp_v_vec, wdata.sp_w_vec, iht * wdata.n0 * wdata.n1);
-            }
+            // Velocity is reconstructed after local mesh boxes exist.
         } else {
             modes_hosgrid::copy_real(
                 wdata.n0, wdata.n1, wdata.r_mFS, wdata.r_eta_mptr);
@@ -665,10 +670,15 @@ struct InitDataOp<W2AWaves>
             wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
             wdata.xlo1, wdata.zsl, wdata.is_ocean, wdata.sp_eta_vec,
             ow_levelset(level), problo, dx);
-        interp_to_mfab::interp_velocity_to_multifab(
-            wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
-            wdata.xlo1, wdata.is_ocean, indvec, wdata.hvec, wdata.sp_u_vec,
-            wdata.sp_v_vec, wdata.sp_w_vec, ow_velocity(level), problo, dx);
+        if (wdata.is_ocean) {
+            stream_ocean_velocity(
+                wdata, {&ow_velocity(level)}, {problo}, {dx}, indvec);
+        } else {
+            interp_to_mfab::interp_velocity_to_multifab(
+                wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
+                wdata.xlo1, wdata.is_ocean, indvec, wdata.hvec, wdata.sp_u_vec,
+                wdata.sp_v_vec, wdata.sp_w_vec, ow_velocity(level), problo, dx);
+        }
 
         // Populate flow fields according to intended forcing and init setup
         const auto& ow_phi = ow_levelset(level).const_arrays();
@@ -913,15 +923,17 @@ struct UpdateTargetFieldsOp<W2AWaves>
                         static_cast<size_t>(wdata.n0) *
                             static_cast<size_t>(wdata.n1),
                         0.0_rt);
-                    wdata.sp_u_vec.resize(
-                        static_cast<size_t>(wdata.n0 * wdata.n1) *
-                        wdata.indvec.size());
-                    wdata.sp_v_vec.resize(
-                        static_cast<size_t>(wdata.n0 * wdata.n1) *
-                        wdata.indvec.size());
-                    wdata.sp_w_vec.resize(
-                        static_cast<size_t>(wdata.n0 * wdata.n1) *
-                        wdata.indvec.size());
+                    if (!wdata.is_ocean) {
+                        wdata.sp_u_vec.resize(
+                            static_cast<size_t>(wdata.n0 * wdata.n1) *
+                            wdata.indvec.size());
+                        wdata.sp_v_vec.resize(
+                            static_cast<size_t>(wdata.n0 * wdata.n1) *
+                            wdata.indvec.size());
+                        wdata.sp_w_vec.resize(
+                            static_cast<size_t>(wdata.n0 * wdata.n1) *
+                            wdata.indvec.size());
+                    }
                     // Sizes will remain constant and need for interpolation
                     // will remain until a regrid occurs
                 } else {
