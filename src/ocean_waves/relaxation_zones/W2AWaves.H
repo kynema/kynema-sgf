@@ -4,6 +4,7 @@
 #include "src/ocean_waves/relaxation_zones/RelaxationZones.H"
 #include <vector>
 #include <complex>
+#include <memory>
 #ifdef KYNEMA_SGF_USE_W2A
 #include "Waves2AMR.h"
 #include "AMReX_REAL.H"
@@ -63,15 +64,16 @@ struct W2AWavesData : public RelaxZonesBaseData
     // FFTW plan vector
     std::vector<fftw_plan> plan_vector;
     // FFTW pointers to store modes ready for ifft
-    fftw_complex *c_eta_mptr = nullptr, *c_u_mptr = nullptr,
-                 *c_v_mptr = nullptr, *c_w_mptr = nullptr;
-    // FFTW pointers to store modes ready for ifft
     amrex::Real *r_eta_mptr = nullptr, *r_u_mptr = nullptr, *r_v_mptr = nullptr,
                 *r_w_mptr = nullptr, *au_mptr = nullptr, *av_mptr = nullptr,
                 *aw_mptr = nullptr, *plan_out = nullptr;
     // ReadModes objects
     ReadModes<std::complex<amrex::Real>> c_rmodes;
     ReadModes<amrex::Real> r_rmodes;
+    modes_hosgrid::OceanReconstructionOptions reconstruction_options;
+    std::unique_ptr<modes_hosgrid::OceanReconstruction> reconstruction;
+    std::size_t reported_selection{0};
+    std::size_t reconstruction_reserved_bytes{0};
 
     bool read_ocean_modes(int timestep)
     {
@@ -83,11 +85,6 @@ struct W2AWavesData : public RelaxZonesBaseData
         }
         const bool available =
             c_rmodes.get_data(timestep, c_mX, c_mY, c_mZ, c_mFS);
-        if (available && (ny != n0 || nx != n1)) {
-            for (auto* modes : {&c_mX, &c_mY, &c_mZ, &c_mFS}) {
-                *modes = modes_hosgrid::pad_ocean_modes(ny, nx, n0, n1, *modes);
-            }
-        }
         return available;
     }
 #endif
@@ -109,18 +106,6 @@ struct W2AWavesData : public RelaxZonesBaseData
     ~W2AWavesData()
     {
 #ifdef KYNEMA_SGF_USE_W2A
-        if (c_eta_mptr) {
-            delete[] c_eta_mptr;
-        }
-        if (c_u_mptr) {
-            delete[] c_u_mptr;
-        }
-        if (c_v_mptr) {
-            delete[] c_v_mptr;
-        }
-        if (c_w_mptr) {
-            delete[] c_w_mptr;
-        }
         if (r_eta_mptr) {
             delete[] r_eta_mptr;
         }

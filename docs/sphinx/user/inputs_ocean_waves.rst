@@ -195,23 +195,56 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    **type:** Integer, optional, default = -1
 
-   HOS-Ocean only: zero-pad the elevation and velocity modes before the inverse
-   FFT so the reconstructed horizontal spacing is no larger than the finest
+   HOS-Ocean only: choose a virtually zero-padded reconstruction grid for
+   elevation and velocity so horizontal spacing is no larger than the finest
    configured AMR cell spacing. Each direction is doubled independently as
    needed. ``-1`` allows uncapped padding, ``0`` disables padding (legacy
    behavior), and a positive integer ``p`` caps expansion at ``2**p`` per
    direction. A cap can leave reconstruction coarser than the target mesh.
    Padding preserves the retained Fourier modes; it adds no shorter waves.
    HOS-Ocean velocity reconstruction streams heights: each rank retains three
-   full horizontal velocity planes plus two sets of local interpolation
+   local horizontal velocity arrays plus two sets of local interpolation
    stencils, rather than full horizontal planes at every height. Stencils
    require 24 values per local grown-box horizontal cell, summed across boxes
    and AMR levels (including vertically stacked boxes). Velocity scratch
    memory is independent of the number of interpolation heights.
    Initialization is deferred until local mesh boxes exist; processing levels
-   separately can repeat FFTs. Full horizontal FFTs, spectral arrays, and
-   elevation still reside on each rank, so large padding can still be costly.
-   No distributed or pruned FFT is used. HOS-NWT is unchanged.
+   separately can repeat FFTs. Original compact spectral arrays remain on
+   each rank. Local elevation and velocity use the reconstruction method
+   selected below; no distributed FFT is used. HOS-NWT is unchanged.
+
+.. input_param:: OceanWaves.label.fft_reconstruction
+
+   **type:** String, optional, default = "auto"
+
+   HOS-Ocean reconstruction method: ``full`` uses an ordinary full horizontal
+   inverse FFT then gathers needed nodes; ``pruned`` uses separable FFTs of
+   occupied frequency rows and required output columns (or the transposed
+   order). Both evaluate exactly the same padded-grid nodes before the existing
+   interpolation, with possible floating-point roundoff differences.
+
+   ``auto`` chooses independently on each rank. It rejects methods exceeding
+   the scratch budget, uses an operation estimate to exclude candidates costing
+   more than four times the cheapest feasible candidate, then warms and times
+   two executions of each remaining method. A later candidate must improve
+   timing by at least 10% to replace the current best. FFT plans and selection
+   are reused until the local node footprint or accounted local storage changes.
+   Initial per-level setup and regridding can therefore trigger recalibration.
+   Selection diagnostics report method, footprint, scratch estimate and timing.
+   Use a forced method when reproducible transform ordering is required.
+
+.. input_param:: OceanWaves.label.fft_scratch_memory_mb
+
+   **type:** Real, optional, default = 512.
+
+   Positive per-rank accounted reconstruction scratch budget in MiB
+   (1 MiB = 1048576 bytes). Applies to forced methods as well as ``auto``.
+   Counts compact working spectra, local depth coefficients, FFT work arrays,
+   returned host samples, three local device velocity arrays, device index maps
+   and velocity stencils. Source HOS mode arrays, destination solver fields,
+   allocator overhead and FFTW's opaque plan storage are excluded. This is not
+   a hard cap on total process memory. Failure to fit any permitted method is
+   fatal; increase the budget, reduce padding or reduce the local footprint.
 
 .. input_param:: OceanWaves.label.HOS_init_time
 
