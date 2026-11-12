@@ -72,18 +72,7 @@ struct W2AWavesData : public RelaxZonesBaseData
     std::size_t reported_selection{0};
     std::size_t reconstruction_reserved_bytes{0};
 
-    bool read_ocean_modes(int timestep)
-    {
-        const int ny = c_rmodes.get_first_fft_dimension();
-        const int nx = c_rmodes.get_second_fft_dimension();
-        const auto count = static_cast<std::size_t>(ny) * (nx / 2 + 1);
-        for (auto* modes : {&c_mX, &c_mY, &c_mZ, &c_mFS}) {
-            modes->resize(count);
-        }
-        const bool available =
-            c_rmodes.get_data(timestep, c_mX, c_mY, c_mZ, c_mFS);
-        return available;
-    }
+    int loaded_modes_step{std::numeric_limits<int>::min()};
 #endif
 
     // Height vector (where velocity is sampled) stuff

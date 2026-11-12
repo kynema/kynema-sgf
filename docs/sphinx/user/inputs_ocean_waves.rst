@@ -178,6 +178,16 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    The name of the modes file, output by HOS-Ocean or HOS-NWT, in the SWENSE format.
 
+   Only the I/O rank opens and parses the fixed-width ASCII file. Metadata
+   and compact coefficients are broadcast to all ranks, including ranks not
+   currently intersecting wave zones, so regridding does not require a changing
+   reader communicator. Requests for the already-distributed timestep reuse
+   the coefficients without parsing or broadcasting them again.
+   EOF resets the reference-data offset consistently on all ranks; malformed
+   headers, retained coefficients, partial records and I/O failures are fatal
+   rather than treated as EOF. Files must not change while the simulation runs.
+   Field averaging and ghost exchanges are unchanged.
+
 .. input_param:: OceanWaves.label.HOS_simulation_is_ocean
 
    **type:** Boolean, optional, default = true

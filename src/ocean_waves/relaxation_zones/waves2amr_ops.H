@@ -89,6 +89,126 @@ int update_offset_timestep(const int ntime, const int n0)
     return (-ntime + n0);
 }
 
+void check_modes_error(std::string& error)
+{
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    int length = static_cast<int>(error.size());
+    amrex::ParallelDescriptor::Bcast(&length, 1, root);
+    if (!length) return;
+    error.resize(length);
+    amrex::ParallelDescriptor::Bcast(error.data(), error.size(), root);
+    amrex::Abort(error);
+}
+
+template <typename VT>
+void initialize_modes_reader(
+    ReadModes<VT>& reader, const std::string& filename, bool is_ocean)
+{
+    ModesMetadata metadata;
+    std::string error;
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        try {
+            if (!reader.initialize(filename, is_ocean, false, false))
+                throw std::runtime_error(
+                    "Waves2AMR: cannot open modes file " + filename);
+            metadata = reader.metadata();
+        } catch (const std::exception& exception) {
+            error = exception.what();
+        }
+    }
+    check_modes_error(error);
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    amrex::ParallelDescriptor::Bcast(
+        metadata.dimensions.data(), metadata.dimensions.size(), root);
+    amrex::ParallelDescriptor::Bcast(
+        metadata.scalars.data(), metadata.scalars.size(), root);
+    if (!amrex::ParallelDescriptor::IOProcessor())
+        reader.initialize(metadata, is_ocean);
+}
+
+template <typename VT>
+void broadcast_modes(std::vector<VT>& modes)
+{
+    // Broadcast bytes for real and complex coefficients without depending on
+    // MPI complex datatype support. Chunking avoids MPI's int-count limit.
+    auto* bytes = reinterpret_cast<char*>(modes.data());
+    std::size_t remaining = modes.size() * sizeof(VT);
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    while (remaining) {
+        const auto count = std::min(
+            remaining,
+            static_cast<std::size_t>(std::numeric_limits<int>::max()));
+        amrex::ParallelDescriptor::Bcast(bytes, count, root);
+        bytes += count;
+        remaining -= count;
+    }
+}
+
+void read_wave_modes(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata, int ntime_off = 0)
+{
+    BL_PROFILE("Waves2AMR::read_wave_modes");
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    // Status: 1 = new coefficients, 2 = coefficients already distributed.
+    int state[3]{1, wdata.n_offset, 0};
+    std::string error;
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        try {
+            auto read = [&](int step) {
+                BL_PROFILE("Waves2AMR::parse_modes");
+                return wdata.is_ocean
+                           ? wdata.c_rmodes.read_into(
+                                 step, wdata.c_mX, wdata.c_mY, wdata.c_mZ,
+                                 wdata.c_mFS)
+                           : wdata.r_rmodes.read_into(
+                                 step, wdata.r_mX, wdata.r_mY, wdata.r_mZ,
+                                 wdata.r_mFS, &wdata.r_mAdd);
+            };
+            const auto step = static_cast<long long>(wdata.ntime) +
+                              wdata.n_offset + ntime_off;
+            if (step < -1 || step > std::numeric_limits<int>::max())
+                throw std::runtime_error(
+                    "Waves2AMR: invalid requested timestep");
+            state[2] = static_cast<int>(step);
+            if (state[2] == wdata.loaded_modes_step) {
+                state[0] = 2;
+            } else if (!read(state[2])) {
+                state[1] = update_offset_timestep(wdata.ntime, wdata.n_winit);
+                state[2] = wdata.ntime + state[1] + ntime_off;
+                amrex::Print()
+                    << "WARNING (waves2amr_ops): end of mode data "
+                       "file detected, resetting to beginning of mode data.\n";
+                if (state[2] == wdata.loaded_modes_step) {
+                    state[0] = 2;
+                } else if (!read(state[2]))
+                    throw std::runtime_error(
+                        "Waves2AMR: EOF after resetting modes; check "
+                        "HOS_init_time, "
+                        "HOS_init_timestep and the modes file length");
+            }
+        } catch (const std::exception& exception) {
+            error = exception.what();
+        }
+    }
+    check_modes_error(error);
+    amrex::ParallelDescriptor::Bcast(state, 3, root);
+    wdata.n_offset = state[1];
+    if (state[0] == 1) {
+        BL_PROFILE("Waves2AMR::broadcast_modes");
+        if (wdata.is_ocean) {
+            for (auto* modes :
+                 {&wdata.c_mX, &wdata.c_mY, &wdata.c_mZ, &wdata.c_mFS})
+                broadcast_modes(*modes);
+        } else {
+            for (auto* modes :
+                 {&wdata.r_mX, &wdata.r_mY, &wdata.r_mZ, &wdata.r_mFS,
+                  &wdata.r_mAdd})
+                broadcast_modes(*modes);
+        }
+    }
+    wdata.loaded_modes_step = state[2];
+}
+
 void report_reconstruction(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     const modes_hosgrid::OceanReconstructionStats& stats,
@@ -239,51 +359,18 @@ void populate_fields_all_levels(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     amrex::Vector<amrex::Geometry>& geom_all,
     kynema_sgf::Field& lvs_field,
-    kynema_sgf::Field& vel_field,
-    int ntime_off = 0)
+    kynema_sgf::Field& vel_field)
 {
-
-    // Get data from modes
-    bool no_EOF =
-        wdata.is_ocean
-            ? wdata.read_ocean_modes(wdata.ntime + wdata.n_offset + ntime_off)
-            : wdata.r_rmodes.get_data(
-                  wdata.ntime + wdata.n_offset + ntime_off, wdata.r_mX,
-                  wdata.r_mY, wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-    // Navigate when end of file is reached
-    if (!no_EOF) {
-        // End of file detected, reset reading
-        wdata.n_offset = update_offset_timestep(wdata.ntime, wdata.n_winit);
-        // Print warning to screen
-        amrex::Print() << "WARNING (waves2amr_ops): end of mode data file "
-                          "detected, resetting to beginning of mode data.\n";
-        // Read data again, now from a valid timestep
-        no_EOF = wdata.is_ocean
-                     ? wdata.read_ocean_modes(
-                           wdata.ntime + wdata.n_offset + ntime_off)
-                     : wdata.r_rmodes.get_data(
-                           wdata.ntime + wdata.n_offset + ntime_off, wdata.r_mX,
-                           wdata.r_mY, wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-        // If no valid data is detected at this point, abort
-        if (!no_EOF) {
-            amrex::Abort(
-                "waves2amr_ops: end of mode data file detected after "
-                "resetting to beginning; please evaluate HOS_init_time "
-                "or HOS_init_timestep and check the length of the mode "
-                "file.");
-        }
-    }
-
     // Interpolate to fields (vector of MultiFabs)
-        const auto fields = vel_field.vec_ptrs();
-        amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>> problo, dx;
-        for (int lev = 0; lev < fields.size(); ++lev) {
-            const auto& geometry = geom_all[lev];
-            problo.push_back(geometry.ProbLoArray());
-            dx.push_back(geometry.CellSizeArray());
-        }
-        stream_wave_elevation(wdata, lvs_field.vec_ptrs(), problo, dx);
-        stream_wave_velocity(wdata, fields, problo, dx, wdata.indvec);
+    const auto fields = vel_field.vec_ptrs();
+    amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>> problo, dx;
+    for (int lev = 0; lev < fields.size(); ++lev) {
+        const auto& geometry = geom_all[lev];
+        problo.push_back(geometry.ProbLoArray());
+        dx.push_back(geometry.CellSizeArray());
+    }
+    stream_wave_elevation(wdata, lvs_field.vec_ptrs(), problo, dx);
+    stream_wave_velocity(wdata, fields, problo, dx, wdata.indvec);
 }
 
 void time_interpolate_wave_fields(
@@ -394,18 +481,15 @@ struct ReadInputsOp<W2AWaves>
         pp.query("number_interp_above_surface", nh_above);
 
         // Initialize mode reader
-        bool file_exists{false};
         if (wdata.is_ocean) {
-            file_exists = wdata.c_rmodes.initialize(wdata.modes_file, true);
+            initialize_modes_reader(wdata.c_rmodes, wdata.modes_file, true);
         } else {
-            file_exists = wdata.r_rmodes.initialize(wdata.modes_file, false);
+            initialize_modes_reader(wdata.r_rmodes, wdata.modes_file, false);
         }
-
-        // Abort if file does not exist
-        if (!file_exists) {
-            amrex::Abort(
-                "Waves2AMR ReadInputsOp: modes file requested does not exist");
-        }
+        amrex::Print()
+            << "OceanWaves: modes I/O on rank "
+            << amrex::ParallelDescriptor::IOProcessorNumber()
+            << ", direct seeking and compact broadcasts to all ranks\n";
 
         // Get dt of HOS data
         wdata.dt_modes = wdata.is_ocean ? wdata.c_rmodes.get_dtout()
@@ -652,36 +736,7 @@ struct ReadInputsOp<W2AWaves>
                            << std::endl;
         }
 
-        // Always get modes on every processor for initialization
-        bool no_EOF =
-            wdata.is_ocean
-                ? wdata.read_ocean_modes(wdata.ntime + wdata.n_offset)
-                : wdata.r_rmodes.get_data(
-                      wdata.ntime + wdata.n_offset, wdata.r_mX, wdata.r_mY,
-                      wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-        if (!no_EOF) {
-            // End of file detected, reset reading
-            wdata.n_offset = update_offset_timestep(wdata.ntime, wdata.n_winit);
-            // Print warning to screen
-            amrex::Print()
-                << "WARNING (waves2amr_ops): end of mode data file "
-                   "detected, resetting to beginning of mode data.\n";
-            // Read data again, now from a valid timestep
-            no_EOF =
-                wdata.is_ocean
-                    ? wdata.read_ocean_modes(wdata.ntime + wdata.n_offset)
-                    : wdata.r_rmodes.get_data(
-                          wdata.ntime + wdata.n_offset, wdata.r_mX, wdata.r_mY,
-                          wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-            // If no valid data is detected at this point, abort
-            if (!no_EOF) {
-                amrex::Abort(
-                    "waves2amr_ops: end of mode data file detected after "
-                    "resetting to beginning; please evaluate HOS_init_time "
-                    "or HOS_init_timestep and check the length of the mode "
-                    "file.");
-            }
-        }
+        read_wave_modes(wdata);
 
         // Declare fields for HOS
         auto& w2a_levelset =
@@ -1000,9 +1055,6 @@ struct UpdateTargetFieldsOp<W2AWaves>
                     wdata.do_interp = false;
                 }
             }
-            // Only perform reading where needed, communicate offset though
-            amrex::ParallelDescriptor::ReduceIntMax(wdata.n_offset);
-
             // Previous W2A data is more recent than last interpolated data
             t_last = (wdata.ntime - 1) * wdata.dt_modes;
 
@@ -1016,9 +1068,10 @@ struct UpdateTargetFieldsOp<W2AWaves>
                     w2a_velocity.num_grow());
             } else if (double_data == 1) {
                 // Previous W2A data is unknown, read into old fields
+                read_wave_modes(wdata, -1);
                 if (wdata.do_interp) {
                     populate_fields_all_levels(
-                        wdata, geom, w2a_lvs_old, w2a_vel_old, -1);
+                        wdata, geom, w2a_lvs_old, w2a_vel_old);
                 }
 
                 // Average down to get fine information on coarse grid where
@@ -1038,6 +1091,7 @@ struct UpdateTargetFieldsOp<W2AWaves>
             // ow fields cancel when double_data == 2, no modification
 
             // After possible prior read, now read data for this ntime
+            read_wave_modes(wdata);
             if (wdata.do_interp) {
                 populate_fields_all_levels(
                     wdata, geom, w2a_levelset, w2a_velocity);

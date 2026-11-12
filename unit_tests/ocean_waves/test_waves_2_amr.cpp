@@ -6,6 +6,9 @@
 #include "src/ocean_waves/relaxation_zones/waves2amr_ops.H"
 #include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
 
 using namespace amrex::literals;
 
@@ -13,6 +16,129 @@ namespace kynema_sgf_tests {
 
 class OceanWavesW2ATest : public MeshTest
 {};
+
+#ifdef KYNEMA_SGF_USE_W2A
+namespace {
+void test_modes_distribution(bool ocean)
+{
+    const auto filename = (std::filesystem::temp_directory_path() /
+                           ("w2a-mpi-" + amrex::UniqueString() + ".dat"))
+                              .string();
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        std::ofstream file(filename, std::ios::binary);
+        const int width = ocean ? 9 : 16;
+        const int slots = (ocean ? 12 : 8) * width * 2;
+        const std::vector<double> header =
+            ocean ? std::vector<double>{16, 2, .1, 1, 20, 10, 5, 9.81, 1, 1}
+                  : std::vector<double>{16, 4, 2, .1, 1, 20, 10, 5, 0};
+        for (int record = 0; record < 4; ++record) {
+            for (int slot = 0; slot < slots; ++slot) {
+                double value = record * 1000 + slot;
+                if (!record && slot < static_cast<int>(header.size()))
+                    value = header[slot];
+                if (!ocean && slot % (8 * width) >= 6 * width &&
+                    slot % width >= 4) {
+                    file << std::string(18, ' ');
+                } else {
+                    file << std::uppercase << std::scientific
+                         << std::setprecision(10) << std::setw(17) << value
+                         << ' ';
+                }
+            }
+        }
+        AMREX_ALWAYS_ASSERT(file.good());
+    }
+    {
+        kynema_sgf::ocean_waves::W2AWavesData data;
+        data.is_ocean = ocean;
+        // The I/O rank is deliberately inactive; only it may open the file.
+        data.do_interp = !amrex::ParallelDescriptor::IOProcessor();
+        if (ocean) {
+            initialize_modes_reader(data.c_rmodes, filename, true);
+            for (auto* modes :
+                 {&data.c_mX, &data.c_mY, &data.c_mZ, &data.c_mFS})
+                modes->resize(data.c_rmodes.get_vector_size());
+        } else {
+            initialize_modes_reader(data.r_rmodes, filename, false);
+            for (auto* modes :
+                 {&data.r_mX, &data.r_mY, &data.r_mZ, &data.r_mFS})
+                modes->resize(data.r_rmodes.get_vector_size());
+            data.r_mAdd.resize(data.r_rmodes.get_addl_vector_size());
+        }
+        const auto parses = [&] {
+            return ocean ? data.c_rmodes.records_read()
+                         : data.r_rmodes.records_read();
+        };
+        const auto expected_parses = [](int count) {
+            return amrex::ParallelDescriptor::IOProcessor() ? count : 0;
+        };
+        const auto check = [&](int step) {
+            EXPECT_EQ(data.loaded_modes_step, step);
+            const double base = (step + 1) * 1000;
+            if (ocean) {
+                const std::array arrays{
+                    &data.c_mX, &data.c_mY, &data.c_mZ, &data.c_mFS};
+                for (int row = 0; row < 2; ++row) {
+                    for (int x = 0; x < 9; ++x) {
+                        const int index = row * 9 + x;
+                        for (int var = 0; var < 4; ++var) {
+                            const double real = base + row * 108 +
+                                                (var == 3 ? 4 : var) * 18 +
+                                                2 * x;
+                            EXPECT_EQ(
+                                (*arrays[var])[index],
+                                std::complex<amrex::Real>(real, real + 1));
+                        }
+                    }
+                }
+            } else {
+                const std::array arrays{
+                    &data.r_mX, &data.r_mY, &data.r_mZ, &data.r_mFS};
+                for (int row = 0; row < 2; ++row) {
+                    for (int x = 0; x < 16; ++x) {
+                        const int index = row * 16 + x;
+                        for (int var = 0; var < 4; ++var)
+                            EXPECT_EQ(
+                                (*arrays[var])[index],
+                                base + row * 128 + (var == 3 ? 4 : var) * 16 +
+                                    x);
+                    }
+                    for (int x = 0; x < 4; ++x)
+                        EXPECT_EQ(
+                            data.r_mAdd[row * 4 + x],
+                            base + row * 128 + 96 + x);
+                }
+            }
+        };
+        data.ntime = 2;
+        read_wave_modes(data);
+        check(2);
+        EXPECT_EQ(parses(), expected_parses(1));
+        read_wave_modes(data);
+        check(2);
+        EXPECT_EQ(parses(), expected_parses(1));
+        // Backward/restart-style request, then EOF looping back to cached data.
+        data.ntime = 0;
+        read_wave_modes(data);
+        check(0);
+        data.ntime = 8;
+        read_wave_modes(data);
+        check(0);
+        EXPECT_EQ(data.n_offset, -8);
+        EXPECT_EQ(parses(), expected_parses(2));
+        data.ntime = 9;
+        read_wave_modes(data);
+        check(1);
+        EXPECT_EQ(parses(), expected_parses(3));
+    }
+    if (amrex::ParallelDescriptor::IOProcessor())
+        EXPECT_EQ(std::remove(filename.c_str()), 0);
+}
+} // namespace
+
+TEST_F(OceanWavesW2ATest, modes_io_ocean) { test_modes_distribution(true); }
+TEST_F(OceanWavesW2ATest, modes_io_nwt) { test_modes_distribution(false); }
+#endif
 
 // This is to evaluate aspects of W2A methods that do not require wave data
 TEST_F(OceanWavesW2ATest, time_advance)
