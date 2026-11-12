@@ -1,7 +1,11 @@
+#include <limits>
+#include <string>
 #include "ks_test_utils/AmrexTest.H"
 #include "src/actuator/FLLC.H"
 #include "src/actuator/FLLCOp.H"
 #include "src/utilities/linear_interpolation.H"
+#include "AMReX_Exception.H"
+#include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -27,6 +31,11 @@ TEST(TestFLLCData, data_initializes_with_cviews)
     view.vel_rel = ::kynema_sgf::utils::slice(dummy_vec, 0, num_points);
 
     data.nonuniform = false;
+
+    for (int ip = 0; ip < num_points; ++ip) {
+        view.pos[ip] = {0, static_cast<amrex::Real>(ip), 0};
+        view.chord[ip] = 1.;
+    }
 
     fllc_init(data, view, 1.0_rt);
 
@@ -342,6 +351,203 @@ TEST(TestFLLCOp, correction_follows_span_at_mismatched_points)
         EXPECT_EQ(blade.vel[ip].x(), vel_x[ip]) << "velocity point " << ip;
         EXPECT_NEAR(blade.vel[ip].z(), gold, tol) << "velocity point " << ip;
     }
+}
+
+namespace {
+
+//! Inputs of an actuator with the correction on, for the tests of fllc_parse
+class FLLCParseTest : public ::kynema_sgf_tests::AmrexTest
+{
+protected:
+    void SetUp() override
+    {
+        ::kynema_sgf_tests::AmrexTest::SetUp();
+        {
+            amrex::ParmParse pp("Actuator.FixedWingLine");
+            const amrex::Vector<amrex::Real> eps{2.0_rt, 2.0_rt, 2.0_rt};
+            const amrex::Vector<amrex::Real> eps_chord{
+                0.25_rt, 0.25_rt, 0.25_rt};
+            pp.addarr("epsilon", eps);
+            pp.addarr("epsilon_chord", eps_chord);
+        }
+    }
+};
+
+//! Message of the abort of fllc_init, empty when it does not abort
+std::string fllc_init_abort_message(
+    FLLCData& data, const ComponentView& view, const amrex::Real eps_chord)
+{
+    try {
+        fllc_init(data, view, eps_chord);
+    } catch (const amrex::RuntimeError& err) {
+        return err.what();
+    }
+    return "";
+}
+
+} // namespace
+
+TEST_F(FLLCParseTest, reads_inputs_in_range)
+{
+    amrex::ParmParse pp("Actuator.FixedWingLine");
+    pp.add("fllc_relaxation_factor", 1.0_rt);
+    pp.add("fllc_epsilon_dr_ratio", 3.0_rt);
+    const utils::ActParser ap("Actuator.FixedWingLine", "Actuator.F1");
+    FLLCData data;
+
+    fllc_parse(ap, data);
+
+    EXPECT_EQ(data.epsilon, 2.0_rt);
+    EXPECT_EQ(data.relaxation_factor, 1.0_rt);
+    EXPECT_EQ(data.eps_dr, 3.0_rt);
+}
+
+TEST_F(FLLCParseTest, rejects_relaxation_factor_of_zero)
+{
+    // With a factor of 0 the correction stays at zero, without a word
+    amrex::ParmParse pp("Actuator.FixedWingLine");
+    pp.add("fllc_relaxation_factor", 0.0_rt);
+    const utils::ActParser ap("Actuator.FixedWingLine", "Actuator.F1");
+    FLLCData data;
+
+    EXPECT_THROW(fllc_parse(ap, data), amrex::RuntimeError);
+}
+
+TEST_F(FLLCParseTest, rejects_relaxation_factor_above_one)
+{
+    // Above 1 every update of the correction overshoots
+    amrex::ParmParse pp("Actuator.FixedWingLine");
+    pp.add("fllc_relaxation_factor", 2.0_rt);
+    const utils::ActParser ap("Actuator.FixedWingLine", "Actuator.F1");
+    FLLCData data;
+
+    EXPECT_THROW(fllc_parse(ap, data), amrex::RuntimeError);
+}
+
+TEST_F(FLLCParseTest, rejects_epsilon_dr_ratio_of_zero)
+{
+    // The non-uniform points are spaced by the optimal epsilon over this
+    // ratio
+    amrex::ParmParse pp("Actuator.FixedWingLine");
+    pp.add("fllc_epsilon_dr_ratio", 0.0_rt);
+    const utils::ActParser ap("Actuator.FixedWingLine", "Actuator.F1");
+    FLLCData data;
+
+    EXPECT_THROW(fllc_parse(ap, data), amrex::RuntimeError);
+}
+
+TEST(TestFLLCData, init_rejects_zero_chord)
+{
+    const int num_points = 5;
+
+    // The kernel of the correction divides by chord times epsilon_chord
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.chord[2] = 0.0_rt;
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = false;
+
+    EXPECT_THROW(fllc_init(data, blade.view, 1.0_rt), amrex::RuntimeError);
+}
+
+TEST(TestFLLCData, init_names_zero_chord_with_nonuniform_points)
+{
+    const int num_points = 5;
+
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.chord[2] = 0.0_rt;
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    // The message has to tell what is wrong with the inputs
+    const auto msg = fllc_init_abort_message(data, blade.view, 1.0_rt);
+    EXPECT_NE(msg.find("chord must be larger than 0"), std::string::npos)
+        << "message: " << msg;
+}
+
+TEST(TestFLLCData, init_rejects_zero_epsilon_chord)
+{
+    const int num_points = 5;
+
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = false;
+
+    EXPECT_THROW(fllc_init(data, blade.view, 0.0_rt), amrex::RuntimeError);
+}
+
+TEST(TestFLLCData, init_rejects_coincident_points)
+{
+    const int num_points = 5;
+
+    // Two actuator points at the same place: the line has no length there
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.pos[3] = blade.pos[2];
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = false;
+
+    EXPECT_THROW(fllc_init(data, blade.view, 1.0_rt), amrex::RuntimeError);
+}
+
+TEST(TestFLLCData, init_stops_when_nonuniform_points_cannot_reach_tip)
+{
+    const int num_points = 5;
+
+    // A tip chord of almost zero: the non-uniform points get a spacing
+    // there that never brings them to the tip
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.chord[num_points - 1] = 3.0e-16_rt;
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    testing::internal::CaptureStdout();
+    const auto msg = fllc_init_abort_message(data, blade.view, 1.0_rt);
+    testing::internal::GetCapturedStdout();
+    EXPECT_NE(
+        msg.find("cannot place the non-uniform points"), std::string::npos)
+        << "message: " << msg;
+}
+
+TEST(TestFLLCData, init_warns_when_points_do_not_resolve_optimal_epsilon)
+{
+    const int num_points = 5;
+
+    // Actuator points one unit apart, and an optimal epsilon of a quarter
+    // of that
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    testing::internal::CaptureStdout();
+    fllc_init(data, blade.view, 0.25_rt);
+    const std::string out = testing::internal::GetCapturedStdout();
+    EXPECT_NE(out.find("WARNING: FLLC"), std::string::npos);
+    EXPECT_NE(out.find("at 5 of 5 points"), std::string::npos);
+}
+
+TEST(TestFLLCData, init_is_silent_when_points_resolve_optimal_epsilon)
+{
+    const int num_points = 5;
+
+    // Actuator points one unit apart, and an optimal epsilon of twice that
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+
+    testing::internal::CaptureStdout();
+    fllc_init(data, blade.view, 2.0_rt);
+    const std::string out = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(out.find("WARNING"), std::string::npos);
 }
 
 } // namespace kynema_sgf::actuator

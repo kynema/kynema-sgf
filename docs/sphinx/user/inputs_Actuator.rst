@@ -103,6 +103,12 @@ Example for ``FixedWingLine``::
   and an optimal ``epsilon_chord`` as an input. The recommended value is 0.25
   in all directions for ``epsilon_chord`` and a value of ``epsilon`` in all directions
   that would be greater than at least 2.5 times the grid size ``dx``.
+  The correction is computed from the lift at the actuator points, so these
+  points have to resolve the optimal epsilon (``epsilon_chord * chord``). When
+  the correction starts, a warning is printed if the optimal epsilon is smaller
+  than the spacing of the actuator points somewhere along the line: use more
+  actuator points or a larger ``epsilon_chord`` in that case. The chord must be
+  larger than `0` at every actuator point.
   The default is `0`.
 
 .. input_param:: Actuator.FixedWingLine.fllc_type
@@ -122,6 +128,7 @@ Example for ``FixedWingLine``::
 
   The relaxation factor to be applied to the updated velocity see:
   `Martinez-Tossas and Meneveau (2019) <https://doi.org/10.1017/jfm.2018.994>`_
+  It must be larger than `0` and not larger than `1`.
   The default value is `0.1`.
 
 .. input_param:: Actuator.FixedWingLine.fllc_start_time
@@ -145,7 +152,7 @@ Example for ``FixedWingLine``::
   **type:** Double, optional
 
   The ratio of epsilon to actuator point spacing used to create a non-uniform distribution.
-  A value of `1` or greater is recommended.
+  A value of `1` or greater is recommended. It must be larger than `0`.
   The default value is `1`.
 
 .. input_param:: Actuator.FixedWingLine.pitch
@@ -923,10 +930,10 @@ Example for ``TurbineFastLine``::
 
 .. input_param:: Actuator.TurbineFastLine.density
 
-   **type:** Real, optional
+   **type:** Real, required
 
    This is the density of the fluid specified in openfast. This is used to
-   non-dimensionalize the forces from openfast.
+   non-dimensionalize the forces from openfast. It must be larger than `0`.
 
 .. input_param:: Actuator.WTG01.openfast_input_file
 

@@ -3,6 +3,7 @@
 #include "ks_test_utils/AmrexTest.H"
 #include "test_ext_turbine_utils.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
+#include "AMReX_Exception.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -111,6 +112,59 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
             << "velocity point " << i;
         EXPECT_EQ(ext.fluid_vel[1][i], 0.0F);
         EXPECT_EQ(ext.fluid_vel[2][i], 0.0F);
+    }
+}
+
+TEST(TurbineExternalViews, epsilon_must_be_positive_on_blades)
+{
+    MockViewData data;
+    init_hub_first_points(data, 3, 5, 0);
+    kynema_sgf::actuator::external::make_component_views(data);
+
+    // None of the epsilon inputs given: the Gaussian of every blade point
+    // has no width, and its force would not reach the mesh
+    EXPECT_THROW(
+        kynema_sgf::actuator::external::init_epsilon(data),
+        amrex::RuntimeError);
+}
+
+TEST(TurbineExternalViews, epsilon_must_be_positive_on_tower)
+{
+    namespace vs = kynema_sgf::vs;
+    MockViewData data;
+    init_hub_first_points(data, 3, 5, 4);
+    kynema_sgf::actuator::external::make_component_views(data);
+
+    // Tower points, and an epsilon for the blades only
+    data.meta().eps_chord = vs::Vector{0.25_rt, 0.25_rt, 0.25_rt};
+    EXPECT_THROW(
+        kynema_sgf::actuator::external::init_epsilon(data),
+        amrex::RuntimeError);
+}
+
+TEST(TurbineExternalViews, epsilon_from_chord_and_tower_inputs)
+{
+    namespace vs = kynema_sgf::vs;
+    const int num_blades = 3;
+    const int npb = 5;
+    const int npt = 4;
+    MockViewData data;
+    init_hub_first_points(data, num_blades, npb, npt);
+    auto& meta = data.meta();
+    kynema_sgf::actuator::external::make_component_views(data);
+
+    meta.eps_chord = vs::Vector{0.25_rt, 0.25_rt, 0.25_rt};
+    meta.eps_tower = vs::Vector{2.0_rt, 2.0_rt, 2.0_rt};
+    kynema_sgf::actuator::external::init_epsilon(data);
+
+    // Unit chord on the blades
+    for (int ib = 0; ib < num_blades; ++ib) {
+        for (int k = 0; k < npb; ++k) {
+            EXPECT_EQ(meta.blades[ib].epsilon[k].x(), 0.25_rt);
+        }
+    }
+    for (int j = 0; j < npt; ++j) {
+        EXPECT_EQ(meta.tower.epsilon[j].x(), 2.0_rt);
     }
 }
 

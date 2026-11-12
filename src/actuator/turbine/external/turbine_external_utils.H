@@ -2,6 +2,7 @@
 #define TURBINE_EXTERNAL_UTILS_H
 
 #include <numbers>
+#include <string>
 #include "src/actuator/turbine/turbine_utils.H"
 #include "src/actuator/actuator_ops.H"
 #include "src/actuator/actuator_utils.H"
@@ -84,6 +85,31 @@ void make_component_views(datatype& data)
     }
 }
 
+/** Abort when a point of a blade or of the tower has no width to spread its
+ *  force with
+ *
+ *  The Gaussian of a point with an epsilon of 0 is 0 everywhere on the mesh:
+ *  the force of that point would be left out of the momentum source without
+ *  any message.
+ */
+inline void check_epsilon(
+    const ComponentView& cv,
+    const int npts,
+    const std::string& label,
+    const std::string& inputs)
+{
+    for (int i = 0; i < npts; ++i) {
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            if (!(cv.epsilon[i][n] > 0.0_rt)) {
+                amrex::Abort(
+                    "Actuator " + label + ": epsilon is not larger than 0 at "
+                    "point " + std::to_string(i) + ", so its force would "
+                    "not reach the mesh. Set one of " + inputs);
+            }
+        }
+    }
+}
+
 template <typename datatype>
 void init_epsilon(datatype& data)
 {
@@ -123,6 +149,10 @@ void init_epsilon(datatype& data)
                     tdata.eps_min[n], tdata.eps_inp[n], eps_crd[n]);
             }
         }
+        check_epsilon(
+            cv, tdata.num_pts_blade,
+            data.info().label + " blade " + std::to_string(ib),
+            "epsilon, epsilon_chord or epsilon_min");
     }
     {
         auto& cv = tdata.tower;
@@ -132,6 +162,9 @@ void init_epsilon(datatype& data)
                     tdata.eps_min[n], tdata.eps_inp[n], tdata.eps_tower[n]);
             }
         }
+        check_epsilon(
+            cv, tdata.num_pts_tower, data.info().label + " tower",
+            "epsilon, epsilon_tower or epsilon_min");
     }
 }
 

@@ -1,4 +1,6 @@
 #include <cmath>
+#include <limits>
+#include <sstream>
 #include "src/actuator/FLLC.H"
 #include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
@@ -8,12 +10,31 @@ using namespace amrex::literals;
 namespace kynema_sgf::actuator {
 
 void fllc_init(
-    FLLCData& data, const ComponentView& view, const amrex::Real eps_chord)
+    FLLCData& data,
+    const ComponentView& view,
+    const amrex::Real eps_chord,
+    const std::string& label,
+    const bool print_warnings)
 {
 
     namespace interp = ::kynema_sgf::interp;
     const int npts = static_cast<int>(view.pos.size());
     const int npts_vel = static_cast<int>(view.vel_pos.size());
+    const std::string who =
+        label.empty() ? "FLLC: " : "FLLC (" + label + "): ";
+
+    if (npts < 2) {
+        std::ostringstream msg;
+        msg << who << "the correction needs at least 2 actuator points, and "
+            << "the line has " << npts;
+        amrex::Abort(msg.str());
+    }
+    if (!(eps_chord > 0.0_rt)) {
+        std::ostringstream msg;
+        msg << who << "epsilon_chord must be larger than 0. Value: "
+            << eps_chord;
+        amrex::Abort(msg.str());
+    }
 
     // The velocity points and the force points are two sets of points along
     // the same line, starting at the same place (external turbines: the
@@ -51,6 +72,55 @@ void fllc_init(
     for (int i = 0; i < npts; ++i) {
         data.r[i] = vs::mag(view.pos[i] - view.pos[0]);
         data.optimal_epsilon[i] = view.chord[i] * eps_chord;
+        // The kernel of the correction divides by the optimal epsilon
+        if (!(data.optimal_epsilon[i] > 0.0_rt)) {
+            std::ostringstream msg;
+            msg << who << "the chord must be larger than 0 at every actuator "
+                << "point. Point " << i << " has a chord of " << view.chord[i];
+            amrex::Abort(msg.str());
+        }
+        // The points are located by the distance from the first one
+        if ((i > 0) && !(data.r[i] > data.r[i - 1])) {
+            std::ostringstream msg;
+            msg << who << "the actuator points must move away from the first "
+                << "point of the line. Points " << i - 1 << " and " << i
+                << " are at distances of " << data.r[i - 1] << " and "
+                << data.r[i];
+            amrex::Abort(msg.str());
+        }
+    }
+
+    // The lift is known at the actuator points only, so these points have
+    // to resolve the optimal epsilon. Compare it with the distance to the
+    // neighbouring points.
+    const amrex::Real min_eps_spacing_ratio = 1.0_rt;
+    int num_coarse = 0;
+    amrex::Real ratio_lowest = std::numeric_limits<amrex::Real>::max();
+    for (int i = 0; i < npts; ++i) {
+        const auto before = (i > 0) ? data.r[i] - data.r[i - 1] : 0.0_rt;
+        const auto after = (i < npts - 1) ? data.r[i + 1] - data.r[i] : 0.0_rt;
+        const auto ratio = data.optimal_epsilon[i] /
+                           amrex::max<amrex::Real>(before, after);
+        ratio_lowest = amrex::min<amrex::Real>(ratio_lowest, ratio);
+        if (ratio < min_eps_spacing_ratio) {
+            ++num_coarse;
+        }
+    }
+    if (print_warnings && (num_coarse > 0)) {
+        amrex::OutStream()
+            << "\nWARNING: " << who << "the optimal epsilon (chord times "
+            << "epsilon_chord) is smaller than the spacing of the actuator "
+            << "points at " << num_coarse << " of " << npts
+            << " points; the lowest ratio of the two is " << ratio_lowest
+            << ". "
+            << (data.nonuniform
+                    ? "The correction then depends on the number of "
+                      "actuator points: use more points or a larger "
+                      "epsilon_chord."
+                    : "The sum over the actuator points does not resolve "
+                      "the correction there: set fllc_nonuniform = true, or "
+                      "use more points or a larger epsilon_chord.")
+            << std::endl;
     }
 
     // Central difference
@@ -73,6 +143,8 @@ void fllc_init(
         amrex::Real eps1;
         amrex::Real dr2;
         amrex::Real eps2;
+        // Far more points than any blade needs (a few hundred are typical)
+        const amrex::Long max_nonuniform_points = 1000000;
 
         // Initialize the first location
         data.nonuniform_r.push_back(data.r[0]);
@@ -92,11 +164,21 @@ void fllc_init(
             // This will ensure that the spacing will always meet the
             // requirement eps/dr
             dr = amrex::min<amrex::Real>(dr1, dr2);
-            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-                dr > std::numeric_limits<amrex::Real>::epsilon(),
-                "dr = " + std::to_string(dr) + ", epsilon = " +
-                    std::to_string(
-                        std::numeric_limits<amrex::Real>::epsilon()));
+
+            // A spacing that does not move the point, or that needs an
+            // endless number of points to reach the end of the line
+            if (!(r_ + dr > r_) ||
+                (data.nonuniform_r.size() >= max_nonuniform_points)) {
+                std::ostringstream msg;
+                msg << who << "cannot place the non-uniform points: after "
+                    << data.nonuniform_r.size() << " points the spacing "
+                    << "(chord times epsilon_chord over "
+                    << "fllc_epsilon_dr_ratio) is " << dr
+                    << " at a distance of " << r_ << " along a line of "
+                    << data.r.back() << ". Check the chord, epsilon_chord "
+                    << "and fllc_epsilon_dr_ratio.";
+                amrex::Abort(msg.str());
+            }
 
             // Append value to the array
             // Ensure that the value is smaller than the tip
@@ -143,6 +225,24 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data)
     data.correction_type = FLLCTypeMap.at(typeString);
     pp.query("fllc_nonuniform", data.nonuniform);
     pp.query("fllc_epsilon_dr_ratio", data.eps_dr);
+
+    // With a factor of 0 the correction stays at 0, and above 1 every
+    // update overshoots
+    if (!(data.relaxation_factor > 0.0_rt) ||
+        (data.relaxation_factor > 1.0_rt)) {
+        std::ostringstream msg;
+        msg << "fllc_parse: fllc_relaxation_factor must be larger than 0 and "
+            << "not larger than 1. Value read: " << data.relaxation_factor;
+        amrex::Abort(msg.str());
+    }
+    // The non-uniform points are spaced by the optimal epsilon over this
+    // ratio
+    if (!(data.eps_dr > 0.0_rt)) {
+        std::ostringstream msg;
+        msg << "fllc_parse: fllc_epsilon_dr_ratio must be larger than 0. "
+            << "Value read: " << data.eps_dr;
+        amrex::Abort(msg.str());
+    }
 
     if (!pp.contains("epsilon") || !pp.contains("epsilon_chord")) {
         amrex::Abort(
