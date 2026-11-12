@@ -220,8 +220,11 @@ void ExtTurbIface<FastTurbine, FastSolverData>::write_velocity_data(
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
     auto ncf = ncutils::NCFile::open(fname, NC_WRITE);
-    const std::string nt_name = "num_time_steps";
-    const size_t nt = ncf.dim(nt_name).len();
+    // Record n holds the velocities of CFD time step n of the turbine,
+    // counted from the start of the external solver, which is how a replay
+    // reads the file. A run restarted from a checkpoint older than the last
+    // record writes over the records of the steps it takes again.
+    const auto nt = static_cast<size_t>(fi.time_index / fi.num_substeps);
     const auto npts = static_cast<size_t>(fi.from_cfd.u_Len);
 
     const amrex::Real time = fi.time_index * fi.dt_ext;
@@ -242,6 +245,28 @@ void ExtTurbIface<FastTurbine, FastSolverData>::read_velocity_data(
 #ifdef KYNEMA_SGF_USE_NETCDF
     const auto nt = static_cast<size_t>(tid);
     const auto npts = static_cast<size_t>(fi.from_cfd.u_Len);
+
+    // Record nt holds the velocities of CFD time step nt of the turbine. A
+    // record of another time, or one never written, would be replayed without
+    // notice.
+    amrex::Real time = 0.0_rt;
+    ncf.var("time").get(&time, {nt}, {1});
+    const amrex::Real dt_record =
+        static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext;
+    const amrex::Real time_expected =
+        static_cast<amrex::Real>(nt) * dt_record;
+    const bool never_written =
+        !(time < 0.5_rt * static_cast<amrex::Real>(NC_FILL_FLOAT));
+    if (never_written || !(std::abs(time - time_expected) <=
+                           0.5_rt * dt_record + 1.0e-6_rt * time_expected)) {
+        amrex::Abort(
+            "FastIface: record " + std::to_string(nt) +
+            " of the velocity file of " + fi.tlabel +
+            (never_written ? " was never written"
+                           : " has time " + std::to_string(time)) +
+            ", time expected " + std::to_string(time_expected) +
+            ". The file is not the one written by the run being replayed");
+    }
 
     auto& uu = fi.from_cfd;
     ncf.var("uvel").get(uu.u, {nt, 0}, {1, npts});
