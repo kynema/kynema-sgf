@@ -215,14 +215,18 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    **type:** Integer, optional, default = -1
 
-   HOS-Ocean only: choose a virtually zero-padded reconstruction grid for
+   For both HOS-Ocean and HOS-NWT, choose a virtually zero-padded reconstruction grid for
    elevation and velocity so horizontal spacing is no larger than the finest
    configured AMR cell spacing. Each direction is doubled independently as
    needed. ``-1`` allows uncapped padding, ``0`` disables padding (legacy
    behavior), and a positive integer ``p`` caps expansion at ``2**p`` per
    direction. A cap can leave reconstruction coarser than the target mesh.
    Padding preserves the retained Fourier modes; it adds no shorter waves.
-   HOS-Ocean velocity reconstruction streams heights: each rank retains three
+   NWT grids include both endpoints: doubling intervals changes ``n`` samples
+   to ``2*(n-1)+1``. A single transverse row is never expanded. Original
+   cosine/sine endpoint normalization and wavemaker terms are preserved.
+
+   Both source types stream velocity heights: each rank retains three
    local horizontal velocity arrays plus local interpolation
    stencils, rather than full horizontal planes at every height. Stencils
    require 12 values per local grown-box horizontal cell for cubic (four heights
@@ -233,18 +237,26 @@ The following input arguments are only valid for the W2AWaves wave type:
    separately can repeat FFTs. Original compact spectral arrays remain on
    each rank. Local elevation and velocity use the reconstruction method
    selected below; no distributed FFT is used. Cubic support can require more
-   nodes and heights than linear despite smaller stencil storage. HOS-NWT
-   Fourier reconstruction is unchanged; its interpolation also defaults to cubic.
+   nodes and heights than linear despite smaller stencil storage.
 
 .. input_param:: OceanWaves.label.fft_reconstruction
 
    **type:** String, optional, default = "auto"
 
-   HOS-Ocean reconstruction method: ``full`` uses an ordinary full horizontal
+   Reconstruction method for both HOS-Ocean and HOS-NWT: ``full`` uses a full horizontal
    inverse FFT then gathers needed nodes; ``pruned`` uses separable FFTs of
    occupied frequency rows and required output columns (or the transposed
    order). Both evaluate exactly the same padded-grid nodes before the existing
    interpolation, with possible floating-point roundoff differences.
+
+   NWT uses even/odd reflection of the cosine/sine basis before the shared
+   FFT backend. Its internal periodic extension has ``2*(n-1)`` nodes per
+   nontrivial axis, so full workspace can exceed that of a native DCT/DST.
+   The additional wavemaker modes retain their nonperiodic x dependence,
+   evaluated only at requested grid x nodes, with full 1D cosine/sine FFTs
+   in y. ``pruned`` applies to ordinary modes, not these additional 1D FFTs.
+   Automatic timing compares the reflected full/pruned methods, not legacy
+   real-to-real transforms.
 
    ``auto`` chooses independently on each rank. It rejects methods exceeding
    the scratch budget, uses an operation estimate to exclude candidates costing
@@ -264,7 +276,9 @@ The following input arguments are only valid for the W2AWaves wave type:
    (1 MiB = 1048576 bytes). Applies to forced methods as well as ``auto``.
    Counts compact working spectra, local depth coefficients, FFT work arrays,
    returned host samples, three local device velocity arrays, device index maps
-   and velocity stencils. Source HOS mode arrays, destination solver fields,
+   and velocity stencils. For NWT it also counts reflected compact coefficients,
+   depth arrays, returned velocity components and wavemaker FFT buffers.
+   Source HOS mode arrays, destination solver fields,
    allocator overhead and FFTW's opaque plan storage are excluded. This is not
    a hard cap on total process memory. Failure to fit any permitted method is
    fatal; increase the budget, reduce padding or reduce the local footprint.

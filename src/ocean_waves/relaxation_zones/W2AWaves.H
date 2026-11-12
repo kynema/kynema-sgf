@@ -61,12 +61,6 @@ struct W2AWavesData : public RelaxZonesBaseData
 
 // Struct variables that have special types
 #ifdef KYNEMA_SGF_USE_W2A
-    // FFTW plan vector
-    std::vector<fftw_plan> plan_vector;
-    // FFTW pointers to store modes ready for ifft
-    amrex::Real *r_eta_mptr = nullptr, *r_u_mptr = nullptr, *r_v_mptr = nullptr,
-                *r_w_mptr = nullptr, *au_mptr = nullptr, *av_mptr = nullptr,
-                *aw_mptr = nullptr, *plan_out = nullptr;
     // ReadModes objects
     ReadModes<std::complex<amrex::Real>> c_rmodes;
     ReadModes<amrex::Real> r_rmodes;
@@ -74,6 +68,7 @@ struct W2AWavesData : public RelaxZonesBaseData
     interp_to_mfab::Interpolation interpolation{
         interp_to_mfab::Interpolation::cubic};
     std::unique_ptr<modes_hosgrid::OceanReconstruction> reconstruction;
+    std::unique_ptr<modes_hosgrid::NwtReconstruction> nwt_reconstruction;
     std::size_t reported_selection{0};
     std::size_t reconstruction_reserved_bytes{0};
 
@@ -101,43 +96,6 @@ struct W2AWavesData : public RelaxZonesBaseData
     bool do_interp{true};
     // Flag indicating regrid has occurred since the last resizing of vecs
     bool resize_flag{false};
-    // Vectors for spatial data from transformed modes
-    amrex::Gpu::DeviceVector<amrex::Real> sp_eta_vec, sp_u_vec, sp_v_vec,
-        sp_w_vec;
-
-    ~W2AWavesData()
-    {
-#ifdef KYNEMA_SGF_USE_W2A
-        if (r_eta_mptr) {
-            delete[] r_eta_mptr;
-        }
-        if (r_u_mptr) {
-            delete[] r_u_mptr;
-        }
-        if (r_v_mptr) {
-            delete[] r_v_mptr;
-        }
-        if (r_w_mptr) {
-            delete[] r_w_mptr;
-        }
-        if (au_mptr) {
-            delete[] au_mptr;
-        }
-        if (av_mptr) {
-            delete[] av_mptr;
-        }
-        if (aw_mptr) {
-            delete[] aw_mptr;
-        }
-        if (plan_out) {
-            delete[] plan_out;
-        }
-        for (int n = 0; n < (int)plan_vector.size(); ++n) {
-            fftw_destroy_plan(plan_vector[n]);
-        }
-        plan_vector.clear();
-#endif
-    }
 };
 
 struct W2AWaves : public RelaxZonesType
