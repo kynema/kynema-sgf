@@ -129,6 +129,12 @@ void init_data_op(datatype& data)
 
     {
         tdata.num_blades = sz_info[0];
+        // The external solver gives the number of blades. The data of the
+        // filtered lifting line correction were created for the number in
+        // the inputs (num_blades), and every blade needs its own
+        if (!tdata.fllc.empty()) {
+            tdata.fllc.resize(tdata.num_blades, tdata.fllc.front());
+        }
         // back calculate what the value per blade for number of points in
         // the openfast data structure
         tdata.num_vel_pts_blade = sz_info[4];
