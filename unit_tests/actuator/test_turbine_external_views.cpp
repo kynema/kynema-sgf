@@ -167,4 +167,32 @@ TEST(TurbineExternalViews, epsilon_from_chord_and_tower_inputs)
     }
 }
 
+TEST(TurbineExternalViews, bound_box_holds_the_gaussians)
+{
+    namespace vs = kynema_sgf::vs;
+    MockViewData data;
+    init_hub_first_points(data, 3, 5, 4);
+    auto& meta = data.meta();
+    kynema_sgf::actuator::external::make_component_views(data);
+
+    // Box made from the inputs of a turbine at the origin with a rotor
+    // radius of 5: 1.25 radii around it. The points are up to 5 away from
+    // the hub
+    data.info().bound_box = amrex::RealBox(
+        -6.25_rt, -6.25_rt, -6.25_rt, 6.25_rt, 6.25_rt, 6.25_rt);
+    meta.eps_inp = vs::Vector{2.0_rt, 2.0_rt, 2.0_rt};
+    kynema_sgf::actuator::external::init_epsilon(data);
+
+    // The Gaussian of a point is cut off at 4 epsilon. Patches outside of
+    // the box receive no force, so the box has to reach that far
+    const amrex::Real reach = 4.0_rt * 2.0_rt;
+    const auto& bbox = data.info().bound_box;
+    for (const auto& pos : data.grid().pos) {
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            EXPECT_LE(bbox.lo(n), pos[n] - reach);
+            EXPECT_GE(bbox.hi(n), pos[n] + reach);
+        }
+    }
+}
+
 } // namespace kynema_sgf_tests

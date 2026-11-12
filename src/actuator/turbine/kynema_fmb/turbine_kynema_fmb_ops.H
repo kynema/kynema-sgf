@@ -147,6 +147,10 @@ struct InitDataOp<TurbineKynemaFMB, SrcTrait>
     {
         BL_PROFILE("kynema-sgf::InitDataOp<TurbineKynemaFMB>");
         init_data_op<TurbineKynemaFMB::DataType>(data);
+        // The bounding box of the turbine now holds the reach of the
+        // Gaussians (init_epsilon): make the list of the processes with
+        // patches inside of it again
+        external_determine_influenced_procs<TurbineKynemaFMB::DataType>(data);
     }
 };
 

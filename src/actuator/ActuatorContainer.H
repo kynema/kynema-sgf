@@ -83,6 +83,13 @@ public:
         return static_cast<int>(m_data.position.size());
     }
 
+    /** Number of points of this process that are outside of the domain
+     *
+     *  Counts the points beyond a boundary that is not periodic. No velocity
+     *  can be sampled there: these points get a velocity of zero.
+     */
+    int num_points_outside_domain() const;
+
     // public for CUDA, not safe for general access
 
     void interpolate_fields(const Field& vel, const Field& density);
@@ -119,6 +126,9 @@ private:
     //! Flag indicating whether the particles are scattered throughout the
     //! domain, or if they have been recalled to the original MPI rank
     bool m_is_scattered{false};
+
+    //! True once the user was told that points are outside of the domain
+    bool m_outside_domain_warned{false};
 };
 
 } // namespace actuator
