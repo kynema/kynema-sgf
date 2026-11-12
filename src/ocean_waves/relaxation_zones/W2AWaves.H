@@ -71,6 +71,8 @@ struct W2AWavesData : public RelaxZonesBaseData
     ReadModes<std::complex<amrex::Real>> c_rmodes;
     ReadModes<amrex::Real> r_rmodes;
     modes_hosgrid::OceanReconstructionOptions reconstruction_options;
+    interp_to_mfab::Interpolation interpolation{
+        interp_to_mfab::Interpolation::cubic};
     std::unique_ptr<modes_hosgrid::OceanReconstruction> reconstruction;
     std::size_t reported_selection{0};
     std::size_t reconstruction_reserved_bytes{0};

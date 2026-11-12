@@ -132,8 +132,12 @@ void reserve_ocean_stencils(
     for (auto* field : fields) {
         for (amrex::MFIter mfi(*field); mfi.isValid(); ++mfi) {
             const auto cells = mfi.growntilebox();
-            bytes += static_cast<std::size_t>(cells.length(0)) *
-                     cells.length(1) * 24 * sizeof(amrex::Real);
+            bytes +=
+                static_cast<std::size_t>(cells.length(0)) * cells.length(1) *
+                (wdata.interpolation == interp_to_mfab::Interpolation::cubic
+                     ? 12
+                     : 24) *
+                sizeof(amrex::Real);
         }
     }
 }
@@ -151,7 +155,8 @@ void stream_ocean_elevation(
         [&](const auto& xs, const auto& ys, auto& eta) {
             reconstruct_ocean_samples(
                 wdata, wdata.c_mFS, xs, ys, eta, wdata.dimL);
-        });
+        },
+        wdata.interpolation);
 }
 
 void stream_ocean_velocity(
@@ -178,7 +183,8 @@ void stream_ocean_velocity(
             reconstruct_ocean_samples(wdata, um, xs, ys, u);
             reconstruct_ocean_samples(wdata, vm, xs, ys, v);
             reconstruct_ocean_samples(wdata, wm, xs, ys, w);
-        });
+        },
+        wdata.interpolation);
 }
 
 void populate_fields_all_levels(
@@ -256,12 +262,12 @@ void populate_fields_all_levels(
         interp_to_mfab::interp_eta_to_levelset_field(
             wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
             wdata.xlo1, wdata.zsl, wdata.is_ocean, wdata.sp_eta_vec,
-            lvs_field.vec_ptrs(), geom_all);
+            lvs_field.vec_ptrs(), geom_all, wdata.interpolation);
         interp_to_mfab::interp_velocity_to_field(
             wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
             wdata.xlo1, wdata.is_ocean, wdata.indvec, wdata.hvec,
             wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
-            vel_field.vec_ptrs(), geom_all);
+            vel_field.vec_ptrs(), geom_all, wdata.interpolation);
     }
 }
 
@@ -331,6 +337,15 @@ struct ReadInputsOp<W2AWaves>
                 "fft_max_padding_level must be -1, 0, or a positive integer");
         }
         pp.query("fft_reconstruction", wdata.reconstruction_options.method);
+        std::string interpolation{"cubic"};
+        pp.query("interpolation", interpolation);
+        if (interpolation != "linear" && interpolation != "cubic")
+            amrex::Abort("OceanWaves interpolation must be linear or cubic");
+        wdata.interpolation = interpolation == "cubic"
+                                  ? interp_to_mfab::Interpolation::cubic
+                                  : interp_to_mfab::Interpolation::linear;
+        amrex::Print() << "OceanWaves: spatial interpolation " << interpolation
+                       << "\n";
         double scratch_mb = 512.;
         pp.query("fft_scratch_memory_mb", scratch_mb);
         if (!std::isfinite(scratch_mb) || scratch_mb <= 0 ||
@@ -748,11 +763,12 @@ struct InitDataOp<W2AWaves>
             interp_to_mfab::interp_eta_to_levelset_multifab(
                 wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
                 wdata.xlo1, wdata.zsl, wdata.is_ocean, wdata.sp_eta_vec,
-                ow_levelset(level), problo, dx);
+                ow_levelset(level), problo, dx, wdata.interpolation);
             interp_to_mfab::interp_velocity_to_multifab(
                 wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
                 wdata.xlo1, wdata.is_ocean, indvec, wdata.hvec, wdata.sp_u_vec,
-                wdata.sp_v_vec, wdata.sp_w_vec, ow_velocity(level), problo, dx);
+                wdata.sp_v_vec, wdata.sp_w_vec, ow_velocity(level), problo, dx,
+                wdata.interpolation);
         }
 
         // Populate flow fields according to intended forcing and init setup
@@ -956,6 +972,18 @@ struct UpdateTargetFieldsOp<W2AWaves>
                     (interp_to_mfab::get_local_height_indices(
                          wdata.indvec, wdata.hvec, ow_velocity.vec_ptrs(),
                          geom) == 1);
+                if (flag_z && wdata.interpolation ==
+                                  interp_to_mfab::Interpolation::cubic) {
+                    // Cubic needs an additional height on either side of the
+                    // bracketing pair, with one-sided stencils at the
+                    // endpoints.
+                    const int first = std::max(0, wdata.indvec.front() - 2);
+                    const int last = std::min(
+                        static_cast<int>(wdata.hvec.size()) - 1,
+                        wdata.indvec.back() + 2);
+                    wdata.indvec.resize(last - first + 1);
+                    std::iota(wdata.indvec.begin(), wdata.indvec.end(), first);
+                }
                 // No overlap from heights definitely means no interp
 
                 // Check lateral bounds (in x)

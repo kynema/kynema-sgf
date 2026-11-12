@@ -191,6 +191,26 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    The time step in the modes file for the Kynema-SGF simulation to start at.
 
+.. input_param:: OceanWaves.label.interpolation
+
+   **type:** String, optional, default = "cubic"
+
+   Spatial interpolation for both HOS-Ocean and HOS-NWT, during initialization
+   and subsequent updates. ``cubic`` uses four-point Lagrange interpolation in
+   each horizontal direction (bicubic for 3D sources) and cubic interpolation
+   across four adjacent, nonuniform velocity heights. It interpolates values
+   reconstructed from Fourier modes; it does not evaluate Fourier series at
+   solver coordinates. ``linear`` preserves legacy bilinear horizontal and
+   linear vertical interpolation. Invalid choices are fatal.
+
+   Periodic horizontal stencils wrap. Nonperiodic coordinates clamp to the
+   actual source sample extent, with one-sided stencils at boundaries; this
+   differs from legacy linear endpoint handling. Fewer than four available
+   samples reduce polynomial degree. Vertical stencils are one-sided near
+   endpoints; extrapolation outside the available heights remains linear,
+   retaining the existing above-top velocity zeroing rule. These polynomials
+   are not monotonicity-limited and can overshoot.
+
 .. input_param:: OceanWaves.label.fft_max_padding_level
 
    **type:** Integer, optional, default = -1
@@ -203,15 +223,18 @@ The following input arguments are only valid for the W2AWaves wave type:
    direction. A cap can leave reconstruction coarser than the target mesh.
    Padding preserves the retained Fourier modes; it adds no shorter waves.
    HOS-Ocean velocity reconstruction streams heights: each rank retains three
-   local horizontal velocity arrays plus two sets of local interpolation
+   local horizontal velocity arrays plus local interpolation
    stencils, rather than full horizontal planes at every height. Stencils
-   require 24 values per local grown-box horizontal cell, summed across boxes
+   require 12 values per local grown-box horizontal cell for cubic (four heights
+   times three components), or 24 for linear, summed across boxes
    and AMR levels (including vertically stacked boxes). Velocity scratch
    memory is independent of the number of interpolation heights.
    Initialization is deferred until local mesh boxes exist; processing levels
    separately can repeat FFTs. Original compact spectral arrays remain on
    each rank. Local elevation and velocity use the reconstruction method
-   selected below; no distributed FFT is used. HOS-NWT is unchanged.
+   selected below; no distributed FFT is used. Cubic support can require more
+   nodes and heights than linear despite smaller stencil storage. HOS-NWT
+   Fourier reconstruction is unchanged; its interpolation also defaults to cubic.
 
 .. input_param:: OceanWaves.label.fft_reconstruction
 
