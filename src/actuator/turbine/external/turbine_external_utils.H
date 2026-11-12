@@ -119,12 +119,15 @@ void init_epsilon(datatype& data)
 {
     auto& tdata = data.meta();
 
-    // Swap order of epsilon based on turbine orientation
-    // Input order is (chord, span, thickness)
-    // Output order should depend on turbine type; currently ...
-    // -- this function is correct for Kynema
-    // -- this function is erroneous for OpenFAST but has been in use
-    // (Does not matter when epsilon is uniform)
+    // Order of the epsilon components. The inputs are read in the order of
+    // the documentation, (chord, thickness, span). The Gaussian of a point
+    // applies component n of its epsilon along row n of its orientation
+    // matrix (ActSrcLineOp). The swap below stores (thickness, chord, span):
+    // the first input value acts along row 1, the second along row 0 and
+    // the third along row 2 of the orientation sent by the solver.
+    // OpenFAST: row 0 is normal to the chord, row 1 is along the chord and
+    // row 2 is along the span (blade frame of AeroDyn), so each input value
+    // acts in its documented direction. The tower points use the same swap.
     // The FLLC does not use these components: it reads the first value of
     // epsilon (fllc_parse) and of epsilon_min (read_inputs), and component
     // 0 of the swapped eps_chord, which is the second input value of
@@ -173,6 +176,25 @@ void init_epsilon(datatype& data)
         check_epsilon(
             cv, tdata.num_pts_tower, data.info().label + " tower",
             "epsilon, epsilon_tower or epsilon_min");
+
+        // epsilon_tower is one of three lower bounds. Tell the user when it
+        // is given and is not the value that the tower points get
+        bool tower_eps_unused = false;
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            if ((tdata.eps_tower[n] > 0.0_rt) &&
+                (tdata.eps_tower[n] <
+                 amrex::max<amrex::Real>(tdata.eps_min[n], tdata.eps_inp[n]))) {
+                tower_eps_unused = true;
+            }
+        }
+        if (tower_eps_unused && (tdata.num_pts_tower > 0)) {
+            amrex::Print()
+                << "\nWARNING: Actuator " << data.info().label
+                << ": epsilon_tower is smaller than epsilon or epsilon_min. "
+                << "The tower points use the largest of the three in each "
+                << "direction, so the value given for epsilon_tower is not "
+                << "the one used." << std::endl;
+        }
     }
     {
         // Patches and MPI ranks that do not touch the bounding box of the

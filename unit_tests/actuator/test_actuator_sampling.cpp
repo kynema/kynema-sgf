@@ -6,6 +6,7 @@
 #include "src/core/vs/vector_space.H"
 
 #include <algorithm>
+#include "AMReX_Exception.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -51,7 +52,51 @@ protected:
     }
 };
 
+//! The same domain with walls in z
+class ActuatorWallTest : public ActuatorTest
+{
+protected:
+    void populate_parameters() override
+    {
+        ActuatorTest::populate_parameters();
+        amrex::ParmParse pp("geometry");
+        amrex::Vector<int> periodic{{1, 1, 0}};
+        pp.addarr("is_periodic", periodic);
+    }
+};
+
 } // namespace
+
+TEST_F(ActuatorWallTest, point_outside_domain_stops_the_run)
+{
+    namespace vs = kynema_sgf::vs;
+    initialize_mesh();
+
+    // No velocity can be sampled at a point beyond a boundary that is not
+    // periodic. The domain is 128 in every direction; a point on the high
+    // wall is outside, as for the particles
+    const amrex::Vector<amrex::Real> z_outside{130.0_rt, 128.0_rt, -1.0_rt};
+    for (const auto& zpos : z_outside) {
+        TestActContainer ac(mesh(), 1);
+        auto& data = ac.get_data_obj();
+        data.num_pts[0] = 2;
+        ac.initialize_container();
+        data.position[0] = vs::Vector{64.0_rt, 64.0_rt, 64.0_rt};
+        data.position[1] = vs::Vector{64.0_rt, 64.0_rt, zpos};
+        EXPECT_THROW(ac.update_positions(), amrex::RuntimeError)
+            << "z = " << zpos;
+    }
+
+    // Inside, on the low wall and beyond a periodic boundary
+    TestActContainer ac(mesh(), 1);
+    auto& data = ac.get_data_obj();
+    data.num_pts[0] = 3;
+    ac.initialize_container();
+    data.position[0] = vs::Vector{64.0_rt, 64.0_rt, 64.0_rt};
+    data.position[1] = vs::Vector{64.0_rt, 64.0_rt, 0.0_rt};
+    data.position[2] = vs::Vector{130.0_rt, 64.0_rt, 64.0_rt};
+    EXPECT_NO_THROW(ac.update_positions());
+}
 
 TEST_F(ActuatorTest, act_container)
 {
