@@ -313,28 +313,23 @@ void ExtTurbIface<FastTurbine, FastSolverData>::do_turbine_step(FastTurbine& fi)
 {
     // OpenFAST keeps one count of time steps for all the turbines of a
     // process and moves it on when the last of them is stepped
-    // (FAST_CFD_Step). A turbine takes all its steps of a CFD time step
-    // before the next turbine does, so with several turbines in a process
-    // every one of them must take a single step. Otherwise a turbine repeats
-    // a time step, or gets the time of another turbine.
+    // (FAST_CFD_Step), while a turbine here takes all its steps of a CFD
+    // time step, and writes its checkpoint, before the next turbine is
+    // stepped. With several turbines in a process, a turbine that takes more
+    // than one OpenFAST step per CFD step repeats a time step or gets the
+    // time of another turbine, and the checkpoint of every turbine but the
+    // last is named and stamped one step low. So every OpenFAST turbine
+    // needs a process of its own.
     if (m_turbine_data.size() > 1) {
-        for (const auto& td : m_turbine_data) {
-            if (td->num_substeps > 1) {
-                amrex::Abort(
-                    "FastIface: process " +
-                    std::to_string(amrex::ParallelDescriptor::MyProc()) +
-                    " holds " + std::to_string(m_turbine_data.size()) +
-                    " OpenFAST turbines, and " + td->tlabel + " takes " +
-                    std::to_string(td->num_substeps) +
-                    " OpenFAST time steps per CFD time step. OpenFAST "
-                    "counts the time steps of the turbines of a process "
-                    "together, so each of them must take one step per CFD "
-                    "time step: give OpenFAST the time step of the CFD "
-                    "solver, or use at least as many MPI ranks as there "
-                    "are actuators, so that every turbine has a rank of "
-                    "its own.");
-            }
-        }
+        amrex::Abort(
+            "FastIface: process " +
+            std::to_string(amrex::ParallelDescriptor::MyProc()) + " holds " +
+            std::to_string(m_turbine_data.size()) +
+            " OpenFAST turbines. OpenFAST counts the time steps of the "
+            "turbines of a process together, so they cannot be stepped and "
+            "checkpointed one after the other: use at least as many MPI "
+            "ranks as there are actuators, so that every turbine has a rank "
+            "of its own.");
     }
     fast_func(FAST_Step, &fi.tid_local);
 }
