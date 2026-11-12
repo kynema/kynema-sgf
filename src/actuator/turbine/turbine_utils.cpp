@@ -37,11 +37,17 @@ void read_inputs(
     bool use_fllc = false;
     pp.query("fllc", use_fllc);
     if (use_fllc) {
-        std::string type;
-        pp.query("type", type);
-        if (type == "TurbineFastDisk") {
+        // The default namespace of the parser is Actuator.<type>, whether the
+        // type was given for all actuators (Actuator.type) or for this one
+        const std::string& default_prefix = pp.default_params().getPrefix();
+        const std::string type =
+            default_prefix.substr(default_prefix.rfind('.') + 1);
+        if (type.ends_with("Disk")) {
             amrex::Abort(
-                "FLLC is not compatible with TurbineFastDisk turbine type");
+                "Actuator " + tinfo.label +
+                ": the filtered lifting line correction (fllc) is for "
+                "actuator lines and cannot be used with the type " +
+                type);
         }
         for (int i = 0; i < tdata.num_blades; ++i) {
             tdata.fllc.emplace_back();

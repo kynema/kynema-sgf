@@ -3,6 +3,8 @@
 #include "ks_test_utils/AmrexTest.H"
 #include "src/actuator/FLLC.H"
 #include "src/actuator/FLLCOp.H"
+#include "src/actuator/turbine/turbine_types.H"
+#include "src/actuator/turbine/turbine_utils.H"
 #include "src/utilities/linear_interpolation.H"
 #include "AMReX_Exception.H"
 #include "AMReX_ParmParse.H"
@@ -445,6 +447,93 @@ TEST_F(FLLCParseTest, rejects_epsilon_dr_ratio_of_zero)
     FLLCData data;
 
     EXPECT_THROW(fllc_parse(ap, data), amrex::RuntimeError);
+}
+
+namespace {
+
+//! Inputs of turbine T1 with the correction on, without the actuator type
+void add_turbine_inputs_with_fllc()
+{
+    amrex::ParmParse pp("Actuator.T1");
+    const amrex::Vector<amrex::Real> eps{2.0_rt, 2.0_rt, 2.0_rt};
+    const amrex::Vector<amrex::Real> eps_chord{0.25_rt, 0.25_rt, 0.25_rt};
+    const amrex::Vector<amrex::Real> base_position{0.0_rt, 0.0_rt, 0.0_rt};
+    pp.add("num_points_blade", 4);
+    pp.add("num_points_tower", 0);
+    pp.addarr("epsilon", eps);
+    pp.addarr("epsilon_chord", eps_chord);
+    pp.addarr("base_position", base_position);
+    pp.add("rotor_diameter", 2.0_rt);
+    pp.add("hub_height", 2.0_rt);
+    pp.add("fllc", true);
+}
+
+//! Message of the abort of the inputs of turbine T1, empty when they are read
+std::string turbine_inputs_abort_message(const std::string& type)
+{
+    // The parser that Actuator.cpp builds for an actuator of this type
+    const utils::ActParser ap("Actuator." + type, "Actuator.T1");
+    TurbineBaseData tdata;
+    TurbineInfo tinfo("T1", 0);
+    try {
+        utils::read_inputs(tdata, tinfo, ap);
+    } catch (const amrex::RuntimeError& err) {
+        return err.what();
+    }
+    return "";
+}
+
+} // namespace
+
+TEST_F(FLLCParseTest, rejects_disk_with_type_given_for_all_actuators)
+{
+    // Actuator.type = TurbineFastDisk, the usual place of the type
+    {
+        amrex::ParmParse pp("Actuator");
+        pp.add("type", std::string("TurbineFastDisk"));
+    }
+    add_turbine_inputs_with_fllc();
+
+    const std::string msg = turbine_inputs_abort_message("TurbineFastDisk");
+    EXPECT_NE(msg.find("TurbineFastDisk"), std::string::npos) << msg;
+}
+
+TEST_F(FLLCParseTest, rejects_disk_with_type_given_for_the_actuator)
+{
+    // Actuator.T1.type = TurbineFastDisk
+    add_turbine_inputs_with_fllc();
+    {
+        amrex::ParmParse pp("Actuator.T1");
+        pp.add("type", std::string("TurbineFastDisk"));
+    }
+
+    const std::string msg = turbine_inputs_abort_message("TurbineFastDisk");
+    EXPECT_NE(msg.find("TurbineFastDisk"), std::string::npos) << msg;
+}
+
+TEST_F(FLLCParseTest, rejects_disk_of_other_turbine_solver)
+{
+    {
+        amrex::ParmParse pp("Actuator");
+        pp.add("type", std::string("TurbineKynemaFMBDisk"));
+    }
+    add_turbine_inputs_with_fllc();
+
+    const std::string msg =
+        turbine_inputs_abort_message("TurbineKynemaFMBDisk");
+    EXPECT_NE(msg.find("TurbineKynemaFMBDisk"), std::string::npos) << msg;
+}
+
+TEST_F(FLLCParseTest, reads_line_turbine_with_correction)
+{
+    {
+        amrex::ParmParse pp("Actuator");
+        pp.add("type", std::string("TurbineFastLine"));
+    }
+    add_turbine_inputs_with_fllc();
+
+    const std::string msg = turbine_inputs_abort_message("TurbineFastLine");
+    EXPECT_TRUE(msg.empty()) << msg;
 }
 
 TEST(TestFLLCData, init_rejects_zero_chord)
