@@ -1,3 +1,4 @@
+#include <cmath>
 #include "src/actuator/FLLC.H"
 #include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
@@ -12,16 +13,30 @@ void fllc_init(
 
     namespace interp = ::kynema_sgf::interp;
     const int npts = static_cast<int>(view.pos.size());
-    data.different_sizes = view.pos.size() != view.vel_pos.size();
-    if (data.different_sizes) {
-        data.span_distance_force.resize(view.pos.size());
-        data.span_distance_vel.resize(view.vel_pos.size());
-        for (size_t i = 0; i < view.pos.size(); ++i) {
-            data.span_distance_force[i] = vs::mag(view.pos[i]);
-        }
-        for (size_t i = 0; i < view.vel_pos.size(); ++i) {
-            data.span_distance_vel[i] = vs::mag(view.vel_pos[i]);
-        }
+    const int npts_vel = static_cast<int>(view.vel_pos.size());
+
+    // The velocity points and the force points are two sets of points along
+    // the same line, starting at the same place (external turbines: the
+    // nodes of the external solver and the actuator points). Each set is
+    // located by the distance from its own first point, because the two
+    // sets can be positions at different instants of a moving blade.
+    data.span_distance_force.resize(npts);
+    data.span_distance_vel.resize(npts_vel);
+    for (int i = 0; i < npts; ++i) {
+        data.span_distance_force[i] = vs::mag(view.pos[i] - view.pos[0]);
+    }
+    for (int i = 0; i < npts_vel; ++i) {
+        data.span_distance_vel[i] = vs::mag(view.vel_pos[i] - view.vel_pos[0]);
+    }
+    // The same number of points does not make them the same points: compare
+    // the distances
+    const auto tol = 1.0e-3_rt * data.span_distance_force.back() /
+                     static_cast<amrex::Real>(npts);
+    data.mismatched_points = npts != npts_vel;
+    for (int i = 0; (i < npts) && !data.mismatched_points; ++i) {
+        data.mismatched_points =
+            std::abs(data.span_distance_vel[i] - data.span_distance_force[i]) >
+            tol;
     }
     data.r.resize(npts);
     data.dr.resize(npts);
@@ -32,7 +47,6 @@ void fllc_init(
     data.correction_velocity.assign(npts, vs::Vector::zero());
     data.lift.assign(npts, vs::Vector::zero());
     data.grad_lift.assign(npts, vs::Vector::zero());
-    data.force_point_velocity.assign(npts, vs::Vector::zero());
 
     for (int i = 0; i < npts; ++i) {
         data.r[i] = vs::mag(view.pos[i] - view.pos[0]);

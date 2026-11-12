@@ -42,8 +42,6 @@ struct FLLCOp
 
     static void constant_chord(ComponentView& data, FLLCData& fllc)
     {
-        namespace interp = ::kynema_sgf::interp;
-
         const int npts = static_cast<int>(fllc.correction_velocity.size());
         auto& du = fllc.correction_velocity;
 
@@ -51,20 +49,6 @@ struct FLLCOp
         auto& u_opt = fllc.optimal_velocity;
         auto& G = fllc.lift;
         auto& dG = fllc.grad_lift;
-        VecSlice u_force_pnt_slice =
-            ::kynema_sgf::utils::slice(fllc.force_point_velocity, 0);
-        vs::Vector* vel_ptr = data.vel.data();
-
-        /**
-         * Step 0
-         * Linear interpolate velocity if force and vel points are mismatched
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_vel, data.vel, fllc.span_distance_force,
-                u_force_pnt_slice);
-            vel_ptr = u_force_pnt_slice.data();
-        }
 
         /**
          * Step 1
@@ -116,7 +100,7 @@ struct FLLCOp
                     continue;
                 }
 
-                const auto r_dis = vs::mag(data.vel_pos[ip] - data.vel_pos[jp]);
+                const auto r_dis = vs::mag(data.pos[ip] - data.pos[jp]);
                 const auto& vel = data.vel_rel[jp];
                 const auto vmag = amrex::max<amrex::Real>(
                     vs::mag(vel), vs::DTraits<amrex::Real>::eps());
@@ -149,20 +133,34 @@ struct FLLCOp
          * Compute the induced velocity difference
          * Compute equation 5.8_rt from Martinez-Tossas and Meneveau 2019
          */
+        add_correction(data, fllc);
         for (int ip = 0; ip < npts; ++ip) {
-            vel_ptr[ip] = vel_ptr[ip] + du[ip];
             u_les[ip] *= 0.0_rt;
             u_opt[ip] *= 0.0_rt;
         }
+    }
 
-        /**
-         * Step 5
-         * Interpolate back to vel positions if necessary
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_force, u_force_pnt_slice,
-                fllc.span_distance_vel, data.vel);
+    /** Add the correction to the sampled velocity
+     *
+     *  The correction is known at the force points and the velocity is
+     *  sampled at the velocity points. Where the two sets differ, the
+     *  correction is interpolated along the span to the velocity points; the
+     *  sampled velocity itself is never interpolated.
+     */
+    static void add_correction(ComponentView& data, const FLLCData& fllc)
+    {
+        namespace interp = ::kynema_sgf::interp;
+
+        const auto& du = fllc.correction_velocity;
+        const int npts_vel = static_cast<int>(data.vel.size());
+        for (int ip = 0; ip < npts_vel; ++ip) {
+            if (fllc.mismatched_points) {
+                const auto du_vel = interp::linear(
+                    fllc.span_distance_force, du, fllc.span_distance_vel[ip]);
+                data.vel[ip] = data.vel[ip] + du_vel;
+            } else {
+                data.vel[ip] = data.vel[ip] + du[ip];
+            }
         }
     }
 
@@ -197,20 +195,6 @@ struct FLLCOp
         auto& u_opt = fllc.optimal_velocity;
         auto& G = fllc.lift;
         auto& nonuniform_G = fllc.nonuniform_lift;
-        VecSlice u_force_pnt_slice =
-            ::kynema_sgf::utils::slice(fllc.force_point_velocity, 0);
-        vs::Vector* vel_ptr = data.vel.data();
-
-        /**
-         * Step 0
-         * Linear interpolate velocity if force and vel points are mismatched
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_vel, data.vel, fllc.span_distance_force,
-                u_force_pnt_slice);
-            vel_ptr = u_force_pnt_slice.data();
-        }
 
         /**
          * Step 1
@@ -273,7 +257,7 @@ struct FLLCOp
                 const auto r_dis =
                     (fllc.nonuniform)
                         ? std::abs(fllc.r[ip] - fllc.nonuniform_r[jp])
-                        : vs::mag(data.vel_pos[ip] - data.vel_pos[jp]);
+                        : vs::mag(data.pos[ip] - data.pos[jp]);
                 const auto r_dis2 = r_dis * r_dis;
                 const auto k_les = kernel(r_dis2, eps_les2);
                 const auto k_opt = kernel(r_dis2, eps_opt2);
@@ -293,20 +277,10 @@ struct FLLCOp
          * Step 3
          * Compute the induced velocity difference
          */
+        add_correction(data, fllc);
         for (int ip = 0; ip < npts; ++ip) {
-            vel_ptr[ip] = vel_ptr[ip] + du[ip];
             u_les[ip] *= 0.0_rt;
             u_opt[ip] *= 0.0_rt;
-        }
-
-        /**
-         * Step 4
-         * Interpolate back to vel positions if necessary
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_force, u_force_pnt_slice,
-                fllc.span_distance_vel, data.vel);
         }
     }
 };

@@ -28,14 +28,15 @@ struct FLLCData
     RealList optimal_epsilon;
 
     // computed values
-    VecList force_point_velocity;
     VecList les_velocity;
     VecList optimal_velocity;
     VecList correction_velocity;
     VecList lift;
     VecList grad_lift;
     bool initialized{false};
-    bool different_sizes;
+    // true when the velocity points are not at the force points
+    bool mismatched_points{false};
+    // distance of each velocity/force point from the first one of its set
     RealList span_distance_vel;
     RealList span_distance_force;
 

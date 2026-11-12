@@ -190,18 +190,48 @@ void update_fields_op(datatype& data)
     const auto& vel = data.grid().vel;
 
     if (!tdata.fllc.empty()) {
-        // Compute the relative velocity needed for the FLLC
+        namespace interp = ::kynema_sgf::interp;
+
+        // The relative velocity needed for the FLLC is the fluid velocity
+        // last sent to the external solver minus the velocity of the blade.
+        // The first is known at the velocity points and the second at the
+        // force points, each with its own numbering: the hub first, then
+        // the points of every blade.
         const auto& xdot = tdata.ext_data.solid_velocity(0);
         const auto& ydot = tdata.ext_data.solid_velocity(1);
         const auto& zdot = tdata.ext_data.solid_velocity(2);
-        for (int i = 0; i < tdata.vel_rel.size(); ++i) {
-            tdata.vel_rel[i][0] = uvel[i] - static_cast<amrex::Real>(xdot[i]);
-            tdata.vel_rel[i][1] = vvel[i] - static_cast<amrex::Real>(ydot[i]);
-            tdata.vel_rel[i][2] = wvel[i] - static_cast<amrex::Real>(zdot[i]);
-        }
+        VecList fluid_vel(tdata.num_vel_pts_blade);
         // Loop through each blade and apply the FLLC
-        for (int i = 0; i < tdata.num_blades; ++i) {
-            FLLCOp()(tdata.blades[i], tdata.fllc[i]);
+        for (int ib = 0; ib < tdata.num_blades; ++ib) {
+            auto& blade = tdata.blades[ib];
+            auto& fllc = tdata.fllc[ib];
+            if (!fllc.initialized) {
+                continue;
+            }
+            // Same first points as the blade views (make_component_views)
+            const int start = (ib * tdata.num_pts_blade) + 1;
+            const int start_vel = (ib * tdata.num_vel_pts_blade) + 1;
+            for (int i = 0; i < tdata.num_vel_pts_blade; ++i) {
+                fluid_vel[i][0] = uvel[start_vel + i];
+                fluid_vel[i][1] = vvel[start_vel + i];
+                fluid_vel[i][2] = wvel[start_vel + i];
+            }
+            for (int i = 0; i < tdata.num_pts_blade; ++i) {
+                const vs::Vector solid_vel{
+                    static_cast<amrex::Real>(xdot[start + i]),
+                    static_cast<amrex::Real>(ydot[start + i]),
+                    static_cast<amrex::Real>(zdot[start + i])};
+                if (fllc.mismatched_points) {
+                    blade.vel_rel[i] =
+                        interp::linear(
+                            fllc.span_distance_vel, fluid_vel,
+                            fllc.span_distance_force[i]) -
+                        solid_vel;
+                } else {
+                    blade.vel_rel[i] = fluid_vel[i] - solid_vel;
+                }
+            }
+            FLLCOp()(blade, fllc);
         }
     }
 

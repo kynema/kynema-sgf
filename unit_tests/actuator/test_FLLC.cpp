@@ -1,6 +1,7 @@
 #include "ks_test_utils/AmrexTest.H"
 #include "src/actuator/FLLC.H"
 #include "src/actuator/FLLCOp.H"
+#include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -201,6 +202,145 @@ TEST(TestFLLCOp, no_correction_when_force_is_spread_with_optimal_epsilon)
             EXPECT_EQ(blade.vel[ip].x(), 8.0_rt);
             EXPECT_EQ(blade.vel[ip].z(), 0.0_rt);
         }
+    }
+}
+
+namespace {
+
+//! Force and settings shared by the tests of the mapping between the points
+void init_mapping_test(FLLCTestBlade& blade, FLLCData& data)
+{
+    const RealList force_z{1.0_rt, 2.0_rt, 4.0_rt, 3.0_rt, 1.0_rt};
+    for (int ip = 0; ip < static_cast<int>(blade.force.size()); ++ip) {
+        blade.force[ip] = vs::Vector{0.0_rt, 0.0_rt, force_z[ip]};
+    }
+    data.epsilon = 2.0_rt;
+    data.relaxation_factor = 1.0_rt;
+    data.nonuniform = true;
+    data.eps_dr = 1.0_rt;
+    fllc_init(data, blade.view, 1.0_rt);
+}
+
+//! Correction at a distance along the blade, from the force points
+amrex::Real
+correction_at(const FLLCData& data, const int npts, const amrex::Real span)
+{
+    RealList force_span(npts);
+    RealList du_z(npts);
+    for (int ip = 0; ip < npts; ++ip) {
+        force_span[ip] = static_cast<amrex::Real>(ip);
+        du_z[ip] = data.correction_velocity[ip].z();
+    }
+    return ::kynema_sgf::interp::linear(force_span, du_z, span);
+}
+
+} // namespace
+
+TEST(TestFLLCOp, same_points_at_different_instants)
+{
+    const int num_points = 5;
+    const RealList span{0.0_rt, 1.0_rt, 2.0_rt, 3.0_rt, 4.0_rt};
+
+    // The velocity points are the force points at another instant of a
+    // moving blade: the same distances along the blade, another place
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.set_vel_span(span, vs::Vector{0.3_rt, 0.0_rt, 0.2_rt});
+    FLLCData data;
+    init_mapping_test(blade, data);
+
+    FLLCOp()(blade.view, data);
+
+    // Velocity point k takes the correction of force point k
+    for (int ip = 0; ip < num_points; ++ip) {
+        const auto du = data.correction_velocity[ip].z();
+        EXPECT_GT(std::abs(du), 1.0e-3_rt);
+        EXPECT_EQ(blade.vel[ip].z(), du);
+        EXPECT_EQ(blade.vel[ip].x(), 0.0_rt);
+    }
+}
+
+TEST(TestFLLCOp, same_number_of_points_at_other_positions)
+{
+    const int num_points = 5;
+    const RealList span_vel{0.0_rt, 0.6_rt, 1.7_rt, 3.2_rt, 4.0_rt};
+    const amrex::Real tol =
+        100.0_rt * std::numeric_limits<amrex::Real>::epsilon();
+
+    // As many velocity points as force points, but not at the force points
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    blade.set_vel_span(span_vel, vs::Vector::zero());
+    FLLCData data;
+    init_mapping_test(blade, data);
+
+    FLLCOp()(blade.view, data);
+
+    // Every velocity point takes the correction at its own distance along
+    // the blade
+    for (int ip = 0; ip < num_points; ++ip) {
+        const auto gold = correction_at(data, num_points, span_vel[ip]);
+        EXPECT_NEAR(blade.vel[ip].z(), gold, tol) << "velocity point " << ip;
+    }
+}
+
+TEST(TestFLLCOp, no_force_keeps_velocity_at_mismatched_points)
+{
+    const int num_points = 5;
+    const int num_vel_points = 3;
+    const RealList span_vel{0.0_rt, 1.5_rt, 4.0_rt};
+    const RealList vel_x{1.0_rt, 5.0_rt, 2.0_rt};
+
+    // A blade away from the origin with fewer velocity points than force
+    // points, and no force
+    FLLCTestBlade blade(
+        num_points, num_vel_points, vs::Vector{10.0_rt, 5.0_rt, 0.0_rt});
+    blade.set_vel_span(span_vel, vs::Vector::zero());
+    for (int ip = 0; ip < num_vel_points; ++ip) {
+        blade.vel[ip] = vs::Vector{vel_x[ip], 0.0_rt, 0.0_rt};
+    }
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.relaxation_factor = 1.0_rt;
+    fllc_init(data, blade.view, 1.0_rt);
+
+    FLLCOp()(blade.view, data);
+
+    // No force, no correction: the sampled velocity is not to be touched
+    for (int ip = 0; ip < num_vel_points; ++ip) {
+        EXPECT_EQ(blade.vel[ip].x(), vel_x[ip]) << "velocity point " << ip;
+        EXPECT_EQ(blade.vel[ip].y(), 0.0_rt);
+        EXPECT_EQ(blade.vel[ip].z(), 0.0_rt);
+    }
+}
+
+TEST(TestFLLCOp, correction_follows_span_at_mismatched_points)
+{
+    const int num_points = 5;
+    const int num_vel_points = 3;
+    const RealList span_vel{0.0_rt, 1.5_rt, 4.0_rt};
+    const RealList vel_x{1.0_rt, 5.0_rt, 2.0_rt};
+    const amrex::Real tol =
+        100.0_rt * std::numeric_limits<amrex::Real>::epsilon();
+
+    // A blade away from the origin with fewer velocity points than force
+    // points
+    FLLCTestBlade blade(
+        num_points, num_vel_points, vs::Vector{10.0_rt, 5.0_rt, 0.0_rt});
+    blade.set_vel_span(span_vel, vs::Vector::zero());
+    for (int ip = 0; ip < num_vel_points; ++ip) {
+        blade.vel[ip] = vs::Vector{vel_x[ip], 0.0_rt, 0.0_rt};
+    }
+    FLLCData data;
+    init_mapping_test(blade, data);
+
+    FLLCOp()(blade.view, data);
+
+    // The correction is normal to the relative velocity (along x): the
+    // sampled x velocity stays, and z takes the correction at the distance
+    // of the velocity point along the blade
+    for (int ip = 0; ip < num_vel_points; ++ip) {
+        const auto gold = correction_at(data, num_points, span_vel[ip]);
+        EXPECT_EQ(blade.vel[ip].x(), vel_x[ip]) << "velocity point " << ip;
+        EXPECT_NEAR(blade.vel[ip].z(), gold, tol) << "velocity point " << ip;
     }
 }
 
