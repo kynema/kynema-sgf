@@ -292,4 +292,24 @@ TEST(ActuatorRestart, file_is_for_one_actuator_and_one_time)
     EXPECT_FALSE(restart::open_file(is_none, "no_such_checkpoint", "T0", time));
 }
 
+TEST(ActuatorRestart, checkpoint_has_file_only_of_actuator_that_wrote_one)
+{
+    namespace restart = kynema_sgf::actuator::restart;
+    const std::string chkname = "test_actuator_restart_has_file_chk";
+    amrex::UtilCreateDirectory(chkname, 0755);
+    const amrex::Real time = 0.1_rt;
+    {
+        auto os = restart::create_file(chkname, "T0", time);
+        restart::write_value(os, "num_blades", 3);
+    }
+
+    // What a restart asks at its first force call: T0 goes on from its
+    // state. T1 wrote none (its correction had not started), and neither
+    // did a checkpoint of another time or one without actuator data.
+    EXPECT_TRUE(restart::has_file(chkname, "T0", time));
+    EXPECT_FALSE(restart::has_file(chkname, "T1", time));
+    EXPECT_FALSE(restart::has_file(chkname, "T0", time + 0.00125_rt));
+    EXPECT_FALSE(restart::has_file("no_such_checkpoint", "T0", time));
+}
+
 } // namespace kynema_sgf_tests

@@ -337,9 +337,30 @@ struct ComputeLoadsOp<
 
         const auto& time = data.sim().time();
         if (wdata.fllc) {
-            bool started = false;
-            if (!(wdata.fllc->initialized) &&
-                (time.current_time() > wdata.fllc->fllc_start_time)) {
+            // A run that restarts with the correction on goes on from the
+            // state of the checkpoint. Without it the correction starts from
+            // zero and needs many time steps to come back. The checkpoint
+            // holds the state only when the correction had started before
+            // it was written. When it holds none, the correction does not
+            // start at the first force call of the restart: that call is
+            // made at the time of the checkpoint, where a run without
+            // restart makes none. It starts at the force call of the first
+            // time step, as it does in that run.
+            auto& io = data.sim().io_manager();
+            const bool restart_call =
+                wdata.at_first_force_call && io.is_restart();
+            bool has_state = false;
+            if (restart_call) {
+                has_state = restart::has_file(
+                    io.restart_file(), data.info().label, time.current_time());
+            }
+
+            const bool due =
+                !(wdata.fllc->initialized) &&
+                (time.current_time() > wdata.fllc->fllc_start_time);
+            const bool waits = due && restart_call && !has_state;
+            const bool started = due && !waits;
+            if (started) {
                 wdata.component_view =
                     kynema_sgf::actuator::wing::make_component_view<ActTrait>(
                         data);
@@ -347,27 +368,33 @@ struct ComputeLoadsOp<
                     *(wdata.fllc.get()), wdata.component_view,
                     wdata.epsilon_chord[0], data.info().label,
                     data.info().is_root_proc);
-                started = true;
             }
 
-            // A run that restarts with the correction on goes on from the
-            // state of the checkpoint. Without it the correction starts from
-            // zero and needs many time steps to come back.
-            auto& io = data.sim().io_manager();
-            if (started && wdata.at_first_force_call && io.is_restart()) {
+            if (started && restart_call) {
                 const bool found =
                     kynema_sgf::actuator::wing::read_checkpoint<ActTrait>(
                         data, io.restart_file());
                 if (!found && data.info().is_root_proc) {
                     amrex::OutStream()
                         << "\nWARNING: Actuator " << data.info().label
-                        << ": the checkpoint " << io.restart_file()
-                        << " has no state of the filtered lifting line "
-                        << "correction that fits this wing: none for this "
-                        << "time, or one for another number of points or "
-                        << "for other inputs of the correction. The "
-                        << "correction starts from zero." << std::endl;
+                        << ": the state of the filtered lifting line "
+                        << "correction in the checkpoint " << io.restart_file()
+                        << " does not fit this wing: it is for another "
+                        << "number of points, for other positions of the "
+                        << "points or for other inputs of the correction. "
+                        << "The correction starts from zero." << std::endl;
                 }
+            }
+            if (waits && data.info().is_root_proc) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the checkpoint " << io.restart_file()
+                    << " has no state of the filtered lifting line "
+                    << "correction for this time. If the correction had not "
+                    << "started when the checkpoint was written, nothing is "
+                    << "lost. If it had (a checkpoint written without the "
+                    << "state), the restart loses it. The correction starts "
+                    << "from zero in the first time step." << std::endl;
             }
         }
         wdata.at_first_force_call = false;

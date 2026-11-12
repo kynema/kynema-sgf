@@ -96,6 +96,20 @@ inline bool open_file(
     return std::abs(time_in - time) <= tol;
 }
 
+/** Tell whether the checkpoint has a file of this actuator for this time
+ *
+ *  An actuator writes its file only when it has a state to hand over: the
+ *  filtered lifting line correction writes none before it has started.
+ */
+inline bool has_file(
+    const std::string& chkname,
+    const std::string& label,
+    const amrex::Real time)
+{
+    std::ifstream is;
+    return open_file(is, chkname, label, time);
+}
+
 //! Write a named integer on a line of its own
 inline void
 write_value(std::ostream& os, const std::string& name, const int value)

@@ -49,4 +49,6 @@ Lastly, in certain cases, a numerical instability can arise from the application
 
     Actuator.TurbineFastLine.fllc_start_time = 5
 
+The state of the correction is part of the checkpoint: once the correction has started, each actuator with the correction on writes a small text file into the directory ``actuator`` of every checkpoint, and a run that restarts from that checkpoint goes on from it. A checkpoint without this file (written before the correction started, or by an older version) can still be used. If the correction is due at the time of the checkpoint (that time is past ``fllc_start_time``), a warning is printed and the correction starts from zero in the first time step after the restart; when ``fllc_start_time`` falls in the last step before the checkpoint, the run without restart starts it in that same step. A state that does not fit the restarted run (other numbers of points, other positions of the points along the blade or other inputs of the correction) is not used either: a warning is printed and the correction starts from zero.
+
 More details on other parameters are available in the description of each entry on the :ref:`input file reference page <inputs_actuator>`.

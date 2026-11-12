@@ -393,12 +393,34 @@ struct CommunicateModelDataOp<
         scatter_data<DataType>(data);
 
         const auto& time = data.sim().time();
+
         auto& tdata = data.meta();
         if (!tdata.fllc.empty()) {
+            // A run that restarts with the correction on goes on from the state
+            // of the checkpoint. Without it the correction starts from zero and
+            // needs many time steps to come back. The checkpoint holds the state
+            // only when the correction had started before it was written. When
+            // it holds none, the correction does not start at the first force
+            // call of the restart: that call is made at the time of the
+            // checkpoint, where a run without restart makes none. It starts at
+            // the force call of the first time step, as it does in that run.
+            auto& io = data.sim().io_manager();
+            const bool restart_call = tdata.at_first_force_call && io.is_restart();
+            bool has_state = false;
+            if (restart_call) {
+                has_state = restart::has_file(
+                    io.restart_file(), data.info().label, time.current_time());
+            }
+
             bool started = false;
+            bool waits = false;
             for (int i = 0; i < tdata.num_blades; ++i) {
                 if (!(tdata.fllc[i].initialized) &&
                     (time.current_time() > tdata.fllc[i].fllc_start_time)) {
+                    if (restart_call && !has_state) {
+                        waits = true;
+                        continue;
+                    }
                     // Second input value of epsilon_chord, in the solver frame
                     constexpr int ic = epsilon_component(
                         ::ext_turb::blade_frame_of<SolverTurbine>(), 1);
@@ -410,23 +432,29 @@ struct CommunicateModelDataOp<
                 }
             }
 
-            // A run that restarts with the correction on goes on from the
-            // state of the checkpoint. Without it the correction starts from
-            // zero and needs many time steps to come back.
-            auto& io = data.sim().io_manager();
-            if (started && tdata.at_first_force_call && io.is_restart() &&
-                data.info().is_root_proc) {
+            if (started && restart_call && data.info().is_root_proc) {
                 if (!external_read_checkpoint<DataType>(
-                        data, io.restart_file())) {
+            data, io.restart_file())) {
                     amrex::OutStream()
                         << "\nWARNING: Actuator " << data.info().label
-                        << ": the checkpoint " << io.restart_file()
-                        << " has no state of the filtered lifting line "
-                        << "correction that fits this turbine: none for this "
-                        << "time, or one for other numbers of blades or "
-                        << "points or for other inputs of the correction. "
-                        << "The correction starts from zero." << std::endl;
+                        << ": the state of the filtered lifting line correction "
+                        << "in the checkpoint " << io.restart_file()
+                        << " does not fit this turbine: it is for other numbers "
+                        << "of blades or points, for other positions of the "
+                        << "points or for other inputs of the correction. The "
+                        << "correction starts from zero." << std::endl;
                 }
+            }
+            if (waits && data.info().is_root_proc) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the checkpoint " << io.restart_file()
+                    << " has no state of the filtered lifting line correction "
+                    << "for this time. If the correction had not started when "
+                    << "the checkpoint was written, nothing is lost. If it had "
+                    << "(a checkpoint written without the state), the restart "
+                    << "loses it. The correction starts from zero in the first "
+                    << "time step." << std::endl;
             }
         }
         tdata.at_first_force_call = false;
