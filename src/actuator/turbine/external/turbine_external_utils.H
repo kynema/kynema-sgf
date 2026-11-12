@@ -121,6 +121,10 @@ void init_epsilon(datatype& data)
     // -- this function is correct for Kynema
     // -- this function is erroneous for OpenFAST but has been in use
     // (Does not matter when epsilon is uniform)
+    // The FLLC does not use these components: it reads the first value of
+    // epsilon (fllc_parse) and of epsilon_min (read_inputs), and component
+    // 0 of the swapped eps_chord, which is the second input value of
+    // epsilon_chord (CommunicateModelDataOp).
     swap_epsilon(tdata.eps_inp);
     swap_epsilon(tdata.eps_min);
     swap_epsilon(tdata.eps_chord);

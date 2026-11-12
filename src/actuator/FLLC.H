@@ -21,6 +21,9 @@ struct FLLCData
 {
     // constants
     FLLCType correction_type{FLLCType::VariableChord};
+    // width that the simulation resolves where it is above the optimal
+    // epsilon: the first value of the input epsilon and, for a turbine, not
+    // less than the first value of epsilon_min (read_inputs)
     amrex::Real epsilon{0.0_rt};
     amrex::Real relaxation_factor{0.1_rt};
     amrex::Real fllc_start_time{0.0_rt};

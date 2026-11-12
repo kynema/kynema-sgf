@@ -536,6 +536,58 @@ TEST_F(FLLCParseTest, reads_line_turbine_with_correction)
     EXPECT_TRUE(msg.empty()) << msg;
 }
 
+TEST_F(FLLCParseTest, turbine_resolved_width_is_not_below_epsilon_min)
+{
+    {
+        amrex::ParmParse pp("Actuator");
+        pp.add("type", std::string("TurbineFastLine"));
+    }
+    add_turbine_inputs_with_fllc();
+    {
+        // A lower bound of the width of the Gaussians above epsilon (2)
+        amrex::ParmParse pp("Actuator.T1");
+        const amrex::Vector<amrex::Real> eps_min{3.0_rt, 3.0_rt, 3.0_rt};
+        pp.addarr("epsilon_min", eps_min);
+    }
+    const utils::ActParser ap("Actuator.TurbineFastLine", "Actuator.T1");
+    TurbineBaseData tdata;
+    TurbineInfo tinfo("T1", 0);
+
+    utils::read_inputs(tdata, tinfo, ap);
+
+    // The force is spread with epsilon_min, so that is the width the
+    // correction has to take as resolved
+    ASSERT_EQ(static_cast<int>(tdata.fllc.size()), tdata.num_blades);
+    for (const auto& fllc : tdata.fllc) {
+        EXPECT_EQ(fllc.epsilon, 3.0_rt);
+    }
+}
+
+TEST_F(FLLCParseTest, turbine_resolved_width_keeps_epsilon_above_epsilon_min)
+{
+    {
+        amrex::ParmParse pp("Actuator");
+        pp.add("type", std::string("TurbineFastLine"));
+    }
+    add_turbine_inputs_with_fllc();
+    {
+        // A lower bound below epsilon (2) changes nothing
+        amrex::ParmParse pp("Actuator.T1");
+        const amrex::Vector<amrex::Real> eps_min{1.0_rt, 1.0_rt, 1.0_rt};
+        pp.addarr("epsilon_min", eps_min);
+    }
+    const utils::ActParser ap("Actuator.TurbineFastLine", "Actuator.T1");
+    TurbineBaseData tdata;
+    TurbineInfo tinfo("T1", 0);
+
+    utils::read_inputs(tdata, tinfo, ap);
+
+    ASSERT_EQ(static_cast<int>(tdata.fllc.size()), tdata.num_blades);
+    for (const auto& fllc : tdata.fllc) {
+        EXPECT_EQ(fllc.epsilon, 2.0_rt);
+    }
+}
+
 TEST(TestFLLCData, init_rejects_zero_chord)
 {
     const int num_points = 5;

@@ -52,6 +52,12 @@ void read_inputs(
         for (int i = 0; i < tdata.num_blades; ++i) {
             tdata.fllc.emplace_back();
             fllc_parse(pp, tdata.fllc.back());
+            // The Gaussians of the blade points are not narrower than
+            // epsilon_min (init_epsilon), so neither is the width that the
+            // correction takes as resolved. The first input value, as for
+            // epsilon in fllc_parse: eps_min is in the input order here.
+            tdata.fllc.back().epsilon = amrex::max<amrex::Real>(
+                tdata.fllc.back().epsilon, tdata.eps_min[0]);
         }
     }
 

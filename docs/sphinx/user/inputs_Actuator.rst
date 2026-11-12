@@ -883,6 +883,13 @@ Example for ``TurbineFastLine``::
 .. input_param:: Actuator.TurbineFastLine.fllc
 
    Same as :input_param:`Actuator.FixedWingLine.fllc`.
+   The correction uses scalar widths: the optimal epsilon is the second
+   value of ``epsilon_chord`` times the chord, and the resolved epsilon is
+   the largest of the first value of ``epsilon``, the first value of
+   ``epsilon_min`` and the optimal epsilon (a fixed wing has no
+   ``epsilon_min`` and uses the first value of the other two inputs). Give
+   ``epsilon``, ``epsilon_chord`` and ``epsilon_min`` the same value in all
+   three directions when the correction is on.
 
 .. input_param:: Actuator.TurbineFastLine.fllc_relaxation_factor
 
@@ -891,6 +898,15 @@ Example for ``TurbineFastLine``::
 .. input_param:: Actuator.TurbineFastLine.fllc_type
 
    Same as :input_param:`Actuator.FixedWingLine.fllc_type`.
+
+.. input_param:: Actuator.TurbineFastLine.epsilon_min
+
+   **type:** List of 1 or 3 real numbers, optional, default = 0 0 0
+
+   Lower bound of the epsilon of the blade points, the tower points and the
+   nacelle point, per direction, in the order of ``epsilon``. With
+   ``fllc = 1`` its first value is also the lower bound of the epsilon that
+   the correction takes as resolved.
 
 .. input_param:: Actuator.TurbineFastLine.openfast_start_time
 
