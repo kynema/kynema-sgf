@@ -39,8 +39,11 @@ void fllc_init(
     // The velocity points and the force points are two sets of points along
     // the same line, starting at the same place (external turbines: the
     // nodes of the external solver and the actuator points). Each set is
-    // located by the distance from its own first point, because the two
-    // sets can be positions at different instants of a moving blade.
+    // located by the distance from its own first point. These distances do
+    // not change when the line moves without changing its shape (a wing),
+    // so the two sets can be of two instants there. A blade that bends has
+    // other distances at another instant: the caller passes both sets of
+    // one instant.
     data.span_distance_force.resize(npts);
     data.span_distance_vel.resize(npts_vel);
     for (int i = 0; i < npts; ++i) {

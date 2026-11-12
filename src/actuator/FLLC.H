@@ -78,7 +78,10 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data);
  * do not resolve the optimal epsilon.
  *
  * \param data FLLC specific data and scratch fields
- * \param view Component view that has references to the grid data
+ * \param view Force points, velocity points and chord of the line. The two
+ * sets of points have to be of one instant, or of instants between which
+ * the line moves without changing its shape. The distances along the line
+ * taken here are kept for the rest of the run.
  * \param eps_chord epsilon chord
  * \param label Name of the line (actuator, blade) for the messages
  * \param print_warnings False on the processes that are to stay silent

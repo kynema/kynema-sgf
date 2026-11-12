@@ -13,6 +13,7 @@ target_sources(${kynema_sgf_unit_test_exe_name} PRIVATE
   test_disk_functions.cpp
   test_turbine_disk_source.cpp
   test_turbine_external_views.cpp
+  test_turbine_external_fllc.cpp
   test_ext_turb_iface.cpp
   test_ext_time_steps.cpp
   test_actuator_bounds.cpp
