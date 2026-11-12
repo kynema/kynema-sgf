@@ -4,6 +4,7 @@
 #include "ks_test_utils/MeshTest.H"
 #include "test_ext_turbine_utils.H"
 #include "src/actuator/turbine/external/ExtTurbIface.H"
+#include "src/actuator/turbine/external/turbine_external_ops.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -23,14 +24,28 @@ struct CountingTurbine : public ::ext_turb::ExternalTurbine
     float* fluid_velocity(int dir) const override { return &fluid_vel[dir]; }
     float* force(int dir) const override { return &hub_force[dir]; }
     float* position_at_force(int /*dir*/) const override { return nullptr; }
-    float* chord_at_force() const override { return nullptr; }
+    float* chord_at_force() const override { return chord.data(); }
     float* orientation() const override { return nullptr; }
 
-    int length_fluid_velocity(int /*dir*/) const override { return 1; }
-    int length_force(int /*dir*/) const override { return 1; }
-    int length_position_at_force(int /*dir*/) const override { return 1; }
+    int length_fluid_velocity(int /*dir*/) const override { return num_pts(); }
+    int length_force(int /*dir*/) const override { return num_pts(); }
+    int length_position_at_force(int /*dir*/) const override
+    {
+        return num_pts();
+    }
     int length_orientation() const override { return 0; }
-    int num_vel_pts_blade() const override { return 0; }
+    int num_vel_pts_blade() const override { return model_num_pts_blade; }
+
+    //! The hub and the points of the blades of the model of the solver
+    int num_pts() const { return 1 + model_num_blades * model_num_pts_blade; }
+
+    //! Blades of the model of the solver and points on each. With the default
+    //! the hub is the only point of the turbine.
+    int model_num_blades{0};
+    int model_num_pts_blade{0};
+
+    //! Chord at the points of the model, for the tests that set blades
+    mutable std::vector<float> chord;
 
     //! Step count of the solver at the time the CFD solver restarts from
     int time_index_at_restart{0};
@@ -128,6 +143,8 @@ void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine& fi)
 {
     fi.time_index = 0;
+    // The model of the solver gives the number of blades, as OpenFAST does
+    fi.num_blades = fi.model_num_blades;
 }
 
 // What reading a checkpoint of the solver does: the solver is at the step
@@ -266,6 +283,47 @@ TEST_F(ExtTurbIfaceTest, new_turbine_starts_with_initial_solution)
     ASSERT_EQ(static_cast<int>(fi.velocity_records.size()), 2);
     EXPECT_EQ(fi.velocity_records[0], 0);
     EXPECT_EQ(fi.velocity_records[1], 1);
+}
+
+TEST_F(ExtTurbIfaceTest, fllc_data_follow_blade_count_of_solver)
+{
+    const int num_blades_input = 2;
+    const int num_blades_model = 3;
+    const int num_pts_blade = 4;
+    initialize_mesh();
+    CountingIface iface(sim());
+    CountingViewData data;
+    data.info().is_root_proc = true;
+    data.info().root_proc = amrex::ParallelDescriptor::MyProc();
+
+    // What the inputs leave: num_blades = 2, and the data of the filtered
+    // lifting line correction of two blades
+    auto& meta = data.meta();
+    meta.num_blades = num_blades_input;
+    meta.num_pts_blade = num_pts_blade;
+    meta.num_pts_tower = 0;
+    meta.eps_inp = kynema_sgf::vs::Vector::one();
+    meta.fllc.resize(num_blades_input);
+
+    // The model of the solver has three blades
+    auto& fi = meta.ext_data;
+    fi.tlabel = "T0";
+    fi.tid_global = 0;
+    fi.sim_mode = ::ext_turb::SimMode::init;
+    fi.num_pts_tower = 0;
+    fi.model_num_blades = num_blades_model;
+    fi.model_num_pts_blade = num_pts_blade;
+    fi.chord.assign(fi.num_pts(), 1.0F);
+    meta.ext_ptr = &iface;
+    iface.register_turbine(fi);
+
+    kynema_sgf::actuator::ops::init_data_op(data);
+
+    // The blades are the ones of the model, and the velocity and force
+    // updates go through the correction data of each of them
+    EXPECT_EQ(meta.num_blades, num_blades_model);
+    EXPECT_EQ(static_cast<int>(meta.blades.size()), num_blades_model);
+    EXPECT_EQ(static_cast<int>(meta.fllc.size()), num_blades_model);
 }
 
 TEST_F(ExtTurbIfaceTest, restarted_turbine_has_no_second_initial_solution)
