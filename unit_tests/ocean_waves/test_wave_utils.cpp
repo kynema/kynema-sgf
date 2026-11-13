@@ -159,7 +159,7 @@ TEST_F(WaveUtilsTest, combine_linear)
     EXPECT_NEAR(result, ((1.0_rt - Gamma) * target) + (Gamma * current), tol);
 }
 
-TEST_F(WaveUtilsTest, liquid_centroid_interp)
+TEST_F(WaveUtilsTest, approx_liquid_centroid_z_interp)
 {
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -168,20 +168,27 @@ TEST_F(WaveUtilsTest, liquid_centroid_interp)
     namespace wu = kynema_sgf::ocean_waves::utils;
 
     // Full cell keeps cell-center value
-    EXPECT_NEAR(wu::liquid_centroid_interp(1.0_rt, below, center), center, tol);
+    EXPECT_NEAR(
+        wu::approx_liquid_centroid_z_interp(1.0_rt, below, center), center,
+        tol);
     // Nearly empty cell: centroid approaches the bottom face
     EXPECT_NEAR(
-        wu::liquid_centroid_interp(0.0_rt, below, center),
+        wu::approx_liquid_centroid_z_interp(0.0_rt, below, center),
         0.5_rt * (below + center), tol);
     // Half full: centroid is a quarter cell below center
-    EXPECT_NEAR(wu::liquid_centroid_interp(0.5_rt, below, center), 2.5_rt, tol);
+    EXPECT_NEAR(
+        wu::approx_liquid_centroid_z_interp(0.5_rt, below, center), 2.5_rt,
+        tol);
     // Never extrapolates beyond the bracketing values
     for (int n = 0; n <= 100; ++n) {
         const amrex::Real vof = 0.01_rt * n;
-        const amrex::Real v = wu::liquid_centroid_interp(vof, below, center);
+        const amrex::Real v =
+            wu::approx_liquid_centroid_z_interp(vof, below, center);
         EXPECT_GE(v, below);
         EXPECT_LE(v, center + tol);
-        EXPECT_GE(wu::liquid_centroid_interp(vof, center, below), below - tol);
+        EXPECT_GE(
+            wu::approx_liquid_centroid_z_interp(vof, center, below),
+            below - tol);
     }
 }
 

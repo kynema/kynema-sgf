@@ -40,7 +40,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real free_surface_to_vof(
  *  cell center below (vof -> 0 gives the bottom face) and the current cell
  *  center (vof -> 1), so this is an interpolation and never an extrapolation.
  */
-AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real liquid_centroid_interp(
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+approx_liquid_centroid_z_interp(
     const amrex::Real vof, const amrex::Real vel_below, const amrex::Real vel)
 {
     if (vof > 1.0_rt - constants::VOF_TOL) {

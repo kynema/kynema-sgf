@@ -174,7 +174,7 @@ struct InitDataOp<StokesWaves>
         if (multiphase_mode) {
             // Liquid velocity at liquid centroid, consistent with targets
             const amrex::Real eps = 2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
-            relaxation_zones::liquid_centroid_velocity_from_levelset(
+            relaxation_zones::approx_liquid_centroid_z_velocity_from_levelset(
                 velocity(level), (*levelset)(level), eps, 2);
         }
     }

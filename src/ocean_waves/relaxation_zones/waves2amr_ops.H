@@ -893,9 +893,10 @@ struct InitDataOp<W2AWaves>
                     // Velocity of liquid becomes velocity of entire cell,
                     // evaluated at the liquid centroid (as for the targets)
                     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
-                        vel[nbx](i, j, k, n) = utils::liquid_centroid_interp(
-                            vof_local, vel_tmp[nbx](i, j, k - 1, n),
-                            vel_tmp[nbx](i, j, k, n));
+                        vel[nbx](i, j, k, n) =
+                            utils::approx_liquid_centroid_z_interp(
+                                vof_local, vel_tmp[nbx](i, j, k - 1, n),
+                                vel_tmp[nbx](i, j, k, n));
                     }
                 }
             });

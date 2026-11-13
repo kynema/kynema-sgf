@@ -545,7 +545,7 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }
 
-TEST_F(OceanWavesOpTest, liquid_centroid_velocity_in_place)
+TEST_F(OceanWavesOpTest, approx_liquid_centroid_z_velocity_in_place)
 {
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
@@ -593,7 +593,7 @@ TEST_F(OceanWavesOpTest, liquid_centroid_velocity_in_place)
             for (int n = 0; n < AMREX_SPACEDIM; ++n) {
                 gold_arrs[nbx](i, j, k, n) =
                     partial ? kynema_sgf::ocean_waves::utils::
-                                  liquid_centroid_interp(
+                                  approx_liquid_centroid_z_interp(
                                       vf, orig_arrs[nbx](i, j, k - 1, n),
                                       orig_arrs[nbx](i, j, k, n))
                             : orig_arrs[nbx](i, j, k, n);
@@ -601,8 +601,8 @@ TEST_F(OceanWavesOpTest, liquid_centroid_velocity_in_place)
         });
     amrex::Gpu::streamSynchronize();
 
-    kynema_sgf::ocean_waves::relaxation_zones::liquid_centroid_velocity(
-        vel, vof, ngrow);
+    kynema_sgf::ocean_waves::relaxation_zones::
+        approx_liquid_centroid_z_velocity(vel, vof, ngrow);
 
     // Confirm the test exercises changes
     amrex::MultiFab diff(ba, dm, AMREX_SPACEDIM, ngrow + 1);

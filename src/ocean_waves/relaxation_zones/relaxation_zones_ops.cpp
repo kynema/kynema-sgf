@@ -96,7 +96,7 @@ struct VofFromLevelset
 };
 
 template <typename VofFunc>
-void liquid_centroid_sweep(
+void approx_liquid_centroid_z_sweep(
     const amrex::Box& bx,
     const amrex::Array4<amrex::Real>& vel,
     const int ncomp,
@@ -112,7 +112,7 @@ void liquid_centroid_sweep(
             if (vof > constants::VOF_TOL &&
                 vof <= 1.0_rt - constants::VOF_TOL) {
                 for (int n = 0; n < ncomp; ++n) {
-                    vel(i, j, k, n) = utils::liquid_centroid_interp(
+                    vel(i, j, k, n) = utils::approx_liquid_centroid_z_interp(
                         vof, vel(i, j, k - 1, n), vel(i, j, k, n));
                 }
             }
@@ -122,21 +122,21 @@ void liquid_centroid_sweep(
 
 } // namespace
 
-void liquid_centroid_velocity(
+void approx_liquid_centroid_z_velocity(
     amrex::MultiFab& vel, const amrex::MultiFab& vof, const int ngrow)
 {
     AMREX_ALWAYS_ASSERT(vel.nGrowVect()[2] > ngrow);
     AMREX_ALWAYS_ASSERT(vof.nGrowVect().allGE(amrex::IntVect(ngrow)));
     // No tiling: tiles split in z would read cells modified by another tile
     for (amrex::MFIter mfi(vel, false); mfi.isValid(); ++mfi) {
-        liquid_centroid_sweep(
+        approx_liquid_centroid_z_sweep(
             amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
             VofFromField{vof.const_array(mfi)});
     }
     amrex::Gpu::streamSynchronize();
 }
 
-void liquid_centroid_velocity_from_levelset(
+void approx_liquid_centroid_z_velocity_from_levelset(
     amrex::MultiFab& vel,
     const amrex::MultiFab& levelset,
     const amrex::Real eps,
@@ -145,7 +145,7 @@ void liquid_centroid_velocity_from_levelset(
     AMREX_ALWAYS_ASSERT(vel.nGrowVect()[2] > ngrow);
     AMREX_ALWAYS_ASSERT(levelset.nGrowVect().allGT(amrex::IntVect(ngrow)));
     for (amrex::MFIter mfi(vel, false); mfi.isValid(); ++mfi) {
-        liquid_centroid_sweep(
+        approx_liquid_centroid_z_sweep(
             amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
             VofFromLevelset{levelset.const_array(mfi), eps});
     }
@@ -158,7 +158,7 @@ void update_target_velocity(CFDSim& sim)
     const auto& ow_vof = sim.repo().get_field("ow_vof");
     auto& ow_vel = sim.repo().get_field("ow_velocity");
     for (int lev = 0; lev < nlevels; ++lev) {
-        liquid_centroid_velocity(
+        approx_liquid_centroid_z_velocity(
             ow_vel(lev), ow_vof(lev), ow_vof.num_grow()[2]);
     }
 }

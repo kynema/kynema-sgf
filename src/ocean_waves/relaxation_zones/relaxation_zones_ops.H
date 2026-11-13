@@ -42,11 +42,12 @@ void update_target_vof(CFDSim& sim);
  *  below VOF_TOL and full cells are unchanged. vel must have at least ngrow +
  *  1 ghost cells, and vof at least ngrow.
  */
-void liquid_centroid_velocity(
+void approx_liquid_centroid_z_velocity(
     amrex::MultiFab& vel, const amrex::MultiFab& vof, int ngrow);
 
-/** Same as liquid_centroid_velocity, computing vof from a levelset field */
-void liquid_centroid_velocity_from_levelset(
+/** Same as approx_liquid_centroid_z_velocity, computing vof from a levelset
+ * field */
+void approx_liquid_centroid_z_velocity_from_levelset(
     amrex::MultiFab& vel,
     const amrex::MultiFab& levelset,
     amrex::Real eps,
