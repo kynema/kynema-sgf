@@ -1,0 +1,162 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compressing field output files &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tools reference" href="tools.html" />
+    <link rel="prev" title="FreeSurfaceSampler" href="sampling_freesurfacesampler.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="features.html">Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Compiling Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html">Kynema-SGF inputs file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abl_bndry_io.html">Kynema-SGF ABL Boundary I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alm_fllc.html">Filtered lifting line correction (FLLC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running Kynema-SGF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html">Frequently Asked Questions (FAQ) and Common Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="post_processing_examples.html">Post-processing Examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Compressing field output files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#paraview">ParaView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convert-to-numpy-files">Convert to numpy files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#yt">yt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="user.html">User Manual</a></li>
+      <li class="breadcrumb-item active">Compressing field output files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user/compression.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compressing-field-output-files">
+<span id="compression"></span><h1>Compressing field output files<a class="headerlink" href="#compressing-field-output-files" title="Link to this heading"></a></h1>
+<p>When writing out field output files, sometimes called plot files or plt files, it is possible to output the files with HDF5 and compress these with ZFP. To enable this capability, Kynema-SGF must be compiled with <code class="docutils literal notranslate"><span class="pre">KYNEMA_SGF_ENABLE_HDF5</span></code> and <code class="docutils literal notranslate"><span class="pre">KYNEMA_SGF_ENABLE_HDF5_ZFP</span></code>. If using a spack installation of Kynema-SGF, simply add <code class="docutils literal notranslate"><span class="pre">+hdf5</span></code> to the spec to enable these compression features. The input file <a class="reference internal" href="inputs_io.html#inputs-io"><span class="std std-ref">documentation</span></a> documents the input options to output these files. The <a class="reference external" href="https://amrex-codes.github.io/amrex/docs_html/IO.html#hdf5-plotfile-compression">AMReX HDF5 documentation</a> further documents valid options.</p>
+<p>While generating the compressed files is straightforward, it takes a little work to read these into traditional visualization software (e.g., Paraview, Visit). However, the HDF5 files are easier to open with Python than traditional AMReX plotfiles.</p>
+<section id="paraview">
+<h2>ParaView<a class="headerlink" href="#paraview" title="Link to this heading"></a></h2>
+<p>To read ZFP compressed HDF5 files into ParaView, ParaView must have the environment variable <code class="docutils literal notranslate"><span class="pre">HDF5_PLUGIN_PATH</span></code> populated and pointing to the HDF5 ZFP plugin location. Within a spack environment with the <code class="docutils literal notranslate"><span class="pre">h5z-zfp</span></code> package installed:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">HDF5_PLUGIN_PATH</span><span class="o">=</span><span class="k">$(</span>spack<span class="w"> </span>location<span class="w"> </span>-i<span class="w"> </span>h5z-zfp<span class="k">)</span>/plugin
+<span class="gp">$ </span>paraview
+</pre></div>
+</div>
+<p>Then the user can load the file as usual with the <code class="docutils literal notranslate"><span class="pre">VisitChomboReader</span></code>.</p>
+</section>
+<section id="convert-to-numpy-files">
+<h2>Convert to numpy files<a class="headerlink" href="#convert-to-numpy-files" title="Link to this heading"></a></h2>
+<p>To convert the HDF5 files to plain numpy data files, we have provided a script to do so in <cite>tools</cite> directory of this repository. It requires the <code class="docutils literal notranslate"><span class="pre">h5py</span></code> and <code class="docutils literal notranslate"><span class="pre">hdf5plugin</span></code> Python packages.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>convert_amrex_hdf5_plotfile.py<span class="w"> </span>-f<span class="w"> </span>plt117501-hdf5-zfp-0.0000001
+</pre></div>
+</div>
+<p>The resulting file can then be opened in Python with numpy.</p>
+</section>
+<section id="yt">
+<h2>yt<a class="headerlink" href="#yt" title="Link to this heading"></a></h2>
+<p>To read HDF5 files into <a class="reference external" href="https://yt-project.org">yt</a>, the HDF5 file attributes need to be modified. We have provided a script to do so in <cite>tools</cite> directory of this repository. It requires the <code class="docutils literal notranslate"><span class="pre">h5py</span></code> and <code class="docutils literal notranslate"><span class="pre">hdf5plugin</span></code> Python packages.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>modify_hdf5_attributes.py<span class="w"> </span>-f<span class="w"> </span>plt00000<span class="w"> </span>plt00010
+</pre></div>
+</div>
+<p>The resulting file can then be opened in yt.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sampling_freesurfacesampler.html" class="btn btn-neutral float-left" title="FreeSurfaceSampler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tools.html" class="btn btn-neutral float-right" title="Tools reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

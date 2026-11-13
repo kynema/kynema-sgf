@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/ocean_waves/relaxation_zones/W2AWaves.H Source File &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/ocean_waves/relaxation_zones/W2AWaves.H Source File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/_w2_a_waves_8_h_source.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="home-runner-work-kynema-sgf-kynema-sgf-src-ocean-waves-relaxation-zones-w2awaves-h-source-file">
+<h1>/home/runner/work/kynema-sgf/kynema-sgf/src/ocean_waves/relaxation_zones/W2AWaves.H Source File<a class="headerlink" href="#home-runner-work-kynema-sgf-kynema-sgf-src-ocean-waves-relaxation-zones-w2awaves-h-source-file" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: /home/runner/work/kynema-sgf/kynema-sgf/src/ocean_waves/relaxation_zones/W2AWaves.H Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="dir_43abd1951413c70c4af8a63db81eac68.html">kynema-sgf</a></li><li class="navelem"><a href="dir_61f6b646fc8bb47b7307ce57a92ecf1c.html">src</a></li><li class="navelem"><a href="dir_214e3a3106c5c0cbb3fa0de46fdc9b5f.html">ocean_waves</a></li><li class="navelem"><a href="dir_73d710dcc987cce08a566f587a6abd88.html">relaxation_zones</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">W2AWaves.H</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_w2_a_waves_8_h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef W2AWAVES_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define W2AWAVES_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_relaxation_zones_8_h.html">src/ocean_waves/relaxation_zones/RelaxationZones.H</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;complex&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_W2A</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Waves2AMR.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;AMReX_REAL.H&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>amrex::literals;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekynema__sgf_1_1ocean__waves.html">kynema_sgf::ocean_waves</a> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html">   16</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html">W2AWavesData</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structkynema__sgf_1_1ocean__waves_1_1_relax_zones_base_data.html">RelaxZonesBaseData</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">// Prefix for HOS files</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a2a690408e321e2c70d5c12dd7a3fa69e">   19</a></span>    std::string <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a2a690408e321e2c70d5c12dd7a3fa69e">modes_file</a>{<span class="stringliteral">&quot;modes_HOS_SWENSE.dat&quot;</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// Number of modes in each direction (related to FFT)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac9ac70dc7f2473ab204582fa937da4e4">   21</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac9ac70dc7f2473ab204582fa937da4e4">n0</a>{0};</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a7d502a59be54d83294b7b9464469be5f">   22</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a7d502a59be54d83294b7b9464469be5f">n1</a>{0};</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a6fb5d680dba884f6865d2b8c4031edf7">   23</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a6fb5d680dba884f6865d2b8c4031edf7">n2</a>{0};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// Number of points in each direction (spatial output)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a8d35461fa7ef92bb457ac6e9f31cfe6f">   25</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a8d35461fa7ef92bb457ac6e9f31cfe6f">n0_sp</a>{0};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a7139e98a4eed88dbcabef38f3a12cef7">   26</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a7139e98a4eed88dbcabef38f3a12cef7">n1_sp</a>{0};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// Spatial resolution in each direction</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a6ec0107ae987681d5a60bc61c0a425b6">   28</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a6ec0107ae987681d5a60bc61c0a425b6">dx0</a>{0.};</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1469d38fd71ad77aa83695c7291fc38b">   29</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1469d38fd71ad77aa83695c7291fc38b">dx1</a>{0.};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// Offsets for spatial data (between Kynema-SGF domain and HOS domain)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a8f23372bfa177d274348070405f9764d">   31</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a8f23372bfa177d274348070405f9764d">xlo0</a>{0.};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a54c7814da1b8e17fd85d7c6d176ea0e1">   32</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a54c7814da1b8e17fd85d7c6d176ea0e1">xlo1</a>{0.};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Length to dimensionalize nondim data</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac0b76de458c03c0da9a551babcbc03e4">   34</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac0b76de458c03c0da9a551babcbc03e4">dimL</a>{0.};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// Timestep size of reference data</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a51daae1f9bae266b8b8b4b940efc8242">   36</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a51daae1f9bae266b8b8b4b940efc8242">dt_modes</a>{0.0_rt};</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// Time (in HOS sim) to begin reading from</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// (this corresponds to t = 0 in Kynema-SGF sim, functions as offset)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a95adfcc80c861e7595217fd0caf9cecb">   40</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a95adfcc80c861e7595217fd0caf9cecb">t_winit</a>{-1.0_rt};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// Timestep (in HOS sim) of latest imported wave data</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1c44c7d44054082516e06b005daae85a">   42</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1c44c7d44054082516e06b005daae85a">ntime</a>{0};</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// Timestep (in HOS sim) of first imported wave data</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a15cfc132513f957a8fcdb5877b0e0cd6">   44</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a15cfc132513f957a8fcdb5877b0e0cd6">n_winit</a>{0};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// Timestep (in HOS sim) of last available wave data</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac033c1b6c9d2fa84948266c30cb3e53b">   46</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac033c1b6c9d2fa84948266c30cb3e53b">n_wstop</a>{0};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// Timestep offset (in HOS sim) for resetting to earlier data</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aef3dfb8731145d90c426f6772c192b0c">   48</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aef3dfb8731145d90c426f6772c192b0c">n_offset</a>{0};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Time (in Kynema-SGF sim) when ow arrays were last changed</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// (this is from the last timestep, goes with time-interpolated data)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a922aa58b584737171f9950e6d1407b2e">   52</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a922aa58b584737171f9950e6d1407b2e">t_last</a>{-1.0_rt};</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// Time (in Kynema-SGF sim) of latest imported wave data</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac45410b2fbfbcf092d405a4c79b9fa46">   54</a></span>    amrex::Real <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac45410b2fbfbcf092d405a4c79b9fa46">t</a>{0.0_rt};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// Vectors to store complex or real modes</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ad571dfbc76fdc11e591bc9db36c83d7e">   57</a></span>    std::vector&lt;std::complex&lt;amrex::Real&gt;&gt; <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a2638832f4c76891c21a10928f384d205">c_mX</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a21f137bd1aea6ebddd123c5b0f00f0b3">c_mY</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae520c50c7dc3ddb4158a5c0cea4acb2a">c_mZ</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ad571dfbc76fdc11e591bc9db36c83d7e">c_mFS</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a4e81ad6cd9fc684957ebb6385f1908bc">   58</a></span>    std::vector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a9817bf5d37bd0d26cb36c6b531eea968">r_mX</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aec9927b2adc18163c0bff46eaa019188">r_mY</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae743adc98edb131310a7b65dafe3b12c">r_mZ</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a71b607c61840ef936b69b052acd10876">r_mFS</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a4e81ad6cd9fc684957ebb6385f1908bc">r_mAdd</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// Struct variables that have special types</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_W2A</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// FFTW plan vector</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::vector&lt;fftw_plan&gt; plan_vector;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// FFTW pointers to store modes ready for ifft</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    fftw_complex *c_eta_mptr = <span class="keyword">nullptr</span>, *c_u_mptr = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                 *c_v_mptr = <span class="keyword">nullptr</span>, *c_w_mptr = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// FFTW pointers to store modes ready for ifft</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    amrex::Real *r_eta_mptr = <span class="keyword">nullptr</span>, *r_u_mptr = <span class="keyword">nullptr</span>, *r_v_mptr = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                *r_w_mptr = <span class="keyword">nullptr</span>, *au_mptr = <span class="keyword">nullptr</span>, *av_mptr = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                *aw_mptr = <span class="keyword">nullptr</span>, *plan_out = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// ReadModes objects</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    ReadModes&lt;std::complex&lt;amrex::Real&gt;&gt; c_rmodes;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    ReadModes&lt;amrex::Real&gt; r_rmodes;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Height vector (where velocity is sampled) stuff</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#af245efa705261e7c0a7cb51bfcbbb753">   77</a></span>    amrex::Vector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#af245efa705261e7c0a7cb51bfcbbb753">hvec</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Index vector (where hvec overlaps with local boxes)</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ad3c7357c9af5567a8541ee902eeb61e9">   79</a></span>    amrex::Vector&lt;int&gt; <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ad3c7357c9af5567a8541ee902eeb61e9">indvec</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// Flag indicating whether the source simulation used HOS-Ocean or HOS-NWT</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae17ce3d9f53698c63533e71f34ee5ba0">   81</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae17ce3d9f53698c63533e71f34ee5ba0">is_ocean</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Flag indicating interpolation should take place on this processor</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#abe5ca7f845a72d5cd457f087080a02dd">   83</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#abe5ca7f845a72d5cd457f087080a02dd">do_interp</a>{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// Flag indicating regrid has occurred since the last resizing of vecs</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a13158559cba76df3d4cb76befbf656c0">   85</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a13158559cba76df3d4cb76befbf656c0">resize_flag</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// Vectors for spatial data from transformed modes</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aa701392209b0541f1e55fdb9edc86174">   87</a></span>    amrex::Gpu::DeviceVector&lt;amrex::Real&gt; <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aa701392209b0541f1e55fdb9edc86174">sp_eta_vec</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#abbdc5267a2a656b3addbce8f46d77213">sp_u_vec</a>, <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#af93b8b1508aa219a1b423cc5bf026af1">sp_v_vec</a>,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1ea6131718d294d5ff676ce7cbf2d8c1">   88</a></span>        <a class="code hl_variable" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1ea6131718d294d5ff676ce7cbf2d8c1">sp_w_vec</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#adf11ab77f4f3b74b25905e9424e9dc51">   90</a></span>    <a class="code hl_function" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#adf11ab77f4f3b74b25905e9424e9dc51">~W2AWavesData</a>()</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#ifdef KYNEMA_SGF_USE_W2A</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">if</span> (c_eta_mptr) {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="keyword">delete</span>[] c_eta_mptr;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">if</span> (c_u_mptr) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <span class="keyword">delete</span>[] c_u_mptr;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">if</span> (c_v_mptr) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keyword">delete</span>[] c_v_mptr;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">if</span> (c_w_mptr) {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <span class="keyword">delete</span>[] c_w_mptr;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">if</span> (r_eta_mptr) {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <span class="keyword">delete</span>[] r_eta_mptr;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> (r_u_mptr) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <span class="keyword">delete</span>[] r_u_mptr;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (r_v_mptr) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keyword">delete</span>[] r_v_mptr;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">if</span> (r_w_mptr) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keyword">delete</span>[] r_w_mptr;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">if</span> (au_mptr) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keyword">delete</span>[] au_mptr;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">if</span> (av_mptr) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <span class="keyword">delete</span>[] av_mptr;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">if</span> (aw_mptr) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="keyword">delete</span>[] aw_mptr;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">if</span> (plan_out) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keyword">delete</span>[] plan_out;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n &lt; (int)plan_vector.size(); ++n) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            fftw_destroy_plan(plan_vector[n]);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        plan_vector.clear();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="};">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html">  137</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html">W2AWaves</a> : <span class="keyword">public</span> <a class="code hl_struct" href="structkynema__sgf_1_1ocean__waves_1_1_relax_zones_type.html">RelaxZonesType</a></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a41d37cbb621cd7351381a5517b85e328">  139</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a41d37cbb621cd7351381a5517b85e328">InfoType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1ocean__waves_1_1_ocean_waves_info.html">OceanWavesInfo</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a55b624922ba7f416d6d940605196e740">  140</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a55b624922ba7f416d6d940605196e740">MetaType</a> = <a class="code hl_struct" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html">W2AWavesData</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a3853c8c0b2743be225af67369d203163">  141</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a3853c8c0b2743be225af67369d203163">DataType</a> = <a class="code hl_class" href="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_data_holder.html">OceanWavesDataHolder&lt;W2AWaves&gt;</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a2e0c432ff3ef4a378941bbe1fd509b32">  143</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a2e0c432ff3ef4a378941bbe1fd509b32">identifier</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;W2AWaves&quot;</span>; }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>};</div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>} <span class="comment">// namespace kynema_sgf::ocean_waves</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif </span><span class="comment">/* W2AWAVES_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a_relaxation_zones_8_h_html"><div class="ttname"><a href="_relaxation_zones_8_h.html">RelaxationZones.H</a></div></div>
+<div class="ttc" id="aclasskynema__sgf_1_1ocean__waves_1_1_ocean_waves_data_holder_html"><div class="ttname"><a href="classkynema__sgf_1_1ocean__waves_1_1_ocean_waves_data_holder.html">kynema_sgf::ocean_waves::OceanWavesDataHolder</a></div><div class="ttdef"><b>Definition</b> OceanWavesTypes.H:59</div></div>
+<div class="ttc" id="anamespacekynema__sgf_1_1ocean__waves_html"><div class="ttname"><a href="namespacekynema__sgf_1_1ocean__waves.html">kynema_sgf::ocean_waves</a></div><div class="ttdef"><b>Definition</b> OceanWaves.cpp:14</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_ocean_waves_info_html"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_ocean_waves_info.html">kynema_sgf::ocean_waves::OceanWavesInfo</a></div><div class="ttdef"><b>Definition</b> OceanWavesTypes.H:35</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_relax_zones_base_data_html"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_relax_zones_base_data.html">kynema_sgf::ocean_waves::RelaxZonesBaseData</a></div><div class="ttdef"><b>Definition</b> RelaxationZones.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_relax_zones_type_html"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_relax_zones_type.html">kynema_sgf::ocean_waves::RelaxZonesType</a></div><div class="ttdef"><b>Definition</b> RelaxationZones.H:49</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html">kynema_sgf::ocean_waves::W2AWavesData</a></div><div class="ttdef"><b>Definition</b> W2AWaves.H:17</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a13158559cba76df3d4cb76befbf656c0"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a13158559cba76df3d4cb76befbf656c0">kynema_sgf::ocean_waves::W2AWavesData::resize_flag</a></div><div class="ttdeci">bool resize_flag</div><div class="ttdef"><b>Definition</b> W2AWaves.H:85</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a1469d38fd71ad77aa83695c7291fc38b"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1469d38fd71ad77aa83695c7291fc38b">kynema_sgf::ocean_waves::W2AWavesData::dx1</a></div><div class="ttdeci">amrex::Real dx1</div><div class="ttdef"><b>Definition</b> W2AWaves.H:29</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a15cfc132513f957a8fcdb5877b0e0cd6"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a15cfc132513f957a8fcdb5877b0e0cd6">kynema_sgf::ocean_waves::W2AWavesData::n_winit</a></div><div class="ttdeci">int n_winit</div><div class="ttdef"><b>Definition</b> W2AWaves.H:44</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a1c44c7d44054082516e06b005daae85a"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1c44c7d44054082516e06b005daae85a">kynema_sgf::ocean_waves::W2AWavesData::ntime</a></div><div class="ttdeci">int ntime</div><div class="ttdef"><b>Definition</b> W2AWaves.H:42</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a1ea6131718d294d5ff676ce7cbf2d8c1"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a1ea6131718d294d5ff676ce7cbf2d8c1">kynema_sgf::ocean_waves::W2AWavesData::sp_w_vec</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; sp_w_vec</div><div class="ttdef"><b>Definition</b> W2AWaves.H:88</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a21f137bd1aea6ebddd123c5b0f00f0b3"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a21f137bd1aea6ebddd123c5b0f00f0b3">kynema_sgf::ocean_waves::W2AWavesData::c_mY</a></div><div class="ttdeci">std::vector&lt; std::complex&lt; amrex::Real &gt; &gt; c_mY</div><div class="ttdef"><b>Definition</b> W2AWaves.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a2638832f4c76891c21a10928f384d205"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a2638832f4c76891c21a10928f384d205">kynema_sgf::ocean_waves::W2AWavesData::c_mX</a></div><div class="ttdeci">std::vector&lt; std::complex&lt; amrex::Real &gt; &gt; c_mX</div><div class="ttdef"><b>Definition</b> W2AWaves.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a2a690408e321e2c70d5c12dd7a3fa69e"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a2a690408e321e2c70d5c12dd7a3fa69e">kynema_sgf::ocean_waves::W2AWavesData::modes_file</a></div><div class="ttdeci">std::string modes_file</div><div class="ttdef"><b>Definition</b> W2AWaves.H:19</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a4e81ad6cd9fc684957ebb6385f1908bc"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a4e81ad6cd9fc684957ebb6385f1908bc">kynema_sgf::ocean_waves::W2AWavesData::r_mAdd</a></div><div class="ttdeci">std::vector&lt; amrex::Real &gt; r_mAdd</div><div class="ttdef"><b>Definition</b> W2AWaves.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a51daae1f9bae266b8b8b4b940efc8242"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a51daae1f9bae266b8b8b4b940efc8242">kynema_sgf::ocean_waves::W2AWavesData::dt_modes</a></div><div class="ttdeci">amrex::Real dt_modes</div><div class="ttdef"><b>Definition</b> W2AWaves.H:36</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a54c7814da1b8e17fd85d7c6d176ea0e1"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a54c7814da1b8e17fd85d7c6d176ea0e1">kynema_sgf::ocean_waves::W2AWavesData::xlo1</a></div><div class="ttdeci">amrex::Real xlo1</div><div class="ttdef"><b>Definition</b> W2AWaves.H:32</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a6ec0107ae987681d5a60bc61c0a425b6"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a6ec0107ae987681d5a60bc61c0a425b6">kynema_sgf::ocean_waves::W2AWavesData::dx0</a></div><div class="ttdeci">amrex::Real dx0</div><div class="ttdef"><b>Definition</b> W2AWaves.H:28</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a6fb5d680dba884f6865d2b8c4031edf7"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a6fb5d680dba884f6865d2b8c4031edf7">kynema_sgf::ocean_waves::W2AWavesData::n2</a></div><div class="ttdeci">int n2</div><div class="ttdef"><b>Definition</b> W2AWaves.H:23</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a7139e98a4eed88dbcabef38f3a12cef7"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a7139e98a4eed88dbcabef38f3a12cef7">kynema_sgf::ocean_waves::W2AWavesData::n1_sp</a></div><div class="ttdeci">int n1_sp</div><div class="ttdef"><b>Definition</b> W2AWaves.H:26</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a71b607c61840ef936b69b052acd10876"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a71b607c61840ef936b69b052acd10876">kynema_sgf::ocean_waves::W2AWavesData::r_mFS</a></div><div class="ttdeci">std::vector&lt; amrex::Real &gt; r_mFS</div><div class="ttdef"><b>Definition</b> W2AWaves.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a7d502a59be54d83294b7b9464469be5f"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a7d502a59be54d83294b7b9464469be5f">kynema_sgf::ocean_waves::W2AWavesData::n1</a></div><div class="ttdeci">int n1</div><div class="ttdef"><b>Definition</b> W2AWaves.H:22</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a8d35461fa7ef92bb457ac6e9f31cfe6f"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a8d35461fa7ef92bb457ac6e9f31cfe6f">kynema_sgf::ocean_waves::W2AWavesData::n0_sp</a></div><div class="ttdeci">int n0_sp</div><div class="ttdef"><b>Definition</b> W2AWaves.H:25</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a8f23372bfa177d274348070405f9764d"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a8f23372bfa177d274348070405f9764d">kynema_sgf::ocean_waves::W2AWavesData::xlo0</a></div><div class="ttdeci">amrex::Real xlo0</div><div class="ttdef"><b>Definition</b> W2AWaves.H:31</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a922aa58b584737171f9950e6d1407b2e"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a922aa58b584737171f9950e6d1407b2e">kynema_sgf::ocean_waves::W2AWavesData::t_last</a></div><div class="ttdeci">amrex::Real t_last</div><div class="ttdef"><b>Definition</b> W2AWaves.H:52</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a95adfcc80c861e7595217fd0caf9cecb"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a95adfcc80c861e7595217fd0caf9cecb">kynema_sgf::ocean_waves::W2AWavesData::t_winit</a></div><div class="ttdeci">amrex::Real t_winit</div><div class="ttdef"><b>Definition</b> W2AWaves.H:40</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_a9817bf5d37bd0d26cb36c6b531eea968"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#a9817bf5d37bd0d26cb36c6b531eea968">kynema_sgf::ocean_waves::W2AWavesData::r_mX</a></div><div class="ttdeci">std::vector&lt; amrex::Real &gt; r_mX</div><div class="ttdef"><b>Definition</b> W2AWaves.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_aa701392209b0541f1e55fdb9edc86174"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aa701392209b0541f1e55fdb9edc86174">kynema_sgf::ocean_waves::W2AWavesData::sp_eta_vec</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; sp_eta_vec</div><div class="ttdef"><b>Definition</b> W2AWaves.H:87</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_abbdc5267a2a656b3addbce8f46d77213"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#abbdc5267a2a656b3addbce8f46d77213">kynema_sgf::ocean_waves::W2AWavesData::sp_u_vec</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; sp_u_vec</div><div class="ttdef"><b>Definition</b> W2AWaves.H:87</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_abe5ca7f845a72d5cd457f087080a02dd"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#abe5ca7f845a72d5cd457f087080a02dd">kynema_sgf::ocean_waves::W2AWavesData::do_interp</a></div><div class="ttdeci">bool do_interp</div><div class="ttdef"><b>Definition</b> W2AWaves.H:83</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ac033c1b6c9d2fa84948266c30cb3e53b"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac033c1b6c9d2fa84948266c30cb3e53b">kynema_sgf::ocean_waves::W2AWavesData::n_wstop</a></div><div class="ttdeci">int n_wstop</div><div class="ttdef"><b>Definition</b> W2AWaves.H:46</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ac0b76de458c03c0da9a551babcbc03e4"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac0b76de458c03c0da9a551babcbc03e4">kynema_sgf::ocean_waves::W2AWavesData::dimL</a></div><div class="ttdeci">amrex::Real dimL</div><div class="ttdef"><b>Definition</b> W2AWaves.H:34</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ac45410b2fbfbcf092d405a4c79b9fa46"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac45410b2fbfbcf092d405a4c79b9fa46">kynema_sgf::ocean_waves::W2AWavesData::t</a></div><div class="ttdeci">amrex::Real t</div><div class="ttdef"><b>Definition</b> W2AWaves.H:54</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ac9ac70dc7f2473ab204582fa937da4e4"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ac9ac70dc7f2473ab204582fa937da4e4">kynema_sgf::ocean_waves::W2AWavesData::n0</a></div><div class="ttdeci">int n0</div><div class="ttdef"><b>Definition</b> W2AWaves.H:21</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ad3c7357c9af5567a8541ee902eeb61e9"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ad3c7357c9af5567a8541ee902eeb61e9">kynema_sgf::ocean_waves::W2AWavesData::indvec</a></div><div class="ttdeci">amrex::Vector&lt; int &gt; indvec</div><div class="ttdef"><b>Definition</b> W2AWaves.H:79</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ad571dfbc76fdc11e591bc9db36c83d7e"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ad571dfbc76fdc11e591bc9db36c83d7e">kynema_sgf::ocean_waves::W2AWavesData::c_mFS</a></div><div class="ttdeci">std::vector&lt; std::complex&lt; amrex::Real &gt; &gt; c_mFS</div><div class="ttdef"><b>Definition</b> W2AWaves.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_adf11ab77f4f3b74b25905e9424e9dc51"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#adf11ab77f4f3b74b25905e9424e9dc51">kynema_sgf::ocean_waves::W2AWavesData::~W2AWavesData</a></div><div class="ttdeci">~W2AWavesData()</div><div class="ttdef"><b>Definition</b> W2AWaves.H:90</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ae17ce3d9f53698c63533e71f34ee5ba0"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae17ce3d9f53698c63533e71f34ee5ba0">kynema_sgf::ocean_waves::W2AWavesData::is_ocean</a></div><div class="ttdeci">bool is_ocean</div><div class="ttdef"><b>Definition</b> W2AWaves.H:81</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ae520c50c7dc3ddb4158a5c0cea4acb2a"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae520c50c7dc3ddb4158a5c0cea4acb2a">kynema_sgf::ocean_waves::W2AWavesData::c_mZ</a></div><div class="ttdeci">std::vector&lt; std::complex&lt; amrex::Real &gt; &gt; c_mZ</div><div class="ttdef"><b>Definition</b> W2AWaves.H:57</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_ae743adc98edb131310a7b65dafe3b12c"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#ae743adc98edb131310a7b65dafe3b12c">kynema_sgf::ocean_waves::W2AWavesData::r_mZ</a></div><div class="ttdeci">std::vector&lt; amrex::Real &gt; r_mZ</div><div class="ttdef"><b>Definition</b> W2AWaves.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_aec9927b2adc18163c0bff46eaa019188"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aec9927b2adc18163c0bff46eaa019188">kynema_sgf::ocean_waves::W2AWavesData::r_mY</a></div><div class="ttdeci">std::vector&lt; amrex::Real &gt; r_mY</div><div class="ttdef"><b>Definition</b> W2AWaves.H:58</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_aef3dfb8731145d90c426f6772c192b0c"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#aef3dfb8731145d90c426f6772c192b0c">kynema_sgf::ocean_waves::W2AWavesData::n_offset</a></div><div class="ttdeci">int n_offset</div><div class="ttdef"><b>Definition</b> W2AWaves.H:48</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_af245efa705261e7c0a7cb51bfcbbb753"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#af245efa705261e7c0a7cb51bfcbbb753">kynema_sgf::ocean_waves::W2AWavesData::hvec</a></div><div class="ttdeci">amrex::Vector&lt; amrex::Real &gt; hvec</div><div class="ttdef"><b>Definition</b> W2AWaves.H:77</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data_html_af93b8b1508aa219a1b423cc5bf026af1"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_data.html#af93b8b1508aa219a1b423cc5bf026af1">kynema_sgf::ocean_waves::W2AWavesData::sp_v_vec</a></div><div class="ttdeci">amrex::Gpu::DeviceVector&lt; amrex::Real &gt; sp_v_vec</div><div class="ttdef"><b>Definition</b> W2AWaves.H:87</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_html"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html">kynema_sgf::ocean_waves::W2AWaves</a></div><div class="ttdef"><b>Definition</b> W2AWaves.H:138</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_html_a2e0c432ff3ef4a378941bbe1fd509b32"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a2e0c432ff3ef4a378941bbe1fd509b32">kynema_sgf::ocean_waves::W2AWaves::identifier</a></div><div class="ttdeci">static std::string identifier()</div><div class="ttdef"><b>Definition</b> W2AWaves.H:143</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_html_a3853c8c0b2743be225af67369d203163"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a3853c8c0b2743be225af67369d203163">kynema_sgf::ocean_waves::W2AWaves::DataType</a></div><div class="ttdeci">OceanWavesDataHolder&lt; W2AWaves &gt; DataType</div><div class="ttdef"><b>Definition</b> W2AWaves.H:141</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_html_a41d37cbb621cd7351381a5517b85e328"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a41d37cbb621cd7351381a5517b85e328">kynema_sgf::ocean_waves::W2AWaves::InfoType</a></div><div class="ttdeci">OceanWavesInfo InfoType</div><div class="ttdef"><b>Definition</b> W2AWaves.H:139</div></div>
+<div class="ttc" id="astructkynema__sgf_1_1ocean__waves_1_1_w2_a_waves_html_a55b624922ba7f416d6d940605196e740"><div class="ttname"><a href="structkynema__sgf_1_1ocean__waves_1_1_w2_a_waves.html#a55b624922ba7f416d6d940605196e740">kynema_sgf::ocean_waves::W2AWaves::MetaType</a></div><div class="ttdeci">W2AWavesData MetaType</div><div class="ttdef"><b>Definition</b> W2AWaves.H:140</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
