@@ -12,6 +12,7 @@
 #include "src/equation_systems/BCOps.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"
+#include <array>
 
 using namespace amrex::literals;
 
@@ -89,113 +90,409 @@ int update_offset_timestep(const int ntime, const int n0)
     return (-ntime + n0);
 }
 
+void check_modes_error(std::string& error)
+{
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    int length = static_cast<int>(error.size());
+    amrex::ParallelDescriptor::Bcast(&length, 1, root);
+    if (!length) return;
+    error.resize(length);
+    amrex::ParallelDescriptor::Bcast(error.data(), error.size(), root);
+    amrex::Abort(error);
+}
+
+template <typename VT>
+void initialize_modes_reader(
+    ReadModes<VT>& reader, const std::string& filename, bool is_ocean)
+{
+    ModesMetadata metadata;
+    std::string error;
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        try {
+            if (!reader.initialize(filename, is_ocean, false, false))
+                throw std::runtime_error(
+                    "Waves2AMR: cannot open modes file " + filename);
+            metadata = reader.metadata();
+        } catch (const std::exception& exception) {
+            error = exception.what();
+        }
+    }
+    check_modes_error(error);
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    amrex::ParallelDescriptor::Bcast(
+        metadata.dimensions.data(), metadata.dimensions.size(), root);
+    amrex::ParallelDescriptor::Bcast(
+        metadata.scalars.data(), metadata.scalars.size(), root);
+    if (!amrex::ParallelDescriptor::IOProcessor())
+        reader.initialize(metadata, is_ocean);
+}
+
+template <typename VT>
+void broadcast_modes(std::vector<VT>& modes)
+{
+    // Broadcast bytes for real and complex coefficients without depending on
+    // MPI complex datatype support. Chunking avoids MPI's int-count limit.
+    auto* bytes = reinterpret_cast<char*>(modes.data());
+    std::size_t remaining = modes.size() * sizeof(VT);
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    while (remaining) {
+        const auto count = std::min(
+            remaining,
+            static_cast<std::size_t>(std::numeric_limits<int>::max()));
+        amrex::ParallelDescriptor::Bcast(bytes, count, root);
+        bytes += count;
+        remaining -= count;
+    }
+}
+
+void read_wave_modes(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata, int ntime_off = 0)
+{
+    BL_PROFILE("Waves2AMR::read_wave_modes");
+    const int root = amrex::ParallelDescriptor::IOProcessorNumber();
+    // Status: 1 = new coefficients, 2 = coefficients already distributed.
+    int state[3]{1, wdata.n_offset, 0};
+    std::string error;
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        try {
+            const bool rates = wdata.cubic_time;
+            auto read = [&](int step) {
+                BL_PROFILE("Waves2AMR::parse_modes");
+                return wdata.is_ocean
+                           ? wdata.c_rmodes.read_into(
+                                 step, wdata.c_mX, wdata.c_mY, wdata.c_mZ,
+                                 wdata.c_mFS, nullptr,
+                                 rates ? &wdata.c_mT : nullptr,
+                                 rates ? &wdata.c_mFST : nullptr)
+                           : wdata.r_rmodes.read_into(
+                                 step, wdata.r_mX, wdata.r_mY, wdata.r_mZ,
+                                 wdata.r_mFS, &wdata.r_mAdd,
+                                 rates ? &wdata.r_mT : nullptr,
+                                 rates ? &wdata.r_mFST : nullptr,
+                                 rates ? &wdata.r_mAddT : nullptr);
+            };
+            const auto step = static_cast<long long>(wdata.ntime) +
+                              wdata.n_offset + ntime_off;
+            if (step < -1 || step > std::numeric_limits<int>::max())
+                throw std::runtime_error(
+                    "Waves2AMR: invalid requested timestep");
+            state[2] = static_cast<int>(step);
+            if (state[2] == wdata.loaded_modes_step) {
+                state[0] = 2;
+            } else if (!read(state[2])) {
+                state[1] = update_offset_timestep(wdata.ntime, wdata.n_winit);
+                state[2] = wdata.ntime + state[1] + ntime_off;
+                amrex::Print()
+                    << "WARNING (waves2amr_ops): end of mode data "
+                       "file detected, resetting to beginning of mode data.\n";
+                if (state[2] == wdata.loaded_modes_step) {
+                    state[0] = 2;
+                } else if (!read(state[2]))
+                    throw std::runtime_error(
+                        "Waves2AMR: EOF after resetting modes; check "
+                        "HOS_init_time, "
+                        "HOS_init_timestep and the modes file length");
+            }
+        } catch (const std::exception& exception) {
+            error = exception.what();
+        }
+    }
+    check_modes_error(error);
+    amrex::ParallelDescriptor::Bcast(state, 3, root);
+    wdata.n_offset = state[1];
+    if (state[0] == 1) {
+        BL_PROFILE("Waves2AMR::broadcast_modes");
+        if (wdata.cubic_time) {
+            // Receiving ranks need sized destinations for the derivatives
+            wdata.c_mT.resize(wdata.c_mX.size());
+            wdata.c_mFST.resize(wdata.c_mX.size());
+            wdata.r_mT.resize(wdata.r_mX.size());
+            wdata.r_mFST.resize(wdata.r_mX.size());
+            wdata.r_mAddT.resize(wdata.r_mAdd.size());
+        }
+        if (wdata.is_ocean) {
+            for (auto* modes :
+                 {&wdata.c_mX, &wdata.c_mY, &wdata.c_mZ, &wdata.c_mFS})
+                broadcast_modes(*modes);
+            if (wdata.cubic_time) {
+                for (auto* modes : {&wdata.c_mT, &wdata.c_mFST})
+                    broadcast_modes(*modes);
+            }
+        } else {
+            for (auto* modes :
+                 {&wdata.r_mX, &wdata.r_mY, &wdata.r_mZ, &wdata.r_mFS,
+                  &wdata.r_mAdd})
+                broadcast_modes(*modes);
+            if (wdata.cubic_time) {
+                for (auto* modes : {&wdata.r_mT, &wdata.r_mFST, &wdata.r_mAddT})
+                    broadcast_modes(*modes);
+            }
+        }
+        if (wdata.cubic_time) {
+            // Velocity mode rates follow from the dphi/dt modes
+            try {
+                if (wdata.is_ocean) {
+                    modes_hosgrid::ocean_velocity_rate_modes(
+                        wdata.c_rmodes.get_first_fft_dimension(),
+                        wdata.c_rmodes.get_second_fft_dimension(),
+                        wdata.c_rmodes.get_xlen(), wdata.c_rmodes.get_ylen(),
+                        wdata.c_rmodes.get_depth(), wdata.c_rmodes.get_L(),
+                        wdata.c_mT, wdata.c_mXt, wdata.c_mYt, wdata.c_mZt);
+                } else {
+                    modes_hosgrid::nwt_velocity_rate_modes(
+                        wdata.r_rmodes.get_first_fft_dimension(),
+                        wdata.r_rmodes.get_second_fft_dimension(),
+                        wdata.r_rmodes.get_xlen(), wdata.r_rmodes.get_ylen(),
+                        wdata.r_rmodes.get_L(), wdata.r_mT, wdata.r_mXt,
+                        wdata.r_mYt, wdata.r_mZt);
+                }
+            } catch (const std::exception& exception) {
+                amrex::Abort(exception.what());
+            }
+        }
+    }
+    wdata.loaded_modes_step = state[2];
+}
+
+void report_reconstruction(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
+    const modes_hosgrid::OceanReconstructionStats& stats,
+    std::size_t nx,
+    std::size_t ny)
+{
+    if (stats.selections == wdata.reported_selection) return;
+    wdata.reported_selection = stats.selections;
+    amrex::AllPrint() << "OceanWaves: rank "
+                      << amrex::ParallelDescriptor::MyProc()
+                      << " reconstruction " << stats.method << ", local nodes "
+                      << nx << " x " << ny << ", accounted scratch "
+                      << stats.scratch_bytes << " bytes, calibrated transform "
+                      << stats.seconds << " s\n";
+}
+
+void reconstruct_ocean_samples(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
+    const std::vector<std::complex<double>>& modes,
+    const std::vector<int>& xs,
+    const std::vector<int>& ys,
+    amrex::Gpu::DeviceVector<amrex::Real>& output,
+    double scale = 1.)
+{
+    try {
+        // Account for the other two device components and compact depth modes.
+        const auto reserved = wdata.reconstruction_reserved_bytes +
+                              2 * xs.size() * ys.size() * sizeof(amrex::Real) +
+                              3 * modes.size() * sizeof(std::complex<double>);
+        auto samples = wdata.reconstruction->evaluate(modes, xs, ys, reserved);
+        for (auto& sample : samples) sample *= scale;
+        AMREX_ALWAYS_ASSERT(output.size() == samples.size());
+        amrex::Gpu::copy(
+            amrex::Gpu::hostToDevice, samples.begin(), samples.end(),
+            output.begin());
+        report_reconstruction(
+            wdata, wdata.reconstruction->stats(), xs.size(), ys.size());
+    } catch (const std::exception& error) {
+        amrex::Abort(error.what());
+    }
+}
+
+void reserve_wave_stencils(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
+    const amrex::Vector<amrex::MultiFab*>& fields)
+{
+    auto& bytes = wdata.reconstruction_reserved_bytes;
+    bytes = (static_cast<std::size_t>(wdata.n0_sp) + wdata.n1_sp) * sizeof(int);
+    for (auto* field : fields) {
+        for (amrex::MFIter mfi(*field); mfi.isValid(); ++mfi) {
+            const auto cells = mfi.growntilebox();
+            bytes +=
+                static_cast<std::size_t>(cells.length(0)) * cells.length(1) *
+                (wdata.interpolation == interp_to_mfab::Interpolation::cubic
+                     ? 12
+                     : 24) *
+                sizeof(amrex::Real);
+        }
+    }
+}
+
+// With rate = true, stream d(eta)/dt (without the levelset offset) instead
+void stream_wave_elevation(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
+    const amrex::Vector<amrex::MultiFab*>& fields,
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& problo,
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& dx,
+    const bool rate = false)
+{
+    reserve_wave_stencils(wdata, fields);
+    const double scale =
+        wdata.dimL / (rate ? (wdata.is_ocean ? wdata.c_rmodes.get_T()
+                                             : wdata.r_rmodes.get_T())
+                           : 1.);
+    interp_to_mfab::local_eta_to_levelset_field(
+        wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
+        wdata.zsl, wdata.is_ocean, fields, problo, dx,
+        [&](const auto& xs, const auto& ys, auto& eta) {
+            if (wdata.is_ocean) {
+                reconstruct_ocean_samples(
+                    wdata, rate ? wdata.c_mFST : wdata.c_mFS, xs, ys, eta,
+                    scale);
+            } else {
+                try {
+                    auto samples = wdata.nwt_reconstruction->evaluate(
+                        rate ? wdata.r_mFST : wdata.r_mFS, true, true, xs, ys,
+                        wdata.reconstruction_reserved_bytes);
+                    for (auto& sample : samples) sample *= scale;
+                    amrex::Gpu::copy(
+                        amrex::Gpu::hostToDevice, samples.begin(),
+                        samples.end(), eta.begin());
+                    report_reconstruction(
+                        wdata, wdata.nwt_reconstruction->stats(), xs.size(),
+                        ys.size());
+                } catch (const std::exception& error) {
+                    amrex::Abort(error.what());
+                }
+            }
+        },
+        wdata.interpolation, !rate);
+}
+
+// With rate = true, stream the velocity time derivative instead
+void stream_wave_velocity(
+    kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
+    const amrex::Vector<amrex::MultiFab*>& fields,
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& problo,
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& dx,
+    const amrex::Vector<int>& indices,
+    const bool rate = false)
+{
+    reserve_wave_stencils(wdata, fields);
+    // Velocity modes are scaled by dimL / dimT; a rate needs one more 1 / dimT
+    const double dimT =
+        wdata.is_ocean ? wdata.c_rmodes.get_T() : wdata.r_rmodes.get_T();
+    const double scale_T = rate ? dimT * dimT : dimT;
+    interp_to_mfab::stream_velocity_to_field(
+        wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
+        wdata.is_ocean, indices, wdata.hvec, fields, problo, dx, {},
+        [&](int height, const auto& xs, const auto& ys, auto& u, auto& v,
+            auto& w) {
+            if (!wdata.is_ocean) {
+                try {
+                    auto samples = wdata.nwt_reconstruction->velocity(
+                        wdata.r_rmodes.get_xlen(), wdata.r_rmodes.get_ylen(),
+                        wdata.hvec[height], wdata.zsl, wdata.dimL, scale_T,
+                        rate ? wdata.r_mXt : wdata.r_mX,
+                        rate ? wdata.r_mYt : wdata.r_mY,
+                        rate ? wdata.r_mZt : wdata.r_mZ,
+                        rate ? wdata.r_mAddT : wdata.r_mAdd, xs, ys,
+                        wdata.reconstruction_reserved_bytes +
+                            3 * xs.size() * ys.size() * sizeof(amrex::Real));
+                    const std::array<amrex::Gpu::DeviceVector<amrex::Real>*, 3>
+                        output{&u, &v, &w};
+                    for (int c = 0; c < 3; ++c)
+                        amrex::Gpu::copy(
+                            amrex::Gpu::hostToDevice, samples[c].begin(),
+                            samples[c].end(), output[c]->begin());
+                    report_reconstruction(
+                        wdata, wdata.nwt_reconstruction->stats(), xs.size(),
+                        ys.size());
+                } catch (const std::exception& error) {
+                    amrex::Abort(error.what());
+                }
+                return;
+            }
+            std::vector<std::complex<double>> um, vm, wm;
+            modes_hosgrid::ocean_velocity_modes(
+                wdata.c_rmodes.get_first_fft_dimension(),
+                wdata.c_rmodes.get_second_fft_dimension(),
+                wdata.c_rmodes.get_xlen(), wdata.c_rmodes.get_ylen(),
+                wdata.c_rmodes.get_depth(), wdata.hvec[height], wdata.zsl,
+                wdata.dimL, scale_T, rate ? wdata.c_mXt : wdata.c_mX,
+                rate ? wdata.c_mYt : wdata.c_mY,
+                rate ? wdata.c_mZt : wdata.c_mZ, um, vm, wm);
+            reconstruct_ocean_samples(wdata, um, xs, ys, u);
+            reconstruct_ocean_samples(wdata, vm, xs, ys, v);
+            reconstruct_ocean_samples(wdata, wm, xs, ys, w);
+        },
+        wdata.interpolation);
+}
+
 void populate_fields_all_levels(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     amrex::Vector<amrex::Geometry>& geom_all,
     kynema_sgf::Field& lvs_field,
     kynema_sgf::Field& vel_field,
-    int ntime_off = 0)
+    const bool rate = false)
 {
-
-    // Get data from modes
-    bool no_EOF =
-        wdata.is_ocean
-            ? wdata.c_rmodes.get_data(
-                  wdata.ntime + wdata.n_offset + ntime_off, wdata.c_mX,
-                  wdata.c_mY, wdata.c_mZ, wdata.c_mFS)
-            : wdata.r_rmodes.get_data(
-                  wdata.ntime + wdata.n_offset + ntime_off, wdata.r_mX,
-                  wdata.r_mY, wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-    // Navigate when end of file is reached
-    if (!no_EOF) {
-        // End of file detected, reset reading
-        wdata.n_offset = update_offset_timestep(wdata.ntime, wdata.n_winit);
-        // Print warning to screen
-        amrex::Print() << "WARNING (waves2amr_ops): end of mode data file "
-                          "detected, resetting to beginning of mode data.\n";
-        // Read data again, now from a valid timestep
-        no_EOF = wdata.is_ocean
-                     ? wdata.c_rmodes.get_data(
-                           wdata.ntime + wdata.n_offset + ntime_off, wdata.c_mX,
-                           wdata.c_mY, wdata.c_mZ, wdata.c_mFS)
-                     : wdata.r_rmodes.get_data(
-                           wdata.ntime + wdata.n_offset + ntime_off, wdata.r_mX,
-                           wdata.r_mY, wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-        // If no valid data is detected at this point, abort
-        if (!no_EOF) {
-            amrex::Abort(
-                "waves2amr_ops: end of mode data file detected after "
-                "resetting to beginning; please evaluate HOS_init_time "
-                "or HOS_init_timestep and check the length of the mode "
-                "file.");
-        }
-    }
-
-    // Convert to spatial data in vectors
-    if (wdata.is_ocean) {
-        modes_hosgrid::copy_complex(
-            wdata.n0, wdata.n1, wdata.c_mFS, wdata.c_eta_mptr);
-        modes_hosgrid::populate_hos_eta(
-            wdata.c_rmodes, wdata.plan_vector, wdata.c_eta_mptr,
-            wdata.sp_eta_vec);
-    } else {
-        modes_hosgrid::copy_real(
-            wdata.n0, wdata.n1, wdata.r_mFS, wdata.r_eta_mptr);
-        modes_hosgrid::populate_hos_eta(
-            wdata.r_rmodes, wdata.plan_vector, wdata.r_eta_mptr,
-            wdata.sp_eta_vec);
-    }
-
-    for (int iht = 0; iht < wdata.indvec.size(); ++iht) {
-        // Get sample height
-        amrex::Real ht = wdata.hvec[wdata.indvec[iht]];
-        // Sample velocity
-        if (wdata.is_ocean) {
-            modes_hosgrid::populate_hos_vel(
-                wdata.c_rmodes, ht, wdata.zsl, wdata.c_mX, wdata.c_mY,
-                wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr, wdata.c_v_mptr,
-                wdata.c_w_mptr, wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
-                iht * wdata.n0 * wdata.n1);
-        } else {
-            modes_hosgrid::populate_hos_vel(
-                wdata.r_rmodes, ht, wdata.zsl, wdata.r_mX, wdata.r_mY,
-                wdata.r_mZ, wdata.r_mAdd, wdata.plan_vector, wdata.r_u_mptr,
-                wdata.r_v_mptr, wdata.r_w_mptr, wdata.au_mptr, wdata.av_mptr,
-                wdata.aw_mptr, wdata.sp_u_vec, wdata.sp_v_vec, wdata.sp_w_vec,
-                iht * wdata.n0 * wdata.n1);
-        }
-    }
-
     // Interpolate to fields (vector of MultiFabs)
-    interp_to_mfab::interp_eta_to_levelset_field(
-        wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
-        wdata.zsl, wdata.is_ocean, wdata.sp_eta_vec, lvs_field.vec_ptrs(),
-        geom_all);
-    interp_to_mfab::interp_velocity_to_field(
-        wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
-        wdata.is_ocean, wdata.indvec, wdata.hvec, wdata.sp_u_vec,
-        wdata.sp_v_vec, wdata.sp_w_vec, vel_field.vec_ptrs(), geom_all);
+    const auto fields = vel_field.vec_ptrs();
+    amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>> problo, dx;
+    for (int lev = 0; lev < fields.size(); ++lev) {
+        const auto& geometry = geom_all[lev];
+        problo.push_back(geometry.ProbLoArray());
+        dx.push_back(geometry.CellSizeArray());
+    }
+    stream_wave_elevation(wdata, lvs_field.vec_ptrs(), problo, dx, rate);
+    stream_wave_velocity(wdata, fields, problo, dx, wdata.indvec, rate);
 }
 
+// Weights (a0, a1, b0, b1) of target = a0 V0 + a1 V1 + b0 D0 + b1 D1 for
+// values V and time derivatives D at t0 and t1: cubic Hermite or linear
+std::array<amrex::Real, 4> time_interp_weights(
+    const amrex::Real t0,
+    const amrex::Real t1,
+    const amrex::Real time,
+    const bool cubic)
+{
+    const amrex::Real dt = t1 - t0;
+    AMREX_ALWAYS_ASSERT(dt > 0.0_rt);
+    const amrex::Real s =
+        amrex::max(0.0_rt, amrex::min(1.0_rt, (time - t0) / dt));
+    if (!cubic) {
+        return {1.0_rt - s, s, 0.0_rt, 0.0_rt};
+    }
+    const amrex::Real s2 = s * s;
+    const amrex::Real s3 = s2 * s;
+    return {
+        2.0_rt * s3 - 3.0_rt * s2 + 1.0_rt, -2.0_rt * s3 + 3.0_rt * s2,
+        dt * (s3 - 2.0_rt * s2 + s), dt * (s3 - s2)};
+}
+
+// Interpolate w2a data at t0 (old) and t1 (new) to time, writing the ow
+// fields. Time derivatives (d*) are used when provided (cubic Hermite).
 void time_interpolate_wave_fields(
     kynema_sgf::Field& lvs_field,
     kynema_sgf::Field& vel_field,
-    const kynema_sgf::Field& future_lvs_field,
-    const kynema_sgf::Field& future_vel_field,
-    const amrex::Real t_old,
-    const amrex::Real t_new,
-    const amrex::Real t_future)
+    const kynema_sgf::Field& lvs_old,
+    const kynema_sgf::Field& vel_old,
+    const kynema_sgf::Field& lvs_new,
+    const kynema_sgf::Field& vel_new,
+    const kynema_sgf::Field* dlvs_old,
+    const kynema_sgf::Field* dvel_old,
+    const kynema_sgf::Field* dlvs_new,
+    const kynema_sgf::Field* dvel_new,
+    const amrex::Real t0,
+    const amrex::Real t1,
+    const amrex::Real time)
 {
-    const amrex::Real b =
-        (t_new - t_old) /
-        (t_future - t_old + std::numeric_limits<amrex::Real>::epsilon());
-    const amrex::Real a = 1.0_rt - b;
+    const bool cubic = dlvs_old && dvel_old && dlvs_new && dvel_new;
+    const auto w = time_interp_weights(t0, t1, time, cubic);
+    const auto lvs_ng = lvs_field.num_grow();
+    const auto vel_ng = vel_field.num_grow();
     kynema_sgf::field_ops::lincomb(
-        lvs_field, a, lvs_field, 0, b, future_lvs_field, 0, 0, 1,
-        lvs_field.num_grow());
+        lvs_field, w[0], lvs_old, 0, w[1], lvs_new, 0, 0, 1, lvs_ng);
     kynema_sgf::field_ops::lincomb(
-        vel_field, a, vel_field, 0, b, future_vel_field, 0, 0, AMREX_SPACEDIM,
-        vel_field.num_grow());
+        vel_field, w[0], vel_old, 0, w[1], vel_new, 0, 0, AMREX_SPACEDIM,
+        vel_ng);
+    if (cubic) {
+        kynema_sgf::field_ops::saxpy(
+            lvs_field, w[2], *dlvs_old, 0, 0, 1, lvs_ng);
+        kynema_sgf::field_ops::saxpy(
+            lvs_field, w[3], *dlvs_new, 0, 0, 1, lvs_ng);
+        kynema_sgf::field_ops::saxpy(
+            vel_field, w[2], *dvel_old, 0, 0, AMREX_SPACEDIM, vel_ng);
+        kynema_sgf::field_ops::saxpy(
+            vel_field, w[3], *dvel_new, 0, 0, AMREX_SPACEDIM, vel_ng);
+    }
 }
 
 } // namespace
@@ -237,6 +534,47 @@ struct ReadInputsOp<W2AWaves>
         }
         pp.query("HOS_domain_offset_x", wdata.xlo0);
         pp.query("HOS_domain_offset_y", wdata.xlo1);
+        pp.query("fft_max_padding_level", wdata.max_padding_level);
+        if (wdata.max_padding_level < -1) {
+            amrex::Abort(
+                "fft_max_padding_level must be -1, 0, or a positive integer");
+        }
+        pp.query("fft_reconstruction", wdata.reconstruction_options.method);
+        std::string interpolation{"cubic"};
+        pp.query("interpolation", interpolation);
+        if (interpolation != "linear" && interpolation != "cubic")
+            amrex::Abort("OceanWaves interpolation must be linear or cubic");
+        wdata.interpolation = interpolation == "cubic"
+                                  ? interp_to_mfab::Interpolation::cubic
+                                  : interp_to_mfab::Interpolation::linear;
+        amrex::Print() << "OceanWaves: spatial interpolation " << interpolation
+                       << "\n";
+        std::string time_interpolation{"cubic"};
+        pp.query("time_interpolation", time_interpolation);
+        if (time_interpolation != "linear" && time_interpolation != "cubic")
+            amrex::Abort(
+                "OceanWaves time_interpolation must be linear or cubic");
+        wdata.cubic_time = time_interpolation == "cubic";
+        amrex::Print() << "OceanWaves: time interpolation "
+                       << (wdata.cubic_time
+                               ? "cubic (Hermite with HOS time derivatives)"
+                               : "linear")
+                       << "\n";
+        double scratch_mb = 512.;
+        pp.query("fft_scratch_memory_mb", scratch_mb);
+        if (!std::isfinite(scratch_mb) || scratch_mb <= 0 ||
+            scratch_mb >=
+                static_cast<double>(std::numeric_limits<std::size_t>::max()) /
+                    (1024. * 1024.)) {
+            amrex::Abort("fft_scratch_memory_mb must be finite and positive");
+        }
+        wdata.reconstruction_options.scratch_bytes =
+            static_cast<std::size_t>(scratch_mb * 1024. * 1024.);
+        if (wdata.reconstruction_options.method != "auto" &&
+            wdata.reconstruction_options.method != "full" &&
+            wdata.reconstruction_options.method != "pruned") {
+            amrex::Abort("fft_reconstruction must be auto, full, or pruned");
+        }
 
         // Default fftw_plan is deterministic
         std::string fftw_planner_flag{"estimate"};
@@ -255,18 +593,15 @@ struct ReadInputsOp<W2AWaves>
         pp.query("number_interp_above_surface", nh_above);
 
         // Initialize mode reader
-        bool file_exists{false};
         if (wdata.is_ocean) {
-            file_exists = wdata.c_rmodes.initialize(wdata.modes_file, true);
+            initialize_modes_reader(wdata.c_rmodes, wdata.modes_file, true);
         } else {
-            file_exists = wdata.r_rmodes.initialize(wdata.modes_file, false);
+            initialize_modes_reader(wdata.r_rmodes, wdata.modes_file, false);
         }
-
-        // Abort if file does not exist
-        if (!file_exists) {
-            amrex::Abort(
-                "Waves2AMR ReadInputsOp: modes file requested does not exist");
-        }
+        amrex::Print()
+            << "OceanWaves: modes I/O on rank "
+            << amrex::ParallelDescriptor::IOProcessorNumber()
+            << ", direct seeking and compact broadcasts to all ranks\n";
 
         // Get dt of HOS data
         wdata.dt_modes = wdata.is_ocean ? wdata.c_rmodes.get_dtout()
@@ -305,12 +640,37 @@ struct ReadInputsOp<W2AWaves>
             wdata.c_mY.resize(vsize, initval);
             wdata.c_mZ.resize(vsize, initval);
             wdata.c_mFS.resize(vsize, initval);
+            if (wdata.cubic_time) {
+                wdata.c_mT.resize(vsize, initval);
+                wdata.c_mFST.resize(vsize, initval);
+            }
 
             // Get dimensions of data
             wdata.n0 = wdata.c_rmodes.get_first_fft_dimension();
             wdata.n1 = wdata.c_rmodes.get_second_fft_dimension();
             wdata.n0_sp = wdata.c_rmodes.get_first_spatial_dimension();
             wdata.n1_sp = wdata.c_rmodes.get_second_spatial_dimension();
+            const auto& mesh = data.sim().mesh();
+            auto target_dx = mesh.Geom(0).CellSizeArray();
+            for (int lev = 0; lev < mesh.maxLevel(); ++lev) {
+                const auto ratio = mesh.refRatio(lev);
+                for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+                    target_dx[dir] /= ratio[dir];
+                }
+            }
+            const auto padded = modes_hosgrid::ocean_fft_dimensions(
+                wdata.n0, wdata.n1, wdata.c_rmodes.get_ylen(),
+                wdata.c_rmodes.get_xlen(), target_dx[1], target_dx[0],
+                wdata.max_padding_level);
+            amrex::Print() << "OceanWaves: FFT grid (nx, ny) " << wdata.n1
+                           << " " << wdata.n0 << " -> " << padded[1] << " "
+                           << padded[0] << ", target spacing " << target_dx[0]
+                           << " " << target_dx[1] << ", fft_max_padding_level "
+                           << wdata.max_padding_level << "\n";
+            wdata.n0 = padded[0];
+            wdata.n1 = padded[1];
+            wdata.n0_sp = wdata.n1;
+            wdata.n1_sp = wdata.n0;
             // Get resolution
             wdata.dx0 = wdata.c_rmodes.get_xlen() / wdata.n0_sp;
             wdata.dx1 = wdata.c_rmodes.get_ylen() / wdata.n1_sp;
@@ -341,6 +701,11 @@ struct ReadInputsOp<W2AWaves>
             wdata.r_mZ.resize(vsize, initval);
             wdata.r_mFS.resize(vsize, initval);
             wdata.r_mAdd.resize(vasize, initval);
+            if (wdata.cubic_time) {
+                wdata.r_mT.resize(vsize, initval);
+                wdata.r_mFST.resize(vsize, initval);
+                wdata.r_mAddT.resize(vasize, initval);
+            }
 
             // Get dimensions of data
             wdata.n0 = wdata.r_rmodes.get_first_fft_dimension();
@@ -348,6 +713,25 @@ struct ReadInputsOp<W2AWaves>
             wdata.n2 = wdata.r_rmodes.get_third_dimension();
             wdata.n0_sp = wdata.r_rmodes.get_first_spatial_dimension();
             wdata.n1_sp = wdata.r_rmodes.get_second_spatial_dimension();
+            const auto& mesh = data.sim().mesh();
+            auto target_dx = mesh.Geom(0).CellSizeArray();
+            for (int lev = 0; lev < mesh.maxLevel(); ++lev) {
+                const auto ratio = mesh.refRatio(lev);
+                for (int dir = 0; dir < AMREX_SPACEDIM; ++dir)
+                    target_dx[dir] /= ratio[dir];
+            }
+            const auto padded = modes_hosgrid::nwt_fft_dimensions(
+                wdata.n0, wdata.n1, wdata.r_rmodes.get_ylen(),
+                wdata.r_rmodes.get_xlen(), target_dx[1], target_dx[0],
+                wdata.max_padding_level);
+            amrex::Print() << "OceanWaves: NWT endpoint grid (nx, ny) "
+                           << wdata.n1 << " " << wdata.n0 << " -> " << padded[1]
+                           << " " << padded[0] << ", fft_max_padding_level "
+                           << wdata.max_padding_level << "\n";
+            wdata.n0 = padded[0];
+            wdata.n1 = padded[1];
+            wdata.n0_sp = wdata.n1;
+            wdata.n1_sp = wdata.n0;
             // Get resolution (slightly different for NWT)
             wdata.dx0 = wdata.r_rmodes.get_xlen() / (wdata.n0_sp - 1);
             wdata.dx1 =
@@ -391,27 +775,6 @@ struct ReadInputsOp<W2AWaves>
                    "warning is not a concern when using waves as terrain.\n";
         }
 
-        // Allocate pointers for FFTW
-        if (wdata.is_ocean) {
-            wdata.c_eta_mptr =
-                modes_hosgrid::allocate_complex(wdata.n0, wdata.n1);
-            wdata.c_u_mptr =
-                modes_hosgrid::allocate_complex(wdata.n0, wdata.n1);
-            wdata.c_v_mptr =
-                modes_hosgrid::allocate_complex(wdata.n0, wdata.n1);
-            wdata.c_w_mptr =
-                modes_hosgrid::allocate_complex(wdata.n0, wdata.n1);
-        } else {
-            wdata.r_eta_mptr = modes_hosgrid::allocate_real(wdata.n0, wdata.n1);
-            wdata.r_u_mptr = modes_hosgrid::allocate_real(wdata.n0, wdata.n1);
-            wdata.r_v_mptr = modes_hosgrid::allocate_real(wdata.n0, wdata.n1);
-            wdata.r_w_mptr = modes_hosgrid::allocate_real(wdata.n0, wdata.n1);
-            wdata.au_mptr = modes_hosgrid::allocate_real(wdata.n0, 1);
-            wdata.av_mptr = modes_hosgrid::allocate_real(wdata.n0, 1);
-            wdata.aw_mptr = modes_hosgrid::allocate_real(wdata.n0, 1);
-        }
-        wdata.plan_out = modes_hosgrid::allocate_real(wdata.n0, wdata.n1);
-
         // Set up planner flag based on input
         auto plan_f = modes_hosgrid::planner_flags::estimate;
         if (fftw_planner_flag == "patient") {
@@ -425,16 +788,27 @@ struct ReadInputsOp<W2AWaves>
                 << "WARNING (waves2amr_ops): invalid fftw_planner_flag "
                    "specified; defaulting to estimate (FFTW_ESTIMATE).\n";
         }
-        // Set up plan for FFTW
+        // Set up compact reconstruction; FFT plans wait until local nodes
+        // exist.
+        auto& options = wdata.reconstruction_options;
+        options.planner_flags =
+            plan_f == modes_hosgrid::planner_flags::patient ? FFTW_PATIENT
+            : plan_f == modes_hosgrid::planner_flags::exhaustive
+                ? FFTW_EXHAUSTIVE
+            : plan_f == modes_hosgrid::planner_flags::measure ? FFTW_MEASURE
+                                                              : FFTW_ESTIMATE;
         if (wdata.is_ocean) {
-            wdata.plan_vector.emplace_back(
-                modes_hosgrid::plan_ifftw(
-                    wdata.n0, wdata.n1, wdata.c_eta_mptr, wdata.plan_out,
-                    plan_f));
+            wdata.reconstruction =
+                std::make_unique<modes_hosgrid::OceanReconstruction>(
+                    wdata.c_rmodes.get_first_fft_dimension(),
+                    wdata.c_rmodes.get_second_fft_dimension(), wdata.n0,
+                    wdata.n1, options);
         } else {
-            modes_hosgrid::plan_ifftw_nwt(
-                wdata.n0, wdata.n1, wdata.plan_vector, wdata.r_eta_mptr,
-                wdata.plan_out, plan_f);
+            wdata.nwt_reconstruction =
+                std::make_unique<modes_hosgrid::NwtReconstruction>(
+                    wdata.r_rmodes.get_first_fft_dimension(),
+                    wdata.r_rmodes.get_second_fft_dimension(), wdata.n0,
+                    wdata.n1, options);
         }
 
         // Create height vector for velocity mode conversion before
@@ -483,98 +857,7 @@ struct ReadInputsOp<W2AWaves>
                            << std::endl;
         }
 
-        // Always get modes on every processor for initialization
-        bool no_EOF =
-            wdata.is_ocean
-                ? wdata.c_rmodes.get_data(
-                      wdata.ntime + wdata.n_offset, wdata.c_mX, wdata.c_mY,
-                      wdata.c_mZ, wdata.c_mFS)
-                : wdata.r_rmodes.get_data(
-                      wdata.ntime + wdata.n_offset, wdata.r_mX, wdata.r_mY,
-                      wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-        if (!no_EOF) {
-            // End of file detected, reset reading
-            wdata.n_offset = update_offset_timestep(wdata.ntime, wdata.n_winit);
-            // Print warning to screen
-            amrex::Print()
-                << "WARNING (waves2amr_ops): end of mode data file "
-                   "detected, resetting to beginning of mode data.\n";
-            // Read data again, now from a valid timestep
-            no_EOF =
-                wdata.is_ocean
-                    ? wdata.c_rmodes.get_data(
-                          wdata.ntime + wdata.n_offset, wdata.c_mX, wdata.c_mY,
-                          wdata.c_mZ, wdata.c_mFS)
-                    : wdata.r_rmodes.get_data(
-                          wdata.ntime + wdata.n_offset, wdata.r_mX, wdata.r_mY,
-                          wdata.r_mZ, wdata.r_mFS, wdata.r_mAdd);
-            // If no valid data is detected at this point, abort
-            if (!no_EOF) {
-                amrex::Abort(
-                    "waves2amr_ops: end of mode data file detected after "
-                    "resetting to beginning; please evaluate HOS_init_time "
-                    "or HOS_init_timestep and check the length of the mode "
-                    "file.");
-            }
-        }
-
-        // Convert modes to spatial data
-        if (wdata.is_ocean) {
-            modes_hosgrid::copy_complex(
-                wdata.n0, wdata.n1, wdata.c_mFS, wdata.c_eta_mptr);
-            wdata.sp_eta_vec.resize(
-                static_cast<size_t>(wdata.n0) * static_cast<size_t>(wdata.n1),
-                0.0_rt);
-            modes_hosgrid::populate_hos_eta(
-                wdata.c_rmodes, wdata.plan_vector, wdata.c_eta_mptr,
-                wdata.sp_eta_vec);
-            // Mesh is not yet created, so get data at every height
-            const auto n_hts = wdata.hvec.size();
-            wdata.sp_u_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            wdata.sp_v_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            wdata.sp_w_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            for (int iht = 0; iht < static_cast<int>(n_hts); ++iht) {
-                // Get sample height
-                amrex::Real ht = wdata.hvec[iht];
-                // Sample velocity
-                modes_hosgrid::populate_hos_vel(
-                    wdata.c_rmodes, ht, wdata.zsl, wdata.c_mX, wdata.c_mY,
-                    wdata.c_mZ, wdata.plan_vector, wdata.c_u_mptr,
-                    wdata.c_v_mptr, wdata.c_w_mptr, wdata.sp_u_vec,
-                    wdata.sp_v_vec, wdata.sp_w_vec, iht * wdata.n0 * wdata.n1);
-            }
-        } else {
-            modes_hosgrid::copy_real(
-                wdata.n0, wdata.n1, wdata.r_mFS, wdata.r_eta_mptr);
-            wdata.sp_eta_vec.resize(
-                static_cast<size_t>(wdata.n0) * static_cast<size_t>(wdata.n1),
-                0.0_rt);
-            modes_hosgrid::populate_hos_eta(
-                wdata.r_rmodes, wdata.plan_vector, wdata.r_eta_mptr,
-                wdata.sp_eta_vec);
-            // Mesh is not yet created, so get data at every height
-            const auto n_hts = wdata.hvec.size();
-            wdata.sp_u_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            wdata.sp_v_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            wdata.sp_w_vec.resize(
-                static_cast<size_t>(wdata.n0 * wdata.n1) * n_hts);
-            for (int iht = 0; iht < static_cast<int>(n_hts); ++iht) {
-                // Get sample height
-                amrex::Real ht = wdata.hvec[iht];
-                // Sample velocity
-                modes_hosgrid::populate_hos_vel(
-                    wdata.r_rmodes, ht, wdata.zsl, wdata.r_mX, wdata.r_mY,
-                    wdata.r_mZ, wdata.r_mAdd, wdata.plan_vector, wdata.r_u_mptr,
-                    wdata.r_v_mptr, wdata.r_w_mptr, wdata.au_mptr,
-                    wdata.av_mptr, wdata.aw_mptr, wdata.sp_u_vec,
-                    wdata.sp_v_vec, wdata.sp_w_vec, iht * wdata.n0 * wdata.n1);
-            }
-        }
+        read_wave_modes(wdata);
 
         // Declare fields for HOS
         auto& w2a_levelset =
@@ -585,6 +868,18 @@ struct ReadInputsOp<W2AWaves>
         // Extrapolation can work well when finer data is available
         w2a_levelset.set_default_fillpatch_bc(data.sim().time());
         w2a_velocity.set_default_fillpatch_bc(data.sim().time());
+
+        if (wdata.cubic_time) {
+            // Time derivatives at the Old and New w2a times for Hermite
+            // interpolation (field states are limited to three, so values and
+            // derivatives are held in separate fields)
+            auto& w2a_dlevelset_dt =
+                data.sim().repo().declare_field("w2a_dlevelset_dt", 1, 3, 2);
+            auto& w2a_dvelocity_dt = data.sim().repo().declare_field(
+                "w2a_dvelocity_dt", AMREX_SPACEDIM, 3, 2);
+            w2a_dlevelset_dt.set_default_fillpatch_bc(data.sim().time());
+            w2a_dvelocity_dt.set_default_fillpatch_bc(data.sim().time());
+        }
 #endif
     }
 }; // namespace ops
@@ -628,18 +923,23 @@ struct InitDataOp<W2AWaves>
         // Set t_last to 0.0_rt to signify information read in
         wdata.t_last = 0.0_rt;
 
+        // Time derivatives start at rest, consistent with quiescent w2a data
+        if (wdata.cubic_time) {
+            for (const std::string name :
+                 {"w2a_dlevelset_dt", "w2a_dvelocity_dt"}) {
+                auto& field = sim.repo().get_field(name);
+                field(level).setVal(0.0_rt);
+                field.state(kynema_sgf::FieldState::Old)(level).setVal(0.0_rt);
+            }
+        }
+
         // indvec is complete upon initialization (all heights every proc)
         amrex::Vector<int> indvec(wdata.hvec.size());
         std::iota(indvec.begin(), indvec.end(), 0);
         // Interpolate to MultiFabs (one level at a time)
-        interp_to_mfab::interp_eta_to_levelset_multifab(
-            wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
-            wdata.xlo1, wdata.zsl, wdata.is_ocean, wdata.sp_eta_vec,
-            ow_levelset(level), problo, dx);
-        interp_to_mfab::interp_velocity_to_multifab(
-            wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0,
-            wdata.xlo1, wdata.is_ocean, indvec, wdata.hvec, wdata.sp_u_vec,
-            wdata.sp_v_vec, wdata.sp_w_vec, ow_velocity(level), problo, dx);
+        stream_wave_elevation(wdata, {&ow_levelset(level)}, {problo}, {dx});
+        stream_wave_velocity(
+            wdata, {&ow_velocity(level)}, {problo}, {dx}, indvec);
 
         // Populate flow fields according to intended forcing and init setup
         const auto& ow_phi = ow_levelset(level).const_arrays();
@@ -732,22 +1032,14 @@ struct InitDataOp<W2AWaves>
                     vel[nbx](i, j, k, 0) = vel_tmp[nbx](i, j, k, 0);
                     vel[nbx](i, j, k, 1) = vel_tmp[nbx](i, j, k, 1);
                     vel[nbx](i, j, k, 2) = vel_tmp[nbx](i, j, k, 2);
-                } else if (vof_local > 1.0e-3_rt) {
-                    // Velocity of liquid becomes velocity of entire cell
-                    // Interpolate using cell-centered values to liquid centroid
-                    // Consider only z-direction to find centroid
-                    const amrex::Real z_cell = problo[2] + (k + 0.5_rt) * dx[2];
-                    const amrex::Real z_cell_below = z_cell - dx[2];
-                    const amrex::Real z_cell_bottom = z_cell - 0.5_rt * dx[2];
-                    const amrex::Real z_liq_center =
-                        z_cell_bottom + 0.5_rt * vof_local * dx[2];
+                } else if (vof_local > constants::VOF_TOL) {
+                    // Velocity of liquid becomes velocity of entire cell,
+                    // evaluated at approx. liquid centroid z (as for targets)
                     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
                         vel[nbx](i, j, k, n) =
-                            vel_tmp[nbx](i, j, k - 1, n) +
-                            (vel_tmp[nbx](i, j, k, n) -
-                             vel_tmp[nbx](i, j, k - 1, n)) *
-                                ((z_liq_center - z_cell_below) /
-                                 (z_cell - z_cell_below + constants::EPS));
+                            utils::approx_liquid_centroid_z_interp(
+                                vof_local, vel_tmp[nbx](i, j, k - 1, n),
+                                vel_tmp[nbx](i, j, k, n));
                     }
                 }
             });
@@ -777,15 +1069,48 @@ struct UpdateTargetFieldsOp<W2AWaves>
         // Old state of HOS fields used for time interpolation
         auto& w2a_lvs_old = w2a_levelset.state(kynema_sgf::FieldState::Old);
         auto& w2a_vel_old = w2a_velocity.state(kynema_sgf::FieldState::Old);
+        auto nlevels = sim.repo().num_active_levels();
+        auto geom = sim.mesh().Geom();
+        // Time derivatives of HOS fields (cubic time interpolation only)
+        Field* w2a_dlvs{nullptr};
+        Field* w2a_dvel{nullptr};
+        Field* w2a_dlvs_old{nullptr};
+        Field* w2a_dvel_old{nullptr};
+        if (wdata.cubic_time) {
+            w2a_dlvs = &sim.repo().get_field("w2a_dlevelset_dt");
+            w2a_dvel = &sim.repo().get_field("w2a_dvelocity_dt");
+            w2a_dlvs_old = &w2a_dlvs->state(kynema_sgf::FieldState::Old);
+            w2a_dvel_old = &w2a_dvel->state(kynema_sgf::FieldState::Old);
+        }
+        // Pairs of (levelset-like, velocity-like) fields at the Old and New
+        // HOS times, including derivatives when present
+        amrex::Vector<std::pair<Field*, Field*>> old_new;
+        old_new.emplace_back(&w2a_lvs_old, &w2a_levelset);
+        old_new.emplace_back(&w2a_vel_old, &w2a_velocity);
+        if (wdata.cubic_time) {
+            old_new.emplace_back(w2a_dlvs_old, w2a_dlvs);
+            old_new.emplace_back(w2a_dvel_old, w2a_dvel);
+        }
+        auto copy_new_to_old = [&]() {
+            for (auto& [old_field, new_field] : old_new) {
+                kynema_sgf::field_ops::copy(
+                    *old_field, *new_field, 0, 0, new_field->num_comp(),
+                    new_field->num_grow());
+            }
+        };
+        auto average_down_levels = [&](Field& field) {
+            for (int lev = nlevels - 1; lev > 0; --lev) {
+                amrex::average_down(
+                    field(lev), field(lev - 1), 0, field.num_comp(),
+                    sim.mesh().refRatio(lev - 1));
+            }
+        };
 
         // Proxy for multiphase mode of ocean waves
         bool vof_exists = sim.repo().field_exists("vof");
 
-        auto nlevels = sim.repo().num_active_levels();
-        auto geom = sim.mesh().Geom();
-
-        // Get value for time interpolation
-        amrex::Real t_last = wdata.t_last;
+        // Time of the previous target update (for reporting)
+        const amrex::Real t_last = wdata.t_last;
 
         // Check if new HOS data needs to be read
         bool read_flag = false;
@@ -842,6 +1167,18 @@ struct UpdateTargetFieldsOp<W2AWaves>
                     (interp_to_mfab::get_local_height_indices(
                          wdata.indvec, wdata.hvec, ow_velocity.vec_ptrs(),
                          geom) == 1);
+                if (flag_z && wdata.interpolation ==
+                                  interp_to_mfab::Interpolation::cubic) {
+                    // Cubic needs an additional height on either side of the
+                    // bracketing pair, with one-sided stencils at the
+                    // endpoints.
+                    const int first = std::max(0, wdata.indvec.front() - 2);
+                    const int last = std::min(
+                        static_cast<int>(wdata.hvec.size()) - 1,
+                        wdata.indvec.back() + 2);
+                    wdata.indvec.resize(last - first + 1);
+                    std::iota(wdata.indvec.begin(), wdata.indvec.end(), first);
+                }
                 // No overlap from heights definitely means no interp
 
                 // Check lateral bounds (in x)
@@ -879,95 +1216,72 @@ struct UpdateTargetFieldsOp<W2AWaves>
                 if (flag_z && (flag_xlo || flag_xhi || flag_ylo || flag_yhi)) {
                     // Interpolation is needed
                     wdata.do_interp = true;
-                    // Do resizing
-                    wdata.sp_eta_vec.resize(
-                        static_cast<size_t>(wdata.n0) *
-                            static_cast<size_t>(wdata.n1),
-                        0.0_rt);
-                    wdata.sp_u_vec.resize(
-                        static_cast<size_t>(wdata.n0 * wdata.n1) *
-                        wdata.indvec.size());
-                    wdata.sp_v_vec.resize(
-                        static_cast<size_t>(wdata.n0 * wdata.n1) *
-                        wdata.indvec.size());
-                    wdata.sp_w_vec.resize(
-                        static_cast<size_t>(wdata.n0 * wdata.n1) *
-                        wdata.indvec.size());
-                    // Sizes will remain constant and need for interpolation
-                    // will remain until a regrid occurs
+                    // Node footprints are gathered lazily by the stream.
                 } else {
                     // No overlapping with spatial data or no overlapping with
                     // relaxation zones, interpolation can be skipped
                     wdata.do_interp = false;
                 }
             }
-            // Only perform reading where needed, communicate offset though
-            amrex::ParallelDescriptor::ReduceIntMax(wdata.n_offset);
-
-            // Previous W2A data is more recent than last interpolated data
-            t_last = (wdata.ntime - 1) * wdata.dt_modes;
-
             if (double_data == 0) {
-                // Previous W2A data needs to be copied into old fields
-                kynema_sgf::field_ops::copy(
-                    w2a_lvs_old, w2a_levelset, 0, 0, 1,
-                    w2a_levelset.num_grow());
-                kynema_sgf::field_ops::copy(
-                    w2a_vel_old, w2a_velocity, 0, 0, AMREX_SPACEDIM,
-                    w2a_velocity.num_grow());
+                // Previous W2A data (at t - dt_modes) becomes the old data
+                copy_new_to_old();
             } else if (double_data == 1) {
                 // Previous W2A data is unknown, read into old fields
+                read_wave_modes(wdata, -1);
                 if (wdata.do_interp) {
                     populate_fields_all_levels(
-                        wdata, geom, w2a_lvs_old, w2a_vel_old, -1);
+                        wdata, geom, w2a_lvs_old, w2a_vel_old);
+                    if (wdata.cubic_time) {
+                        populate_fields_all_levels(
+                            wdata, geom, *w2a_dlvs_old, *w2a_dvel_old, true);
+                    }
                 }
 
                 // Average down to get fine information on coarse grid where
-                // possible (may be unnecessary)
-                for (int lev = nlevels - 1; lev > 0; --lev) {
-                    amrex::average_down(
-                        w2a_vel_old(lev), w2a_vel_old(lev - 1), 0,
-                        AMREX_SPACEDIM, sim.mesh().refRatio(lev - 1));
-                    amrex::average_down(
-                        w2a_lvs_old(lev), w2a_lvs_old(lev - 1), 0, 1,
-                        sim.mesh().refRatio(lev - 1));
+                // possible (may be unnecessary), then fill patch to get
+                // correct ghost cells after average down
+                for (auto& old_new_pair : old_new) {
+                    average_down_levels(*old_new_pair.first);
+                    old_new_pair.first->fillpatch(sim.time().new_time());
                 }
-                // Fill patch to get correct ghost cells after average down
-                w2a_vel_old.fillpatch(sim.time().new_time());
-                w2a_lvs_old.fillpatch(sim.time().new_time());
             }
-            // ow fields cancel when double_data == 2, no modification
 
             // After possible prior read, now read data for this ntime
+            read_wave_modes(wdata);
             if (wdata.do_interp) {
                 populate_fields_all_levels(
                     wdata, geom, w2a_levelset, w2a_velocity);
+                if (wdata.cubic_time) {
+                    populate_fields_all_levels(
+                        wdata, geom, *w2a_dlvs, *w2a_dvel, true);
+                }
             }
 
             // Average down to get fine information on coarse grid where
             // possible and update ghost cells (may be unnecessary)
-            for (int lev = nlevels - 1; lev > 0; --lev) {
-                amrex::average_down(
-                    w2a_velocity(lev), w2a_velocity(lev - 1), 0, AMREX_SPACEDIM,
-                    sim.mesh().refRatio(lev - 1));
-                w2a_velocity(lev - 1).FillBoundary(geom[lev - 1].periodicity());
-                amrex::average_down(
-                    w2a_levelset(lev), w2a_levelset(lev - 1), 0, 1,
-                    sim.mesh().refRatio(lev - 1));
-                w2a_levelset(lev - 1).FillBoundary(geom[lev - 1].periodicity());
+            for (auto& old_new_pair : old_new) {
+                auto& field = *old_new_pair.second;
+                for (int lev = nlevels - 1; lev > 0; --lev) {
+                    amrex::average_down(
+                        field(lev), field(lev - 1), 0, field.num_comp(),
+                        sim.mesh().refRatio(lev - 1));
+                    field(lev - 1).FillBoundary(geom[lev - 1].periodicity());
+                }
+            }
+
+            if (double_data == 2) {
+                // Only the new data is used at this time; keep old data valid
+                copy_new_to_old();
             }
         }
 
-        // Temporally interpolate at every timestep to get target solution
+        // Temporally interpolate between the HOS data at t - dt_modes (Old)
+        // and t (New) at every timestep to get the target solution
         time_interpolate_wave_fields(
-            w2a_lvs_old, w2a_vel_old, w2a_levelset, w2a_velocity, t_last, time,
-            wdata.t);
-        // Copy to ow fields, which may be modified for beach
-        field_ops::copy(
-            ow_levelset, w2a_lvs_old, 0, 0, 1, ow_levelset.num_grow());
-        field_ops::copy(
-            ow_velocity, w2a_vel_old, 0, 0, AMREX_SPACEDIM,
-            ow_velocity.num_grow());
+            ow_levelset, ow_velocity, w2a_lvs_old, w2a_vel_old, w2a_levelset,
+            w2a_velocity, w2a_dlvs_old, w2a_dvel_old, w2a_dlvs, w2a_dvel,
+            wdata.t - wdata.dt_modes, wdata.t, time);
 #else
         amrex::ignore_unused(data, time);
 #endif

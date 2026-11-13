@@ -3,6 +3,7 @@
 #include "ks_test_utils/test_utils.H"
 #include "src/ocean_waves/utils/wave_utils_K.H"
 #include "src/ocean_waves/OceanWaves.H"
+#include "src/ocean_waves/relaxation_zones/relaxation_zones_ops.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 #include "src/utilities/constants.H"
 #include "src/physics/multiphase/MultiPhase.H"
@@ -294,6 +295,78 @@ amrex::Real uface_bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
     return error_total;
 }
 
+void check_approx_liquid_centroid_z_velocity_in_place()
+{
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr int ngrow = 2;
+    // Several boxes in z to exercise box boundaries and ghost cells
+    amrex::BoxArray ba(amrex::Box(amrex::IntVect(0), amrex::IntVect(7, 3, 15)));
+    ba.maxSize(4);
+    const amrex::DistributionMapping dm(ba);
+    amrex::MultiFab vel(ba, dm, AMREX_SPACEDIM, ngrow + 1);
+    amrex::MultiFab orig(ba, dm, AMREX_SPACEDIM, ngrow + 1);
+    amrex::MultiFab gold(ba, dm, AMREX_SPACEDIM, ngrow + 1);
+    amrex::MultiFab vof(ba, dm, 1, ngrow);
+
+    const auto& vel_arrs = vel.arrays();
+    const auto& vof_arrs = vof.arrays();
+    amrex::ParallelFor(
+        vel, amrex::IntVect(ngrow + 1),
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+                vel_arrs[nbx](i, j, k, n) =
+                    (std::exp(0.2_rt * k) * (n + 1)) + (0.1_rt * i) - j;
+            }
+        });
+    // Interface spanning several stacked partial cells, varying by column
+    amrex::ParallelFor(
+        vof, amrex::IntVect(ngrow),
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            vof_arrs[nbx](i, j, k) = amrex::max<amrex::Real>(
+                0.0_rt,
+                amrex::min<amrex::Real>(
+                    1.0_rt, (0.3_rt * (8 - k)) + (0.1_rt * (i + j) / 10.0_rt)));
+        });
+    amrex::Gpu::streamSynchronize();
+    amrex::MultiFab::Copy(orig, vel, 0, 0, AMREX_SPACEDIM, ngrow + 1);
+
+    // Reference from unmodified values
+    const auto& orig_arrs = orig.const_arrays();
+    const auto& gold_arrs = gold.arrays();
+    amrex::ParallelFor(
+        gold, amrex::IntVect(ngrow),
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+            const amrex::Real vf = vof_arrs[nbx](i, j, k);
+            const bool partial = vf > kynema_sgf::constants::VOF_TOL &&
+                                 vf <= 1.0_rt - kynema_sgf::constants::VOF_TOL;
+            for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+                gold_arrs[nbx](i, j, k, n) =
+                    partial ? kynema_sgf::ocean_waves::utils::
+                                  approx_liquid_centroid_z_interp(
+                                      vf, orig_arrs[nbx](i, j, k - 1, n),
+                                      orig_arrs[nbx](i, j, k, n))
+                            : orig_arrs[nbx](i, j, k, n);
+            }
+        });
+    amrex::Gpu::streamSynchronize();
+
+    kynema_sgf::ocean_waves::relaxation_zones::
+        approx_liquid_centroid_z_velocity(vel, vof, ngrow);
+
+    // Confirm the test exercises changes
+    amrex::MultiFab diff(ba, dm, AMREX_SPACEDIM, ngrow + 1);
+    amrex::MultiFab::Copy(diff, vel, 0, 0, AMREX_SPACEDIM, ngrow + 1);
+    amrex::MultiFab::Subtract(diff, orig, 0, 0, AMREX_SPACEDIM, ngrow + 1);
+    EXPECT_GT(diff.norm0(0, ngrow), 0.1_rt);
+    // Matches reference everywhere it is applied, including ghosts
+    amrex::MultiFab::Copy(diff, vel, 0, 0, AMREX_SPACEDIM, ngrow);
+    amrex::MultiFab::Subtract(diff, gold, 0, 0, AMREX_SPACEDIM, ngrow);
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        EXPECT_NEAR(diff.norm0(n, ngrow), 0.0_rt, tol);
+    }
+}
+
 } // namespace
 
 TEST_F(OceanWavesOpTest, relaxation_zone)
@@ -542,6 +615,11 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     make_target_velocity(ow_velocity, velocity, ow_vof);
     const amrex::Real error_total = uface_bdy_error(u_mac, ow_velocity);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
+}
+
+TEST_F(OceanWavesOpTest, approx_liquid_centroid_z_velocity_in_place)
+{
+    check_approx_liquid_centroid_z_velocity_in_place();
 }
 
 } // namespace kynema_sgf_tests

@@ -5,6 +5,13 @@ Section: Ocean Waves
 
 This section is for setting up wave forcing and relaxation zones.
 
+For every wave type, the target velocity (``ow_velocity``) is the liquid velocity. In partially
+filled cells, the wave velocity is evaluated at the approximate vertical position of the liquid centroid,
+``z_bottom + 0.5 * vof * dz``, by interpolating between the cell-centered values of the current
+cell and the cell below. This centroid never lies above the cell center, so the result is always an
+interpolation and reduces the overestimate of evaluating wave kinematics at cell centers above the
+free surface. The same treatment is used for the initial velocity field in multiphase simulations.
+
 .. input_param:: OceanWaves.label
 
    **type:** String
@@ -178,6 +185,16 @@ The following input arguments are only valid for the W2AWaves wave type:
 
    The name of the modes file, output by HOS-Ocean or HOS-NWT, in the SWENSE format.
 
+   Only the I/O rank opens and parses the fixed-width ASCII file. Metadata
+   and compact coefficients are broadcast to all ranks, including ranks not
+   currently intersecting wave zones, so regridding does not require a changing
+   reader communicator. Requests for the already-distributed timestep reuse
+   the coefficients without parsing or broadcasting them again.
+   EOF resets the reference-data offset consistently on all ranks; malformed
+   headers, retained coefficients, partial records and I/O failures are fatal
+   rather than treated as EOF. Files must not change while the simulation runs.
+   Field averaging and ghost exchanges are unchanged.
+
 .. input_param:: OceanWaves.label.HOS_simulation_is_ocean
 
    **type:** Boolean, optional, default = true
@@ -190,6 +207,115 @@ The following input arguments are only valid for the W2AWaves wave type:
    **type:** Integer, optional, default = 0
 
    The time step in the modes file for the Kynema-SGF simulation to start at.
+
+.. input_param:: OceanWaves.label.interpolation
+
+   **type:** String, optional, default = "cubic"
+
+   Spatial interpolation for both HOS-Ocean and HOS-NWT, during initialization
+   and subsequent updates. ``cubic`` uses four-point Lagrange interpolation in
+   each horizontal direction (bicubic for 3D sources) and cubic interpolation
+   across four adjacent, nonuniform velocity heights. It interpolates values
+   reconstructed from Fourier modes; it does not evaluate Fourier series at
+   solver coordinates. ``linear`` preserves legacy bilinear horizontal and
+   linear vertical interpolation. Invalid choices are fatal.
+
+   Periodic horizontal stencils wrap. Nonperiodic coordinates clamp to the
+   actual source sample extent, with one-sided stencils at boundaries; this
+   differs from legacy linear endpoint handling. Fewer than four available
+   samples reduce polynomial degree. Vertical stencils are one-sided near
+   endpoints; extrapolation outside the available heights remains linear,
+   retaining the existing above-top velocity zeroing rule. These polynomials
+   are not monotonicity-limited and can overshoot.
+
+.. input_param:: OceanWaves.label.time_interpolation
+
+   **type:** String, optional, default = "cubic"
+
+   Temporal interpolation between consecutive records of the modes file, for
+   both HOS-Ocean and HOS-NWT. ``cubic`` uses cubic Hermite interpolation:
+   the values at the two bracketing records are combined with their time
+   derivatives, which are reconstructed from the time-derivative modes written
+   by HOS (no additional records are needed). ``linear`` preserves legacy
+   linear interpolation. Invalid choices are fatal.
+
+   ``cubic`` adds two fields, ``w2a_dlevelset_dt`` (1 component) and
+   ``w2a_dvelocity_dt`` (3 components), each with two states, so the wave
+   interpolation storage grows by 8 components per cell on every level. It also
+   roughly doubles the reconstruction cost at each modes-file read, which is
+   typically negligible relative to the flow solve.
+
+.. input_param:: OceanWaves.label.fft_max_padding_level
+
+   **type:** Integer, optional, default = -1
+
+   For both HOS-Ocean and HOS-NWT, choose a virtually zero-padded reconstruction grid for
+   elevation and velocity so horizontal spacing is no larger than the finest
+   configured AMR cell spacing. Each direction is doubled independently as
+   needed. ``-1`` allows uncapped padding, ``0`` disables padding (legacy
+   behavior), and a positive integer ``p`` caps expansion at ``2**p`` per
+   direction. A cap can leave reconstruction coarser than the target mesh.
+   Padding preserves the retained Fourier modes; it adds no shorter waves.
+   NWT grids include both endpoints: doubling intervals changes ``n`` samples
+   to ``2*(n-1)+1``. A single transverse row is never expanded. Original
+   cosine/sine endpoint normalization and wavemaker terms are preserved.
+
+   Both source types stream velocity heights: each rank retains three
+   local horizontal velocity arrays plus local interpolation
+   stencils, rather than full horizontal planes at every height. Stencils
+   require 12 values per local grown-box horizontal cell for cubic (four heights
+   times three components), or 24 for linear, summed across boxes
+   and AMR levels (including vertically stacked boxes). Velocity scratch
+   memory is independent of the number of interpolation heights.
+   Initialization is deferred until local mesh boxes exist; processing levels
+   separately can repeat FFTs. Original compact spectral arrays remain on
+   each rank. Local elevation and velocity use the reconstruction method
+   selected below; no distributed FFT is used. Cubic support can require more
+   nodes and heights than linear despite smaller stencil storage.
+
+.. input_param:: OceanWaves.label.fft_reconstruction
+
+   **type:** String, optional, default = "auto"
+
+   Reconstruction method for both HOS-Ocean and HOS-NWT: ``full`` uses a full horizontal
+   inverse FFT then gathers needed nodes; ``pruned`` uses separable FFTs of
+   occupied frequency rows and required output columns (or the transposed
+   order). Both evaluate exactly the same padded-grid nodes before the existing
+   interpolation, with possible floating-point roundoff differences.
+
+   NWT uses even/odd reflection of the cosine/sine basis before the shared
+   FFT backend. Its internal periodic extension has ``2*(n-1)`` nodes per
+   nontrivial axis, so full workspace can exceed that of a native DCT/DST.
+   The additional wavemaker modes retain their nonperiodic x dependence,
+   evaluated only at requested grid x nodes, with full 1D cosine/sine FFTs
+   in y. ``pruned`` applies to ordinary modes, not these additional 1D FFTs.
+   Automatic timing compares the reflected full/pruned methods, not legacy
+   real-to-real transforms.
+
+   ``auto`` chooses independently on each rank. It rejects methods exceeding
+   the scratch budget, uses an operation estimate to exclude candidates costing
+   more than four times the cheapest feasible candidate, then warms and times
+   two executions of each remaining method. A later candidate must improve
+   timing by at least 10% to replace the current best. FFT plans and selection
+   are reused until the local node footprint or accounted local storage changes.
+   Initial per-level setup and regridding can therefore trigger recalibration.
+   Selection diagnostics report method, footprint, scratch estimate and timing.
+   Use a forced method when reproducible transform ordering is required.
+
+.. input_param:: OceanWaves.label.fft_scratch_memory_mb
+
+   **type:** Real, optional, default = 512.
+
+   Positive per-rank accounted reconstruction scratch budget in MiB
+   (1 MiB = 1048576 bytes). Applies to forced methods as well as ``auto``.
+   Counts compact working spectra, local depth coefficients, FFT work arrays,
+   returned host samples, three local device velocity arrays, device index maps
+   and velocity stencils. For NWT it also counts reflected compact coefficients,
+   depth arrays, returned velocity components and wavemaker FFT buffers.
+   Source HOS mode arrays, destination solver fields,
+   allocator overhead and FFTW's opaque plan storage are excluded. This is not
+   a hard cap on total process memory. Failure to fit any permitted method is
+   fatal; increase the budget, reduce padding or reduce the local footprint.
 
 .. input_param:: OceanWaves.label.HOS_init_time
 

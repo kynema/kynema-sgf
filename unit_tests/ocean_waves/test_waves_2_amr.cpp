@@ -6,6 +6,9 @@
 #include "src/ocean_waves/relaxation_zones/waves2amr_ops.H"
 #include "src/physics/multiphase/MultiPhase.H"
 #include "AMReX_REAL.H"
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
 
 using namespace amrex::literals;
 
@@ -13,6 +16,181 @@ namespace kynema_sgf_tests {
 
 class OceanWavesW2ATest : public MeshTest
 {};
+
+#ifdef KYNEMA_SGF_USE_W2A
+namespace {
+void test_modes_distribution(bool ocean, bool cubic_time)
+{
+    const auto filename = (std::filesystem::temp_directory_path() /
+                           ("w2a-mpi-" + amrex::UniqueString() + ".dat"))
+                              .string();
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        std::ofstream file(filename, std::ios::binary);
+        const int width = ocean ? 9 : 16;
+        const int slots = (ocean ? 12 : 8) * width * 2;
+        const std::vector<double> header =
+            ocean ? std::vector<double>{16, 2, .1, 1, 20, 10, 5, 9.81, 1, 1}
+                  : std::vector<double>{16, 4, 2, .1, 1, 20, 10, 5, 0};
+        for (int record = 0; record < 4; ++record) {
+            for (int slot = 0; slot < slots; ++slot) {
+                double value = record * 1000 + slot;
+                if (!record && slot < static_cast<int>(header.size()))
+                    value = header[slot];
+                if (!ocean && slot % (8 * width) >= 6 * width &&
+                    slot % width >= 4) {
+                    file << std::string(18, ' ');
+                } else {
+                    file << std::uppercase << std::scientific
+                         << std::setprecision(10) << std::setw(17) << value
+                         << ' ';
+                }
+            }
+        }
+        AMREX_ALWAYS_ASSERT(file.good());
+    }
+    {
+        kynema_sgf::ocean_waves::W2AWavesData data;
+        data.is_ocean = ocean;
+        data.cubic_time = cubic_time;
+        // The I/O rank is deliberately inactive; only it may open the file.
+        data.do_interp = !amrex::ParallelDescriptor::IOProcessor();
+        if (ocean) {
+            initialize_modes_reader(data.c_rmodes, filename, true);
+            for (auto* modes :
+                 {&data.c_mX, &data.c_mY, &data.c_mZ, &data.c_mFS})
+                modes->resize(data.c_rmodes.get_vector_size());
+        } else {
+            initialize_modes_reader(data.r_rmodes, filename, false);
+            for (auto* modes :
+                 {&data.r_mX, &data.r_mY, &data.r_mZ, &data.r_mFS})
+                modes->resize(data.r_rmodes.get_vector_size());
+            data.r_mAdd.resize(data.r_rmodes.get_addl_vector_size());
+        }
+        const auto parses = [&] {
+            return ocean ? data.c_rmodes.records_read()
+                         : data.r_rmodes.records_read();
+        };
+        const auto expected_parses = [](int count) {
+            return amrex::ParallelDescriptor::IOProcessor() ? count : 0;
+        };
+        const auto check = [&](int step) {
+            EXPECT_EQ(data.loaded_modes_step, step);
+            const double base = (step + 1) * 1000;
+            if (ocean) {
+                const std::array arrays{
+                    &data.c_mX, &data.c_mY, &data.c_mZ, &data.c_mFS};
+                for (int row = 0; row < 2; ++row) {
+                    for (int x = 0; x < 9; ++x) {
+                        const int index = row * 9 + x;
+                        for (int var = 0; var < 4; ++var) {
+                            const double real = base + row * 108 +
+                                                (var == 3 ? 4 : var) * 18 +
+                                                2 * x;
+                            EXPECT_EQ(
+                                (*arrays[var])[index],
+                                std::complex<amrex::Real>(real, real + 1));
+                        }
+                        if (cubic_time) {
+                            const double t = base + row * 108 + 3 * 18 + 2 * x;
+                            const double fst = t + 2 * 18;
+                            EXPECT_EQ(
+                                data.c_mT[index],
+                                std::complex<amrex::Real>(t, t + 1));
+                            EXPECT_EQ(
+                                data.c_mFST[index],
+                                std::complex<amrex::Real>(fst, fst + 1));
+                        }
+                    }
+                }
+                if (cubic_time) {
+                    EXPECT_EQ(data.c_mXt.size(), data.c_mT.size());
+                    // Mean mode has no velocity or velocity rate
+                    EXPECT_EQ(data.c_mXt[0], std::complex<amrex::Real>{});
+                    EXPECT_EQ(data.c_mZt[0], std::complex<amrex::Real>{});
+                } else {
+                    EXPECT_TRUE(data.c_mT.empty());
+                    EXPECT_TRUE(data.c_mXt.empty());
+                }
+            } else {
+                const std::array arrays{
+                    &data.r_mX, &data.r_mY, &data.r_mZ, &data.r_mFS};
+                for (int row = 0; row < 2; ++row) {
+                    for (int x = 0; x < 16; ++x) {
+                        const int index = row * 16 + x;
+                        for (int var = 0; var < 4; ++var) {
+                            EXPECT_EQ(
+                                (*arrays[var])[index],
+                                base + row * 128 + (var == 3 ? 4 : var) * 16 +
+                                    x);
+                        }
+                    }
+                    for (int x = 0; x < 4; ++x) {
+                        EXPECT_EQ(
+                            data.r_mAdd[row * 4 + x],
+                            base + row * 128 + 96 + x);
+                        if (cubic_time) {
+                            EXPECT_EQ(
+                                data.r_mAddT[row * 4 + x],
+                                base + row * 128 + 112 + x);
+                        }
+                    }
+                    if (cubic_time) {
+                        for (int x = 0; x < 16; ++x) {
+                            const int index = row * 16 + x;
+                            EXPECT_EQ(
+                                data.r_mT[index], base + row * 128 + 48 + x);
+                            EXPECT_EQ(
+                                data.r_mFST[index], base + row * 128 + 80 + x);
+                        }
+                    }
+                }
+                if (cubic_time) {
+                    EXPECT_EQ(data.r_mXt.size(), data.r_mT.size());
+                    EXPECT_EQ(data.r_mXt[0], 0.0_rt);
+                } else {
+                    EXPECT_TRUE(data.r_mT.empty());
+                    EXPECT_TRUE(data.r_mXt.empty());
+                }
+            }
+        };
+        data.ntime = 2;
+        read_wave_modes(data);
+        check(2);
+        EXPECT_EQ(parses(), expected_parses(1));
+        read_wave_modes(data);
+        check(2);
+        EXPECT_EQ(parses(), expected_parses(1));
+        // Backward/restart-style request, then EOF looping back to cached data.
+        data.ntime = 0;
+        read_wave_modes(data);
+        check(0);
+        data.ntime = 8;
+        read_wave_modes(data);
+        check(0);
+        EXPECT_EQ(data.n_offset, -8);
+        EXPECT_EQ(parses(), expected_parses(2));
+        data.ntime = 9;
+        read_wave_modes(data);
+        check(1);
+        EXPECT_EQ(parses(), expected_parses(3));
+    }
+    if (amrex::ParallelDescriptor::IOProcessor()) {
+        EXPECT_EQ(std::remove(filename.c_str()), 0);
+    }
+}
+} // namespace
+
+TEST_F(OceanWavesW2ATest, modes_io_ocean)
+{
+    test_modes_distribution(true, false);
+    test_modes_distribution(true, true);
+}
+TEST_F(OceanWavesW2ATest, modes_io_nwt)
+{
+    test_modes_distribution(false, false);
+    test_modes_distribution(false, true);
+}
+#endif
 
 // This is to evaluate aspects of W2A methods that do not require wave data
 TEST_F(OceanWavesW2ATest, time_advance)
@@ -292,54 +470,76 @@ TEST_F(OceanWavesW2ATest, time_interp)
     // Set up fields and initial values
     auto& lvs = sim().repo().declare_cc_field("ow_levelset", 1, 3, 1);
     auto& vel = sim().repo().declare_cc_field("ow_velocity", 3, 3, 1);
-    auto& w2a_lvs = sim().repo().declare_cc_field("w2a_levelset", 1, 3, 1);
-    auto& w2a_vel = sim().repo().declare_cc_field("w2a_velocity", 3, 3, 1);
-    lvs.setVal(0.0_rt);
-    amrex::Real t_last = 0.0_rt;
+    auto& w2a_lvs = sim().repo().declare_cc_field("w2a_levelset", 1, 3, 2);
+    auto& w2a_vel = sim().repo().declare_cc_field("w2a_velocity", 3, 3, 2);
+    auto& w2a_lvs_old = w2a_lvs.state(kynema_sgf::FieldState::Old);
+    auto& w2a_vel_old = w2a_vel.state(kynema_sgf::FieldState::Old);
+    const amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
 
-    // First time from "file"
-    w2a_lvs.setVal(1.0_rt);
-    amrex::Real t_w2a = 1.0_rt;
-
-    // Interpolate once in time
-    amrex::Real t_sim = 0.5_rt;
+    // Linear: old data at t0 and new data at t1
+    w2a_lvs_old.setVal(1.0_rt);
+    w2a_lvs.setVal(0.0_rt);
+    w2a_vel_old.setVal(-2.0_rt);
+    w2a_vel.setVal(2.0_rt);
     time_interpolate_wave_fields(
-        lvs, vel, w2a_lvs, w2a_vel, t_last, t_sim, t_w2a);
+        lvs, vel, w2a_lvs_old, w2a_vel_old, w2a_lvs, w2a_vel, nullptr, nullptr,
+        nullptr, nullptr, 1.0_rt, 2.0_rt, 1.5_rt);
+    EXPECT_NEAR(utils::field_max(lvs), 0.5_rt, tol);
+    EXPECT_NEAR(utils::field_min(lvs), 0.5_rt, tol);
+    EXPECT_NEAR(utils::field_max(vel), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_min(vel), 0.0_rt, tol);
+    // Outside of the interval, data is held rather than extrapolated
+    time_interpolate_wave_fields(
+        lvs, vel, w2a_lvs_old, w2a_vel_old, w2a_lvs, w2a_vel, nullptr, nullptr,
+        nullptr, nullptr, 1.0_rt, 2.0_rt, 2.5_rt);
+    EXPECT_NEAR(utils::field_max(lvs), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_max(vel), 2.0_rt, tol);
 
-    // Record time that data has been interpolated to
-    t_last = t_sim;
-
-    // Check value of levelset
-    const amrex::Real fmax1 = utils::field_max(lvs);
-    const amrex::Real fmin1 = utils::field_min(lvs);
-    EXPECT_NEAR(
-        fmax1, 0.5_rt, std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
-    EXPECT_NEAR(
-        fmin1, 0.5_rt, std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
-
-    // Step forward in time, after current w2a data
-    t_sim += 1.;
-
-    if (t_sim > t_w2a) {
-        // Copy current w2a data and update old time
-        kynema_sgf::field_ops::copy(lvs, w2a_lvs, 0, 0, 1, lvs.num_grow());
-        t_last = t_w2a;
-        // Update w2a values (as in a file read)
-        w2a_lvs.setVal(0.0_rt);
-        t_w2a += 1.0_rt;
+    // Cubic Hermite is exact for data that is cubic in time
+    auto& dlvs = sim().repo().declare_cc_field("w2a_dlevelset_dt", 1, 3, 2);
+    auto& dvel = sim().repo().declare_cc_field("w2a_dvelocity_dt", 3, 3, 2);
+    auto& dlvs_old = dlvs.state(kynema_sgf::FieldState::Old);
+    auto& dvel_old = dvel.state(kynema_sgf::FieldState::Old);
+    const auto f = [](amrex::Real t) {
+        return 0.7_rt * t * t * t - 2.0_rt * t * t + 0.5_rt * t + 1.0_rt;
+    };
+    const auto df = [](amrex::Real t) {
+        return 2.1_rt * t * t - 4.0_rt * t + 0.5_rt;
+    };
+    const amrex::Real t0 = 0.25_rt;
+    const amrex::Real t1 = 1.75_rt;
+    w2a_lvs_old.setVal(f(t0));
+    w2a_lvs.setVal(f(t1));
+    dlvs_old.setVal(df(t0));
+    dlvs.setVal(df(t1));
+    w2a_vel_old.setVal(-f(t0));
+    w2a_vel.setVal(-f(t1));
+    dvel_old.setVal(-df(t0));
+    dvel.setVal(-df(t1));
+    for (const amrex::Real t : {t0, 0.6_rt, 1.0_rt, 1.3_rt, t1}) {
+        time_interpolate_wave_fields(
+            lvs, vel, w2a_lvs_old, w2a_vel_old, w2a_lvs, w2a_vel, &dlvs_old,
+            &dvel_old, &dlvs, &dvel, t0, t1, t);
+        EXPECT_NEAR(utils::field_max(lvs), f(t), tol);
+        EXPECT_NEAR(utils::field_min(lvs), f(t), tol);
+        EXPECT_NEAR(utils::field_max(vel), -f(t), tol);
+        EXPECT_NEAR(utils::field_min(vel), -f(t), tol);
     }
 
-    // Interpolate again
-    time_interpolate_wave_fields(
-        lvs, vel, w2a_lvs, w2a_vel, t_last, t_sim, t_w2a);
-
-    // Check value of levelset
-    const amrex::Real fmax2 = utils::field_max(lvs);
-    const amrex::Real fmin2 = utils::field_min(lvs);
-    EXPECT_NEAR(
-        fmax2, 0.5_rt, std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
-    EXPECT_NEAR(
-        fmin2, 0.5_rt, std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt);
+    // Hermite weights reduce to the endpoint values and partition unity
+    for (const amrex::Real t : {t0, 0.9_rt, t1}) {
+        const auto w = time_interp_weights(t0, t1, t, true);
+        EXPECT_NEAR(w[0] + w[1], 1.0_rt, tol);
+        const auto l = time_interp_weights(t0, t1, t, false);
+        EXPECT_NEAR(l[0] + l[1], 1.0_rt, tol);
+        EXPECT_EQ(l[2], 0.0_rt);
+        EXPECT_EQ(l[3], 0.0_rt);
+    }
+    const auto w0 = time_interp_weights(t0, t1, t0, true);
+    EXPECT_EQ(w0[0], 1.0_rt);
+    EXPECT_EQ(w0[2], 0.0_rt);
+    EXPECT_EQ(w0[3], 0.0_rt);
 }
 
 } // namespace kynema_sgf_tests
