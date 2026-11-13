@@ -4,6 +4,7 @@
 #include "AMReX_REAL.H"
 
 #ifdef KYNEMA_SGF_USE_KYNEMA_FMB
+#include <optional>
 #include <Kokkos_Core.hpp>
 #endif
 
@@ -23,7 +24,10 @@ int main(int argc, char* argv[])
 #endif
 
 #ifdef KYNEMA_SGF_USE_KYNEMA_FMB
-    Kokkos::initialize(argc, argv);
+    // Ensures Kokkos::finalize is called on every return path; reset
+    // explicitly below so that Kokkos is finalized before MPI
+    std::optional<Kokkos::ScopeGuard> kokkos_scope_guard(
+        std::in_place, argc, argv);
 #endif
 
     using namespace amrex::mpidatatypes;
@@ -109,6 +113,9 @@ int main(int argc, char* argv[])
                        << end_time - init_time << '\n';
     }
     amrex::Finalize();
+#ifdef KYNEMA_SGF_USE_KYNEMA_FMB
+    kokkos_scope_guard.reset();
+#endif
 #ifdef AMREX_USE_MPI
     MPI_Finalize();
 #endif

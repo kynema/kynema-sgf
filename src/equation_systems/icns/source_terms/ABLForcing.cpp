@@ -3,7 +3,9 @@
 #include "src/wind_energy/ABL.H"
 #include "src/physics/multiphase/MultiPhase.H"
 #include "src/equation_systems/vof/volume_fractions.H"
+#include "src/utilities/constants.H"
 #include "src/utilities/trig_ops.H"
+#include "src/utilities/io_utils.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
@@ -51,7 +53,9 @@ ABLForcing::ABLForcing(const CFDSim& sim)
     m_write_force_timetable = pp_abl.contains("forcing_timetable_output_file");
     if (m_write_force_timetable) {
         pp_abl.get("forcing_timetable_output_file", m_force_timetable);
-        pp_abl.query("forcing_timetable_frequency", m_force_outfreq);
+        ioutils::query_with_legacy_name(
+            pp_abl, "forcing_timetable_interval", "forcing_timetable_frequency",
+            m_force_outfreq);
         pp_abl.query("forcing_timetable_start_time", m_force_outstart);
         if (amrex::ParallelDescriptor::IOProcessor()) {
             std::ofstream outfile;
@@ -126,9 +130,7 @@ void ABLForcing::operator()(
                 }
                 if (multiphase::interface_band(
                         i, j, k, vof_arrs[nbx], n_band) ||
-                    vof_arrs[nbx](i, j, k) >
-                        1.0_rt - (std::numeric_limits<amrex::Real>::epsilon() *
-                                  1.0e4_rt)) {
+                    vof_arrs[nbx](i, j, k) > 1.0_rt - constants::VOF_TOL) {
                     fac = 0.0_rt;
                 }
             }

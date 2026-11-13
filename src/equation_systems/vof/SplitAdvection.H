@@ -71,7 +71,8 @@ void sweep_fluxes(
     amrex::Array4<amrex::Real const> const& vel_mac,
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Array4<amrex::Real> const& vofL,
-    amrex::Array4<amrex::Real> const& vofR);
+    amrex::Array4<amrex::Real> const& vofR,
+    amrex::Geometry const& geom);
 
 void sweep_balance(
     int dir,

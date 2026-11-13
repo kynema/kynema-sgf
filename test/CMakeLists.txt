@@ -201,6 +201,7 @@ add_test_rd(abl_multiphase_laminar 2544.41)
 add_test_rd(abl_sampling 727.79)
 add_test_rd(abl_specifiedmol_neutral 565.48)
 add_test_rd(act_fixed_wing 334.44)
+add_test_rd(act_drone_refinement 800)
 add_test_rd(boussinesq_bubble_godunov 307.55)
 add_test_rd(channel_builder_single_phase_periodic 357.76)
 add_test_rd(channel_godunov_laminar 19.24)
@@ -225,12 +226,19 @@ add_test_rd(udf_refinement 1125.3)
 add_test_rd(uniform_ct_disk_dynamic_adaptation 891.22)
 add_test_rd(vortex_patch_godunov 154.76)
 
-
 #=============================================================================
 # Regression tests (release CI)
 #=============================================================================
 add_test_r(abl_amd_wenoz 639.03)
 add_test_r(abl_anelastic 190.32)
+add_test_r(abl_mean_boussinesq)
+add_test(NAME abl_mean_boussinesq_missing_profile
+  COMMAND bash -c "\"${CMAKE_BINARY_DIR}/${kynema_sgf_exe_name}\" \"${CMAKE_CURRENT_SOURCE_DIR}/test_files/abl_mean_boussinesq/abl_mean_boussinesq.inp\" ABLMeanBoussinesq.temperature_profile_filename=missing_temperature_profile.dat amrex.throw_exception=1 amrex.signal_handling=0; exit $?")
+set_tests_properties(abl_mean_boussinesq_missing_profile PROPERTIES
+  WILL_FAIL TRUE
+  TIMEOUT 60
+  LABELS "regression"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test_files/abl_mean_boussinesq")
 add_test_r(abl_bndry_output_amr_native 331.45)
 add_test_r(abl_bndry_output_native 457.36)
 add_test_r(abl_godunov_geostrophic_timetable 505.79)
@@ -280,6 +288,8 @@ add_test_r(inertial_drop 1162.25)
 add_test_r(inflow_godunov_amr 148.06)
 add_test_r(joukowsky_disk_awc 709.76)
 add_test_r(linear_godunov_amr 456.78)
+add_test_r(ow_linear_init_waves 338.87)
+add_test_r(ow_stokes 1097.54)
 add_test_r(scalar_advection_refined 51.86)
 add_test_r(scalar_advection_uniform 10.13)
 add_test_r(sloshing_tank 974.62)
@@ -320,17 +330,12 @@ add_test_re(ib_cylinder_Re_300 994.38)
 add_test_re(ib_sphere_Re_100 1253.34)
 add_test_re(inflow_bds_amr 906.66)
 add_test_re(linear_bds_amr 965.48)
+add_test_re(ow_linear 1282.28)
+add_test_re(rankine 101.32)
+add_test_re(rankine-sym 98.3)
 add_test_re(rayleigh_taylor_godunov 808.09)
 add_test_re(rayleigh_taylor_mol 1186.89)
 add_test_re(tgv_mol 634.63)
-
-if("${KYNEMA_SGF_PRECISION}" STREQUAL "DOUBLE")
-  add_test_re(ow_linear 1282.28)
-  add_test_re(ow_linear_init_waves 338.87)
-  add_test_re(ow_stokes 1097.54)
-  add_test_re(rankine 101.32)
-  add_test_re(rankine-sym 98.3)
-endif()
 
 if(KYNEMA_SGF_ENABLE_NETCDF)
   add_test_re(abl_bndry_output 476.96)

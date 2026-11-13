@@ -34,6 +34,9 @@ public:
 
     void post_advance_work() override {}
 
+    [[nodiscard]] bool provides_inflow_values(
+        const Field& field, amrex::Orientation ori) const override;
+
     void set_velocity(
         int lev,
         amrex::Real time,

@@ -6,6 +6,7 @@
 #include "src/immersed_boundary/IBOps.H"
 #include "src/core/MultiParser.H"
 #include "src/fvm/gradient.H"
+#include "src/utilities/io_utils.H"
 
 #include "AMReX_MultiFabUtil.H"
 
@@ -111,7 +112,8 @@ public:
 
     void read_io_options(const ::kynema_sgf::utils::MultiParser& pp)
     {
-        pp.query("output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "output_interval", "output_frequency", m_out_freq);
     }
 
     void prepare_outputs(const std::string& out_dir)

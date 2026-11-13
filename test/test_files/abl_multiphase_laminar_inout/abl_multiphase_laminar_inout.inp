@@ -56,7 +56,7 @@ ABL.deltaU = 1e-5
 ABL.deltaV = 1e-5
 ABL.normal_direction = 2
 # frequency is rapid for the sake of reg test
-ABL.stats_output_frequency = 5
+ABL.stats_output_interval = 5
 OceanWaves.label = Wave1
 OceanWaves.Wave1.type = LinearWaves
 OceanWaves.Wave1.wave_height=2.0
@@ -88,13 +88,7 @@ geometry.prob_hi        =   400.   400.   400.  # Hi corner coordinates
 geometry.is_periodic    =   0   1   0   # Periodicity x y z (0/1)
 # Boundary conditions
 xlo.type = "mass_inflow_outflow"
-xlo.density = 1.3223
-xlo.vof = 0.0
-xlo.temperature = 0.0
 xhi.type = "mass_inflow_outflow"
-xhi.density = 1.3223
-xhi.vof = 0.0
-xhi.temperature = 0.0
 zlo.type =   "slip_wall"
 zhi.type =   "slip_wall"
 zhi.temperature_type = "fixed_gradient"

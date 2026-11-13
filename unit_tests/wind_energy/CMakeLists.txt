@@ -17,5 +17,3 @@ if (KYNEMA_SGF_ENABLE_NETCDF)
     test_abl_init_ncf.cpp
     )
 endif()
-
-add_subdirectory(actuator)

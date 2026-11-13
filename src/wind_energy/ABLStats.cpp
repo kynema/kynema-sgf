@@ -63,7 +63,8 @@ void ABLStats::initialize()
 
     {
         amrex::ParmParse pp("ABL");
-        pp.query("stats_output_frequency", m_out_freq);
+        ioutils::query_with_legacy_name(
+            pp, "stats_output_interval", "stats_output_frequency", m_out_freq);
         pp.query("stats_output_format", m_out_fmt);
         pp.query("normal_direction", m_normal_dir);
         AMREX_ASSERT((0 <= m_normal_dir) && (m_normal_dir < AMREX_SPACEDIM));
@@ -282,7 +283,8 @@ void ABLStats::compute_zi()
         {
             const auto dlo = fabbox.smallEnd();
             const auto dhi = fabbox.bigEnd();
-            AMREX_ALWAYS_ASSERT(dir == 2);
+            AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+                dir == 2, "dir = " + std::to_string(dir));
             box2d = amrex::BoxND<2>(
                 amrex::IntVectND<2>(dlo[0], dlo[1]),
                 amrex::IntVectND<2>(dhi[0], dhi[1]));
@@ -341,7 +343,8 @@ void ABLStats::compute_zi()
 #else
         const auto lo = amrex::lbound(fabbox);
         const auto hi = amrex::ubound(fabbox);
-        AMREX_ALWAYS_ASSERT(dir == 2);
+        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+            dir == 2, "dir = " + std::to_string(dir));
 #ifdef AMREX_USE_OMP
 #pragma omp parallel for collapse(2) reduction(+ : zi_sum)
 #endif
