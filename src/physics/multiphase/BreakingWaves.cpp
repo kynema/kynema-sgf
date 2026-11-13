@@ -87,16 +87,16 @@ void BreakingWaves::initialize_fields(int level, const amrex::Geometry& geom)
             // Compute free surface amplitude
             const amrex::Real eta =
                 water_level +
-                (alpha * ((1.0_rt - 1.0_rt / 16.0_rt * epsilon * epsilon) *
-                              std::cos(kappa * x) +
-                          0.5_rt * epsilon * std::cos(2.0_rt * kappa * x) +
-                          3.0_rt / 8.0_rt * epsilon * epsilon *
-                              std::cos(3.0_rt * kappa * x)));
+                (alpha * (((1.0_rt - (1.0_rt / 16.0_rt * epsilon * epsilon)) *
+                           std::cos(kappa * x)) +
+                          (0.5_rt * epsilon * std::cos(2.0_rt * kappa * x)) +
+                          (3.0_rt / 8.0_rt * epsilon * epsilon *
+                           std::cos(3.0_rt * kappa * x))));
             phi_arrs[nbx](i, j, k) = eta - z;
             // compute velocities
             const amrex::Real g = 9.81_rt;
             const amrex::Real Omega =
-                std::sqrt(g * kappa * (1.0_rt + epsilon * epsilon));
+                std::sqrt(g * kappa * (1.0_rt + (epsilon * epsilon)));
             if (z < eta) {
                 vel_arrs[nbx](i, j, k, 0) =
                     Omega * alpha * std::exp(kappa * z) * std::cos(kappa * x);
@@ -114,11 +114,11 @@ void BreakingWaves::initialize_fields(int level, const amrex::Geometry& geom)
                 smooth_heaviside = 0.0_rt;
             } else {
                 smooth_heaviside =
-                    0.5_rt * (1.0_rt + phi_arrs[nbx](i, j, k) / eps +
-                              1.0_rt / std::numbers::pi_v<amrex::Real> *
-                                  std::sin(
-                                      phi_arrs[nbx](i, j, k) *
-                                      std::numbers::pi_v<amrex::Real> / eps));
+                    0.5_rt * (1.0_rt + (phi_arrs[nbx](i, j, k) / eps) +
+                              (1.0_rt / std::numbers::pi_v<amrex::Real> *
+                               std::sin(
+                                   phi_arrs[nbx](i, j, k) *
+                                   std::numbers::pi_v<amrex::Real> / eps)));
             }
             rho_arrs[nbx](i, j, k) = (rho1 * smooth_heaviside) +
                                      (rho2 * (1.0_rt - smooth_heaviside));

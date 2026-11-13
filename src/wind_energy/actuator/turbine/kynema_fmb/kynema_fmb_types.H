@@ -58,7 +58,7 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
         ptr_ori = &buffer_ori[0];
     }
 
-    void populate_buffers()
+    void populate_buffers(bool one_way_coupled)
     {
         // Get hub information for nacelle force
         // Chord is not used, set it to zero
@@ -89,9 +89,11 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
                                        .bodies[body_index(n)]
                                        .chord[node_index(n)];
                 }
-                buffer_f[idx] = (float)interface->Aerodynamics()
-                                    .bodies[body_index(n)]
-                                    .loads[node_index(n)][dir];
+                if (!one_way_coupled) {
+                    buffer_f[idx] = (float)interface->Aerodynamics()
+                                        .bodies[body_index(n)]
+                                        .loads[node_index(n)][dir];
+                }
                 buffer_pf[idx] = (float)interface->Aerodynamics()
                                      .bodies[body_index(n)]
                                      .x_motion[node_index(n)][dir];
@@ -157,6 +159,29 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
             buffer_fv[0], buffer_fv[length_force(0)],
             buffer_fv[length_force(0) + length_force(1)]};
         interface->SetHubInflow(hub_inflow);
+    }
+
+    void save_and_zero_aerodynamic_loads()
+    {
+        // Zero blade and tower aero loads
+        int idx = 0;
+        for (int dir = 0; dir < AMREX_SPACEDIM; ++dir) {
+            // Skip hub node
+            ++idx;
+            for (int n = 1; n < length_force(0); ++n) {
+                buffer_f[idx] = (float)interface->Aerodynamics()
+                                    .bodies[body_index(n)]
+                                    .loads[node_index(n)][dir];
+                interface->Aerodynamics()
+                    .bodies[body_index(n)]
+                    .loads[node_index(n)][dir] = 0.0_rt;
+                ++idx;
+            }
+        }
+        // Hub load
+        interface->Turbine().hub_node.loads[0] = 0.0_rt;
+        interface->Turbine().hub_node.loads[1] = 0.0_rt;
+        interface->Turbine().hub_node.loads[2] = 0.0_rt;
     }
 
     /** Helper functions for navigating indices */
@@ -258,7 +283,10 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
     amrex::Real wind_speed{0.0_rt};
     amrex::Real yaw{0.0_rt};
     amrex::Real generator_efficiency{1.0_rt};
+    int section_refinement_blade{0};
+    int section_refinement_tower{2};
     int substep_counter{0};
+    bool one_way_coupled{false};
 
     std::string controller_shared_lib_path{""};
     std::string controller_input_file{""};

@@ -182,12 +182,11 @@ public:
                         } else {
                             smooth_heaviside =
                                 0.5_rt *
-                                (1.0_rt + phi_arrs[nbx](i, j, k) / eps +
-                                 1.0_rt / std::numbers::pi_v<amrex::Real> *
-                                     std::sin(
-                                         phi_arrs[nbx](i, j, k) *
-                                         std::numbers::pi_v<amrex::Real> /
-                                         eps));
+                                (1.0_rt + (phi_arrs[nbx](i, j, k) / eps) +
+                                 (1.0_rt / std::numbers::pi_v<amrex::Real> *
+                                  std::sin(
+                                      phi_arrs[nbx](i, j, k) *
+                                      std::numbers::pi_v<amrex::Real> / eps)));
                         }
                         visc_arrs[nbx](i, j, k) =
                             (mu1 * smooth_heaviside) +
@@ -251,12 +250,11 @@ public:
                         } else {
                             smooth_heaviside =
                                 0.5_rt *
-                                (1.0_rt + phi_arrs[nbx](i, j, k) / eps +
-                                 1.0_rt / std::numbers::pi_v<amrex::Real> *
-                                     std::sin(
-                                         phi_arrs[nbx](i, j, k) *
-                                         std::numbers::pi_v<amrex::Real> /
-                                         eps));
+                                (1.0_rt + (phi_arrs[nbx](i, j, k) / eps) +
+                                 (1.0_rt / std::numbers::pi_v<amrex::Real> *
+                                  std::sin(
+                                      phi_arrs[nbx](i, j, k) *
+                                      std::numbers::pi_v<amrex::Real> / eps)));
                         }
                         visc_arrs[nbx](i, j, k) =
                             (mu1 / Pr1 * smooth_heaviside) +
@@ -345,11 +343,11 @@ public:
                     } else {
                         smooth_heaviside =
                             0.5_rt *
-                            (1.0_rt + phi_arrs[nbx](i, j, k) / eps +
-                             1.0_rt / std::numbers::pi_v<amrex::Real> *
-                                 std::sin(
-                                     phi_arrs[nbx](i, j, k) *
-                                     std::numbers::pi_v<amrex::Real> / eps));
+                            (1.0_rt + (phi_arrs[nbx](i, j, k) / eps) +
+                             (1.0_rt / std::numbers::pi_v<amrex::Real> *
+                              std::sin(
+                                  phi_arrs[nbx](i, j, k) *
+                                  std::numbers::pi_v<amrex::Real> / eps)));
                     }
                     beta_arrs[nbx](i, j, k) *= (1.0_rt - smooth_heaviside);
                 });

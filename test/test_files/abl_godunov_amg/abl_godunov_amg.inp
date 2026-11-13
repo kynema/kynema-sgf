@@ -1,0 +1,9 @@
+FILE = ../abl_godunov/abl_godunov.inp
+time.max_step = 6
+amr.n_cell = 32 32 256
+mac_proj.bottom_atol = -1
+mac_proj.max_coarsening_level = 0
+mac_proj.bottom_solver = amg
+nodal_proj.num_pre_smooth = 6
+nodal_proj.num_post_smooth = 6
+nodal_proj.bottom_solver = amg

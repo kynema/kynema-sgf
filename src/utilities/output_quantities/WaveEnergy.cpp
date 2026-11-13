@@ -89,9 +89,9 @@ amrex::Real WaveEnergy::calculate_kinetic_energy()
                     Wave_Energy_Fab +=
                         cell_vol * mask_arr(i, j, k) * 0.5_rt *
                         vof_arr(i, j, k) *
-                        (vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0) +
-                         vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1) +
-                         vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2));
+                        ((vel_arr(i, j, k, 0) * vel_arr(i, j, k, 0)) +
+                         (vel_arr(i, j, k, 1) * vel_arr(i, j, k, 1)) +
+                         (vel_arr(i, j, k, 2) * vel_arr(i, j, k, 2)));
                 });
                 return Wave_Energy_Fab;
             });
@@ -151,7 +151,8 @@ amrex::Real WaveEnergy::calculate_potential_energy()
                     amrex::Real dir =
                         (vof_arr(i, j, k + 1) > vof_arr(i, j, k)) ? -1 : 1;
                     const amrex::Real zl =
-                        probloz + ((kk + dir * 0.5_rt * vof_arr(i, j, k)) * dz);
+                        probloz +
+                        ((kk + (dir * 0.5_rt * vof_arr(i, j, k))) * dz);
                     Wave_Energy_Fab += cell_vol * mask_arr(i, j, k) *
                                        vof_arr(i, j, k) * g * zl;
                 });

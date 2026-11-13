@@ -499,8 +499,8 @@ void Flather::set_velocity(
 
                 // Calculation of Flather formula. "val" = velocity * h
                 auto Flather_val =
-                    boundary_val + (ori.isLow() ? -1.0_rt : 1.0_rt) * c *
-                                       (interior_h - boundary_h);
+                    boundary_val + ((ori.isLow() ? -1.0_rt : 1.0_rt) * c *
+                                    (interior_h - boundary_h));
 
                 // Prevent Flather_val from changing signs
                 if (boundary_val > 0.0_rt) {

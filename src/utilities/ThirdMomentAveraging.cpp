@@ -252,7 +252,7 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
 
                                 // cell coordinates
                                 const amrex::Real cell_xlo =
-                                    problo_x + idxOp(i, j, k) * dx;
+                                    problo_x + (idxOp(i, j, k) * dx);
                                 const amrex::Real cell_xhi = cell_xlo + dx;
 
                                 // line indices
@@ -282,7 +282,7 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
 
                                     // line coordinates
                                     const amrex::Real line_xlo =
-                                        problo_x + ind * line_dx;
+                                        problo_x + (ind * line_dx);
                                     const amrex::Real line_xhi =
                                         line_xlo + line_dx;
 
@@ -306,9 +306,9 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
                                     const auto idx = iv[dir];
                                     const auto x_cell =
                                         problo_x +
-                                        (static_cast<amrex::Real>(idx) +
-                                         0.5_rt) *
-                                            dx;
+                                        ((static_cast<amrex::Real>(idx) +
+                                          0.5_rt) *
+                                         dx);
                                     // Get location of neighboring cell centers
                                     auto x_up = x_cell + dx;
                                     auto x_down = x_cell - dx;
@@ -345,30 +345,30 @@ void ThirdMomentAveraging::compute_average(const IndexSelector& idxOp)
                                     for (int m = 0; m < ncomp1; ++m) {
                                         const auto arr1_interp =
                                             mfab_arr1(iv, m) +
-                                            (mfab_arr1(iv_nb, m) -
-                                             mfab_arr1(iv, m)) *
-                                                ((x_targ - x_cell) /
-                                                 (x_nb - x_cell));
+                                            ((mfab_arr1(iv_nb, m) -
+                                              mfab_arr1(iv, m)) *
+                                             ((x_targ - x_cell) /
+                                              (x_nb - x_cell)));
                                         const amrex::Real up1 =
                                             arr1_interp -
                                             line_avg1[(ncomp1 * ind) + m];
                                         for (int n = 0; n < ncomp2; ++n) {
                                             const auto arr2_interp =
                                                 mfab_arr2(iv, n) +
-                                                (mfab_arr2(iv_nb, n) -
-                                                 mfab_arr2(iv, n)) *
-                                                    ((x_targ - x_cell) /
-                                                     (x_nb - x_cell));
+                                                ((mfab_arr2(iv_nb, n) -
+                                                  mfab_arr2(iv, n)) *
+                                                 ((x_targ - x_cell) /
+                                                  (x_nb - x_cell)));
                                             const amrex::Real up2 =
                                                 arr2_interp -
                                                 line_avg2[(ncomp2 * ind) + n];
                                             for (int p = 0; p < ncomp3; ++p) {
                                                 const auto arr3_interp =
                                                     mfab_arr3(iv, p) +
-                                                    (mfab_arr3(iv_nb, p) -
-                                                     mfab_arr3(iv, p)) *
-                                                        ((x_targ - x_cell) /
-                                                         (x_nb - x_cell));
+                                                    ((mfab_arr3(iv_nb, p) -
+                                                      mfab_arr3(iv, p)) *
+                                                     ((x_targ - x_cell) /
+                                                      (x_nb - x_cell)));
                                                 const amrex::Real up3 =
                                                     arr3_interp -
                                                     line_avg3

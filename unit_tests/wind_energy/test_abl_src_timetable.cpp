@@ -188,13 +188,13 @@ TEST_F(ABLSrcTimeTableTest, abl)
     }
     // Velocity at hub height is 8 at 0deg and target is 8 at 2.5deg
     target_force[0] =
-        (8.0_rt *
-             std::cos(std::numbers::pi_v<amrex::Real> / 180.0_rt * 2.5_rt) -
+        ((8.0_rt *
+          std::cos(std::numbers::pi_v<amrex::Real> / 180.0_rt * 2.5_rt)) -
          init_vel[0]) /
         m_dt;
     target_force[1] =
-        (8.0_rt *
-             std::sin(std::numbers::pi_v<amrex::Real> / 180.0_rt * 2.5_rt) -
+        ((8.0_rt *
+          std::sin(std::numbers::pi_v<amrex::Real> / 180.0_rt * 2.5_rt)) -
          init_vel[1]) /
         m_dt;
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
@@ -278,14 +278,14 @@ TEST_F(ABLSrcTimeTableTest, bodyforce)
         }
         // Forces correspond to ABL Forcing from other test
         const amrex::Vector<amrex::Real> init_vel{8.0_rt, 0.0_rt, 0.0_rt};
-        target_force[0] = (8.0_rt * std::cos(
-                                        std::numbers::pi_v<amrex::Real> /
-                                        180.0_rt * angles[n]) -
+        target_force[0] = ((8.0_rt * std::cos(
+                                         std::numbers::pi_v<amrex::Real> /
+                                         180.0_rt * angles[n])) -
                            init_vel[0]) /
                           m_dt;
-        target_force[1] = (8.0_rt * std::sin(
-                                        std::numbers::pi_v<amrex::Real> /
-                                        180.0_rt * angles[n]) -
+        target_force[1] = ((8.0_rt * std::sin(
+                                         std::numbers::pi_v<amrex::Real> /
+                                         180.0_rt * angles[n])) -
                            init_vel[1]) /
                           m_dt;
         for (int i = 0; i < AMREX_SPACEDIM; ++i) {

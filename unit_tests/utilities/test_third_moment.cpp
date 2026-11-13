@@ -345,7 +345,7 @@ void ThirdMomentAveragingTest::test_dir(int dir)
     uuu();
 
     amrex::Real x =
-        (0.5_rt + 0.01_rt * amrex::Random()) * (problo[dir] + probhi[dir]);
+        (0.5_rt + (0.01_rt * amrex::Random())) * (problo[dir] + probhi[dir]);
 
     // Non-zero third moments are permutations of <u' v' w'> = 1/4.
     EXPECT_NEAR(0.25_rt, uuu.line_average_interpolated(x, 0, 1, 2), tol);

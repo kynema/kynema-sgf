@@ -52,7 +52,6 @@ public:
 
     ~LinearShearProfile() override = default;
 
-    // cppcheck-suppress duplInheritedMember
     [[nodiscard]] LinearShearOp device_instance() const { return m_op; }
 
 private:
@@ -101,7 +100,6 @@ public:
 
     ~PowerLawProfile() override = default;
 
-    // cppcheck-suppress duplInheritedMember
     [[nodiscard]] PowerLawOp device_instance() const { return m_op; }
 
 private:
@@ -368,7 +366,6 @@ SyntheticTurbulence::SyntheticTurbulence(const CFDSim& sim)
     , m_repo(sim.repo())
     , m_mesh(sim.mesh())
     , m_velocity(sim.repo().get_field("velocity"))
-    , m_density(sim.repo().get_field("density"))
     , m_turb_force(sim.repo().declare_field("synth_turb_forcing", 3))
 {
 #ifndef KYNEMA_SGF_USE_NETCDF
@@ -587,7 +584,6 @@ void SyntheticTurbulence::update_impl(
         const auto& epsilon = m_epsilon;
 
         const auto& turb_force_arrs = m_turb_force(lev).arrays();
-        const auto& rho_arrs = m_density(lev).arrays();
 
         amrex::ParallelFor(
             m_turb_force(lev),
@@ -641,12 +637,11 @@ void SyntheticTurbulence::update_impl(
                         std::exp(-(term1 * term1)) * gauss_scaling;
                     const amrex::Real factor = v_mag_total * eta;
 
-                    turb_force_arrs[nbx](i, j, k, 0) =
-                        rho_arrs[nbx](i, j, k) * vel_g[0] * factor;
-                    turb_force_arrs[nbx](i, j, k, 1) =
-                        rho_arrs[nbx](i, j, k) * vel_g[1] * factor;
-                    turb_force_arrs[nbx](i, j, k, 2) =
-                        rho_arrs[nbx](i, j, k) * vel_g[2] * factor;
+                    turb_force_arrs[nbx](i, j, k, 0) = vel_g[0] * factor;
+                    turb_force_arrs[nbx](i, j, k, 1) = vel_g[1] * factor;
+                    turb_force_arrs[nbx](i, j, k, 2) = vel_g[2] * factor;
+                    // This force should be kinematic
+                    // (Density is incorporated elsewhere)
                 }
             });
     }

@@ -39,19 +39,19 @@ struct Laplacian
                 auto const& phi = in_arrs[nbx];
                 auto const& lapphi = out_arrs[nbx];
                 const amrex::Real d2phidx2 =
-                    (Stencil::s00 * phi(i + 1, j, k, 0) +
-                     Stencil::s01 * phi(i, j, k, 0) +
-                     Stencil::s02 * phi(i - 1, j, k, 0)) *
+                    ((Stencil::s00 * phi(i + 1, j, k, 0)) +
+                     (Stencil::s01 * phi(i, j, k, 0)) +
+                     (Stencil::s02 * phi(i - 1, j, k, 0))) *
                     idx[0] * idx[0];
                 const amrex::Real d2phidy2 =
-                    (Stencil::s10 * phi(i, j + 1, k, 1) +
-                     Stencil::s11 * phi(i, j, k, 1) +
-                     Stencil::s12 * phi(i, j - 1, k, 1)) *
+                    ((Stencil::s10 * phi(i, j + 1, k, 1)) +
+                     (Stencil::s11 * phi(i, j, k, 1)) +
+                     (Stencil::s12 * phi(i, j - 1, k, 1))) *
                     idx[1] * idx[1];
                 const amrex::Real d2phidz2 =
-                    (Stencil::s20 * phi(i, j, k + 1, 2) +
-                     Stencil::s21 * phi(i, j, k, 2) +
-                     Stencil::s22 * phi(i, j, k - 1, 2)) *
+                    ((Stencil::s20 * phi(i, j, k + 1, 2)) +
+                     (Stencil::s21 * phi(i, j, k, 2)) +
+                     (Stencil::s22 * phi(i, j, k - 1, 2))) *
                     idx[2] * idx[2];
                 lapphi(i, j, k) = d2phidx2 + d2phidy2 + d2phidz2;
             });

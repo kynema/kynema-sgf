@@ -149,7 +149,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         problo[2] + ((k + 0.5_rt) * dz) - ht_arrs[nbx](i, j, k),
                         0.5_rt * dz);
                     const amrex::Real lscale_s =
-                        (lambda * kappa * z) / (lambda + kappa * z);
+                        (lambda * kappa * z) / (lambda + (kappa * z));
                     const amrex::Real lscale_b =
                         Cb_stable *
                         std::sqrt(
@@ -166,7 +166,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                              ? Rt
                              : amrex::max<amrex::Real>(
                                    Rt, Rt - (utils::powi(Rt - Rtc, 2) /
-                                             (Rt + Rtmin - 2.0_rt * Rtc)));
+                                             (Rt + Rtmin - (2.0_rt * Rtc))));
                     tlscale_arrs[nbx](i, j, k) =
                         (stratification > 0)
                             ? std::sqrt(
@@ -196,15 +196,15 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                              ? 0.0_rt
                              : Rt;
                     const amrex::Real Cmu_Rt =
-                        (Cmu + 0.108_rt * Rt) /
-                        (1.0_rt + 0.308_rt * Rt +
-                         0.00837_rt * utils::powi(Rt, 2));
+                        (Cmu + (0.108_rt * Rt)) /
+                        (1.0_rt + (0.308_rt * Rt) +
+                         (0.00837_rt * utils::powi(Rt, 2)));
                     mu_arrs[nbx](i, j, k) = rho_arrs[nbx](i, j, k) * Cmu_Rt *
                                             tlscale_arrs[nbx](i, j, k) *
                                             std::sqrt(tke_arrs[nbx](i, j, k)) *
                                             (1.0_rt - blank_arrs[nbx](i, j, k));
                     const amrex::Real Cmu_prime_Rt =
-                        Cmu / (1.0_rt + 0.277_rt * Rt);
+                        Cmu / (1.0_rt + (0.277_rt * Rt));
                     const amrex::Real muPrime =
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
@@ -225,7 +225,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         beta_arrs[nbx](i, j, k);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dz);
                     const amrex::Real lscale_s =
-                        (lambda * kappa * z) / (lambda + kappa * z);
+                        (lambda * kappa * z) / (lambda + (kappa * z));
                     const amrex::Real lscale_b =
                         Cb_stable *
                         std::sqrt(
@@ -242,7 +242,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                              ? Rt
                              : amrex::max<amrex::Real>(
                                    Rt, Rt - (utils::powi(Rt - Rtc, 2) /
-                                             (Rt + Rtmin - 2.0_rt * Rtc)));
+                                             (Rt + Rtmin - (2.0_rt * Rtc))));
                     tlscale_arrs[nbx](i, j, k) =
                         (stratification > 0)
                             ? std::sqrt(
@@ -272,14 +272,14 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                              ? 0.0_rt
                              : Rt;
                     const amrex::Real Cmu_Rt =
-                        (Cmu + 0.108_rt * Rt) /
-                        (1.0_rt + 0.308_rt * Rt +
-                         0.00837_rt * utils::powi(Rt, 2));
+                        (Cmu + (0.108_rt * Rt)) /
+                        (1.0_rt + (0.308_rt * Rt) +
+                         (0.00837_rt * utils::powi(Rt, 2)));
                     mu_arrs[nbx](i, j, k) = rho_arrs[nbx](i, j, k) * Cmu_Rt *
                                             tlscale_arrs[nbx](i, j, k) *
                                             std::sqrt(tke_arrs[nbx](i, j, k));
                     const amrex::Real Cmu_prime_Rt =
-                        Cmu / (1.0_rt + 0.277_rt * Rt);
+                        Cmu / (1.0_rt + (0.277_rt * Rt));
                     const amrex::Real muPrime =
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
@@ -337,9 +337,9 @@ void KLAxell<Transport>::update_alphaeff(Field& alphaeff)
                 Rt = (Rt > Rtc) ? Rt
                                 : amrex::max<amrex::Real>(
                                       Rt, Rt - (utils::powi(Rt - Rtc, 2) /
-                                                (Rt + Rtmin - 2.0_rt * Rtc)));
+                                                (Rt + Rtmin - (2.0_rt * Rtc))));
                 const amrex::Real prandtlRt =
-                    (1.0_rt + 0.193_rt * Rt) / (1.0_rt + 0.0302_rt * Rt);
+                    (1.0_rt + (0.193_rt * Rt)) / (1.0_rt + (0.0302_rt * Rt));
                 alphaeff_arrs[nbx](i, j, k) =
                     lam_diff_arrs[nbx](i, j, k) +
                     (muturb_arrs[nbx](i, j, k) / prandtlRt);

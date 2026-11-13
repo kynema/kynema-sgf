@@ -34,8 +34,7 @@ vs::Tensor integrate_global_angular_velocity(
     while (direction * (time - start) > 0.0_rt) {
         amrex::Real end = time;
         if (direction > 0.0_rt) {
-            const auto next =
-                std::upper_bound(times.begin(), times.end(), start);
+            const auto next = std::ranges::upper_bound(times, start);
             if (next != times.end()) {
                 end = std::min(time, *next);
             }
@@ -166,7 +165,8 @@ vs::Quaternion RigidBodyMotion::orientation_quaternion(const int row) const
 {
     const auto values = m_orientation_table.row(row);
     if (m_orientation_format == OrientationFormat::Quaternion) {
-        return vs::Quaternion{values[0], values[1], values[2], values[3]}
+        return vs::Quaternion{
+            .w = values[0], .x = values[1], .y = values[2], .z = values[3]}
             .normalized();
     }
     return vs::from_roll_pitch_yaw({values[0], values[1], values[2]});
@@ -207,7 +207,7 @@ vs::Tensor RigidBodyMotion::orientation(const amrex::Real time) const
                 orientation_quaternion(static_cast<int>(times.size()) - 1));
         }
         const int upper = static_cast<int>(
-            std::upper_bound(times.begin(), times.end(), time) - times.begin());
+            std::ranges::upper_bound(times, time) - times.begin());
         const int lower = upper - 1;
         const amrex::Real fraction =
             (time - times[lower]) / (times[upper] - times[lower]);
@@ -234,13 +234,13 @@ vs::Vector RigidBodyMotion::angular_velocity(const amrex::Real time) const
             return vs::Vector::zero();
         }
         int upper = static_cast<int>(
-            std::upper_bound(times.begin(), times.end(), time) - times.begin());
+            std::ranges::upper_bound(times, time) - times.begin());
         upper = std::min(upper, static_cast<int>(times.size()) - 1);
         const int lower = upper - 1;
         auto a = orientation_quaternion(lower);
         auto b = orientation_quaternion(upper);
         if (vs::dot(a, b) < 0.0_rt) {
-            b = {-b.w, -b.x, -b.y, -b.z};
+            b = {.w = -b.w, .x = -b.x, .y = -b.y, .z = -b.z};
         }
         const auto relative = (b * a.conjugate()).normalized();
         // Convert the relative quaternion over this interval into a constant

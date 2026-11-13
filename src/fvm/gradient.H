@@ -46,21 +46,21 @@ struct Gradient
                 auto const& gradphi_arr = out_arrs[nbx];
                 for (int icomp = 0; icomp < ncomp; icomp++) {
                     gradphi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 0) =
-                        (Stencil::c00 * phi_arr(i + 1, j, k, icomp) +
-                         Stencil::c01 * phi_arr(i, j, k, icomp) +
-                         Stencil::c02 * phi_arr(i - 1, j, k, icomp)) *
+                        ((Stencil::c00 * phi_arr(i + 1, j, k, icomp)) +
+                         (Stencil::c01 * phi_arr(i, j, k, icomp)) +
+                         (Stencil::c02 * phi_arr(i - 1, j, k, icomp))) *
                         idx[0];
 
                     gradphi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 1) =
-                        (Stencil::c10 * phi_arr(i, j + 1, k, icomp) +
-                         Stencil::c11 * phi_arr(i, j, k, icomp) +
-                         Stencil::c12 * phi_arr(i, j - 1, k, icomp)) *
+                        ((Stencil::c10 * phi_arr(i, j + 1, k, icomp)) +
+                         (Stencil::c11 * phi_arr(i, j, k, icomp)) +
+                         (Stencil::c12 * phi_arr(i, j - 1, k, icomp))) *
                         idx[1];
 
                     gradphi_arr(i, j, k, (icomp * AMREX_SPACEDIM) + 2) =
-                        (Stencil::c20 * phi_arr(i, j, k + 1, icomp) +
-                         Stencil::c21 * phi_arr(i, j, k, icomp) +
-                         Stencil::c22 * phi_arr(i, j, k - 1, icomp)) *
+                        ((Stencil::c20 * phi_arr(i, j, k + 1, icomp)) +
+                         (Stencil::c21 * phi_arr(i, j, k, icomp)) +
+                         (Stencil::c22 * phi_arr(i, j, k - 1, icomp))) *
                         idx[2];
                 }
             });

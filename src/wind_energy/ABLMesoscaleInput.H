@@ -11,7 +11,6 @@ class ABLMesoscaleInput
 {
 
 public:
-    // cppcheck-suppress noExplicitConstructor
     ABLMesoscaleInput(std::string ncfile, std::string var_prefix = "");
 
     ~ABLMesoscaleInput() = default;

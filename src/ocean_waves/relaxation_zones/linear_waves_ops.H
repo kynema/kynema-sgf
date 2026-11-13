@@ -59,7 +59,6 @@ struct InitDataOp<LinearWaves>
         if (multiphase_mode) {
             levelset = &sim.repo().get_field("levelset");
         }
-        // cppcheck-suppress constVariableReference
         auto& velocity = sim.repo().get_field("velocity");
 
         const auto& problo = geom.ProbLoArray();
@@ -151,9 +150,7 @@ struct UpdateTargetFieldsOp<LinearWaves>
 
         auto& sim = data.sim();
 
-        // cppcheck-suppress constVariableReference
         auto& ow_levelset = sim.repo().get_field("ow_levelset");
-        // cppcheck-suppress constVariableReference
         auto& ow_velocity = sim.repo().get_field("ow_velocity");
 
         auto nlevels = sim.repo().num_active_levels();
@@ -187,8 +184,8 @@ struct UpdateTargetFieldsOp<LinearWaves>
                         wave_number * g * std::tanh(wave_number * water_depth),
                         0.5_rt);
                     const amrex::Real phase =
-                        (wave_number * (x - current * time)) - (omega * time) -
-                        phase_offset;
+                        (wave_number * (x - (current * time))) -
+                        (omega * time) - phase_offset;
 
                     const amrex::Real eta =
                         (wave_height / 2.0_rt * std::cos(phase)) +

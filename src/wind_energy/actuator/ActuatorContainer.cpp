@@ -54,16 +54,16 @@ void ActuatorContainer::initialize_container()
 
     {
         const int nproc = amrex::ParallelDescriptor::NProcs();
-        amrex::Vector<int> pts_per_proc(nproc, 0);
 #ifdef AMREX_USE_MPI
+        amrex::Vector<int> pts_per_proc(nproc, 0);
         int local_total_pts = total_pts;
         MPI_Allgather(
             &local_total_pts, 1, MPI_INT, pts_per_proc.data(), 1, MPI_INT,
             amrex::ParallelDescriptor::Communicator());
         AMREX_ALWAYS_ASSERT(local_total_pts == total_pts);
 #else
-        pts_per_proc.resize(nproc);
-        pts_per_proc[0] = total_pts;
+        AMREX_ALWAYS_ASSERT(nproc == 1);
+        const amrex::Vector<int> pts_per_proc{total_pts};
 #endif
         m_proc_offsets[0] = 0;
         for (int i = 1; i <= nproc; ++i) {
@@ -311,11 +311,11 @@ void ActuatorContainer::interpolate_fields(
                 auto& pp = pstruct[ip];
                 // Determine offsets within the containing cell
                 const amrex::Real x =
-                    (pp.pos(0) - plo[0] - 0.5_rt * dx[0]) * dxi[0];
+                    (pp.pos(0) - plo[0] - (0.5_rt * dx[0])) * dxi[0];
                 const amrex::Real y =
-                    (pp.pos(1) - plo[1] - 0.5_rt * dx[1]) * dxi[1];
+                    (pp.pos(1) - plo[1] - (0.5_rt * dx[1])) * dxi[1];
                 const amrex::Real z =
-                    (pp.pos(2) - plo[2] - 0.5_rt * dx[2]) * dxi[2];
+                    (pp.pos(2) - plo[2] - (0.5_rt * dx[2])) * dxi[2];
 
                 // Index of the low corner
                 const int i = static_cast<int>(std::floor(x));

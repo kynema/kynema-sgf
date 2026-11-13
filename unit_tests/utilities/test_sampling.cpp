@@ -357,15 +357,18 @@ TEST_F(SamplingTest, interpolation_order)
     const auto& plo = geom.ProbLoArray();
     const auto& dx = geom.CellSizeArray();
     const auto& dxi = geom.InvCellSizeArray();
-    const int i = static_cast<int>(std::round((x - plo[0]) * dxi[0] - 0.5_rt));
-    const int j = static_cast<int>(std::round((y - plo[1]) * dxi[1] - 0.5_rt));
-    const int k = static_cast<int>(std::round((z - plo[2]) * dxi[2] - 0.5_rt));
+    const int i =
+        static_cast<int>(std::round(((x - plo[0]) * dxi[0]) - 0.5_rt));
+    const int j =
+        static_cast<int>(std::round(((y - plo[1]) * dxi[1]) - 0.5_rt));
+    const int k =
+        static_cast<int>(std::round(((z - plo[2]) * dxi[2]) - 0.5_rt));
     const amrex::Real xcc =
-        plo[0] + (static_cast<amrex::Real>(i) + 0.5_rt) * dx[0];
+        plo[0] + ((static_cast<amrex::Real>(i) + 0.5_rt) * dx[0]);
     const amrex::Real ycc =
-        plo[1] + (static_cast<amrex::Real>(j) + 0.5_rt) * dx[1];
+        plo[1] + ((static_cast<amrex::Real>(j) + 0.5_rt) * dx[1]);
     const amrex::Real zcc =
-        plo[2] + (static_cast<amrex::Real>(k) + 0.5_rt) * dx[2];
+        plo[2] + ((static_cast<amrex::Real>(k) + 0.5_rt) * dx[2]);
 
     constexpr amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e6_rt;
@@ -476,7 +479,7 @@ TEST_F(SamplingTest, snap_to_cell_center)
     const auto& plo = geom.ProbLoArray();
 
     const auto is_cell_center = [&](const amrex::Real x, const int d) {
-        const amrex::Real idx = (x - plo[d]) / dx[d] - 0.5_rt;
+        const amrex::Real idx = ((x - plo[d]) / dx[d]) - 0.5_rt;
         return amrex::Math::abs(idx - std::round(idx)) < tol;
     };
 

@@ -133,7 +133,7 @@ void RadarSampler::check_bounds()
 
 amrex::Real RadarSampler::total_sweep_time() const
 {
-    return 2.0_rt * (m_sweep_angle / m_angular_speed + m_reset_time);
+    return 2.0_rt * ((m_sweep_angle / m_angular_speed) + m_reset_time);
 }
 
 amrex::Real RadarSampler::periodic_time()

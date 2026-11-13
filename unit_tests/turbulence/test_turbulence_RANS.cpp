@@ -151,7 +151,8 @@ TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
     const amrex::Real lambda = 30.0_rt;
     const amrex::Real kappa = 0.41_rt;
     const amrex::Real x3 = 1016.0_rt;
-    const amrex::Real lscale_s = (lambda * kappa * x3) / (lambda + kappa * x3);
+    const amrex::Real lscale_s =
+        (lambda * kappa * x3) / (lambda + (kappa * x3));
     const amrex::Real tlscale_val = lscale_s;
     const amrex::Real tke_val = 0.1_rt;
     // Set up velocity field with constant strainrate
@@ -183,9 +184,9 @@ TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
     const amrex::Real stratification = 0.0_rt;
     const amrex::Real Rt =
         kynema_sgf::utils::powi(tke_val / epsilon, 2) * stratification;
-    const amrex::Real Cmu_Rt =
-        (0.556_rt + 0.108_rt * Rt) /
-        (1.0_rt + 0.308_rt * Rt + 0.00837_rt * kynema_sgf::utils::powi(Rt, 2));
+    const amrex::Real Cmu_Rt = (0.556_rt + (0.108_rt * Rt)) /
+                               (1.0_rt + (0.308_rt * Rt) +
+                                (0.00837_rt * kynema_sgf::utils::powi(Rt, 2)));
     const amrex::Real tol = 0.12_rt;
     const amrex::Real nut_max =
         rho0 * Cmu_Rt * tlscale_val * std::sqrt(tke_val);

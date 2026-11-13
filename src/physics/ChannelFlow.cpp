@@ -204,10 +204,10 @@ void ChannelFlow::initialize_fields(
                     wd_arrs[nbx](i, j, k) = h;
                     const amrex::Real hp = h / y_tau;
                     vel_arrs[nbx](i, j, k, 0) =
-                        utau *
-                        (1.0_rt / kappa * std::log1p(kappa * hp) +
-                         7.8_rt * (1.0_rt - std::exp(-hp / 11.0_rt) -
-                                   (hp / 11.0_rt) * std::exp(-hp / 3.0_rt)));
+                        utau * ((1.0_rt / kappa * std::log1p(kappa * hp)) +
+                                (7.8_rt *
+                                 (1.0_rt - std::exp(-hp / 11.0_rt) -
+                                  ((hp / 11.0_rt) * std::exp(-hp / 3.0_rt)))));
 
                     const amrex::Real y = problo[1] + ((j + 0.5_rt) * dx[1]);
                     const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
@@ -325,7 +325,7 @@ amrex::Real ChannelFlow::compute_error(const IndexSelector& idxOp)
 
                 const amrex::Real u = vel_bx(i, j, k, flow_dir);
                 const amrex::Real u_exact =
-                    1.0_rt / (2.0_rt * mu) * -dpdx * (y * y - y * ht);
+                    1.0_rt / (2.0_rt * mu) * -dpdx * ((y * y) - (y * ht));
 
                 const amrex::Real cell_vol =
                     dx[0] * fac_x * dx[1] * fac_y * dx[2] * fac_z;
