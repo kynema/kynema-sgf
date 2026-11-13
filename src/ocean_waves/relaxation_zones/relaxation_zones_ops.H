@@ -35,7 +35,8 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata);
 
 void update_target_vof(CFDSim& sim);
 
-/** Move partially filled cell velocities to the liquid centroid, in place
+/** Move partially filled cell velocities to the approximate z-location of
+ *  the liquid centroid (horizontal interface assumed), in place
  *
  *  Each column is swept from top to bottom, so the cell below is read before
  *  it is modified and no temporary storage is needed. Cells with vof at or
@@ -45,8 +46,7 @@ void update_target_vof(CFDSim& sim);
 void approx_liquid_centroid_z_velocity(
     amrex::MultiFab& vel, const amrex::MultiFab& vof, int ngrow);
 
-/** Same as approx_liquid_centroid_z_velocity, computing vof from a levelset
- * field */
+/** Same as approx_liquid_centroid_z_velocity, with vof from a levelset */
 void approx_liquid_centroid_z_velocity_from_levelset(
     amrex::MultiFab& vel,
     const amrex::MultiFab& levelset,
@@ -54,7 +54,8 @@ void approx_liquid_centroid_z_velocity_from_levelset(
     int ngrow);
 
 /** Make target (liquid) velocity consistent with target vof by evaluating it
- *  at the liquid centroid of partially filled cells. Requires ow_velocity to
+ *  at the approximate z-location of the liquid centroid of partially filled
+ *  cells. Requires ow_velocity to
  *  be regenerated before every call, which all wave theories do.
  */
 void update_target_velocity(CFDSim& sim);

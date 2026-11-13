@@ -32,11 +32,13 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real free_surface_to_vof(
     return volfrac;
 }
 
-/** Liquid velocity component at the liquid centroid of a cell
+/** Liquid velocity component at the approximate z-location of the liquid
+ *  centroid of a cell
  *
  *  Cell-centered wave velocities are point values, but the liquid in a
- *  partially filled cell occupies only its lower portion. The liquid centroid
- *  is approximated as z_bottom + 0.5 * vof * dz, which always lies between the
+ *  partially filled cell occupies only its lower portion. Only the vertical
+ *  position of the liquid centroid is approximated, assuming a horizontal
+ *  interface: z_bottom + 0.5 * vof * dz. This always lies between the
  *  cell center below (vof -> 0 gives the bottom face) and the current cell
  *  center (vof -> 1), so this is an interpolation and never an extrapolation.
  */

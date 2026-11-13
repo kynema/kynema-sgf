@@ -6,7 +6,7 @@ Section: Ocean Waves
 This section is for setting up wave forcing and relaxation zones.
 
 For every wave type, the target velocity (``ow_velocity``) is the liquid velocity. In partially
-filled cells, the wave velocity is evaluated at the approximate liquid centroid,
+filled cells, the wave velocity is evaluated at the approximate vertical position of the liquid centroid,
 ``z_bottom + 0.5 * vof * dz``, by interpolating between the cell-centered values of the current
 cell and the cell below. This centroid never lies above the cell center, so the result is always an
 interpolation and reduces the overestimate of evaluating wave kinematics at cell centers above the
