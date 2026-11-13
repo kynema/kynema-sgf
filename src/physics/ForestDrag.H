@@ -221,11 +221,11 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real point_cloud_lad(
         return 0.0_rt;
     }
 
-    const int max_neighbors = 8;
-    const amrex::Real huge = constants::LARGE_NUM;
-    amrex::GpuArray<amrex::Real, 8> nearest_d2;
-    amrex::GpuArray<amrex::Real, 8> nearest_lad;
-    amrex::GpuArray<amrex::Real, 8> nearest_z;
+    constexpr int max_neighbors = 8;
+    constexpr amrex::Real huge = constants::LARGE_NUM;
+    amrex::GpuArray<amrex::Real, max_neighbors> nearest_d2;
+    amrex::GpuArray<amrex::Real, max_neighbors> nearest_lad;
+    amrex::GpuArray<amrex::Real, max_neighbors> nearest_z;
     for (int n = 0; n < max_neighbors; ++n) {
         nearest_d2[n] = huge;
         nearest_lad[n] = 0.0_rt;

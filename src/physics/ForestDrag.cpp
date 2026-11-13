@@ -212,41 +212,16 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 const auto* hull_edges_ptr = d_hull_edges.data();
                 const int num_neighbors = m_point_neighbors;
                 const amrex::Real interp_eps = m_point_interp_eps;
+                // Heights of the forest and point-cloud files are above the
+                // local ground: the terrain height with TerrainDrag, zero
+                // otherwise. No drag inside the terrain.
+                amrex::Array4<amrex::Real const> ht;
                 if (use_terrain) {
-                    // Heights of the forest and point-cloud files are above
-                    // the local ground; no drag inside the terrain.
-                    const auto& ht = m_sim.repo()
-                                         .get_field("terrain_height")(level)
-                                         .const_array(mfi);
-                    const amrex::Real half_dz = 0.5_rt * dx[2];
-                    amrex::ParallelFor(
-                        bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
-                            const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
-                            const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
-                            const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
-                            const auto zagl = z - ht(i, j, k);
-                            if (zagl <= 0.0_rt) {
-                                return;
-                            }
-                            const auto& fst = forests_ptr[nf];
-                            if (fst.m_drag_mode == 0) {
-                                amrex::Real lad = 0.0_rt;
-                                if (cylinder_lad(fst, x, y, zagl, lad)) {
-                                    levelId(i, j, k) = fst.m_id;
-                                    levelDrag(i, j, k) += fst.m_cd_forest * lad;
-                                }
-                            } else {
-                                const auto lad = point_cloud_lad(
-                                    fst, points_ptr, hull_edges_ptr, x, y, zagl,
-                                    half_dz, num_neighbors, interp_eps);
-                                if (lad > 0.0_rt) {
-                                    levelId(i, j, k) = fst.m_id;
-                                    levelDrag(i, j, k) += fst.m_cd_forest * lad;
-                                }
-                            }
-                        });
-                    continue;
+                    ht = m_sim.repo()
+                             .get_field("terrain_height")(level)
+                             .const_array(mfi);
                 }
+                const amrex::Real half_dz = 0.5_rt * dx[2];
                 amrex::ParallelFor(
                     bxi, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                         // Convert integer cell indices to cell-center
@@ -254,109 +229,31 @@ void ForestDrag::initialize_fields(int level, const amrex::Geometry& geom)
                         const auto x = prob_lo[0] + ((i + 0.5_rt) * dx[0]);
                         const auto y = prob_lo[1] + ((j + 0.5_rt) * dx[1]);
                         const auto z = prob_lo[2] + ((k + 0.5_rt) * dx[2]);
+                        amrex::Real zagl = z;
+                        if (use_terrain) {
+                            zagl = z - ht(i, j, k);
+                            if (zagl <= 0.0_rt) {
+                                return;
+                            }
+                        }
                         const auto& fst = forests_ptr[nf];
-
-                        // Legacy mode: cylindrical footprint with vertical LAD
-                        // profile.
                         if (fst.m_drag_mode == 0) {
-                            const auto radius = std::sqrt(
-                                ((x - fst.m_x_forest) * (x - fst.m_x_forest)) +
-                                ((y - fst.m_y_forest) * (y - fst.m_y_forest)));
-                            if (z <= fst.m_height_forest &&
-                                radius <= (0.5_rt * fst.m_diameter_forest)) {
-                                const auto treelaimax = fst.lm();
+                            // Legacy mode: cylindrical footprint with vertical
+                            // LAD profile.
+                            amrex::Real lad = 0.0_rt;
+                            if (cylinder_lad(fst, x, y, zagl, lad)) {
                                 levelId(i, j, k) = fst.m_id;
-                                levelDrag(i, j, k) +=
-                                    fst.m_cd_forest *
-                                    fst.area_fraction(z, treelaimax);
+                                levelDrag(i, j, k) += fst.m_cd_forest * lad;
                             }
-                        } else if (
-                            fst.m_cloud_point_count > 0 &&
-                            fst.point_in_on_hull(x, y, hull_edges_ptr)) {
-                            // Point-cloud mode: only evaluate interpolation for
-                            // cells inside the convex hull projected in x-y.
-                            constexpr int max_neighbors = 8;
-                            constexpr amrex::Real huge = constants::LARGE_NUM;
-                            amrex::Array<amrex::Real, max_neighbors> nearest_d2;
-                            amrex::Array<amrex::Real, max_neighbors>
-                                nearest_lad;
-                            amrex::Array<amrex::Real, max_neighbors> nearest_z;
-
-                            for (int n = 0; n < max_neighbors; ++n) {
-                                nearest_d2[n] = huge;
-                                nearest_lad[n] = 0.0_rt;
-                                nearest_z[n] = 0.0_rt;
-                            }
-
-                            const int pstart = fst.m_cloud_point_offset;
-                            const int pend = pstart + fst.m_cloud_point_count;
-                            for (int p = pstart; p < pend; ++p) {
-                                const auto& pt = points_ptr[p];
-                                const auto dxp = x - pt.m_x;
-                                const auto dyp = y - pt.m_y;
-                                const auto dzp = z - pt.m_z;
-                                const auto d2 =
-                                    (dxp * dxp) + (dyp * dyp) + (dzp * dzp);
-
-                                // Maintain a sorted nearest-neighbor list
-                                // in-place.
-                                if (d2 < nearest_d2[num_neighbors - 1]) {
-                                    int insert = num_neighbors - 1;
-                                    while (insert > 0 &&
-                                           d2 < nearest_d2[insert - 1]) {
-                                        nearest_d2[insert] =
-                                            nearest_d2[insert - 1];
-                                        nearest_lad[insert] =
-                                            nearest_lad[insert - 1];
-                                        nearest_z[insert] =
-                                            nearest_z[insert - 1];
-                                        --insert;
-                                    }
-                                    nearest_d2[insert] = d2;
-                                    nearest_lad[insert] = pt.m_lad;
-                                    nearest_z[insert] = pt.m_z;
-                                }
-                            }
-
-                            // Limit interpolation above canopy by nearest
-                            // sample heights.
-                            amrex::Real max_z_neighbors = 0.0_rt;
-                            for (int n = 0; n < num_neighbors; ++n) {
-                                max_z_neighbors = amrex::max<amrex::Real>(
-                                    max_z_neighbors, nearest_z[n]);
-                            }
-
-                            // Interpolate LAD with inverse-distance weighting.
-                            // If we are essentially on a sample point, use it
-                            // directly.
-                            const auto eps2 = interp_eps * interp_eps;
-                            amrex::Real lad_interp = 0.0_rt;
-                            if (nearest_d2[0] < eps2) {
-                                lad_interp = nearest_lad[0];
-                            } else if (z - 0.5_rt * dx[2] <= max_z_neighbors) {
-                                amrex::Real sum_w = 0.0_rt;
-                                amrex::Real sum_lad = 0.0_rt;
-                                for (int n = 0; n < num_neighbors; ++n) {
-                                    if (nearest_d2[n] >= huge) {
-                                        continue;
-                                    }
-                                    const auto w =
-                                        1.0_rt /
-                                        std::sqrt(nearest_d2[n] + eps2);
-                                    sum_w += w;
-                                    sum_lad += w * nearest_lad[n];
-                                }
-                                if (sum_w > 0.0_rt) {
-                                    lad_interp = sum_lad / sum_w;
-                                }
-                            }
-
-                            // Apply drag contribution only for positive
-                            // interpolated LAD.
-                            if (lad_interp > 0.0_rt) {
+                        } else {
+                            // Point-cloud mode: inverse-distance weighting
+                            // inside the convex hull projected in x-y.
+                            const auto lad = point_cloud_lad(
+                                fst, points_ptr, hull_edges_ptr, x, y, zagl,
+                                half_dz, num_neighbors, interp_eps);
+                            if (lad > 0.0_rt) {
                                 levelId(i, j, k) = fst.m_id;
-                                levelDrag(i, j, k) +=
-                                    fst.m_cd_forest * lad_interp;
+                                levelDrag(i, j, k) += fst.m_cd_forest * lad;
                             }
                         }
                     });
