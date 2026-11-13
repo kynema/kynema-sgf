@@ -889,22 +889,13 @@ struct InitDataOp<W2AWaves>
                     vel[nbx](i, j, k, 0) = vel_tmp[nbx](i, j, k, 0);
                     vel[nbx](i, j, k, 1) = vel_tmp[nbx](i, j, k, 1);
                     vel[nbx](i, j, k, 2) = vel_tmp[nbx](i, j, k, 2);
-                } else if (vof_local > 1.0e-3_rt) {
-                    // Velocity of liquid becomes velocity of entire cell
-                    // Interpolate using cell-centered values to liquid centroid
-                    // Consider only z-direction to find centroid
-                    const amrex::Real z_cell = problo[2] + (k + 0.5_rt) * dx[2];
-                    const amrex::Real z_cell_below = z_cell - dx[2];
-                    const amrex::Real z_cell_bottom = z_cell - 0.5_rt * dx[2];
-                    const amrex::Real z_liq_center =
-                        z_cell_bottom + 0.5_rt * vof_local * dx[2];
+                } else if (vof_local > constants::VOF_TOL) {
+                    // Velocity of liquid becomes velocity of entire cell,
+                    // evaluated at the liquid centroid (as for the targets)
                     for (int n = 0; n < AMREX_SPACEDIM; ++n) {
-                        vel[nbx](i, j, k, n) =
-                            vel_tmp[nbx](i, j, k - 1, n) +
-                            (vel_tmp[nbx](i, j, k, n) -
-                             vel_tmp[nbx](i, j, k - 1, n)) *
-                                ((z_liq_center - z_cell_below) /
-                                 (z_cell - z_cell_below + constants::EPS));
+                        vel[nbx](i, j, k, n) = utils::liquid_centroid_interp(
+                            vof_local, vel_tmp[nbx](i, j, k - 1, n),
+                            vel_tmp[nbx](i, j, k, n));
                     }
                 }
             });
