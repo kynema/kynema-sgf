@@ -38,7 +38,7 @@ Example for ``TurbineKynemaFMBLine``::
    Actuator.TurbineKynemaFMBLine.density = 1.225
    Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff = 1.0
    Actuator.TurbineKynemaFMBLine.nacelle_area = 8.0
-   Actuator.TurbineKynemaFMBLine.output_frequency = 1
+   Actuator.TurbineKynemaFMBLine.output_interval = 1
 
    Actuator.T0.base_position = 0.0 -250.0 -90.0
    Actuator.T1.base_position = 0.0 250.0 -90.0
@@ -260,11 +260,14 @@ Actuator forcing and output controls
 
    Frontal area of the nacelle used together with ``nacelle_drag_coeff``.
 
-.. input_param:: Actuator.TurbineKynemaFMBLine.output_frequency
+.. input_param:: Actuator.TurbineKynemaFMBLine.output_interval
 
    **type:** Int, optional, default = 10
 
-   Frequency, in Kynema-SGF time steps, for writing the actuator NetCDF output produced by Kynema-SGF. Kynema-FMB's own turbine output is written separately every Kynema-SGF time step.
+   Number of Kynema-SGF time steps between actuator NetCDF outputs produced by
+   Kynema-SGF. The legacy input argument ``output_frequency`` is still accepted
+   with a warning; use ``output_interval`` instead. Kynema-FMB's own turbine
+   output is written separately every Kynema-SGF time step.
 
 Restart and controller options
 """"""""""""""""""""""""""""""

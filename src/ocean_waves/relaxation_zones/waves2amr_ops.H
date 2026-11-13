@@ -727,7 +727,7 @@ struct InitDataOp<W2AWaves>
                 const amrex::Real vof_local =
                     multiphase::levelset_to_vof(i, j, k, eps, phi_tmp[nbx]);
 
-                if (vof_local > 1.0_rt - constants::TIGHT_TOL) {
+                if (vof_local > 1.0_rt - constants::VOF_TOL) {
                     // Entire cell is liquid
                     vel[nbx](i, j, k, 0) = vel_tmp[nbx](i, j, k, 0);
                     vel[nbx](i, j, k, 1) = vel_tmp[nbx](i, j, k, 1);

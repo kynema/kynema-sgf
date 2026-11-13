@@ -353,7 +353,7 @@ public:
     //! Number of fields registered in the database
     int num_fields() const { return static_cast<int>(m_field_vec.size()); }
 
-    //! Return list of fields registered (for unit-test purposes only)
+    //! Return list of registered fields and their states
     const amrex::Vector<std::unique_ptr<Field>>& fields() const
     {
         return m_field_vec;
