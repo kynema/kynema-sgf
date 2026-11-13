@@ -12,6 +12,14 @@ source term in the ICNS (momentum) equation. Two forest representations are supp
 
 The two approaches are mutually exclusive and cannot be used together in the same run.
 
+When ``TerrainDrag`` is also included in :input_param:`incflo.physics`, the
+forests stand on the terrain: tree heights in the forest file and the ``z``
+coordinates of the point-cloud files are heights above the local ground, and no
+forest drag is applied inside the terrain. The ground height is taken
+column by column from the ``terrain_height`` field, so a forest patch on a
+slope follows the slope. ``TerrainDrag`` must be listed before ``ForestDrag``
+in :input_param:`incflo.physics`.
+
 .. input_param:: ForestDrag.forest_file
 
    **type:** String, optional, default = ``forest.amrwind``
@@ -76,3 +84,14 @@ The two approaches are mutually exclusive and cannot be used together in the sam
    Regularization parameter used in the inverse-distance weighting for the
    point-cloud forest model. This value avoids singular weights when a cell
    center is extremely close to a point-cloud sample.
+
+.. input_param:: ForestDrag.terrain_aware
+
+   **type:** Boolean, optional, default = true
+
+   Place the forests on the ``TerrainDrag`` terrain. Only used when
+   ``TerrainDrag`` is active. Set it to false when the point-cloud ``z``
+   coordinates are absolute heights rather than heights above the ground.
+   A ``TerrainDrag`` terrain built from single-phase ``OceanWaves`` moves
+   every step and is not used: there, the forests keep the placement of
+   ``terrain_aware = false``.

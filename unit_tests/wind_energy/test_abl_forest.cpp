@@ -2,6 +2,7 @@
 #include "ks_test_utils/iter_tools.H"
 #include "ks_test_utils/test_utils.H"
 #include "src/physics/ForestDrag.H"
+#include "src/physics/TerrainDrag.H"
 #include "src/core/field_ops.H"
 #include "src/utilities/output_quantities/FieldNorms.H"
 #include "AMReX_REAL.H"
@@ -29,6 +30,32 @@ void write_point_cloud_forest(const std::string& fname)
     os << "4.5 2.5 2.5 3.0\n";
     // Far point with very large LAD used to confirm nearest-point selection.
     os << "2.5 6.5 2.5 100.0\n";
+}
+
+// One type-2 forest whose top (48 m) is a cell center of the 32 m grid
+void write_type2_forest_top_on_center(const std::string& fname)
+{
+    std::ofstream os(fname);
+    os << "2  512 512 48 200 0.2 6 0.8 \n";
+}
+
+// Terrain on a 2 x 2 grid, linear in x: height = z_west + slope * (x - x_west)
+void write_linear_terrain(
+    const std::string& fname,
+    const amrex::Real x_west,
+    const amrex::Real x_east,
+    const amrex::Real y_south,
+    const amrex::Real y_north,
+    const amrex::Real z_west,
+    const amrex::Real z_east)
+{
+    std::ofstream os(fname);
+    os << "2\n2\n";
+    os << x_west << "\n" << x_east << "\n";
+    os << y_south << "\n" << y_north << "\n";
+    // z index is (i * ny) + j
+    os << z_west << "\n" << z_west << "\n";
+    os << z_east << "\n" << z_east << "\n";
 }
 
 amrex::Real idw_lad_from_two(
@@ -69,6 +96,7 @@ protected:
         }
     }
     std::string m_forest_fname = "forest.amrwind";
+    std::string m_terrain_fname = "forest_terrain.amrwind";
 };
 
 class PointCloudForestTest : public MeshTest
@@ -93,6 +121,7 @@ protected:
     }
 
     std::string m_point_cloud_fname{"forest_points.dat"};
+    std::string m_terrain_fname{"forest_cloud_terrain.amrwind"};
 };
 
 TEST_F(ForestTest, forest)
@@ -219,6 +248,291 @@ TEST_F(PointCloudForestTest, point_cloud_selection_and_interpolation)
     // z - 0.5*dz = 3.0 > max_z_neighbors = 2.5.
     EXPECT_NEAR(utils::field_probe(f_drag, 0, 3, 2, 3), 0.0_rt, tol);
     EXPECT_NEAR(utils::field_probe(f_id, 0, 3, 2, 3), -1.0_rt, tol);
+}
+
+// Flat terrain 128 m (4 cells) high: every forest moves up by 4 cells and
+// keeps the legacy maximum and norm.
+TEST_F(ForestTest, forest_on_flat_terrain)
+{
+    write_forest(m_forest_fname);
+    write_linear_terrain(
+        m_terrain_fname, 0.0_rt, 1024.0_rt, 0.0_rt, 1024.0_rt, 128.0_rt,
+        128.0_rt);
+    populate_parameters();
+    {
+        amrex::ParmParse pp("TerrainDrag");
+        pp.add("terrain_file", m_terrain_fname);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    forest_drag.initialize_fields(0, geom);
+
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    const auto& f_id = sim().repo().get_field("forest_id");
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    EXPECT_EQ(kynema_sgf::field_ops::global_max_magnitude(f_id), 3.0_rt);
+    EXPECT_NEAR(
+        kynema_sgf::field_ops::global_max_magnitude(f_drag),
+        0.050285714285714288_rt, tol);
+    EXPECT_NEAR(
+        kynema_sgf::field_norms::FieldNorms::get_norm(f_drag, 0, 1, 2, false),
+        0.0030635155406915832_rt, tol);
+
+    // Forest 0 (type 1, height 45 m, cd 0.2, lai 6) around x = 512, y = 256.
+    // Cell centers z = 16 + 32 k; ground at 128 m, so the canopy fills
+    // k = 4 (16 m) and k = 5 (48 m > 45 m is above it).
+    const amrex::Real lad = 0.2_rt * 6.0_rt / 45.0_rt;
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 0), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 3), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 4), lad, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 5), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 16, 8, 3), -1.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 16, 8, 4), 0.0_rt, tol);
+}
+
+// Terrain rising 0.25 m per m in x: the canopy base follows the local ground
+// in each column.
+TEST_F(ForestTest, forest_on_sloped_terrain)
+{
+    write_forest(m_forest_fname);
+    write_linear_terrain(
+        m_terrain_fname, 0.0_rt, 1024.0_rt, 0.0_rt, 1024.0_rt, 0.0_rt,
+        256.0_rt);
+    populate_parameters();
+    {
+        amrex::ParmParse pp("TerrainDrag");
+        pp.add("terrain_file", m_terrain_fname);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    forest_drag.initialize_fields(0, geom);
+
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    const amrex::Real lad = 0.2_rt * 6.0_rt / 45.0_rt;
+
+    // i = 13: x = 432, ground 108 m, canopy 108-153 m -> k = 3, 4.
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 13, 8, 2), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 13, 8, 3), lad, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 13, 8, 4), lad, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 13, 8, 5), 0.0_rt, tol);
+
+    // i = 16: x = 528, ground 132 m, canopy 132-177 m -> k = 4, 5.
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 3), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 4), lad, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 5), lad, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 8, 6), 0.0_rt, tol);
+
+    // The tallest forest (120 m) on the highest ground still fits in the
+    // bounding box, which is extended by the terrain maximum.
+    EXPECT_EQ(
+        kynema_sgf::field_ops::global_max_magnitude(
+            sim().repo().get_field("forest_id")),
+        3.0_rt);
+}
+
+// ForestDrag listed before TerrainDrag would read an unset terrain_height
+TEST_F(ForestTest, forest_before_terrain_aborts)
+{
+    write_forest(m_forest_fname);
+    write_linear_terrain(
+        m_terrain_fname, 0.0_rt, 1024.0_rt, 0.0_rt, 1024.0_rt, 128.0_rt,
+        128.0_rt);
+    populate_parameters();
+    {
+        amrex::ParmParse pp("TerrainDrag");
+        pp.add("terrain_file", m_terrain_fname);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    EXPECT_THROW(forest_drag.initialize_fields(0, geom), amrex::RuntimeError);
+}
+
+// terrain_aware = false keeps the legacy placement with TerrainDrag active
+TEST_F(ForestTest, forest_terrain_aware_off)
+{
+    write_forest(m_forest_fname);
+    write_linear_terrain(
+        m_terrain_fname, 0.0_rt, 1024.0_rt, 0.0_rt, 1024.0_rt, 128.0_rt,
+        128.0_rt);
+    populate_parameters();
+    {
+        amrex::ParmParse pp("TerrainDrag");
+        pp.add("terrain_file", m_terrain_fname);
+    }
+    {
+        amrex::ParmParse pp("ForestDrag");
+        pp.add("terrain_aware", false);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    forest_drag.initialize_fields(0, geom);
+
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    EXPECT_NEAR(
+        utils::field_probe(f_drag, 0, 16, 8, 0), 0.2_rt * 6.0_rt / 45.0_rt,
+        tol);
+    EXPECT_NEAR(
+        kynema_sgf::field_norms::FieldNorms::get_norm(f_drag, 0, 1, 2, false),
+        0.0030635155406915832_rt, tol);
+}
+
+// Terrain built from single-phase OceanWaves is filled after the levels are
+// set up and moves every step, so the forests keep their legacy placement.
+TEST_F(ForestTest, forest_ignores_wave_terrain)
+{
+    write_forest(m_forest_fname);
+    populate_parameters();
+    {
+        amrex::ParmParse pp("OceanWaves");
+        pp.add("label", (std::string) "lin_ow");
+        amrex::ParmParse ppow("OceanWaves.lin_ow");
+        ppow.add("type", (std::string) "LinearWaves");
+        ppow.add("wave_height", 2.0_rt);
+        ppow.add("wave_length", 40.0_rt);
+        ppow.add("water_depth", 133.0_rt);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    sim().physics_manager().create("OceanWaves", sim());
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    EXPECT_TRUE(
+        sim()
+            .physics_manager()
+            .get<kynema_sgf::terraindrag::TerrainDrag>()
+            .terrain_is_waves());
+
+    // Stand-in for a wave surface, which TerrainDrag::initialize_fields does
+    // not fill
+    sim().repo().get_field("terrain_height").setVal(128.0_rt);
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    forest_drag.initialize_fields(0, geom);
+
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    EXPECT_NEAR(
+        utils::field_probe(f_drag, 0, 16, 8, 0), 0.2_rt * 6.0_rt / 45.0_rt,
+        tol);
+    EXPECT_NEAR(
+        kynema_sgf::field_norms::FieldNorms::get_norm(f_drag, 0, 1, 2, false),
+        0.0030635155406915832_rt, tol);
+}
+
+// Point-cloud heights are above the local ground: 2 m of flat terrain moves
+// the samples at z = 2.5 to the cells at z = 4.5.
+TEST_F(PointCloudForestTest, point_cloud_on_flat_terrain)
+{
+    write_point_cloud_forest(m_point_cloud_fname);
+    write_linear_terrain(
+        m_terrain_fname, 0.0_rt, 8.0_rt, 0.0_rt, 8.0_rt, 2.0_rt, 2.0_rt);
+    populate_parameters();
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    {
+        amrex::ParmParse pp("TerrainDrag");
+        pp.add("terrain_file", m_terrain_fname);
+    }
+    {
+        amrex::ParmParse pp("ForestDrag");
+        amrex::Vector<std::string> cloud_files{m_point_cloud_fname};
+        amrex::Vector<amrex::Real> cds{2.0_rt};
+        pp.addarr("point_cloud_files", cloud_files);
+        pp.addarr("coefficients_of_drag", cds);
+        pp.add("point_neighbors", 2);
+        pp.add("point_interp_eps", tol);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    forest_drag.initialize_fields(0, geom);
+
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    const auto& f_id = sim().repo().get_field("forest_id");
+
+    // Samples, shifted 2 cells up
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 2, 2, 4), 2.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 4, 2, 4), 6.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 3, 2, 4), 4.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 2, 2, 4), 0.0_rt, tol);
+
+    // Above the canopy top (2.5 m above ground)
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 3, 2, 5), 0.0_rt, tol);
+
+    // Inside the terrain
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 2, 2, 1), 0.0_rt, tol);
+    EXPECT_NEAR(utils::field_probe(f_id, 0, 2, 2, 1), -1.0_rt, tol);
+}
+
+// The type-2 profile divided by zero at the tree top (NaN drag); it is zero
+// there, in the legacy placement and on the terrain.
+TEST_F(ForestTest, type2_forest_top_on_cell_center)
+{
+    write_type2_forest_top_on_center(m_forest_fname);
+    populate_parameters();
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    kynema_sgf::forestdrag::ForestDrag forest_drag(sim());
+    forest_drag.initialize_fields(0, sim().repo().mesh().Geom(0));
+
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    EXPECT_TRUE(
+        std::isfinite(kynema_sgf::field_ops::global_max_magnitude(f_drag)));
+    // k = 0 (z = 16 m) is in the canopy, k = 1 (z = 48 m) is the tree top
+    EXPECT_GT(utils::field_probe(f_drag, 0, 16, 16, 0), 0.0_rt);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 16, 1), 0.0_rt, tol);
+    EXPECT_NEAR(
+        utils::field_probe(sim().repo().get_field("forest_id"), 0, 16, 16, 1),
+        0.0_rt, tol);
+}
+
+TEST_F(ForestTest, type2_forest_top_on_cell_center_terrain)
+{
+    write_type2_forest_top_on_center(m_forest_fname);
+    write_linear_terrain(
+        m_terrain_fname, 0.0_rt, 1024.0_rt, 0.0_rt, 1024.0_rt, 128.0_rt,
+        128.0_rt);
+    populate_parameters();
+    {
+        amrex::ParmParse pp("TerrainDrag");
+        pp.add("terrain_file", m_terrain_fname);
+    }
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    auto& terrain_drag = sim().physics_manager().create("TerrainDrag", sim());
+    auto& forest_drag = sim().physics_manager().create("ForestDrag", sim());
+    const auto& geom = sim().repo().mesh().Geom(0);
+    terrain_drag.initialize_fields(0, geom);
+    forest_drag.initialize_fields(0, geom);
+
+    const amrex::Real tol = kynema_sgf::constants::TIGHT_TOL;
+    const auto& f_drag = sim().repo().get_field("forest_drag");
+    EXPECT_TRUE(
+        std::isfinite(kynema_sgf::field_ops::global_max_magnitude(f_drag)));
+    // Ground at 128 m: k = 4 is 16 m and k = 5 is 48 m above it
+    EXPECT_GT(utils::field_probe(f_drag, 0, 16, 16, 4), 0.0_rt);
+    EXPECT_NEAR(utils::field_probe(f_drag, 0, 16, 16, 5), 0.0_rt, tol);
 }
 
 } // namespace kynema_sgf_tests
