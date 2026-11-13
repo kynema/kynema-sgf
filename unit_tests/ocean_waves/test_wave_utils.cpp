@@ -186,9 +186,12 @@ TEST_F(WaveUtilsTest, approx_liquid_centroid_z_interp)
             wu::approx_liquid_centroid_z_interp(vof, below, center);
         EXPECT_GE(v, below);
         EXPECT_LE(v, center + tol);
+        // Decreasing profile: the larger value is in the cell below
+        constexpr amrex::Real vel_below = center;
+        constexpr amrex::Real vel = below;
         EXPECT_GE(
-            wu::approx_liquid_centroid_z_interp(vof, center, below),
-            below - tol);
+            wu::approx_liquid_centroid_z_interp(vof, vel_below, vel),
+            vel - tol);
     }
 }
 

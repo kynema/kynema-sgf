@@ -100,7 +100,7 @@ void approx_liquid_centroid_z_sweep(
     const amrex::Box& bx,
     const amrex::Array4<amrex::Real>& vel,
     const int ncomp,
-    const VofFunc vof_func)
+    const VofFunc& vof_func)
 {
     const int klo = bx.smallEnd(2);
     const int khi = bx.bigEnd(2);
@@ -147,7 +147,7 @@ void approx_liquid_centroid_z_velocity_from_levelset(
     for (amrex::MFIter mfi(vel, false); mfi.isValid(); ++mfi) {
         approx_liquid_centroid_z_sweep(
             amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
-            VofFromLevelset{levelset.const_array(mfi), eps});
+            VofFromLevelset{.phi = levelset.const_array(mfi), .eps = eps});
     }
     amrex::Gpu::streamSynchronize();
 }

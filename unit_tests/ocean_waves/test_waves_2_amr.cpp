@@ -117,20 +117,22 @@ void test_modes_distribution(bool ocean, bool cubic_time)
                 for (int row = 0; row < 2; ++row) {
                     for (int x = 0; x < 16; ++x) {
                         const int index = row * 16 + x;
-                        for (int var = 0; var < 4; ++var)
+                        for (int var = 0; var < 4; ++var) {
                             EXPECT_EQ(
                                 (*arrays[var])[index],
                                 base + row * 128 + (var == 3 ? 4 : var) * 16 +
                                     x);
+                        }
                     }
                     for (int x = 0; x < 4; ++x) {
                         EXPECT_EQ(
                             data.r_mAdd[row * 4 + x],
                             base + row * 128 + 96 + x);
-                        if (cubic_time)
+                        if (cubic_time) {
                             EXPECT_EQ(
                                 data.r_mAddT[row * 4 + x],
                                 base + row * 128 + 112 + x);
+                        }
                     }
                     if (cubic_time) {
                         for (int x = 0; x < 16; ++x) {
@@ -172,8 +174,9 @@ void test_modes_distribution(bool ocean, bool cubic_time)
         check(1);
         EXPECT_EQ(parses(), expected_parses(3));
     }
-    if (amrex::ParallelDescriptor::IOProcessor())
+    if (amrex::ParallelDescriptor::IOProcessor()) {
         EXPECT_EQ(std::remove(filename.c_str()), 0);
+    }
 }
 } // namespace
 
