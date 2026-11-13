@@ -228,6 +228,23 @@ The following input arguments are only valid for the W2AWaves wave type:
    retaining the existing above-top velocity zeroing rule. These polynomials
    are not monotonicity-limited and can overshoot.
 
+.. input_param:: OceanWaves.label.time_interpolation
+
+   **type:** String, optional, default = "cubic"
+
+   Temporal interpolation between consecutive records of the modes file, for
+   both HOS-Ocean and HOS-NWT. ``cubic`` uses cubic Hermite interpolation:
+   the values at the two bracketing records are combined with their time
+   derivatives, which are reconstructed from the time-derivative modes written
+   by HOS (no additional records are needed). ``linear`` preserves legacy
+   linear interpolation. Invalid choices are fatal.
+
+   ``cubic`` adds two fields, ``w2a_dlevelset_dt`` (1 component) and
+   ``w2a_dvelocity_dt`` (3 components), each with two states, so the wave
+   interpolation storage grows by 8 components per cell on every level. It also
+   roughly doubles the reconstruction cost at each modes-file read, which is
+   typically negligible relative to the flow solve.
+
 .. input_param:: OceanWaves.label.fft_max_padding_level
 
    **type:** Integer, optional, default = -1

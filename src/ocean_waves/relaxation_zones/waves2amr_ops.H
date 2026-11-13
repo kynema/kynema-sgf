@@ -12,6 +12,7 @@
 #include "src/equation_systems/BCOps.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"
+#include <array>
 
 using namespace amrex::literals;
 
@@ -154,15 +155,21 @@ void read_wave_modes(
     std::string error;
     if (amrex::ParallelDescriptor::IOProcessor()) {
         try {
+            const bool rates = wdata.cubic_time;
             auto read = [&](int step) {
                 BL_PROFILE("Waves2AMR::parse_modes");
                 return wdata.is_ocean
                            ? wdata.c_rmodes.read_into(
                                  step, wdata.c_mX, wdata.c_mY, wdata.c_mZ,
-                                 wdata.c_mFS)
+                                 wdata.c_mFS, nullptr,
+                                 rates ? &wdata.c_mT : nullptr,
+                                 rates ? &wdata.c_mFST : nullptr)
                            : wdata.r_rmodes.read_into(
                                  step, wdata.r_mX, wdata.r_mY, wdata.r_mZ,
-                                 wdata.r_mFS, &wdata.r_mAdd);
+                                 wdata.r_mFS, &wdata.r_mAdd,
+                                 rates ? &wdata.r_mT : nullptr,
+                                 rates ? &wdata.r_mFST : nullptr,
+                                 rates ? &wdata.r_mAddT : nullptr);
             };
             const auto step = static_cast<long long>(wdata.ntime) +
                               wdata.n_offset + ntime_off;
@@ -195,15 +202,53 @@ void read_wave_modes(
     wdata.n_offset = state[1];
     if (state[0] == 1) {
         BL_PROFILE("Waves2AMR::broadcast_modes");
+        if (wdata.cubic_time) {
+            // Receiving ranks need sized destinations for the derivatives
+            wdata.c_mT.resize(wdata.c_mX.size());
+            wdata.c_mFST.resize(wdata.c_mX.size());
+            wdata.r_mT.resize(wdata.r_mX.size());
+            wdata.r_mFST.resize(wdata.r_mX.size());
+            wdata.r_mAddT.resize(wdata.r_mAdd.size());
+        }
         if (wdata.is_ocean) {
             for (auto* modes :
                  {&wdata.c_mX, &wdata.c_mY, &wdata.c_mZ, &wdata.c_mFS})
                 broadcast_modes(*modes);
+            if (wdata.cubic_time) {
+                for (auto* modes : {&wdata.c_mT, &wdata.c_mFST})
+                    broadcast_modes(*modes);
+            }
         } else {
             for (auto* modes :
                  {&wdata.r_mX, &wdata.r_mY, &wdata.r_mZ, &wdata.r_mFS,
                   &wdata.r_mAdd})
                 broadcast_modes(*modes);
+            if (wdata.cubic_time) {
+                for (auto* modes : {&wdata.r_mT, &wdata.r_mFST, &wdata.r_mAddT})
+                    broadcast_modes(*modes);
+            }
+        }
+        if (wdata.cubic_time) {
+            // Velocity mode rates follow from the dphi/dt modes
+            try {
+                if (wdata.is_ocean) {
+                    modes_hosgrid::ocean_velocity_rate_modes(
+                        wdata.c_rmodes.get_first_fft_dimension(),
+                        wdata.c_rmodes.get_second_fft_dimension(),
+                        wdata.c_rmodes.get_xlen(), wdata.c_rmodes.get_ylen(),
+                        wdata.c_rmodes.get_depth(), wdata.c_rmodes.get_L(),
+                        wdata.c_mT, wdata.c_mXt, wdata.c_mYt, wdata.c_mZt);
+                } else {
+                    modes_hosgrid::nwt_velocity_rate_modes(
+                        wdata.r_rmodes.get_first_fft_dimension(),
+                        wdata.r_rmodes.get_second_fft_dimension(),
+                        wdata.r_rmodes.get_xlen(), wdata.r_rmodes.get_ylen(),
+                        wdata.r_rmodes.get_L(), wdata.r_mT, wdata.r_mXt,
+                        wdata.r_mYt, wdata.r_mZt);
+                }
+            } catch (const std::exception& exception) {
+                amrex::Abort(exception.what());
+            }
         }
     }
     wdata.loaded_modes_step = state[2];
@@ -270,26 +315,33 @@ void reserve_wave_stencils(
     }
 }
 
+// With rate = true, stream d(eta)/dt (without the levelset offset) instead
 void stream_wave_elevation(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     const amrex::Vector<amrex::MultiFab*>& fields,
     const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& problo,
-    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& dx)
+    const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& dx,
+    const bool rate = false)
 {
     reserve_wave_stencils(wdata, fields);
+    const double scale =
+        wdata.dimL / (rate ? (wdata.is_ocean ? wdata.c_rmodes.get_T()
+                                             : wdata.r_rmodes.get_T())
+                           : 1.);
     interp_to_mfab::local_eta_to_levelset_field(
         wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
         wdata.zsl, wdata.is_ocean, fields, problo, dx,
         [&](const auto& xs, const auto& ys, auto& eta) {
             if (wdata.is_ocean) {
                 reconstruct_ocean_samples(
-                    wdata, wdata.c_mFS, xs, ys, eta, wdata.dimL);
+                    wdata, rate ? wdata.c_mFST : wdata.c_mFS, xs, ys, eta,
+                    scale);
             } else {
                 try {
                     auto samples = wdata.nwt_reconstruction->evaluate(
-                        wdata.r_mFS, true, true, xs, ys,
+                        rate ? wdata.r_mFST : wdata.r_mFS, true, true, xs, ys,
                         wdata.reconstruction_reserved_bytes);
-                    for (auto& sample : samples) sample *= wdata.dimL;
+                    for (auto& sample : samples) sample *= scale;
                     amrex::Gpu::copy(
                         amrex::Gpu::hostToDevice, samples.begin(),
                         samples.end(), eta.begin());
@@ -301,17 +353,23 @@ void stream_wave_elevation(
                 }
             }
         },
-        wdata.interpolation);
+        wdata.interpolation, !rate);
 }
 
+// With rate = true, stream the velocity time derivative instead
 void stream_wave_velocity(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     const amrex::Vector<amrex::MultiFab*>& fields,
     const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& problo,
     const amrex::Vector<amrex::GpuArray<amrex::Real, AMREX_SPACEDIM>>& dx,
-    const amrex::Vector<int>& indices)
+    const amrex::Vector<int>& indices,
+    const bool rate = false)
 {
     reserve_wave_stencils(wdata, fields);
+    // Velocity modes are scaled by dimL / dimT; a rate needs one more 1 / dimT
+    const double dimT =
+        wdata.is_ocean ? wdata.c_rmodes.get_T() : wdata.r_rmodes.get_T();
+    const double scale_T = rate ? dimT * dimT : dimT;
     interp_to_mfab::stream_velocity_to_field(
         wdata.n0_sp, wdata.n1_sp, wdata.dx0, wdata.dx1, wdata.xlo0, wdata.xlo1,
         wdata.is_ocean, indices, wdata.hvec, fields, problo, dx, {},
@@ -321,9 +379,11 @@ void stream_wave_velocity(
                 try {
                     auto samples = wdata.nwt_reconstruction->velocity(
                         wdata.r_rmodes.get_xlen(), wdata.r_rmodes.get_ylen(),
-                        wdata.hvec[height], wdata.zsl, wdata.dimL,
-                        wdata.r_rmodes.get_T(), wdata.r_mX, wdata.r_mY,
-                        wdata.r_mZ, wdata.r_mAdd, xs, ys,
+                        wdata.hvec[height], wdata.zsl, wdata.dimL, scale_T,
+                        rate ? wdata.r_mXt : wdata.r_mX,
+                        rate ? wdata.r_mYt : wdata.r_mY,
+                        rate ? wdata.r_mZt : wdata.r_mZ,
+                        rate ? wdata.r_mAddT : wdata.r_mAdd, xs, ys,
                         wdata.reconstruction_reserved_bytes +
                             3 * xs.size() * ys.size() * sizeof(amrex::Real));
                     const std::array<amrex::Gpu::DeviceVector<amrex::Real>*, 3>
@@ -346,8 +406,9 @@ void stream_wave_velocity(
                 wdata.c_rmodes.get_second_fft_dimension(),
                 wdata.c_rmodes.get_xlen(), wdata.c_rmodes.get_ylen(),
                 wdata.c_rmodes.get_depth(), wdata.hvec[height], wdata.zsl,
-                wdata.dimL, wdata.c_rmodes.get_T(), wdata.c_mX, wdata.c_mY,
-                wdata.c_mZ, um, vm, wm);
+                wdata.dimL, scale_T, rate ? wdata.c_mXt : wdata.c_mX,
+                rate ? wdata.c_mYt : wdata.c_mY,
+                rate ? wdata.c_mZt : wdata.c_mZ, um, vm, wm);
             reconstruct_ocean_samples(wdata, um, xs, ys, u);
             reconstruct_ocean_samples(wdata, vm, xs, ys, v);
             reconstruct_ocean_samples(wdata, wm, xs, ys, w);
@@ -359,7 +420,8 @@ void populate_fields_all_levels(
     kynema_sgf::ocean_waves::W2AWaves::MetaType& wdata,
     amrex::Vector<amrex::Geometry>& geom_all,
     kynema_sgf::Field& lvs_field,
-    kynema_sgf::Field& vel_field)
+    kynema_sgf::Field& vel_field,
+    const bool rate = false)
 {
     // Interpolate to fields (vector of MultiFabs)
     const auto fields = vel_field.vec_ptrs();
@@ -369,29 +431,68 @@ void populate_fields_all_levels(
         problo.push_back(geometry.ProbLoArray());
         dx.push_back(geometry.CellSizeArray());
     }
-    stream_wave_elevation(wdata, lvs_field.vec_ptrs(), problo, dx);
-    stream_wave_velocity(wdata, fields, problo, dx, wdata.indvec);
+    stream_wave_elevation(wdata, lvs_field.vec_ptrs(), problo, dx, rate);
+    stream_wave_velocity(wdata, fields, problo, dx, wdata.indvec, rate);
 }
 
+// Weights (a0, a1, b0, b1) of target = a0 V0 + a1 V1 + b0 D0 + b1 D1 for
+// values V and time derivatives D at t0 and t1: cubic Hermite or linear
+std::array<amrex::Real, 4> time_interp_weights(
+    const amrex::Real t0,
+    const amrex::Real t1,
+    const amrex::Real time,
+    const bool cubic)
+{
+    const amrex::Real dt = t1 - t0;
+    AMREX_ALWAYS_ASSERT(dt > 0.0_rt);
+    const amrex::Real s =
+        amrex::max(0.0_rt, amrex::min(1.0_rt, (time - t0) / dt));
+    if (!cubic) {
+        return {1.0_rt - s, s, 0.0_rt, 0.0_rt};
+    }
+    const amrex::Real s2 = s * s;
+    const amrex::Real s3 = s2 * s;
+    return {
+        2.0_rt * s3 - 3.0_rt * s2 + 1.0_rt, -2.0_rt * s3 + 3.0_rt * s2,
+        dt * (s3 - 2.0_rt * s2 + s), dt * (s3 - s2)};
+}
+
+// Interpolate w2a data at t0 (old) and t1 (new) to time, writing the ow
+// fields. Time derivatives (d*) are used when provided (cubic Hermite).
 void time_interpolate_wave_fields(
     kynema_sgf::Field& lvs_field,
     kynema_sgf::Field& vel_field,
-    const kynema_sgf::Field& future_lvs_field,
-    const kynema_sgf::Field& future_vel_field,
-    const amrex::Real t_old,
-    const amrex::Real t_new,
-    const amrex::Real t_future)
+    const kynema_sgf::Field& lvs_old,
+    const kynema_sgf::Field& vel_old,
+    const kynema_sgf::Field& lvs_new,
+    const kynema_sgf::Field& vel_new,
+    const kynema_sgf::Field* dlvs_old,
+    const kynema_sgf::Field* dvel_old,
+    const kynema_sgf::Field* dlvs_new,
+    const kynema_sgf::Field* dvel_new,
+    const amrex::Real t0,
+    const amrex::Real t1,
+    const amrex::Real time)
 {
-    const amrex::Real b =
-        (t_new - t_old) /
-        (t_future - t_old + std::numeric_limits<amrex::Real>::epsilon());
-    const amrex::Real a = 1.0_rt - b;
+    const bool cubic = dlvs_old && dvel_old && dlvs_new && dvel_new;
+    const auto w = time_interp_weights(t0, t1, time, cubic);
+    const auto lvs_ng = lvs_field.num_grow();
+    const auto vel_ng = vel_field.num_grow();
     kynema_sgf::field_ops::lincomb(
-        lvs_field, a, lvs_field, 0, b, future_lvs_field, 0, 0, 1,
-        lvs_field.num_grow());
+        lvs_field, w[0], lvs_old, 0, w[1], lvs_new, 0, 0, 1, lvs_ng);
     kynema_sgf::field_ops::lincomb(
-        vel_field, a, vel_field, 0, b, future_vel_field, 0, 0, AMREX_SPACEDIM,
-        vel_field.num_grow());
+        vel_field, w[0], vel_old, 0, w[1], vel_new, 0, 0, AMREX_SPACEDIM,
+        vel_ng);
+    if (cubic) {
+        kynema_sgf::field_ops::saxpy(
+            lvs_field, w[2], *dlvs_old, 0, 0, 1, lvs_ng);
+        kynema_sgf::field_ops::saxpy(
+            lvs_field, w[3], *dlvs_new, 0, 0, 1, lvs_ng);
+        kynema_sgf::field_ops::saxpy(
+            vel_field, w[2], *dvel_old, 0, 0, AMREX_SPACEDIM, vel_ng);
+        kynema_sgf::field_ops::saxpy(
+            vel_field, w[3], *dvel_new, 0, 0, AMREX_SPACEDIM, vel_ng);
+    }
 }
 
 } // namespace
@@ -447,6 +548,17 @@ struct ReadInputsOp<W2AWaves>
                                   ? interp_to_mfab::Interpolation::cubic
                                   : interp_to_mfab::Interpolation::linear;
         amrex::Print() << "OceanWaves: spatial interpolation " << interpolation
+                       << "\n";
+        std::string time_interpolation{"cubic"};
+        pp.query("time_interpolation", time_interpolation);
+        if (time_interpolation != "linear" && time_interpolation != "cubic")
+            amrex::Abort(
+                "OceanWaves time_interpolation must be linear or cubic");
+        wdata.cubic_time = time_interpolation == "cubic";
+        amrex::Print() << "OceanWaves: time interpolation "
+                       << (wdata.cubic_time
+                               ? "cubic (Hermite with HOS time derivatives)"
+                               : "linear")
                        << "\n";
         double scratch_mb = 512.;
         pp.query("fft_scratch_memory_mb", scratch_mb);
@@ -528,6 +640,10 @@ struct ReadInputsOp<W2AWaves>
             wdata.c_mY.resize(vsize, initval);
             wdata.c_mZ.resize(vsize, initval);
             wdata.c_mFS.resize(vsize, initval);
+            if (wdata.cubic_time) {
+                wdata.c_mT.resize(vsize, initval);
+                wdata.c_mFST.resize(vsize, initval);
+            }
 
             // Get dimensions of data
             wdata.n0 = wdata.c_rmodes.get_first_fft_dimension();
@@ -585,6 +701,11 @@ struct ReadInputsOp<W2AWaves>
             wdata.r_mZ.resize(vsize, initval);
             wdata.r_mFS.resize(vsize, initval);
             wdata.r_mAdd.resize(vasize, initval);
+            if (wdata.cubic_time) {
+                wdata.r_mT.resize(vsize, initval);
+                wdata.r_mFST.resize(vsize, initval);
+                wdata.r_mAddT.resize(vasize, initval);
+            }
 
             // Get dimensions of data
             wdata.n0 = wdata.r_rmodes.get_first_fft_dimension();
@@ -747,6 +868,18 @@ struct ReadInputsOp<W2AWaves>
         // Extrapolation can work well when finer data is available
         w2a_levelset.set_default_fillpatch_bc(data.sim().time());
         w2a_velocity.set_default_fillpatch_bc(data.sim().time());
+
+        if (wdata.cubic_time) {
+            // Time derivatives at the Old and New w2a times for Hermite
+            // interpolation (field states are limited to three, so values and
+            // derivatives are held in separate fields)
+            auto& w2a_dlevelset_dt =
+                data.sim().repo().declare_field("w2a_dlevelset_dt", 1, 3, 2);
+            auto& w2a_dvelocity_dt = data.sim().repo().declare_field(
+                "w2a_dvelocity_dt", AMREX_SPACEDIM, 3, 2);
+            w2a_dlevelset_dt.set_default_fillpatch_bc(data.sim().time());
+            w2a_dvelocity_dt.set_default_fillpatch_bc(data.sim().time());
+        }
 #endif
     }
 }; // namespace ops
@@ -789,6 +922,16 @@ struct InitDataOp<W2AWaves>
 
         // Set t_last to 0.0_rt to signify information read in
         wdata.t_last = 0.0_rt;
+
+        // Time derivatives start at rest, consistent with quiescent w2a data
+        if (wdata.cubic_time) {
+            for (const std::string name :
+                 {"w2a_dlevelset_dt", "w2a_dvelocity_dt"}) {
+                auto& field = sim.repo().get_field(name);
+                field(level).setVal(0.0_rt);
+                field.state(kynema_sgf::FieldState::Old)(level).setVal(0.0_rt);
+            }
+        }
 
         // indvec is complete upon initialization (all heights every proc)
         amrex::Vector<int> indvec(wdata.hvec.size());
@@ -926,15 +1069,48 @@ struct UpdateTargetFieldsOp<W2AWaves>
         // Old state of HOS fields used for time interpolation
         auto& w2a_lvs_old = w2a_levelset.state(kynema_sgf::FieldState::Old);
         auto& w2a_vel_old = w2a_velocity.state(kynema_sgf::FieldState::Old);
+        auto nlevels = sim.repo().num_active_levels();
+        auto geom = sim.mesh().Geom();
+        // Time derivatives of HOS fields (cubic time interpolation only)
+        Field* w2a_dlvs{nullptr};
+        Field* w2a_dvel{nullptr};
+        Field* w2a_dlvs_old{nullptr};
+        Field* w2a_dvel_old{nullptr};
+        if (wdata.cubic_time) {
+            w2a_dlvs = &sim.repo().get_field("w2a_dlevelset_dt");
+            w2a_dvel = &sim.repo().get_field("w2a_dvelocity_dt");
+            w2a_dlvs_old = &w2a_dlvs->state(kynema_sgf::FieldState::Old);
+            w2a_dvel_old = &w2a_dvel->state(kynema_sgf::FieldState::Old);
+        }
+        // Pairs of (levelset-like, velocity-like) fields at the Old and New
+        // HOS times, including derivatives when present
+        amrex::Vector<std::pair<Field*, Field*>> old_new;
+        old_new.emplace_back(&w2a_lvs_old, &w2a_levelset);
+        old_new.emplace_back(&w2a_vel_old, &w2a_velocity);
+        if (wdata.cubic_time) {
+            old_new.emplace_back(w2a_dlvs_old, w2a_dlvs);
+            old_new.emplace_back(w2a_dvel_old, w2a_dvel);
+        }
+        auto copy_new_to_old = [&]() {
+            for (auto& [old_field, new_field] : old_new) {
+                kynema_sgf::field_ops::copy(
+                    *old_field, *new_field, 0, 0, new_field->num_comp(),
+                    new_field->num_grow());
+            }
+        };
+        auto average_down_levels = [&](Field& field) {
+            for (int lev = nlevels - 1; lev > 0; --lev) {
+                amrex::average_down(
+                    field(lev), field(lev - 1), 0, field.num_comp(),
+                    sim.mesh().refRatio(lev - 1));
+            }
+        };
 
         // Proxy for multiphase mode of ocean waves
         bool vof_exists = sim.repo().field_exists("vof");
 
-        auto nlevels = sim.repo().num_active_levels();
-        auto geom = sim.mesh().Geom();
-
-        // Get value for time interpolation
-        amrex::Real t_last = wdata.t_last;
+        // Time of the previous target update (for reporting)
+        const amrex::Real t_last = wdata.t_last;
 
         // Check if new HOS data needs to be read
         bool read_flag = false;
@@ -1047,72 +1223,65 @@ struct UpdateTargetFieldsOp<W2AWaves>
                     wdata.do_interp = false;
                 }
             }
-            // Previous W2A data is more recent than last interpolated data
-            t_last = (wdata.ntime - 1) * wdata.dt_modes;
-
             if (double_data == 0) {
-                // Previous W2A data needs to be copied into old fields
-                kynema_sgf::field_ops::copy(
-                    w2a_lvs_old, w2a_levelset, 0, 0, 1,
-                    w2a_levelset.num_grow());
-                kynema_sgf::field_ops::copy(
-                    w2a_vel_old, w2a_velocity, 0, 0, AMREX_SPACEDIM,
-                    w2a_velocity.num_grow());
+                // Previous W2A data (at t - dt_modes) becomes the old data
+                copy_new_to_old();
             } else if (double_data == 1) {
                 // Previous W2A data is unknown, read into old fields
                 read_wave_modes(wdata, -1);
                 if (wdata.do_interp) {
                     populate_fields_all_levels(
                         wdata, geom, w2a_lvs_old, w2a_vel_old);
+                    if (wdata.cubic_time) {
+                        populate_fields_all_levels(
+                            wdata, geom, *w2a_dlvs_old, *w2a_dvel_old, true);
+                    }
                 }
 
                 // Average down to get fine information on coarse grid where
-                // possible (may be unnecessary)
-                for (int lev = nlevels - 1; lev > 0; --lev) {
-                    amrex::average_down(
-                        w2a_vel_old(lev), w2a_vel_old(lev - 1), 0,
-                        AMREX_SPACEDIM, sim.mesh().refRatio(lev - 1));
-                    amrex::average_down(
-                        w2a_lvs_old(lev), w2a_lvs_old(lev - 1), 0, 1,
-                        sim.mesh().refRatio(lev - 1));
+                // possible (may be unnecessary), then fill patch to get
+                // correct ghost cells after average down
+                for (auto& old_new_pair : old_new) {
+                    average_down_levels(*old_new_pair.first);
+                    old_new_pair.first->fillpatch(sim.time().new_time());
                 }
-                // Fill patch to get correct ghost cells after average down
-                w2a_vel_old.fillpatch(sim.time().new_time());
-                w2a_lvs_old.fillpatch(sim.time().new_time());
             }
-            // ow fields cancel when double_data == 2, no modification
 
             // After possible prior read, now read data for this ntime
             read_wave_modes(wdata);
             if (wdata.do_interp) {
                 populate_fields_all_levels(
                     wdata, geom, w2a_levelset, w2a_velocity);
+                if (wdata.cubic_time) {
+                    populate_fields_all_levels(
+                        wdata, geom, *w2a_dlvs, *w2a_dvel, true);
+                }
             }
 
             // Average down to get fine information on coarse grid where
             // possible and update ghost cells (may be unnecessary)
-            for (int lev = nlevels - 1; lev > 0; --lev) {
-                amrex::average_down(
-                    w2a_velocity(lev), w2a_velocity(lev - 1), 0, AMREX_SPACEDIM,
-                    sim.mesh().refRatio(lev - 1));
-                w2a_velocity(lev - 1).FillBoundary(geom[lev - 1].periodicity());
-                amrex::average_down(
-                    w2a_levelset(lev), w2a_levelset(lev - 1), 0, 1,
-                    sim.mesh().refRatio(lev - 1));
-                w2a_levelset(lev - 1).FillBoundary(geom[lev - 1].periodicity());
+            for (auto& old_new_pair : old_new) {
+                auto& field = *old_new_pair.second;
+                for (int lev = nlevels - 1; lev > 0; --lev) {
+                    amrex::average_down(
+                        field(lev), field(lev - 1), 0, field.num_comp(),
+                        sim.mesh().refRatio(lev - 1));
+                    field(lev - 1).FillBoundary(geom[lev - 1].periodicity());
+                }
+            }
+
+            if (double_data == 2) {
+                // Only the new data is used at this time; keep old data valid
+                copy_new_to_old();
             }
         }
 
-        // Temporally interpolate at every timestep to get target solution
+        // Temporally interpolate between the HOS data at t - dt_modes (Old)
+        // and t (New) at every timestep to get the target solution
         time_interpolate_wave_fields(
-            w2a_lvs_old, w2a_vel_old, w2a_levelset, w2a_velocity, t_last, time,
-            wdata.t);
-        // Copy to ow fields, which may be modified for beach
-        field_ops::copy(
-            ow_levelset, w2a_lvs_old, 0, 0, 1, ow_levelset.num_grow());
-        field_ops::copy(
-            ow_velocity, w2a_vel_old, 0, 0, AMREX_SPACEDIM,
-            ow_velocity.num_grow());
+            ow_levelset, ow_velocity, w2a_lvs_old, w2a_vel_old, w2a_levelset,
+            w2a_velocity, w2a_dlvs_old, w2a_dvel_old, w2a_dlvs, w2a_dvel,
+            wdata.t - wdata.dt_modes, wdata.t, time);
 #else
         amrex::ignore_unused(data, time);
 #endif

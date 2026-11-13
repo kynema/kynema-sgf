@@ -49,15 +49,21 @@ struct W2AWavesData : public RelaxZonesBaseData
     // Timestep offset (in HOS sim) for resetting to earlier data
     int n_offset{0};
 
-    // Time (in Kynema-SGF sim) when ow arrays were last changed
-    // (this is from the last timestep, goes with time-interpolated data)
+    // Time (in Kynema-SGF sim) of the last target update; negative before the
+    // first update and zero after initialization with waves
     amrex::Real t_last{-1.0_rt};
-    // Time (in Kynema-SGF sim) of latest imported wave data
+    // Time (in Kynema-SGF sim) of latest imported wave data (New state of
+    // w2a fields); the Old state holds the data at t - dt_modes
     amrex::Real t{0.0_rt};
 
     // Vectors to store complex or real modes
     std::vector<std::complex<amrex::Real>> c_mX, c_mY, c_mZ, c_mFS;
     std::vector<amrex::Real> r_mX, r_mY, r_mZ, r_mFS, r_mAdd;
+    // Time-derivative modes for cubic Hermite time interpolation
+    std::vector<std::complex<amrex::Real>> c_mT, c_mFST, c_mXt, c_mYt, c_mZt;
+    std::vector<amrex::Real> r_mT, r_mFST, r_mAddT, r_mXt, r_mYt, r_mZt;
+    // Cubic Hermite (with HOS time derivatives) or linear time interpolation
+    bool cubic_time{true};
 
 // Struct variables that have special types
 #ifdef KYNEMA_SGF_USE_W2A
