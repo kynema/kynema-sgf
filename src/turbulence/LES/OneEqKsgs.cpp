@@ -4,7 +4,9 @@
 #include "src/fvm/gradient.H"
 #include "src/fvm/strainrate.H"
 #include "src/turbulence/turb_utils.H"
+#include "src/turbulence/LES/hybrid_length_scale.H"
 #include "src/equation_systems/tke/TKE.H"
+#include "src/wind_energy/ABL.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
@@ -60,6 +62,23 @@ OneEqKsgsM84<Transport>::OneEqKsgsM84(CFDSim& sim)
         pp.queryarr("gravity", m_gravity);
     }
 
+    {
+        amrex::ParmParse pp("OneEqKsgsM84");
+        pp.query("surfaceRANS", m_surface_rans);
+        if (m_surface_rans) {
+            pp.query("switchLoc", m_switch_loc);
+            pp.query("surfaceRANSExp", m_surface_rans_exp);
+            amrex::ParmParse pp_abl("ABL");
+            pp_abl.query("kappa", m_kappa);
+            pp_abl.query("mo_gamma_m", m_gamma_m);
+            pp_abl.query("mo_beta_m", m_beta_m);
+            m_fixed_mol = pp_abl.contains("monin_obukhov_length");
+            pp_abl.query("monin_obukhov_length", m_monin_obukhov_length);
+            m_hybrid_lscale =
+                &(sim.repo().declare_field("hybrid_length_scale", 1));
+        }
+    }
+
     // TKE source term to be added to PDE
     turb_utils::inject_turbulence_src_terms(
         pde::TKE::pde_name(), {"KsgsM84Src"});
@@ -78,6 +97,72 @@ template <typename Transport>
 void OneEqKsgsM84<Transport>::post_regrid_actions()
 {
     m_gradT = (this->m_sim.repo()).create_scratch_field(3, 0);
+}
+
+template <typename Transport>
+void OneEqKsgsM84<Transport>::update_hybrid_length_scale()
+{
+    BL_PROFILE(
+        "kynema-sgf::" + this->identifier() + "::update_hybrid_length_scale");
+
+    auto& repo = this->m_sim.repo();
+    const auto& mesh = repo.mesh();
+
+    amrex::Real obukhov_len = m_monin_obukhov_length;
+    if (!m_fixed_mol) {
+        const auto& abl = this->m_sim.physics_manager().template get<ABL>();
+        obukhov_len = abl.abl_wall_function().mo().obukhov_len;
+    }
+    const amrex::Real kappa = m_kappa;
+    const amrex::Real gamma_m = m_gamma_m;
+    const amrex::Real beta_m = m_beta_m;
+    const amrex::Real Ce = this->m_Ce;
+    const amrex::Real Ceps = this->m_Ceps;
+    const amrex::Real switch_loc = m_switch_loc;
+    const amrex::Real exponent = m_surface_rans_exp;
+
+    const bool has_terrain = repo.field_exists("terrain_height");
+    const auto* terrain_height =
+        has_terrain ? &repo.get_field("terrain_height") : nullptr;
+
+    const int nlevels = repo.num_active_levels();
+    for (int lev = 0; lev < nlevels; ++lev) {
+        const auto& geom = mesh.Geom(lev);
+        const amrex::Real dx = geom.CellSize()[0];
+        const amrex::Real dy = geom.CellSize()[1];
+        const amrex::Real dz = geom.CellSize()[2];
+        const amrex::Real ds = std::cbrt(dx * dy * dz);
+        const amrex::Real zlo = geom.ProbLo(2);
+        const auto& lscale_arrs = (*m_hybrid_lscale)(lev).arrays();
+        const auto& height_arrs = has_terrain
+                                      ? (*terrain_height)(lev).const_arrays()
+                                      : amrex::MultiArray4<const amrex::Real>();
+
+        amrex::ParallelFor(
+            (*m_hybrid_lscale)(lev),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                // Height of the cell center above the ground
+                amrex::Real z = zlo + ((k + 0.5_rt) * dz);
+                if (has_terrain) {
+                    z = amrex::max<amrex::Real>(
+                        z - height_arrs[nbx](i, j, k, 0), 0.5_rt * dz);
+                }
+                // Gradient stability function (Businger-Dyer)
+                const amrex::Real zeta = z / obukhov_len;
+                const amrex::Real phi_m =
+                    (zeta >= 0.0_rt)
+                        ? 1.0_rt + (gamma_m * zeta)
+                        : std::pow(1.0_rt - (beta_m * zeta), -0.25_rt);
+                const amrex::Real l_rans = hybrid_length::one_eq_rans_length(
+                    kappa, z, phi_m, Ce, Ceps);
+                const amrex::Real weight =
+                    hybrid_length::rans_weight(z, switch_loc);
+                lscale_arrs[nbx](i, j, k) = std::sqrt(
+                    hybrid_length::blended_length_sqr(
+                        ds * ds, l_rans * l_rans, weight, exponent));
+            });
+    }
+    amrex::Gpu::streamSynchronize();
 }
 
 template <typename Transport>
@@ -107,6 +192,10 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
 
     fvm::gradient(*m_gradT, m_temperature.state(fstate));
     auto& gradT = *m_gradT;
+
+    if (m_surface_rans) {
+        update_hybrid_length_scale();
+    }
 
     const auto& vel = this->m_vel.state(fstate);
     // Compute strain rate into shear production term
@@ -138,6 +227,46 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
         const auto& buoy_prod_arrs = (this->m_buoy_prod)(lev).arrays();
         const auto& shear_prod_arrs = (this->m_shear_prod)(lev).arrays();
         const auto& beta_arrs = (*beta)(lev).const_arrays();
+
+        if (m_surface_rans) {
+            // Same model with the per-cell hybrid length scale in place of
+            // the filter width
+            const auto& lscale_arrs = (*m_hybrid_lscale)(lev).const_arrays();
+            amrex::ParallelFor(
+                mu_turb(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    const amrex::Real ds_hyb = lscale_arrs[nbx](i, j, k);
+                    amrex::Real stratification =
+                        -((gradT_arrs[nbx](i, j, k, 0) * gravity[0]) +
+                          (gradT_arrs[nbx](i, j, k, 1) * gravity[1]) +
+                          (gradT_arrs[nbx](i, j, k, 2) * gravity[2])) *
+                        beta_arrs[nbx](i, j, k);
+                    if (stratification >
+                        std::numeric_limits<amrex::Real>::epsilon() *
+                            1.0e6_rt) {
+                        tlscale_arrs[nbx](i, j, k) = amrex::min<amrex::Real>(
+                            ds_hyb, 0.76_rt * std::sqrt(
+                                                  tke_arrs[nbx](i, j, k) /
+                                                  stratification));
+                    } else {
+                        tlscale_arrs[nbx](i, j, k) = ds_hyb;
+                    }
+
+                    mu_arrs[nbx](i, j, k) = rho_arrs[nbx](i, j, k) * Ce *
+                                            tlscale_arrs[nbx](i, j, k) *
+                                            std::sqrt(tke_arrs[nbx](i, j, k));
+
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -mu_arrs[nbx](i, j, k) *
+                        (1.0_rt +
+                         2.0_rt * tlscale_arrs[nbx](i, j, k) / ds_hyb) *
+                        stratification;
+
+                    shear_prod_arrs[nbx](i, j, k) *=
+                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                });
+            continue;
+        }
 
         amrex::ParallelFor(
             mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
@@ -198,6 +327,20 @@ void OneEqKsgsM84<Transport>::update_alphaeff(Field& alphaeff)
         const auto& alphaeff_arrs = alphaeff(lev).arrays();
         const auto& tlscale_arrs = this->m_turb_lscale(lev).const_arrays();
         const auto& lam_diff_arrs = (*lam_alpha)(lev).const_arrays();
+
+        if (m_surface_rans) {
+            const auto& lscale_arrs = (*m_hybrid_lscale)(lev).const_arrays();
+            amrex::ParallelFor(
+                mu_turb(lev),
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    alphaeff_arrs[nbx](i, j, k) =
+                        lam_diff_arrs[nbx](i, j, k) +
+                        (muturb_arrs[nbx](i, j, k) *
+                         (1.0_rt + 2.0_rt * tlscale_arrs[nbx](i, j, k) /
+                                       lscale_arrs[nbx](i, j, k)));
+                });
+            continue;
+        }
 
         amrex::ParallelFor(
             mu_turb(lev), [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
