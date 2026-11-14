@@ -512,11 +512,19 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
                 << std::endl;
             fi.num_pts_tower = 0;
         }
-        AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-            npts == (nrotor_pts + fi.num_pts_tower),
-            "OpenFAST points: npts = " + std::to_string(npts) +
-                ", nrotor_pts = " + std::to_string(nrotor_pts) +
-                ", num_pts_tower = " + std::to_string(fi.num_pts_tower));
+        // OpenFAST takes the number of actuator points from its checkpoint,
+        // not from the inputs of this run
+        if (npts != (nrotor_pts + fi.num_pts_tower)) {
+            amrex::Abort(
+                "FastIface: the OpenFAST checkpoint of " + fi.tlabel + " has " +
+                std::to_string(npts) +
+                " actuator points (blades, hub and tower); this run asks for " +
+                std::to_string(nrotor_pts + fi.num_pts_tower) +
+                " (num_points_blade = " + std::to_string(fi.num_pts_blade) +
+                ", num_points_tower = " + std::to_string(fi.num_pts_tower) +
+                "). A restart keeps the number of actuator points of the run "
+                "that wrote the checkpoint.");
+        }
 #endif
     }
 
