@@ -685,6 +685,25 @@ TEST(TestFLLCData, init_warns_when_points_do_not_resolve_optimal_epsilon)
     EXPECT_NE(out.find("at 5 of 5 points"), std::string::npos);
 }
 
+TEST(TestFLLCData, init_advises_nonuniform_points_when_uniform_sum_is_coarse)
+{
+    const int num_points = 5;
+
+    // The same points with the sum taken over the actuator points
+    // (fllc_nonuniform = false): the warning names the non-uniform points
+    FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
+    FLLCData data;
+    data.epsilon = 2.0_rt;
+    data.nonuniform = false;
+
+    testing::internal::CaptureStdout();
+    fllc_init(data, blade.view, 0.25_rt);
+    const std::string out = testing::internal::GetCapturedStdout();
+    EXPECT_NE(out.find("WARNING: FLLC"), std::string::npos);
+    EXPECT_NE(out.find("at 5 of 5 points"), std::string::npos);
+    EXPECT_NE(out.find("set fllc_nonuniform = true"), std::string::npos);
+}
+
 TEST(TestFLLCData, init_is_silent_when_points_resolve_optimal_epsilon)
 {
     const int num_points = 5;
