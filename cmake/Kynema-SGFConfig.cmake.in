@@ -11,6 +11,8 @@ include(CMakeFindDependencyMacro)
 
 find_dependency(AMReX)
 find_dependency(AMReX-Hydro)
+find_dependency(MPI COMPONENTS CXX)
+find_dependency(TIOGA)
 
 if (KYNEMA_SGF_ENABLE_W2A)
   find_dependency(Waves2AMR)
