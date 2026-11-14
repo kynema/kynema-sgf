@@ -416,13 +416,19 @@ struct CommunicateModelDataOp<
             // call of the restart: that call is made at the time of the
             // checkpoint, where a run without restart makes none. It starts at
             // the force call of the first time step, as it does in that run.
+            // The state belongs to the history of the turbine: when the external
+            // solver starts the turbine anew (init) on a restart of the flow, the
+            // state is not used and the correction starts as without one.
             auto& io = data.sim().io_manager();
             const bool restart_call = tdata.at_first_force_call && io.is_restart();
-            bool has_state = false;
+            const bool solver_starts_over =
+                tdata.ext_data.sim_mode == ::ext_turb::SimMode::init;
+            bool state_in_checkpoint = false;
             if (restart_call) {
-                has_state = restart::has_file(
+                state_in_checkpoint = restart::has_file(
                     io.restart_file(), data.info().label, time.current_time());
             }
+            const bool has_state = state_in_checkpoint && !solver_starts_over;
 
             bool started = false;
             bool waits = false;
@@ -459,8 +465,7 @@ struct CommunicateModelDataOp<
             }
 
             if (started && restart_call && data.info().is_root_proc) {
-                if (!external_read_checkpoint<DataType>(
-            data, io.restart_file())) {
+                if (!external_read_checkpoint<DataType>(data, io.restart_file())) {
                     amrex::OutStream()
                         << "\nWARNING: Actuator " << data.info().label
                         << ": the state of the filtered lifting line correction "
@@ -471,7 +476,15 @@ struct CommunicateModelDataOp<
                         << "correction starts from zero." << std::endl;
                 }
             }
-            if (waits && data.info().is_root_proc) {
+            if (waits && state_in_checkpoint && data.info().is_root_proc) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the external solver starts this turbine anew, so the "
+                    << "state of the filtered lifting line correction in the "
+                    << "checkpoint " << io.restart_file()
+                    << " is not used. The correction starts from zero in the "
+                    << "first time step." << std::endl;
+            } else if (waits && data.info().is_root_proc) {
                 amrex::OutStream()
                     << "\nWARNING: Actuator " << data.info().label
                     << ": the checkpoint " << io.restart_file()

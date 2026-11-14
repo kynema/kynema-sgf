@@ -17,7 +17,9 @@ using amrex::MPI_COMM_NULL;
 #include "src/actuator/turbine/external/ExtTurbIface.H"
 #include "src/actuator/turbine/external/TurbineExternal.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
+#include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
+#include "AMReX_Utility.H"
 
 using namespace amrex::literals;
 
@@ -354,12 +356,14 @@ protected:
      *
      *  \param num_pts_blade Force points on each blade
      *  \param num_vel_pts_blade Velocity points on each blade
+     *  \param sim_mode How the solver starts the turbine
      */
     void setup_turbine(
         BendingData& data,
         BendingIface& iface,
         const int num_pts_blade,
-        const int num_vel_pts_blade)
+        const int num_vel_pts_blade,
+        const ::ext_turb::SimMode sim_mode = ::ext_turb::SimMode::init)
     {
         namespace vs = kynema_sgf::vs;
         auto& info = data.info();
@@ -401,7 +405,7 @@ protected:
 
         fi.tlabel = "T0";
         fi.tid_global = 0;
-        fi.sim_mode = ::ext_turb::SimMode::init;
+        fi.sim_mode = sim_mode;
         fi.num_pts_tower = 0;
         fi.dt_cfd = 0.1_rt;
         fi.dt_ext = 0.1_rt;
@@ -472,6 +476,45 @@ protected:
         for (const auto& fllc : data.meta().fllc) {
             ASSERT_TRUE(fllc.initialized);
         }
+    }
+
+    /** Run a turbine up to the start of the correction, put a mark in the
+     *  state of the correction of every blade and write the state into the
+     *  checkpoint chkname, as the checkpoint of the flow written at the end
+     *  of that time step does
+     *
+     *  \param chk_time Time of the checkpoint
+     */
+    void write_marked_state(
+        const std::string& chkname,
+        const int num_pts_blade,
+        const kynema_sgf::vs::Vector& mark,
+        amrex::Real& chk_time)
+    {
+        BendingIface iface(sim());
+        BendingData data(sim(), "T0", 0);
+        setup_turbine(data, iface, num_pts_blade, num_pts_blade);
+        ASSERT_NO_FATAL_FAILURE(run_to_start_of_correction(data));
+        for (auto& fllc : data.meta().fllc) {
+            fllc.correction_velocity.assign(
+                fllc.correction_velocity.size(), mark);
+        }
+        amrex::UtilCreateDirectory(chkname, 0755);
+        kynema_sgf::actuator::ops::external_write_checkpoint(data, chkname);
+        chk_time = sim().time().new_time();
+        ASSERT_TRUE(
+            kynema_sgf::actuator::restart::has_file(chkname, "T0", chk_time));
+    }
+
+    //! What a restart of the flow from the checkpoint chkname sets before the
+    //! actuators make their first force call: the name of the checkpoint and
+    //! the time
+    void restart_flow_from(const std::string& chkname, const amrex::Real time)
+    {
+        amrex::ParmParse pp("io");
+        pp.add("restart_file", chkname);
+        sim().io_manager().initialize_io();
+        sim().time().set_restart_time(sim().time().time_index(), time);
     }
 
     const int m_num_blades{3};
@@ -561,6 +604,71 @@ TEST_F(TurbineExternalFLLCTest, distances_of_other_points_are_of_same_step)
                 fllc.span_distance_vel[j],
                 distance_from_root(kappa, fi.arc_length(j, nvb)), m_tol)
                 << "blade " << ib << ", velocity point " << j;
+        }
+    }
+}
+
+// A restart of the flow from a checkpoint that holds the state of the
+// correction, with the solver at the time of the checkpoint (a replay here):
+// the correction goes on from that state at the first force call.
+TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
+{
+    namespace vs = kynema_sgf::vs;
+    const int npb = 5;
+    const std::string chkname = "test_turbine_external_fllc_replay_chk";
+    const vs::Vector mark{0.25_rt, -0.5_rt, 0.75_rt};
+    initialize_mesh();
+    amrex::Real chk_time = 0.0_rt;
+    ASSERT_NO_FATAL_FAILURE(write_marked_state(chkname, npb, mark, chk_time));
+    restart_flow_from(chkname, chk_time);
+
+    BendingIface iface(sim());
+    BendingData data(sim(), "T0", 0);
+    setup_turbine(data, iface, npb, npb, ::ext_turb::SimMode::replay);
+    post_init(data);
+
+    for (int ib = 0; ib < m_num_blades; ++ib) {
+        const auto& fllc = data.meta().fllc[ib];
+        ASSERT_TRUE(fllc.initialized) << "blade " << ib;
+        for (const auto& u : fllc.correction_velocity) {
+            EXPECT_EQ(u.x(), mark.x()) << "blade " << ib;
+            EXPECT_EQ(u.y(), mark.y()) << "blade " << ib;
+            EXPECT_EQ(u.z(), mark.z()) << "blade " << ib;
+        }
+    }
+}
+
+// The same restart with the solver starting the turbine anew (init): the
+// state belongs to the history the turbine had, so it is not used. The
+// correction starts from zero in the first time step, as after a restart
+// from a checkpoint without a state.
+TEST_F(TurbineExternalFLLCTest, restart_of_turbine_started_anew_ignores_state)
+{
+    namespace vs = kynema_sgf::vs;
+    const int npb = 5;
+    const std::string chkname = "test_turbine_external_fllc_init_chk";
+    const vs::Vector mark{0.25_rt, -0.5_rt, 0.75_rt};
+    initialize_mesh();
+    amrex::Real chk_time = 0.0_rt;
+    ASSERT_NO_FATAL_FAILURE(write_marked_state(chkname, npb, mark, chk_time));
+    restart_flow_from(chkname, chk_time);
+
+    BendingIface iface(sim());
+    BendingData data(sim(), "T0", 0);
+    setup_turbine(data, iface, npb, npb, ::ext_turb::SimMode::init);
+    post_init(data);
+    for (int ib = 0; ib < m_num_blades; ++ib) {
+        EXPECT_FALSE(data.meta().fllc[ib].initialized) << "blade " << ib;
+    }
+
+    time_step(data);
+    for (int ib = 0; ib < m_num_blades; ++ib) {
+        const auto& fllc = data.meta().fllc[ib];
+        ASSERT_TRUE(fllc.initialized) << "blade " << ib;
+        for (const auto& u : fllc.correction_velocity) {
+            EXPECT_EQ(u.x(), 0.0_rt) << "blade " << ib;
+            EXPECT_EQ(u.y(), 0.0_rt) << "blade " << ib;
+            EXPECT_EQ(u.z(), 0.0_rt) << "blade " << ib;
         }
     }
 }
