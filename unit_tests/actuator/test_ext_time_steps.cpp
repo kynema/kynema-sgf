@@ -2,6 +2,7 @@
 #include "ks_test_utils/AmrexTest.H"
 #include "src/actuator/turbine/external/ExtTurbIface.H"
 #include "AMReX_Exception.H"
+#include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -75,8 +76,64 @@ TEST_F(ExtTimeStepsTest, abort_names_interval_and_time_steps)
         msg = err.what();
     }
     EXPECT_EQ(
-        msg, "FastIface: the CFD time step of T0 (0.00125) is not a whole "
-             "number of OpenFAST time steps (0.001)");
+        msg,
+        "FastIface: the CFD time step of T0 (0.00125) is not a whole "
+        "number of OpenFAST time steps (0.001)");
+}
+
+TEST_F(ExtTimeStepsTest, rejects_time_checkpoints_with_prescribed_velocity)
+{
+    // The actuators advance before the time of the new step is set, and the
+    // solver would write its checkpoints one time step after the CFD solver
+    {
+        amrex::ParmParse pp("incflo");
+        pp.add("prescribe_velocity", true);
+    }
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_time_interval", 0.05_rt);
+    }
+    std::string msg;
+    try {
+        ::ext_turb::check_checkpoint_inputs();
+    } catch (const amrex::RuntimeError& err) {
+        msg = err.what();
+    }
+    EXPECT_NE(msg.find("time.checkpoint_time_interval"), std::string::npos);
+    EXPECT_NE(msg.find("incflo.prescribe_velocity"), std::string::npos);
+    EXPECT_NE(msg.find("time.checkpoint_interval,"), std::string::npos);
+}
+
+TEST_F(ExtTimeStepsTest, accepts_other_checkpoint_inputs)
+{
+    // No checkpoint input, and the velocity solved
+    EXPECT_NO_THROW(::ext_turb::check_checkpoint_inputs());
+
+    // Prescribed velocity with an interval in time steps
+    {
+        amrex::ParmParse pp("incflo");
+        pp.add("prescribe_velocity", true);
+    }
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", 40);
+    }
+    EXPECT_NO_THROW(::ext_turb::check_checkpoint_inputs());
+}
+
+TEST_F(ExtTimeStepsTest, accepts_time_checkpoints_with_solved_velocity)
+{
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_time_interval", 0.05_rt);
+    }
+    EXPECT_NO_THROW(::ext_turb::check_checkpoint_inputs());
+
+    {
+        amrex::ParmParse pp("incflo");
+        pp.add("prescribe_velocity", false);
+    }
+    EXPECT_NO_THROW(::ext_turb::check_checkpoint_inputs());
 }
 
 } // namespace kynema_sgf_tests
