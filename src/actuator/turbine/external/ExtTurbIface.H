@@ -32,20 +32,15 @@ public:
     /* -- General for all external turbines -- */
     int register_turbine(SolverTurbine& data);
 
-    void init_turbine(const int local_id);
+    void init_turbine(int local_id);
 
-    void advance_turbine(const int local_id);
+    void advance_turbine(int local_id);
 
-    void advance_aero_loads(const int local_id);
+    void advance_aero_loads(int local_id);
 
-    int num_local_turbines() const
+    [[nodiscard]] int num_local_turbines() const
     {
         return static_cast<int>(m_turbine_data.size());
-    }
-
-    int offset_velocity_points() const
-    {
-        return m_solver_data.m_offset_velocity;
     }
 
     /* -- Specific to each type of external turbine -- */
@@ -55,9 +50,9 @@ public:
     void parse_inputs(
         const kynema_sgf::CFDSim& /*sim*/, const std::string& /*inp_name*/);
 
-    void init_solution(const int local_id);
+    void init_solution(int local_id);
 
-    void get_hub_stats(const int local_id);
+    void get_hub_stats(int local_id);
 
     void calc_aero_loads(SolverTurbine& fi);
 
@@ -81,7 +76,7 @@ protected:
     static void read_velocity_data(
         SolverTurbine& /*unused*/,
         const ncutils::NCFile& /*unused*/,
-        const size_t tid);
+        size_t tid);
 
     //! Global to local index lookup map
     std::map<int, int> m_turbine_map;
@@ -187,7 +182,7 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
                 << "\nWARNING: ExtTurbIface:\n"
                 << "  Elapsed simulation time will exceed max "
                 << "time set for External Turbine Solver"
-                << std::endl << std::endl;
+                << "\n\n";
             // clang-format on
         }
     }

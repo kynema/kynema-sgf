@@ -90,19 +90,19 @@ struct ExternalTurbine
     int chkpt_interval;
 
     //! Data access functions that have to be defined for each type
-    virtual float* position_at_vel(int dir) const = 0;
-    virtual float* solid_velocity(int dir) const = 0;
-    virtual float* fluid_velocity(int dir) const = 0;
-    virtual float* force(int dir) const = 0;
-    virtual float* position_at_force(int dir) const = 0;
-    virtual float* chord_at_force() const = 0;
-    virtual float* orientation() const = 0;
+    [[nodiscard]] virtual float* position_at_vel(int dir) const = 0;
+    [[nodiscard]] virtual float* solid_velocity(int dir) const = 0;
+    [[nodiscard]] virtual float* fluid_velocity(int dir) const = 0;
+    [[nodiscard]] virtual float* force(int dir) const = 0;
+    [[nodiscard]] virtual float* position_at_force(int dir) const = 0;
+    [[nodiscard]] virtual float* chord_at_force() const = 0;
+    [[nodiscard]] virtual float* orientation() const = 0;
 
-    virtual int length_fluid_velocity(int dir) const = 0;
-    virtual int length_force(int dir) const = 0;
-    virtual int length_position_at_force(int dir) const = 0;
-    virtual int length_orientation() const = 0;
-    virtual int num_vel_pts_blade() const = 0;
+    [[nodiscard]] virtual int length_fluid_velocity(int dir) const = 0;
+    [[nodiscard]] virtual int length_force(int dir) const = 0;
+    [[nodiscard]] virtual int length_position_at_force(int dir) const = 0;
+    [[nodiscard]] virtual int length_orientation() const = 0;
+    [[nodiscard]] virtual int num_vel_pts_blade() const = 0;
 };
 
 } // namespace ext_turb

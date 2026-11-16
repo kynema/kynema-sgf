@@ -6,9 +6,17 @@
 #include "src/actuator/turbine/ActSrcDiskOp_Turbine.H"
 #include "src/actuator/turbine/turbine_types.H"
 #include "src/core/Slice.H"
+#include "AMReX_ParallelDescriptor.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
+
+#ifndef BL_USE_MPI
+using amrex::MPI_Comm;
+using amrex::MPI_COMM_NULL;
+#endif
+
+#include "src/actuator/turbine/external/turbine_external_utils.H"
 
 namespace kynema_sgf_tests {
 
@@ -29,6 +37,15 @@ struct DiskTurbine : public act::TurbineType
     using DataType = act::ActDataHolder<DiskTurbine>;
 
     static std::string identifier() { return "TestDiskTurbine"; }
+};
+
+struct ExternalTurbineViewData
+{
+    act::ActGrid actuator_grid;
+    act::TurbineBaseData turbine_data;
+
+    act::ActGrid& grid() { return actuator_grid; }
+    act::TurbineBaseData& meta() { return turbine_data; }
 };
 
 using DiskSrcOp = act::ops::ActSrcOp<DiskTurbine, act::ActSrcDisk>;
@@ -135,6 +152,39 @@ void compute_source(DiskTurbine::DataType& data, kynema_sgf::Field& src)
 }
 
 } // namespace turbine_disk
+
+TEST(ExternalTurbineViewTest, bladeVelocitySlicesStartAfterHub)
+{
+    namespace td = turbine_disk;
+    namespace external = kynema_sgf::actuator::external;
+
+    td::ExternalTurbineViewData data;
+    auto& grid = data.grid();
+    auto& meta = data.meta();
+    meta.num_blades = 2;
+    meta.num_pts_blade = 3;
+    meta.num_vel_pts_blade = 3;
+    meta.num_pts_tower = 0;
+    grid.resize(1 + (meta.num_blades * meta.num_pts_blade));
+    meta.chord.resize(grid.pos.size());
+    meta.vel_rel.assign(grid.pos.size(), td::vs::Vector::zero());
+
+    external::make_component_views(data);
+
+    ASSERT_EQ(meta.blades.size(), 2);
+    EXPECT_EQ(meta.blades[0].pos.data(), grid.pos.data() + 1);
+    EXPECT_EQ(meta.blades[1].pos.data(), grid.pos.data() + 4);
+    EXPECT_EQ(meta.blades[0].vel.data(), grid.vel.data() + 1);
+    EXPECT_EQ(meta.blades[1].vel.data(), grid.vel.data() + 4);
+    EXPECT_EQ(meta.blades[0].vel_pos.data(), grid.vel_pos.data() + 1);
+    EXPECT_EQ(meta.blades[1].vel_pos.data(), grid.vel_pos.data() + 4);
+    EXPECT_EQ(
+        meta.blades[0].vel.data() + meta.blades[0].vel.size(),
+        meta.blades[1].vel.data());
+    EXPECT_EQ(
+        meta.blades[1].vel.data() + meta.blades[1].vel.size(),
+        grid.vel.data() + grid.vel.size());
+}
 
 class TurbineDiskSrcTest : public MeshTest
 {
