@@ -31,13 +31,12 @@ void make_component_views(datatype& data)
     const int num_blades = tdata.num_blades;
     const int num_pts_blade = tdata.num_pts_blade;
     const int num_vel_pts_blade = tdata.num_vel_pts_blade;
-    const int offset_vel = tdata.velocity_points_offset;
 
     for (int ib = 0; ib < num_blades; ++ib) {
         ComponentView cv;
 
         const auto start = ib * num_pts_blade + 1;
-        const auto start_vel = ib * num_vel_pts_blade + offset_vel;
+        const auto start_vel = ib * num_vel_pts_blade + 1;
         // clang-format off
             cv.pos = ::kynema_sgf::utils::slice(
                 grid.pos, start, num_pts_blade);

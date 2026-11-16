@@ -167,7 +167,6 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 struct KynemaFMBSolverData
 {
     std::string output_dir{"kynema_fmb_velocity_data"};
-    int m_offset_velocity{1};
 
     amrex::Real damping_factor{0.0_rt};
     int nl_iter_max{12};
