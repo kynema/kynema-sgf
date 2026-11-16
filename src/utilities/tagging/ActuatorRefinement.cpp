@@ -177,7 +177,7 @@ void ActuatorRefinement::operator()(
     const amrex::Real time,
     const int /*ngrow*/)
 {
-    if (level < m_min_level || level > m_max_level) {
+    if (!active(level)) {
         return;
     }
     if (m_actuators.empty()) {

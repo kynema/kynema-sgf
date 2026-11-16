@@ -26,6 +26,11 @@ public:
 
     void initialize(const std::string& key) override;
 
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level >= m_min_level && level <= m_max_level;
+    }
+
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
         override;

@@ -439,7 +439,12 @@ Combining refinement criteria with logical operators
 ``or_not``         Tag cells where previous is tagged or current is not tagged
 ================== ====================================================================
 
-   Note: Some refinement criteria may restrict supported operators (e.g., ``CartBoxRefinement`` currently only supports ``or``).
+   All criteria support these operators, applied once per label to every cell.
+   Shapes, actuator cylinders, and field or gradient matches within a label
+   form a union. Use separate labels for other combinations.
+
+   Criteria inactive on the current level leave tags unchanged. Active criteria
+   with no matches still apply their operator.
 
    In this context, previous refers to the tag state resulting from all criteria applied
    before the current one.

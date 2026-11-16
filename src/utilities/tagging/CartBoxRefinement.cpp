@@ -90,11 +90,6 @@ void CartBoxRefinement::initialize(const std::string& key)
     }
 
     read_inputs(m_mesh, ifh);
-
-    if (tag_operator() != tagging::TaggingOperator::OR) {
-        amrex::Abort(
-            "CartBoxRefinement only supports the 'or' operator for tagging");
-    }
 }
 
 void CartBoxRefinement::read_inputs(
@@ -135,7 +130,7 @@ void CartBoxRefinement::read_inputs(
 void CartBoxRefinement::operator()(
     int level, amrex::TagBoxArray& tags, amrex::Real /*time*/, int /*ngrow*/)
 {
-    if (level < m_nlevels) {
+    if (active(level)) {
         tags.setVal(m_boxarrays[level], amrex::TagBox::SET);
     }
 }

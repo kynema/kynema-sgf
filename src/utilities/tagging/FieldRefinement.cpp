@@ -83,6 +83,9 @@ void FieldRefinement::operator()(
     const amrex::Real time,
     const int /*ngrow*/)
 {
+    if (!active(level)) {
+        return;
+    }
     const bool tag_grad = level <= m_max_lev_grad;
     if (tag_grad) {
         if (m_field != nullptr) {
