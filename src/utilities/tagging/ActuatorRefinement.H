@@ -2,7 +2,7 @@
 #define ACTUATORREFINEMENT_H
 
 #include "src/utilities/tagging/RefinementCriteria.H"
-#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/actuator/actuator_types.H"
 
 #include <cstdint>
 #include <string>

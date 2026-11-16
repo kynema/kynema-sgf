@@ -2,8 +2,8 @@
 
 #include "src/CFDSim.H"
 #include "src/utilities/index_operations.H"
-#include "src/wind_energy/actuator/Actuator.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/Actuator.H"
+#include "src/actuator/ActuatorModel.H"
 
 #include <algorithm>
 #include <cmath>

@@ -1,8 +1,8 @@
 #include "src/utilities/sampling/MovingPlaneSampler.H"
 
 #include "src/CFDSim.H"
-#include "src/wind_energy/actuator/Actuator.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/Actuator.H"
+#include "src/actuator/ActuatorModel.H"
 
 #include "AMReX_ParmParse.H"
 
