@@ -35,8 +35,8 @@ void make_component_views(datatype& data)
     for (int ib = 0; ib < num_blades; ++ib) {
         ComponentView cv;
 
-        const auto start = ib * num_pts_blade + 1;
-        const auto start_vel = ib * num_vel_pts_blade + 1;
+        const auto start = (ib * num_pts_blade) + 1;
+        const auto start_vel = (ib * num_vel_pts_blade) + 1;
         // clang-format off
             cv.pos = ::kynema_sgf::utils::slice(
                 grid.pos, start, num_pts_blade);
@@ -60,7 +60,7 @@ void make_component_views(datatype& data)
     }
     if (tdata.num_pts_tower > 0) {
         const int num_pts_tower = tdata.num_pts_tower;
-        const int ntwr_start = num_blades * num_pts_blade + 1;
+        const int ntwr_start = (num_blades * num_pts_blade) + 1;
         auto& cv = tdata.tower;
 
         cv.pos =
@@ -157,7 +157,7 @@ void compute_nacelle_force(datatype& data)
     if (eps > 0.0_rt) {
         amrex::Real fac =
             1.0_rt -
-            (cd_area) / (2.0_rt * ::kynema_sgf::utils::two_pi() * eps * eps);
+            (cd_area / (2.0_rt * ::kynema_sgf::utils::two_pi() * eps * eps));
         correction = 1.0_rt / fac;
     }
     amrex::Real coeff =
@@ -305,12 +305,12 @@ void scatter_data(datatype& data)
             // so that post-multiplication of vector transforms from global
             // to local reference frame.
             const auto off =
-                static_cast<int>(iori) + i * AMREX_SPACEDIM * AMREX_SPACEDIM;
+                static_cast<int>(iori) + (i * AMREX_SPACEDIM * AMREX_SPACEDIM);
             for (int j = 0; j < AMREX_SPACEDIM; ++j) {
                 for (int k = 0; k < AMREX_SPACEDIM; ++k) {
-                    grid.orientation[i][j * AMREX_SPACEDIM + k] =
+                    grid.orientation[i][(j * AMREX_SPACEDIM) + k] =
                         static_cast<amrex::Real>(
-                            buf[off + j + k * AMREX_SPACEDIM]);
+                            buf[off + j + (k * AMREX_SPACEDIM)]);
                 }
             }
         }

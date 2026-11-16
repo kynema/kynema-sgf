@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-#if !defined(BL_USE_MPI)
+#ifndef BL_USE_MPI
 using amrex::MPI_Comm;
 using amrex::MPI_COMM_NULL;
 #endif
@@ -165,7 +165,7 @@ TEST(ExternalTurbineViewTest, bladeVelocitySlicesStartAfterHub)
     meta.num_pts_blade = 3;
     meta.num_vel_pts_blade = 3;
     meta.num_pts_tower = 0;
-    grid.resize(1 + meta.num_blades * meta.num_pts_blade);
+    grid.resize(1 + (meta.num_blades * meta.num_pts_blade));
     meta.chord.resize(grid.pos.size());
     meta.vel_rel.assign(grid.pos.size(), td::vs::Vector::zero());
 
