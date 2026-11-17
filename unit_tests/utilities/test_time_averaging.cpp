@@ -302,10 +302,7 @@ TEST_F(TimeAveragingTest, window_constant_field)
 }
 
 //! Once the window is exceeded the average is an exponentially weighted
-//! moving average, not an arithmetic mean over the last window:
-//!   avg_new = avg_old * (1 - dt / W) + f * dt / W
-//! For a step from 0 to 1, after k steps avg = 1 - (1 - dt / W)^k. After one
-//! window (k = W / dt) the average is ~1 - 1/e, not 1.
+//! moving average, not an arithmetic mean over the last window
 TEST_F(TimeAveragingTest, window_step_response_is_exponential)
 {
     const amrex::Real window = 1.0_rt;
