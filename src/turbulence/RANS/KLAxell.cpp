@@ -57,6 +57,7 @@ void KLAxell<Transport>::parse_model_coeffs()
     pp.query("Cb_stable", this->m_Cb_stable);
     pp.query("Cb_unstable", this->m_Cb_unstable);
     pp.query("prandtl", this->m_prandtl);
+    pp.query("density_weighted_production", this->m_rho_weighted_prod);
 }
 
 template <typename Transport>
@@ -113,6 +114,11 @@ void KLAxell<Transport>::update_turbulent_viscosity(
     const amrex::Real surf_flux = m_surf_flux;
     const auto tiny = std::numeric_limits<amrex::Real>::epsilon();
     const amrex::Real lengthscale_switch = m_meso_sponge_start;
+    // The TKE equation multiplies the whole source by density
+    // (pde::TKE::multiply_rho), so production is built per unit mass, like
+    // dissipation in KransAxell. density_weighted_production = true keeps the
+    // earlier form, in which production carried an extra factor of density.
+    const bool rho_weighted_prod = m_rho_weighted_prod;
     for (int lev = 0; lev < nlevels; ++lev) {
         const auto& geom = geom_vec[lev];
         const auto& problo = repo.mesh().Geom(lev).ProbLoArray();
@@ -210,9 +216,13 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k)) *
                         (1.0_rt - blank_arrs[nbx](i, j, k));
-                    buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
+                    const amrex::Real rho_prod =
+                        rho_weighted_prod ? 1.0_rt : rho_arrs[nbx](i, j, k);
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -muPrime * stratification / rho_prod;
                     shear_prod_arrs[nbx](i, j, k) *=
-                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k) /
+                        rho_prod;
                 });
         } else {
             amrex::ParallelFor(
@@ -284,9 +294,13 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k));
-                    buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
+                    const amrex::Real rho_prod =
+                        rho_weighted_prod ? 1.0_rt : rho_arrs[nbx](i, j, k);
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -muPrime * stratification / rho_prod;
                     shear_prod_arrs[nbx](i, j, k) *=
-                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k) /
+                        rho_prod;
                 });
         }
     }

@@ -65,6 +65,8 @@ private:
     amrex::Real m_Cb_stable{0.25_rt};
     amrex::Real m_Cb_unstable{0.35_rt};
     amrex::Real m_prandtl{1.0_rt};
+    //! Keep the earlier production terms that carry an extra factor of rho
+    bool m_rho_weighted_prod{false};
     Field& m_temperature;
     //! Gravity vector (m/s^2)
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};

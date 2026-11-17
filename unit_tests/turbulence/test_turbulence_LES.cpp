@@ -338,6 +338,40 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
         std::sqrt(tke_val);
     EXPECT_NEAR(min_val, ksgs_answer, tol);
     EXPECT_NEAR(max_val, ksgs_answer, tol);
+
+    // Production terms are per unit mass, like the dissipation in KsgsM84Src,
+    // because the TKE equation multiplies the whole source by density.
+    // nu_t = mu_t / rho, S = srate, N^2 = g dT/dz / Tref (stable here).
+    const amrex::Real ds = std::cbrt(m_dx * m_dy * m_dz);
+    const amrex::Real nsq = Tgz * gravz / Tref;
+    const amrex::Real lsgs =
+        amrex::min<amrex::Real>(ds, 0.76_rt * std::sqrt(tke_val / nsq));
+    const amrex::Real nut = ksgs_answer / rho0;
+    const amrex::Real shear_answer = srate * srate * nut;
+    const amrex::Real buoy_answer =
+        -nut * (1.0_rt + (2.0_rt * lsgs / ds)) * nsq;
+    const auto& shear_prod = sim().repo().get_field("shear_prod");
+    const auto& buoy_prod = sim().repo().get_field("buoy_prod");
+    const amrex::Real ptol = tol * srate * srate;
+    EXPECT_NEAR(utils::field_min(shear_prod), shear_answer, ptol);
+    EXPECT_NEAR(utils::field_max(shear_prod), shear_answer, ptol);
+    EXPECT_NEAR(utils::field_min(buoy_prod), buoy_answer, tol);
+    EXPECT_NEAR(utils::field_max(buoy_prod), buoy_answer, tol);
+
+    // density_weighted_production = true keeps the earlier form, in which
+    // both production terms carry an extra factor of rho
+    {
+        amrex::ParmParse pp("OneEqKsgsM84_coeffs");
+        pp.add("density_weighted_production", true);
+    }
+    tmodel.parse_model_coeffs();
+    tke.setVal(tke_val);
+    tlscale.setVal(tlscale_val);
+    tmodel.update_turbulent_viscosity(
+        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
+    EXPECT_NEAR(utils::field_max(muturb), ksgs_answer, tol);
+    EXPECT_NEAR(utils::field_max(shear_prod), rho0 * shear_answer, ptol);
+    EXPECT_NEAR(utils::field_min(buoy_prod), rho0 * buoy_answer, tol);
 }
 
 TEST_F(TurbLESTest, test_AMD_setup_calc)

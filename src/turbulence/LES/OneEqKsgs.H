@@ -97,6 +97,9 @@ private:
     bool m_hybrid_rl{false};
     Field* m_sdr;
 
+    //! Keep the earlier production terms that carry an extra factor of rho
+    bool m_rho_weighted_prod{false};
+
     std::unique_ptr<ScratchField> m_gradT;
 };
 
