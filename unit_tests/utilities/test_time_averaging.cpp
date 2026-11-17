@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <cmath>
+
 #include "ks_test_utils/MeshTest.H"
 #include "src/CFDSim.H"
 #include "src/utilities/PostProcessing.H"
@@ -33,6 +36,22 @@ protected:
             amrex::ParmParse pp("tavg.means");
             pp.add("fields", (std::string) "temperature");
             pp.add("averaging_type", (std::string) "ReAveraging");
+        }
+    }
+
+    //! Average every step with a given window and number of time steps
+    void use_window(const amrex::Real window, const int max_step)
+    {
+        populate_parameters();
+        {
+            amrex::ParmParse pp("time");
+            pp.add("stop_time", 100.0_rt);
+            pp.add("max_step", max_step);
+        }
+        {
+            amrex::ParmParse pp("tavg");
+            pp.add("averaging_window", window);
+            pp.add("averaging_time_interval", -1.0_rt);
         }
     }
 
@@ -214,6 +233,118 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
         0.9_rt;
 
     EXPECT_NEAR(max_f, avg_val_ideal, m_tol);
+}
+
+//! Before the window is filled the average is the arithmetic time mean
+TEST_F(TimeAveragingTest, window_not_filled_is_arithmetic_mean)
+{
+    const amrex::Real window = 1.0_rt;
+    const int nsteps = 10; // nsteps * dt == window
+    use_window(window, nsteps);
+    initialize_mesh();
+
+    auto& m_sim = sim();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
+    auto& time = sim().time();
+    auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
+    temp.setVal(0.0_rt);
+    post_manager.pre_init_actions();
+    post_manager.post_init_actions();
+
+    const auto& f_avg = sim().repo().get_field(m_name);
+
+    int step_count{0};
+    while (time.new_timestep()) {
+        ++step_count;
+        // Sample n at step n, so the arithmetic mean of 1..n is (n + 1) / 2
+        temp.setVal(static_cast<amrex::Real>(step_count));
+        time.advance_time();
+        post_manager.post_advance_work();
+
+        const auto max_f = utils::field_max(f_avg);
+        const auto min_f = utils::field_min(f_avg);
+        EXPECT_NEAR(max_f, min_f, m_tol);
+        EXPECT_NEAR(max_f, 0.5_rt * (step_count + 1), m_tol);
+    }
+    EXPECT_EQ(step_count, nsteps);
+}
+
+//! A constant field must average to that constant before and after the window
+//! is exceeded (i.e., no 1 - exp(-t/W) ramp-up)
+TEST_F(TimeAveragingTest, window_constant_field)
+{
+    const amrex::Real window = 1.0_rt;
+    const int nsteps = 30; // 3 windows
+    use_window(window, nsteps);
+    initialize_mesh();
+
+    auto& m_sim = sim();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
+    auto& time = sim().time();
+    auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
+    temp.setVal(1.0_rt);
+    post_manager.pre_init_actions();
+    post_manager.post_init_actions();
+
+    const auto& f_avg = sim().repo().get_field(m_name);
+
+    int step_count{0};
+    while (time.new_timestep()) {
+        ++step_count;
+        temp.setVal(1.0_rt);
+        time.advance_time();
+        post_manager.post_advance_work();
+
+        EXPECT_NEAR(utils::field_max(f_avg), 1.0_rt, m_tol);
+        EXPECT_NEAR(utils::field_min(f_avg), 1.0_rt, m_tol);
+    }
+    EXPECT_EQ(step_count, nsteps);
+}
+
+//! Once the window is exceeded the average is an exponentially weighted
+//! moving average, not an arithmetic mean over the last window
+TEST_F(TimeAveragingTest, window_step_response_is_exponential)
+{
+    const amrex::Real window = 1.0_rt;
+    const int nsteps = 50;
+    const int step_up = 20; // elapsed time is already > window at the step
+    const int nwindow = static_cast<int>(std::round(window / m_dt));
+    use_window(window, nsteps);
+    initialize_mesh();
+
+    auto& m_sim = sim();
+    kynema_sgf::PostProcessManager& post_manager = m_sim.post_manager();
+    auto& time = sim().time();
+    auto& temp = sim().repo().declare_cc_field("temperature", 1, 1, 1);
+    temp.setVal(0.0_rt);
+    post_manager.pre_init_actions();
+    post_manager.post_init_actions();
+
+    const auto& f_avg = sim().repo().get_field(m_name);
+
+    const amrex::Real decay = 1.0_rt - (m_dt / window);
+    int step_count{0};
+    while (time.new_timestep()) {
+        ++step_count;
+        temp.setVal(step_count > step_up ? 1.0_rt : 0.0_rt);
+        time.advance_time();
+        post_manager.post_advance_work();
+
+        const auto max_f = utils::field_max(f_avg);
+        const auto min_f = utils::field_min(f_avg);
+        EXPECT_NEAR(max_f, min_f, m_tol);
+
+        const int k = std::max(step_count - step_up, 0);
+        EXPECT_NEAR(max_f, 1.0_rt - std::pow(decay, k), m_tol);
+
+        if (k == nwindow) {
+            // An arithmetic mean over the last window would be exactly 1.
+            // Here ~35% of the weight still comes from before the step.
+            EXPECT_LT(max_f, 0.7_rt);
+            EXPECT_GT(max_f, 0.6_rt);
+        }
+    }
+    EXPECT_EQ(step_count, nsteps);
 }
 
 } // namespace kynema_sgf_tests
