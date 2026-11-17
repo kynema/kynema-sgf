@@ -241,6 +241,7 @@ set_tests_properties(abl_mean_boussinesq_missing_profile PROPERTIES
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test_files/abl_mean_boussinesq")
 add_test_r(abl_bndry_output_amr_native 331.45)
 add_test_r(abl_bndry_output_native 457.36)
+add_test_r(abl_damping_layer_source 400)
 add_test_r(abl_godunov_geostrophic_timetable 505.79)
 add_test_r(abl_godunov_mpl 894.46)
 add_test_r(abl_godunov_mpl_amr 394.34)
