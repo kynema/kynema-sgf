@@ -40,6 +40,8 @@ struct RelaxZonesBaseData
 
     bool has_beach{true};
 
+    bool disable_beach_vof_term{false};
+
     amrex::Real ramp_period;
 
     bool regrid_occurred{false};
