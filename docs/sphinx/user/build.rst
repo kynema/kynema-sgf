@@ -17,9 +17,6 @@ your system. The main dependencies are listed below:
 #. MPI -- `OpenMPI <https://www.open-mpi.org/>`_, `MPICH
    <https://www.mpich.org/>`_, or Intel-MPI.
 
-#. Tioga -- required for the SGF overset bridge. Set ``TIOGA_DIR`` to its
-   installed CMake package directory if it is not on ``CMAKE_PREFIX_PATH``.
-
 #. `CMake <https://cmake.org/>`_ -- Configure and build the code
 
 #. `Python <https://python.org>`_ A recent version of python
@@ -108,6 +105,13 @@ Dependencies
 .. cmakeval:: KYNEMA_SGF_ENABLE_OPENFAST
 
    Enable OpenFAST coupling. Default: OFF
+
+.. cmakeval:: KYNEMA_SGF_ENABLE_TIOGA
+
+   Build the external Tioga bridge required by Kynema Driver. Standalone SGF
+   does not need it. Requires ``KYNEMA_SGF_ENABLE_MPI=ON``. Set ``TIOGA_DIR``
+   to Tioga's installed CMake package directory if it is not on
+   ``CMAKE_PREFIX_PATH``. Default: OFF
 
 .. cmakeval:: KYNEMA_SGF_OPENFAST_VERSION
 
