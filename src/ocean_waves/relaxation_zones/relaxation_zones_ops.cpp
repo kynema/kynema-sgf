@@ -94,7 +94,6 @@ void modify_target_fields_for_beach(
         const amrex::Real beach_length = wdata.beach_length;
         const amrex::Real zsl = wdata.zsl;
         const amrex::Real current = wdata.current;
-        const auto disable_beach_vof_term = wdata.disable_beach_vof_term;
 
         amrex::ParallelFor(
             ow_vel(lev), amrex::IntVect(3),
@@ -185,6 +184,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
         const amrex::Real zone_length_y = wdata.zone_length_y;
         const bool has_zone_y = zone_length_y > constants::EPS;
         const bool has_beach = wdata.has_beach;
+        const bool disable_beach_vof_term = wdata.disable_beach_vof_term;
 
         amrex::ParallelFor(
             velocity(lev), amrex::IntVect(0),
