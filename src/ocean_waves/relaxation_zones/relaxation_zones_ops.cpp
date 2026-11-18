@@ -281,7 +281,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                         integrated_vel_liq +=
                             rampf * fvel_liq *
                             amrex::max<amrex::Real>(0.0_rt, dvf) *
-                            (target_profile[n] - vel(i, j, k, n));
+                            (target_profile[n] - vel_liq);
                         // Update overall velocity using momentum
                         vel(i, j, k, n) = ((rho1 * integrated_vel_liq) +
                                            (rho2 * (1.0_rt - volfrac(i, j, k)) *
