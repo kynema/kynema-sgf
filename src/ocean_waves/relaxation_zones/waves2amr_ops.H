@@ -472,7 +472,8 @@ void time_interpolate_wave_fields(
     const kynema_sgf::Field* dvel_new,
     const amrex::Real t0,
     const amrex::Real t1,
-    const amrex::Real time)
+    const amrex::Real time,
+    const amrex::Real current = 0.0_rt)
 {
     const bool cubic = dlvs_old && dvel_old && dlvs_new && dvel_new;
     const auto w = time_interp_weights(t0, t1, time, cubic);
@@ -492,6 +493,18 @@ void time_interpolate_wave_fields(
             vel_field, w[2], *dvel_old, 0, 0, AMREX_SPACEDIM, vel_ng);
         kynema_sgf::field_ops::saxpy(
             vel_field, w[3], *dvel_new, 0, 0, AMREX_SPACEDIM, vel_ng);
+    }
+    // Keep cached HOS fields wave-only; rebuild the total target every update.
+    if (current != 0.0_rt) {
+        for (int lev = 0; lev < vel_field.repo().num_active_levels(); ++lev) {
+            const auto vel = vel_field(lev).arrays();
+            amrex::ParallelFor(
+                vel_field(lev), vel_ng,
+                [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                    vel[nbx](i, j, k, 0) += current;
+                });
+        }
+        amrex::Gpu::streamSynchronize();
     }
 }
 
@@ -520,14 +533,12 @@ struct ReadInputsOp<W2AWaves>
         auto& info = data.info();
         relaxation_zones::read_inputs(wdata, info, pp);
 
-        if (wdata.current > constants::TIGHT_TOL) {
-            amrex::Abort(
-                "Current is specified as nonzero, but current is not yet "
-                "implemented for W2A Waves.");
-        }
-
         pp.get("HOS_modes_filename", wdata.modes_file);
         pp.query("HOS_simulation_is_ocean", wdata.is_ocean);
+        if (!wdata.is_ocean && wdata.current != 0.0_rt) {
+            amrex::Abort(
+                "W2A current is supported only for HOS-Ocean wave-only modes");
+        }
         pp.query("HOS_init_timestep", wdata.ntime);
         if (!pp.contains("HOS_init_timestep")) {
             pp.query("HOS_init_time", wdata.t_winit);
@@ -943,7 +954,7 @@ struct InitDataOp<W2AWaves>
 
         // Populate flow fields according to intended forcing and init setup
         const auto& ow_phi = ow_levelset(level).const_arrays();
-        const auto& ow_vel = ow_velocity(level).const_arrays();
+        const auto& ow_vel = ow_velocity(level).arrays();
         const auto& vel = velocity(level).arrays();
         const auto& phi_arrs = multiphase_mode
                                    ? (*levelset)(level).arrays()
@@ -958,6 +969,7 @@ struct InitDataOp<W2AWaves>
         const amrex::Real beach_length = wdata.beach_length;
         const amrex::Real y_length = wdata.zone_length_y;
         const amrex::Real zero_sea_level = wdata.zsl;
+        const amrex::Real current = wdata.current;
 
         const bool has_beach = wdata.has_beach && multiphase_mode;
         const bool init_wave_field = wdata.init_wave_field || !multiphase_mode;
@@ -981,15 +993,14 @@ struct InitDataOp<W2AWaves>
 
                 // Wave profile
                 const utils::WaveVec wave_sol{
-                    ow_vel[nbx](i, j, k, 0), ow_vel[nbx](i, j, k, 1),
+                    ow_vel[nbx](i, j, k, 0) + current, ow_vel[nbx](i, j, k, 1),
                     ow_vel[nbx](i, j, k, 2), ow_phi[nbx](i, j, k) + z};
-                // Quiescent profile
-                const utils::WaveVec quiescent{
-                    0.0_rt, 0.0_rt, 0.0_rt, zero_sea_level};
+                const utils::WaveVec current_only{
+                    current, 0.0_rt, 0.0_rt, zero_sea_level};
 
                 // Specify initial state for each region of domain
-                const auto bulk = init_wave_field ? wave_sol : quiescent;
-                const auto outlet = has_beach ? quiescent : wave_sol;
+                const auto bulk = init_wave_field ? wave_sol : current_only;
+                const auto outlet = has_beach ? current_only : wave_sol;
 
                 const auto local_profile = utils::harmonize_profiles_2d(
                     x, y, problo[0], gen_length, probhi[0], beach_length,
@@ -1007,15 +1018,16 @@ struct InitDataOp<W2AWaves>
                 // Start old values at w2a solution (for the sake of time
                 // interpolation)
                 w2a_phi_o[nbx](i, j, k) = wave_sol[3] - z;
-                w2a_vel_o[nbx](i, j, k, 0) = wave_sol[0];
+                w2a_vel_o[nbx](i, j, k, 0) = ow_vel[nbx](i, j, k, 0);
                 w2a_vel_o[nbx](i, j, k, 1) = wave_sol[1];
                 w2a_vel_o[nbx](i, j, k, 2) = wave_sol[2];
+                ow_vel[nbx](i, j, k, 0) = wave_sol[0];
 
                 // Default w2a values matter for where no updates happen
-                w2a_phi[nbx](i, j, k) = quiescent[3] - z;
-                w2a_vel[nbx](i, j, k, 0) = quiescent[0];
-                w2a_vel[nbx](i, j, k, 1) = quiescent[1];
-                w2a_vel[nbx](i, j, k, 2) = quiescent[2];
+                w2a_phi[nbx](i, j, k) = zero_sea_level - z;
+                w2a_vel[nbx](i, j, k, 0) = 0.0_rt;
+                w2a_vel[nbx](i, j, k, 1) = 0.0_rt;
+                w2a_vel[nbx](i, j, k, 2) = 0.0_rt;
             });
         amrex::Gpu::streamSynchronize();
 
@@ -1281,7 +1293,7 @@ struct UpdateTargetFieldsOp<W2AWaves>
         time_interpolate_wave_fields(
             ow_levelset, ow_velocity, w2a_lvs_old, w2a_vel_old, w2a_levelset,
             w2a_velocity, w2a_dlvs_old, w2a_dvel_old, w2a_dlvs, w2a_dvel,
-            wdata.t - wdata.dt_modes, wdata.t, time);
+            wdata.t - wdata.dt_modes, wdata.t, time, wdata.current);
 #else
         amrex::ignore_unused(data, time);
 #endif

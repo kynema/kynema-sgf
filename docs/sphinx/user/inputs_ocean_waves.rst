@@ -100,9 +100,14 @@ free surface. The same treatment is used for the initial velocity field in multi
 
    **type:** Real, optional, default = 0.0
 
-   Flow speed of a uniform current in the x-direction to be added to the wave forcing. This option is
-   currently only compatible with the LinearWaves wave type and the numerical beach. If a nonzero current is
-   specified for a case with nonlinear waves, the code will abort.
+   Signed velocity in m/s of a uniform current in the x-direction. Compatible
+   with LinearWaves and with W2AWaves using HOS-Ocean wave-only modes. StokesWaves
+   and HOS-NWT W2AWaves do not support a nonzero current.
+
+   For HOS-Ocean, use the same current as the precursor's uniform-current
+   configuration (``i_curr = 1``, dimensional ``u_0``). The SWENSE header does
+   not identify the precursor current; the user must verify this match.
+   Spatially varying currents (``i_curr = 2``) are not supported.
 
 The following input arguments are only valid for the LinearWaves and StokesWave wave types:
 

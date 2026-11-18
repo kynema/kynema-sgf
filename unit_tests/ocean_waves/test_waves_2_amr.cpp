@@ -190,6 +190,158 @@ TEST_F(OceanWavesW2ATest, modes_io_nwt)
     test_modes_distribution(false, false);
     test_modes_distribution(false, true);
 }
+
+class OceanWavesW2ACurrentTest : public OceanWavesW2ATest
+{
+protected:
+    void check_current(
+        bool init_waves,
+        bool cubic_time,
+        amrex::Real current,
+        bool beach,
+        bool waves = true)
+    {
+        populate_parameters();
+        amrex::ParmParse geometry("geometry");
+        geometry.addarr(
+            "prob_lo", amrex::Vector<amrex::Real>{0.0_rt, 0.0_rt, -4.0_rt});
+        geometry.addarr(
+            "prob_hi", amrex::Vector<amrex::Real>{8.0_rt, 8.0_rt, 4.0_rt});
+        initialize_mesh();
+
+        const auto filename =
+            (std::filesystem::temp_directory_path() /
+             ("w2a-current-" + amrex::UniqueString() + ".dat"))
+                .string();
+        if (amrex::ParallelDescriptor::IOProcessor()) {
+            std::ofstream file(filename, std::ios::binary);
+            const std::array<double, 10> header{16, 2, 1,    2, 8,
+                                                8,  4, 9.81, 1, 1};
+            for (int record = 0; record < 4; ++record) {
+                for (int slot = 0; slot < 12 * 9 * 2; ++slot) {
+                    double value = 0.0;
+                    if (!record && slot < static_cast<int>(header.size())) {
+                        value = header[slot];
+                    } else if (record && waves && slot == 2) {
+                        value = 0.2;
+                    } else if (record && waves && slot == 4 * 18 + 2) {
+                        value = 0.1;
+                    }
+                    file << std::uppercase << std::scientific
+                         << std::setprecision(10) << std::setw(17) << value
+                         << ' ';
+                }
+            }
+            AMREX_ALWAYS_ASSERT(file.good());
+        }
+
+        amrex::ParmParse pp("OceanWaves.current_test");
+        pp.add("HOS_modes_filename", filename);
+        pp.add("current", current);
+        pp.add("initialize_wave_field", init_waves);
+        pp.add("number_interp_points_in_z", 10);
+        pp.add("interp_spacing_at_surface", 0.5_rt);
+        pp.add("number_interp_above_surface", 4);
+        pp.add("relax_zone_gen_length", 1.0_rt);
+        pp.add(
+            beach ? "numerical_beach_length" : "relax_zone_out_length", 2.0_rt);
+        pp.add("fft_reconstruction", std::string("full"));
+        pp.add(
+            "time_interpolation", std::string(cubic_time ? "cubic" : "linear"));
+        auto& repo = sim().repo();
+        auto& velocity = repo.declare_cc_field("velocity", 3, 3);
+        auto& target = repo.declare_cc_field("ow_velocity", 3, 3);
+        repo.declare_cc_field("levelset", 1, 3);
+        repo.declare_cc_field("ow_levelset", 1, 3);
+        velocity.setVal(amrex::Vector<amrex::Real>{8.0_rt, 9.0_rt, 10.0_rt}, 3);
+
+        {
+            using namespace kynema_sgf::ocean_waves;
+            W2AWaves::DataType data(sim(), "current_test", 0);
+            ::kynema_sgf::utils::MultiParser inputs(
+                "OceanWaves.W2AWaves", "OceanWaves.current_test");
+            ops::ReadInputsOp<W2AWaves>()(data, inputs);
+            ops::InitDataOp<W2AWaves>()(data, 0, mesh().Geom(0), true);
+
+            auto& cache = repo.get_field("w2a_velocity");
+            auto& old_cache = cache.state(kynema_sgf::FieldState::Old);
+            const amrex::Real tol = 1.0e-10_rt;
+            const auto wave = utils::field_probe(old_cache, 0, 3, 3, 1);
+            if (waves) {
+                EXPECT_GT(std::abs(wave), 0.01_rt);
+            } else {
+                EXPECT_NEAR(wave, 0.0_rt, tol);
+                ops::UpdateTargetFieldsOp<W2AWaves>()(data, 0.25_rt);
+                EXPECT_NEAR(
+                    utils::field_probe(target, 0, 3, 3, 1), current, tol);
+            }
+            EXPECT_NEAR(
+                utils::field_probe(velocity, 0, 3, 3, 1),
+                current + (init_waves ? wave : 0.0_rt), tol);
+            EXPECT_NEAR(
+                utils::field_probe(target, 0, 3, 3, 1), current + wave, tol);
+            EXPECT_NEAR(utils::field_probe(velocity, 0, 3, 3, 7), 8.0_rt, tol);
+            EXPECT_NEAR(
+                utils::field_probe(velocity, 0, 3, 3, 7, 1), 9.0_rt, tol);
+            EXPECT_NEAR(
+                utils::field_probe(velocity, 0, 3, 3, 1, 1), 0.0_rt, tol);
+            EXPECT_NEAR(utils::field_min(cache), 0.0_rt, tol);
+            EXPECT_NEAR(utils::field_max(cache), 0.0_rt, tol);
+
+            for (const amrex::Real time : {1.25_rt, 1.5_rt, 1.5_rt, 0.5_rt}) {
+                if (time < data.meta().t_last) {
+                    // Reconstruct both bracketing records, as after a restart.
+                    data.meta().t_last = -1.0_rt;
+                }
+                ops::UpdateTargetFieldsOp<W2AWaves>()(data, time);
+                EXPECT_NEAR(
+                    utils::field_probe(target, 0, 3, 3, 1), current + wave,
+                    tol);
+                EXPECT_NEAR(utils::field_probe(cache, 0, 3, 3, 1), wave, tol);
+                EXPECT_NEAR(
+                    utils::field_probe(old_cache, 0, 3, 3, 1), wave, tol);
+                EXPECT_NEAR(utils::field_min(target, 1), 0.0_rt, tol);
+                EXPECT_NEAR(utils::field_max(target, 2), 0.0_rt, tol);
+                if (beach) {
+                    const auto before = utils::field_probe(target, 0, 7, 3, 1);
+                    relaxation_zones::modify_target_fields_for_beach(
+                        sim(), data.meta());
+                    const auto after = utils::field_probe(target, 0, 7, 3, 1);
+                    if (waves) {
+                        EXPECT_LT(
+                            std::abs(after - current),
+                            std::abs(before - current));
+                    } else {
+                        EXPECT_NEAR(after, current, tol);
+                    }
+                }
+            }
+        }
+        if (amrex::ParallelDescriptor::IOProcessor()) {
+            EXPECT_EQ(std::remove(filename.c_str()), 0);
+        }
+    }
+};
+
+TEST_F(OceanWavesW2ACurrentTest, following_current_with_waves)
+{
+    check_current(true, false, 1.25_rt, false);
+}
+
+TEST_F(OceanWavesW2ACurrentTest, opposing_current_without_waves)
+{
+    check_current(false, true, -0.75_rt, true);
+}
+
+TEST_F(OceanWavesW2ACurrentTest, zero_current_without_waves)
+{
+    check_current(false, false, 0.0_rt, true);
+}
+
+TEST_F(OceanWavesW2ACurrentTest, current_only)
+{
+    check_current(false, true, 1.0_rt, true, false);
+}
 #endif
 
 // This is to evaluate aspects of W2A methods that do not require wave data
