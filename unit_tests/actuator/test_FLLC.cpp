@@ -544,9 +544,11 @@ TEST_F(FLLCParseTest, turbine_resolved_width_is_not_below_epsilon_min)
     }
     add_turbine_inputs_with_fllc();
     {
-        // A lower bound of the width of the Gaussians above epsilon (2)
+        // A lower bound of the width of the Gaussians above epsilon (2). Three
+        // different values: the correction takes the first one, in the input
+        // order (init_epsilon swaps the first two afterwards)
         amrex::ParmParse pp("Actuator.T1");
-        const amrex::Vector<amrex::Real> eps_min{3.0_rt, 3.0_rt, 3.0_rt};
+        const amrex::Vector<amrex::Real> eps_min{3.0_rt, 4.0_rt, 5.0_rt};
         pp.addarr("epsilon_min", eps_min);
     }
     const utils::ActParser ap("Actuator.TurbineFastLine", "Actuator.T1");
@@ -571,9 +573,10 @@ TEST_F(FLLCParseTest, turbine_resolved_width_keeps_epsilon_above_epsilon_min)
     }
     add_turbine_inputs_with_fllc();
     {
-        // A lower bound below epsilon (2) changes nothing
+        // A first value below epsilon (2) changes nothing, whatever the other
+        // two values are
         amrex::ParmParse pp("Actuator.T1");
-        const amrex::Vector<amrex::Real> eps_min{1.0_rt, 1.0_rt, 1.0_rt};
+        const amrex::Vector<amrex::Real> eps_min{1.0_rt, 2.5_rt, 3.0_rt};
         pp.addarr("epsilon_min", eps_min);
     }
     const utils::ActParser ap("Actuator.TurbineFastLine", "Actuator.T1");
