@@ -108,8 +108,7 @@ bool read_checkpoint(typename T::DataType& data, const std::string& chkname)
     auto& wdata = data.meta();
     std::ifstream is;
     if (!restart::open_file(
-            is, chkname, data.info().label,
-            data.sim().time().current_time())) {
+            is, chkname, data.info().label, data.sim().time().current_time())) {
         return false;
     }
 

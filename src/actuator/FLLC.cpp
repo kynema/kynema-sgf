@@ -346,9 +346,8 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
             return false;
         }
     }
-    if (data.nonuniform &&
-        ((nonuniform_r.size() < 2) ||
-         (nonuniform_dr.size() != nonuniform_r.size()))) {
+    if (data.nonuniform && ((nonuniform_r.size() < 2) ||
+                            (nonuniform_dr.size() != nonuniform_r.size()))) {
         return false;
     }
     // The state of a line with other positions of the points does not fit

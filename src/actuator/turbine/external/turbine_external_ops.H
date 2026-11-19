@@ -410,17 +410,19 @@ struct CommunicateModelDataOp<
         if (!tdata.fllc.empty()) {
             // A run that restarts with the correction on goes on from the state
             // of the checkpoint. Without it the correction starts from zero and
-            // needs many time steps to come back. The checkpoint holds the state
-            // only when the correction had started before it was written. When
-            // it holds none, the correction does not start at the first force
-            // call of the restart: that call is made at the time of the
+            // needs many time steps to come back. The checkpoint holds the
+            // state only when the correction had started before it was written.
+            // When it holds none, the correction does not start at the first
+            // force call of the restart: that call is made at the time of the
             // checkpoint, where a run without restart makes none. It starts at
             // the force call of the first time step, as it does in that run.
-            // The state belongs to the history of the turbine: when the external
-            // solver starts the turbine anew (init) on a restart of the flow, the
-            // state is not used and the correction starts as without one.
+            // The state belongs to the history of the turbine: when the
+            // external solver starts the turbine anew (init) on a restart of
+            // the flow, the state is not used and the correction starts as
+            // without one.
             auto& io = data.sim().io_manager();
-            const bool restart_call = tdata.at_first_force_call && io.is_restart();
+            const bool restart_call =
+                tdata.at_first_force_call && io.is_restart();
             const bool solver_starts_over =
                 tdata.ext_data.sim_mode == ::ext_turb::SimMode::init;
             bool state_in_checkpoint = false;
@@ -465,12 +467,15 @@ struct CommunicateModelDataOp<
             }
 
             if (started && restart_call && data.info().is_root_proc) {
-                if (!external_read_checkpoint<DataType>(data, io.restart_file())) {
+                if (!external_read_checkpoint<DataType>(
+                        data, io.restart_file())) {
                     amrex::OutStream()
                         << "\nWARNING: Actuator " << data.info().label
-                        << ": the state of the filtered lifting line correction "
+                        << ": the state of the filtered lifting line "
+                           "correction "
                         << "in the checkpoint " << io.restart_file()
-                        << " does not fit this turbine: it is for other numbers "
+                        << " does not fit this turbine: it is for other "
+                           "numbers "
                         << "of blades or points, for other positions of the "
                         << "points or for other inputs of the correction. The "
                         << "correction starts from zero." << std::endl;
