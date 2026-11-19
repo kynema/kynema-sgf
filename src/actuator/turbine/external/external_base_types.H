@@ -19,6 +19,35 @@ enum class SimMode : std::uint8_t {
 template <typename ExtData>
 std::string ext_id();
 
+/** Directions of the local axes of the blade points of an external solver
+ *
+ *  The local axes are the rows of the orientation matrix that the solver
+ *  sends for each point (rows of grid.orientation after scatter_data).
+ */
+enum class BladeFrame : std::uint8_t {
+    //! x normal to the chord, y along the chord, z along the span: OpenFAST
+    //! (airfoil frame of AeroDyn)
+    normal_chord_span = 0,
+    //! x along the span, y along the chord, z normal to the chord:
+    //! Kynema-FMB (aerodynamic sections)
+    span_chord_normal
+};
+
+/** Local frame of the blade points of a solver turbine type
+ *
+ *  A turbine type states it with a static member blade_frame. Types without
+ *  one (stand-ins of the unit tests) take the frame of OpenFAST.
+ */
+template <typename SolverTurbine>
+constexpr BladeFrame blade_frame_of()
+{
+    if constexpr (requires { SolverTurbine::blade_frame; }) {
+        return SolverTurbine::blade_frame;
+    } else {
+        return BladeFrame::normal_chord_span;
+    }
+}
+
 /** Representation of a turbine for exchanging data with external solver
  */
 struct ExternalTurbine

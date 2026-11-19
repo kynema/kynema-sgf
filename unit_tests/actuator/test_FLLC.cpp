@@ -545,7 +545,7 @@ TEST_F(FLLCParseTest, turbine_resolved_width_is_not_below_epsilon_min)
     {
         // A lower bound of the width of the Gaussians above epsilon (2). Three
         // different values: the correction takes the first one, in the input
-        // order (init_epsilon swaps the first two afterwards)
+        // order (init_epsilon reorders the values afterwards)
         amrex::ParmParse pp("Actuator.T1");
         const amrex::Vector<amrex::Real> eps_min{3.0_rt, 4.0_rt, 5.0_rt};
         pp.addarr("epsilon_min", eps_min);

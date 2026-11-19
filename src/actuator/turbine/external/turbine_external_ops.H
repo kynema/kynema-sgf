@@ -287,8 +287,12 @@ struct CommunicateModelDataOp<
             for (int i = 0; i < tdata.num_blades; ++i) {
                 if (!(tdata.fllc[i].initialized) &&
                     (time.current_time() > tdata.fllc[i].fllc_start_time)) {
+                    // The second input value of epsilon_chord, wherever the
+                    // frame of the solver put it (init_epsilon)
+                    constexpr int ic = epsilon_component(
+                        ::ext_turb::blade_frame_of<SolverTurbine>(), 1);
                     fllc_init(
-                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0],
+                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[ic],
                         data.info().label + " blade " + std::to_string(i),
                         data.info().is_root_proc);
                 }

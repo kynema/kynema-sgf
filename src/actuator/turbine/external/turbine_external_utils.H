@@ -3,6 +3,7 @@
 
 #include <numbers>
 #include <string>
+#include <type_traits>
 #include "src/actuator/turbine/turbine_utils.H"
 #include "src/actuator/actuator_ops.H"
 #include "src/actuator/actuator_utils.H"
@@ -15,13 +16,33 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::external {
 
-// Note: inline is necessary to avoid duplicate symbol errors
-inline void swap_epsilon(vs::Vector& eps)
+/** Component of a stored epsilon that holds input value n
+ *
+ *  The epsilon inputs are given in the documented order (chord, thickness,
+ *  span). The stored epsilon of a point is in its local frame: component m
+ *  acts along row m of its orientation matrix (ActSrcLineOp). The chord value
+ *  goes to the axis along the chord, the thickness value to the axis normal
+ *  to the chord and the span value to the axis along the span.
+ */
+constexpr int epsilon_component(const ::ext_turb::BladeFrame frame, const int n)
 {
-    const auto x = eps.x();
-    const auto y = eps.y();
-    eps.x() = y;
-    eps.y() = x;
+    switch (frame) {
+    case ::ext_turb::BladeFrame::span_chord_normal:
+        return (n == 0) ? 1 : ((n == 1) ? 2 : 0);
+    case ::ext_turb::BladeFrame::normal_chord_span:
+    default:
+        return (n == 0) ? 1 : ((n == 1) ? 0 : 2);
+    }
+}
+
+//! Put an epsilon given in the input order into the local frame of a solver
+inline void
+epsilon_to_frame(vs::Vector& eps, const ::ext_turb::BladeFrame frame)
+{
+    const vs::Vector inp = eps;
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        eps[epsilon_component(frame, n)] = inp[n];
+    }
 }
 
 template <typename datatype>
@@ -119,23 +140,23 @@ void init_epsilon(datatype& data)
 {
     auto& tdata = data.meta();
 
-    // Order of the epsilon components. The inputs are read in the order of
-    // the documentation, (chord, thickness, span). The Gaussian of a point
-    // applies component n of its epsilon along row n of its orientation
-    // matrix (ActSrcLineOp). The swap below stores (thickness, chord, span):
-    // the first input value acts along row 1, the second along row 0 and
-    // the third along row 2 of the orientation sent by the solver.
-    // OpenFAST: row 0 is normal to the chord, row 1 is along the chord and
-    // row 2 is along the span (blade frame of AeroDyn), so each input value
-    // acts in its documented direction. The tower points use the same swap.
+    // The inputs are read in the documented order (chord, thickness, span).
+    // The Gaussian of a point applies component m of its epsilon along row m
+    // of its orientation matrix (ActSrcLineOp), so the inputs are put into
+    // the local frame of the solver (epsilon_component): OpenFAST sends
+    // (normal to the chord, along the chord, along the span), Kynema-FMB
+    // (along the span, along the chord, normal to the chord). Each input
+    // value then acts in its documented direction for both. The tower points
+    // take the same order as the blade points.
     // The FLLC does not use these components: it reads the first value of
-    // epsilon (fllc_parse) and of epsilon_min (read_inputs), and component
-    // 0 of the swapped eps_chord, which is the second input value of
-    // epsilon_chord (CommunicateModelDataOp).
-    swap_epsilon(tdata.eps_inp);
-    swap_epsilon(tdata.eps_min);
-    swap_epsilon(tdata.eps_chord);
-    swap_epsilon(tdata.eps_tower);
+    // epsilon (fllc_parse) and of epsilon_min (read_inputs), and the second
+    // input value of epsilon_chord (CommunicateModelDataOp).
+    using SolverTurbine = std::remove_cvref_t<decltype(tdata.ext_data)>;
+    constexpr auto frame = ::ext_turb::blade_frame_of<SolverTurbine>();
+    epsilon_to_frame(tdata.eps_inp, frame);
+    epsilon_to_frame(tdata.eps_min, frame);
+    epsilon_to_frame(tdata.eps_chord, frame);
+    epsilon_to_frame(tdata.eps_tower, frame);
 
     {
         const auto& cd = tdata.nacelle_cd;
