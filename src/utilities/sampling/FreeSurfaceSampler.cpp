@@ -17,12 +17,12 @@ namespace {
  *  sample point, computed once per point on the host.
  *
  *  Cells previously derived their sample ranges from face positions computed
- *  from their own centres (xm -/+ 0.5*dx). Neighbouring cells can round a shared
- *  face to opposite sides of a sample point lying on it, so the point was owned
- *  by no cell (and kept the plo fallback height) or by two. Deciding ownership
- *  from the point's own coordinate gives every point exactly one owner.
- *  Points outside the domain get -1; points on the upper domain boundary belong
- *  to the last cell.
+ *  from their own centres (xm -/+ 0.5*dx). Neighbouring cells can round a
+ * shared face to opposite sides of a sample point lying on it, so the point was
+ * owned by no cell (and kept the plo fallback height) or by two. Deciding
+ * ownership from the point's own coordinate gives every point exactly one
+ * owner. Points outside the domain get -1; points on the upper domain boundary
+ * belong to the last cell.
  */
 amrex::Gpu::DeviceVector<int> sample_owners(
     const int npts,
@@ -69,12 +69,11 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void candidate_range(
         n_hi = 1;
         return;
     }
-    n_lo = static_cast<int>(
-               std::floor((plo + (ic * dx) - start) / spacing)) -
-           1;
-    n_hi = static_cast<int>(
-               std::ceil((plo + ((ic + 1) * dx) - start) / spacing)) +
-           1;
+    n_lo =
+        static_cast<int>(std::floor((plo + (ic * dx) - start) / spacing)) - 1;
+    n_hi =
+        static_cast<int>(std::ceil((plo + ((ic + 1) * dx) - start) / spacing)) +
+        1;
     n_lo = amrex::max(0, n_lo);
     n_hi = amrex::min(npts, n_hi);
 }
@@ -219,40 +218,40 @@ void FreeSurfaceSampler::initialize(const std::string& key)
         const int* own0_ptr = own0.data();
         const int* own1_ptr = own1.data();
         ncomp = amrex::max(
-            ncomp,
-            amrex::ReduceMax(
-                level_mask, 0,
-                [=] AMREX_GPU_HOST_DEVICE(
-                    amrex::Box const& bx,
-                    amrex::Array4<int const> const& mask_arr) -> int {
-                    int ns_fab = 0;
-                    amrex::Loop(bx, [=, &ns_fab](int i, int j, int k) {
-                        const amrex::IntVect iv{i, j, k};
-                        // Count sample points owned by this cell
-                        int lo0 = 0;
-                        int hi0 = 0;
-                        int lo1 = 0;
-                        int hi1 = 0;
-                        candidate_range(
-                            iv[gc0], plo[gc0], dx[gc0], s_gc0, dxs0, ntps0, lo0,
-                            hi0);
-                        candidate_range(
-                            iv[gc1], plo[gc1], dx[gc1], s_gc1, dxs1, ntps1, lo1,
-                            hi1);
-                        int n0_own = 0;
-                        for (int n = lo0; n < hi0; ++n) {
-                            n0_own += (own0_ptr[n] == iv[gc0]) ? 1 : 0;
-                        }
-                        int n1_own = 0;
-                        for (int n = lo1; n < hi1; ++n) {
-                            n1_own += (own1_ptr[n] == iv[gc1]) ? 1 : 0;
-                        }
-                        // Get total number of possible samples in cell
-                        int ns = n0_own * n1_own;
-                        ns_fab = amrex::max(ns_fab, mask_arr(i, j, k) * ns);
-                    });
-                    return ns_fab;
-                }));
+            ncomp, amrex::ReduceMax(
+                       level_mask, 0,
+                       [=] AMREX_GPU_HOST_DEVICE(
+                           amrex::Box const& bx,
+                           amrex::Array4<int const> const& mask_arr) -> int {
+                           int ns_fab = 0;
+                           amrex::Loop(bx, [=, &ns_fab](int i, int j, int k) {
+                               const amrex::IntVect iv{i, j, k};
+                               // Count sample points owned by this cell
+                               int lo0 = 0;
+                               int hi0 = 0;
+                               int lo1 = 0;
+                               int hi1 = 0;
+                               candidate_range(
+                                   iv[gc0], plo[gc0], dx[gc0], s_gc0, dxs0,
+                                   ntps0, lo0, hi0);
+                               candidate_range(
+                                   iv[gc1], plo[gc1], dx[gc1], s_gc1, dxs1,
+                                   ntps1, lo1, hi1);
+                               int n0_own = 0;
+                               for (int n = lo0; n < hi0; ++n) {
+                                   n0_own += (own0_ptr[n] == iv[gc0]) ? 1 : 0;
+                               }
+                               int n1_own = 0;
+                               for (int n = lo1; n < hi1; ++n) {
+                                   n1_own += (own1_ptr[n] == iv[gc1]) ? 1 : 0;
+                               }
+                               // Get total number of possible samples in cell
+                               int ns = n0_own * n1_own;
+                               ns_fab =
+                                   amrex::max(ns_fab, mask_arr(i, j, k) * ns);
+                           });
+                           return ns_fab;
+                       }));
     }
     amrex::ParallelDescriptor::ReduceIntMax(ncomp);
     // Limit number of components
