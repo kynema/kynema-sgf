@@ -13,17 +13,11 @@ using namespace amrex::literals;
 namespace kynema_sgf::sampling {
 
 namespace {
-/** Owning cell index (along one grid direction, at one AMR level) of each
- *  sample point, computed once per point on the host.
- *
- *  Cells previously derived their sample ranges from face positions computed
- *  from their own centres (xm -/+ 0.5*dx). Neighbouring cells can round a
- * shared face to opposite sides of a sample point lying on it, so the point was
- * owned by no cell (and kept the plo fallback height) or by two. Deciding
- * ownership from the point's own coordinate gives every point exactly one
- * owner. Points outside the domain get -1; points on the upper domain boundary
- * belong to the last cell.
- */
+// Owning cell index (along one grid direction, at one AMR level) of each sample
+// point, computed once per point on the host. Deciding ownership from the
+// point's own coordinate gives every point exactly one owner. Points outside
+// the domain get -1; points on the upper domain boundary belong to the last
+// cell.
 amrex::Gpu::DeviceVector<int> sample_owners(
     const int npts,
     const amrex::Real start,
@@ -50,10 +44,9 @@ amrex::Gpu::DeviceVector<int> sample_owners(
         owners.begin());
     return owners;
 }
-/** Candidate sample-index range [n_lo, n_hi) along one direction for cell index
- *  ic: a rounding-tolerant superset of the points the cell can own (one extra
- *  point each side). Ownership itself is decided by the owner array.
- */
+// Candidate sample-index range [n_lo, n_hi) along one direction for cell index
+// ic: a rounding-tolerant superset of the points the cell can own (one extra
+// point each side).
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void candidate_range(
     const int ic,
     const amrex::Real plo,
