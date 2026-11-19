@@ -32,6 +32,49 @@ struct MockExtSolverData
 
 using MockViewData = ExtTurbineViewData<MockExtTurbine, MockExtSolverData>;
 
+// A solver whose blade points have the local frame of Kynema-FMB
+struct MockSpanFirstTurbine : public MockExtTurbine
+{
+    static constexpr ::ext_turb::BladeFrame blade_frame{
+        ::ext_turb::BladeFrame::span_chord_normal};
+};
+
+using MockSpanFirstViewData =
+    ExtTurbineViewData<MockSpanFirstTurbine, MockExtSolverData>;
+
+/** Inputs (chord, thickness, span) = (1, 2, 3) on the blades and on the
+ *  tower; check that every point gets them in the given local frame
+ */
+template <typename ViewData>
+void check_epsilon_frame(
+    ViewData& data,
+    const amrex::Real along_x,
+    const amrex::Real along_y,
+    const amrex::Real along_z)
+{
+    namespace vs = kynema_sgf::vs;
+    init_hub_first_points(data, 3, 5, 4);
+    kynema_sgf::actuator::external::make_component_views(data);
+    auto& meta = data.meta();
+    meta.eps_inp = vs::Vector{1.0_rt, 2.0_rt, 3.0_rt};
+    meta.eps_tower = vs::Vector{1.0_rt, 2.0_rt, 3.0_rt};
+    kynema_sgf::actuator::external::init_epsilon(data);
+
+    const vs::Vector expected{along_x, along_y, along_z};
+    for (int ib = 0; ib < meta.num_blades; ++ib) {
+        for (const auto& eps : meta.blades[ib].epsilon) {
+            for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+                EXPECT_EQ(eps[n], expected[n]) << "blade " << ib;
+            }
+        }
+    }
+    for (const auto& eps : meta.tower.epsilon) {
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            EXPECT_EQ(eps[n], expected[n]) << "tower";
+        }
+    }
+}
+
 } // namespace
 
 TEST(TurbineExternalViews, hub_first_velocity_points)
@@ -112,6 +155,39 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
         EXPECT_EQ(ext.fluid_vel[1][i], 0.0F);
         EXPECT_EQ(ext.fluid_vel[2][i], 0.0F);
     }
+}
+
+TEST(TurbineExternalViews, epsilon_in_frame_of_openfast)
+{
+    // Local axes: normal to the chord, along the chord, along the span
+    MockViewData data;
+    check_epsilon_frame(data, 2.0_rt, 1.0_rt, 3.0_rt);
+}
+
+TEST(TurbineExternalViews, epsilon_in_frame_of_kynema_fmb)
+{
+    // Local axes: along the span, along the chord, normal to the chord
+    MockSpanFirstViewData data;
+    check_epsilon_frame(data, 3.0_rt, 1.0_rt, 2.0_rt);
+}
+
+TEST(TurbineExternalViews, epsilon_component_of_each_input)
+{
+    using ::ext_turb::BladeFrame;
+    using kynema_sgf::actuator::external::epsilon_component;
+    // Inputs: chord, thickness, span
+    EXPECT_EQ(epsilon_component(BladeFrame::normal_chord_span, 0), 1);
+    EXPECT_EQ(epsilon_component(BladeFrame::normal_chord_span, 1), 0);
+    EXPECT_EQ(epsilon_component(BladeFrame::normal_chord_span, 2), 2);
+    EXPECT_EQ(epsilon_component(BladeFrame::span_chord_normal, 0), 1);
+    EXPECT_EQ(epsilon_component(BladeFrame::span_chord_normal, 1), 2);
+    EXPECT_EQ(epsilon_component(BladeFrame::span_chord_normal, 2), 0);
+    static_assert(
+        ::ext_turb::blade_frame_of<MockExtTurbine>() ==
+        BladeFrame::normal_chord_span);
+    static_assert(
+        ::ext_turb::blade_frame_of<MockSpanFirstTurbine>() ==
+        BladeFrame::span_chord_normal);
 }
 
 TEST(TurbineExternalViews, epsilon_must_be_positive_on_blades)
