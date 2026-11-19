@@ -131,8 +131,7 @@ void check_blade_views_aligned(datatype& data)
         const int start = 1 + ib * npb;
         EXPECT_EQ(std::distance(grid.pos.data(), cv.pos.data()), start);
         EXPECT_EQ(std::distance(grid.vel.data(), cv.vel.data()), start);
-        EXPECT_EQ(
-            std::distance(grid.vel_pos.data(), cv.vel_pos.data()), start);
+        EXPECT_EQ(std::distance(grid.vel_pos.data(), cv.vel_pos.data()), start);
         ASSERT_EQ(static_cast<int>(cv.vel_pos.size()), npb);
         for (int k = 0; k < npb; ++k) {
             EXPECT_EQ(vs::mag(cv.vel_pos[k] - cv.pos[k]), 0.0_rt)

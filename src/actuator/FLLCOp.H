@@ -92,8 +92,7 @@ struct FLLCOp
             // (turbines; fllc.epsilon is the larger of the two) and the
             // optimal epsilon, so that is the width the simulation resolves
             const auto eps_opt = fllc.optimal_epsilon[ip];
-            const auto eps_les =
-                amrex::max<amrex::Real>(fllc.epsilon, eps_opt);
+            const auto eps_les = amrex::max<amrex::Real>(fllc.epsilon, eps_opt);
 
             for (int jp = 0; jp < npts; ++jp) {
 

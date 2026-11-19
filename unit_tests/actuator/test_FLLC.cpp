@@ -190,8 +190,7 @@ TEST(TestFLLCOp, no_correction_when_force_is_spread_with_optimal_epsilon)
     // The optimal epsilon (chord times epsilon_chord = 1) is larger than
     // epsilon (0.5): the actuator spreads the force with the optimal one,
     // and there is nothing to correct
-    for (const auto type :
-         {FLLCType::VariableChord, FLLCType::ConstantChord}) {
+    for (const auto type : {FLLCType::VariableChord, FLLCType::ConstantChord}) {
         FLLCTestBlade blade(num_points, num_points, vs::Vector::zero());
         blade.set_vel_span(span, vs::Vector::zero());
         FLLCData data;

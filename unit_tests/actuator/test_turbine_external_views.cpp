@@ -85,8 +85,7 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
     meta.fllc.resize(num_blades);
     for (int ib = 0; ib < num_blades; ++ib) {
         meta.fllc[ib].epsilon = 2.0_rt;
-        kynema_sgf::actuator::fllc_init(
-            meta.fllc[ib], meta.blades[ib], 1.0_rt);
+        kynema_sgf::actuator::fllc_init(meta.fllc[ib], meta.blades[ib], 1.0_rt);
     }
 
     kynema_sgf::actuator::ops::update_fields_op(data);

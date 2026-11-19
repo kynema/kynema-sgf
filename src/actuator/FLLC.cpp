@@ -20,8 +20,7 @@ void fllc_init(
     namespace interp = ::kynema_sgf::interp;
     const int npts = static_cast<int>(view.pos.size());
     const int npts_vel = static_cast<int>(view.vel_pos.size());
-    const std::string who =
-        label.empty() ? "FLLC: " : "FLLC (" + label + "): ";
+    const std::string who = label.empty() ? "FLLC: " : "FLLC (" + label + "): ";
 
     if (npts < 2) {
         std::ostringstream msg;
@@ -31,8 +30,8 @@ void fllc_init(
     }
     if (!(eps_chord > 0.0_rt)) {
         std::ostringstream msg;
-        msg << who << "epsilon_chord must be larger than 0. Value: "
-            << eps_chord;
+        msg << who
+            << "epsilon_chord must be larger than 0. Value: " << eps_chord;
         amrex::Abort(msg.str());
     }
 
@@ -99,8 +98,8 @@ void fllc_init(
     for (int i = 0; i < npts; ++i) {
         const auto before = (i > 0) ? data.r[i] - data.r[i - 1] : 0.0_rt;
         const auto after = (i < npts - 1) ? data.r[i + 1] - data.r[i] : 0.0_rt;
-        const auto ratio = data.optimal_epsilon[i] /
-                           amrex::max<amrex::Real>(before, after);
+        const auto ratio =
+            data.optimal_epsilon[i] / amrex::max<amrex::Real>(before, after);
         ratio_lowest = amrex::min<amrex::Real>(ratio_lowest, ratio);
         if (ratio < min_eps_spacing_ratio) {
             ++num_coarse;
@@ -134,9 +133,8 @@ void fllc_init(
             const auto s = data.span_distance_vel[i];
             const auto before =
                 (i > 0) ? s - data.span_distance_vel[i - 1] : 0.0_rt;
-            const auto after = (i < npts_vel - 1)
-                                   ? data.span_distance_vel[i + 1] - s
-                                   : 0.0_rt;
+            const auto after =
+                (i < npts_vel - 1) ? data.span_distance_vel[i + 1] - s : 0.0_rt;
             const auto spacing = amrex::max<amrex::Real>(before, after);
             const auto eps_opt =
                 interp::linear(data.r, data.optimal_epsilon, s);
@@ -150,8 +148,8 @@ void fllc_init(
             amrex::OutStream()
                 << "\nWARNING: " << who << "the optimal epsilon (chord times "
                 << "epsilon_chord) is smaller than the spacing of the "
-                << "velocity points at " << num_coarse_vel << " of "
-                << npts_vel << " points; the lowest ratio of the two is "
+                << "velocity points at " << num_coarse_vel << " of " << npts_vel
+                << " points; the lowest ratio of the two is "
                 << ratio_lowest_vel << ". The correction can vary over the "
                 << "length of the optimal epsilon, as it does at the tip of "
                 << "a blade: the velocity handed over at these points then "

@@ -102,9 +102,13 @@ inline void check_epsilon(
         for (int n = 0; n < AMREX_SPACEDIM; ++n) {
             if (!(cv.epsilon[i][n] > 0.0_rt)) {
                 amrex::Abort(
-                    "Actuator " + label + ": epsilon is not larger than 0 at "
-                    "point " + std::to_string(i) + ", so its force would "
-                    "not reach the mesh. Set one of " + inputs);
+                    "Actuator " + label +
+                    ": epsilon is not larger than 0 at "
+                    "point " +
+                    std::to_string(i) +
+                    ", so its force would "
+                    "not reach the mesh. Set one of " +
+                    inputs);
             }
         }
     }

@@ -229,11 +229,10 @@ void update_fields_op(datatype& data)
                     static_cast<amrex::Real>(ydot[start + i]),
                     static_cast<amrex::Real>(zdot[start + i])};
                 if (fllc.mismatched_points) {
-                    blade.vel_rel[i] =
-                        interp::linear(
-                            fllc.span_distance_vel, fluid_vel,
-                            fllc.span_distance_force[i]) -
-                        solid_vel;
+                    blade.vel_rel[i] = interp::linear(
+                                           fllc.span_distance_vel, fluid_vel,
+                                           fllc.span_distance_force[i]) -
+                                       solid_vel;
                 } else {
                     blade.vel_rel[i] = fluid_vel[i] - solid_vel;
                 }
