@@ -536,12 +536,12 @@ TEST_F(FreeSurfaceTest, sample_points_on_cell_faces_are_owned)
     auto& repo = sim().repo();
     auto& vof = repo.declare_field("vof", 1, 2);
 
-    constexpr int npts = 557;
+    constexpr int p_npts = 557;
     amrex::ParmParse pp("freesurface");
     pp.add("output_interval", 1);
     pp.add("num_instances", 1);
     pp.add("max_sample_points_per_cell", 100);
-    pp.addarr("plane_num_points", amrex::Vector<int>{{npts, 1}});
+    pp.addarr("plane_num_points", amrex::Vector<int>{{p_npts, 1}});
     pp.addarr(
         "plane_start", amrex::Vector<amrex::Real>{{0.1_rt, 65.0_rt, 0.0_rt}});
     pp.addarr(
@@ -552,8 +552,8 @@ TEST_F(FreeSurfaceTest, sample_points_on_cell_faces_are_owned)
     tool.initialize("freesurface");
     tool.update_sampling_locations();
 
-    EXPECT_EQ(tool.num_gridpoints(), npts);
-    EXPECT_EQ(tool.check_output("~", m_water_level0), npts);
+    EXPECT_EQ(tool.num_gridpoints(), p_npts);
+    EXPECT_EQ(tool.check_output("~", m_water_level0), p_npts);
 }
 
 TEST_F(FreeSurfaceTest, multivalued)
