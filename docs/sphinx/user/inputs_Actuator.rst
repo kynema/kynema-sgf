@@ -94,7 +94,7 @@ Example for ``FixedWingLine``::
 
 .. input_param:: Actuator.FixedWingLine.fllc
 
-  **type:** Bool, optional
+  **type:** Bool, optional, default = false
 
   This option will activate the filtered lifting line correction (fllc).
   The correction follows the implementation of `Martinez-Tossas and Meneveau (2019)
@@ -108,8 +108,7 @@ Example for ``FixedWingLine``::
   the correction starts, a warning is printed if the optimal epsilon is smaller
   than the spacing of the actuator points somewhere along the line: use more
   actuator points or a larger ``epsilon_chord`` in that case. The chord must be
-  larger than `0` at every actuator point.
-  The default is `0`.
+  larger than `0` at every actuator point. FLLC is off by default.
 
 .. input_param:: Actuator.FixedWingLine.fllc_type
 
@@ -140,20 +139,18 @@ Example for ``FixedWingLine``::
 
 .. input_param:: Actuator.FixedWingLine.fllc_nonuniform
 
-  **type:** Bool
+  **type:** Bool, optional, default = true
 
   The flag to specify if the actuator points used to compute the correction should be
   non-uniformly distributed. This helps in using less points for the fllc while
   still maintaining the accuracy of the fllc.
-  The default value is `true`.
 
 .. input_param:: Actuator.FixedWingLine.fllc_epsilon_dr_ratio
 
-  **type:** Double, optional
+  **type:** Double, optional, default = 3
 
   The ratio of epsilon to actuator point spacing used to create a non-uniform distribution.
   A value between `1` and `3` is recommended. It must be larger than `0`.
-  The default value is `3`.
 
 .. input_param:: Actuator.FixedWingLine.pitch
 
@@ -206,15 +203,15 @@ Example for ``FixedWingLine``::
 
 .. input_param:: Actuator.F1.output_interval
 
-   **type:** int, optional
+   **type:** int, optional, default = 10
 
    Number of time steps between actuator outputs. The legacy input argument
    ``output_frequency`` is still accepted with a warning; use
-   ``output_interval`` instead. The default is ``10``.
+   ``output_interval`` instead.
 
 .. input_param:: Actuator.FixedWingLine.motion_type
 
-   **type:** String, optional
+   **type:** String, optional, default is ``none``
 
    The FixedWingLine actuator allows for motion,
    though other aspects of the actuator remain fixed (such as the orientation and
