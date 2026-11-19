@@ -178,8 +178,8 @@ TEST(TurbineExternalViews, bound_box_holds_the_gaussians)
     // Box made from the inputs of a turbine at the origin with a rotor
     // radius of 5: 1.25 radii around it. The points are up to 5 away from
     // the hub
-    data.info().bound_box = amrex::RealBox(
-        -6.25_rt, -6.25_rt, -6.25_rt, 6.25_rt, 6.25_rt, 6.25_rt);
+    data.info().bound_box =
+        amrex::RealBox(-6.25_rt, -6.25_rt, -6.25_rt, 6.25_rt, 6.25_rt, 6.25_rt);
     meta.eps_inp = vs::Vector{2.0_rt, 2.0_rt, 2.0_rt};
     kynema_sgf::actuator::external::init_epsilon(data);
 

@@ -78,8 +78,8 @@ TEST(ActuatorBounds, gaussian_beyond_bound_box_is_counted)
     // Box made from the inputs of a turbine at the origin with a rotor
     // radius of 8. The points are up to 5 away from the hub. init_epsilon
     // adds the reach of the Gaussians, 4 epsilon = 2, to the box
-    data.info().bound_box = amrex::RealBox(
-        -10.0_rt, -10.0_rt, -10.0_rt, 10.0_rt, 10.0_rt, 10.0_rt);
+    data.info().bound_box =
+        amrex::RealBox(-10.0_rt, -10.0_rt, -10.0_rt, 10.0_rt, 10.0_rt, 10.0_rt);
     meta.eps_inp = vs::Vector{0.5_rt, 0.5_rt, 0.5_rt};
     external::init_epsilon(data);
     EXPECT_EQ(external::check_bound_box(data), 0);

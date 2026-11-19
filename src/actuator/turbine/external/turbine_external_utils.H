@@ -204,8 +204,8 @@ void init_epsilon(datatype& data)
         // not zero
         amrex::Real eps_max = 0.0_rt;
         for (const auto& eps : data.grid().epsilon) {
-            eps_max = amrex::max<amrex::Real>(
-                eps_max, eps.x(), eps.y(), eps.z());
+            eps_max =
+                amrex::max<amrex::Real>(eps_max, eps.x(), eps.y(), eps.z());
         }
         const auto reach =
             ::kynema_sgf::actuator::utils::gaussian3d_cutoff() * eps_max;
@@ -259,8 +259,8 @@ int check_bound_box(datatype& data)
         data.meta().bound_box_warned = true;
         amrex::OutStream()
             << "\nWARNING: Actuator " << data.info().label << ": the force of "
-            << num_out << " of " << npts << " points reaches up to "
-            << dist_max << " beyond the region reserved for this turbine on "
+            << num_out << " of " << npts << " points reaches up to " << dist_max
+            << " beyond the region reserved for this turbine on "
             << "the mesh, and patches outside of this region receive no "
             << "force. The region is the box that base_position, "
             << "hub_height and rotor_diameter give (1.25 rotor radii around "

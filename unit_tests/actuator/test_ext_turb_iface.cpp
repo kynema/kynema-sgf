@@ -86,8 +86,9 @@ ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::parse_inputs(
-    const kynema_sgf::CFDSim& /*sim*/, const std::string& /*inp_name*/)
+    ::kynema_sgf_tests::CountingSolverData>::
+    parse_inputs(
+        const kynema_sgf::CFDSim& /*sim*/, const std::string& /*inp_name*/)
 {}
 
 template <>
@@ -111,22 +112,22 @@ void ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::get_hub_stats(
-    const int /*local_id*/)
+    ::kynema_sgf_tests::CountingSolverData>::
+    get_hub_stats(const int /*local_id*/)
 {}
 
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::calc_aero_loads(
-    ::kynema_sgf_tests::CountingTurbine& /*fi*/)
+    ::kynema_sgf_tests::CountingSolverData>::
+    calc_aero_loads(::kynema_sgf_tests::CountingTurbine& /*fi*/)
 {}
 
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::do_turbine_step(
-    ::kynema_sgf_tests::CountingTurbine& fi)
+    ::kynema_sgf_tests::CountingSolverData>::
+    do_turbine_step(::kynema_sgf_tests::CountingTurbine& fi)
 {
     ++fi.num_steps;
 }
@@ -144,8 +145,8 @@ void ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::ext_init_turbine(
-    ::kynema_sgf_tests::CountingTurbine& fi)
+    ::kynema_sgf_tests::CountingSolverData>::
+    ext_init_turbine(::kynema_sgf_tests::CountingTurbine& fi)
 {
     fi.time_index = 0;
     // The model of the solver gives the number of blades, as OpenFAST does
@@ -157,8 +158,8 @@ void ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::ext_restart_turbine(
-    ::kynema_sgf_tests::CountingTurbine& fi)
+    ::kynema_sgf_tests::CountingSolverData>::
+    ext_restart_turbine(::kynema_sgf_tests::CountingTurbine& fi)
 {
     fi.time_index = fi.time_index_at_restart;
 }
@@ -168,8 +169,8 @@ void ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::ext_replay_turbine(
-    ::kynema_sgf_tests::CountingTurbine& fi)
+    ::kynema_sgf_tests::CountingSolverData>::
+    ext_replay_turbine(::kynema_sgf_tests::CountingTurbine& fi)
 {
     ++fi.num_initial_solutions;
     fi.is_solution0 = false;
@@ -181,15 +182,15 @@ void ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::prepare_netcdf_file(
-    ::kynema_sgf_tests::CountingTurbine& /*fi*/)
+    ::kynema_sgf_tests::CountingSolverData>::
+    prepare_netcdf_file(::kynema_sgf_tests::CountingTurbine& /*fi*/)
 {}
 
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::write_velocity_data(
-    const ::kynema_sgf_tests::CountingTurbine& fi)
+    ::kynema_sgf_tests::CountingSolverData>::
+    write_velocity_data(const ::kynema_sgf_tests::CountingTurbine& fi)
 {
     fi.velocity_records.push_back(fi.time_index / fi.num_substeps);
 }
@@ -197,10 +198,11 @@ void ExtTurbIface<
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
-    ::kynema_sgf_tests::CountingSolverData>::read_velocity_data(
-    ::kynema_sgf_tests::CountingTurbine& /*fi*/,
-    const ncutils::NCFile& /*ncf*/,
-    const size_t /*tid*/)
+    ::kynema_sgf_tests::CountingSolverData>::
+    read_velocity_data(
+        ::kynema_sgf_tests::CountingTurbine& /*fi*/,
+        const ncutils::NCFile& /*ncf*/,
+        const size_t /*tid*/)
 {}
 
 template class ExtTurbIface<
