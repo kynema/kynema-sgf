@@ -46,12 +46,12 @@ protected:
 #ifdef KYNEMA_SGF_USE_NETCDF
 //! Opens the velocity file functions of the OpenFAST interface to the tests
 class FastVelocityFile
-    : public ::ext_turb::ExtTurbIface<
-          ::ext_turb::FastTurbine, ::ext_turb::FastSolverData>
+    : public ::ext_turb::
+          ExtTurbIface<::ext_turb::FastTurbine, ::ext_turb::FastSolverData>
 {
 public:
-    using FastIface = ::ext_turb::ExtTurbIface<
-        ::ext_turb::FastTurbine, ::ext_turb::FastSolverData>;
+    using FastIface = ::ext_turb::
+        ExtTurbIface<::ext_turb::FastTurbine, ::ext_turb::FastSolverData>;
 
     explicit FastVelocityFile(const kynema_sgf::CFDSim& sim) : FastIface(sim) {}
 

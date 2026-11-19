@@ -276,8 +276,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::read_velocity_data(
     ncf.var("time").get(&time, {nt}, {1});
     const amrex::Real dt_record =
         static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext;
-    const amrex::Real time_expected =
-        static_cast<amrex::Real>(nt) * dt_record;
+    const amrex::Real time_expected = static_cast<amrex::Real>(nt) * dt_record;
     const bool never_written =
         !(time < 0.5_rt * static_cast<amrex::Real>(NC_FILL_FLOAT));
     if (never_written || !(std::abs(time - time_expected) <=

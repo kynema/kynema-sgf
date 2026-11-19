@@ -197,8 +197,7 @@ void ActuatorContainer::update_positions()
     if (num_out > 0) {
         amrex::Abort(
             "Actuator: " + std::to_string(num_out) + " of the " +
-            std::to_string(m_data.position.size()) +
-            " points where process " +
+            std::to_string(m_data.position.size()) + " points where process " +
             std::to_string(amrex::ParallelDescriptor::MyProc()) +
             " samples the velocity for its actuators are outside of the "
             "domain, where no velocity can be sampled. Check the positions "
