@@ -487,10 +487,11 @@ if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_OPENFAST_VERSION VERSION_GREATER_EQ
     endif()
   endif()
   if(EXISTS "${RTEST_ACT_UNIFORM_ALM_STAMP}")
-    # These tests take the floating-point traps of the other regression tests. OpenFAST then has to be built with its option FPE_TRAP_ENABLED:
-    # without it Set_IEEE_Constants of the NWTC library makes NaN and Inf with SQRT(-1) and 1/0, the first rank stops there and the others wait
+    # These tests take the floating-point traps of the other regression tests. OpenFAST up to 5.0.x then has to be built with its option
+    # FPE_TRAP_ENABLED: without it Set_IEEE_Constants of the NWTC library makes NaN and Inf with SQRT(-1) and 1/0, the first rank stops there
+    # and the others wait. The dev branch of OpenFAST makes them with ieee_value since 2026-09-29 (4e46f62b2) and needs no such option.
     if(KYNEMA_SGF_ENABLE_FPE_TRAP_FOR_TESTS)
-      message(STATUS "act_uniform_alm: the tests trap floating-point exceptions (KYNEMA_SGF_ENABLE_FPE_TRAP_FOR_TESTS) and need an OpenFAST built with FPE_TRAP_ENABLED")
+      message(STATUS "act_uniform_alm: the tests trap floating-point exceptions (KYNEMA_SGF_ENABLE_FPE_TRAP_FOR_TESTS); an OpenFAST of version 5.0.x or older must then be built with FPE_TRAP_ENABLED")
     endif()
     add_test_re(act_uniform_alm)
     configure_file(${ACT_UNIFORM_ALM_TEST_SOURCE_DIR}/nrel5mw_of5.fst ${ACT_UNIFORM_ALM_TEST_BINARY_DIR}/nrel5mw.fst COPYONLY)
