@@ -19,24 +19,20 @@ enum class SimMode : std::uint8_t {
 template <typename ExtData>
 std::string ext_id();
 
-/** Directions of the local axes of the blade points of an external solver
- *
- *  The local axes are the rows of the orientation matrix that the solver
- *  sends for each point (rows of grid.orientation after scatter_data).
+/** Local axes of the blade points of an external solver: rows of the
+ *  orientation matrix it sends (grid.orientation after scatter_data)
  */
 enum class BladeFrame : std::uint8_t {
-    //! x normal to the chord, y along the chord, z along the span: OpenFAST
-    //! (airfoil frame of AeroDyn)
+    //! x normal to chord, y along chord, z along span (OpenFAST: AeroDyn
+    //! airfoil frame)
     normal_chord_span = 0,
-    //! x along the span, y along the chord, z normal to the chord:
-    //! Kynema-FMB (aerodynamic sections)
+    //! x along span, y along chord, z normal to chord (Kynema-FMB: aero
+    //! sections)
     span_chord_normal
 };
 
-/** Local frame of the blade points of a solver turbine type
- *
- *  A turbine type states it with a static member blade_frame. Types without
- *  one (stand-ins of the unit tests) take the frame of OpenFAST.
+/** Blade frame of a solver turbine type: its static member blade_frame,
+ *  else the OpenFAST frame (test stand-ins)
  */
 template <typename SolverTurbine>
 constexpr BladeFrame blade_frame_of()
@@ -48,11 +44,10 @@ constexpr BladeFrame blade_frame_of()
     }
 }
 
-/** Component of a stored epsilon that holds input value n
+/** Stored epsilon component of input value n
  *
- *  Inputs in the documented order (chord, thickness, span); stored epsilon
- *  in the local frame of the point (component m acts along row m of its
- *  orientation)
+ *  Inputs: (chord, thickness, span). Stored: local frame of the point,
+ *  component m along row m of its orientation.
  */
 constexpr int epsilon_component(const BladeFrame frame, const int n)
 {

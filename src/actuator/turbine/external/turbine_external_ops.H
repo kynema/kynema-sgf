@@ -127,9 +127,8 @@ void init_data_op(datatype& data)
 
     {
         tdata.num_blades = sz_info[0];
-        // The external solver gives the number of blades. The data of the
-        // filtered lifting line correction were created for the number in
-        // the inputs (num_blades), and every blade needs its own
+        // FLLC data sized from the num_blades input: one per blade of the
+        // external solver
         if (!tdata.fllc.empty()) {
             tdata.fllc.resize(tdata.num_blades, tdata.fllc.front());
         }
@@ -252,16 +251,11 @@ void update_fields_op(datatype& data)
     }
 }
 
-/** Write the checkpoint of the external solver with a checkpoint of the CFD
- *  solver
+/** Write the external solver checkpoint with a CFD checkpoint
  *
- *  Called on every rank whenever the CFD solver writes a checkpoint (on its
- *  interval, after its delay, counted from a restart, at the last step, or
- *  after a requested stop), at the end of a time step. The turbine was
- *  advanced to the new time of that step in pre_advance_work and has not
- *  changed since. The root process of the turbine writes the checkpoint of
- *  the external solver; no other process takes part, and nothing here is
- *  collective.
+ *  Called on every rank at each CFD checkpoint, at the end of a time step
+ *  (turbine at the new time since pre_advance_work). Turbine root only; no
+ *  collectives.
  */
 template <typename datatype>
 void external_write_solver_checkpoint(datatype& data)
@@ -273,8 +267,8 @@ void external_write_solver_checkpoint(datatype& data)
     tdata.ext_ptr->write_turbine_checkpoint(tdata.ext_data.tid_local);
 }
 
-//! Restart data of an external turbine written with a checkpoint of the CFD
-//! solver (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
+//! Restart data of an external turbine, with each CFD checkpoint
+//! (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
 template <typename datatype>
 void external_write_checkpoint(datatype& data, const std::string& /*chkname*/)
 {
@@ -316,8 +310,7 @@ struct CommunicateModelDataOp<
             for (int i = 0; i < tdata.num_blades; ++i) {
                 if (!(tdata.fllc[i].initialized) &&
                     (time.current_time() > tdata.fllc[i].fllc_start_time)) {
-                    // The second input value of epsilon_chord, wherever the
-                    // frame of the solver put it (init_epsilon)
+                    // Second input value of epsilon_chord, in the solver frame
                     constexpr int ic = epsilon_component(
                         ::ext_turb::blade_frame_of<SolverTurbine>(), 1);
                     fllc_init(

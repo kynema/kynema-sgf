@@ -191,8 +191,8 @@ void ActuatorContainer::update_positions()
         "m_container_initialized = " + std::to_string(m_container_initialized) +
             ", m_is_scattered = " + std::to_string(m_is_scattered));
 
-    // The particle of a point outside of the domain is removed by
-    // Redistribute, and the point would get a velocity of zero
+    // Redistribute removes the particle of a point outside the domain,
+    // which would then sample a zero velocity
     const int num_out = num_points_outside_domain();
     if (num_out > 0) {
         amrex::Abort(

@@ -72,9 +72,8 @@ TEST_F(ActuatorWallTest, point_outside_domain_stops_the_run)
     namespace vs = kynema_sgf::vs;
     initialize_mesh();
 
-    // No velocity can be sampled at a point beyond a boundary that is not
-    // periodic. The domain is 128 in every direction; a point on the high
-    // wall is outside, as for the particles
+    // No sampling beyond a non-periodic boundary. Domain 128 in every
+    // direction; a point on the high wall is outside, as for the particles
     const amrex::Vector<amrex::Real> z_outside{130.0_rt, 128.0_rt, -1.0_rt};
     for (const auto& zpos : z_outside) {
         TestActContainer ac(mesh(), 1);

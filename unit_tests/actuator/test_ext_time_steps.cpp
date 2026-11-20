@@ -50,7 +50,7 @@ TEST_F(ExtTimeStepsTest, whole_ratio)
 TEST_F(ExtTimeStepsTest, rejects_ratio_that_is_not_whole)
 {
     EXPECT_THROW(num_steps(0.00125_rt, 0.001_rt), amrex::RuntimeError);
-    // 3.0001: beyond the round-off tolerance in single and double
+    // 3.0003: beyond the round-off tolerance in single and double
     EXPECT_THROW(num_steps(0.0030003_rt, 0.001_rt), amrex::RuntimeError);
     // Solver step larger than the CFD step
     EXPECT_THROW(num_steps(0.0004_rt, 0.001_rt), amrex::RuntimeError);

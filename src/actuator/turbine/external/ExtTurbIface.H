@@ -240,8 +240,8 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
         do_turbine_step(fi);
     }
 
-    // The checkpoint of the external solver is written with each checkpoint
-    // of the CFD solver (ops::external_write_checkpoint)
+    // Solver checkpoint: with each CFD checkpoint
+    // (ops::external_write_checkpoint)
 }
 
 } // namespace ext_turb

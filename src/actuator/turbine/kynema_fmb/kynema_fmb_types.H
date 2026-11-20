@@ -37,8 +37,8 @@ namespace ext_turb {
  */
 struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 {
-    //! Local axes of the blade points: frame of the aerodynamic sections,
-    //! x along the span (beam axis), y along the chord, z normal to it
+    //! Aero section frame: x along span (beam axis), y along chord, z normal
+    //! to chord
     static constexpr BladeFrame blade_frame{BladeFrame::span_chord_normal};
 
     /** Variables exclusive to KynemaFMB turbine type

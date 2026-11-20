@@ -83,10 +83,9 @@ public:
         return static_cast<int>(m_data.position.size());
     }
 
-    /** Number of points of this process that are outside of the domain
+    /** Number of points of this process beyond a non-periodic boundary
      *
-     *  Counts the points beyond a boundary that is not periodic. No velocity
-     *  can be sampled there, and update_positions stops the run.
+     *  No velocity can be sampled there; update_positions aborts.
      */
     int num_points_outside_domain() const;
 

@@ -195,9 +195,8 @@ struct InitDataOp<TurbineFast, SrcTrait>
         check_fast_sim_time(data);
 
         init_data_op<TurbineFast::DataType>(data);
-        // The bounding box of the turbine now holds the reach of the
-        // Gaussians (init_epsilon): make the list of the processes with
-        // patches inside of it again
+        // Bounding box enlarged by init_epsilon: redo the list of ranks with
+        // patches inside it
         external_determine_influenced_procs<TurbineFast::DataType>(data);
     }
 

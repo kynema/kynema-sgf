@@ -15,11 +15,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::ops {
 
-/** Component of the epsilon of a blade point that the disk uses as its width
- *  normal to the rotor
- *
- *  The thickness input (second value) for every solver: its place depends on
- *  the frame of an external solver (ext_turb::epsilon_component).
+/** Component of the blade-point epsilon used as the disk width normal to
+ *  the rotor: the thickness input, placed by the solver frame
+ *  (ext_turb::epsilon_component)
  */
 template <typename MetaType>
 constexpr int disk_normal_epsilon_component()

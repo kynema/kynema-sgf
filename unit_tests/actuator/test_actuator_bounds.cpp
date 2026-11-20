@@ -75,9 +75,8 @@ TEST(ActuatorBounds, gaussian_beyond_bound_box_is_counted)
     auto& meta = data.meta();
     external::make_component_views(data);
 
-    // Box made from the inputs of a turbine at the origin with a rotor
-    // radius of 8. The points are up to 5 away from the hub. init_epsilon
-    // adds the reach of the Gaussians, 4 epsilon = 2, to the box
+    // Box from a rotor radius of 8 at the origin; points up to 5 from the hub.
+    // init_epsilon adds the Gaussian reach, 4 epsilon = 2
     data.info().bound_box =
         amrex::RealBox(-10.0_rt, -10.0_rt, -10.0_rt, 10.0_rt, 10.0_rt, 10.0_rt);
     meta.eps_inp = vs::Vector{0.5_rt, 0.5_rt, 0.5_rt};
@@ -85,9 +84,8 @@ TEST(ActuatorBounds, gaussian_beyond_bound_box_is_counted)
     EXPECT_EQ(external::check_bound_box(data), 0);
     EXPECT_FALSE(meta.bound_box_warned);
 
-    // The turbine moves by 11 along x: the Gaussians of the points of the
-    // blades and of the tower now reach x = 13, beyond the face of the box
-    // at 12. The hub has no Gaussian (no nacelle drag in this turbine)
+    // Turbine moved by 11 along x: blade and tower Gaussians reach x = 13,
+    // beyond the face at 12. No hub Gaussian (no nacelle drag)
     for (auto& pos : data.grid().pos) {
         pos.x() += 11.0_rt;
     }
@@ -126,8 +124,7 @@ TEST_F(ActuatorBoundsTest, points_outside_domain_are_counted)
     pvec[5] = vs::Vector{64.0_rt, 64.0_rt, -1.0_rt};
     EXPECT_EQ(ac.num_points_outside_domain(), 3);
 
-    // With the three points moved into the domain, every point gets the
-    // velocity of the field
+    // All points inside: every point samples the field
     pvec[3].z() = 100.0_rt;
     pvec[4].z() = 127.0_rt;
     pvec[5].z() = 1.0_rt;

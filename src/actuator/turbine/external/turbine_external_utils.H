@@ -18,7 +18,7 @@ namespace kynema_sgf::actuator::external {
 
 using ::ext_turb::epsilon_component;
 
-//! Put an epsilon given in the input order into the local frame of a solver
+//! Input order (chord, thickness, span) to the local frame of a solver
 inline void
 epsilon_to_frame(vs::Vector& eps, const ::ext_turb::BladeFrame frame)
 {
@@ -123,17 +123,11 @@ void init_epsilon(datatype& data)
 {
     auto& tdata = data.meta();
 
-    // The inputs are read in the documented order (chord, thickness, span).
-    // The Gaussian of a point applies component m of its epsilon along row m
-    // of its orientation matrix (ActSrcLineOp), so the inputs are put into
-    // the local frame of the solver (epsilon_component): OpenFAST sends
-    // (normal to the chord, along the chord, along the span), Kynema-FMB
-    // (along the span, along the chord, normal to the chord). Each input
-    // value then acts in its documented direction for both. The tower points
-    // take the same order as the blade points.
-    // The FLLC does not use these components: it reads the first value of
-    // epsilon (fllc_parse) and of epsilon_min (read_inputs), and the second
-    // input value of epsilon_chord (CommunicateModelDataOp).
+    // Inputs (chord, thickness, span) to the solver frame, since component m
+    // acts along orientation row m (ActSrcLineOp). OpenFAST: (normal, chord,
+    // span); Kynema-FMB: (span, chord, normal). Tower points as blade points.
+    // FLLC: first value of epsilon (fllc_parse) and epsilon_min
+    // (read_inputs), second of epsilon_chord (CommunicateModelDataOp).
     using SolverTurbine = std::remove_cvref_t<decltype(tdata.ext_data)>;
     constexpr auto frame = ::ext_turb::blade_frame_of<SolverTurbine>();
     epsilon_to_frame(tdata.eps_inp, frame);
@@ -181,8 +175,8 @@ void init_epsilon(datatype& data)
             cv, tdata.num_pts_tower, data.info().label + " tower",
             "epsilon, epsilon_tower or epsilon_min");
 
-        // epsilon_tower is one of three lower bounds. Tell the user when it
-        // is given and is not the value that the tower points get
+        // epsilon_tower is one of three lower bounds: warn when it is given
+        // but not used
         bool tower_eps_unused = false;
         for (int n = 0; n < AMREX_SPACEDIM; ++n) {
             if ((tdata.eps_tower[n] > 0.0_rt) &&
@@ -201,11 +195,8 @@ void init_epsilon(datatype& data)
         }
     }
     {
-        // Patches and MPI ranks that do not touch the bounding box of the
-        // turbine receive no force. The box was sized from the rotor
-        // diameter alone (utils::read_inputs), before any epsilon was
-        // known: add the distance up to which the Gaussian of a point is
-        // not zero
+        // Patches outside the bounding box get no force. The box from
+        // utils::read_inputs covers the rotor only: add the Gaussian cutoff
         amrex::Real eps_max = 0.0_rt;
         for (const auto& eps : data.grid().epsilon) {
             eps_max =
@@ -221,15 +212,12 @@ void init_epsilon(datatype& data)
     }
 }
 
-/** Tell the user, once, when the Gaussian of a point reaches beyond the
- *  bounding box of the turbine
+/** Warn once when the Gaussian of a point reaches beyond the bounding box
  *
- *  The box is made when the turbine is created, from base_position,
- *  hub_height, rotor_diameter and the largest epsilon, and it does not follow
- *  the turbine. Patches outside of it receive no force. The Gaussian of a
- *  point leaves the box when the rotor of the external solver is not where
- *  these inputs put it, or when the turbine moves by more than a quarter of
- *  the rotor radius (a floating platform).
+ *  Fixed box from base_position, hub_height, rotor_diameter and the largest
+ *  epsilon; patches outside it get no force. A point leaves it when the
+ *  solver rotor is not where the inputs put it, or when the turbine moves by
+ *  more than a quarter of the rotor radius (floating platform).
  *
  *  \return Number of points with a Gaussian that leaves the box
  */
@@ -239,7 +227,7 @@ int check_bound_box(datatype& data)
     const auto& grid = data.grid();
     const auto& bbox = data.info().bound_box;
     const auto cutoff = ::kynema_sgf::actuator::utils::gaussian3d_cutoff();
-    // Tolerance for a point that is on a face of the box of the inputs
+    // Tolerance for a point on a face of the box
     const auto tol = 1.0e-8_rt * (bbox.hi(0) - bbox.lo(0));
     const int npts = static_cast<int>(grid.pos.size());
     int num_out = 0;

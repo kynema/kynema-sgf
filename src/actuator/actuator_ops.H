@@ -153,11 +153,9 @@ template <typename T>
 void determine_root_proc(
     typename T::DataType& /*data*/, amrex::Vector<int>& /*act_proc_count*/);
 
-/** Write the data of this actuator that a restart needs and that no field
- *  holds, with a checkpoint of the CFD solver
+/** Write restart data not held in fields, with each CFD checkpoint
  *
- *  Called on every rank with every checkpoint the CFD solver writes. The
- *  default writes nothing.
+ *  Called on every rank. Default: nothing.
  *
  *  \tparam T An actuator traits type
  *  \param  data Data object for the specific actuator instance

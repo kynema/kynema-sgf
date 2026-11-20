@@ -78,11 +78,10 @@ void Actuator::pre_init_actions()
         obj->read_inputs(inp);
         m_actuators.emplace_back(std::move(obj));
     }
-    // Necessary only: allocate_ext_turbines checks the turbines of each rank
+    // Necessary condition only; allocate_ext_turbines checks each rank
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         cnt_turbfast <= amrex::ParallelDescriptor::NProcs(),
-        "Actuator: " + std::to_string(cnt_turbfast) +
-            " OpenFAST turbines on " +
+        "Actuator: " + std::to_string(cnt_turbfast) + " OpenFAST turbines on " +
             std::to_string(amrex::ParallelDescriptor::NProcs()) +
             " MPI ranks. Each OpenFAST turbine needs a rank of its own: use "
             "at least as many ranks as there are actuators.");
@@ -409,8 +408,7 @@ void Actuator::write_checkpoint(const std::string& chkname)
 {
     BL_PROFILE("kynema-sgf::actuator::Actuator::write_checkpoint");
 
-    // Each actuator knows what it needs for a restart, and its root process
-    // writes it
+    // Each actuator writes its own restart data
     for (auto& ac : m_actuators) {
         ac->write_checkpoint(chkname);
     }

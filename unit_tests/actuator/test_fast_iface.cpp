@@ -44,7 +44,7 @@ protected:
 };
 
 #ifdef KYNEMA_SGF_USE_NETCDF
-//! Opens the velocity file functions of the OpenFAST interface to the tests
+//! Velocity file functions of the OpenFAST interface, open to the tests
 class FastVelocityFile
     : public ::ext_turb::
           ExtTurbIface<::ext_turb::FastTurbine, ::ext_turb::FastSolverData>
@@ -65,9 +65,9 @@ public:
     }
 };
 
-/** Turbine whose velocity arrays are held here and not by OpenFAST
+/** Turbine with its velocity arrays held here, not by OpenFAST
  *
- *  Two OpenFAST steps of 0.25 s per CFD time step.
+ *  Two OpenFAST steps of 0.25 s per CFD step.
  */
 struct VelocityFileTurbine
 {
@@ -87,7 +87,7 @@ struct VelocityFileTurbine
         fi.from_cfd.w_Len = npts;
     }
 
-    //! Write the record of a CFD time step, with one velocity at all points
+    //! Record of a CFD step, one velocity at all points
     void write_step(FastVelocityFile& fast, const int step, const float vel)
     {
         fi.time_index = step * fi.num_substeps;
@@ -227,32 +227,30 @@ TEST_F(FastIfaceTest, velocity_record_is_time_step_of_turbine)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     initialize_mesh();
-    // The file of a turbine is named after its label and written by the
-    // root process of the turbine alone. Every rank of the test makes the
-    // same turbine, so one rank plays its root process.
+    // Velocity file: named after the turbine label, written by the turbine
+    // root only. The I/O rank plays the root.
     if (!amrex::ParallelDescriptor::IOProcessor()) {
         return;
     }
     FastVelocityFile fast(sim());
     VelocityFileTurbine turbine("utest_velocity_record");
     const std::string fname = fast.file_name(turbine.fi);
-    // A file left by an earlier run of the test would be kept
+    // prepare_netcdf_file keeps an existing file
     amrex::FileSystem::Remove(fname);
     fast.prepare_netcdf_file(turbine.fi);
 
-    // A run of 6 CFD time steps. The velocity of step n is n.
+    // 6 CFD steps; velocity n at step n
     const int nsteps = 6;
     for (int step = 0; step < nsteps; ++step) {
         turbine.write_step(fast, step, static_cast<float>(step));
     }
-    // The run is restarted from the checkpoint written at step 3 and takes
-    // steps 3 and 4 again, with other velocities
+    // Restart from step 3: steps 3 and 4 again, other velocities
     turbine.write_step(fast, 3, 30.0F);
     turbine.write_step(fast, 4, 40.0F);
 
     {
         const auto ncf = ncutils::NCFile::open(fname);
-        // No record is added for the steps taken again
+        // No record added for the repeated steps
         ASSERT_EQ(static_cast<int>(ncf.dim("num_time_steps").len()), nsteps);
 
         const int npts = VelocityFileTurbine::npts;
@@ -277,9 +275,8 @@ TEST_F(FastIfaceTest, replay_rejects_velocity_record_of_another_time)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     initialize_mesh();
-    // The file of a turbine is named after its label and written by the
-    // root process of the turbine alone. Every rank of the test makes the
-    // same turbine, so one rank plays its root process.
+    // Velocity file: named after the turbine label, written by the turbine
+    // root only. The I/O rank plays the root.
     if (!amrex::ParallelDescriptor::IOProcessor()) {
         return;
     }
@@ -289,8 +286,7 @@ TEST_F(FastIfaceTest, replay_rejects_velocity_record_of_another_time)
     amrex::FileSystem::Remove(fname);
     fast.prepare_netcdf_file(turbine.fi);
 
-    // File of a run restarted in a new directory from the checkpoint written
-    // at step 5: it holds the velocities of steps 5, 6 and 7 only
+    // File of a run restarted from step 5 in a new directory: steps 5 to 7
     turbine.write_step(fast, 5, 5.0F);
     turbine.write_step(fast, 6, 6.0F);
     turbine.write_step(fast, 7, 7.0F);
@@ -300,13 +296,11 @@ TEST_F(FastIfaceTest, replay_rejects_velocity_record_of_another_time)
         // Step 6 is in the file
         FastVelocityFile::read_velocity_data(turbine.fi, ncf, 6);
         EXPECT_FLOAT_EQ(turbine.u[0], 6.0F);
-        // Step 2 is not. A replay from the start of the turbine cannot use
-        // this file and has to say so.
+        // Step 2 is not: abort
         EXPECT_THROW(
             FastVelocityFile::read_velocity_data(turbine.fi, ncf, 2),
             amrex::RuntimeError);
-        // Neither can a turbine with another time step: its step 6 is at
-        // another time than the record
+        // Other time step: step 6 at another time than the record
         turbine.fi.dt_ext = 0.5_rt;
         EXPECT_THROW(
             FastVelocityFile::read_velocity_data(turbine.fi, ncf, 6),

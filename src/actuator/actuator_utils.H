@@ -32,12 +32,10 @@ std::set<int> determine_influenced_procs(
 void determine_root_proc(
     ActInfo& /*info*/, amrex::Vector<int>& /*act_proc_count*/);
 
-/** Distance from an actuator point, in units of epsilon, where the Gaussian
- *  of gaussian3d is cut off
+/** Cutoff distance of gaussian3d, in units of epsilon
  *
- *  The region that an actuator reserves on the mesh (ActInfo::bound_box) has
- *  to reach this far beyond its points: patches outside of that region do not
- *  receive any force.
+ *  ActInfo::bound_box has to extend this far beyond the actuator points:
+ *  patches outside it receive no force.
  */
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real
 gaussian3d_cutoff() noexcept

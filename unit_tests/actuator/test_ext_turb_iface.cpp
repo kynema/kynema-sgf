@@ -12,11 +12,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-/** Turbine of a stand-in external solver that counts what it is asked to do
+/** Turbine of a stand-in external solver without physics
  *
- *  The solver has no physics. An initial solution, a step, a checkpoint and a
- *  velocity record only add to the counters, so a test can tell which of them
- *  the interface requested and in which state it left the turbine.
+ *  Initial solutions, steps, checkpoints and velocity records are counted.
  */
 struct CountingTurbine : public ::ext_turb::ExternalTurbine
 {
@@ -37,18 +35,17 @@ struct CountingTurbine : public ::ext_turb::ExternalTurbine
     int length_orientation() const override { return 0; }
     int num_vel_pts_blade() const override { return model_num_pts_blade; }
 
-    //! The hub and the points of the blades of the model of the solver
+    //! Hub and blade points of the solver model
     int num_pts() const { return 1 + (model_num_blades * model_num_pts_blade); }
 
-    //! Blades of the model of the solver and points on each. With the default
-    //! the hub is the only point of the turbine.
+    //! Blades of the solver model and points per blade; default: hub only
     int model_num_blades{0};
     int model_num_pts_blade{0};
 
     //! Chord at the points of the model, for the tests that set blades
     mutable std::vector<float> chord;
 
-    //! Step count of the solver at the time the CFD solver restarts from
+    //! Solver step count at the CFD restart
     int time_index_at_restart{0};
 
     int num_initial_solutions{0};
@@ -61,7 +58,7 @@ struct CountingTurbine : public ::ext_turb::ExternalTurbine
     //! CFD time step of each checkpoint written
     std::vector<int> checkpoint_steps;
 
-    //! Velocity at the hub and force of the hub, the only point of the turbine
+    //! Hub velocity and force
     mutable std::array<float, 3> fluid_vel{0.0F, 0.0F, 0.0F};
     mutable std::array<float, 3> hub_force{0.0F, 0.0F, 0.0F};
 };
@@ -150,12 +147,11 @@ void ExtTurbIface<
     ext_init_turbine(::kynema_sgf_tests::CountingTurbine& fi)
 {
     fi.time_index = 0;
-    // The model of the solver gives the number of blades, as OpenFAST does
+    // Number of blades from the solver model, as in OpenFAST
     fi.num_blades = fi.model_num_blades;
 }
 
-// What reading a checkpoint of the solver does: the solver is at the step
-// the checkpoint was written at
+// Checkpoint read: solver at the step of the checkpoint
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
@@ -165,8 +161,7 @@ void ExtTurbIface<
     fi.time_index = fi.time_index_at_restart;
 }
 
-// What a replay does: the initial solution, then the steps up to the restart
-// time with the velocities of the earlier run
+// Replay: initial solution, then the steps up to the restart time
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::CountingTurbine,
@@ -223,24 +218,21 @@ using CountingViewData =
 class ExtTurbIfaceTest : public MeshTest
 {
 protected:
-    //! The interface of a test. The view data keep a pointer to it, so it
-    //! lives on the heap, owned by the fixture, rather than on the stack of
-    //! the test body.
+    //! Interface of a test, owned by the fixture: the view data point to it
     CountingIface& make_iface()
     {
         m_iface = std::make_unique<CountingIface>(sim());
         return *m_iface;
     }
 
-    //! View data of a test, also heap-owned: the interface keeps a pointer to
-    //! its turbine
+    //! View data of a test, owned by the fixture: the interface points to it
     CountingViewData& make_data()
     {
         m_data = std::make_unique<CountingViewData>();
         return *m_data;
     }
 
-    //! Turbine with the hub as its only point, two solver steps per CFD step
+    //! Hub-only turbine, two solver steps per CFD step
     void setup_turbine(
         CountingViewData& data,
         CountingIface& iface,
@@ -264,23 +256,21 @@ protected:
         iface.init_turbine(fi.tid_local);
     }
 
-    //! What the actuator does once the flow is initialised: the loads of the
-    //! turbine at the initial time (Actuator::post_init_actions)
+    //! Actuator::post_init_actions: loads at the initial time
     static void post_init(CountingViewData& data)
     {
         kynema_sgf::actuator::external::ext_loads(data);
     }
 
-    //! What the actuator does before a CFD time step: the loads, then the
-    //! advance of the turbine (Actuator::pre_advance_work)
+    //! Actuator::pre_advance_work: loads, then advance
     static void pre_advance(CountingViewData& data)
     {
         kynema_sgf::actuator::external::ext_loads(data);
         kynema_sgf::actuator::external::ext_step(data);
     }
 
-    //! Inputs of a CFD run that stops on its step count, with the CFD time
-    //! step of the turbine. A test adds its checkpoint inputs after them.
+    //! Run inputs: max_step, fixed dt of the turbine. Tests add checkpoint
+    //! inputs.
     void time_inputs(const int max_step)
     {
         populate_parameters();
@@ -290,8 +280,7 @@ protected:
         pp.add("max_step", max_step);
     }
 
-    //! What IOManager::write_checkpoint_file does for the turbine, through
-    //! Physics::write_checkpoint and Actuator::write_checkpoint
+    //! IOManager::write_checkpoint_file, as far as the turbine goes
     void write_cfd_checkpoint(
         CountingViewData& data, std::vector<int>& cfd_checkpoint_steps)
     {
@@ -299,13 +288,12 @@ protected:
         kynema_sgf::actuator::ops::external_write_solver_checkpoint(data);
     }
 
-    /** Time loop of the CFD solver as far as checkpoints go (incflo::Evolve)
+    /** incflo::Evolve, as far as checkpoints go
      *
-     *  The turbine is advanced once the new time of the step is known. The
-     *  CFD solver writes its checkpoint at the end of the step, and after the
-     *  loop when write_final_checkpoint says so. With stop_step > 0 a stop is
-     *  requested at the end of that step, as RANSConvergence does in its
-     *  post-processing. Returns the steps at which the CFD solver writes.
+     *  Advance after the new time is set; checkpoint at the end of a step and
+     *  after the loop (write_final_checkpoint). stop_step > 0: stop requested
+     *  at the end of that step (as RANSConvergence). Returns the CFD checkpoint
+     *  steps.
      */
     std::vector<int>
     run_time_loop(CountingViewData& data, const int stop_step = 0)
@@ -376,8 +364,7 @@ TEST_F(ExtTurbIfaceTest, fllc_data_follow_blade_count_of_solver)
     data.info().is_root_proc = true;
     data.info().root_proc = amrex::ParallelDescriptor::MyProc();
 
-    // What the inputs leave: num_blades = 2, and the data of the filtered
-    // lifting line correction of two blades
+    // From the inputs: num_blades = 2, FLLC data for two blades
     auto& meta = data.meta();
     meta.num_blades = num_blades_input;
     meta.num_pts_blade = num_pts_blade;
@@ -399,8 +386,7 @@ TEST_F(ExtTurbIfaceTest, fllc_data_follow_blade_count_of_solver)
 
     kynema_sgf::actuator::ops::init_data_op(data);
 
-    // The blades are the ones of the model, and the velocity and force
-    // updates go through the correction data of each of them
+    // Blades of the model, each with its FLLC data
     EXPECT_EQ(meta.num_blades, num_blades_model);
     EXPECT_EQ(static_cast<int>(meta.blades.size()), num_blades_model);
     EXPECT_EQ(static_cast<int>(meta.fllc.size()), num_blades_model);
@@ -416,9 +402,8 @@ TEST_F(ExtTurbIfaceTest, restarted_turbine_has_no_second_initial_solution)
     const auto& fi = data.meta().ext_data;
     ASSERT_EQ(fi.time_index, cfd_step * m_num_substeps);
 
-    // The checkpoint holds the turbine at the time of the flow: no initial
-    // solution, which would start the extrapolation history of the solver
-    // over
+    // Checkpoint at the flow time: no initial solution (it would reset the
+    // solver extrapolation history)
     post_init(data);
     EXPECT_EQ(fi.num_initial_solutions, 0);
     EXPECT_EQ(fi.num_steps, 0);
@@ -446,8 +431,7 @@ TEST_F(ExtTurbIfaceTest, replayed_turbine_stays_at_restart_time)
     ASSERT_EQ(fi.num_initial_solutions, 1);
     ASSERT_EQ(fi.num_steps, cfd_step * m_num_substeps);
 
-    // The replay has brought the turbine to the time of the flow. One more
-    // step here would leave it one CFD time step ahead for the whole run.
+    // Replay ends at the flow time: no step here
     post_init(data);
     EXPECT_EQ(fi.num_initial_solutions, 1);
     EXPECT_EQ(fi.num_steps, cfd_step * m_num_substeps);
@@ -462,9 +446,8 @@ TEST_F(ExtTurbIfaceTest, replayed_turbine_stays_at_restart_time)
     EXPECT_EQ(fi.velocity_records[0], cfd_step);
 }
 
-// A checkpoint of the CFD solver can only be restarted from when the external
-// solver wrote one at the same step. The four tests below give the steps the
-// CFD solver writes at, and ask the same of the turbine.
+// A CFD checkpoint needs a solver checkpoint of the same step: the tests
+// below compare the two
 
 TEST_F(ExtTurbIfaceTest, checkpoint_at_last_step_off_the_interval)
 {
@@ -512,7 +495,7 @@ TEST_F(ExtTurbIfaceTest, checkpoint_interval_counted_from_restart)
         pp.add("checkpoint_interval", 5);
     }
     initialize_mesh();
-    // What reading the checkpoint of step 3 does to the time of the CFD solver
+    // CFD time after reading the checkpoint of step 3
     sim().time().set_restart_time(cfd_step, 1.5_rt);
     auto& iface = make_iface();
     auto& data = make_data();
@@ -555,9 +538,8 @@ TEST_F(ExtTurbIfaceTest, checkpoint_with_final_checkpoint_after_stop_request)
     auto& data = make_data();
     setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
 
-    // The stop is requested after the turbine has advanced in step 3. The
-    // final checkpoint of the CFD solver, off the interval, holds the turbine
-    // of step 3.
+    // Stop requested after the advance of step 3: final checkpoint, off the
+    // interval, with the turbine
     const std::vector<int> expected{3};
     EXPECT_EQ(run_time_loop(data, 3), expected);
     EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
@@ -575,10 +557,8 @@ TEST_F(ExtTurbIfaceTest, advance_writes_no_checkpoint)
     auto& data = make_data();
     setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
 
-    // Every step is a checkpoint step, but only the root process of the
-    // turbine advances it: a checkpoint written from there would leave the
-    // other processes out. Without a checkpoint of the CFD solver there is
-    // none of the turbine.
+    // Every step is a checkpoint step, but the advance (turbine root only)
+    // writes none: only a CFD checkpoint does
     post_init(data);
     auto& time = sim().time();
     while (time.new_timestep()) {

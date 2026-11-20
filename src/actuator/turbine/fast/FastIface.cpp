@@ -116,18 +116,13 @@ template <>
 void ExtTurbIface<FastTurbine, FastSolverData>::allocate_ext_turbines()
 {
     BL_PROFILE("kynema-sgf::FastIface::allocate_turbines");
-    // OpenFAST keeps one count of time steps for all the turbines of a
-    // process and moves it on when the last of them is stepped
-    // (FAST_CFD_Step), while a turbine here takes all its steps of a CFD
-    // time step, and writes its checkpoint, before the next turbine is
-    // stepped; a replay takes all the steps of one turbine in a row. With
-    // several turbines in a process, a turbine that takes more than one
-    // OpenFAST step per CFD step repeats a time step or gets the time of
-    // another turbine, and the checkpoint of every turbine but the last is
-    // named and stamped one step low. So every OpenFAST turbine needs a
-    // process of its own. Every turbine of this process is registered by now
-    // (register_turbine refuses one after the allocation), so the run stops
-    // here, before OpenFAST reads its inputs.
+    // OpenFAST has one step count per process, advanced after its last
+    // turbine steps (FAST_CFD_Step). Here each turbine takes all its sub-steps
+    // and its checkpoint before the next, and a replay steps one turbine at a
+    // time: with several turbines per process, steps repeat or mix and
+    // checkpoints are misnamed. So one OpenFAST turbine per process. All
+    // turbines of this process are registered here, before OpenFAST reads its
+    // inputs.
     if (m_turbine_data.size() > 1) {
         amrex::Abort(
             "FastIface: process " +
@@ -243,10 +238,8 @@ void ExtTurbIface<FastTurbine, FastSolverData>::write_velocity_data(
     const std::string fname =
         m_solver_data.output_dir + "/" + fi.tlabel + ".nc";
     auto ncf = ncutils::NCFile::open(fname, NC_WRITE);
-    // Record n holds the velocities of CFD time step n of the turbine,
-    // counted from the start of the external solver, which is how a replay
-    // reads the file. A run restarted from a checkpoint older than the last
-    // record writes over the records of the steps it takes again.
+    // Record n: CFD step n of the turbine, counted from the solver start, as
+    // a replay reads it. A restart overwrites the records of repeated steps.
     const auto nt = static_cast<size_t>(fi.time_index / fi.num_substeps);
     const auto npts = static_cast<size_t>(fi.from_cfd.u_Len);
 
@@ -269,9 +262,8 @@ void ExtTurbIface<FastTurbine, FastSolverData>::read_velocity_data(
     const auto nt = static_cast<size_t>(tid);
     const auto npts = static_cast<size_t>(fi.from_cfd.u_Len);
 
-    // Record nt holds the velocities of CFD time step nt of the turbine. A
-    // record of another time, or one never written, would be replayed without
-    // notice.
+    // Record nt: CFD step nt of the turbine. Abort on a record of another
+    // time or one never written.
     amrex::Real time = 0.0_rt;
     ncf.var("time").get(&time, {nt}, {1});
     const amrex::Real dt_record =
@@ -423,7 +415,7 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
         "FastIface " + fi.tlabel + ": Actuator." + fi.tlabel +
             ".openfast_start_time",
         "time.fixed_dt", 1.0e-3_rt);
-    // Number of OpenFAST time steps this turbine is advanced by
+    // OpenFAST steps to replay
     const int num_steps = num_cfd_steps * fi.num_substeps;
 
     // Ensure that the NetCDF file exists and contains the required number of
@@ -443,8 +435,8 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
                 ", required CFD timesteps = " + std::to_string(num_cfd_steps));
     }
 
-    // The replay takes all the time steps of this turbine in a row: one
-    // OpenFAST turbine per process (allocate_ext_turbines)
+    // All steps of this turbine in a row: one OpenFAST turbine per process
+    // (allocate_ext_turbines)
     AMREX_ALWAYS_ASSERT(m_turbine_data.size() == 1);
 
     // Replay OpenFAST simulation for the desired number of timesteps to mimic
@@ -512,8 +504,8 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
                 << std::endl;
             fi.num_pts_tower = 0;
         }
-        // OpenFAST takes the number of actuator points from its checkpoint,
-        // not from the inputs of this run
+        // Number of actuator points: from the OpenFAST checkpoint, not the
+        // inputs
         if (npts != (nrotor_pts + fi.num_pts_tower)) {
             amrex::Abort(
                 "FastIface: the OpenFAST checkpoint of " + fi.tlabel + " has " +

@@ -46,9 +46,8 @@ struct MockSpanFirstTurbine : public MockExtTurbine
 using MockSpanFirstViewData =
     ExtTurbineViewData<MockSpanFirstTurbine, MockExtSolverData>;
 
-/** Inputs (chord, thickness, span) = (1, 2, 3) on the blades and on the
- *  tower; check that every point gets them in the given local frame
- */
+//! Inputs (chord, thickness, span) = (1, 2, 3): check every blade and
+//! tower point in the given local frame
 template <typename ViewData>
 void check_epsilon_frame(
     ViewData& data,
@@ -255,16 +254,14 @@ TEST(TurbineExternalViews, bound_box_holds_the_gaussians)
     auto& meta = data.meta();
     kynema_sgf::actuator::external::make_component_views(data);
 
-    // Box made from the inputs of a turbine at the origin with a rotor
-    // radius of 5: 1.25 radii around it. The points are up to 5 away from
-    // the hub
+    // Box: 1.25 radii around a rotor of radius 5 at the origin; points up to 5
+    // from the hub
     data.info().bound_box =
         amrex::RealBox(-6.25_rt, -6.25_rt, -6.25_rt, 6.25_rt, 6.25_rt, 6.25_rt);
     meta.eps_inp = vs::Vector{2.0_rt, 2.0_rt, 2.0_rt};
     kynema_sgf::actuator::external::init_epsilon(data);
 
-    // The Gaussian of a point is cut off at 4 epsilon. Patches outside of
-    // the box receive no force, so the box has to reach that far
+    // Gaussian cutoff at 4 epsilon: the box has to reach that far
     const amrex::Real reach = 4.0_rt * 2.0_rt;
     const auto& bbox = data.info().bound_box;
     for (const auto& pos : data.grid().pos) {
@@ -275,9 +272,8 @@ TEST(TurbineExternalViews, bound_box_holds_the_gaussians)
     }
 }
 
-/** Value of the inputs (chord, thickness, span) = (1, 2, 3) that a disk
- *  takes as its width normal to the rotor, with the frame of the solver
- */
+//! Disk width normal to the rotor for inputs (chord, thickness, span) =
+//! (1, 2, 3), in the solver frame
 template <typename ViewData>
 amrex::Real disk_normal_epsilon()
 {
