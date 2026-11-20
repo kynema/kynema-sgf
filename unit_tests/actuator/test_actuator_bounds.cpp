@@ -91,7 +91,7 @@ TEST(ActuatorBounds, gaussian_beyond_bound_box_is_counted)
     for (auto& pos : data.grid().pos) {
         pos.x() += 11.0_rt;
     }
-    EXPECT_EQ(external::check_bound_box(data), num_blades * npb + npt);
+    EXPECT_EQ(external::check_bound_box(data), (num_blades * npb) + npt);
     EXPECT_TRUE(meta.bound_box_warned);
 }
 
