@@ -67,8 +67,7 @@ void init_hub_first_points(
     meta.num_pts_tower = num_pts_tower;
 
     const int npts = 1 + (num_blades * num_pts_blade) + num_pts_tower;
-    const int npts_vel =
-        1 + (num_blades * num_vel_pts_blade) + num_pts_tower;
+    const int npts_vel = 1 + (num_blades * num_vel_pts_blade) + num_pts_tower;
     grid.resize(npts, npts_vel);
     meta.chord.assign(npts, 1.0_rt);
     meta.vel_rel.assign(npts, vs::Vector::zero());

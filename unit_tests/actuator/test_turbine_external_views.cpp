@@ -96,9 +96,8 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
     for (int ib = 0; ib < num_blades; ++ib) {
         for (int k = 0; k < npb; ++k) {
             const int ip = 1 + (ib * npb) + k;
-            const auto gold =
-                fluid_u(grid.pos[ip]) -
-                (0.25_rt * static_cast<amrex::Real>(ip));
+            const auto gold = fluid_u(grid.pos[ip]) -
+                              (0.25_rt * static_cast<amrex::Real>(ip));
             EXPECT_NEAR(meta.blades[ib].vel_rel[k].x(), gold, tol)
                 << "blade " << ib << ", force node " << k;
             EXPECT_EQ(meta.blades[ib].vel_rel[k].y(), 0.0_rt);
