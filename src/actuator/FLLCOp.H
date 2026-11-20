@@ -1,6 +1,7 @@
 #ifndef FLLCOP_H
 #define FLLCOP_H
 
+#include <cmath>
 #include <numbers>
 #include "src/actuator/actuator_types.H"
 #include "src/actuator/FLLC.H"
@@ -41,8 +42,6 @@ struct FLLCOp
 
     static void constant_chord(ComponentView& data, FLLCData& fllc)
     {
-        namespace interp = ::kynema_sgf::interp;
-
         const int npts = static_cast<int>(fllc.correction_velocity.size());
         auto& du = fllc.correction_velocity;
 
@@ -50,20 +49,6 @@ struct FLLCOp
         auto& u_opt = fllc.optimal_velocity;
         auto& G = fllc.lift;
         auto& dG = fllc.grad_lift;
-        VecSlice u_force_pnt_slice =
-            ::kynema_sgf::utils::slice(fllc.force_point_velocity, 0);
-        vs::Vector* vel_ptr = data.vel.data();
-
-        /**
-         * Step 0
-         * Linear interpolate velocity if force and vel points are mismatched
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_vel, data.vel, fllc.span_distance_force,
-                u_force_pnt_slice);
-            vel_ptr = u_force_pnt_slice.data();
-        }
 
         /**
          * Step 1
@@ -103,8 +88,11 @@ struct FLLCOp
          */
         for (int ip = 0; ip < npts; ++ip) {
 
-            const auto eps_les = fllc.epsilon;
+            // The force is spread with the largest of epsilon, epsilon_min
+            // (turbines; fllc.epsilon is the larger of the two) and the
+            // optimal epsilon, so that is the width the simulation resolves
             const auto eps_opt = fllc.optimal_epsilon[ip];
+            const auto eps_les = amrex::max<amrex::Real>(fllc.epsilon, eps_opt);
 
             for (int jp = 0; jp < npts; ++jp) {
 
@@ -112,7 +100,7 @@ struct FLLCOp
                     continue;
                 }
 
-                const auto r_dis = vs::mag(data.vel_pos[ip] - data.vel_pos[jp]);
+                const auto r_dis = vs::mag(data.pos[ip] - data.pos[jp]);
                 const auto& vel = data.vel_rel[jp];
                 const auto vmag = amrex::max<amrex::Real>(
                     vs::mag(vel), vs::DTraits<amrex::Real>::eps());
@@ -145,21 +133,54 @@ struct FLLCOp
          * Compute the induced velocity difference
          * Compute equation 5.8_rt from Martinez-Tossas and Meneveau 2019
          */
+        add_correction(data, fllc);
         for (int ip = 0; ip < npts; ++ip) {
-            vel_ptr[ip] = vel_ptr[ip] + du[ip];
             u_les[ip] *= 0.0_rt;
             u_opt[ip] *= 0.0_rt;
         }
+    }
 
-        /**
-         * Step 5
-         * Interpolate back to vel positions if necessary
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_force, u_force_pnt_slice,
-                fllc.span_distance_vel, data.vel);
+    /** Add the correction to the sampled velocity
+     *
+     *  The correction is known at the force points and the velocity is
+     *  sampled at the velocity points. Where the two sets differ, the
+     *  correction is interpolated along the span to the velocity points; the
+     *  sampled velocity itself is never interpolated.
+     */
+    static void add_correction(ComponentView& data, const FLLCData& fllc)
+    {
+        namespace interp = ::kynema_sgf::interp;
+
+        const auto& du = fllc.correction_velocity;
+        const int npts_vel = static_cast<int>(data.vel.size());
+        for (int ip = 0; ip < npts_vel; ++ip) {
+            if (fllc.mismatched_points) {
+                const auto du_vel = interp::linear(
+                    fllc.span_distance_force, du, fllc.span_distance_vel[ip]);
+                data.vel[ip] = data.vel[ip] + du_vel;
+            } else {
+                data.vel[ip] = data.vel[ip] + du[ip];
+            }
         }
+    }
+
+    /** Kernel of the velocity induced by a Gaussian-filtered lifting line
+     *
+     *  exp(-r^2 / eps^2) / eps^2 + (exp(-r^2 / eps^2) - 1) / (2 r^2), with
+     *  the limit 1 / (2 eps^2) at r = 0. The second term is evaluated with
+     *  expm1: written as exp(x) - 1 it loses all its digits when r is much
+     *  smaller than epsilon, and the kernel is then twice its limit.
+     *
+     *  \param r_dis2 Square of the distance between the two points
+     *  \param eps2 Square of epsilon
+     */
+    static amrex::Real kernel(const amrex::Real r_dis2, const amrex::Real eps2)
+    {
+        const auto x = -r_dis2 / eps2;
+        if (x == 0.0_rt) {
+            return 0.5_rt / eps2;
+        }
+        return (std::exp(x) / eps2) + (std::expm1(x) / (2.0_rt * r_dis2));
     }
 
     static void variable_chord(ComponentView& data, FLLCData& fllc)
@@ -174,20 +195,6 @@ struct FLLCOp
         auto& u_opt = fllc.optimal_velocity;
         auto& G = fllc.lift;
         auto& nonuniform_G = fllc.nonuniform_lift;
-        VecSlice u_force_pnt_slice =
-            ::kynema_sgf::utils::slice(fllc.force_point_velocity, 0);
-        vs::Vector* vel_ptr = data.vel.data();
-
-        /**
-         * Step 0
-         * Linear interpolate velocity if force and vel points are mismatched
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_vel, data.vel, fllc.span_distance_force,
-                u_force_pnt_slice);
-            vel_ptr = u_force_pnt_slice.data();
-        }
 
         /**
          * Step 1
@@ -235,40 +242,26 @@ struct FLLCOp
 
             for (int jp = 0; jp < dr.size(); ++jp) {
 
-                const auto eps_les = fllc.epsilon;
+                // The force is spread with the largest of epsilon,
+                // epsilon_min (turbines; fllc.epsilon is the larger of the
+                // two) and the optimal epsilon, so that is the width the
+                // simulation resolves
                 const auto eps_opt = optimal_epsilon[jp];
+                const auto eps_les =
+                    amrex::max<amrex::Real>(fllc.epsilon, eps_opt);
                 const auto eps_les2 = eps_les * eps_les;
                 const auto eps_opt2 = eps_opt * eps_opt;
                 const auto& vel = vel_rel[jp];
                 const auto vmag = amrex::max<amrex::Real>(
                     vs::mag(vel), vs::DTraits<amrex::Real>::eps());
-                auto k_les = 0.0_rt;
-                auto k_opt = 0.0_rt;
 
                 const auto r_dis =
                     (fllc.nonuniform)
                         ? std::abs(fllc.r[ip] - fllc.nonuniform_r[jp])
-                        : vs::mag(data.vel_pos[ip] - data.vel_pos[jp]);
-
-                if (r_dis == 0.) {
-
-                    k_les = 0.5_rt / (eps_les2);
-                    k_opt = 0.5_rt / (eps_opt2);
-
-                }
-
-                else {
-
-                    auto exp_les = std::exp(-r_dis * r_dis / eps_les2);
-                    auto exp_opt = std::exp(-r_dis * r_dis / eps_opt2);
-
-                    k_les = (exp_les / eps_les2) +
-                            (1.0_rt / (2.0_rt * r_dis * r_dis) *
-                             (exp_les - 1.0_rt));
-                    k_opt = (exp_opt / eps_opt2) +
-                            (1.0_rt / (2.0_rt * r_dis * r_dis) *
-                             (exp_opt - 1.0_rt));
-                }
+                        : vs::mag(data.pos[ip] - data.pos[jp]);
+                const auto r_dis2 = r_dis * r_dis;
+                const auto k_les = kernel(r_dis2, eps_les2);
+                const auto k_opt = kernel(r_dis2, eps_opt2);
 
                 u_les[ip] =
                     u_les[ip] + coefficient * G_new[jp] / vmag * k_les * dr[jp];
@@ -285,20 +278,10 @@ struct FLLCOp
          * Step 3
          * Compute the induced velocity difference
          */
+        add_correction(data, fllc);
         for (int ip = 0; ip < npts; ++ip) {
-            vel_ptr[ip] = vel_ptr[ip] + du[ip];
             u_les[ip] *= 0.0_rt;
             u_opt[ip] *= 0.0_rt;
-        }
-
-        /**
-         * Step 4
-         * Interpolate back to vel positions if necessary
-         */
-        if (fllc.different_sizes) {
-            interp::linear(
-                fllc.span_distance_force, u_force_pnt_slice,
-                fllc.span_distance_vel, data.vel);
         }
     }
 };
