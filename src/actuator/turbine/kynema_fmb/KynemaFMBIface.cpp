@@ -251,22 +251,11 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::ext_init_turbine(
 
     ::sgf_fmb::init_turbine_interface(fi, m_solver_data);
 
-    // Determine the number of substeps for Kynema per CFD timestep
-    fi.num_substeps = static_cast<int>(std::floor(fi.dt_cfd / fi.dt_ext));
-
-    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
-        fi.num_substeps > 0,
-        "fi.num_substeps = " + std::to_string(fi.num_substeps));
-    // Check that the time step sizes are consistent and Kynema advances at an
-    // integral multiple of CFD timestep
-    amrex::Real dt_err =
-        fi.dt_cfd / (static_cast<amrex::Real>(fi.num_substeps) * fi.dt_ext) -
-        1.0_rt;
-    if (dt_err > 1.0e-12_rt) {
-        amrex::Abort(
-            "KynemaFMBIFace: Kynema-FMB timestep is not an integral "
-            "multiple of CFD timestep");
-    }
+    // Kynema-FMB steps per CFD step
+    fi.num_substeps = num_whole_steps(
+        fi.dt_cfd, fi.dt_ext, "KynemaFMBIface " + fi.tlabel + ": time.fixed_dt",
+        "Actuator." + fi.tlabel + ".dt");
+    AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
 
     // Offset time index if restarting from a checkpoint file
     if (!fi.checkpoint_file.empty()) {

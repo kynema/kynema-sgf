@@ -401,10 +401,10 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_init_turbine(
 #endif
     }
 
-    // Number of OpenFAST time steps in one CFD time step
+    // OpenFAST steps per CFD step
     fi.num_substeps = num_whole_steps(
-        fi.dt_cfd, fi.dt_ext, "FastIface: the CFD time step of " + fi.tlabel,
-        "OpenFAST time steps");
+        fi.dt_cfd, fi.dt_ext, "FastIface " + fi.tlabel + ": time.fixed_dt",
+        "the OpenFAST DT");
     AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
 }
 
@@ -416,12 +416,13 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_replay_turbine(
 #ifdef KYNEMA_SGF_USE_NETCDF
     BL_PROFILE("kynema-sgf::FastIface::replay_turbine");
 
-    // Number of CFD time steps up to the start time: one velocity record is
-    // read for each
+    // CFD steps up to the start time, one velocity record each. Tolerance
+    // of 1e-3 step for a start time copied from an accumulated CFD time.
     const int num_cfd_steps = num_whole_steps(
         fi.start_time, fi.dt_cfd,
-        "FastIface: the start time of the replay of " + fi.tlabel,
-        "CFD time steps");
+        "FastIface " + fi.tlabel + ": Actuator." + fi.tlabel +
+            ".openfast_start_time",
+        "time.fixed_dt", 1.0e-3_rt);
     // Number of OpenFAST time steps this turbine is advanced by
     const int num_steps = num_cfd_steps * fi.num_substeps;
 
@@ -527,10 +528,10 @@ void ExtTurbIface<FastTurbine, FastSolverData>::ext_restart_turbine(
 #endif
     }
 
-    // Number of OpenFAST time steps in one CFD time step
+    // OpenFAST steps per CFD step
     fi.num_substeps = num_whole_steps(
-        fi.dt_cfd, fi.dt_ext, "FastIface: the CFD time step of " + fi.tlabel,
-        "OpenFAST time steps");
+        fi.dt_cfd, fi.dt_ext, "FastIface " + fi.tlabel + ": time.fixed_dt",
+        "the OpenFAST DT");
     AMREX_ALWAYS_ASSERT(fi.num_substeps > 0);
 }
 

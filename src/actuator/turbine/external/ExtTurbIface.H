@@ -1,6 +1,7 @@
 #ifndef EXTTURBIFACE_H
 #define EXTTURBIFACE_H
 
+#include <algorithm>
 #include <cmath>
 #include <iomanip>
 #include <limits>
@@ -8,12 +9,15 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "src/CFDSim.H"
 #include "src/core/ExtSolver.H"
 #include "src/actuator/turbine/external/external_base_types.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
+
+namespace kynema_sgf {
+class CFDSim;
+}
 
 namespace ncutils {
 class NCFile;
@@ -21,38 +25,42 @@ class NCFile;
 
 namespace ext_turb {
 
-/** Number of time steps that make up a time interval, which has to be whole
+/** Number of time steps in an interval that has to hold a whole number of
+ *  them
  *
- *  Gives the steps of the external solver in one CFD time step and the CFD
- *  time steps up to the start time of a replay. The ratio is computed in
- *  floating point, where 0.3 / 0.1 is 2.9999999999999996: the nearest integer
- *  is taken, and the run stops when the ratio is further from it than
- *  rounding explains.
+ *  Nearest integer to interval / dt. Aborts when the ratio is further from it
+ *  than rel_tol (relative, round-off of the division) or step_tol (in steps)
+ *  allows.
  *
  *  \param interval Length of the interval
  *  \param dt Time step
- *  \param interval_name What the interval is, the start of the abort message
- *  \param dt_name What the time steps are, in the plural
+ *  \param interval_name Input that sets the interval, start of the message
+ *  \param dt_name Input that sets the time step
+ *  \param step_tol Accepted distance from a whole number of steps
  */
 inline int num_whole_steps(
     const amrex::Real interval,
     const amrex::Real dt,
     const std::string& interval_name,
-    const std::string& dt_name)
+    const std::string& dt_name,
+    const amrex::Real step_tol = 0.0_rt)
 {
-    // The rounding error of the ratio is a few units of machine precision
-    constexpr amrex::Real tol =
-        1.0e4_rt * std::numeric_limits<amrex::Real>::epsilon();
+#ifdef AMREX_USE_FLOAT
+    constexpr amrex::Real rel_tol = 1.0e-5_rt;
+#else
+    constexpr amrex::Real rel_tol = 1.0e-10_rt;
+#endif
     constexpr auto max_steps =
         static_cast<amrex::Real>(std::numeric_limits<int>::max());
 
     const amrex::Real ratio = (dt > 0.0_rt) ? interval / dt : -1.0_rt;
     const amrex::Real nearest = std::round(ratio);
+    const amrex::Real tol = std::max(rel_tol * ratio, step_tol);
     if (!(ratio >= 0.0_rt) || !(nearest < max_steps) ||
-        (std::abs(ratio - nearest) > tol * ratio)) {
+        (std::abs(ratio - nearest) > tol)) {
         std::ostringstream msg;
-        msg << std::setprecision(12) << interval_name << " (" << interval
-            << ") is not a whole number of " << dt_name << " (" << dt << ")";
+        msg << std::setprecision(12) << interval_name << " = " << interval
+            << " is not a whole multiple of " << dt_name << " = " << dt;
         amrex::Abort(msg.str());
     }
     return static_cast<int>(nearest);
