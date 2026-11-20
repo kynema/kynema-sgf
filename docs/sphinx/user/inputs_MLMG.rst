@@ -42,6 +42,44 @@ temperature, to do that use "temperature_diffusion" as your prefix.
 
 **MLMG options**
 
+.. input_param:: diffusion.multigrid_type
+
+   **type:** String, optional, default = ``geometric``
+
+   Sets how MLMG solves the coarsest AMR level (level 0). Valid choices are:
+
+   - ``geometric``: geometric multigrid V-cycles (or F-cycles, see
+     :input_param:`diffusion.fmg_maxiter`) on the coarsened levels.
+   - ``algebraic``: the AMReX algebraic multigrid solver (AlgMG) solves level 0
+     in every MLMG iteration. This can reduce the iteration count on meshes
+     with a high cell aspect ratio, where geometric coarsening with a point
+     smoother is less effective (see also ``diffusion.do_semicoarsening``).
+     The coarsened geometric levels are not used for level 0, so setting
+     :input_param:`diffusion.max_coarsening_level` to ``0`` avoids building
+     them. The AlgMG solve of level 0 uses the bottom solver tolerances
+   (:input_param:`diffusion.bottom_rtol` and
+   :input_param:`diffusion.bottom_atol`). The bottom solver type is not
+     used for level 0.
+   - ``hybrid``: geometric until the iteration stalls or diverges, then
+     algebraic, restarting from the best iterate so far. This requires
+     :input_param:`diffusion.do_fixed_iters` ``= false``, because the switch
+     needs a convergence test.
+
+   Finer AMR levels always use geometric multigrid. ``algebraic`` and
+   ``hybrid`` require a single-component operator. They can be used for
+   ``mac_proj``, ``nodal_proj``, scalar diffusion solves (for example
+   ``temperature_diffusion``) and the velocity diffusion solve with
+   ``velocity_diffusion.use_tensor_operator = false`` and
+   ``velocity_diffusion.use_segregated_operator = true``. The default velocity
+   diffusion solve has three components. It reads ``diffusion`` and then
+   ``velocity_diffusion``, so when ``diffusion.multigrid_type`` is not
+   ``geometric``, also set ``velocity_diffusion.multigrid_type = geometric``.
+   ``algebraic`` and ``hybrid`` also require ``diffusion.do_nsolve = false``
+   (the default). In builds with ``KYNEMA_SGF_ENABLE_FFT``, the MAC
+   projection uses FFT when ``mac_proj.use_fft = true`` (the default) and the
+   case allows it; ``mac_proj.multigrid_type`` then has no effect.
+   Invalid values and combinations abort with a message naming the input.
+
 .. input_param:: diffusion.verbose
 
    **type:** Integer, optional, default = 0
@@ -112,7 +150,9 @@ temperature, to do that use "temperature_diffusion" as your prefix.
    **type:** String, optional, default = "bicgstab"
    
    Set the bottom solver type. Current bottom solver options 
-   include: smoother, bicgstab, cg, bicgcg, cgbicg, hypre, and petsc. 
+   include: smoother, bicgstab, cg, bicgcg, cgbicg, amg, hypre, and petsc.
+   The amg option uses the AMReX algebraic multigrid solver (AlgMG) as the
+   bottom solver.
    The hyper and petsc options will require compiling with those libraries.
 
 .. input_param:: diffusion.bottom_verbose
@@ -123,16 +163,23 @@ temperature, to do that use "temperature_diffusion" as your prefix.
 
 .. input_param:: diffusion.bottom_rtol
 
-   **type:** Real, optional, default = 1.0e-4
+   **type:** Real, optional, default = 2.2e-4 (double precision), 1.2e-4
+   (single precision)
 
    Set the relative tolerance for the bottom solver for convergence.
 
 .. input_param:: diffusion.bottom_atol
 
-   **type:** Real, optional, default = -1.0
+   **type:** Real, optional, default = 2.2e-12 (double precision), 1.2e-5
+   (single precision); -1.0 when :input_param:`diffusion.multigrid_type` is
+   ``algebraic`` or ``hybrid``
 
    Set the absolute tolerance for the bottom solve. Setting a negative number
-   disables absolute tolerance check.
+   disables absolute tolerance check. With ``algebraic`` or ``hybrid``, the
+   bottom tolerances also control the AlgMG solve of level 0. A positive
+   absolute tolerance can then stop that solve before the MLMG tolerances are
+   met, and the MLMG iterations stall. So the check is disabled unless this
+   input is set.
 
 .. input_param:: diffusion.bottom_maxiter
 
