@@ -1,0 +1,1890 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: kynema_sgf::CFDSim Class Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: kynema_sgf::CFDSim Class Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/classkynema__sgf_1_1_c_f_d_sim.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cfdsim-class-reference">
+<h1>CFDSim Class Reference<a class="headerlink" href="#cfdsim-class-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: kynema_sgf::CFDSim Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacekynema__sgf.html">kynema_sgf</a></li><li class="navelem"><a href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classkynema__sgf_1_1_c_f_d_sim-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kynema_sgf::CFDSim Class Reference<div class="ingroups"><a class="el" href="group__core.html">Kynema-SGF core</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_c_f_d_sim_8_h_source.html">CFDSim.H</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for kynema_sgf::CFDSim:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" loading="lazy" frameborder="0" src="classkynema__sgf_1_1_c_f_d_sim__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a239a0d066414119f5a3554aa943d8e81" id="r_a239a0d066414119f5a3554aa943d8e81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a239a0d066414119f5a3554aa943d8e81">CFDSim</a> (amrex::AmrCore &amp;<a class="el" href="#a801b3a355a380b309235a1f725b2a2ef">mesh</a>)</td></tr>
+<tr class="memitem:acc62bec53a26601bf9f96d8afbfabb62" id="r_acc62bec53a26601bf9f96d8afbfabb62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc62bec53a26601bf9f96d8afbfabb62">~CFDSim</a> ()</td></tr>
+<tr class="memitem:a801b3a355a380b309235a1f725b2a2ef" id="r_a801b3a355a380b309235a1f725b2a2ef"><td class="memItemLeft" align="right" valign="top">amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a801b3a355a380b309235a1f725b2a2ef">mesh</a> ()</td></tr>
+<tr class="memdesc:a801b3a355a380b309235a1f725b2a2ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the AMR mesh hierarchy.  <br /></td></tr>
+<tr class="memitem:a3a6524065d28677d54f78d0accde21ed" id="r_a3a6524065d28677d54f78d0accde21ed"><td class="memItemLeft" align="right" valign="top">const amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a6524065d28677d54f78d0accde21ed">mesh</a> () const</td></tr>
+<tr class="memitem:a3f420508134bc09e88bf62d63b4fbd5c" id="r_a3f420508134bc09e88bf62d63b4fbd5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f420508134bc09e88bf62d63b4fbd5c">time</a> ()</td></tr>
+<tr class="memdesc:a3f420508134bc09e88bf62d63b4fbd5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return simulation time control.  <br /></td></tr>
+<tr class="memitem:a1228ce8a4d96e1f7343f2238675b19de" id="r_a1228ce8a4d96e1f7343f2238675b19de"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1228ce8a4d96e1f7343f2238675b19de">time</a> () const</td></tr>
+<tr class="memitem:ac1f08e8fd4d32584c197711dbf493413" id="r_ac1f08e8fd4d32584c197711dbf493413"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1f08e8fd4d32584c197711dbf493413">set_mbc</a> (MultiBlockContainer *<a class="el" href="#adcc000d906ca1884e74da48aa29deba4">mbc</a>)</td></tr>
+<tr class="memitem:adcc000d906ca1884e74da48aa29deba4" id="r_adcc000d906ca1884e74da48aa29deba4"><td class="memItemLeft" align="right" valign="top">MultiBlockContainer **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcc000d906ca1884e74da48aa29deba4">mbc</a> ()</td></tr>
+<tr class="memitem:a84d4dd252110602c10d4caa4bba51cbf" id="r_a84d4dd252110602c10d4caa4bba51cbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84d4dd252110602c10d4caa4bba51cbf">set_read_erf</a> (<a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a> fcn)</td></tr>
+<tr class="memitem:a92e748408d02cd37f8033d84b0c0e536" id="r_a92e748408d02cd37f8033d84b0c0e536"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92e748408d02cd37f8033d84b0c0e536">get_read_erf</a> ()</td></tr>
+<tr class="memitem:a1a2f5caafe4e10ec0211769f7b0e7c42" id="r_a1a2f5caafe4e10ec0211769f7b0e7c42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a2f5caafe4e10ec0211769f7b0e7c42">repo</a> ()</td></tr>
+<tr class="memdesc:a1a2f5caafe4e10ec0211769f7b0e7c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the field repository.  <br /></td></tr>
+<tr class="memitem:adb5e152c503533f53c561474bec3096d" id="r_adb5e152c503533f53c561474bec3096d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb5e152c503533f53c561474bec3096d">repo</a> () const</td></tr>
+<tr class="memitem:a50e891e925cdfb6f7e79db62c8892dc4" id="r_a50e891e925cdfb6f7e79db62c8892dc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50e891e925cdfb6f7e79db62c8892dc4">pde_manager</a> ()</td></tr>
+<tr class="memitem:a670ab65118952ee096945b457b6b84c1" id="r_a670ab65118952ee096945b457b6b84c1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a670ab65118952ee096945b457b6b84c1">pde_manager</a> () const</td></tr>
+<tr class="memitem:a66b94df313d548f8c3125b598e00e90d" id="r_a66b94df313d548f8c3125b598e00e90d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66b94df313d548f8c3125b598e00e90d">physics_manager</a> ()</td></tr>
+<tr class="memitem:ae23e920f484fbbc6f02fc8f6a1d608e1" id="r_ae23e920f484fbbc6f02fc8f6a1d608e1"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae23e920f484fbbc6f02fc8f6a1d608e1">physics_manager</a> () const</td></tr>
+<tr class="memitem:aa2ecc0d3b6fa857f3ccaa9c33e98d4ac" id="r_aa2ecc0d3b6fa857f3ccaa9c33e98d4ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">PhysicsMgr::TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2ecc0d3b6fa857f3ccaa9c33e98d4ac">physics</a> ()</td></tr>
+<tr class="memitem:ae5890840efb8286bea1a6d5b167ac5e9" id="r_ae5890840efb8286bea1a6d5b167ac5e9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">PhysicsMgr::TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5890840efb8286bea1a6d5b167ac5e9">physics</a> () const</td></tr>
+<tr class="memitem:a030f02da5c3e957a0fc7d0a4f627d0cd" id="r_a030f02da5c3e957a0fc7d0a4f627d0cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a030f02da5c3e957a0fc7d0a4f627d0cd">field_boundary_manager</a> ()</td></tr>
+<tr class="memitem:a88d2271b3785c4d9cf15fb868ffaf375" id="r_a88d2271b3785c4d9cf15fb868ffaf375"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88d2271b3785c4d9cf15fb868ffaf375">field_boundary_manager</a> () const</td></tr>
+<tr class="memitem:aeaf813e112a9bb7753cc0f25e0040772" id="r_aeaf813e112a9bb7753cc0f25e0040772"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">FieldBoundaryMgr::TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeaf813e112a9bb7753cc0f25e0040772">field_boundaries</a> ()</td></tr>
+<tr class="memitem:a5ebd7e2959553a8f820b3435e54c5e3b" id="r_a5ebd7e2959553a8f820b3435e54c5e3b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">FieldBoundaryMgr::TypeVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ebd7e2959553a8f820b3435e54c5e3b">field_boundaries</a> () const</td></tr>
+<tr class="memitem:a1d8f5ed3e46cc4e93aeef5752cc54fe1" id="r_a1d8f5ed3e46cc4e93aeef5752cc54fe1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d8f5ed3e46cc4e93aeef5752cc54fe1">transport_model</a> ()</td></tr>
+<tr class="memitem:aa8cf3bbc2ff9ec66358ae0e74483956b" id="r_aa8cf3bbc2ff9ec66358ae0e74483956b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8cf3bbc2ff9ec66358ae0e74483956b">transport_model</a> () const</td></tr>
+<tr class="memitem:a72b56ab622b136b8df23c9e20a09a4a0" id="r_a72b56ab622b136b8df23c9e20a09a4a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">turbulence::TurbulenceModel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72b56ab622b136b8df23c9e20a09a4a0">turbulence_model</a> ()</td></tr>
+<tr class="memitem:a41f9e1e30105d1a548dee1504ec0ca65" id="r_a41f9e1e30105d1a548dee1504ec0ca65"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">turbulence::TurbulenceModel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41f9e1e30105d1a548dee1504ec0ca65">turbulence_model</a> () const</td></tr>
+<tr class="memitem:a40ec2d88e7a25fe4aff32bbc3e3781f4" id="r_a40ec2d88e7a25fe4aff32bbc3e3781f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40ec2d88e7a25fe4aff32bbc3e3781f4">io_manager</a> ()</td></tr>
+<tr class="memitem:a7d592dd45003d683b13dc60f184846ac" id="r_a7d592dd45003d683b13dc60f184846ac"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d592dd45003d683b13dc60f184846ac">io_manager</a> () const</td></tr>
+<tr class="memitem:af1eb3a4ff6dd5a2358723ac2d9727397" id="r_af1eb3a4ff6dd5a2358723ac2d9727397"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1eb3a4ff6dd5a2358723ac2d9727397">post_manager</a> ()</td></tr>
+<tr class="memitem:ac8580b23ff919961b093c190c0eba9b2" id="r_ac8580b23ff919961b093c190c0eba9b2"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8580b23ff919961b093c190c0eba9b2">post_manager</a> () const</td></tr>
+<tr class="memitem:abc882efde1240146c8833e84f05fa6a4" id="r_abc882efde1240146c8833e84f05fa6a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc882efde1240146c8833e84f05fa6a4">overset_manager</a> ()</td></tr>
+<tr class="memitem:a58f75cfe20351bbd38f0706c3909dc45" id="r_a58f75cfe20351bbd38f0706c3909dc45"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58f75cfe20351bbd38f0706c3909dc45">overset_manager</a> () const</td></tr>
+<tr class="memitem:aa8c5535beb5c807f715efa0f412a919f" id="r_aa8c5535beb5c807f715efa0f412a919f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8c5535beb5c807f715efa0f412a919f">mesh_mapping</a> ()</td></tr>
+<tr class="memitem:a9af22a98a3711188e1a18d7dffd9988b" id="r_a9af22a98a3711188e1a18d7dffd9988b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9af22a98a3711188e1a18d7dffd9988b">mesh_mapping</a> () const</td></tr>
+<tr class="memitem:a71a6f3940f1c0b6eff6105419a501caa" id="r_a71a6f3940f1c0b6eff6105419a501caa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71a6f3940f1c0b6eff6105419a501caa">ext_solver_manager</a> ()</td></tr>
+<tr class="memitem:ae95327bd5f86cf861aa2d602abe7cd5d" id="r_ae95327bd5f86cf861aa2d602abe7cd5d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae95327bd5f86cf861aa2d602abe7cd5d">ext_solver_manager</a> () const</td></tr>
+<tr class="memitem:a3e5f6a3fb47bede97583dbdb6d6ca62b" id="r_a3e5f6a3fb47bede97583dbdb6d6ca62b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e5f6a3fb47bede97583dbdb6d6ca62b">helics</a> ()</td></tr>
+<tr class="memitem:a4c21fe1338feec98a102fe0ff307742e" id="r_a4c21fe1338feec98a102fe0ff307742e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c21fe1338feec98a102fe0ff307742e">helics</a> () const</td></tr>
+<tr class="memitem:ad27af346a992e89470cc2d445827943e" id="r_ad27af346a992e89470cc2d445827943e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad27af346a992e89470cc2d445827943e">has_overset</a> () const</td></tr>
+<tr class="memitem:a479c23d179b8f1feb7a6bd473d3111e3" id="r_a479c23d179b8f1feb7a6bd473d3111e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a479c23d179b8f1feb7a6bd473d3111e3">create_transport_model</a> ()</td></tr>
+<tr class="memdesc:a479c23d179b8f1feb7a6bd473d3111e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate the transport model based on user inputs.  <br /></td></tr>
+<tr class="memitem:aaa253adb7d33dfeba7e670e6c9b36b34" id="r_aaa253adb7d33dfeba7e670e6c9b36b34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa253adb7d33dfeba7e670e6c9b36b34">create_turbulence_model</a> ()</td></tr>
+<tr class="memdesc:aaa253adb7d33dfeba7e670e6c9b36b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate the turbulence model based on user inputs.  <br /></td></tr>
+<tr class="memitem:a902e28123aac4878057d5502221f4352" id="r_a902e28123aac4878057d5502221f4352"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a902e28123aac4878057d5502221f4352">init_physics</a> ()</td></tr>
+<tr class="memdesc:a902e28123aac4878057d5502221f4352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate all physics instances based on user inputs.  <br /></td></tr>
+<tr class="memitem:aaa256ae10fa47c91f5bda41a61df3923" id="r_aaa256ae10fa47c91f5bda41a61df3923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa256ae10fa47c91f5bda41a61df3923">init_field_boundaries</a> ()</td></tr>
+<tr class="memdesc:aaa256ae10fa47c91f5bda41a61df3923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate all field boundaries based on user inputs.  <br /></td></tr>
+<tr class="memitem:a8ba424dc834555fc4a9bf8db6d2ed522" id="r_a8ba424dc834555fc4a9bf8db6d2ed522"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ba424dc834555fc4a9bf8db6d2ed522">activate_overset</a> ()</td></tr>
+<tr class="memdesc:a8ba424dc834555fc4a9bf8db6d2ed522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate overset connectivity.  <br /></td></tr>
+<tr class="memitem:a5739834c6d1866fd70dc51dbcbcb30ea" id="r_a5739834c6d1866fd70dc51dbcbcb30ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5739834c6d1866fd70dc51dbcbcb30ea">activate_mesh_map</a> ()</td></tr>
+<tr class="memdesc:a5739834c6d1866fd70dc51dbcbcb30ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate mesh mapping.  <br /></td></tr>
+<tr class="memitem:ae2967fa888e5bfc605c03dfaec8b6b77" id="r_ae2967fa888e5bfc605c03dfaec8b6b77"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2967fa888e5bfc605c03dfaec8b6b77">has_mesh_mapping</a> () const</td></tr>
+<tr class="memitem:a8f6b6db25e7a704d187a0622796b99d5" id="r_a8f6b6db25e7a704d187a0622796b99d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f6b6db25e7a704d187a0622796b99d5">set_during_overset_advance</a> (const bool flag)</td></tr>
+<tr class="memitem:a3d808b0269b97402eb7592b3d23cfc5c" id="r_a3d808b0269b97402eb7592b3d23cfc5c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d808b0269b97402eb7592b3d23cfc5c">is_during_overset_advance</a> () const</td></tr>
+<tr class="memitem:ae979c185aefd2d98ac8344d9ead205b8" id="r_ae979c185aefd2d98ac8344d9ead205b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae979c185aefd2d98ac8344d9ead205b8">is_anelastic</a> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7fd2612ad828ed622b9dbc2df32c6942" id="r_a7fd2612ad828ed622b9dbc2df32c6942"><td class="memItemLeft" align="right" valign="top">amrex::AmrCore &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7fd2612ad828ed622b9dbc2df32c6942">m_mesh</a></td></tr>
+<tr class="memitem:a7cd85910c1e09eaff6f1b700c35f87bf" id="r_a7cd85910c1e09eaff6f1b700c35f87bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cd85910c1e09eaff6f1b700c35f87bf">m_time</a></td></tr>
+<tr class="memitem:aae053d9259a335de5b909244b4e735c2" id="r_aae053d9259a335de5b909244b4e735c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae053d9259a335de5b909244b4e735c2">m_repo</a></td></tr>
+<tr class="memitem:a7df88b95a3a8ff566e33b80bccec065c" id="r_a7df88b95a3a8ff566e33b80bccec065c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7df88b95a3a8ff566e33b80bccec065c">m_pde_mgr</a></td></tr>
+<tr class="memitem:a52fdee3a3a5d6534979663914920a8d6" id="r_a52fdee3a3a5d6534979663914920a8d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52fdee3a3a5d6534979663914920a8d6">m_physics_mgr</a></td></tr>
+<tr class="memitem:ab3153961edeb859fb6895e4b8540be5d" id="r_ab3153961edeb859fb6895e4b8540be5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3153961edeb859fb6895e4b8540be5d">m_field_boundary_mgr</a></td></tr>
+<tr class="memitem:ab010aa8c26bd91335e8cf405ba8966dd" id="r_ab010aa8c26bd91335e8cf405ba8966dd"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab010aa8c26bd91335e8cf405ba8966dd">m_transport</a></td></tr>
+<tr class="memitem:a7e949341921e82a8f5c63bf168478df3" id="r_a7e949341921e82a8f5c63bf168478df3"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">turbulence::TurbulenceModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e949341921e82a8f5c63bf168478df3">m_turbulence</a></td></tr>
+<tr class="memitem:a7ae516f9576cdc793ebffa671d390642" id="r_a7ae516f9576cdc793ebffa671d390642"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ae516f9576cdc793ebffa671d390642">m_io_mgr</a></td></tr>
+<tr class="memitem:a3f5be87ee3703d2ba2cc367a2075b4d3" id="r_a3f5be87ee3703d2ba2cc367a2075b4d3"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f5be87ee3703d2ba2cc367a2075b4d3">m_post_mgr</a></td></tr>
+<tr class="memitem:a970504b8668b4a8bceaaaa92936cbf5e" id="r_a970504b8668b4a8bceaaaa92936cbf5e"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a970504b8668b4a8bceaaaa92936cbf5e">m_overset_mgr</a></td></tr>
+<tr class="memitem:afb1e742b7a718868a39304c8153b0bb3" id="r_afb1e742b7a718868a39304c8153b0bb3"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb1e742b7a718868a39304c8153b0bb3">m_mesh_map</a></td></tr>
+<tr class="memitem:adf32e89de5469a31a59c12fd1c39a8d7" id="r_adf32e89de5469a31a59c12fd1c39a8d7"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf32e89de5469a31a59c12fd1c39a8d7">m_ext_solver_mgr</a></td></tr>
+<tr class="memitem:aa9fb4a4daa311a0851c40d01832853ff" id="r_aa9fb4a4daa311a0851c40d01832853ff"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9fb4a4daa311a0851c40d01832853ff">m_helics</a></td></tr>
+<tr class="memitem:a46750534fb1c3218fa711874bbee87fa" id="r_a46750534fb1c3218fa711874bbee87fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46750534fb1c3218fa711874bbee87fa">m_mesh_mapping</a> {false}</td></tr>
+<tr class="memitem:a6d2390734201febb4755406307cd0b0f" id="r_a6d2390734201febb4755406307cd0b0f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d2390734201febb4755406307cd0b0f">m_during_overset_advance</a> {false}</td></tr>
+<tr class="memitem:a9a270dcbc79c3e2ed59ad8c87b190770" id="r_a9a270dcbc79c3e2ed59ad8c87b190770"><td class="memItemLeft" align="right" valign="top">MultiBlockContainer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a270dcbc79c3e2ed59ad8c87b190770">m_mbc</a> {nullptr}</td></tr>
+<tr class="memitem:ad7ae562c6d92e2b8ebf2ac2480915d8f" id="r_ad7ae562c6d92e2b8ebf2ac2480915d8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7ae562c6d92e2b8ebf2ac2480915d8f">m_read_erf</a> {nullptr}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Data structures for a CFD simulation</p>
+<p><a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> represents the kynema-sgf execution environment and manages all the necessary components used to perform a simulation. Each simulation contains a single <a class="el" href="classkynema__sgf_1_1_c_f_d_sim.html">CFDSim</a> instance that holds references to the mesh, <a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a>, <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a>, <a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a>, <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a>, <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a>, and post-processing manager instances. This class is just a data holder and does not perform any computational logic itself. The computational heavy-lifting is performed by the class instances within a time integration loop. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a239a0d066414119f5a3554aa943d8e81" name="a239a0d066414119f5a3554aa943d8e81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a239a0d066414119f5a3554aa943d8e81">&#9670;&#160;</a></span>CFDSim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::CFDSim::CFDSim </td>
+          <td>(</td>
+          <td class="paramtype">amrex::AmrCore &amp;</td>          <td class="paramname"><span class="paramname"><em>mesh</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc62bec53a26601bf9f96d8afbfabb62" name="acc62bec53a26601bf9f96d8afbfabb62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc62bec53a26601bf9f96d8afbfabb62">&#9670;&#160;</a></span>~CFDSim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">kynema_sgf::CFDSim::~CFDSim </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a5739834c6d1866fd70dc51dbcbcb30ea" name="a5739834c6d1866fd70dc51dbcbcb30ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5739834c6d1866fd70dc51dbcbcb30ea">&#9670;&#160;</a></span>activate_mesh_map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::activate_mesh_map </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Activate mesh mapping. </p>
+
+</div>
+</div>
+<a id="a8ba424dc834555fc4a9bf8db6d2ed522" name="a8ba424dc834555fc4a9bf8db6d2ed522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba424dc834555fc4a9bf8db6d2ed522">&#9670;&#160;</a></span>activate_overset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::activate_overset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Activate overset connectivity. </p>
+
+</div>
+</div>
+<a id="a479c23d179b8f1feb7a6bd473d3111e3" name="a479c23d179b8f1feb7a6bd473d3111e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a479c23d179b8f1feb7a6bd473d3111e3">&#9670;&#160;</a></span>create_transport_model()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::create_transport_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantiate the transport model based on user inputs. </p>
+
+</div>
+</div>
+<a id="aaa253adb7d33dfeba7e670e6c9b36b34" name="aaa253adb7d33dfeba7e670e6c9b36b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa253adb7d33dfeba7e670e6c9b36b34">&#9670;&#160;</a></span>create_turbulence_model()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::create_turbulence_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantiate the turbulence model based on user inputs. </p>
+
+</div>
+</div>
+<a id="a71a6f3940f1c0b6eff6105419a501caa" name="a71a6f3940f1c0b6eff6105419a501caa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a6f3940f1c0b6eff6105419a501caa">&#9670;&#160;</a></span>ext_solver_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a> &amp; kynema_sgf::CFDSim::ext_solver_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae95327bd5f86cf861aa2d602abe7cd5d" name="ae95327bd5f86cf861aa2d602abe7cd5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95327bd5f86cf861aa2d602abe7cd5d">&#9670;&#160;</a></span>ext_solver_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a> &amp; kynema_sgf::CFDSim::ext_solver_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeaf813e112a9bb7753cc0f25e0040772" name="aeaf813e112a9bb7753cc0f25e0040772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaf813e112a9bb7753cc0f25e0040772">&#9670;&#160;</a></span>field_boundaries() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">FieldBoundaryMgr::TypeVector</a> &amp; kynema_sgf::CFDSim::field_boundaries </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ebd7e2959553a8f820b3435e54c5e3b" name="a5ebd7e2959553a8f820b3435e54c5e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ebd7e2959553a8f820b3435e54c5e3b">&#9670;&#160;</a></span>field_boundaries() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">FieldBoundaryMgr::TypeVector</a> &amp; kynema_sgf::CFDSim::field_boundaries </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a030f02da5c3e957a0fc7d0a4f627d0cd" name="a030f02da5c3e957a0fc7d0a4f627d0cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a030f02da5c3e957a0fc7d0a4f627d0cd">&#9670;&#160;</a></span>field_boundary_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp; kynema_sgf::CFDSim::field_boundary_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88d2271b3785c4d9cf15fb868ffaf375" name="a88d2271b3785c4d9cf15fb868ffaf375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88d2271b3785c4d9cf15fb868ffaf375">&#9670;&#160;</a></span>field_boundary_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> &amp; kynema_sgf::CFDSim::field_boundary_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92e748408d02cd37f8033d84b0c0e536" name="a92e748408d02cd37f8033d84b0c0e536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92e748408d02cd37f8033d84b0c0e536">&#9670;&#160;</a></span>get_read_erf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a> * kynema_sgf::CFDSim::get_read_erf </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae2967fa888e5bfc605c03dfaec8b6b77" name="ae2967fa888e5bfc605c03dfaec8b6b77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2967fa888e5bfc605c03dfaec8b6b77">&#9670;&#160;</a></span>has_mesh_mapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::CFDSim::has_mesh_mapping </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad27af346a992e89470cc2d445827943e" name="ad27af346a992e89470cc2d445827943e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27af346a992e89470cc2d445827943e">&#9670;&#160;</a></span>has_overset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::CFDSim::has_overset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e5f6a3fb47bede97583dbdb6d6ca62b" name="a3e5f6a3fb47bede97583dbdb6d6ca62b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e5f6a3fb47bede97583dbdb6d6ca62b">&#9670;&#160;</a></span>helics() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a> &amp; kynema_sgf::CFDSim::helics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c21fe1338feec98a102fe0ff307742e" name="a4c21fe1338feec98a102fe0ff307742e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c21fe1338feec98a102fe0ff307742e">&#9670;&#160;</a></span>helics() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a> &amp; kynema_sgf::CFDSim::helics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa256ae10fa47c91f5bda41a61df3923" name="aaa256ae10fa47c91f5bda41a61df3923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa256ae10fa47c91f5bda41a61df3923">&#9670;&#160;</a></span>init_field_boundaries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::init_field_boundaries </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantiate all field boundaries based on user inputs. </p>
+
+</div>
+</div>
+<a id="a902e28123aac4878057d5502221f4352" name="a902e28123aac4878057d5502221f4352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a902e28123aac4878057d5502221f4352">&#9670;&#160;</a></span>init_physics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::init_physics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantiate all physics instances based on user inputs. </p>
+
+</div>
+</div>
+<a id="a40ec2d88e7a25fe4aff32bbc3e3781f4" name="a40ec2d88e7a25fe4aff32bbc3e3781f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ec2d88e7a25fe4aff32bbc3e3781f4">&#9670;&#160;</a></span>io_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp; kynema_sgf::CFDSim::io_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d592dd45003d683b13dc60f184846ac" name="a7d592dd45003d683b13dc60f184846ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d592dd45003d683b13dc60f184846ac">&#9670;&#160;</a></span>io_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a> &amp; kynema_sgf::CFDSim::io_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae979c185aefd2d98ac8344d9ead205b8" name="ae979c185aefd2d98ac8344d9ead205b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae979c185aefd2d98ac8344d9ead205b8">&#9670;&#160;</a></span>is_anelastic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::CFDSim::is_anelastic </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d808b0269b97402eb7592b3d23cfc5c" name="a3d808b0269b97402eb7592b3d23cfc5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d808b0269b97402eb7592b3d23cfc5c">&#9670;&#160;</a></span>is_during_overset_advance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::CFDSim::is_during_overset_advance </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adcc000d906ca1884e74da48aa29deba4" name="adcc000d906ca1884e74da48aa29deba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcc000d906ca1884e74da48aa29deba4">&#9670;&#160;</a></span>mbc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MultiBlockContainer ** kynema_sgf::CFDSim::mbc </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a801b3a355a380b309235a1f725b2a2ef" name="a801b3a355a380b309235a1f725b2a2ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801b3a355a380b309235a1f725b2a2ef">&#9670;&#160;</a></span>mesh() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::AmrCore &amp; kynema_sgf::CFDSim::mesh </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the AMR mesh hierarchy. </p>
+
+</div>
+</div>
+<a id="a3a6524065d28677d54f78d0accde21ed" name="a3a6524065d28677d54f78d0accde21ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a6524065d28677d54f78d0accde21ed">&#9670;&#160;</a></span>mesh() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const amrex::AmrCore &amp; kynema_sgf::CFDSim::mesh </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8c5535beb5c807f715efa0f412a919f" name="aa8c5535beb5c807f715efa0f412a919f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c5535beb5c807f715efa0f412a919f">&#9670;&#160;</a></span>mesh_mapping() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a> * kynema_sgf::CFDSim::mesh_mapping </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9af22a98a3711188e1a18d7dffd9988b" name="a9af22a98a3711188e1a18d7dffd9988b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af22a98a3711188e1a18d7dffd9988b">&#9670;&#160;</a></span>mesh_mapping() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a> * kynema_sgf::CFDSim::mesh_mapping </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc882efde1240146c8833e84f05fa6a4" name="abc882efde1240146c8833e84f05fa6a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc882efde1240146c8833e84f05fa6a4">&#9670;&#160;</a></span>overset_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a> * kynema_sgf::CFDSim::overset_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58f75cfe20351bbd38f0706c3909dc45" name="a58f75cfe20351bbd38f0706c3909dc45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f75cfe20351bbd38f0706c3909dc45">&#9670;&#160;</a></span>overset_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a> * kynema_sgf::CFDSim::overset_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50e891e925cdfb6f7e79db62c8892dc4" name="a50e891e925cdfb6f7e79db62c8892dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50e891e925cdfb6f7e79db62c8892dc4">&#9670;&#160;</a></span>pde_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a> &amp; kynema_sgf::CFDSim::pde_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a670ab65118952ee096945b457b6b84c1" name="a670ab65118952ee096945b457b6b84c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a670ab65118952ee096945b457b6b84c1">&#9670;&#160;</a></span>pde_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a> &amp; kynema_sgf::CFDSim::pde_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2ecc0d3b6fa857f3ccaa9c33e98d4ac" name="aa2ecc0d3b6fa857f3ccaa9c33e98d4ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2ecc0d3b6fa857f3ccaa9c33e98d4ac">&#9670;&#160;</a></span>physics() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">PhysicsMgr::TypeVector</a> &amp; kynema_sgf::CFDSim::physics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5890840efb8286bea1a6d5b167ac5e9" name="ae5890840efb8286bea1a6d5b167ac5e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5890840efb8286bea1a6d5b167ac5e9">&#9670;&#160;</a></span>physics() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_coll_mgr.html#ac8acc7ec0f7401f1377a985f580298ae">PhysicsMgr::TypeVector</a> &amp; kynema_sgf::CFDSim::physics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66b94df313d548f8c3125b598e00e90d" name="a66b94df313d548f8c3125b598e00e90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66b94df313d548f8c3125b598e00e90d">&#9670;&#160;</a></span>physics_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> &amp; kynema_sgf::CFDSim::physics_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae23e920f484fbbc6f02fc8f6a1d608e1" name="ae23e920f484fbbc6f02fc8f6a1d608e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae23e920f484fbbc6f02fc8f6a1d608e1">&#9670;&#160;</a></span>physics_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> &amp; kynema_sgf::CFDSim::physics_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1eb3a4ff6dd5a2358723ac2d9727397" name="af1eb3a4ff6dd5a2358723ac2d9727397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1eb3a4ff6dd5a2358723ac2d9727397">&#9670;&#160;</a></span>post_manager() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a> &amp; kynema_sgf::CFDSim::post_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8580b23ff919961b093c190c0eba9b2" name="ac8580b23ff919961b093c190c0eba9b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8580b23ff919961b093c190c0eba9b2">&#9670;&#160;</a></span>post_manager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a> &amp; kynema_sgf::CFDSim::post_manager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a2f5caafe4e10ec0211769f7b0e7c42" name="a1a2f5caafe4e10ec0211769f7b0e7c42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a2f5caafe4e10ec0211769f7b0e7c42">&#9670;&#160;</a></span>repo() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp; kynema_sgf::CFDSim::repo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the field repository. </p>
+
+</div>
+</div>
+<a id="adb5e152c503533f53c561474bec3096d" name="adb5e152c503533f53c561474bec3096d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb5e152c503533f53c561474bec3096d">&#9670;&#160;</a></span>repo() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> &amp; kynema_sgf::CFDSim::repo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f6b6db25e7a704d187a0622796b99d5" name="a8f6b6db25e7a704d187a0622796b99d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f6b6db25e7a704d187a0622796b99d5">&#9670;&#160;</a></span>set_during_overset_advance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::set_during_overset_advance </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>flag</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1f08e8fd4d32584c197711dbf493413" name="ac1f08e8fd4d32584c197711dbf493413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1f08e8fd4d32584c197711dbf493413">&#9670;&#160;</a></span>set_mbc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::set_mbc </td>
+          <td>(</td>
+          <td class="paramtype">MultiBlockContainer *</td>          <td class="paramname"><span class="paramname"><em>mbc</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84d4dd252110602c10d4caa4bba51cbf" name="a84d4dd252110602c10d4caa4bba51cbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d4dd252110602c10d4caa4bba51cbf">&#9670;&#160;</a></span>set_read_erf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kynema_sgf::CFDSim::set_read_erf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a></td>          <td class="paramname"><span class="paramname"><em>fcn</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f420508134bc09e88bf62d63b4fbd5c" name="a3f420508134bc09e88bf62d63b4fbd5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f420508134bc09e88bf62d63b4fbd5c">&#9670;&#160;</a></span>time() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp; kynema_sgf::CFDSim::time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return simulation time control. </p>
+
+</div>
+</div>
+<a id="a1228ce8a4d96e1f7343f2238675b19de" name="a1228ce8a4d96e1f7343f2238675b19de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1228ce8a4d96e1f7343f2238675b19de">&#9670;&#160;</a></span>time() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> &amp; kynema_sgf::CFDSim::time </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d8f5ed3e46cc4e93aeef5752cc54fe1" name="a1d8f5ed3e46cc4e93aeef5752cc54fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8f5ed3e46cc4e93aeef5752cc54fe1">&#9670;&#160;</a></span>transport_model() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a> &amp; kynema_sgf::CFDSim::transport_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8cf3bbc2ff9ec66358ae0e74483956b" name="aa8cf3bbc2ff9ec66358ae0e74483956b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8cf3bbc2ff9ec66358ae0e74483956b">&#9670;&#160;</a></span>transport_model() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a> &amp; kynema_sgf::CFDSim::transport_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72b56ab622b136b8df23c9e20a09a4a0" name="a72b56ab622b136b8df23c9e20a09a4a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b56ab622b136b8df23c9e20a09a4a0">&#9670;&#160;</a></span>turbulence_model() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">turbulence::TurbulenceModel</a> &amp; kynema_sgf::CFDSim::turbulence_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41f9e1e30105d1a548dee1504ec0ca65" name="a41f9e1e30105d1a548dee1504ec0ca65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f9e1e30105d1a548dee1504ec0ca65">&#9670;&#160;</a></span>turbulence_model() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">turbulence::TurbulenceModel</a> &amp; kynema_sgf::CFDSim::turbulence_model </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a6d2390734201febb4755406307cd0b0f" name="a6d2390734201febb4755406307cd0b0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d2390734201febb4755406307cd0b0f">&#9670;&#160;</a></span>m_during_overset_advance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::CFDSim::m_during_overset_advance {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf32e89de5469a31a59c12fd1c39a8d7" name="adf32e89de5469a31a59c12fd1c39a8d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf32e89de5469a31a59c12fd1c39a8d7">&#9670;&#160;</a></span>m_ext_solver_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_ext_solver_mgr.html">ExtSolverMgr</a>&gt; kynema_sgf::CFDSim::m_ext_solver_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab3153961edeb859fb6895e4b8540be5d" name="ab3153961edeb859fb6895e4b8540be5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3153961edeb859fb6895e4b8540be5d">&#9670;&#160;</a></span>m_field_boundary_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_boundary_mgr.html">FieldBoundaryMgr</a> kynema_sgf::CFDSim::m_field_boundary_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa9fb4a4daa311a0851c40d01832853ff" name="aa9fb4a4daa311a0851c40d01832853ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9fb4a4daa311a0851c40d01832853ff">&#9670;&#160;</a></span>m_helics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_helics_storage.html">HelicsStorage</a>&gt; kynema_sgf::CFDSim::m_helics</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ae516f9576cdc793ebffa671d390642" name="a7ae516f9576cdc793ebffa671d390642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ae516f9576cdc793ebffa671d390642">&#9670;&#160;</a></span>m_io_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_i_o_manager.html">IOManager</a>&gt; kynema_sgf::CFDSim::m_io_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9a270dcbc79c3e2ed59ad8c87b190770" name="a9a270dcbc79c3e2ed59ad8c87b190770"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a270dcbc79c3e2ed59ad8c87b190770">&#9670;&#160;</a></span>m_mbc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MultiBlockContainer* kynema_sgf::CFDSim::m_mbc {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7fd2612ad828ed622b9dbc2df32c6942" name="a7fd2612ad828ed622b9dbc2df32c6942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fd2612ad828ed622b9dbc2df32c6942">&#9670;&#160;</a></span>m_mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">amrex::AmrCore&amp; kynema_sgf::CFDSim::m_mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb1e742b7a718868a39304c8153b0bb3" name="afb1e742b7a718868a39304c8153b0bb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb1e742b7a718868a39304c8153b0bb3">&#9670;&#160;</a></span>m_mesh_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_mesh_map.html">MeshMap</a>&gt; kynema_sgf::CFDSim::m_mesh_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46750534fb1c3218fa711874bbee87fa" name="a46750534fb1c3218fa711874bbee87fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46750534fb1c3218fa711874bbee87fa">&#9670;&#160;</a></span>m_mesh_mapping</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kynema_sgf::CFDSim::m_mesh_mapping {false}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a970504b8668b4a8bceaaaa92936cbf5e" name="a970504b8668b4a8bceaaaa92936cbf5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a970504b8668b4a8bceaaaa92936cbf5e">&#9670;&#160;</a></span>m_overset_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_overset_manager.html">OversetManager</a>&gt; kynema_sgf::CFDSim::m_overset_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7df88b95a3a8ff566e33b80bccec065c" name="a7df88b95a3a8ff566e33b80bccec065c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df88b95a3a8ff566e33b80bccec065c">&#9670;&#160;</a></span>m_pde_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1pde_1_1_p_d_e_mgr.html">pde::PDEMgr</a> kynema_sgf::CFDSim::m_pde_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52fdee3a3a5d6534979663914920a8d6" name="a52fdee3a3a5d6534979663914920a8d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52fdee3a3a5d6534979663914920a8d6">&#9670;&#160;</a></span>m_physics_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_physics_mgr.html">PhysicsMgr</a> kynema_sgf::CFDSim::m_physics_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f5be87ee3703d2ba2cc367a2075b4d3" name="a3f5be87ee3703d2ba2cc367a2075b4d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f5be87ee3703d2ba2cc367a2075b4d3">&#9670;&#160;</a></span>m_post_mgr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1_post_process_manager.html">PostProcessManager</a>&gt; kynema_sgf::CFDSim::m_post_mgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7ae562c6d92e2b8ebf2ac2480915d8f" name="ad7ae562c6d92e2b8ebf2ac2480915d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ae562c6d92e2b8ebf2ac2480915d8f">&#9670;&#160;</a></span>m_read_erf</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_read_e_r_f_function_8_h.html#a854c725972700e3da1ee7f3de488cf7e">ReadERFFunction</a> kynema_sgf::CFDSim::m_read_erf {nullptr}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae053d9259a335de5b909244b4e735c2" name="aae053d9259a335de5b909244b4e735c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae053d9259a335de5b909244b4e735c2">&#9670;&#160;</a></span>m_repo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_field_repo.html">FieldRepo</a> kynema_sgf::CFDSim::m_repo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel mutable">mutable</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7cd85910c1e09eaff6f1b700c35f87bf" name="a7cd85910c1e09eaff6f1b700c35f87bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cd85910c1e09eaff6f1b700c35f87bf">&#9670;&#160;</a></span>m_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkynema__sgf_1_1_sim_time.html">SimTime</a> kynema_sgf::CFDSim::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab010aa8c26bd91335e8cf405ba8966dd" name="ab010aa8c26bd91335e8cf405ba8966dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab010aa8c26bd91335e8cf405ba8966dd">&#9670;&#160;</a></span>m_transport</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1transport_1_1_transport_model.html">transport::TransportModel</a>&gt; kynema_sgf::CFDSim::m_transport</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e949341921e82a8f5c63bf168478df3" name="a7e949341921e82a8f5c63bf168478df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e949341921e82a8f5c63bf168478df3">&#9670;&#160;</a></span>m_turbulence</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classkynema__sgf_1_1turbulence_1_1_turbulence_model.html">turbulence::TurbulenceModel</a>&gt; kynema_sgf::CFDSim::m_turbulence</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/<a class="el" href="_c_f_d_sim_8_h_source.html">CFDSim.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/<a class="el" href="_c_f_d_sim_8cpp.html">CFDSim.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

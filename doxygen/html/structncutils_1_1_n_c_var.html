@@ -1,0 +1,1034 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kynema-SGF API: ncutils::NCVar Struct Reference &mdash; Kynema-SGF 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Kynema-SGF
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/index.html">Walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/user.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/theory.html">Theory Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">How to Cite Kynema-SGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibrefs.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kynema-SGF</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Kynema-SGF API: ncutils::NCVar Struct Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/doxygen/html/structncutils_1_1_n_c_var.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ncvar-struct-reference">
+<h1>NCVar Struct Reference<a class="headerlink" href="#ncvar-struct-reference" title="Link to this heading"></a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.14.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kynema-SGF API: ncutils::NCVar Struct Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Kynema-SGF API<span id="projectnumber">&#160;v0.1.0</span>
+   </div>
+   <div id="projectbrief">CFD solver for wind plant simulations</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.14.0 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',false);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespacencutils.html">ncutils</a></li><li class="navelem"><a href="structncutils_1_1_n_c_var.html">NCVar</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structncutils_1_1_n_c_var-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ncutils::NCVar Struct Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Representation of a NetCDF variable.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nc__interface_8_h_source.html">nc_interface.H</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4b34f3722befd10e92d1267bcbd49724" id="r_a4b34f3722befd10e92d1267bcbd49724"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a> () const</td></tr>
+<tr class="memdesc:a4b34f3722befd10e92d1267bcbd49724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of this variable.  <br /></td></tr>
+<tr class="memitem:ae0ab15dc4c1033271878c3bf5102f911" id="r_ae0ab15dc4c1033271878c3bf5102f911"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0ab15dc4c1033271878c3bf5102f911">ndim</a> () const</td></tr>
+<tr class="memdesc:ae0ab15dc4c1033271878c3bf5102f911"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of array dimensions for this variable.  <br /></td></tr>
+<tr class="memitem:adb6e5fe1bfe8ab79e9ecf33ca5800797" id="r_adb6e5fe1bfe8ab79e9ecf33ca5800797"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb6e5fe1bfe8ab79e9ecf33ca5800797">shape</a> () const</td></tr>
+<tr class="memdesc:adb6e5fe1bfe8ab79e9ecf33ca5800797"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shape of the array (size in each array dimension)  <br /></td></tr>
+<tr class="memitem:a647531496124738c4a56b8d78f897107" id="r_a647531496124738c4a56b8d78f897107"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a647531496124738c4a56b8d78f897107">put</a> (const amrex::Real *) const</td></tr>
+<tr class="memdesc:a647531496124738c4a56b8d78f897107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write out the entire variable.  <br /></td></tr>
+<tr class="memitem:aa61e7a28b6bff1df2ef10b4856c34af7" id="r_aa61e7a28b6bff1df2ef10b4856c34af7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa61e7a28b6bff1df2ef10b4856c34af7">put</a> (const float *) const</td></tr>
+<tr class="memitem:a16984e6a3ad571e12401321b749f44ea" id="r_a16984e6a3ad571e12401321b749f44ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16984e6a3ad571e12401321b749f44ea">put</a> (const int *) const</td></tr>
+<tr class="memitem:a246946cddb31668791f546485e60c17d" id="r_a246946cddb31668791f546485e60c17d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a246946cddb31668791f546485e60c17d">put</a> (const amrex::Real *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:a246946cddb31668791f546485e60c17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write out a slice of data.  <br /></td></tr>
+<tr class="memitem:aece79276bc2a81b36faf056eada8d17c" id="r_aece79276bc2a81b36faf056eada8d17c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aece79276bc2a81b36faf056eada8d17c">put</a> (const amrex::Real *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; ptrdiff_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:aece79276bc2a81b36faf056eada8d17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write out a slice of data with with strides (see hyperslab definition in NetCDF)  <br /></td></tr>
+<tr class="memitem:a2520db8c1541561c274be5c372fa5597" id="r_a2520db8c1541561c274be5c372fa5597"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2520db8c1541561c274be5c372fa5597">put</a> (const float *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:a2520db8c1541561c274be5c372fa5597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write out a slice of data.  <br /></td></tr>
+<tr class="memitem:ad8b9aedc67e38c49522bd98459a26290" id="r_ad8b9aedc67e38c49522bd98459a26290"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8b9aedc67e38c49522bd98459a26290">put</a> (const float *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; ptrdiff_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:ad8b9aedc67e38c49522bd98459a26290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write out a slice of data with with strides (see hyperslab definition in NetCDF)  <br /></td></tr>
+<tr class="memitem:ae4d3aaba3b410438132b65bb8ab47512" id="r_ae4d3aaba3b410438132b65bb8ab47512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4d3aaba3b410438132b65bb8ab47512">put</a> (const int *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;) const</td></tr>
+<tr class="memitem:a5f4dc3a5bf52f9574bffc89c29f4335c" id="r_a5f4dc3a5bf52f9574bffc89c29f4335c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f4dc3a5bf52f9574bffc89c29f4335c">put</a> (const int *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; ptrdiff_t &gt; &amp;) const</td></tr>
+<tr class="memitem:a193825aa51fced8a34c41c6019c561b1" id="r_a193825aa51fced8a34c41c6019c561b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a193825aa51fced8a34c41c6019c561b1">get</a> (amrex::Real *) const</td></tr>
+<tr class="memdesc:a193825aa51fced8a34c41c6019c561b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the entire variable from file.  <br /></td></tr>
+<tr class="memitem:ab39527f40ff0417de3c1ff8c441ced93" id="r_ab39527f40ff0417de3c1ff8c441ced93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab39527f40ff0417de3c1ff8c441ced93">get</a> (float *) const</td></tr>
+<tr class="memitem:a0a7990c37360c27e7ba2fb47617f5255" id="r_a0a7990c37360c27e7ba2fb47617f5255"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a7990c37360c27e7ba2fb47617f5255">get</a> (int *) const</td></tr>
+<tr class="memitem:aaf8dd95a1c63c9b61154755bfdd5f417" id="r_aaf8dd95a1c63c9b61154755bfdd5f417"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf8dd95a1c63c9b61154755bfdd5f417">get</a> (amrex::Real *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:aaf8dd95a1c63c9b61154755bfdd5f417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data from the file.  <br /></td></tr>
+<tr class="memitem:a9662d86faee1a9eb8b206791f9dc0842" id="r_a9662d86faee1a9eb8b206791f9dc0842"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9662d86faee1a9eb8b206791f9dc0842">get</a> (amrex::Real *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; ptrdiff_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:a9662d86faee1a9eb8b206791f9dc0842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data with strides.  <br /></td></tr>
+<tr class="memitem:ad6fc629cd035e5779e9e891fd37e68ae" id="r_ad6fc629cd035e5779e9e891fd37e68ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6fc629cd035e5779e9e891fd37e68ae">get</a> (float *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:ad6fc629cd035e5779e9e891fd37e68ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data from the file.  <br /></td></tr>
+<tr class="memitem:af036d4858171a98b8a951348a654a36c" id="r_af036d4858171a98b8a951348a654a36c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af036d4858171a98b8a951348a654a36c">get</a> (float *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; ptrdiff_t &gt; &amp;) const</td></tr>
+<tr class="memdesc:af036d4858171a98b8a951348a654a36c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a chunk of data with strides.  <br /></td></tr>
+<tr class="memitem:a0a1082e40bee181e99e04ca81311bb70" id="r_a0a1082e40bee181e99e04ca81311bb70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a1082e40bee181e99e04ca81311bb70">get</a> (int *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;) const</td></tr>
+<tr class="memitem:ab994c2ebc61623888b2e3fc6bf399bff" id="r_ab994c2ebc61623888b2e3fc6bf399bff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab994c2ebc61623888b2e3fc6bf399bff">get</a> (int *, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; size_t &gt; &amp;, const std::vector&lt; ptrdiff_t &gt; &amp;) const</td></tr>
+<tr class="memitem:a0a4ddce55f60e3accbaf02441b6484cf" id="r_a0a4ddce55f60e3accbaf02441b6484cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a4ddce55f60e3accbaf02441b6484cf">has_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>) const</td></tr>
+<tr class="memitem:a9f60ebf70762d1d8e0962afb01118a31" id="r_a9f60ebf70762d1d8e0962afb01118a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f60ebf70762d1d8e0962afb01118a31">put_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, const std::string &amp;value) const</td></tr>
+<tr class="memitem:a3a8b9adb2556f697476c9616dc814ed6" id="r_a3a8b9adb2556f697476c9616dc814ed6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a8b9adb2556f697476c9616dc814ed6">put_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, const std::vector&lt; amrex::Real &gt; &amp;value) const</td></tr>
+<tr class="memitem:a69c358988ebdd589d7e465ca6a5f07e9" id="r_a69c358988ebdd589d7e465ca6a5f07e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69c358988ebdd589d7e465ca6a5f07e9">put_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, const std::vector&lt; float &gt; &amp;value) const</td></tr>
+<tr class="memitem:a72558ae45f30bed210d68c26ec57cb13" id="r_a72558ae45f30bed210d68c26ec57cb13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72558ae45f30bed210d68c26ec57cb13">put_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, const std::vector&lt; int &gt; &amp;value) const</td></tr>
+<tr class="memitem:a774b3bda4e9dc903ecfa35af38e863c6" id="r_a774b3bda4e9dc903ecfa35af38e863c6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a774b3bda4e9dc903ecfa35af38e863c6">get_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>) const</td></tr>
+<tr class="memitem:a9b82dbf28812734a052eb79722780b2c" id="r_a9b82dbf28812734a052eb79722780b2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b82dbf28812734a052eb79722780b2c">get_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, std::vector&lt; amrex::Real &gt; &amp;value) const</td></tr>
+<tr class="memitem:af09b0c94dceb8666a7be0d6167bfc4b4" id="r_af09b0c94dceb8666a7be0d6167bfc4b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af09b0c94dceb8666a7be0d6167bfc4b4">get_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, std::vector&lt; float &gt; &amp;value) const</td></tr>
+<tr class="memitem:a720f935c1949f56e31eb057dbc1e7ea6" id="r_a720f935c1949f56e31eb057dbc1e7ea6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a720f935c1949f56e31eb057dbc1e7ea6">get_attr</a> (const std::string &amp;<a class="el" href="#a4b34f3722befd10e92d1267bcbd49724">name</a>, std::vector&lt; int &gt; &amp;value) const</td></tr>
+<tr class="memitem:a86dd2db6591b22c7440228c7152cab45" id="r_a86dd2db6591b22c7440228c7152cab45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86dd2db6591b22c7440228c7152cab45">par_access</a> (const int cmode) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a233d94aa3ccbef1cc12565340bcc7218" id="r_a233d94aa3ccbef1cc12565340bcc7218"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a233d94aa3ccbef1cc12565340bcc7218">ncid</a></td></tr>
+<tr class="memdesc:a233d94aa3ccbef1cc12565340bcc7218"><td class="mdescLeft">&#160;</td><td class="mdescRight">File/Group identifier.  <br /></td></tr>
+<tr class="memitem:a2dce982c1ddb8f3b89b071bc3bf15532" id="r_a2dce982c1ddb8f3b89b071bc3bf15532"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dce982c1ddb8f3b89b071bc3bf15532">varid</a></td></tr>
+<tr class="memdesc:a2dce982c1ddb8f3b89b071bc3bf15532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable ID used with NetCDF API.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Representation of a NetCDF variable. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a193825aa51fced8a34c41c6019c561b1" name="a193825aa51fced8a34c41c6019c561b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a193825aa51fced8a34c41c6019c561b1">&#9670;&#160;</a></span>get() <span class="overload">[1/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the entire variable from file. </p>
+
+</div>
+</div>
+<a id="aaf8dd95a1c63c9b61154755bfdd5f417" name="aaf8dd95a1c63c9b61154755bfdd5f417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf8dd95a1c63c9b61154755bfdd5f417">&#9670;&#160;</a></span>get() <span class="overload">[2/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data from the file. </p>
+
+</div>
+</div>
+<a id="a9662d86faee1a9eb8b206791f9dc0842" name="a9662d86faee1a9eb8b206791f9dc0842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9662d86faee1a9eb8b206791f9dc0842">&#9670;&#160;</a></span>get() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">amrex::Real *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; ptrdiff_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data with strides. </p>
+
+</div>
+</div>
+<a id="ab39527f40ff0417de3c1ff8c441ced93" name="ab39527f40ff0417de3c1ff8c441ced93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab39527f40ff0417de3c1ff8c441ced93">&#9670;&#160;</a></span>get() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6fc629cd035e5779e9e891fd37e68ae" name="ad6fc629cd035e5779e9e891fd37e68ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6fc629cd035e5779e9e891fd37e68ae">&#9670;&#160;</a></span>get() <span class="overload">[5/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data from the file. </p>
+
+</div>
+</div>
+<a id="af036d4858171a98b8a951348a654a36c" name="af036d4858171a98b8a951348a654a36c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af036d4858171a98b8a951348a654a36c">&#9670;&#160;</a></span>get() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; ptrdiff_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a chunk of data with strides. </p>
+
+</div>
+</div>
+<a id="a0a7990c37360c27e7ba2fb47617f5255" name="a0a7990c37360c27e7ba2fb47617f5255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a7990c37360c27e7ba2fb47617f5255">&#9670;&#160;</a></span>get() <span class="overload">[7/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a1082e40bee181e99e04ca81311bb70" name="a0a1082e40bee181e99e04ca81311bb70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a1082e40bee181e99e04ca81311bb70">&#9670;&#160;</a></span>get() <span class="overload">[8/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab994c2ebc61623888b2e3fc6bf399bff" name="ab994c2ebc61623888b2e3fc6bf399bff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab994c2ebc61623888b2e3fc6bf399bff">&#9670;&#160;</a></span>get() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get </td>
+          <td>(</td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; ptrdiff_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a774b3bda4e9dc903ecfa35af38e863c6" name="a774b3bda4e9dc903ecfa35af38e863c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a774b3bda4e9dc903ecfa35af38e863c6">&#9670;&#160;</a></span>get_attr() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ncutils::NCVar::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b82dbf28812734a052eb79722780b2c" name="a9b82dbf28812734a052eb79722780b2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b82dbf28812734a052eb79722780b2c">&#9670;&#160;</a></span>get_attr() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af09b0c94dceb8666a7be0d6167bfc4b4" name="af09b0c94dceb8666a7be0d6167bfc4b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af09b0c94dceb8666a7be0d6167bfc4b4">&#9670;&#160;</a></span>get_attr() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a720f935c1949f56e31eb057dbc1e7ea6" name="a720f935c1949f56e31eb057dbc1e7ea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a720f935c1949f56e31eb057dbc1e7ea6">&#9670;&#160;</a></span>get_attr() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::get_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a4ddce55f60e3accbaf02441b6484cf" name="a0a4ddce55f60e3accbaf02441b6484cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a4ddce55f60e3accbaf02441b6484cf">&#9670;&#160;</a></span>has_attr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ncutils::NCVar::has_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b34f3722befd10e92d1267bcbd49724" name="a4b34f3722befd10e92d1267bcbd49724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b34f3722befd10e92d1267bcbd49724">&#9670;&#160;</a></span>name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ncutils::NCVar::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Name of this variable. </p>
+
+</div>
+</div>
+<a id="ae0ab15dc4c1033271878c3bf5102f911" name="ae0ab15dc4c1033271878c3bf5102f911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0ab15dc4c1033271878c3bf5102f911">&#9670;&#160;</a></span>ndim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ncutils::NCVar::ndim </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of array dimensions for this variable. </p>
+
+</div>
+</div>
+<a id="a86dd2db6591b22c7440228c7152cab45" name="a86dd2db6591b22c7440228c7152cab45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86dd2db6591b22c7440228c7152cab45">&#9670;&#160;</a></span>par_access()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::par_access </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>cmode</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a647531496124738c4a56b8d78f897107" name="a647531496124738c4a56b8d78f897107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a647531496124738c4a56b8d78f897107">&#9670;&#160;</a></span>put() <span class="overload">[1/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write out the entire variable. </p>
+
+</div>
+</div>
+<a id="a246946cddb31668791f546485e60c17d" name="a246946cddb31668791f546485e60c17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a246946cddb31668791f546485e60c17d">&#9670;&#160;</a></span>put() <span class="overload">[2/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write out a slice of data. </p>
+
+</div>
+</div>
+<a id="aece79276bc2a81b36faf056eada8d17c" name="aece79276bc2a81b36faf056eada8d17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece79276bc2a81b36faf056eada8d17c">&#9670;&#160;</a></span>put() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const amrex::Real *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; ptrdiff_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write out a slice of data with with strides (see hyperslab definition in NetCDF) </p>
+
+</div>
+</div>
+<a id="aa61e7a28b6bff1df2ef10b4856c34af7" name="aa61e7a28b6bff1df2ef10b4856c34af7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61e7a28b6bff1df2ef10b4856c34af7">&#9670;&#160;</a></span>put() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2520db8c1541561c274be5c372fa5597" name="a2520db8c1541561c274be5c372fa5597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2520db8c1541561c274be5c372fa5597">&#9670;&#160;</a></span>put() <span class="overload">[5/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write out a slice of data. </p>
+
+</div>
+</div>
+<a id="ad8b9aedc67e38c49522bd98459a26290" name="ad8b9aedc67e38c49522bd98459a26290"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8b9aedc67e38c49522bd98459a26290">&#9670;&#160;</a></span>put() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; ptrdiff_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write out a slice of data with with strides (see hyperslab definition in NetCDF) </p>
+
+</div>
+</div>
+<a id="a16984e6a3ad571e12401321b749f44ea" name="a16984e6a3ad571e12401321b749f44ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16984e6a3ad571e12401321b749f44ea">&#9670;&#160;</a></span>put() <span class="overload">[7/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>ptr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4d3aaba3b410438132b65bb8ab47512" name="ae4d3aaba3b410438132b65bb8ab47512"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4d3aaba3b410438132b65bb8ab47512">&#9670;&#160;</a></span>put() <span class="overload">[8/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f4dc3a5bf52f9574bffc89c29f4335c" name="a5f4dc3a5bf52f9574bffc89c29f4335c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f4dc3a5bf52f9574bffc89c29f4335c">&#9670;&#160;</a></span>put() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put </td>
+          <td>(</td>
+          <td class="paramtype">const int *</td>          <td class="paramname"><span class="paramname"><em>dptr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; size_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; ptrdiff_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stride</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f60ebf70762d1d8e0962afb01118a31" name="a9f60ebf70762d1d8e0962afb01118a31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f60ebf70762d1d8e0962afb01118a31">&#9670;&#160;</a></span>put_attr() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a8b9adb2556f697476c9616dc814ed6" name="a3a8b9adb2556f697476c9616dc814ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a8b9adb2556f697476c9616dc814ed6">&#9670;&#160;</a></span>put_attr() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; amrex::Real &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69c358988ebdd589d7e465ca6a5f07e9" name="a69c358988ebdd589d7e465ca6a5f07e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69c358988ebdd589d7e465ca6a5f07e9">&#9670;&#160;</a></span>put_attr() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; float &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72558ae45f30bed210d68c26ec57cb13" name="a72558ae45f30bed210d68c26ec57cb13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72558ae45f30bed210d68c26ec57cb13">&#9670;&#160;</a></span>put_attr() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ncutils::NCVar::put_attr </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb6e5fe1bfe8ab79e9ecf33ca5800797" name="adb6e5fe1bfe8ab79e9ecf33ca5800797"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb6e5fe1bfe8ab79e9ecf33ca5800797">&#9670;&#160;</a></span>shape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; size_t &gt; ncutils::NCVar::shape </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shape of the array (size in each array dimension) </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a233d94aa3ccbef1cc12565340bcc7218" name="a233d94aa3ccbef1cc12565340bcc7218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233d94aa3ccbef1cc12565340bcc7218">&#9670;&#160;</a></span>ncid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int ncutils::NCVar::ncid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>File/Group identifier. </p>
+
+</div>
+</div>
+<a id="a2dce982c1ddb8f3b89b071bc3bf15532" name="a2dce982c1ddb8f3b89b071bc3bf15532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dce982c1ddb8f3b89b071bc3bf15532">&#9670;&#160;</a></span>varid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int ncutils::NCVar::varid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variable ID used with NetCDF API. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ncutils/<a class="el" href="nc__interface_8_h_source.html">nc_interface.H</a></li>
+<li>/home/runner/work/kynema-sgf/kynema-sgf/src/utilities/ncutils/<a class="el" href="nc__interface_8cpp.html">nc_interface.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
