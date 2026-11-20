@@ -142,6 +142,9 @@ void write_reals(
 
 /** Read a list written by write_reals
  *
+ *  \param is Stream of the restart data
+ *  \param name Name of the list
+ *  \param values List read
  *  \param resize True to resize ``values`` to the list read, false to
  *  refuse another size
  *
