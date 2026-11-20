@@ -80,6 +80,8 @@ public:
 
     [[nodiscard]] virtual std::optional<motion::RigidTransform>
     reference_frame(amrex::Real time) const = 0;
+
+    virtual void write_checkpoint(const std::string&) = 0;
 };
 
 /** Concrete implementation of the ActuatorModel for different actuator types.
@@ -223,6 +225,11 @@ public:
     reference_frame(const amrex::Real time) const override
     {
         return ops::ReferenceFrameOp<ActTrait, SrcTrait>()(m_data, time);
+    }
+
+    void write_checkpoint(const std::string& chkname) override
+    {
+        ops::write_checkpoint<ActTrait>(m_data, chkname);
     }
 
     void init_actuator_source() override

@@ -401,6 +401,17 @@ void Actuator::prepare_outputs()
     }
 }
 
+void Actuator::write_checkpoint(const std::string& chkname)
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::write_checkpoint");
+
+    // Each actuator knows what it needs for a restart, and its root process
+    // writes it
+    for (auto& ac : m_actuators) {
+        ac->write_checkpoint(chkname);
+    }
+}
+
 ActuatorModel& Actuator::get_act_bylabel(const std::string& actlabel) const
 {
     BL_PROFILE("kynema-sgf::actuator::Actuator::get_act_bylabel");

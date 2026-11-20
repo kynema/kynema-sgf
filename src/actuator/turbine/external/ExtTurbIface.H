@@ -11,7 +11,6 @@
 #include "src/CFDSim.H"
 #include "src/core/ExtSolver.H"
 #include "src/actuator/turbine/external/external_base_types.H"
-#include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -57,36 +56,6 @@ inline int num_whole_steps(
         amrex::Abort(msg.str());
     }
     return static_cast<int>(nearest);
-}
-
-/** Stops a run whose inputs put the checkpoints of the external solver off
- *  those of the CFD solver
- *
- *  With incflo.prescribe_velocity the actuators advance before the time of the
- *  new step is set. A checkpoint interval in time is then tested against the
- *  time of the step before, and the external solver would write each of its
- *  checkpoints one time step after the CFD solver: a restart finds no
- *  checkpoint of the external solver for its step. A checkpoint interval in
- *  steps is not affected.
- */
-inline void check_checkpoint_inputs()
-{
-    bool prescribe_vel = false;
-    amrex::ParmParse pp_incflo("incflo");
-    pp_incflo.query("prescribe_velocity", prescribe_vel);
-
-    amrex::Real chkpt_t_interval = -1.0_rt;
-    amrex::ParmParse pp_time("time");
-    pp_time.query("checkpoint_time_interval", chkpt_t_interval);
-
-    if (prescribe_vel && (chkpt_t_interval > 0.0_rt)) {
-        amrex::Abort(
-            "ExtTurbIface: time.checkpoint_time_interval cannot be used with "
-            "incflo.prescribe_velocity and an external turbine solver. The "
-            "turbine solver would write its checkpoints one time step after "
-            "the CFD solver. Use time.checkpoint_interval, an interval in "
-            "time steps");
-    }
 }
 
 template <typename SolverTurbine, typename SolverData>
@@ -161,16 +130,12 @@ protected:
     SolverData m_solver_data;
 
     bool m_is_initialized{false};
-
-    //! Time of the CFD solver, which says when a checkpoint is written
-    const ::kynema_sgf::SimTime& m_time;
 };
 
 // General implementations of some functions
 template <typename SolverTurbine, typename SolverData>
 ExtTurbIface<SolverTurbine, SolverData>::ExtTurbIface(
-    const kynema_sgf::CFDSim& sim)
-    : m_time(sim.time())
+    const kynema_sgf::CFDSim& /*unused*/)
 {}
 
 template <typename SolverTurbine, typename SolverData>
@@ -199,7 +164,6 @@ void ExtTurbIface<SolverTurbine, SolverData>::init_turbine(const int local_id)
             ", m_turbine_data.size() = " +
             std::to_string(m_turbine_data.size()));
     if (!m_is_initialized) {
-        check_checkpoint_inputs();
         allocate_ext_turbines();
     }
     auto& fi = *m_turbine_data[local_id];
@@ -268,14 +232,8 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
         do_turbine_step(fi);
     }
 
-    // The checkpoint of the external solver goes with the one the CFD solver
-    // writes at the end of this time step: on its step or time interval,
-    // after its delay, counted from the restart, and at the last step of the
-    // run when that one is off the interval
-    if (m_time.write_checkpoint() ||
-        (!m_time.continue_simulation() && m_time.write_last_checkpoint())) {
-        write_turbine_checkpoint(fi.tid_local);
-    }
+    // The checkpoint of the external solver is written with each checkpoint
+    // of the CFD solver (ops::external_write_checkpoint)
 }
 
 } // namespace ext_turb

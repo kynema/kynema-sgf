@@ -7,6 +7,7 @@
 #include "AMReX_Vector.H"
 
 #include <optional>
+#include <string>
 
 namespace kynema_sgf::actuator::ops {
 
@@ -151,6 +152,19 @@ void determine_influenced_procs(typename T::DataType& /*data*/);
 template <typename T>
 void determine_root_proc(
     typename T::DataType& /*data*/, amrex::Vector<int>& /*act_proc_count*/);
+
+/** Write the data of this actuator that a restart needs and that no field
+ *  holds, with a checkpoint of the CFD solver
+ *
+ *  Called on every rank with every checkpoint the CFD solver writes. The
+ *  default writes nothing.
+ *
+ *  \tparam T An actuator traits type
+ *  \param  data Data object for the specific actuator instance
+ *  \param  chkname Directory of the checkpoint
+ */
+template <typename T>
+void write_checkpoint(typename T::DataType& data, const std::string& chkname);
 
 } // namespace kynema_sgf::actuator::ops
 

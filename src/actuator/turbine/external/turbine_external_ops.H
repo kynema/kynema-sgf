@@ -252,6 +252,35 @@ void update_fields_op(datatype& data)
     }
 }
 
+/** Write the checkpoint of the external solver with a checkpoint of the CFD
+ *  solver
+ *
+ *  Called on every rank whenever the CFD solver writes a checkpoint (on its
+ *  interval, after its delay, counted from a restart, at the last step, or
+ *  after a requested stop), at the end of a time step. The turbine was
+ *  advanced to the new time of that step in pre_advance_work and has not
+ *  changed since. The root process of the turbine writes the checkpoint of
+ *  the external solver; no other process takes part, and nothing here is
+ *  collective.
+ */
+template <typename datatype>
+void external_write_solver_checkpoint(datatype& data)
+{
+    if (!data.info().is_root_proc) {
+        return;
+    }
+    auto& tdata = data.meta();
+    tdata.ext_ptr->write_turbine_checkpoint(tdata.ext_data.tid_local);
+}
+
+//! Restart data of an external turbine written with a checkpoint of the CFD
+//! solver (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
+template <typename datatype>
+void external_write_checkpoint(datatype& data, const std::string& /*chkname*/)
+{
+    external_write_solver_checkpoint(data);
+}
+
 template <typename datatype>
 void update_external_turbine_loads(datatype& data)
 {

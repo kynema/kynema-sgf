@@ -975,10 +975,7 @@ Example for ``TurbineFastLine``::
    ``fast_velocity_data/<label>.nc``. ``restart`` reads the OpenFAST
    checkpoint ``openfast_restart_file``. An OpenFAST checkpoint
    ``<fst root>.<OpenFAST step>.chkp`` is written with every checkpoint of
-   the flow solver. With ``incflo.prescribe_velocity`` the checkpoints have
-   to be asked for with ``time.checkpoint_interval``: the run stops at
-   start-up when ``time.checkpoint_time_interval`` is set, because OpenFAST
-   would write its checkpoints one time step after the flow solver.
+   the flow solver, the final one included.
 
 .. input_param:: Actuator.WTG01.openfast_restart_file
 

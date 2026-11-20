@@ -167,6 +167,14 @@ determine_influenced_procs<TurbineFast>(typename TurbineFast::DataType& data)
 
 // Note: inline is necessary here to avoid duplicate symbol errors
 template <>
+inline void write_checkpoint<TurbineFast>(
+    typename TurbineFast::DataType& data, const std::string& chkname)
+{
+    external_write_checkpoint<TurbineFast::DataType>(data, chkname);
+}
+
+// Note: inline is necessary here to avoid duplicate symbol errors
+template <>
 inline void determine_root_proc<TurbineFast>(
     typename TurbineFast::DataType& data, amrex::Vector<int>& act_proc_count)
 {

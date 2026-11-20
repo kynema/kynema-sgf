@@ -282,14 +282,25 @@ protected:
         pp.add("max_step", max_step);
     }
 
-    /** Time loop of the CFD solver as far as checkpoints go
+    //! What IOManager::write_checkpoint_file does for the turbine, through
+    //! Physics::write_checkpoint and Actuator::write_checkpoint
+    void write_cfd_checkpoint(
+        CountingViewData& data, std::vector<int>& cfd_checkpoint_steps)
+    {
+        cfd_checkpoint_steps.push_back(sim().time().time_index());
+        kynema_sgf::actuator::ops::external_write_solver_checkpoint(data);
+    }
+
+    /** Time loop of the CFD solver as far as checkpoints go (incflo::Evolve)
      *
      *  The turbine is advanced once the new time of the step is known. The
      *  CFD solver writes its checkpoint at the end of the step, and after the
-     *  last step when that one is off the interval. Returns the steps at
-     *  which the CFD solver writes.
+     *  loop when write_final_checkpoint says so. With stop_step > 0 a stop is
+     *  requested at the end of that step, as RANSConvergence does in its
+     *  post-processing. Returns the steps at which the CFD solver writes.
      */
-    std::vector<int> run_time_loop(CountingViewData& data)
+    std::vector<int>
+    run_time_loop(CountingViewData& data, const int stop_step = 0)
     {
         // Loads at the initial time, or nothing after a restart
         post_init(data);
@@ -300,12 +311,15 @@ protected:
             time.set_current_cfl(0.25_rt, 0.0_rt, 0.0_rt);
             time.advance_time();
             pre_advance(data);
+            if (time.time_index() == stop_step) {
+                time.request_stop("test");
+            }
             if (time.write_checkpoint()) {
-                cfd_checkpoint_steps.push_back(time.time_index());
+                write_cfd_checkpoint(data, cfd_checkpoint_steps);
             }
         }
-        if (time.write_last_checkpoint()) {
-            cfd_checkpoint_steps.push_back(time.time_index());
+        if (time.write_final_checkpoint()) {
+            write_cfd_checkpoint(data, cfd_checkpoint_steps);
         }
         return cfd_checkpoint_steps;
     }
@@ -518,6 +532,70 @@ TEST_F(ExtTurbIfaceTest, checkpoint_after_delay)
     const std::vector<int> expected{10, 12};
     EXPECT_EQ(run_time_loop(data), expected);
     EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
+}
+
+TEST_F(ExtTurbIfaceTest, checkpoint_with_final_checkpoint_after_stop_request)
+{
+    time_inputs(10);
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", 5);
+    }
+    initialize_mesh();
+    auto& iface = make_iface();
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
+
+    // The stop is requested after the turbine has advanced in step 3. The
+    // final checkpoint of the CFD solver, off the interval, holds the turbine
+    // of step 3.
+    const std::vector<int> expected{3};
+    EXPECT_EQ(run_time_loop(data, 3), expected);
+    EXPECT_EQ(data.meta().ext_data.checkpoint_steps, expected);
+}
+
+TEST_F(ExtTurbIfaceTest, advance_writes_no_checkpoint)
+{
+    time_inputs(5);
+    {
+        amrex::ParmParse pp("time");
+        pp.add("checkpoint_interval", 1);
+    }
+    initialize_mesh();
+    auto& iface = make_iface();
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
+
+    // Every step is a checkpoint step, but only the root process of the
+    // turbine advances it: a checkpoint written from there would leave the
+    // other processes out. Without a checkpoint of the CFD solver there is
+    // none of the turbine.
+    post_init(data);
+    auto& time = sim().time();
+    while (time.new_timestep()) {
+        time.set_current_cfl(0.25_rt, 0.0_rt, 0.0_rt);
+        time.advance_time();
+        pre_advance(data);
+    }
+    EXPECT_EQ(data.meta().ext_data.num_steps, 5 * m_num_substeps);
+    EXPECT_TRUE(data.meta().ext_data.checkpoint_steps.empty());
+}
+
+TEST_F(ExtTurbIfaceTest, checkpoint_only_on_root_process)
+{
+    time_inputs(5);
+    initialize_mesh();
+    auto& iface = make_iface();
+    CountingViewData data;
+    setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
+
+    data.info().is_root_proc = false;
+    kynema_sgf::actuator::ops::external_write_solver_checkpoint(data);
+    EXPECT_TRUE(data.meta().ext_data.checkpoint_steps.empty());
+
+    data.info().is_root_proc = true;
+    kynema_sgf::actuator::ops::external_write_solver_checkpoint(data);
+    EXPECT_EQ(data.meta().ext_data.checkpoint_steps.size(), 1U);
 }
 
 } // namespace kynema_sgf_tests
