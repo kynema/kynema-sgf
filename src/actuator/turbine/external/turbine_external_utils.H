@@ -3,6 +3,7 @@
 
 #include <numbers>
 #include <string>
+#include <type_traits>
 #include "src/actuator/turbine/turbine_utils.H"
 #include "src/actuator/actuator_ops.H"
 #include "src/actuator/actuator_utils.H"
@@ -15,13 +16,16 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::external {
 
-// Note: inline is necessary to avoid duplicate symbol errors
-inline void swap_epsilon(vs::Vector& eps)
+using ::ext_turb::epsilon_component;
+
+//! Input order (chord, thickness, span) to the local frame of a solver
+inline void
+epsilon_to_frame(vs::Vector& eps, const ::ext_turb::BladeFrame frame)
 {
-    const auto x = eps.x();
-    const auto y = eps.y();
-    eps.x() = y;
-    eps.y() = x;
+    const vs::Vector inp = eps;
+    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+        eps[epsilon_component(frame, n)] = inp[n];
+    }
 }
 
 template <typename datatype>
@@ -119,20 +123,17 @@ void init_epsilon(datatype& data)
 {
     auto& tdata = data.meta();
 
-    // Swap order of epsilon based on turbine orientation
-    // Input order is (chord, span, thickness)
-    // Output order should depend on turbine type; currently ...
-    // -- this function is correct for Kynema
-    // -- this function is erroneous for OpenFAST but has been in use
-    // (Does not matter when epsilon is uniform)
-    // The FLLC does not use these components: it reads the first value of
-    // epsilon (fllc_parse) and of epsilon_min (read_inputs), and component
-    // 0 of the swapped eps_chord, which is the second input value of
-    // epsilon_chord (CommunicateModelDataOp).
-    swap_epsilon(tdata.eps_inp);
-    swap_epsilon(tdata.eps_min);
-    swap_epsilon(tdata.eps_chord);
-    swap_epsilon(tdata.eps_tower);
+    // Inputs (chord, thickness, span) to the solver frame, since component m
+    // acts along orientation row m (ActSrcLineOp). OpenFAST: (normal, chord,
+    // span); Kynema-FMB: (span, chord, normal). Tower points as blade points.
+    // FLLC: first value of epsilon (fllc_parse) and epsilon_min
+    // (read_inputs), second of epsilon_chord (CommunicateModelDataOp).
+    using SolverTurbine = std::remove_cvref_t<decltype(tdata.ext_data)>;
+    constexpr auto frame = ::ext_turb::blade_frame_of<SolverTurbine>();
+    epsilon_to_frame(tdata.eps_inp, frame);
+    epsilon_to_frame(tdata.eps_min, frame);
+    epsilon_to_frame(tdata.eps_chord, frame);
+    epsilon_to_frame(tdata.eps_tower, frame);
 
     {
         const auto& cd = tdata.nacelle_cd;
@@ -173,7 +174,94 @@ void init_epsilon(datatype& data)
         check_epsilon(
             cv, tdata.num_pts_tower, data.info().label + " tower",
             "epsilon, epsilon_tower or epsilon_min");
+
+        // epsilon_tower is one of three lower bounds: warn when it is given
+        // but not used
+        bool tower_eps_unused = false;
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            if ((tdata.eps_tower[n] > 0.0_rt) &&
+                (tdata.eps_tower[n] <
+                 amrex::max<amrex::Real>(tdata.eps_min[n], tdata.eps_inp[n]))) {
+                tower_eps_unused = true;
+            }
+        }
+        if (tower_eps_unused && (tdata.num_pts_tower > 0)) {
+            amrex::Print()
+                << "\nWARNING: Actuator " << data.info().label
+                << ": epsilon_tower is smaller than epsilon or epsilon_min. "
+                << "The tower points use the largest of the three in each "
+                << "direction, so the value given for epsilon_tower is not "
+                << "the one used." << std::endl;
+        }
     }
+    {
+        // Patches outside the bounding box get no force. The box from
+        // utils::read_inputs covers the rotor only: add the Gaussian cutoff
+        amrex::Real eps_max = 0.0_rt;
+        for (const auto& eps : data.grid().epsilon) {
+            eps_max =
+                amrex::max<amrex::Real>(eps_max, eps.x(), eps.y(), eps.z());
+        }
+        const auto reach =
+            ::kynema_sgf::actuator::utils::gaussian3d_cutoff() * eps_max;
+        auto& bbox = data.info().bound_box;
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            bbox.setLo(n, bbox.lo(n) - reach);
+            bbox.setHi(n, bbox.hi(n) + reach);
+        }
+    }
+}
+
+/** Warn once when the Gaussian of a point reaches beyond the bounding box
+ *
+ *  Fixed box from base_position, hub_height, rotor_diameter and the largest
+ *  epsilon; patches outside it get no force. A point leaves it when the
+ *  solver rotor is not where the inputs put it, or when the turbine moves by
+ *  more than a quarter of the rotor radius (floating platform).
+ *
+ *  \return Number of points with a Gaussian that leaves the box
+ */
+template <typename datatype>
+int check_bound_box(datatype& data)
+{
+    const auto& grid = data.grid();
+    const auto& bbox = data.info().bound_box;
+    const auto cutoff = ::kynema_sgf::actuator::utils::gaussian3d_cutoff();
+    // Tolerance for a point on a face of the box
+    const auto tol = 1.0e-8_rt * (bbox.hi(0) - bbox.lo(0));
+    const int npts = static_cast<int>(grid.pos.size());
+    int num_out = 0;
+    amrex::Real dist_max = 0.0_rt;
+    for (int i = 0; i < npts; ++i) {
+        const auto& eps = grid.epsilon[i];
+        const auto reach =
+            cutoff * amrex::max<amrex::Real>(eps.x(), eps.y(), eps.z());
+        amrex::Real dist = 0.0_rt;
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            dist = amrex::max<amrex::Real>(
+                dist, bbox.lo(n) - (grid.pos[i][n] - reach),
+                (grid.pos[i][n] + reach) - bbox.hi(n));
+        }
+        if (dist > tol) {
+            ++num_out;
+            dist_max = amrex::max<amrex::Real>(dist_max, dist);
+        }
+    }
+    if ((num_out > 0) && !data.meta().bound_box_warned) {
+        data.meta().bound_box_warned = true;
+        amrex::OutStream()
+            << "\nWARNING: Actuator " << data.info().label << ": the force of "
+            << num_out << " of " << npts << " points reaches up to " << dist_max
+            << " beyond the region reserved for this turbine on "
+            << "the mesh, and patches outside of this region receive no "
+            << "force. The region is the box that base_position, "
+            << "hub_height and rotor_diameter give (1.25 rotor radii around "
+            << "the turbine), enlarged by " << cutoff
+            << " times the largest epsilon. Check these inputs against the "
+            << "model of the external solver; for a turbine that moves this "
+            << "far, give a larger rotor_diameter." << std::endl;
+    }
+    return num_out;
 }
 
 template <typename datatype>
@@ -365,6 +453,10 @@ void scatter_data(datatype& data)
         const auto yvec = vs::Vector::khat() ^ xvec;
         const auto zvec = xvec ^ yvec;
         meta.rotor_frame.rows(xvec, yvec.unit(), zvec.unit());
+    }
+
+    if (data.info().is_root_proc) {
+        check_bound_box<datatype>(data);
     }
 }
 

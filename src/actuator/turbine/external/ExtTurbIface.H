@@ -1,7 +1,13 @@
 #ifndef EXTTURBIFACE_H
 #define EXTTURBIFACE_H
 
+#include <algorithm>
+#include <cmath>
+#include <iomanip>
+#include <limits>
 #include <map>
+#include <sstream>
+#include <string>
 #include <vector>
 #include "src/core/ExtSolver.H"
 #include "src/actuator/turbine/external/external_base_types.H"
@@ -9,15 +15,58 @@
 
 using namespace amrex::literals;
 
-namespace ncutils {
-class NCFile;
-}
-
 namespace kynema_sgf {
 class CFDSim;
 }
 
+namespace ncutils {
+class NCFile;
+}
+
 namespace ext_turb {
+
+/** Number of time steps in an interval that has to hold a whole number of
+ *  them
+ *
+ *  Nearest integer to interval / dt. Aborts when the ratio is further from it
+ *  than rel_tol (relative, round-off of the division) or step_tol (in steps)
+ *  allows.
+ *
+ *  \param interval Length of the interval
+ *  \param dt Time step
+ *  \param interval_name Input that sets the interval, start of the message
+ *  \param dt_name Input that sets the time step
+ *  \param step_tol Accepted distance from a whole number of steps
+ */
+inline int num_whole_steps(
+    const amrex::Real interval,
+    const amrex::Real dt,
+    const std::string& interval_name,
+    const std::string& dt_name,
+    const amrex::Real step_tol = 0.0_rt)
+{
+#ifdef AMREX_USE_FLOAT
+    constexpr amrex::Real rel_tol = 1.0e-5_rt;
+#else
+    constexpr amrex::Real rel_tol = 1.0e-10_rt;
+#endif
+    constexpr auto max_steps =
+        static_cast<amrex::Real>(std::numeric_limits<int>::max());
+
+    const amrex::Real ratio = (dt > 0.0_rt) ? interval / dt : -1.0_rt;
+    const amrex::Real nearest = std::round(ratio);
+    const amrex::Real tol = std::max(rel_tol * ratio, step_tol);
+    if (!(ratio >= 0.0_rt) || !(nearest < max_steps) ||
+        (std::abs(ratio - nearest) > tol)) {
+        std::ostringstream msg;
+        // Digits the precision holds: inputs print as given
+        msg << std::setprecision(std::numeric_limits<amrex::Real>::digits10)
+            << interval_name << " = " << interval
+            << " is not a whole multiple of " << dt_name << " = " << dt;
+        amrex::Abort(msg.str());
+    }
+    return static_cast<int>(nearest);
+}
 
 template <typename SolverTurbine, typename SolverData>
 class ExtTurbIface
@@ -139,12 +188,14 @@ void ExtTurbIface<SolverTurbine, SolverData>::init_turbine(const int local_id)
     case ::ext_turb::SimMode::replay: {
         ext_init_turbine(fi);
         ext_replay_turbine(fi);
+        fi.is_solution0 = false;
         break;
     }
 
     case ::ext_turb::SimMode::restart: {
         ext_restart_turbine(fi);
         prepare_netcdf_file(fi);
+        fi.is_solution0 = false;
         break;
     }
     }
@@ -191,10 +242,8 @@ void ExtTurbIface<SolverTurbine, SolverData>::advance_turbine(
         do_turbine_step(fi);
     }
 
-    if (fi.chkpt_interval > 0 &&
-        (fi.time_index / fi.num_substeps) % fi.chkpt_interval == 0) {
-        write_turbine_checkpoint(fi.tid_local);
-    }
+    // Solver checkpoint: with each CFD checkpoint
+    // (ops::external_write_checkpoint)
 }
 
 } // namespace ext_turb

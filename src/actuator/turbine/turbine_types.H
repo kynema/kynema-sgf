@@ -75,6 +75,9 @@ struct TurbineBaseData
     //! Wetted surface area for nacelle
     amrex::Real nacelle_area{0.0_rt};
 
+    //! Warning given: a Gaussian reaches beyond ActInfo::bound_box
+    bool bound_box_warned{false};
+
     std::vector<ComponentView> blades;
     std::vector<FLLCData> fllc;
     ComponentView tower;

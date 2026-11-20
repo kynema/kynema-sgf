@@ -223,13 +223,13 @@ struct FLLCOp
                 fllc.r, fllc.vel_rel, nonuniform_r, fllc.nonuniform_vel_rel);
         }
 
-        const auto optimal_epsilon = (fllc.nonuniform)
-                                         ? fllc.nonuniform_optimal_epsilon
-                                         : fllc.optimal_epsilon;
-        const auto dr = (fllc.nonuniform) ? fllc.nonuniform_dr : fllc.dr;
-        const auto vel_rel =
+        const auto& optimal_epsilon = (fllc.nonuniform)
+                                          ? fllc.nonuniform_optimal_epsilon
+                                          : fllc.optimal_epsilon;
+        const auto& dr = (fllc.nonuniform) ? fllc.nonuniform_dr : fllc.dr;
+        const auto& vel_rel =
             (fllc.nonuniform) ? fllc.nonuniform_vel_rel : fllc.vel_rel;
-        const auto G_new = (fllc.nonuniform) ? nonuniform_G : G;
+        const auto& G_new = (fllc.nonuniform) ? nonuniform_G : G;
 
         /**
          * Step 2

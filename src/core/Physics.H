@@ -1,6 +1,7 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
+#include <string>
 #include "src/core/Factory.H"
 #include "src/core/CollMgr.H"
 #include "AMReX_MultiFab.H"
@@ -90,6 +91,10 @@ public:
 
     //! Perform tasks necessary after applying the pressure correction
     virtual void post_pressure_correction_work() {}
+
+    //! Write restart data not held in fields, after the fields of each
+    //! checkpoint; called on every rank
+    virtual void write_checkpoint(const std::string& /*chkname*/) {}
 };
 
 /** A collection of \ref physics instances that are active during a simulation

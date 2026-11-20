@@ -194,25 +194,31 @@ Note: the FLLC-related inputs are identical to those used in the OpenFAST ALM wi
 
    **type:** List of 3 real numbers, conditionally required
 
-   Gaussian smearing width for the blade force projection. Kynema-SGF requires at least one of ``epsilon`` or ``epsilon_chord`` for turbine actuator simulations. When FLLC is enabled, both ``epsilon`` and ``epsilon_chord`` are required.
+   Gaussian smearing width for the blade force projection, in the chord,
+   thickness and spanwise directions of each blade point, as for
+   :input_param:`Actuator.TurbineFastLine.epsilon`. With
+   ``TurbineKynemaFMBDisk`` the blade points are spread with a single
+   width, normal to the rotor, taken from the thickness value (the second)
+   of ``epsilon``, ``epsilon_chord`` and ``epsilon_min``, as for
+   ``TurbineFastDisk``. Kynema-SGF requires at least one of ``epsilon`` or ``epsilon_chord`` for turbine actuator simulations. When FLLC is enabled, both ``epsilon`` and ``epsilon_chord`` are required.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_chord
 
    **type:** List of 3 real numbers, optional
 
-   Non-dimensional ``epsilon / chord`` values used to compute a blade-force smearing width from the local chord. Kynema-SGF uses the maximum of the direct ``epsilon`` value and the chord-based value when both are provided.
+   Non-dimensional ``epsilon / chord`` values used to compute a blade-force smearing width from the local chord, in the same order as ``epsilon``. With FLLC, the correction uses the second value. Kynema-SGF uses the maximum of the direct ``epsilon`` value and the chord-based value when both are provided.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_min
 
    **type:** List of 3 real numbers, optional
 
-   Minimum value allowed when chord-based epsilon values are used.
+   Minimum value allowed when chord-based epsilon values are used, in the same order as ``epsilon``. Also the width of the hub (nacelle) point, with its values put on the local axes of that point in the same way as for the blade points.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_tower
 
    **type:** List of 3 real numbers, optional
 
-   Gaussian smearing width for tower forces.
+   Gaussian smearing width for tower forces, in the same order as ``epsilon``, with its values put on the local axes of the tower points in the same way as for the blade points.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff
 

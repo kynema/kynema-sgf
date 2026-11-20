@@ -44,9 +44,7 @@ void read_ops(datatype& data, const utils::ActParser& pp)
     tf.num_blades = tdata.num_blades;
     tf.num_pts_blade = tdata.num_pts_blade;
     tf.num_pts_tower = tdata.num_pts_tower;
-    const auto& time = data.sim().time();
-    tf.dt_cfd = time.delta_t();
-    tf.chkpt_interval = time.chkpt_interval();
+    tf.dt_cfd = data.sim().time().delta_t();
 }
 
 template <typename datatype>
@@ -129,6 +127,11 @@ void init_data_op(datatype& data)
 
     {
         tdata.num_blades = sz_info[0];
+        // FLLC data sized from the num_blades input: one per blade of the
+        // external solver
+        if (!tdata.fllc.empty()) {
+            tdata.fllc.resize(tdata.num_blades, tdata.fllc.front());
+        }
         // back calculate what the value per blade for number of points in
         // the openfast data structure
         tdata.num_vel_pts_blade = sz_info[4];
@@ -248,6 +251,30 @@ void update_fields_op(datatype& data)
     }
 }
 
+/** Write the external solver checkpoint with a CFD checkpoint
+ *
+ *  Called on every rank at each CFD checkpoint, at the end of a time step
+ *  (turbine at the new time since pre_advance_work). Turbine root only; no
+ *  collectives.
+ */
+template <typename datatype>
+void external_write_solver_checkpoint(datatype& data)
+{
+    if (!data.info().is_root_proc) {
+        return;
+    }
+    auto& tdata = data.meta();
+    tdata.ext_ptr->write_turbine_checkpoint(tdata.ext_data.tid_local);
+}
+
+//! Restart data of an external turbine, with each CFD checkpoint
+//! (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
+template <typename datatype>
+void external_write_checkpoint(datatype& data, const std::string& /*chkname*/)
+{
+    external_write_solver_checkpoint(data);
+}
+
 template <typename datatype>
 void update_external_turbine_loads(datatype& data)
 {
@@ -283,8 +310,11 @@ struct CommunicateModelDataOp<
             for (int i = 0; i < tdata.num_blades; ++i) {
                 if (!(tdata.fllc[i].initialized) &&
                     (time.current_time() > tdata.fllc[i].fllc_start_time)) {
+                    // Second input value of epsilon_chord, in the solver frame
+                    constexpr int ic = epsilon_component(
+                        ::ext_turb::blade_frame_of<SolverTurbine>(), 1);
                     fllc_init(
-                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0],
+                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[ic],
                         data.info().label + " blade " + std::to_string(i),
                         data.info().is_root_proc);
                 }

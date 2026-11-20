@@ -545,7 +545,7 @@ TEST_F(FLLCParseTest, turbine_resolved_width_is_not_below_epsilon_min)
     {
         // A lower bound of the width of the Gaussians above epsilon (2). Three
         // different values: the correction takes the first one, in the input
-        // order (init_epsilon swaps the first two afterwards)
+        // order (init_epsilon reorders the values afterwards)
         amrex::ParmParse pp("Actuator.T1");
         const amrex::Vector<amrex::Real> eps_min{3.0_rt, 4.0_rt, 5.0_rt};
         pp.addarr("epsilon_min", eps_min);
@@ -789,6 +789,21 @@ TEST(TestFLLCData, init_warns_once_when_velocity_points_are_actuator_points)
     EXPECT_FALSE(data.mismatched_points);
     EXPECT_NE(out.find("spacing of the actuator points"), std::string::npos);
     EXPECT_EQ(out.find("spacing of the velocity points"), std::string::npos);
+}
+
+TEST(FLLC, epsilon_warning_for_values_that_differ)
+{
+    using utils::fllc_epsilon_warning;
+    const vs::Vector uniform{2.0_rt, 2.0_rt, 2.0_rt};
+    const vs::Vector zero = vs::Vector::zero();
+    EXPECT_TRUE(fllc_epsilon_warning("T0", uniform, zero, zero).empty());
+
+    const vs::Vector aniso{1.0_rt, 2.0_rt, 3.0_rt};
+    const auto msg = fllc_epsilon_warning("T0", uniform, zero, aniso);
+    EXPECT_NE(msg.find("WARNING: Actuator T0"), std::string::npos);
+    EXPECT_NE(msg.find("second value of epsilon_chord"), std::string::npos);
+    EXPECT_FALSE(fllc_epsilon_warning("T0", aniso, zero, zero).empty());
+    EXPECT_FALSE(fllc_epsilon_warning("T0", uniform, aniso, zero).empty());
 }
 
 } // namespace kynema_sgf::actuator
