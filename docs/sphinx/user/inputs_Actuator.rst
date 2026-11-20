@@ -901,7 +901,11 @@ Example for ``TurbineFastLine``::
    orientation that OpenFAST sends for each actuator point. Per direction,
    a blade point uses the largest of ``epsilon``, ``epsilon_chord`` times
    the chord and ``epsilon_min``, and a tower point the largest of
-   ``epsilon``, ``epsilon_tower`` and ``epsilon_min``.
+   ``epsilon``, ``epsilon_tower`` and ``epsilon_min``. With
+   ``TurbineFastDisk`` the blade points are spread with a single width,
+   normal to the rotor, taken from the thickness value (the second) of
+   ``epsilon``, ``epsilon_chord`` and ``epsilon_min``; the run prints a
+   warning when these inputs differ by direction.
 
 .. input_param:: Actuator.TurbineFastLine.epsilon_chord
 

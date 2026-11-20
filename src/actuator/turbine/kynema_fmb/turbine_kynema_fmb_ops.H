@@ -2,6 +2,7 @@
 #define TURBINE_KYNEMA_FMB_OPS_H
 
 #include <numbers>
+#include <type_traits>
 #include <yaml-cpp/yaml.h>
 #include "src/actuator/turbine/kynema_fmb/TurbineKynemaFMB.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
@@ -154,6 +155,9 @@ struct InitDataOp<TurbineKynemaFMB, SrcTrait>
     {
         BL_PROFILE("kynema-sgf::InitDataOp<TurbineKynemaFMB>");
         init_data_op<TurbineKynemaFMB::DataType>(data);
+        if constexpr (std::is_same_v<SrcTrait, ActSrcDisk>) {
+            warn_disk_epsilon<TurbineKynemaFMB::DataType>(data);
+        }
         // The bounding box of the turbine now holds the reach of the
         // Gaussians (init_epsilon): make the list of the processes with
         // patches inside of it again
