@@ -10,9 +10,13 @@ namespace kynema_sgf_tests {
 
 namespace {
 
+// Returns the sum over the k = kref plane of sqrt(rho * field / divisor).
+// shear_prod is S^2 mu_t / rho (per unit mass), so
+// rho * shear_prod / mu_t = S^2
 amrex::Real get_val_at_kindex(
     kynema_sgf::Field& field,
     kynema_sgf::Field& divisor,
+    const amrex::Real rho,
     const int comp,
     const int kref)
 {
@@ -30,7 +34,8 @@ amrex::Real get_val_at_kindex(
                 // Check if current cell is just above lower wall
                 if (k == kref) {
                     // Add field value to output
-                    error += std::sqrt(f_arr(i, j, k, comp) / div_arr(i, j, k));
+                    error += std::sqrt(
+                        rho * f_arr(i, j, k, comp) / div_arr(i, j, k));
                 }
             });
 
@@ -244,7 +249,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_noslip)
 
     // Check for constant value in bulk
     auto shear_bulk =
-        get_val_at_kindex(shear_prod, muturb, 0, 1) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 1) / 10.0_rt / 20.0_rt;
     EXPECT_NEAR(shear_bulk, m_srate, m_tol);
 
     // Velocity gradients assumed in setup (init_field3)
@@ -261,7 +266,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_noslip)
         (2.0_rt * uz_wallcell * uz_wallcell));
     // Check for different value just above wall due to BC
     auto shear_wall =
-        get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 0) / 10.0_rt / 20.0_rt;
     // Check that the result is not equal to the naive value
     EXPECT_GT(std::abs(shear_wall - s_naive), m_tol);
     // Answer that accounts for location of wall at cell face
@@ -292,12 +297,12 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_slip)
 
     // Check for constant value in bulk
     auto shear_bulk =
-        get_val_at_kindex(shear_prod, muturb, 0, 1) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 1) / 10.0_rt / 20.0_rt;
     EXPECT_NEAR(shear_bulk, m_srate, m_tol);
 
     // Check for different value just above wall due to BC
     auto shear_wall =
-        get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 0) / 10.0_rt / 20.0_rt;
     // Answer that accounts for slip_wall BC
     // (tangential extrapolation, dirichlet normal)
     const amrex::Real uz_bulk = m_srate / 2.0_rt;
@@ -340,14 +345,14 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel)
 
     // Check for constant value in bulk
     auto shear_bulk =
-        get_val_at_kindex(shear_prod, muturb, 0, 1) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 1) / 10.0_rt / 20.0_rt;
     EXPECT_NEAR(shear_bulk, m_srate, m_tol);
 
     // Velocity gradients assumed in setup (init_field3)
     const amrex::Real uz_bulk = m_srate / 2.0_rt;
     // Get value just above wall due to BC
     auto shear_wall =
-        get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 0) / 10.0_rt / 20.0_rt;
     // (tangential extrapolation, dirichlet normal)
     const amrex::Real wz_wall =
         ((((uz_bulk * 1.5_rt * m_dz) + 2.0_rt) / 3.0_rt) +
@@ -389,7 +394,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
 
     // Check for constant value in bulk
     auto shear_bulk =
-        get_val_at_kindex(shear_prod, muturb, 0, 1) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 1) / 10.0_rt / 20.0_rt;
     EXPECT_NEAR(shear_bulk, m_srate, m_tol);
 
     // Velocity gradients assumed in setup (init_field3)
@@ -397,7 +402,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_wallmodel_failnofillpatch)
 
     // Get value just above wall due to BC
     auto shear_wall =
-        get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 0) / 10.0_rt / 20.0_rt;
     // (tangential extrapolation, dirichlet normal)
     const amrex::Real wz_wall =
         ((((uz_bulk * 1.5_rt * m_dz) + 2.0_rt) / 3.0_rt) +
@@ -449,7 +454,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_zerogradient)
 
     // Check for constant value in bulk
     auto shear_bulk =
-        get_val_at_kindex(shear_prod, muturb, 0, 1) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 1) / 10.0_rt / 20.0_rt;
     EXPECT_NEAR(shear_bulk, m_srate, m_tol);
 
     // Velocity gradients assumed in setup (init_field3)
@@ -459,7 +464,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_zerogradient)
     const amrex::Real s_naive = m_srate;
     // Check for different value just above wall due to BC
     auto shear_wall =
-        get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 0) / 10.0_rt / 20.0_rt;
     // Check that the result is not equal to the naive value
     EXPECT_GT(std::abs(shear_wall - s_naive), m_tol);
     // Answer that accounts for BC (Neumann)
@@ -492,7 +497,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_symmetricwall)
 
     // Check for constant value in bulk
     auto shear_bulk =
-        get_val_at_kindex(shear_prod, muturb, 0, 1) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 1) / 10.0_rt / 20.0_rt;
     EXPECT_NEAR(shear_bulk, m_srate, m_tol);
 
     // Velocity gradients assumed in setup (init_field3)
@@ -502,7 +507,7 @@ TEST_F(TurbLESTestBC, test_1eqKsgs_symmetricwall)
     const amrex::Real s_naive = m_srate;
     // Check for different value just above wall due to BC
     auto shear_wall =
-        get_val_at_kindex(shear_prod, muturb, 0, 0) / 10.0_rt / 20.0_rt;
+        get_val_at_kindex(shear_prod, muturb, m_rho0, 0, 0) / 10.0_rt / 20.0_rt;
     // Check that the result is not equal to the naive value
     EXPECT_GT(std::abs(shear_wall - s_naive), m_tol);
     // Answer that accounts for BC (Neumann)
