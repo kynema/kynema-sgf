@@ -276,7 +276,8 @@ struct ComputeLoadsOp<
                         data);
                 fllc_init(
                     *(wdata.fllc.get()), wdata.component_view,
-                    wdata.epsilon_chord[0]);
+                    wdata.epsilon_chord[0], data.info().label,
+                    data.info().is_root_proc);
             }
         }
     }

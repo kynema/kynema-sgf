@@ -94,7 +94,7 @@ Example for ``FixedWingLine``::
 
 .. input_param:: Actuator.FixedWingLine.fllc
 
-  **type:** Bool, optional
+  **type:** Bool, optional, default = false
 
   This option will activate the filtered lifting line correction (fllc).
   The correction follows the implementation of `Martinez-Tossas and Meneveau (2019)
@@ -103,7 +103,12 @@ Example for ``FixedWingLine``::
   and an optimal ``epsilon_chord`` as an input. The recommended value is 0.25
   in all directions for ``epsilon_chord`` and a value of ``epsilon`` in all directions
   that would be greater than at least 2.5 times the grid size ``dx``.
-  The default is `0`.
+  The correction is computed from the lift at the actuator points, so these
+  points have to resolve the optimal epsilon (``epsilon_chord * chord``). When
+  the correction starts, a warning is printed if the optimal epsilon is smaller
+  than the spacing of the actuator points somewhere along the line: use more
+  actuator points or a larger ``epsilon_chord`` in that case. The chord must be
+  larger than `0` at every actuator point. FLLC is off by default.
 
 .. input_param:: Actuator.FixedWingLine.fllc_type
 
@@ -122,6 +127,7 @@ Example for ``FixedWingLine``::
 
   The relaxation factor to be applied to the updated velocity see:
   `Martinez-Tossas and Meneveau (2019) <https://doi.org/10.1017/jfm.2018.994>`_
+  It must be larger than `0` and not larger than `1`.
   The default value is `0.1`.
 
 .. input_param:: Actuator.FixedWingLine.fllc_start_time
@@ -133,20 +139,18 @@ Example for ``FixedWingLine``::
 
 .. input_param:: Actuator.FixedWingLine.fllc_nonuniform
 
-  **type:** Bool
+  **type:** Bool, optional, default = true
 
   The flag to specify if the actuator points used to compute the correction should be
   non-uniformly distributed. This helps in using less points for the fllc while
   still maintaining the accuracy of the fllc.
-  The default value is `true`.
 
 .. input_param:: Actuator.FixedWingLine.fllc_epsilon_dr_ratio
 
-  **type:** Double, optional
+  **type:** Double, optional, default = 3
 
   The ratio of epsilon to actuator point spacing used to create a non-uniform distribution.
-  A value of `1` or greater is recommended.
-  The default value is `1`.
+  A value between `1` and `3` is recommended. It must be larger than `0`.
 
 .. input_param:: Actuator.FixedWingLine.pitch
 
@@ -199,15 +203,15 @@ Example for ``FixedWingLine``::
 
 .. input_param:: Actuator.F1.output_interval
 
-   **type:** int, optional
+   **type:** int, optional, default = 10
 
    Number of time steps between actuator outputs. The legacy input argument
    ``output_frequency`` is still accepted with a warning; use
-   ``output_interval`` instead. The default is ``10``.
+   ``output_interval`` instead.
 
 .. input_param:: Actuator.FixedWingLine.motion_type
 
-   **type:** String, optional
+   **type:** String, optional, default is ``none``
 
    The FixedWingLine actuator allows for motion,
    though other aspects of the actuator remain fixed (such as the orientation and
@@ -876,6 +880,13 @@ Example for ``TurbineFastLine``::
 .. input_param:: Actuator.TurbineFastLine.fllc
 
    Same as :input_param:`Actuator.FixedWingLine.fllc`.
+   The correction uses scalar widths: the optimal epsilon is the second
+   value of ``epsilon_chord`` times the chord, and the resolved epsilon is
+   the largest of the first value of ``epsilon``, the first value of
+   ``epsilon_min`` and the optimal epsilon (a fixed wing has no
+   ``epsilon_min`` and uses the first value of the other two inputs). Give
+   ``epsilon``, ``epsilon_chord`` and ``epsilon_min`` the same value in all
+   three directions when the correction is on.
 
 .. input_param:: Actuator.TurbineFastLine.fllc_relaxation_factor
 
@@ -884,6 +895,15 @@ Example for ``TurbineFastLine``::
 .. input_param:: Actuator.TurbineFastLine.fllc_type
 
    Same as :input_param:`Actuator.FixedWingLine.fllc_type`.
+
+.. input_param:: Actuator.TurbineFastLine.epsilon_min
+
+   **type:** List of 1 or 3 real numbers, optional, default = 0 0 0
+
+   Lower bound of the epsilon of the blade points, the tower points and the
+   nacelle point, per direction, in the order of ``epsilon``. With
+   ``fllc = 1`` its first value is also the lower bound of the epsilon that
+   the correction takes as resolved.
 
 .. input_param:: Actuator.TurbineFastLine.openfast_start_time
 
@@ -923,10 +943,10 @@ Example for ``TurbineFastLine``::
 
 .. input_param:: Actuator.TurbineFastLine.density
 
-   **type:** Real, optional
+   **type:** Real, required
 
    This is the density of the fluid specified in openfast. This is used to
-   non-dimensionalize the forces from openfast.
+   non-dimensionalize the forces from openfast. It must be larger than `0`.
 
 .. input_param:: Actuator.WTG01.openfast_input_file
 

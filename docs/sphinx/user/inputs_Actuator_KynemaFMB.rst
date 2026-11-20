@@ -188,6 +188,8 @@ Kynema-FMB turbine setup and coupling
 Actuator forcing and output controls
 """"""""""""""""""""""""""""""""""""
 
+Note: the FLLC-related inputs are identical to those used in the OpenFAST ALM with FLLC, as described in the :ref:`alm_fllc` section.
+
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon
 
    **type:** List of 3 real numbers, conditionally required
@@ -211,42 +213,6 @@ Actuator forcing and output controls
    **type:** List of 3 real numbers, optional
 
    Gaussian smearing width for tower forces.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc
-
-   **type:** Bool, optional, default = false
-
-   Enables the filtered lifting line correction for the blade loading.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_type
-
-   **type:** String, optional, default = ``variable_chord``
-
-   Selects the FLLC formulation. Supported values are ``constant_chord`` and ``variable_chord``.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_relaxation_factor
-
-   **type:** Real, optional, default = 0.1
-
-   Relaxation factor applied to the FLLC velocity update.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_start_time
-
-   **type:** Real, optional, default = 0
-
-   Simulation time at which the FLLC correction becomes active.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_nonuniform
-
-   **type:** Bool, optional, default = true
-
-   Enables the non-uniform radial point distribution used by the FLLC implementation.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_epsilon_dr_ratio
-
-   **type:** Real, optional, default = 1
-
-   Target ratio of epsilon to actuator-point spacing used when building the non-uniform FLLC point distribution.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff
 
