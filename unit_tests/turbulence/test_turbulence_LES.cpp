@@ -357,21 +357,6 @@ TEST_F(TurbLESTest, test_1eqKsgs_setup_calc)
     EXPECT_NEAR(utils::field_max(shear_prod), shear_answer, ptol);
     EXPECT_NEAR(utils::field_min(buoy_prod), buoy_answer, tol);
     EXPECT_NEAR(utils::field_max(buoy_prod), buoy_answer, tol);
-
-    // density_weighted_production = true keeps the earlier form, in which
-    // both production terms carry an extra factor of rho
-    {
-        amrex::ParmParse pp("OneEqKsgsM84_coeffs");
-        pp.add("density_weighted_production", true);
-    }
-    tmodel.parse_model_coeffs();
-    tke.setVal(tke_val);
-    tlscale.setVal(tlscale_val);
-    tmodel.update_turbulent_viscosity(
-        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
-    EXPECT_NEAR(utils::field_max(muturb), ksgs_answer, tol);
-    EXPECT_NEAR(utils::field_max(shear_prod), rho0 * shear_answer, ptol);
-    EXPECT_NEAR(utils::field_min(buoy_prod), rho0 * buoy_answer, tol);
 }
 
 TEST_F(TurbLESTest, test_AMD_setup_calc)

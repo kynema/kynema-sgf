@@ -259,7 +259,7 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
 
     // Largest |computed / expected - 1| over the domain for mu_t and both
     // production terms
-    auto max_errors = [&](const amrex::Real fac) {
+    auto max_errors = [&]() {
         const auto& shear_prod = sim().repo().get_field("shear_prod");
         const auto& buoy_prod = sim().repo().get_field("buoy_prod");
         const auto& muturb = sim().repo().get_field("mu_turb");
@@ -280,8 +280,8 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
                     (lambda * kappa * z) / (lambda + (kappa * z));
                 const amrex::Real nut = Cmu * ls * std::sqrt(tke_val);
                 const amrex::Real mu_ref = rho0 * nut;
-                const amrex::Real sp_ref = fac * srate * srate * nut;
-                const amrex::Real bp_ref = -fac * nut * nsq;
+                const amrex::Real sp_ref = srate * srate * nut;
+                const amrex::Real bp_ref = -nut * nsq;
                 return {
                     std::abs((mu_arrs[nbx](i, j, k) - mu_ref) / mu_ref),
                     std::abs((sp_arrs[nbx](i, j, k) - sp_ref) / sp_ref),
@@ -299,7 +299,7 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
     tlscale.setVal(1.0_rt);
     tmodel.update_turbulent_viscosity(
         kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
-    auto err = max_errors(1.0_rt);
+    auto err = max_errors();
     EXPECT_NEAR(err[0], 0.0_rt, tol);
     EXPECT_NEAR(err[1], 0.0_rt, tol);
     EXPECT_NEAR(err[2], 0.0_rt, tol);
@@ -316,23 +316,7 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
     tlscale.setVal(1.0_rt);
     tmodel.update_turbulent_viscosity(
         kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
-    err = max_errors(1.0_rt);
-    EXPECT_NEAR(err[0], 0.0_rt, tol);
-    EXPECT_NEAR(err[1], 0.0_rt, tol);
-    EXPECT_NEAR(err[2], 0.0_rt, tol);
-
-    // density_weighted_production = true keeps the earlier form, in which
-    // both production terms carry an extra factor of rho
-    {
-        amrex::ParmParse pp("KLAxell_coeffs");
-        pp.add("density_weighted_production", true);
-    }
-    tmodel.parse_model_coeffs();
-    tke.setVal(tke_val);
-    tlscale.setVal(1.0_rt);
-    tmodel.update_turbulent_viscosity(
-        kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
-    err = max_errors(rho0);
+    err = max_errors();
     EXPECT_NEAR(err[0], 0.0_rt, tol);
     EXPECT_NEAR(err[1], 0.0_rt, tol);
     EXPECT_NEAR(err[2], 0.0_rt, tol);

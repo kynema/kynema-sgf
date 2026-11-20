@@ -87,7 +87,6 @@ void OneEqKsgsM84<Transport>::parse_model_coeffs()
     amrex::ParmParse pp(coeffs_dict);
     pp.query("Ceps", this->m_Ceps);
     pp.query("Ce", this->m_Ce);
-    pp.query("density_weighted_production", this->m_rho_weighted_prod);
 }
 
 template <typename Transport>
@@ -119,11 +118,6 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
 
     auto& mu_turb = this->mu_turb();
     const amrex::Real Ce = this->m_Ce;
-    // The TKE equation multiplies the whole source by density
-    // (pde::TKE::multiply_rho), so production is built per unit mass, like
-    // dissipation in KsgsM84Src. density_weighted_production = true keeps the
-    // earlier form, in which production carried an extra factor of density.
-    const bool rho_weighted_prod = m_rho_weighted_prod;
     const auto& den = this->m_rho.state(fstate);
     const auto& repo = mu_turb.repo();
     const auto& geom_vec = repo.mesh().Geom();
@@ -166,17 +160,14 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
                                         tlscale_arrs[nbx](i, j, k) *
                                         std::sqrt(tke_arrs[nbx](i, j, k));
 
-                const amrex::Real rho_prod =
-                    rho_weighted_prod ? 1.0_rt : rho_arrs[nbx](i, j, k);
-
                 buoy_prod_arrs[nbx](i, j, k) =
-                    -mu_arrs[nbx](i, j, k) *
+                    -(mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k)) *
                     (1.0_rt + (2.0_rt * tlscale_arrs[nbx](i, j, k) / ds)) *
-                    stratification / rho_prod;
+                    stratification;
 
-                shear_prod_arrs[nbx](i, j, k) *= shear_prod_arrs[nbx](i, j, k) *
-                                                 mu_arrs[nbx](i, j, k) /
-                                                 rho_prod;
+                shear_prod_arrs[nbx](i, j, k) *=
+                    shear_prod_arrs[nbx](i, j, k) *
+                    (mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k));
             });
     }
     amrex::Gpu::streamSynchronize();
