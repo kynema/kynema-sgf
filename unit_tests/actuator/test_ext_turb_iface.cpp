@@ -1,4 +1,5 @@
 #include <array>
+#include <memory>
 #include <string>
 #include <vector>
 #include "ks_test_utils/MeshTest.H"
@@ -222,6 +223,15 @@ using CountingViewData =
 class ExtTurbIfaceTest : public MeshTest
 {
 protected:
+    //! The interface of a test. The view data keep a pointer to it, so it
+    //! lives on the heap, owned by the fixture, rather than on the stack of
+    //! the test body.
+    CountingIface& make_iface()
+    {
+        m_iface = std::make_unique<CountingIface>(sim());
+        return *m_iface;
+    }
+
     //! Turbine with the hub as its only point, two solver steps per CFD step
     void setup_turbine(
         CountingViewData& data,
@@ -301,6 +311,8 @@ protected:
     }
 
     const int m_num_substeps{2};
+
+    std::unique_ptr<CountingIface> m_iface;
 };
 
 } // namespace
@@ -308,7 +320,7 @@ protected:
 TEST_F(ExtTurbIfaceTest, new_turbine_starts_with_initial_solution)
 {
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
     const auto& fi = data.meta().ext_data;
@@ -336,7 +348,7 @@ TEST_F(ExtTurbIfaceTest, fllc_data_follow_blade_count_of_solver)
     const int num_blades_model = 3;
     const int num_pts_blade = 4;
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     data.info().is_root_proc = true;
     data.info().root_proc = amrex::ParallelDescriptor::MyProc();
@@ -375,7 +387,7 @@ TEST_F(ExtTurbIfaceTest, restarted_turbine_has_no_second_initial_solution)
 {
     const int cfd_step = 80;
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::restart, cfd_step);
     const auto& fi = data.meta().ext_data;
@@ -403,7 +415,7 @@ TEST_F(ExtTurbIfaceTest, replayed_turbine_stays_at_restart_time)
 {
     const int cfd_step = 80;
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::replay, cfd_step);
     const auto& fi = data.meta().ext_data;
@@ -439,7 +451,7 @@ TEST_F(ExtTurbIfaceTest, checkpoint_at_last_step_off_the_interval)
         pp.add("checkpoint_interval", 5);
     }
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
 
@@ -458,7 +470,7 @@ TEST_F(ExtTurbIfaceTest, checkpoint_on_time_interval)
         pp.add("checkpoint_time_interval", 1.0_rt);
     }
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
 
@@ -479,7 +491,7 @@ TEST_F(ExtTurbIfaceTest, checkpoint_interval_counted_from_restart)
     initialize_mesh();
     // What reading the checkpoint of step 3 does to the time of the CFD solver
     sim().time().set_restart_time(cfd_step, 1.5_rt);
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::restart, cfd_step);
 
@@ -498,7 +510,7 @@ TEST_F(ExtTurbIfaceTest, checkpoint_after_delay)
         pp.add("checkpoint_delay", 6);
     }
     initialize_mesh();
-    CountingIface iface(sim());
+    auto& iface = make_iface();
     CountingViewData data;
     setup_turbine(data, iface, ::ext_turb::SimMode::init, 0);
 
