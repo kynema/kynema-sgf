@@ -390,7 +390,9 @@ if(KYNEMA_SGF_ENABLE_W2A)
   endif()
 endif()
 
-if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_OPENFAST_VERSION VERSION_LESS "4")
+# act_uniform_alm has two OpenFAST turbines, which need a process each (FastIface stops at start-up
+# when a process holds two): the tests need MPI.
+if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_ENABLE_MPI AND KYNEMA_SGF_OPENFAST_VERSION VERSION_LESS "4")
   set(ACT_UNIFORM_ALM_TEST_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test_files/act_uniform_alm)
   set(ACT_UNIFORM_ALM_TEST_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_files/act_uniform_alm)
   set(RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR ${ACT_UNIFORM_ALM_TEST_BINARY_DIR}/r-test)
@@ -438,7 +440,7 @@ endif()
 # act_uniform_alm_restart_of5.inp), copied over the OpenFAST 3 files of the same name in the test binary directories.
 # r-test is cloned from GitHub, or copied from KYNEMA_SGF_OPENFAST_RTEST_DIR when that is set (no network needed).
 # If neither works, the two tests are skipped with a warning instead of failing the configure.
-if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_OPENFAST_VERSION VERSION_GREATER_EQUAL "5")
+if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_ENABLE_MPI AND KYNEMA_SGF_OPENFAST_VERSION VERSION_GREATER_EQUAL "5")
   set(KYNEMA_SGF_OPENFAST_RTEST_DIR "" CACHE PATH "Existing OpenFAST r-test directory (tag v5.0.0, or the r-test submodule of the OpenFAST source) to use instead of cloning r-test for the act_uniform_alm tests")
   set(ACT_UNIFORM_ALM_TEST_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test_files/act_uniform_alm)
   set(ACT_UNIFORM_ALM_TEST_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_files/act_uniform_alm)
