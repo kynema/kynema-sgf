@@ -69,13 +69,10 @@ ComponentView make_component_view(typename T::DataType& data)
     return view;
 }
 
-/** Write the state of the filtered lifting line correction of a wing into a
- *  checkpoint
+/** Write the FLLC state of a wing into a checkpoint
  *
- *  The state of the correction (fllc_write_state), and the relative
- *  velocity and the force at the actuator points, which the lift of the next
- *  step is made of. The root process of the wing writes them, and nothing is
- *  written before the correction has started.
+ *  FLLC state, plus relative velocity and force at the actuator points
+ *  (inputs to the next lift). Wing root only; nothing before the FLLC starts.
  */
 template <typename T>
 void write_checkpoint(typename T::DataType& data, const std::string& chkname)
@@ -92,15 +89,12 @@ void write_checkpoint(typename T::DataType& data, const std::string& chkname)
     restart::write_list(os, "force", wdata.component_view.force);
 }
 
-/** Take the state of the filtered lifting line correction of a wing from the
- *  checkpoint that the run restarts from
+/** Read the FLLC state of a wing from the restart checkpoint
  *
- *  Every process that computes the forces of the wing reads it.
+ *  Read on every process that computes the wing forces.
  *
- *  \return False when the checkpoint has no state of this wing for the
- *  current time, or when the state is for another number of points, for
- *  other positions of the points or for other inputs of the correction.
- *  Nothing is changed then.
+ *  \return False, with nothing changed, when there is no state for this wing
+ *  and time, or it is for other points, positions or FLLC inputs
  */
 template <typename T>
 bool read_checkpoint(typename T::DataType& data, const std::string& chkname)
@@ -112,8 +106,7 @@ bool read_checkpoint(typename T::DataType& data, const std::string& chkname)
         return false;
     }
 
-    // Read into copies, so that nothing is changed when the state does not
-    // fit
+    // Read into copies; nothing changes unless the state fits
     const auto npts = wdata.fllc->correction_velocity.size();
     FLLCData fllc(*(wdata.fllc));
     VecList vel_rel(npts);
@@ -336,15 +329,11 @@ struct ComputeLoadsOp<
 
         const auto& time = data.sim().time();
         if (wdata.fllc) {
-            // A run that restarts with the correction on goes on from the
-            // state of the checkpoint. Without it the correction starts from
-            // zero and needs many time steps to come back. The checkpoint
-            // holds the state only when the correction had started before
-            // it was written. When it holds none, the correction does not
-            // start at the first force call of the restart: that call is
-            // made at the time of the checkpoint, where a run without
-            // restart makes none. It starts at the force call of the first
-            // time step, as it does in that run.
+            // Restart: continue from the checkpoint state (else the
+            // correction restarts from zero and takes many steps to
+            // recover). Without a state, skip the first force call (at the
+            // checkpoint time, absent in an unrestarted run) and start at
+            // the first step's call.
             auto& io = data.sim().io_manager();
             const bool restart_call =
                 wdata.at_first_force_call && io.is_restart();

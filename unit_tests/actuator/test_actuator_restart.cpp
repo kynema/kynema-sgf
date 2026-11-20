@@ -26,9 +26,8 @@ kynema_sgf::actuator::VecList awkward_values()
     return values;
 }
 
-/** Data of the correction of a line with ``npts`` force points, ``npts_vel``
- *  velocity points and ``npts_n`` non-uniform points, as fllc_init leaves
- *  them, with values that depend on ``seed``
+/** FLLC data as fllc_init leaves them: ``npts`` force, ``npts_vel``
+ *  velocity and ``npts_n`` non-uniform points; values depend on ``seed``
  */
 kynema_sgf::actuator::FLLCData make_fllc_data(
     const int npts,
@@ -84,9 +83,8 @@ TEST(ActuatorRestart, fllc_state_is_read_back_as_written)
     ss << std::setprecision(std::numeric_limits<amrex::Real>::max_digits10);
     kynema_sgf::actuator::fllc_write_state(ss, written);
 
-    // The data of the restarted run, initialized from the positions of the
-    // points at the restart: other distances in their last digits, and one
-    // non-uniform point less
+    // Restarted-run data: distances differ in the last digits, one fewer
+    // non-uniform point
     auto data = make_fllc_data(5, 6, 8, 1.0_rt + 1.0e-7_rt);
     data.mismatched_points = false;
     for (auto& du : data.correction_velocity) {
@@ -129,9 +127,8 @@ TEST(ActuatorRestart, fllc_state_that_does_not_fit_is_refused)
     kynema_sgf::actuator::fllc_write_state(ss, written);
     const std::string state = ss.str();
 
-    // The data of the restarted run have distances 1 % away from those of
-    // the state, which is within what a blade that has turned and bent
-    // gives: each case below is refused for the reason it names
+    // Restarted-run distances 1 % off (within turning/bending); each case
+    // below is refused for the reason given
 
     // Another number of force points
     {
@@ -303,9 +300,8 @@ TEST(ActuatorRestart, checkpoint_has_file_only_of_actuator_that_wrote_one)
         restart::write_value(os, "num_blades", 3);
     }
 
-    // What a restart asks at its first force call: T0 goes on from its
-    // state. T1 wrote none (its correction had not started), and neither
-    // did a checkpoint of another time or one without actuator data.
+    // At the first restart force call: T0 has a state; T1 none (FLLC not
+    // started); nor do other times or checkpoints without actuator data.
     EXPECT_TRUE(restart::has_file(chkname, "T0", time));
     EXPECT_FALSE(restart::has_file(chkname, "T1", time));
     EXPECT_FALSE(restart::has_file(chkname, "T0", time + 0.00125_rt));

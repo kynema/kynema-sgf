@@ -8,8 +8,7 @@
 #include "ks_test_utils/MeshTest.H"
 #include "AMReX_ParallelDescriptor.H"
 
-// The external turbine data hold an MPI communicator; without MPI, AMReX
-// provides stand-ins
+// MPI communicator in the turbine data; AMReX stand-ins without MPI
 #ifndef BL_USE_MPI
 using amrex::MPI_Comm;
 using amrex::MPI_COMM_NULL;
@@ -26,15 +25,12 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-/** Turbine of a stand-in external solver whose blades bend
+/** Stand-in external solver with bending blades
  *
- *  The solver gives the two point sets of a turbine as OpenFAST does through
- *  ExternalInflow, each list starting with the hub, then the blades from root
- *  to tip: the force points and the velocity points (the AeroDyn nodes). At
- *  every step the solver puts both sets of a blade on the same line, the one
- *  of that step. The blades bend out of the rotor plane a little more at
- *  every step and keep their length, so the straight-line distance of a point
- *  from the root of its blade changes from one step to the next.
+ *  Force and velocity points (AeroDyn nodes) as OpenFAST gives them through
+ *  ExternalInflow: hub first, then blades root to tip; both sets on the line
+ *  of the current step. Blades bend further out of plane each step at fixed
+ *  length, so straight-line distances from the root change per step.
  */
 struct BendingTurbine : public ::ext_turb::ExternalTurbine
 {
@@ -88,21 +84,18 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
         return static_cast<amrex::Real>(step) * curvature_per_step;
     }
 
-    //! Arc length from the root of point k of npts points evenly spaced
-    //! along a blade
+    //! Arc length from the root of point k of npts evenly spaced points
     amrex::Real arc_length(const int k, const int npts) const
     {
         return blade_length * static_cast<amrex::Real>(k) /
                static_cast<amrex::Real>(npts - 1);
     }
 
-    /** Position of a point of a blade at a step of the solver, relative to
-     *  the base of the turbine
+    /** Blade point position at a solver step, relative to the turbine base
      *
-     *  Blade ib leaves the hub in the rotor plane (x = 0) at an azimuth of
-     *  2 pi ib / num_blades. It is bent downwind into a circular arc that
-     *  starts at its root, so a point at arc length s from the root is at a
-     *  straight-line distance of 2 sin(kappa s / 2) / kappa from it.
+     *  Blade ib: in the rotor plane (x = 0) at azimuth 2 pi ib / num_blades,
+     *  bent downwind into a circular arc from its root; arc length s is at
+     *  straight-line distance 2 sin(kappa s / 2) / kappa from the root.
      */
     std::array<float, 3>
     blade_point(const int ib, const amrex::Real s, const int step) const
@@ -121,7 +114,7 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
             static_cast<float>(hub_height + radial * std::cos(azimuth))};
     }
 
-    //! Buffers of a new turbine. Every point is oriented as the global frame.
+    //! Buffers of a new turbine; points oriented as the global frame
     void allocate()
     {
         for (int dir = 0; dir < 3; ++dir) {
@@ -141,8 +134,7 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
         }
     }
 
-    //! Both point sets at a step of the solver. With as many velocity points
-    //! as force points on a blade, the two sets are the same points.
+    //! Both point sets at a solver step (identical with equal counts)
     void place_points(const int step)
     {
         const std::array<float, 3> hub{
@@ -179,8 +171,7 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
     int model_num_pts_blade{5};
     int model_num_vel_pts_blade{5};
 
-    //! Height of the hub above the base, distance of the roots of the blades
-    //! from the hub, length of the blades
+    //! Hub height above the base, root distance from the hub, blade length
     amrex::Real hub_height{10.0_rt};
     amrex::Real root_radius{1.0_rt};
     amrex::Real blade_length{4.0_rt};
@@ -257,9 +248,8 @@ void ExtTurbIface<
     calc_aero_loads(::kynema_sgf_tests::BendingTurbine& /*fi*/)
 {}
 
-// A step bends the blades further. As in OpenFAST, the step leaves both point
-// sets at the new time: ExternalInflow sets the positions of the velocity
-// points and of the force points together (SetExtInfwPositions).
+// A step bends the blades further and, as in OpenFAST (SetExtInfwPositions),
+// moves both point sets to the new time.
 template <>
 void ExtTurbIface<
     ::kynema_sgf_tests::BendingTurbine,
@@ -352,17 +342,15 @@ amrex::Real distance_from_root(const amrex::Real kappa, const amrex::Real s)
 class TurbineExternalFLLCTest : public MeshTest
 {
 protected:
-    //! A new interface. The view data keep a pointer to it, so it lives on
-    //! the heap, owned by the fixture, rather than on the stack of a test or
-    //! of a helper.
+    //! New interface, heap-owned by the fixture (view data point to it)
     BendingIface& make_iface()
     {
         m_ifaces.push_back(std::make_unique<BendingIface>(sim()));
         return *m_ifaces.back();
     }
 
-    /** Turbine of three blades with the filtered lifting line correction, on
-     *  the root process, initialised as Actuator::post_init_actions does it
+    /** Three-blade turbine with the FLLC on the root process, initialized as
+     *  by Actuator::post_init_actions
      *
      *  \param num_pts_blade Force points on each blade
      *  \param num_vel_pts_blade Velocity points on each blade
@@ -389,11 +377,9 @@ protected:
         info.actuator_in_proc = true;
         info.procs = {iproc};
 
-        // Base of the turbine, and the box that the inputs give it
-        // (utils::read_inputs): 1.25 rotor radii around the base, up to the
-        // hub height above it. The distances along a blade do not depend on
-        // the base. At the origin the positions lose little to rounding in a
-        // build in single precision.
+        // Base and its box (utils::read_inputs): 1.25 rotor radii around the
+        // base, up to hub height. Base at the origin to limit single-precision
+        // rounding; distances along a blade do not depend on it.
         const vs::Vector base = vs::Vector::zero();
         const amrex::Real reach = 1.25_rt * (fi.root_radius + fi.blade_length);
         info.base_pos = base;
@@ -402,9 +388,8 @@ protected:
             base.x() + reach, base.y() + reach,
             base.z() + reach + fi.hub_height);
 
-        // What the inputs leave: points of each blade, epsilon_chord, and
-        // the data of the correction of every blade. The correction starts
-        // at the first force call past fllc_start_time.
+        // From the inputs: points per blade, epsilon_chord, per-blade FLLC
+        // data. FLLC starts at the first force call past fllc_start_time.
         meta.num_blades = m_num_blades;
         meta.num_pts_blade = num_pts_blade;
         meta.num_pts_tower = 0;
@@ -426,9 +411,8 @@ protected:
         kynema_sgf::actuator::ops::init_data_op(data);
     }
 
-    //! What Actuator::post_init_actions does for the turbine: take the
-    //! velocity points from the solver, hand it the velocity sampled there,
-    //! let it compute its loads and take its forces
+    //! As Actuator::post_init_actions: velocity points from the solver,
+    //! sampled velocity to it, loads, forces back
     static void post_init(BendingData& data)
     {
         kynema_sgf::actuator::ops::update_pos_op(data);
@@ -437,9 +421,8 @@ protected:
         communicate(data);
     }
 
-    //! What Actuator::pre_advance_work does for the turbine: as
-    //! post_init_actions, with the step of the solver before its forces are
-    //! taken
+    //! As Actuator::pre_advance_work: post_init_actions plus a solver step
+    //! before the forces
     static void pre_advance(BendingData& data)
     {
         kynema_sgf::actuator::ops::update_pos_op(data);
@@ -467,12 +450,11 @@ protected:
         pre_advance(data);
     }
 
-    /** Run the turbine up to the start of the correction
+    /** Run the turbine up to the FLLC start
      *
-     *  The force calls at the initial time and in the first time step (at
-     *  time 0) come before fllc_start_time. The correction starts in the
-     *  second time step (at time 0.1), whose velocity points were taken from
-     *  the solver at its step 1, before it took step 2.
+     *  Force calls at init and in step 1 (time 0) precede fllc_start_time; the
+     *  FLLC starts in step 2 (time 0.1), with velocity points from solver step
+     *  1, taken before solver step 2.
      */
     void run_to_start_of_correction(BendingData& data)
     {
@@ -488,10 +470,8 @@ protected:
         }
     }
 
-    /** Run a turbine up to the start of the correction, put a mark in the
-     *  state of the correction of every blade and write the state into the
-     *  checkpoint chkname, as the checkpoint of the flow written at the end
-     *  of that time step does
+    /** Run to the FLLC start, mark each blade's FLLC state and write it into
+     *  checkpoint chkname, as the end-of-step CFD checkpoint does
      *
      *  \param chk_time Time of the checkpoint
      */
@@ -516,9 +496,8 @@ protected:
             kynema_sgf::actuator::restart::has_file(chkname, "T0", chk_time));
     }
 
-    //! What a restart of the flow from the checkpoint chkname sets before the
-    //! actuators make their first force call: the name of the checkpoint and
-    //! the time
+    //! Restart settings from checkpoint chkname before the first force call:
+    //! checkpoint name and time
     void restart_flow_from(const std::string& chkname, const amrex::Real time)
     {
         amrex::ParmParse pp("io");
@@ -531,19 +510,15 @@ protected:
 
     std::vector<std::unique_ptr<BendingIface>> m_ifaces;
 
-    //! The solver gives the positions in single precision: the distances
-    //! along a blade are off by up to about 5e-7
+    //! Single-precision solver positions: distances off by up to ~5e-7
     const amrex::Real m_tol{1.0e-5_rt};
 };
 
 } // namespace
 
-// fllc_init tells whether the velocity points of a blade are its force
-// points, from the distance of every point from the first one of its set,
-// and keeps these distances for the rest of the run. A blade that bends has
-// other distances a step later, so both sets have to be those of one step:
-// the force points of the step the solver has just taken, and its velocity
-// points of that step.
+// fllc_init compares and keeps point distances from each set's first
+// point. A bending blade changes them per step, so both sets must be of the
+// step the solver just took.
 TEST_F(TurbineExternalFLLCTest, same_points_of_bending_blade_stay_same_points)
 {
     const int npb = 5;
@@ -565,8 +540,7 @@ TEST_F(TurbineExternalFLLCTest, same_points_of_bending_blade_stay_same_points)
 
     ASSERT_NO_FATAL_FAILURE(run_to_start_of_correction(data));
 
-    // Five AeroDyn nodes and five force points at the nodes, on every blade:
-    // the same points, which the correction is handed to one by one
+    // Five AeroDyn nodes and five force points at them, per blade: one set
     const auto kappa = fi.curvature(2);
     for (int ib = 0; ib < m_num_blades; ++ib) {
         const auto& fllc = data.meta().fllc[ib];
@@ -583,10 +557,9 @@ TEST_F(TurbineExternalFLLCTest, same_points_of_bending_blade_stay_same_points)
     }
 }
 
-// Seven velocity points and five force points along the bending blade. The
-// correction interpolates between the two sets by the distances fllc_init
-// keeps, for the rest of the run, so both sets of distances have to be those
-// of the step of the force points.
+// Seven velocity and five force points on a bending blade. The FLLC
+// interpolates by the distances fllc_init keeps, so both must be of the
+// force points' step.
 TEST_F(TurbineExternalFLLCTest, distances_of_other_points_are_of_same_step)
 {
     const int npb = 5;
@@ -620,9 +593,8 @@ TEST_F(TurbineExternalFLLCTest, distances_of_other_points_are_of_same_step)
     }
 }
 
-// A restart of the flow from a checkpoint that holds the state of the
-// correction, with the solver at the time of the checkpoint (a replay here):
-// the correction goes on from that state at the first force call.
+// Restart from a checkpoint with FLLC state, solver at the checkpoint time
+// (replay): the FLLC continues from that state at the first force call.
 TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
 {
     namespace vs = kynema_sgf::vs;
@@ -650,10 +622,8 @@ TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
     }
 }
 
-// The same restart with the solver starting the turbine anew (init): the
-// state belongs to the history the turbine had, so it is not used. The
-// correction starts from zero in the first time step, as after a restart
-// from a checkpoint without a state.
+// Same restart, solver starting the turbine anew (init): state unused; the
+// FLLC starts from zero in step 1, as without a state.
 TEST_F(TurbineExternalFLLCTest, restart_of_turbine_started_anew_ignores_state)
 {
     namespace vs = kynema_sgf::vs;

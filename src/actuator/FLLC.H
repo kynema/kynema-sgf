@@ -78,10 +78,9 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data);
  * do not resolve the optimal epsilon.
  *
  * \param data FLLC specific data and scratch fields
- * \param view Force points, velocity points and chord of the line. The two
- * sets of points have to be of one instant, or of instants between which
- * the line moves without changing its shape. The distances along the line
- * taken here are kept for the rest of the run.
+ * \param view Force points, velocity points and chord of the line. Both
+ * point sets of one instant (or of a rigid motion apart); the distances
+ * along the line taken here are kept for the run.
  * \param eps_chord epsilon chord
  * \param label Name of the line (actuator, blade) for the messages
  * \param print_warnings False on the processes that are to stay silent
@@ -95,14 +94,12 @@ void fllc_init(
     bool print_warnings = true);
 
 /**
- * \brief Write what a restart needs of the correction of one line
+ * \brief Write the restart state of the correction of one line
  *
- * The correction velocity, which the relaxation goes on from, and the
- * distances along the line, which fllc_init took from the positions of the
- * points at the time the correction started (the points of a blade are
- * elsewhere at the restart, and their positions come in single precision).
- * The optimal epsilon and the ratio of the non-uniform points are written
- * to check that the state fits the inputs of the restarted run.
+ * Correction velocity (relaxation continues from it) and the distances
+ * along the line from fllc_init (positions at restart differ and are single
+ * precision). Optimal epsilon and non-uniform point ratio: to check the
+ * state against the restarted inputs.
  *
  * \param os Stream of the restart data of the actuator
  * \param data Initialized FLLC data
@@ -114,11 +111,9 @@ void fllc_write_state(std::ostream& os, const FLLCData& data);
  *
  * \param is Stream of the restart data of the actuator
  * \param data FLLC data, initialized for the current points and inputs
- * \return False when the state is for other numbers of points, another
- * optimal epsilon or another ratio of the non-uniform points than those of
- * ``data``, or for points whose distances along the line differ from those
- * of ``data`` by more than 2 % of the length of the line. ``data`` is then
- * left as it was
+ * \return False, with ``data`` unchanged, for other numbers of points,
+ * optimal epsilon or non-uniform point ratio, or for distances along the
+ * line off by more than 2 % of the line length
  */
 bool fllc_read_state(std::istream& is, FLLCData& data);
 

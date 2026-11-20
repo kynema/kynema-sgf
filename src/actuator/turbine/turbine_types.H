@@ -78,9 +78,8 @@ struct TurbineBaseData
     //! Warning given: a Gaussian reaches beyond ActInfo::bound_box
     bool bound_box_warned{false};
 
-    //! True until the forces are computed for the first time, which in a
-    //! restarted run is at the time of the checkpoint: the restart data of
-    //! the turbine can be read then
+    //! True until the first force computation (at the checkpoint time on
+    //! restart, when restart data are read)
     bool at_first_force_call{true};
 
     std::vector<ComponentView> blades;

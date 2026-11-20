@@ -36,14 +36,10 @@ void fllc_init(
         amrex::Abort(msg.str());
     }
 
-    // The velocity points and the force points are two sets of points along
-    // the same line, starting at the same place (external turbines: the
-    // nodes of the external solver and the actuator points). Each set is
-    // located by the distance from its own first point. These distances do
-    // not change when the line moves without changing its shape (a wing),
-    // so the two sets can be of two instants there. A blade that bends has
-    // other distances at another instant: the caller passes both sets of
-    // one instant.
+    // Velocity and force points: two sets along one line from the same start
+    // (external turbines: solver nodes and actuator points), each located by
+    // distance from its own first point. Rigid motion (a wing) keeps these
+    // distances; a bending blade does not, so the caller passes one instant.
     data.span_distance_force.resize(npts);
     data.span_distance_vel.resize(npts_vel);
     for (int i = 0; i < npts; ++i) {
@@ -250,8 +246,7 @@ void fllc_init(
 
 void fllc_parse(const utils::ActParser& pp, FLLCData& data)
 {
-    // A scalar: the first value of the epsilon input, in the input order
-    // (not the order init_epsilon stores for the Gaussians)
+    // Scalar: first epsilon input value (input order, not init_epsilon's)
     pp.query("epsilon", data.epsilon);
     pp.query("fllc_relaxation_factor", data.relaxation_factor);
     pp.query("fllc_start_time", data.fllc_start_time);
@@ -309,8 +304,7 @@ void fllc_write_state(std::ostream& os, const FLLCData& data)
 
 bool fllc_read_state(std::istream& is, FLLCData& data)
 {
-    // Everything is read into copies first: the data are changed only when
-    // the whole state fits them
+    // Read into copies; data change only if the whole state fits
     VecList correction(data.correction_velocity.size());
     RealList optimal_epsilon(data.optimal_epsilon.size());
     RealList eps_dr(1);
@@ -334,8 +328,8 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
         return false;
     }
 
-    // The state of another epsilon_chord, chord or fllc_epsilon_dr_ratio, or
-    // of another distribution of the points, does not fit these data
+    // Reject other epsilon_chord, chord, fllc_epsilon_dr_ratio or point
+    // distribution
     const amrex::Real rtol = 1.0e-6_rt;
     if (std::abs(eps_dr[0] - data.eps_dr) > rtol * data.eps_dr) {
         return false;
@@ -350,13 +344,9 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
                             (nonuniform_dr.size() != nonuniform_r.size()))) {
         return false;
     }
-    // The state of a line with other positions of the points does not fit
-    // either, whatever the numbers of points and the chords. The distances
-    // of the state are not those of the data to the last digit: the data
-    // come from the positions at the restart, which an external solver
-    // sends in single precision and for another instant of the rotation,
-    // and a blade that bends changes its straight-line distances. Hence a
-    // tolerance far above these differences and below a change of the line.
+    // Reject other point positions. Restart distances differ slightly
+    // (single precision from external solvers, another rotation instant,
+    // blade bending): tolerance well above that, below a line change.
     const amrex::Real length = data.r.empty() ? 0.0_rt : data.r.back();
     const amrex::Real dtol = 0.02_rt * length;
     for (int i = 0; i < static_cast<int>(r.size()); ++i) {

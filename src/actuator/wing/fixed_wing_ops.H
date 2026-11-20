@@ -227,9 +227,8 @@ struct InitDataOp<FixedWing, ActSrcLine>
             meta.chord.resize(npts);
             ::kynema_sgf::interp::linear_monotonic(
                 meta.span_locs, meta.chord_inp, wx, meta.chord);
-            // Same order as wing::init_data_structures, (chord, span,
-            // thickness), swapped in place: the epsilon attribute of the
-            // netCDF output is written in this order
+            // Order of wing::init_data_structures (chord, span, thickness),
+            // as written to the netCDF epsilon attribute
             meta.epsilon_chord = {
                 meta.epsilon_chord.x(), meta.epsilon_chord.z(),
                 meta.epsilon_chord.y()};

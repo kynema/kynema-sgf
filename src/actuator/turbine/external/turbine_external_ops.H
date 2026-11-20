@@ -19,9 +19,8 @@ namespace kynema_sgf::actuator::ops {
 template <typename datatype>
 void read_ops(datatype& data, const utils::ActParser& pp)
 {
-    // Tell reading utility the name of the solver. ext_ptr is not set yet
-    // (external_determine_root_proc sets it, on the root process only), so
-    // the static function is called through the type
+    // Solver name for the reading utility; via the type, since ext_ptr is
+    // set later (external_determine_root_proc, root only)
     data.meta().solver_name =
         std::remove_pointer_t<decltype(data.meta().ext_ptr)>::identifier();
     // Data common to any turbine actuator simulation
@@ -167,10 +166,8 @@ void init_data_op(datatype& data)
 
 /** \brief Copy velocity points of the external solver
  *
- *  Copies vel_pos.size() points, from point start of the solver's list of
- *  velocity points on, shifted by the base position of the turbine. The
- *  solver holds the points of its current time, and only on the root
- *  process of the turbine.
+ *  vel_pos.size() points from index start, shifted by the turbine base
+ *  position. Current solver time; valid on the turbine root only.
  */
 template <typename datatype, typename VecType>
 void copy_ext_vel_pos(const datatype& data, VecType& vel_pos, const int start)
@@ -325,13 +322,11 @@ void external_write_checkpoint(datatype& data, const std::string& chkname)
     }
 }
 
-/** Take the state of the filtered lifting line correction of an external
- *  turbine from the checkpoint that the run restarts from
+/** Read the FLLC state of an external turbine from the restart checkpoint
  *
- *  \return False when the checkpoint has no state of this turbine for the
- *  current time, or when the state is for other numbers of blades or points,
- *  for other positions of the points or for other inputs of the correction.
- *  Nothing is changed then.
+ *  \return False, with nothing changed, when there is no state for this
+ *  turbine and time, or it is for other blades, points, positions or FLLC
+ *  inputs
  */
 template <typename datatype>
 bool external_read_checkpoint(datatype& data, const std::string& chkname)
@@ -348,8 +343,7 @@ bool external_read_checkpoint(datatype& data, const std::string& chkname)
         return false;
     }
 
-    // Read into copies, so that nothing is changed when the state of one
-    // of the blades does not fit
+    // Read into copies; nothing changes unless every blade fits
     std::vector<FLLCData> fllc(tdata.fllc);
     std::vector<VecList> fluid_vel(num_blades);
     for (int ib = 0; ib < num_blades; ++ib) {
@@ -408,18 +402,11 @@ struct CommunicateModelDataOp<
 
         auto& tdata = data.meta();
         if (!tdata.fllc.empty()) {
-            // A run that restarts with the correction on goes on from the state
-            // of the checkpoint. Without it the correction starts from zero and
-            // needs many time steps to come back. The checkpoint holds the
-            // state only when the correction had started before it was written.
-            // When it holds none, the correction does not start at the first
-            // force call of the restart: that call is made at the time of the
-            // checkpoint, where a run without restart makes none. It starts at
-            // the force call of the first time step, as it does in that run.
-            // The state belongs to the history of the turbine: when the
-            // external solver starts the turbine anew (init) on a restart of
-            // the flow, the state is not used and the correction starts as
-            // without one.
+            // Restart: continue from the checkpoint state (else the correction
+            // restarts from zero and takes many steps to recover). Without a
+            // state, skip the first force call (at the checkpoint time, absent
+            // in an unrestarted run) and start at the first step's call. Unused
+            // when the external solver starts the turbine anew (init).
             auto& io = data.sim().io_manager();
             const bool restart_call =
                 tdata.at_first_force_call && io.is_restart();
