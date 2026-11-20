@@ -170,6 +170,13 @@ struct InitDataOp<StokesWaves>
                 }
             });
         amrex::Gpu::streamSynchronize();
+
+        if (multiphase_mode) {
+            // Liquid velocity at approx. liquid centroid z, as for targets
+            const amrex::Real eps = 2.0_rt * std::cbrt(dx[0] * dx[1] * dx[2]);
+            relaxation_zones::approx_liquid_centroid_z_velocity_from_levelset(
+                velocity(level), (*levelset)(level), eps, 2);
+        }
     }
 };
 

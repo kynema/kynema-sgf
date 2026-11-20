@@ -32,6 +32,27 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real free_surface_to_vof(
     return volfrac;
 }
 
+/** Liquid velocity component at the approximate z-location of the liquid
+ *  centroid of a cell
+ *
+ *  Cell-centered wave velocities are point values, but the liquid in a
+ *  partially filled cell occupies only its lower portion. Only the vertical
+ *  position of the liquid centroid is approximated, assuming a horizontal
+ *  interface: z_bottom + 0.5 * vof * dz. This always lies between the
+ *  cell center below (vof -> 0 gives the bottom face) and the current cell
+ *  center (vof -> 1), so this is an interpolation and never an extrapolation.
+ */
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+approx_liquid_centroid_z_interp(
+    const amrex::Real vof, const amrex::Real vel_below, const amrex::Real vel)
+{
+    if (vof > 1.0_rt - constants::VOF_TOL) {
+        return vel;
+    }
+    const amrex::Real s = 0.5_rt * (1.0_rt + vof);
+    return vel_below + (s * (vel - vel_below));
+}
+
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
 gamma_generate(const amrex::Real x, const amrex::Real gen_length)
 {

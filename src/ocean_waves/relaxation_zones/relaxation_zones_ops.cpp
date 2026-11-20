@@ -72,6 +72,97 @@ void update_target_vof(CFDSim& sim)
     amrex::Gpu::streamSynchronize();
 }
 
+namespace {
+
+struct VofFromField
+{
+    amrex::Array4<amrex::Real const> vof;
+    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
+    operator()(int i, int j, int k) const
+    {
+        return vof(i, j, k);
+    }
+};
+
+struct VofFromLevelset
+{
+    amrex::Array4<amrex::Real const> phi;
+    amrex::Real eps;
+    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
+    operator()(int i, int j, int k) const
+    {
+        return multiphase::levelset_to_vof(i, j, k, eps, phi);
+    }
+};
+
+template <typename VofFunc>
+void approx_liquid_centroid_z_sweep(
+    const amrex::Box& bx,
+    const amrex::Array4<amrex::Real>& vel,
+    const int ncomp,
+    const VofFunc& vof_func)
+{
+    const int klo = bx.smallEnd(2);
+    const int khi = bx.bigEnd(2);
+    const amrex::Box columns = amrex::makeSlab(bx, 2, khi);
+    amrex::ParallelFor(columns, [=] AMREX_GPU_DEVICE(int i, int j, int) {
+        // Top-down, so vel(k-1) is still the original value when read
+        for (int k = khi; k >= klo; --k) {
+            const amrex::Real vof = vof_func(i, j, k);
+            if (vof > constants::VOF_TOL &&
+                vof <= 1.0_rt - constants::VOF_TOL) {
+                for (int n = 0; n < ncomp; ++n) {
+                    vel(i, j, k, n) = utils::approx_liquid_centroid_z_interp(
+                        vof, vel(i, j, k - 1, n), vel(i, j, k, n));
+                }
+            }
+        }
+    });
+}
+
+} // namespace
+
+void approx_liquid_centroid_z_velocity(
+    amrex::MultiFab& vel, const amrex::MultiFab& vof, const int ngrow)
+{
+    AMREX_ALWAYS_ASSERT(vel.nGrowVect()[2] > ngrow);
+    AMREX_ALWAYS_ASSERT(vof.nGrowVect().allGE(amrex::IntVect(ngrow)));
+    // No tiling: tiles split in z would read cells modified by another tile
+    for (amrex::MFIter mfi(vel, false); mfi.isValid(); ++mfi) {
+        approx_liquid_centroid_z_sweep(
+            amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
+            VofFromField{vof.const_array(mfi)});
+    }
+    amrex::Gpu::streamSynchronize();
+}
+
+void approx_liquid_centroid_z_velocity_from_levelset(
+    amrex::MultiFab& vel,
+    const amrex::MultiFab& levelset,
+    const amrex::Real eps,
+    const int ngrow)
+{
+    AMREX_ALWAYS_ASSERT(vel.nGrowVect()[2] > ngrow);
+    AMREX_ALWAYS_ASSERT(levelset.nGrowVect().allGT(amrex::IntVect(ngrow)));
+    for (amrex::MFIter mfi(vel, false); mfi.isValid(); ++mfi) {
+        approx_liquid_centroid_z_sweep(
+            amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
+            VofFromLevelset{.phi = levelset.const_array(mfi), .eps = eps});
+    }
+    amrex::Gpu::streamSynchronize();
+}
+
+void update_target_velocity(CFDSim& sim)
+{
+    const int nlevels = sim.repo().num_active_levels();
+    const auto& ow_vof = sim.repo().get_field("ow_vof");
+    auto& ow_vel = sim.repo().get_field("ow_velocity");
+    for (int lev = 0; lev < nlevels; ++lev) {
+        approx_liquid_centroid_z_velocity(
+            ow_vel(lev), ow_vof(lev), ow_vof.num_grow()[2]);
+    }
+}
+
 void modify_target_fields_for_beach(
     CFDSim& sim, const RelaxZonesBaseData& wdata)
 {
