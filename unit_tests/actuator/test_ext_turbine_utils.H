@@ -66,8 +66,9 @@ void init_hub_first_points(
     meta.num_vel_pts_blade = num_vel_pts_blade;
     meta.num_pts_tower = num_pts_tower;
 
-    const int npts = 1 + num_blades * num_pts_blade + num_pts_tower;
-    const int npts_vel = 1 + num_blades * num_vel_pts_blade + num_pts_tower;
+    const int npts = 1 + (num_blades * num_pts_blade) + num_pts_tower;
+    const int npts_vel =
+        1 + (num_blades * num_vel_pts_blade) + num_pts_tower;
     grid.resize(npts, npts_vel);
     meta.chord.assign(npts, 1.0_rt);
     meta.vel_rel.assign(npts, vs::Vector::zero());
@@ -78,23 +79,23 @@ void init_hub_first_points(
                         static_cast<amrex::Real>(num_vel_pts_blade - 1);
     for (int ib = 0; ib < num_blades; ++ib) {
         for (int k = 0; k < num_pts_blade; ++k) {
-            const int ip = 1 + ib * num_pts_blade + k;
+            const int ip = 1 + (ib * num_pts_blade) + k;
             grid.pos[ip] = vs::Vector{
                 0.0_rt, static_cast<amrex::Real>(ib + 1),
                 static_cast<amrex::Real>(k + 1)};
         }
         for (int k = 0; k < num_vel_pts_blade; ++k) {
-            const int ip = 1 + ib * num_vel_pts_blade + k;
+            const int ip = 1 + (ib * num_vel_pts_blade) + k;
             grid.vel_pos[ip] = vs::Vector{
                 0.0_rt, static_cast<amrex::Real>(ib + 1),
-                1.0_rt + static_cast<amrex::Real>(k) * dz_vel};
+                1.0_rt + (static_cast<amrex::Real>(k) * dz_vel)};
         }
     }
     for (int j = 0; j < num_pts_tower; ++j) {
         const vs::Vector tower_node{
             0.0_rt, 0.0_rt, -static_cast<amrex::Real>(j + 1)};
-        grid.pos[1 + num_blades * num_pts_blade + j] = tower_node;
-        grid.vel_pos[1 + num_blades * num_vel_pts_blade + j] = tower_node;
+        grid.pos[1 + (num_blades * num_pts_blade) + j] = tower_node;
+        grid.vel_pos[1 + (num_blades * num_vel_pts_blade) + j] = tower_node;
     }
 }
 
@@ -128,7 +129,7 @@ void check_blade_views_aligned(datatype& data)
     ASSERT_EQ(static_cast<int>(meta.blades.size()), meta.num_blades);
     for (int ib = 0; ib < meta.num_blades; ++ib) {
         const auto& cv = meta.blades[ib];
-        const int start = 1 + ib * npb;
+        const int start = 1 + (ib * npb);
         EXPECT_EQ(std::distance(grid.pos.data(), cv.pos.data()), start);
         EXPECT_EQ(std::distance(grid.vel.data(), cv.vel.data()), start);
         EXPECT_EQ(std::distance(grid.vel_pos.data(), cv.vel_pos.data()), start);

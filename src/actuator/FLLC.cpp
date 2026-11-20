@@ -115,11 +115,10 @@ void fllc_init(
             << (data.nonuniform
                     ? "The correction then depends on the number of "
                       "actuator points: use more points or a larger "
-                      "epsilon_chord."
+                      "epsilon_chord.\n"
                     : "The sum over the actuator points does not resolve "
                       "the correction there: set fllc_nonuniform = true, or "
-                      "use more points or a larger epsilon_chord.")
-            << std::endl;
+                      "use more points or a larger epsilon_chord.\n");
     }
 
     // The correction is handed over at the velocity points. Where these are
@@ -155,7 +154,7 @@ void fllc_init(
                 << "a blade: the velocity handed over at these points then "
                 << "depends on where they are. Use more velocity points "
                 << "there (the blade nodes of an external solver) or a "
-                << "larger epsilon_chord." << std::endl;
+                << "larger epsilon_chord.\n";
         }
     }
 

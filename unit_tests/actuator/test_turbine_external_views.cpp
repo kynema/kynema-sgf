@@ -18,7 +18,7 @@ struct MockExtTurbine
 {
     float* fluid_velocity(const int dir) { return fluid_vel[dir].data(); }
     float* solid_velocity(const int dir) { return solid_vel[dir].data(); }
-    int length_fluid_velocity(const int dir) const
+    [[nodiscard]] int length_fluid_velocity(const int dir) const
     {
         return static_cast<int>(fluid_vel[dir].size());
     }
@@ -63,7 +63,7 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
     // that its interpolation along a blade is exact. Velocity of the force
     // points: different for every point. Velocity sampled now: not linear.
     const auto fluid_u = [](const vs::Vector& x) {
-        return 1.0_rt + 2.0_rt * x.y() + 3.0_rt * x.z();
+        return 1.0_rt + (2.0_rt * x.y()) + (3.0_rt * x.z());
     };
     const int npts = static_cast<int>(grid.pos.size());
     const int npts_vel = static_cast<int>(grid.vel_pos.size());
@@ -75,7 +75,7 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
     for (int i = 0; i < npts_vel; ++i) {
         ext.fluid_vel[0][i] = static_cast<float>(fluid_u(grid.vel_pos[i]));
         grid.vel[i] = vs::Vector{
-            static_cast<amrex::Real>(7 + (i * i) % 5), 0.0_rt, 0.0_rt};
+            static_cast<amrex::Real>(7 + ((i * i) % 5)), 0.0_rt, 0.0_rt};
     }
     for (int i = 0; i < npts; ++i) {
         ext.solid_vel[0][i] = 0.25F * static_cast<float>(i);
@@ -95,9 +95,10 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
     const amrex::Real tol = 1.0e-5_rt;
     for (int ib = 0; ib < num_blades; ++ib) {
         for (int k = 0; k < npb; ++k) {
-            const int ip = 1 + ib * npb + k;
+            const int ip = 1 + (ib * npb) + k;
             const auto gold =
-                fluid_u(grid.pos[ip]) - 0.25_rt * static_cast<amrex::Real>(ip);
+                fluid_u(grid.pos[ip]) -
+                (0.25_rt * static_cast<amrex::Real>(ip));
             EXPECT_NEAR(meta.blades[ib].vel_rel[k].x(), gold, tol)
                 << "blade " << ib << ", force node " << k;
             EXPECT_EQ(meta.blades[ib].vel_rel[k].y(), 0.0_rt);
@@ -107,7 +108,7 @@ TEST(TurbineExternalViews, fllc_relative_velocity_with_different_point_counts)
     // Without force there is no correction: the velocity sent to the
     // external solver is the sampled one, at every velocity point
     for (int i = 0; i < npts_vel; ++i) {
-        EXPECT_EQ(ext.fluid_vel[0][i], static_cast<float>(7 + (i * i) % 5))
+        EXPECT_EQ(ext.fluid_vel[0][i], static_cast<float>(7 + ((i * i) % 5)))
             << "velocity point " << i;
         EXPECT_EQ(ext.fluid_vel[1][i], 0.0F);
         EXPECT_EQ(ext.fluid_vel[2][i], 0.0F);
