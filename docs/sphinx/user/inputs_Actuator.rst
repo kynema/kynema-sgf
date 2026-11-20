@@ -919,7 +919,8 @@ Example for ``TurbineFastLine``::
    ``epsilon_min`` and the optimal epsilon (a fixed wing has no
    ``epsilon_min`` and uses the first value of the other two inputs). Give
    ``epsilon``, ``epsilon_chord`` and ``epsilon_min`` the same value in all
-   three directions when the correction is on.
+   three directions when the correction is on; the run prints a warning
+   when they differ.
 
 .. input_param:: Actuator.TurbineFastLine.fllc_relaxation_factor
 

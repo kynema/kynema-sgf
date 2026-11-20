@@ -8,6 +8,24 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::utils {
 
+std::string fllc_epsilon_warning(
+    const std::string& label,
+    const vs::Vector& eps_inp,
+    const vs::Vector& eps_min,
+    const vs::Vector& eps_chord)
+{
+    const auto differs = [](const vs::Vector& eps) {
+        return (eps.x() != eps.y()) || (eps.x() != eps.z());
+    };
+    if (!differs(eps_inp) && !differs(eps_min) && !differs(eps_chord)) {
+        return "";
+    }
+    return "WARNING: Actuator " + label +
+           ": epsilon, epsilon_min or epsilon_chord differ by direction. The "
+           "FLLC uses only the first value of epsilon and epsilon_min and the "
+           "second value of epsilon_chord.";
+}
+
 void read_inputs(
     TurbineBaseData& tdata, TurbineInfo& tinfo, const utils::ActParser& pp)
 {
@@ -58,6 +76,11 @@ void read_inputs(
             // epsilon in fllc_parse: eps_min is in the input order here.
             tdata.fllc.back().epsilon = amrex::max<amrex::Real>(
                 tdata.fllc.back().epsilon, tdata.eps_min[0]);
+        }
+        const auto msg = fllc_epsilon_warning(
+            tinfo.label, tdata.eps_inp, tdata.eps_min, tdata.eps_chord);
+        if (!msg.empty()) {
+            amrex::Print() << "\n" << msg << "\n";
         }
     }
 
