@@ -834,6 +834,10 @@ locations to OpenFAST and OpenFAST provides the actuator point
 locations and forces at those points. This tight coupling happens at
 every time step.
 
+Each OpenFAST turbine needs an MPI rank of its own, because OpenFAST counts
+the time steps of all the turbines of a process together. Use at least as
+many ranks as there are actuators; the run stops at start-up otherwise.
+
 Example for ``TurbineFastLine``::
 
    incflo.physics = FreeStream Actuator

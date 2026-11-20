@@ -78,10 +78,14 @@ void Actuator::pre_init_actions()
         obj->read_inputs(inp);
         m_actuators.emplace_back(std::move(obj));
     }
+    // Necessary only: allocate_ext_turbines checks the turbines of each rank
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         cnt_turbfast <= amrex::ParallelDescriptor::NProcs(),
-        "Number of OpenFAST turbines must match or be lower than the number of "
-        "ranks");
+        "Actuator: " + std::to_string(cnt_turbfast) +
+            " OpenFAST turbines on " +
+            std::to_string(amrex::ParallelDescriptor::NProcs()) +
+            " MPI ranks. Each OpenFAST turbine needs a rank of its own: use "
+            "at least as many ranks as there are actuators.");
 }
 
 void Actuator::post_init_actions()

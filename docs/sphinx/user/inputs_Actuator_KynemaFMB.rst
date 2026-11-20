@@ -212,13 +212,13 @@ Note: the FLLC-related inputs are identical to those used in the OpenFAST ALM wi
 
    **type:** List of 3 real numbers, optional
 
-   Minimum value allowed when chord-based epsilon values are used, in the same order as ``epsilon``.
+   Minimum value allowed when chord-based epsilon values are used, in the same order as ``epsilon``. Also the width of the hub (nacelle) point, with its values put on the local axes of that point in the same way as for the blade points.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_tower
 
    **type:** List of 3 real numbers, optional
 
-   Gaussian smearing width for tower forces, in the same order as ``epsilon``.
+   Gaussian smearing width for tower forces, in the same order as ``epsilon``, with its values put on the local axes of the tower points in the same way as for the blade points.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff
 
