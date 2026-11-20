@@ -1,6 +1,7 @@
 #include <array>
 #include <cmath>
 #include <cstddef>
+#include <memory>
 #include <numbers>
 #include <string>
 #include <vector>
@@ -351,6 +352,15 @@ amrex::Real distance_from_root(const amrex::Real kappa, const amrex::Real s)
 class TurbineExternalFLLCTest : public MeshTest
 {
 protected:
+    //! A new interface. The view data keep a pointer to it, so it lives on
+    //! the heap, owned by the fixture, rather than on the stack of a test or
+    //! of a helper.
+    BendingIface& make_iface()
+    {
+        m_ifaces.push_back(std::make_unique<BendingIface>(sim()));
+        return *m_ifaces.back();
+    }
+
     /** Turbine of three blades with the filtered lifting line correction, on
      *  the root process, initialised as Actuator::post_init_actions does it
      *
@@ -491,7 +501,7 @@ protected:
         const kynema_sgf::vs::Vector& mark,
         amrex::Real& chk_time)
     {
-        BendingIface iface(sim());
+        auto& iface = make_iface();
         BendingData data(sim(), "T0", 0);
         setup_turbine(data, iface, num_pts_blade, num_pts_blade);
         ASSERT_NO_FATAL_FAILURE(run_to_start_of_correction(data));
@@ -519,6 +529,8 @@ protected:
 
     const int m_num_blades{3};
 
+    std::vector<std::unique_ptr<BendingIface>> m_ifaces;
+
     //! The solver gives the positions in single precision: the distances
     //! along a blade are off by up to about 5e-7
     const amrex::Real m_tol{1.0e-5_rt};
@@ -536,7 +548,7 @@ TEST_F(TurbineExternalFLLCTest, same_points_of_bending_blade_stay_same_points)
 {
     const int npb = 5;
     initialize_mesh();
-    BendingIface iface(sim());
+    auto& iface = make_iface();
     BendingData data(sim(), "T0", 0);
     setup_turbine(data, iface, npb, npb);
     const auto& fi = data.meta().ext_data;
@@ -580,7 +592,7 @@ TEST_F(TurbineExternalFLLCTest, distances_of_other_points_are_of_same_step)
     const int npb = 5;
     const int nvb = 7;
     initialize_mesh();
-    BendingIface iface(sim());
+    auto& iface = make_iface();
     BendingData data(sim(), "T0", 0);
     setup_turbine(data, iface, npb, nvb);
     const auto& fi = data.meta().ext_data;
@@ -622,7 +634,7 @@ TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
     ASSERT_NO_FATAL_FAILURE(write_marked_state(chkname, npb, mark, chk_time));
     restart_flow_from(chkname, chk_time);
 
-    BendingIface iface(sim());
+    auto& iface = make_iface();
     BendingData data(sim(), "T0", 0);
     setup_turbine(data, iface, npb, npb, ::ext_turb::SimMode::replay);
     post_init(data);
@@ -653,7 +665,7 @@ TEST_F(TurbineExternalFLLCTest, restart_of_turbine_started_anew_ignores_state)
     ASSERT_NO_FATAL_FAILURE(write_marked_state(chkname, npb, mark, chk_time));
     restart_flow_from(chkname, chk_time);
 
-    BendingIface iface(sim());
+    auto& iface = make_iface();
     BendingData data(sim(), "T0", 0);
     setup_turbine(data, iface, npb, npb, ::ext_turb::SimMode::init);
     post_init(data);
