@@ -191,7 +191,7 @@ TEST(ActuatorRestart, fllc_state_of_other_positions_is_refused)
         data.span_distance_vel[3] += 0.1_rt;
         std::stringstream is(state);
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
-        EXPECT_EQ(data.span_distance_vel[3], 3.0_rt / 7.0_rt + 0.1_rt);
+        EXPECT_EQ(data.span_distance_vel[3], (3.0_rt / 7.0_rt) + 0.1_rt);
     }
     // Distances 0.5 % away from those of the state: the same line
     {

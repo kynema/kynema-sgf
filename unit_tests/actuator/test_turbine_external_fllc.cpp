@@ -69,13 +69,13 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
     //! The hub and the force points of the blades
     int num_force_pts() const
     {
-        return 1 + model_num_blades * model_num_pts_blade;
+        return 1 + (model_num_blades * model_num_pts_blade);
     }
 
     //! The hub and the velocity points of the blades
     int num_vel_pts() const
     {
-        return 1 + model_num_blades * model_num_vel_pts_blade;
+        return 1 + (model_num_blades * model_num_vel_pts_blade);
     }
 
     //! Curvature of the blades at a step of the solver
@@ -111,7 +111,7 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
         return {
             static_cast<float>(downwind),
             static_cast<float>(radial * std::sin(azimuth)),
-            static_cast<float>(hub_height + radial * std::cos(azimuth))};
+            static_cast<float>(hub_height + (radial * std::cos(azimuth)))};
     }
 
     //! Buffers of a new turbine; points oriented as the global frame
@@ -361,7 +361,7 @@ protected:
         BendingIface& iface,
         const int num_pts_blade,
         const int num_vel_pts_blade,
-        const ::ext_turb::SimMode sim_mode = ::ext_turb::SimMode::init)
+        const ::ext_turb::SimMode sim_mode = ::ext_turb::SimMode::init) const
     {
         namespace vs = kynema_sgf::vs;
         auto& info = data.info();
