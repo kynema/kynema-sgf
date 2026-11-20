@@ -48,6 +48,23 @@ constexpr BladeFrame blade_frame_of()
     }
 }
 
+/** Component of a stored epsilon that holds input value n
+ *
+ *  Inputs in the documented order (chord, thickness, span); stored epsilon
+ *  in the local frame of the point (component m acts along row m of its
+ *  orientation)
+ */
+constexpr int epsilon_component(const BladeFrame frame, const int n)
+{
+    switch (frame) {
+    case BladeFrame::span_chord_normal:
+        return (n == 0) ? 1 : ((n == 1) ? 2 : 0);
+    case BladeFrame::normal_chord_span:
+    default:
+        return (n == 0) ? 1 : ((n == 1) ? 0 : 2);
+    }
+}
+
 /** Representation of a turbine for exchanging data with external solver
  */
 struct ExternalTurbine

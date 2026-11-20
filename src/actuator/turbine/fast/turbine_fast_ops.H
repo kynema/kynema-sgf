@@ -1,7 +1,6 @@
 #ifndef TURBINE_FAST_OPS_H
 #define TURBINE_FAST_OPS_H
 
-#include <type_traits>
 #include "src/actuator/turbine/fast/TurbineFast.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
 #include "src/utilities/io_utils.H"
@@ -196,9 +195,6 @@ struct InitDataOp<TurbineFast, SrcTrait>
         check_fast_sim_time(data);
 
         init_data_op<TurbineFast::DataType>(data);
-        if constexpr (std::is_same_v<SrcTrait, ActSrcDisk>) {
-            warn_disk_epsilon<TurbineFast::DataType>(data);
-        }
         // The bounding box of the turbine now holds the reach of the
         // Gaussians (init_epsilon): make the list of the processes with
         // patches inside of it again

@@ -1,7 +1,6 @@
 #ifndef TURBINE_EXTERNAL_UTILS_H
 #define TURBINE_EXTERNAL_UTILS_H
 
-#include <array>
 #include <numbers>
 #include <string>
 #include <type_traits>
@@ -17,24 +16,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::external {
 
-/** Component of a stored epsilon that holds input value n
- *
- *  The epsilon inputs are given in the documented order (chord, thickness,
- *  span). The stored epsilon of a point is in its local frame: component m
- *  acts along row m of its orientation matrix (ActSrcLineOp). The chord value
- *  goes to the axis along the chord, the thickness value to the axis normal
- *  to the chord and the span value to the axis along the span.
- */
-constexpr int epsilon_component(const ::ext_turb::BladeFrame frame, const int n)
-{
-    switch (frame) {
-    case ::ext_turb::BladeFrame::span_chord_normal:
-        return (n == 0) ? 1 : ((n == 1) ? 2 : 0);
-    case ::ext_turb::BladeFrame::normal_chord_span:
-    default:
-        return (n == 0) ? 1 : ((n == 1) ? 0 : 2);
-    }
-}
+using ::ext_turb::epsilon_component;
 
 //! Put an epsilon given in the input order into the local frame of a solver
 inline void
@@ -237,55 +219,6 @@ void init_epsilon(datatype& data)
             bbox.setHi(n, bbox.hi(n) + reach);
         }
     }
-}
-
-/** Warn when an actuator disk is given epsilon values that differ by
- *  direction
- *
- *  The disk (ActSrcDiskOp_Turbine.H) spreads the force of each blade point
- *  with a single Gaussian width, normal to the rotor: component 0 of the
- *  stored epsilon of the point. With the frame of the solver
- *  (epsilon_to_frame) that component holds the second input value
- *  (thickness) for OpenFAST and the third (span) for Kynema-FMB. The other
- *  values of epsilon, epsilon_chord and epsilon_min are not used for the
- *  blade points; the tower and the nacelle use all three.
- */
-template <typename datatype>
-void warn_disk_epsilon(datatype& data)
-{
-    const auto& tdata = data.meta();
-    using SolverTurbine = std::remove_cvref_t<decltype(tdata.ext_data)>;
-    constexpr auto frame = ::ext_turb::blade_frame_of<SolverTurbine>();
-
-    const auto differs = [](const vs::Vector& eps) {
-        return (eps.x() != eps.y()) || (eps.x() != eps.z());
-    };
-    if (!differs(tdata.eps_inp) && !differs(tdata.eps_chord) &&
-        !differs(tdata.eps_min)) {
-        return;
-    }
-
-    // Input value that lands in component 0
-    int n_used = 0;
-    for (int n = 0; n < AMREX_SPACEDIM; ++n) {
-        if (epsilon_component(frame, n) == 0) {
-            n_used = n;
-        }
-    }
-    const std::array<std::string, AMREX_SPACEDIM> ordinal{
-        "first", "second", "third"};
-    const std::array<std::string, AMREX_SPACEDIM> direction{
-        "chord", "thickness", "span"};
-    amrex::Print()
-        << "\nWARNING: Actuator " << data.info().label
-        << ": epsilon, epsilon_chord or epsilon_min have values that differ "
-        << "by direction. An actuator disk spreads the force of each blade "
-        << "point with a single width, normal to the rotor, and for this "
-        << "turbine solver that width comes from the " << ordinal[n_used]
-        << " value of each of these inputs (the " << direction[n_used]
-        << " value of the order chord, thickness, span). The other values "
-        << "are not used for the blade points; the tower and the nacelle use "
-        << "all three." << std::endl;
 }
 
 /** Tell the user, once, when the Gaussian of a point reaches beyond the

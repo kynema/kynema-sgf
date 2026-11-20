@@ -6,6 +6,7 @@
 #include "ks_test_utils/AmrexTest.H"
 #include "test_ext_turbine_utils.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
+#include "src/actuator/turbine/ActSrcDiskOp_Turbine.H"
 #include "AMReX_Exception.H"
 #include "AMReX_REAL.H"
 
@@ -274,70 +275,35 @@ TEST(TurbineExternalViews, bound_box_holds_the_gaussians)
     }
 }
 
-/** Output of warn_disk_epsilon for the given inputs, in the documented
- *  order (chord, thickness, span), put into the frame of the solver as
- *  init_epsilon does
+/** Value of the inputs (chord, thickness, span) = (1, 2, 3) that a disk
+ *  takes as its width normal to the rotor, with the frame of the solver
  */
 template <typename ViewData>
-std::string disk_epsilon_warning(
-    const kynema_sgf::vs::Vector& eps_inp,
-    const kynema_sgf::vs::Vector& eps_chord)
+amrex::Real disk_normal_epsilon()
 {
-    namespace ext = kynema_sgf::actuator::external;
-    using SolverTurbine = std::remove_cvref_t<
-        decltype(std::declval<ViewData&>().meta().ext_data)>;
-    constexpr auto frame = ::ext_turb::blade_frame_of<SolverTurbine>();
-    ViewData data;
-    data.info().label = "T0";
-    auto& meta = data.meta();
-    meta.eps_inp = eps_inp;
-    meta.eps_chord = eps_chord;
-    meta.eps_min = kynema_sgf::vs::Vector::zero();
-    ext::epsilon_to_frame(meta.eps_inp, frame);
-    ext::epsilon_to_frame(meta.eps_chord, frame);
-    testing::internal::CaptureStdout();
-    ext::warn_disk_epsilon(data);
-    return testing::internal::GetCapturedStdout();
+    using MetaType =
+        std::remove_cvref_t<decltype(std::declval<ViewData&>().meta())>;
+    using SolverTurbine =
+        std::remove_cvref_t<decltype(std::declval<MetaType&>().ext_data)>;
+    kynema_sgf::vs::Vector eps{1.0_rt, 2.0_rt, 3.0_rt};
+    kynema_sgf::actuator::external::epsilon_to_frame(
+        eps, ::ext_turb::blade_frame_of<SolverTurbine>());
+    return eps
+        [kynema_sgf::actuator::ops::disk_normal_epsilon_component<MetaType>()];
 }
 
-TEST(TurbineExternalViews, disk_epsilon_uniform_no_warning)
+TEST(TurbineExternalViews, disk_width_is_thickness_value)
 {
-    namespace vs = kynema_sgf::vs;
-    EXPECT_TRUE(
-        disk_epsilon_warning<MockViewData>(
-            vs::Vector{2.0_rt, 2.0_rt, 2.0_rt}, vs::Vector::zero())
-            .empty());
-    EXPECT_TRUE(
-        disk_epsilon_warning<MockSpanFirstViewData>(
-            vs::Vector{2.0_rt, 2.0_rt, 2.0_rt},
-            vs::Vector{0.5_rt, 0.5_rt, 0.5_rt})
-            .empty());
-}
+    // Thickness input for both frames
+    EXPECT_EQ(disk_normal_epsilon<MockViewData>(), 2.0_rt);
+    EXPECT_EQ(disk_normal_epsilon<MockSpanFirstViewData>(), 2.0_rt);
 
-TEST(TurbineExternalViews, disk_epsilon_warning_names_used_value)
-{
-    namespace vs = kynema_sgf::vs;
-    // OpenFAST: the thickness value, second in the input
-    const auto out_of = disk_epsilon_warning<MockViewData>(
-        vs::Vector{1.0_rt, 2.0_rt, 3.0_rt}, vs::Vector::zero());
-    EXPECT_NE(out_of.find("WARNING: Actuator T0"), std::string::npos) << out_of;
-    EXPECT_NE(
-        out_of.find(
-            "from the second value of each of these inputs (the "
-            "thickness value"),
-        std::string::npos)
-        << out_of;
-
-    // Kynema-FMB: the span value, third in the input; a non-uniform
-    // epsilon_chord alone is enough
-    const auto out_fmb = disk_epsilon_warning<MockSpanFirstViewData>(
-        vs::Vector{2.0_rt, 2.0_rt, 2.0_rt}, vs::Vector{0.5_rt, 1.0_rt, 0.5_rt});
-    EXPECT_NE(
-        out_fmb.find(
-            "from the third value of each of these inputs (the "
-            "span value"),
-        std::string::npos)
-        << out_fmb;
+    // Turbines without an external solver: first component
+    struct NoExtMeta
+    {};
+    static_assert(
+        kynema_sgf::actuator::ops::disk_normal_epsilon_component<NoExtMeta>() ==
+        0);
 }
 
 } // namespace kynema_sgf_tests

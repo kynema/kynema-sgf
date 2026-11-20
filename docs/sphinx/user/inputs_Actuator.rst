@@ -904,8 +904,7 @@ Example for ``TurbineFastLine``::
    ``epsilon``, ``epsilon_tower`` and ``epsilon_min``. With
    ``TurbineFastDisk`` the blade points are spread with a single width,
    normal to the rotor, taken from the thickness value (the second) of
-   ``epsilon``, ``epsilon_chord`` and ``epsilon_min``; the run prints a
-   warning when these inputs differ by direction.
+   ``epsilon``, ``epsilon_chord`` and ``epsilon_min``.
 
 .. input_param:: Actuator.TurbineFastLine.epsilon_chord
 

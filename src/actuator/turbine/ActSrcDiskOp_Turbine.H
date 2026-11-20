@@ -2,15 +2,37 @@
 #define ACTSRCDISKOP_TURBINE_H
 
 #include <numbers>
+#include <type_traits>
+#include <utility>
 #include "AMReX_REAL.H"
 #include "src/actuator/actuator_ops.H"
 #include "src/actuator/actuator_utils.H"
 #include "src/core/FieldRepo.H"
 #include "src/actuator/turbine/turbine_types.H"
+#include "src/actuator/turbine/external/external_base_types.H"
 
 using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::ops {
+
+/** Component of the epsilon of a blade point that the disk uses as its width
+ *  normal to the rotor
+ *
+ *  The thickness input (second value) for every solver: its place depends on
+ *  the frame of an external solver (ext_turb::epsilon_component).
+ */
+template <typename MetaType>
+constexpr int disk_normal_epsilon_component()
+{
+    if constexpr (requires(MetaType& meta) { meta.ext_data; }) {
+        using SolverTurbine =
+            std::remove_cvref_t<decltype(std::declval<MetaType&>().ext_data)>;
+        return ::ext_turb::epsilon_component(
+            ::ext_turb::blade_frame_of<SolverTurbine>(), 1);
+    } else {
+        return 0;
+    }
+}
 
 template <typename ActTrait>
 class ActSrcOp<
@@ -142,6 +164,8 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
     // assume these will be copied to device by the lambda capture...
     const vs::Vector m_normal(tdata.rotor_frame.x());
     const vs::Vector m_origin(tdata.rot_center);
+    const int ieps_normal =
+        disk_normal_epsilon_component<std::remove_cvref_t<decltype(tdata)>>();
 
     amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         const vs::Vector cc{
@@ -167,7 +191,7 @@ operator()(const int lev, const amrex::MFIter& mfi, const amrex::Geometry& geom)
                 const amrex::Real weight_T =
                     utils::linear_basis_1d(R * dist_on_disk.y(), dT * R);
                 const amrex::Real weight_N =
-                    utils::gaussian1d(dist_on_disk.z(), eps[ip].x());
+                    utils::gaussian1d(dist_on_disk.z(), eps[ip][ieps_normal]);
                 const auto projection_weight = weight_R * weight_T * weight_N;
 
                 src_force[0] += projection_weight * pforce.x();
