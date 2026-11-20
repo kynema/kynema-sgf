@@ -59,7 +59,9 @@ inline int num_whole_steps(
     if (!(ratio >= 0.0_rt) || !(nearest < max_steps) ||
         (std::abs(ratio - nearest) > tol)) {
         std::ostringstream msg;
-        msg << std::setprecision(12) << interval_name << " = " << interval
+        // Digits the precision holds: inputs print as given
+        msg << std::setprecision(std::numeric_limits<amrex::Real>::digits10)
+            << interval_name << " = " << interval
             << " is not a whole multiple of " << dt_name << " = " << dt;
         amrex::Abort(msg.str());
     }
