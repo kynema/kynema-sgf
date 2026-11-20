@@ -227,6 +227,12 @@ TEST_F(FastIfaceTest, velocity_record_is_time_step_of_turbine)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     initialize_mesh();
+    // The file of a turbine is named after its label and written by the
+    // root process of the turbine alone. Every rank of the test makes the
+    // same turbine, so one rank plays its root process.
+    if (!amrex::ParallelDescriptor::IOProcessor()) {
+        return;
+    }
     FastVelocityFile fast(sim());
     VelocityFileTurbine turbine("utest_velocity_record");
     const std::string fname = fast.file_name(turbine.fi);
@@ -271,6 +277,12 @@ TEST_F(FastIfaceTest, replay_rejects_velocity_record_of_another_time)
 {
 #ifdef KYNEMA_SGF_USE_NETCDF
     initialize_mesh();
+    // The file of a turbine is named after its label and written by the
+    // root process of the turbine alone. Every rank of the test makes the
+    // same turbine, so one rank plays its root process.
+    if (!amrex::ParallelDescriptor::IOProcessor()) {
+        return;
+    }
     FastVelocityFile fast(sim());
     VelocityFileTurbine turbine("utest_velocity_replay");
     const std::string fname = fast.file_name(turbine.fi);
