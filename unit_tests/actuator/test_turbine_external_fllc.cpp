@@ -521,6 +521,10 @@ protected:
 // step the solver just took.
 TEST_F(TurbineExternalFLLCTest, same_points_of_bending_blade_stay_same_points)
 {
+    // Serial: the turbine data would make every rank its own root
+    if (amrex::ParallelDescriptor::NProcs() > 1) {
+        GTEST_SKIP();
+    }
     const int npb = 5;
     initialize_mesh();
     auto& iface = make_iface();
@@ -562,6 +566,10 @@ TEST_F(TurbineExternalFLLCTest, same_points_of_bending_blade_stay_same_points)
 // force points' step.
 TEST_F(TurbineExternalFLLCTest, distances_of_other_points_are_of_same_step)
 {
+    // Serial: the turbine data would make every rank its own root
+    if (amrex::ParallelDescriptor::NProcs() > 1) {
+        GTEST_SKIP();
+    }
     const int npb = 5;
     const int nvb = 7;
     initialize_mesh();
@@ -597,6 +605,10 @@ TEST_F(TurbineExternalFLLCTest, distances_of_other_points_are_of_same_step)
 // (replay): the FLLC continues from that state at the first force call.
 TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
 {
+    // Serial: the turbine data would make every rank its own root
+    if (amrex::ParallelDescriptor::NProcs() > 1) {
+        GTEST_SKIP();
+    }
     namespace vs = kynema_sgf::vs;
     const int npb = 5;
     const std::string chkname = "test_turbine_external_fllc_replay_chk";
@@ -626,6 +638,10 @@ TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
 // FLLC starts from zero in step 1, as without a state.
 TEST_F(TurbineExternalFLLCTest, restart_of_turbine_started_anew_ignores_state)
 {
+    // Serial: the turbine data would make every rank its own root
+    if (amrex::ParallelDescriptor::NProcs() > 1) {
+        GTEST_SKIP();
+    }
     namespace vs = kynema_sgf::vs;
     const int npb = 5;
     const std::string chkname = "test_turbine_external_fllc_init_chk";
