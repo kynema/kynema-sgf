@@ -2,6 +2,7 @@
 #define FLLC_H
 
 #include <cstdint>
+#include <iosfwd>
 #include <string>
 #include "src/actuator/actuator_types.H"
 #include "src/actuator/ActParser.H"
@@ -77,7 +78,9 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data);
  * do not resolve the optimal epsilon.
  *
  * \param data FLLC specific data and scratch fields
- * \param view Component view that has references to the grid data
+ * \param view Force points, velocity points and chord of the line. Both
+ * point sets of one instant (or of a rigid motion apart); the distances
+ * along the line taken here are kept for the run.
  * \param eps_chord epsilon chord
  * \param label Name of the line (actuator, blade) for the messages
  * \param print_warnings False on the processes that are to stay silent
@@ -89,6 +92,30 @@ void fllc_init(
     amrex::Real eps_chord,
     const std::string& label = "",
     bool print_warnings = true);
+
+/**
+ * \brief Write the restart state of the correction of one line
+ *
+ * Correction velocity (relaxation continues from it) and the distances
+ * along the line from fllc_init (positions at restart differ and are single
+ * precision). Epsilon, optimal epsilon and non-uniform point ratio: to
+ * check the state against the restarted inputs.
+ *
+ * \param os Stream of the restart data of the actuator
+ * \param data Initialized FLLC data
+ */
+void fllc_write_state(std::ostream& os, const FLLCData& data);
+
+/**
+ * \brief Read the state written by fllc_write_state into initialized data
+ *
+ * \param is Stream of the restart data of the actuator
+ * \param data FLLC data, initialized for the current points and inputs
+ * \return False, with ``data`` unchanged, for other numbers of points,
+ * epsilon, optimal epsilon or non-uniform point ratio, or for distances
+ * along the line off by more than 2 % of the line length
+ */
+bool fllc_read_state(std::istream& is, FLLCData& data);
 
 } // namespace kynema_sgf::actuator
 

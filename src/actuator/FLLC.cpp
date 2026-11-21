@@ -2,6 +2,7 @@
 #include <limits>
 #include <sstream>
 #include "src/actuator/FLLC.H"
+#include "src/actuator/actuator_restart.H"
 #include "src/utilities/linear_interpolation.H"
 #include "AMReX_REAL.H"
 
@@ -35,11 +36,10 @@ void fllc_init(
         amrex::Abort(msg.str());
     }
 
-    // The velocity points and the force points are two sets of points along
-    // the same line, starting at the same place (external turbines: the
-    // nodes of the external solver and the actuator points). Each set is
-    // located by the distance from its own first point, because the two
-    // sets can be positions at different instants of a moving blade.
+    // Velocity and force points: two sets along one line from the same start
+    // (external turbines: solver nodes and actuator points), each located by
+    // distance from its own first point. Rigid motion (a wing) keeps these
+    // distances; a bending blade does not, so the caller passes one instant.
     data.span_distance_force.resize(npts);
     data.span_distance_vel.resize(npts_vel);
     for (int i = 0; i < npts; ++i) {
@@ -246,6 +246,7 @@ void fllc_init(
 
 void fllc_parse(const utils::ActParser& pp, FLLCData& data)
 {
+    // Scalar: first epsilon input value (input order, not init_epsilon's)
     pp.query("epsilon", data.epsilon);
     pp.query("fllc_relaxation_factor", data.relaxation_factor);
     pp.query("fllc_start_time", data.fllc_start_time);
@@ -284,6 +285,102 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data)
             "Actuators using the filtered lifting line correction (FLLC) "
             "require specification 'epsilon' and 'epsilon_chord'");
     }
+}
+
+void fllc_write_state(std::ostream& os, const FLLCData& data)
+{
+    restart::write_list(os, "correction_velocity", data.correction_velocity);
+    restart::write_reals(os, "epsilon", RealList{data.epsilon});
+    restart::write_reals(os, "optimal_epsilon", data.optimal_epsilon);
+    restart::write_reals(os, "epsilon_dr_ratio", RealList{data.eps_dr});
+    restart::write_reals(os, "r", data.r);
+    restart::write_reals(os, "dr", data.dr);
+    restart::write_reals(os, "span_distance_force", data.span_distance_force);
+    restart::write_reals(os, "span_distance_vel", data.span_distance_vel);
+    restart::write_value(
+        os, "mismatched_points", data.mismatched_points ? 1 : 0);
+    restart::write_reals(os, "nonuniform_r", data.nonuniform_r);
+    restart::write_reals(os, "nonuniform_dr", data.nonuniform_dr);
+}
+
+bool fllc_read_state(std::istream& is, FLLCData& data)
+{
+    // Read into copies; data change only if the whole state fits
+    VecList correction(data.correction_velocity.size());
+    RealList epsilon(1);
+    RealList optimal_epsilon(data.optimal_epsilon.size());
+    RealList eps_dr(1);
+    RealList r(data.r.size());
+    RealList dr(data.dr.size());
+    RealList span_distance_force(data.span_distance_force.size());
+    RealList span_distance_vel(data.span_distance_vel.size());
+    int mismatched = 0;
+    RealList nonuniform_r;
+    RealList nonuniform_dr;
+    if (!restart::read_list(is, "correction_velocity", correction) ||
+        !restart::read_reals(is, "epsilon", epsilon) ||
+        !restart::read_reals(is, "optimal_epsilon", optimal_epsilon) ||
+        !restart::read_reals(is, "epsilon_dr_ratio", eps_dr) ||
+        !restart::read_reals(is, "r", r) ||
+        !restart::read_reals(is, "dr", dr) ||
+        !restart::read_reals(is, "span_distance_force", span_distance_force) ||
+        !restart::read_reals(is, "span_distance_vel", span_distance_vel) ||
+        !restart::read_value(is, "mismatched_points", mismatched) ||
+        !restart::read_reals(is, "nonuniform_r", nonuniform_r, true) ||
+        !restart::read_reals(is, "nonuniform_dr", nonuniform_dr, true)) {
+        return false;
+    }
+
+    // Reject other epsilon (or epsilon_min), epsilon_chord, chord,
+    // fllc_epsilon_dr_ratio or point distribution
+    const amrex::Real rtol = 1.0e-6_rt;
+    if (std::abs(epsilon[0] - data.epsilon) > rtol * data.epsilon) {
+        return false;
+    }
+    if (std::abs(eps_dr[0] - data.eps_dr) > rtol * data.eps_dr) {
+        return false;
+    }
+    for (int i = 0; i < static_cast<int>(optimal_epsilon.size()); ++i) {
+        if (std::abs(optimal_epsilon[i] - data.optimal_epsilon[i]) >
+            rtol * data.optimal_epsilon[i]) {
+            return false;
+        }
+    }
+    if (data.nonuniform && ((nonuniform_r.size() < 2) ||
+                            (nonuniform_dr.size() != nonuniform_r.size()))) {
+        return false;
+    }
+    // Reject other point positions. Restart distances differ slightly
+    // (single precision from external solvers, another rotation instant,
+    // blade bending): tolerance well above that, below a line change.
+    const amrex::Real length = data.r.empty() ? 0.0_rt : data.r.back();
+    const amrex::Real dtol = 0.02_rt * length;
+    for (int i = 0; i < static_cast<int>(r.size()); ++i) {
+        if (std::abs(r[i] - data.r[i]) > dtol) {
+            return false;
+        }
+    }
+    for (int i = 0; i < static_cast<int>(span_distance_vel.size()); ++i) {
+        if (std::abs(span_distance_vel[i] - data.span_distance_vel[i]) > dtol) {
+            return false;
+        }
+    }
+
+    data.correction_velocity = correction;
+    data.r = r;
+    data.dr = dr;
+    data.span_distance_force = span_distance_force;
+    data.span_distance_vel = span_distance_vel;
+    data.mismatched_points = (mismatched != 0);
+    if (data.nonuniform) {
+        data.nonuniform_r = nonuniform_r;
+        data.nonuniform_dr = nonuniform_dr;
+        const auto npts_n = nonuniform_r.size();
+        data.nonuniform_vel_rel.resize(npts_n);
+        data.nonuniform_optimal_epsilon.resize(npts_n);
+        data.nonuniform_lift.resize(npts_n);
+    }
+    return true;
 }
 
 } // namespace kynema_sgf::actuator

@@ -925,6 +925,10 @@ Example for ``TurbineFastLine``::
    ``epsilon``, ``epsilon_chord`` and ``epsilon_min`` the same value in all
    three directions when the correction is on; the run prints a warning
    when they differ.
+   Once the correction has started, its state is written into every
+   checkpoint (directory ``actuator`` inside it), and a run that restarts
+   from the checkpoint goes on from that state, unless OpenFAST starts the
+   turbine anew (``openfast_sim_mode = init``).
 
 .. input_param:: Actuator.TurbineFastLine.fllc_relaxation_factor
 
