@@ -287,7 +287,8 @@ void external_write_solver_checkpoint(datatype& data)
  *  (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
  *
  *  External solver checkpoint; once the FLLC has started, per blade its
- *  state and the fluid velocity last sent to the external solver. Turbine
+ *  state, the fluid velocity last sent to the external solver and the forces
+ *  the solver returned for it (the pair the next FLLC update uses). Turbine
  *  root only.
  */
 template <typename datatype>
@@ -319,10 +320,14 @@ void external_write_checkpoint(datatype& data, const std::string& chkname)
             fluid_vel[i][2] = wvel[start_vel + i];
         }
         restart::write_list(os, "fluid_velocity", fluid_vel);
+        restart::write_list(os, "force", tdata.blades[ib].force);
     }
 }
 
 /** Read the FLLC state of an external turbine from the restart checkpoint
+ *
+ *  Turbine root only: fluid velocity to the solver buffers, blade forces to
+ *  the grid (share_restored_forces passes them on).
  *
  *  \return False, with nothing changed, when there is no state for this
  *  turbine and time, or it is for other blades, points, positions or FLLC
@@ -346,15 +351,23 @@ bool external_read_checkpoint(datatype& data, const std::string& chkname)
     // Read into copies; nothing changes unless every blade fits
     std::vector<FLLCData> fllc(tdata.fllc);
     std::vector<VecList> fluid_vel(num_blades);
+    std::vector<VecList> force(num_blades);
     for (int ib = 0; ib < num_blades; ++ib) {
         fluid_vel[ib].resize(tdata.num_vel_pts_blade);
+        force[ib].resize(tdata.num_pts_blade);
         if (!fllc_read_state(is, fllc[ib]) ||
-            !restart::read_list(is, "fluid_velocity", fluid_vel[ib])) {
+            !restart::read_list(is, "fluid_velocity", fluid_vel[ib]) ||
+            !restart::read_list(is, "force", force[ib])) {
             return false;
         }
     }
 
     tdata.fllc = fllc;
+    for (int ib = 0; ib < num_blades; ++ib) {
+        for (int i = 0; i < tdata.num_pts_blade; ++i) {
+            tdata.blades[ib].force[i] = force[ib][i];
+        }
+    }
     const auto& uvel = tdata.ext_data.fluid_velocity(0);
     const auto& vvel = tdata.ext_data.fluid_velocity(1);
     const auto& wvel = tdata.ext_data.fluid_velocity(2);
@@ -367,6 +380,56 @@ bool external_read_checkpoint(datatype& data, const std::string& chkname)
         }
     }
     return true;
+}
+
+/** Pass the blade forces restored on the turbine root to the other
+ *  processes of the turbine, as scatter_data passes the solver forces
+ *
+ *  Called on every process when the FLLC starts at a restart; nothing
+ *  changes unless the root restored a state.
+ */
+template <typename datatype>
+void share_restored_forces(datatype& data, const bool restored)
+{
+    if (!data.info().actuator_in_proc) {
+        return;
+    }
+    auto& tdata = data.meta();
+    const int nforce = tdata.num_blades * tdata.num_pts_blade;
+    // Flag, then the blade forces
+    amrex::Vector<amrex::Real> buf(1 + (3 * nforce), 0.0_rt);
+    const int tag = 1002;
+    if (data.info().is_root_proc) {
+        buf[0] = restored ? 1.0_rt : 0.0_rt;
+        for (int ib = 0; ib < tdata.num_blades; ++ib) {
+            for (int i = 0; i < tdata.num_pts_blade; ++i) {
+                const int k = 1 + (3 * ((ib * tdata.num_pts_blade) + i));
+                for (int dir = 0; dir < 3; ++dir) {
+                    buf[k + dir] = tdata.blades[ib].force[i][dir];
+                }
+            }
+        }
+        for (const int ip : data.info().procs) {
+            if (ip != data.info().root_proc) {
+                amrex::ParallelDescriptor::Send(
+                    buf.data(), buf.size(), ip, tag, tdata.tcomm);
+            }
+        }
+        return;
+    }
+    amrex::ParallelDescriptor::Recv(
+        buf.data(), buf.size(), data.info().root_proc, tag, tdata.tcomm);
+    if (buf[0] == 0.0_rt) {
+        return;
+    }
+    for (int ib = 0; ib < tdata.num_blades; ++ib) {
+        for (int i = 0; i < tdata.num_pts_blade; ++i) {
+            const int k = 1 + (3 * ((ib * tdata.num_pts_blade) + i));
+            for (int dir = 0; dir < 3; ++dir) {
+                tdata.blades[ib].force[i][dir] = buf[k + dir];
+            }
+        }
+    }
 }
 
 template <typename datatype>
@@ -453,9 +516,11 @@ struct CommunicateModelDataOp<
                 }
             }
 
+            bool restored = false;
             if (started && restart_call && data.info().is_root_proc) {
-                if (!external_read_checkpoint<DataType>(
-                        data, io.restart_file())) {
+                restored =
+                    external_read_checkpoint<DataType>(data, io.restart_file());
+                if (!restored) {
                     amrex::OutStream()
                         << "\nWARNING: Actuator " << data.info().label
                         << ": the state of the filtered lifting line "
@@ -467,6 +532,9 @@ struct CommunicateModelDataOp<
                         << "points or for other inputs of the correction. The "
                         << "correction starts from zero." << std::endl;
                 }
+            }
+            if (started && restart_call) {
+                share_restored_forces<DataType>(data, restored);
             }
             if (waits && state_in_checkpoint && data.info().is_root_proc) {
                 amrex::OutStream()

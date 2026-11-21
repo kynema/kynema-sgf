@@ -470,8 +470,9 @@ protected:
         }
     }
 
-    /** Run to the FLLC start, mark each blade's FLLC state and write it into
-     *  checkpoint chkname, as the end-of-step CFD checkpoint does
+    /** Run to the FLLC start, mark each blade's FLLC state and forces
+     *  (m_force_mark) and write them into checkpoint chkname, as the
+     *  end-of-step CFD checkpoint does
      *
      *  \param chk_time Time of the checkpoint
      */
@@ -488,6 +489,11 @@ protected:
         for (auto& fllc : data.meta().fllc) {
             fllc.correction_velocity.assign(
                 fllc.correction_velocity.size(), mark);
+        }
+        for (auto& blade : data.meta().blades) {
+            for (auto& f : blade.force) {
+                f = m_force_mark;
+            }
         }
         amrex::UtilCreateDirectory(chkname, 0755);
         kynema_sgf::actuator::ops::external_write_checkpoint(data, chkname);
@@ -507,6 +513,9 @@ protected:
     }
 
     const int m_num_blades{3};
+
+    //! Blade force written with the marked state
+    const kynema_sgf::vs::Vector m_force_mark{-1.5_rt, 0.5_rt, -0.25_rt};
 
     std::vector<std::unique_ptr<BendingIface>> m_ifaces;
 
@@ -630,6 +639,12 @@ TEST_F(TurbineExternalFLLCTest, restart_goes_on_from_state_in_checkpoint)
             EXPECT_EQ(u.x(), mark.x()) << "blade " << ib;
             EXPECT_EQ(u.y(), mark.y()) << "blade " << ib;
             EXPECT_EQ(u.z(), mark.z()) << "blade " << ib;
+        }
+        // Forces of the checkpoint, not those the solver gives at restart
+        for (const auto& f : data.meta().blades[ib].force) {
+            EXPECT_EQ(f.x(), m_force_mark.x()) << "blade " << ib;
+            EXPECT_EQ(f.y(), m_force_mark.y()) << "blade " << ib;
+            EXPECT_EQ(f.z(), m_force_mark.z()) << "blade " << ib;
         }
     }
 }
