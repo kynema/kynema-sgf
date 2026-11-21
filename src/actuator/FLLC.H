@@ -98,8 +98,8 @@ void fllc_init(
  *
  * Correction velocity (relaxation continues from it) and the distances
  * along the line from fllc_init (positions at restart differ and are single
- * precision). Optimal epsilon and non-uniform point ratio: to check the
- * state against the restarted inputs.
+ * precision). Epsilon, optimal epsilon and non-uniform point ratio: to
+ * check the state against the restarted inputs.
  *
  * \param os Stream of the restart data of the actuator
  * \param data Initialized FLLC data
@@ -112,8 +112,8 @@ void fllc_write_state(std::ostream& os, const FLLCData& data);
  * \param is Stream of the restart data of the actuator
  * \param data FLLC data, initialized for the current points and inputs
  * \return False, with ``data`` unchanged, for other numbers of points,
- * optimal epsilon or non-uniform point ratio, or for distances along the
- * line off by more than 2 % of the line length
+ * epsilon, optimal epsilon or non-uniform point ratio, or for distances
+ * along the line off by more than 2 % of the line length
  */
 bool fllc_read_state(std::istream& is, FLLCData& data);
 

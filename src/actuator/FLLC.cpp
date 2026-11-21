@@ -290,6 +290,7 @@ void fllc_parse(const utils::ActParser& pp, FLLCData& data)
 void fllc_write_state(std::ostream& os, const FLLCData& data)
 {
     restart::write_list(os, "correction_velocity", data.correction_velocity);
+    restart::write_reals(os, "epsilon", RealList{data.epsilon});
     restart::write_reals(os, "optimal_epsilon", data.optimal_epsilon);
     restart::write_reals(os, "epsilon_dr_ratio", RealList{data.eps_dr});
     restart::write_reals(os, "r", data.r);
@@ -306,6 +307,7 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
 {
     // Read into copies; data change only if the whole state fits
     VecList correction(data.correction_velocity.size());
+    RealList epsilon(1);
     RealList optimal_epsilon(data.optimal_epsilon.size());
     RealList eps_dr(1);
     RealList r(data.r.size());
@@ -316,6 +318,7 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
     RealList nonuniform_r;
     RealList nonuniform_dr;
     if (!restart::read_list(is, "correction_velocity", correction) ||
+        !restart::read_reals(is, "epsilon", epsilon) ||
         !restart::read_reals(is, "optimal_epsilon", optimal_epsilon) ||
         !restart::read_reals(is, "epsilon_dr_ratio", eps_dr) ||
         !restart::read_reals(is, "r", r) ||
@@ -328,9 +331,12 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
         return false;
     }
 
-    // Reject other epsilon_chord, chord, fllc_epsilon_dr_ratio or point
-    // distribution
+    // Reject other epsilon (or epsilon_min), epsilon_chord, chord,
+    // fllc_epsilon_dr_ratio or point distribution
     const amrex::Real rtol = 1.0e-6_rt;
+    if (std::abs(epsilon[0] - data.epsilon) > rtol * data.epsilon) {
+        return false;
+    }
     if (std::abs(eps_dr[0] - data.eps_dr) > rtol * data.eps_dr) {
         return false;
     }

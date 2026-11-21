@@ -38,6 +38,7 @@ kynema_sgf::actuator::FLLCData make_fllc_data(
     namespace vs = kynema_sgf::vs;
     kynema_sgf::actuator::FLLCData data;
     data.eps_dr = 3.0_rt;
+    data.epsilon = 2.0_rt;
     data.nonuniform = true;
     data.mismatched_points = (npts != npts_vel);
     data.correction_velocity.resize(npts);
@@ -148,6 +149,14 @@ TEST(ActuatorRestart, fllc_state_that_does_not_fit_is_refused)
     {
         auto data = make_fllc_data(5, 6, 9, 1.01_rt);
         data.optimal_epsilon[2] *= 1.01_rt;
+        std::stringstream is(state);
+        EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
+        EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
+    }
+    // Another epsilon or epsilon_min
+    {
+        auto data = make_fllc_data(5, 6, 9, 1.01_rt);
+        data.epsilon = 2.5_rt;
         std::stringstream is(state);
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
         EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
