@@ -1,7 +1,6 @@
 #ifndef TURBINE_EXTERNAL_OPS_H
 #define TURBINE_EXTERNAL_OPS_H
 
-#include <cstddef>
 #include <fstream>
 #include <type_traits>
 #include <vector>
@@ -323,12 +322,14 @@ void external_write_checkpoint(datatype& data, const std::string& chkname)
         restart::write_list(os, "fluid_velocity", fluid_vel);
         restart::write_list(os, "force", tdata.blades[ib].force);
     }
+    restart::close_file(os, chkname, data.info().label);
 }
 
 /** Read the FLLC state of an external turbine from the restart checkpoint
  *
  *  Turbine root only: fluid velocity to the solver buffers, blade forces to
- *  the grid (share_restored_forces passes them on).
+ *  the grid. Only the root runs the FLLC; scatter_data refreshes the forces
+ *  of the other processes before they are used.
  *
  *  \return False, with nothing changed, when there is no state for this
  *  turbine and time, or it is for other blades, points, positions or FLLC
@@ -381,65 +382,6 @@ bool external_read_checkpoint(datatype& data, const std::string& chkname)
         }
     }
     return true;
-}
-
-/** Pass the blade forces restored on the turbine root to the other
- *  processes of the turbine, as scatter_data passes the solver forces
- *
- *  Called on every process when the FLLC starts at a restart; nothing
- *  changes unless the root restored a state.
- */
-template <typename datatype>
-void share_restored_forces(datatype& data, const bool restored)
-{
-    if (!data.info().actuator_in_proc) {
-        return;
-    }
-    auto& tdata = data.meta();
-    const auto& info = data.info();
-    const int nforce = tdata.num_blades * tdata.num_pts_blade;
-    const int flag_tag = 1002;
-    const int force_tag = 1003;
-    // Flag first; the forces only when the root restored a state
-    int flag = restored ? 1 : 0;
-    amrex::Vector<amrex::Real> buf(static_cast<std::size_t>(3 * nforce));
-    if (info.is_root_proc) {
-        for (int ib = 0; restored && ib < tdata.num_blades; ++ib) {
-            for (int i = 0; i < tdata.num_pts_blade; ++i) {
-                const int k = 3 * ((ib * tdata.num_pts_blade) + i);
-                for (int dir = 0; dir < 3; ++dir) {
-                    buf[k + dir] = tdata.blades[ib].force[i][dir];
-                }
-            }
-        }
-        for (const int ip : info.procs) {
-            if (ip == info.root_proc) {
-                continue;
-            }
-            amrex::ParallelDescriptor::Send(
-                &flag, 1, ip, flag_tag, tdata.tcomm);
-            if (restored) {
-                amrex::ParallelDescriptor::Send(
-                    buf.data(), buf.size(), ip, force_tag, tdata.tcomm);
-            }
-        }
-        return;
-    }
-    amrex::ParallelDescriptor::Recv(
-        &flag, 1, info.root_proc, flag_tag, tdata.tcomm);
-    if (flag == 0) {
-        return;
-    }
-    amrex::ParallelDescriptor::Recv(
-        buf.data(), buf.size(), info.root_proc, force_tag, tdata.tcomm);
-    for (int ib = 0; ib < tdata.num_blades; ++ib) {
-        for (int i = 0; i < tdata.num_pts_blade; ++i) {
-            const int k = 3 * ((ib * tdata.num_pts_blade) + i);
-            for (int dir = 0; dir < 3; ++dir) {
-                tdata.blades[ib].force[i][dir] = buf[k + dir];
-            }
-        }
-    }
 }
 
 template <typename datatype>
@@ -526,25 +468,18 @@ struct CommunicateModelDataOp<
                 }
             }
 
-            bool restored = false;
-            if (started && restart_call && data.info().is_root_proc) {
-                restored =
-                    external_read_checkpoint<DataType>(data, io.restart_file());
-                if (!restored) {
-                    amrex::OutStream()
-                        << "\nWARNING: Actuator " << data.info().label
-                        << ": the state of the filtered lifting line "
-                           "correction "
-                        << "in the checkpoint " << io.restart_file()
-                        << " does not fit this turbine: it is for other "
-                           "numbers "
-                        << "of blades or points, for other positions of the "
-                        << "points or for other inputs of the correction. The "
-                        << "correction starts from zero." << std::endl;
-                }
-            }
-            if (started && restart_call) {
-                share_restored_forces<DataType>(data, restored);
+            if (started && restart_call && data.info().is_root_proc &&
+                !external_read_checkpoint<DataType>(data, io.restart_file())) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the state of the filtered lifting line "
+                       "correction "
+                    << "in the checkpoint " << io.restart_file()
+                    << " does not fit this turbine: it is for other "
+                       "numbers "
+                    << "of blades or points, for other positions of the "
+                    << "points or for other inputs of the correction. The "
+                    << "correction starts from zero." << std::endl;
             }
             if (waits && state_in_checkpoint && data.info().is_root_proc) {
                 amrex::OutStream()
