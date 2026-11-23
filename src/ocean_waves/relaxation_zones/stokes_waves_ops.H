@@ -161,29 +161,27 @@ struct InitDataOp<StokesWaves>
                 const amrex::Real cell_length_2D =
                     std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
                 if (phi + cell_length_2D >= 0) {
-                    if (multiphase_mode) {
+                    if (multiphase_mode && utils::surface_below_cell_top(
+                                               local_profile[3], z, dx[2])) {
                         // Liquid velocity at the approx. liquid centroid
                         // height of the local free surface, as for targets
                         const amrex::Real z_liq = utils::liquid_centroid_z(
                             local_profile[3], z, dx[2]);
-                        if (z_liq != z) {
-                            amrex::Real eta_c{0.0_rt}, u_c{0.0_rt}, v_c{0.0_rt},
-                                w_c{0.0_rt};
-                            relaxation_zones::stokes_waves(
-                                order, wave_length, water_depth, wave_height,
-                                zero_sea_level, g, x, z_liq, 0.0_rt,
-                                phase_offset, constants::LOW_NUM,
-                                constants::LARGE_NUM, eta_c, u_c, v_c, w_c);
-                            const utils::WaveVec wave_sol_c{
-                                u_c, v_c, w_c, eta_c};
-                            const auto bulk_c =
-                                init_wave_field ? wave_sol_c : quiescent;
-                            const auto outlet_c =
-                                has_beach ? quiescent : wave_sol_c;
-                            local_profile = utils::harmonize_profiles_1d(
-                                x, problo[0], gen_length, probhi[0],
-                                beach_length, wave_sol_c, bulk_c, outlet_c);
-                        }
+                        amrex::Real eta_c{0.0_rt}, u_c{0.0_rt}, v_c{0.0_rt},
+                            w_c{0.0_rt};
+                        relaxation_zones::stokes_waves(
+                            order, wave_length, water_depth, wave_height,
+                            zero_sea_level, g, x, z_liq, 0.0_rt, phase_offset,
+                            constants::LOW_NUM, constants::LARGE_NUM, eta_c,
+                            u_c, v_c, w_c);
+                        const utils::WaveVec wave_sol_c{u_c, v_c, w_c, eta_c};
+                        const auto bulk_c =
+                            init_wave_field ? wave_sol_c : quiescent;
+                        const auto outlet_c =
+                            has_beach ? quiescent : wave_sol_c;
+                        local_profile = utils::harmonize_profiles_1d(
+                            x, problo[0], gen_length, probhi[0], beach_length,
+                            wave_sol_c, bulk_c, outlet_c);
                     }
                     vel[nbx](i, j, k, 0) = local_profile[0];
                     vel[nbx](i, j, k, 1) = local_profile[1];
@@ -226,6 +224,9 @@ struct UpdateTargetFieldsOp<StokesWaves>
             const amrex::Real zero_sea_level = wdata.zsl;
             const amrex::Real g = wdata.g;
             const int order = wdata.order;
+            // Single-phase (waves as terrain): targets stay at cell centers
+            const bool multiphase_mode =
+                sim.physics_manager().contains("MultiPhase");
 
             amrex::ParallelFor(
                 ow_velocity(lev), amrex::IntVect(3),
@@ -249,9 +250,10 @@ struct UpdateTargetFieldsOp<StokesWaves>
                     if (phi[nbx](i, j, k) + cell_length_2D >= 0) {
                         // Liquid velocity at the approx. liquid centroid
                         // height, from the known surface elevation
-                        const amrex::Real z_liq =
-                            utils::liquid_centroid_z(eta, z, dx[2]);
-                        if (z_liq != z) {
+                        if (multiphase_mode &&
+                            utils::surface_below_cell_top(eta, z, dx[2])) {
+                            const amrex::Real z_liq =
+                                utils::liquid_centroid_z(eta, z, dx[2]);
                             amrex::Real eta_c{0.0_rt};
                             relaxation_zones::stokes_waves(
                                 order, wave_length, water_depth, wave_height,

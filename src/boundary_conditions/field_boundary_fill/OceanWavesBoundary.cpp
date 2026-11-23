@@ -101,6 +101,9 @@ void OceanWavesBoundary::set_velocity(
     const auto& domain = geom.growPeriodicDomain(nghost);
 
     const bool terrain_and_vof_exist = m_terrain_exists && m_vof_exists;
+    // The gas-cell wave velocity extension applies only in multiphase
+    // simulations; with waves as terrain, the boundary values are kept
+    const bool extend_into_gas = m_vof_exists;
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
@@ -145,7 +148,7 @@ void OceanWavesBoundary::set_velocity(
                 for (int n = 0; n < numcomp; n++) {
                     if (targ_vof(iv) > constants::VOF_TOL) {
                         arr(iv, dcomp + n) = targ_arr(iv, orig_comp + n);
-                    } else {
+                    } else if (extend_into_gas) {
                         // Gas-only cells above target liquid: candidate is the
                         // wave velocity of the liquid cell below (first gas
                         // cell) or half of it from two cells below (second gas
@@ -153,7 +156,8 @@ void OceanWavesBoundary::set_velocity(
                         // where its magnitude is larger.
                         bool has_cand = false;
                         amrex::Real cand = 0.0_rt;
-                        if (targ_vof(iv + below) > constants::VOF_TOL) {
+                        if (targ_vof.contains(iv + below) &&
+                            targ_vof(iv + below) > constants::VOF_TOL) {
                             cand = targ_arr(iv + below, orig_comp + n);
                             has_cand = true;
                         } else if (
@@ -291,6 +295,9 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
     BL_PROFILE("kynema-sgf::OceanWavesBoundary::set_inflow_sibling_velocity");
 
     const bool terrain_and_vof_exist = m_terrain_exists && m_vof_exists;
+    // The gas-cell wave velocity extension applies only in multiphase
+    // simulations; with waves as terrain, the boundary values are kept
+    const bool extend_into_gas = m_vof_exists;
     const auto& bctype = fld.bc_type();
     const auto& geom = fld.repo().mesh().Geom(lev);
 
@@ -353,7 +360,7 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
 
                         if (targ_vof(cc_iv) > constants::VOF_TOL) {
                             marr(i, j, k, 0) = targ_arr(cc_iv, fdir);
-                        } else {
+                        } else if (extend_into_gas) {
                             // Gas-only cells above target liquid: wave
                             // velocity of the liquid cell below (first gas
                             // cell) or half of it from two cells below
@@ -361,7 +368,8 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
                             // the existing (gas) face velocity
                             bool has_cand = false;
                             amrex::Real cand = 0.0_rt;
-                            if (targ_vof(cc_below) > constants::VOF_TOL) {
+                            if (targ_vof.contains(cc_below) &&
+                                targ_vof(cc_below) > constants::VOF_TOL) {
                                 cand = targ_arr(cc_below, fdir);
                                 has_cand = true;
                             } else if (

@@ -134,14 +134,13 @@ struct InitDataOp<LinearWaves>
                     std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
 
                 if (phi + cell_length_2D >= 0) {
-                    if (multiphase_mode) {
+                    if (multiphase_mode && utils::surface_below_cell_top(
+                                               local_profile[3], z, dx[2])) {
                         // Liquid velocity at the approx. liquid centroid
                         // height of the local free surface, as for targets
-                        const amrex::Real z_liq = utils::liquid_centroid_z(
-                            local_profile[3], z, dx[2]);
-                        if (z_liq != z) {
-                            local_profile = local_profile_at(z_liq);
-                        }
+                        local_profile = local_profile_at(
+                            utils::liquid_centroid_z(
+                                local_profile[3], z, dx[2]));
                     }
                     vel[nbx](i, j, k, 0) = current + local_profile[0];
                     vel[nbx](i, j, k, 1) = local_profile[1];
@@ -184,6 +183,9 @@ struct UpdateTargetFieldsOp<LinearWaves>
             const amrex::Real zero_sea_level = wdata.zsl;
             const amrex::Real g = wdata.g;
             const amrex::Real current = wdata.current;
+            // Single-phase (waves as terrain): targets stay at cell centers
+            const bool multiphase_mode =
+                sim.physics_manager().contains("MultiPhase");
 
             amrex::ParallelFor(
                 ow_velocity(lev), amrex::IntVect(3),
@@ -213,7 +215,9 @@ struct UpdateTargetFieldsOp<LinearWaves>
                         // Liquid velocity at the approx. liquid centroid
                         // height, from the known surface elevation
                         const amrex::Real z_liq =
-                            utils::liquid_centroid_z(eta, z, dx[2]);
+                            multiphase_mode
+                                ? utils::liquid_centroid_z(eta, z, dx[2])
+                                : z;
                         vel[nbx](i, j, k, 0) =
                             (omega * wave_height / 2.0_rt *
                              std::cosh(

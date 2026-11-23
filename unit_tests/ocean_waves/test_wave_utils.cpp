@@ -185,6 +185,17 @@ TEST_F(WaveUtilsTest, liquid_centroid_z)
     }
 }
 
+TEST_F(WaveUtilsTest, surface_below_cell_top)
+{
+    constexpr amrex::Real zc = 0.3_rt;
+    constexpr amrex::Real dz = 0.2_rt; // cell spans [0.2, 0.4]
+    namespace wu = kynema_sgf::ocean_waves::utils;
+    EXPECT_TRUE(wu::surface_below_cell_top(0.35_rt, zc, dz));
+    EXPECT_TRUE(wu::surface_below_cell_top(-1.0_rt, zc, dz));
+    EXPECT_FALSE(wu::surface_below_cell_top(0.4_rt, zc, dz));
+    EXPECT_FALSE(wu::surface_below_cell_top(1.0_rt, zc, dz));
+}
+
 TEST_F(WaveUtilsTest, harmonize_profiles)
 {
     constexpr amrex::Real tol =

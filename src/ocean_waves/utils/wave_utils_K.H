@@ -52,6 +52,15 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real liquid_centroid_z(
     return 0.5_rt * (z_bottom + z_surf);
 }
 
+/** Whether the free surface at height eta lies below the top of a cell, i.e.,
+ *  whether liquid_centroid_z differs from the cell center
+ */
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool surface_below_cell_top(
+    const amrex::Real eta, const amrex::Real z_center, const amrex::Real dz)
+{
+    return eta < z_center + (0.5_rt * dz);
+}
+
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
 gamma_generate(const amrex::Real x, const amrex::Real gen_length)
 {

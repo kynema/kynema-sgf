@@ -9,6 +9,9 @@
 #include "src/equation_systems/icns/icns_advection.H"
 #include "AMReX_REAL.H"
 
+#include <array>
+#include <numbers>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
@@ -61,6 +64,57 @@ protected:
             pp.addarr("physics", phystr);
             pp.add("use_godunov", 1);
         }
+    }
+
+    //! Linear waves with a wave generation boundary at x-low and the given gas
+    //! velocity there; fields initialized and boundaries filled
+    void init_wave_generation_case(
+        const amrex::Vector<amrex::Real>& gas_vel,
+        const amrex::Real phase_offset)
+    {
+        populate_parameters();
+        {
+            amrex::ParmParse pp("OceanWaves");
+            pp.add("label", (std::string) "lin_ow");
+            amrex::ParmParse ppow("OceanWaves.lin_ow");
+            ppow.add("type", (std::string) "LinearWaves");
+            ppow.add("wave_height", 0.05_rt);
+            ppow.add("wave_length", 1.0_rt);
+            ppow.add("water_depth", 1.0_rt);
+            ppow.add("wave_phase_offset_radians", phase_offset);
+            ppow.add("relax_zone_gen_length", 2.0_rt);
+            ppow.add("numerical_beach_length", 4.0_rt);
+        }
+        {
+            amrex::ParmParse pp("time");
+            pp.add("fixed_dt", 0.1_rt);
+        }
+        {
+            amrex::ParmParse ppxlo("xlo");
+            ppxlo.add("type", (std::string) "wave_generation");
+            ppxlo.addarr("velocity", gas_vel);
+            ppxlo.add("vof", 0.0_rt);
+            ppxlo.add("density", 1.0_rt);
+        }
+
+        initialize_mesh();
+        auto& pde_mgr = sim().pde_manager();
+        pde_mgr.register_icns();
+        sim().init_physics();
+        sim().init_field_boundaries();
+        auto& oceanwaves =
+            sim().physics_manager().get<kynema_sgf::ocean_waves::OceanWaves>();
+        auto& oceanwaves_bndry = sim()
+                                     .field_boundary_manager()
+                                     .get<kynema_sgf::OceanWavesBoundary>();
+        auto& repo = sim().repo();
+        repo.get_field("velocity").setVal(gas_vel, 3);
+        oceanwaves.pre_init_actions();
+        for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
+            oceanwaves.initialize_fields(lev, mesh().Geom(lev));
+        }
+        oceanwaves.post_init_actions();
+        oceanwaves_bndry.post_init_actions();
     }
 };
 
@@ -197,11 +251,10 @@ amrex::Real gas_velocity_error(
 //! liquid; in gas-only cells, the candidate wave velocity (target velocity of
 //! the liquid cell below for the first gas cell, half of the target velocity
 //! two cells below for the second) where its magnitude exceeds that of the gas
-//! boundary velocity, otherwise the gas velocity. gas_vel is the gas boundary
-//! velocity (the filled field already includes these modifications).
+//! boundary velocity, otherwise the gas velocity. gas_vel is the prescribed gas
+//! boundary velocity, so the expectation does not depend on the filled field.
 void make_target_velocity(
     kynema_sgf::Field& ow_velocity,
-    kynema_sgf::Field& velocity,
     kynema_sgf::Field& ow_vof,
     const amrex::Vector<amrex::Real>& gas_vel)
 {
@@ -210,11 +263,10 @@ void make_target_velocity(
         gas_vel[0], gas_vel[1], gas_vel[2]};
     for (int lev = 0; lev < ow_vof.repo().num_active_levels(); ++lev) {
         const auto& ow_vel_arrs = ow_velocity(lev).arrays();
-        const auto& vel_arrs = velocity(lev).const_arrays();
         const auto& ow_vof_arrs = ow_vof(lev).const_arrays();
         // Only gas cells are modified; they read liquid-cell targets only
         amrex::ParallelFor(
-            ow_vof(lev), amrex::IntVect(2), velocity.num_comp(),
+            ow_vof(lev), amrex::IntVect(2), ow_velocity.num_comp(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
                 const auto f = ow_vof_arrs[nbx];
                 if (f(i, j, k) > tol) {
@@ -232,7 +284,7 @@ void make_target_velocity(
                 }
                 v(i, j, k, n) = (has_cand && std::abs(cand) > std::abs(gvel[n]))
                                     ? cand
-                                    : vel_arrs[nbx](i, j, k, n);
+                                    : gvel[n];
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -316,6 +368,104 @@ amrex::Real uface_bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
     }
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
     return error_total;
+}
+
+//! Position of a gas cell in the column at the x-low boundary ghost cell
+//! (i = -1): 1 for the first gas cell above target liquid, 2 for the second,
+//! 3 for any other gas cell, 0 for target liquid or undetermined (column below
+//! not available in this box)
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE int gas_cell_position(
+    amrex::Array4<amrex::Real const> const& f, const int j, const int k)
+{
+    constexpr amrex::Real tol = kynema_sgf::constants::VOF_TOL;
+    constexpr int i = -1;
+    if (f(i, j, k) > tol || !f.contains(i, j, k - 1)) {
+        return 0;
+    }
+    if (f(i, j, k - 1) > tol) {
+        return 1;
+    }
+    if (!f.contains(i, j, k - 2)) {
+        return 0;
+    }
+    return (f(i, j, k - 2) > tol) ? 2 : 3;
+}
+
+//! Independent check of the gas-cell wave velocity at the x-low boundary for a
+//! zero gas boundary velocity, where the wave velocity always wins: the first
+//! gas cell above the target liquid has the target velocity of the liquid cell
+//! below, the second has half of the target velocity two cells below, and all
+//! other gas cells keep the zero gas velocity. comp is the cell-centered
+//! velocity (boundary ghost cells at i = -1, ncomp components) or, with
+//! face = true, the x-face velocity (boundary faces at i = 0). Returns the max
+//! error, the numbers of first, second, and other gas cells checked, and the
+//! max candidate magnitude in first gas cells.
+std::array<amrex::Real, 5> gas_extension_check(
+    kynema_sgf::Field& comp,
+    kynema_sgf::Field& ow_vof,
+    kynema_sgf::Field& ow_vel,
+    const bool face,
+    const int ncomp)
+{
+    std::array<amrex::Real, 5> result{0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt};
+    const int ic = face ? 0 : -1;
+    for (int lev = 0; lev < comp.repo().num_active_levels(); ++lev) {
+        amrex::ReduceOps<
+            amrex::ReduceOpMax, amrex::ReduceOpSum, amrex::ReduceOpSum,
+            amrex::ReduceOpSum, amrex::ReduceOpMax>
+            reduce_op;
+        amrex::ReduceData<
+            amrex::Real, amrex::Real, amrex::Real, amrex::Real, amrex::Real>
+            reduce_data(reduce_op);
+        using ReduceTuple = typename decltype(reduce_data)::Type;
+        for (amrex::MFIter mfi(comp(lev)); mfi.isValid(); ++mfi) {
+            const auto& bx = mfi.validbox();
+            const auto& c = comp(lev).const_array(mfi);
+            const auto& f = ow_vof(lev).const_array(mfi);
+            const auto& v = ow_vel(lev).const_array(mfi);
+            reduce_op.eval(
+                bx, reduce_data,
+                [=] AMREX_GPU_DEVICE(int i, int j, int k) -> ReduceTuple {
+                    if (i != 0) {
+                        return {0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt};
+                    }
+                    const int pos = gas_cell_position(f, j, k);
+                    if (pos == 0) {
+                        return {0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt, 0.0_rt};
+                    }
+                    amrex::Real err = 0.0_rt;
+                    amrex::Real cand_mag = 0.0_rt;
+                    for (int n = 0; n < ncomp; ++n) {
+                        const amrex::Real expected =
+                            (pos == 1)
+                                ? v(-1, j, k - 1, n)
+                                : ((pos == 2) ? 0.5_rt * v(-1, j, k - 2, n)
+                                              : 0.0_rt);
+                        err = amrex::max(
+                            err, std::abs(c(ic, j, k, n) - expected));
+                        if (pos == 1) {
+                            cand_mag = amrex::max(cand_mag, std::abs(expected));
+                        }
+                    }
+                    return {
+                        err, (pos == 1) ? 1.0_rt : 0.0_rt,
+                        (pos == 2) ? 1.0_rt : 0.0_rt,
+                        (pos == 3) ? 1.0_rt : 0.0_rt, cand_mag};
+                });
+        }
+        const auto rv = reduce_data.value(reduce_op);
+        result[0] = amrex::max(result[0], amrex::get<0>(rv));
+        result[1] += amrex::get<1>(rv);
+        result[2] += amrex::get<2>(rv);
+        result[3] += amrex::get<3>(rv);
+        result[4] = amrex::max(result[4], amrex::get<4>(rv));
+    }
+    amrex::ParallelDescriptor::ReduceRealMax(result[0]);
+    amrex::ParallelDescriptor::ReduceRealSum(result[1]);
+    amrex::ParallelDescriptor::ReduceRealSum(result[2]);
+    amrex::ParallelDescriptor::ReduceRealSum(result[3]);
+    amrex::ParallelDescriptor::ReduceRealMax(result[4]);
+    return result;
 }
 
 //! Max error of linear-wave target velocity vs. theory at the liquid-centroid
@@ -561,7 +711,7 @@ TEST_F(OceanWavesOpTest, boundary_fill)
     // Check velocity field to confirm not modified
     amrex::Real error_total = bdy_error(vof, ow_vof);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
-    make_target_velocity(ow_velocity, velocity, ow_vof, gas_vel);
+    make_target_velocity(ow_velocity, ow_vof, gas_vel);
     error_total = bdy_error(velocity, ow_velocity, AMREX_SPACEDIM);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
     make_target_density(ow_vof, rho1, rho2);
@@ -643,9 +793,50 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     auto& ow_velocity = repo.get_field("ow_velocity");
 
     // Check velocity field to confirm not modified
-    make_target_velocity(ow_velocity, velocity, ow_vof, gas_vel);
+    make_target_velocity(ow_velocity, ow_vof, gas_vel);
     const amrex::Real error_total = uface_bdy_error(u_mac, ow_velocity);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
+}
+
+TEST_F(OceanWavesOpTest, boundary_fill_gas_extension)
+{
+    // Zero gas velocity and a wave phase with nonzero horizontal and vertical
+    // velocity at the boundary, so the wave velocity is used in the first two
+    // gas cells above the target liquid
+    constexpr amrex::Real tol = 1.0e-12_rt;
+    init_wave_generation_case(
+        {0.0_rt, 0.0_rt, 0.0_rt}, 0.25_rt * std::numbers::pi_v<amrex::Real>);
+    auto& repo = sim().repo();
+    const auto res = gas_extension_check(
+        repo.get_field("velocity"), repo.get_field("ow_vof"),
+        repo.get_field("ow_velocity"), false, AMREX_SPACEDIM);
+    EXPECT_GT(res[1], 0.0_rt);
+    EXPECT_GT(res[2], 0.0_rt);
+    EXPECT_GT(res[3], 0.0_rt);
+    EXPECT_GT(res[4], 0.01_rt);
+    EXPECT_NEAR(res[0], 0.0_rt, tol);
+}
+
+TEST_F(OceanWavesOpTest, set_inflow_sibling_gas_extension)
+{
+    constexpr amrex::Real tol = 1.0e-12_rt;
+    init_wave_generation_case(
+        {0.0_rt, 0.0_rt, 0.0_rt}, 0.25_rt * std::numbers::pi_v<amrex::Real>);
+    auto& repo = sim().repo();
+    auto& u_mac = repo.get_field("u_mac");
+    u_mac.setVal(0.0_rt);
+    auto mco = kynema_sgf::pde::MacProjOp(
+        sim().repo(), sim().field_boundary_manager(), false, false, false,
+        false);
+    mco.set_inflow_velocity(0.0_rt);
+    const auto res = gas_extension_check(
+        u_mac, repo.get_field("ow_vof"), repo.get_field("ow_velocity"), true,
+        1);
+    EXPECT_GT(res[1], 0.0_rt);
+    EXPECT_GT(res[2], 0.0_rt);
+    EXPECT_GT(res[3], 0.0_rt);
+    EXPECT_GT(res[4], 0.01_rt);
+    EXPECT_NEAR(res[0], 0.0_rt, tol);
 }
 
 TEST_F(OceanWavesOpTest, linear_target_velocity_at_liquid_centroid)
