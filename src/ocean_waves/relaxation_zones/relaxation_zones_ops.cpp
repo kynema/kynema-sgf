@@ -84,17 +84,6 @@ struct VofFromField
     }
 };
 
-struct VofFromLevelset
-{
-    amrex::Array4<amrex::Real const> phi;
-    amrex::Real eps;
-    AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
-    operator()(int i, int j, int k) const
-    {
-        return multiphase::levelset_to_vof(i, j, k, eps, phi);
-    }
-};
-
 template <typename VofFunc>
 void approx_liquid_centroid_z_sweep(
     const amrex::Box& bx,
@@ -132,22 +121,6 @@ void approx_liquid_centroid_z_velocity(
         approx_liquid_centroid_z_sweep(
             amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
             VofFromField{vof.const_array(mfi)});
-    }
-    amrex::Gpu::streamSynchronize();
-}
-
-void approx_liquid_centroid_z_velocity_from_levelset(
-    amrex::MultiFab& vel,
-    const amrex::MultiFab& levelset,
-    const amrex::Real eps,
-    const int ngrow)
-{
-    AMREX_ALWAYS_ASSERT(vel.nGrowVect()[2] > ngrow);
-    AMREX_ALWAYS_ASSERT(levelset.nGrowVect().allGT(amrex::IntVect(ngrow)));
-    for (amrex::MFIter mfi(vel, false); mfi.isValid(); ++mfi) {
-        approx_liquid_centroid_z_sweep(
-            amrex::grow(mfi.validbox(), ngrow), vel.array(mfi), vel.nComp(),
-            VofFromLevelset{.phi = levelset.const_array(mfi), .eps = eps});
     }
     amrex::Gpu::streamSynchronize();
 }

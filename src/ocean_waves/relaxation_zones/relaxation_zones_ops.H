@@ -46,17 +46,13 @@ void update_target_vof(CFDSim& sim);
 void approx_liquid_centroid_z_velocity(
     amrex::MultiFab& vel, const amrex::MultiFab& vof, int ngrow);
 
-/** Same as approx_liquid_centroid_z_velocity, with vof from a levelset */
-void approx_liquid_centroid_z_velocity_from_levelset(
-    amrex::MultiFab& vel,
-    const amrex::MultiFab& levelset,
-    amrex::Real eps,
-    int ngrow);
-
 /** Make target (liquid) velocity consistent with target vof by evaluating it
  *  at the approximate z-location of the liquid centroid of partially filled
  *  cells. Requires ow_velocity to
  *  be regenerated before every call, which all wave theories do.
+ *  Only used for wave theories whose trait sets
+ *  interp_target_velocity_to_liquid_centroid (W2AWaves); Stokes and linear
+ *  waves evaluate their kinematics at utils::liquid_centroid_z directly.
  */
 void update_target_velocity(CFDSim& sim);
 
@@ -129,7 +125,10 @@ struct UpdateTargetFieldsSecondaryOp<
         }
 
         relaxation_zones::update_target_vof(sim);
-        relaxation_zones::update_target_velocity(sim);
+        if constexpr (
+            WaveTheoryTrait::interp_target_velocity_to_liquid_centroid) {
+            relaxation_zones::update_target_velocity(sim);
+        }
     }
 };
 

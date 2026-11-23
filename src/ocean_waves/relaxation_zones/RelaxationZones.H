@@ -46,7 +46,15 @@ struct RelaxZonesBaseData
 };
 
 struct RelaxZonesType : public OceanWavesType
-{};
+{
+    /** Whether the target velocity of partially filled cells is moved to the
+     *  approximate liquid-centroid height by interpolating cell-centered
+     *  values after the target fields are set. Wave theories that evaluate
+     *  their kinematics directly at the liquid-centroid height (from the known
+     *  free-surface elevation) leave this false.
+     */
+    static constexpr bool interp_target_velocity_to_liquid_centroid = false;
+};
 
 } // namespace kynema_sgf::ocean_waves
 

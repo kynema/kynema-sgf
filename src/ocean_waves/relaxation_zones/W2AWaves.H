@@ -99,6 +99,10 @@ struct W2AWaves : public RelaxZonesType
     using MetaType = W2AWavesData;
     using DataType = OceanWavesDataHolder<W2AWaves>;
 
+    // Velocities come from reconstructed fields at cell centers, so partially
+    // filled cells are interpolated to the approximate liquid centroid
+    static constexpr bool interp_target_velocity_to_liquid_centroid = true;
+
     static std::string identifier() { return "W2AWaves"; }
 };
 
