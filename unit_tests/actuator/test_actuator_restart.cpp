@@ -169,6 +169,14 @@ TEST(ActuatorRestart, fllc_state_that_does_not_fit_is_refused)
         EXPECT_FALSE(kynema_sgf::actuator::fllc_read_state(is, data));
         EXPECT_EQ(data.r[0], 1.01_rt / 3.0_rt);
     }
+    // Another fllc_epsilon_dr_ratio, unused without non-uniform points
+    {
+        auto data = make_fllc_data(5, 6, 9, 1.01_rt);
+        data.nonuniform = false;
+        data.eps_dr = 2.0_rt;
+        std::stringstream is(state);
+        EXPECT_TRUE(kynema_sgf::actuator::fllc_read_state(is, data));
+    }
     // The same line and the same inputs
     {
         auto data = make_fllc_data(5, 6, 9, 1.01_rt);

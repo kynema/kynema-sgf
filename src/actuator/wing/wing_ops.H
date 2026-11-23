@@ -370,7 +370,9 @@ struct ComputeLoadsOp<
                         << "correction in the checkpoint " << io.restart_file()
                         << " does not fit this wing: it is for another "
                         << "number of points, for other positions of the "
-                        << "points or for other inputs of the correction. "
+                        << "points or for other epsilon, epsilon_chord, chord "
+                           "or "
+                        << "fllc_epsilon_dr_ratio values. "
                         << "The correction starts from zero." << std::endl;
                 }
             }

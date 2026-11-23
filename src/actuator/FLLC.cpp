@@ -331,13 +331,14 @@ bool fllc_read_state(std::istream& is, FLLCData& data)
         return false;
     }
 
-    // Reject other epsilon (or epsilon_min), epsilon_chord, chord,
-    // fllc_epsilon_dr_ratio or point distribution
+    // Reject other epsilon (or epsilon_min), epsilon_chord, chord or point
+    // distribution, or other fllc_epsilon_dr_ratio with non-uniform points
     const amrex::Real rtol = 1.0e-6_rt;
     if (std::abs(epsilon[0] - data.epsilon) > rtol * data.epsilon) {
         return false;
     }
-    if (std::abs(eps_dr[0] - data.eps_dr) > rtol * data.eps_dr) {
+    if (data.nonuniform &&
+        (std::abs(eps_dr[0] - data.eps_dr) > rtol * data.eps_dr)) {
         return false;
     }
     for (int i = 0; i < static_cast<int>(optimal_epsilon.size()); ++i) {

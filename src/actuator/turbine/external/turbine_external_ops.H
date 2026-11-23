@@ -478,7 +478,8 @@ struct CommunicateModelDataOp<
                     << " does not fit this turbine: it is for other "
                        "numbers "
                     << "of blades or points, for other positions of the "
-                    << "points or for other inputs of the correction. The "
+                    << "points or for other epsilon, epsilon_chord, chord or "
+                    << "fllc_epsilon_dr_ratio values. The "
                     << "correction starts from zero." << std::endl;
             }
             if (waits && state_in_checkpoint && data.info().is_root_proc) {
