@@ -32,6 +32,26 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real free_surface_to_vof(
     return volfrac;
 }
 
+/** Approximate z-location of the liquid centroid of a cell, from the known
+ *  free-surface elevation
+ *
+ *  Assumes the interface is horizontal across the cell at height eta, so the
+ *  liquid occupies [z_bottom, clamp(eta, z_bottom, z_top)] and its centroid is
+ *  the midpoint of that interval. Gives the cell center for a full cell
+ *  (eta >= z_top) and the bottom face for a cell with no liquid at its
+ *  center column (eta <= z_bottom). Never lies above eta within the cell, so
+ *  wave kinematics evaluated here are not extrapolated above the surface.
+ */
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real liquid_centroid_z(
+    const amrex::Real eta, const amrex::Real z_center, const amrex::Real dz)
+{
+    const amrex::Real z_bottom = z_center - (0.5_rt * dz);
+    const amrex::Real z_top = z_center + (0.5_rt * dz);
+    const amrex::Real z_surf =
+        amrex::min<amrex::Real>(amrex::max<amrex::Real>(eta, z_bottom), z_top);
+    return 0.5_rt * (z_bottom + z_surf);
+}
+
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
 gamma_generate(const amrex::Real x, const amrex::Real gen_length)
 {

@@ -294,6 +294,86 @@ amrex::Real uface_bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
     return error_total;
 }
 
+//! Max error of linear-wave target velocity vs. theory at the liquid-centroid
+//! height (valid cells with x < x_max), and the number of cells containing the
+//! free surface
+std::pair<amrex::Real, amrex::Real> linear_target_velocity_check(
+    kynema_sgf::Field& ow_vel,
+    const amrex::Real wave_height,
+    const amrex::Real wave_length,
+    const amrex::Real water_depth,
+    const amrex::Real g,
+    const amrex::Real x_max)
+{
+    amrex::Real err_max = 0.0_rt;
+    amrex::Real n_surface = 0.0_rt;
+    const auto& geom = ow_vel.repo().mesh().Geom();
+    for (int lev = 0; lev < ow_vel.repo().num_active_levels(); ++lev) {
+        const auto problo = geom[lev].ProbLoArray();
+        const auto dx = geom[lev].CellSizeArray();
+        const amrex::Real k_w =
+            2.0_rt * std::numbers::pi_v<amrex::Real> / wave_length;
+        const amrex::Real omega =
+            std::sqrt(k_w * g * std::tanh(k_w * water_depth));
+        const amrex::Real amp = omega * wave_height / 2.0_rt;
+        const amrex::Real sinh_kd = std::sinh(k_w * water_depth);
+        const amrex::Real diag = std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
+        err_max = amrex::max(
+            err_max,
+            amrex::ReduceMax(
+                ow_vel(lev), 0,
+                [=] AMREX_GPU_HOST_DEVICE(
+                    amrex::Box const& bx,
+                    amrex::Array4<amrex::Real const> const& v) -> amrex::Real {
+                    amrex::Real e = 0.0_rt;
+                    amrex::Loop(bx, [=, &e](int i, int j, int k) {
+                        const amrex::Real x =
+                            problo[0] + ((i + 0.5_rt) * dx[0]);
+                        const amrex::Real z =
+                            problo[2] + ((k + 0.5_rt) * dx[2]);
+                        const amrex::Real eta =
+                            0.5_rt * wave_height * std::cos(k_w * x);
+                        if (x >= x_max || eta - z + diag < 0.0_rt) {
+                            return;
+                        }
+                        const amrex::Real zl =
+                            kynema_sgf::ocean_waves::utils::liquid_centroid_z(
+                                eta, z, dx[2]);
+                        const amrex::Real u =
+                            amp * std::cosh(k_w * (zl + water_depth)) /
+                            sinh_kd * std::cos(k_w * x);
+                        const amrex::Real w =
+                            amp * std::sinh(k_w * (zl + water_depth)) /
+                            sinh_kd * std::sin(k_w * x);
+                        e = amrex::max(e, std::abs(v(i, j, k, 0) - u));
+                        e = amrex::max(e, std::abs(v(i, j, k, 1)));
+                        e = amrex::max(e, std::abs(v(i, j, k, 2) - w));
+                    });
+                    return e;
+                }));
+        n_surface += amrex::ReduceSum(
+            ow_vel(lev), 0,
+            [=] AMREX_GPU_HOST_DEVICE(
+                amrex::Box const& bx,
+                amrex::Array4<amrex::Real const> const& /*v*/) -> amrex::Real {
+                amrex::Real n = 0.0_rt;
+                amrex::Loop(bx, [=, &n](int i, int /*j*/, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    const amrex::Real z = problo[2] + ((k + 0.5_rt) * dx[2]);
+                    const amrex::Real eta =
+                        0.5_rt * wave_height * std::cos(k_w * x);
+                    if (x < x_max && std::abs(eta - z) < 0.5_rt * dx[2]) {
+                        n += 1.0_rt;
+                    }
+                });
+                return n;
+            });
+    }
+    amrex::ParallelDescriptor::ReduceRealMax(err_max);
+    amrex::ParallelDescriptor::ReduceRealSum(n_surface);
+    return {err_max, n_surface};
+}
+
 } // namespace
 
 TEST_F(OceanWavesOpTest, relaxation_zone)
@@ -542,6 +622,60 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     make_target_velocity(ow_velocity, velocity, ow_vof);
     const amrex::Real error_total = uface_bdy_error(u_mac, ow_velocity);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
+}
+
+TEST_F(OceanWavesOpTest, linear_target_velocity_at_liquid_centroid)
+{
+    // Linear-wave target velocity is the theory evaluated at the
+    // liquid-centroid height from the known surface elevation, not
+    // interpolated afterward
+    constexpr amrex::Real tol = 1.0e-12_rt;
+    constexpr amrex::Real wave_height = 0.05_rt;
+    constexpr amrex::Real wave_length = 1.0_rt;
+    constexpr amrex::Real water_depth = 1.0_rt;
+    constexpr amrex::Real gen_length = 2.0_rt;
+    constexpr amrex::Real beach_length = 4.0_rt;
+
+    populate_parameters();
+    {
+        amrex::ParmParse pp("OceanWaves");
+        pp.add("label", (std::string) "lin_ow");
+        amrex::ParmParse ppow("OceanWaves.lin_ow");
+        ppow.add("type", (std::string) "LinearWaves");
+        ppow.add("wave_height", wave_height);
+        ppow.add("wave_length", wave_length);
+        ppow.add("water_depth", water_depth);
+        ppow.add("relax_zone_gen_length", gen_length);
+        ppow.add("numerical_beach_length", beach_length);
+    }
+    {
+        amrex::ParmParse pp("time");
+        pp.add("fixed_dt", 0.1_rt);
+    }
+
+    initialize_mesh();
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    sim().init_physics();
+    sim().init_field_boundaries();
+    auto& oceanwaves =
+        sim().physics_manager().get<kynema_sgf::ocean_waves::OceanWaves>();
+    oceanwaves.pre_init_actions();
+    auto& repo = sim().repo();
+    for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
+        oceanwaves.initialize_fields(lev, mesh().Geom(lev));
+    }
+    // Sets the target fields at t = 0
+    oceanwaves.post_init_actions();
+
+    // Generation zone only: downstream of it, targets are blended toward the
+    // quiescent outlet profile starting 1.5 beach lengths from the outlet
+    const auto& prob_lo = mesh().Geom(0).ProbLoArray();
+    const auto [err, n_surface] = linear_target_velocity_check(
+        repo.get_field("ow_velocity"), wave_height, wave_length, water_depth,
+        9.81_rt, prob_lo[0] + gen_length);
+    EXPECT_GT(n_surface, 0.0_rt);
+    EXPECT_NEAR(err, 0.0_rt, tol);
 }
 
 } // namespace kynema_sgf_tests

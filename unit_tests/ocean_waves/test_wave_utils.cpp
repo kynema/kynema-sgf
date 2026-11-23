@@ -159,6 +159,32 @@ TEST_F(WaveUtilsTest, combine_linear)
     EXPECT_NEAR(result, ((1.0_rt - Gamma) * target) + (Gamma * current), tol);
 }
 
+TEST_F(WaveUtilsTest, liquid_centroid_z)
+{
+    constexpr amrex::Real tol =
+        std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt;
+    constexpr amrex::Real zc = 0.3_rt;
+    constexpr amrex::Real dz = 0.2_rt; // cell spans [0.2, 0.4]
+    namespace wu = kynema_sgf::ocean_waves::utils;
+
+    // Surface at or above the cell top: full cell, cell center
+    EXPECT_NEAR(wu::liquid_centroid_z(0.4_rt, zc, dz), zc, tol);
+    EXPECT_NEAR(wu::liquid_centroid_z(5.0_rt, zc, dz), zc, tol);
+    // Surface at or below the cell bottom: bottom face
+    EXPECT_NEAR(wu::liquid_centroid_z(0.2_rt, zc, dz), 0.2_rt, tol);
+    EXPECT_NEAR(wu::liquid_centroid_z(-5.0_rt, zc, dz), 0.2_rt, tol);
+    // Surface inside the cell: midpoint of [z_bottom, eta]
+    EXPECT_NEAR(wu::liquid_centroid_z(0.35_rt, zc, dz), 0.275_rt, tol);
+    // Within the cell, never above the surface or the cell center
+    for (int n = 0; n <= 100; ++n) {
+        const amrex::Real eta = 0.2_rt + (0.002_rt * n);
+        const amrex::Real z = wu::liquid_centroid_z(eta, zc, dz);
+        EXPECT_LE(z, eta + tol);
+        EXPECT_LE(z, zc + tol);
+        EXPECT_GE(z, 0.2_rt - tol);
+    }
+}
+
 TEST_F(WaveUtilsTest, harmonize_profiles)
 {
     constexpr amrex::Real tol =
