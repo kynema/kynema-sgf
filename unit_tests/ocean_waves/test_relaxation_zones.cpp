@@ -193,22 +193,46 @@ amrex::Real gas_velocity_error(
     return error_total;
 }
 
+//! Expected inflow-boundary velocity: target velocity where the target has
+//! liquid; in gas-only cells, the candidate wave velocity (target velocity of
+//! the liquid cell below for the first gas cell, half of the target velocity
+//! two cells below for the second) where its magnitude exceeds that of the gas
+//! boundary velocity, otherwise the gas velocity. gas_vel is the gas boundary
+//! velocity (the filled field already includes these modifications).
 void make_target_velocity(
     kynema_sgf::Field& ow_velocity,
     kynema_sgf::Field& velocity,
-    kynema_sgf::Field& ow_vof)
+    kynema_sgf::Field& ow_vof,
+    const amrex::Vector<amrex::Real>& gas_vel)
 {
+    constexpr amrex::Real tol = kynema_sgf::constants::VOF_TOL;
+    const amrex::GpuArray<amrex::Real, 3> gvel{
+        gas_vel[0], gas_vel[1], gas_vel[2]};
     for (int lev = 0; lev < ow_vof.repo().num_active_levels(); ++lev) {
         const auto& ow_vel_arrs = ow_velocity(lev).arrays();
         const auto& vel_arrs = velocity(lev).const_arrays();
         const auto& ow_vof_arrs = ow_vof(lev).const_arrays();
+        // Only gas cells are modified; they read liquid-cell targets only
         amrex::ParallelFor(
             ow_vof(lev), amrex::IntVect(2), velocity.num_comp(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int n) {
-                if (ow_vof_arrs[nbx](i, j, k) <=
-                    kynema_sgf::constants::VOF_TOL) {
-                    ow_vel_arrs[nbx](i, j, k, n) = vel_arrs[nbx](i, j, k, n);
+                const auto f = ow_vof_arrs[nbx];
+                if (f(i, j, k) > tol) {
+                    return;
                 }
+                const auto v = ow_vel_arrs[nbx];
+                bool has_cand = false;
+                amrex::Real cand = 0.0_rt;
+                if (f.contains(i, j, k - 1) && f(i, j, k - 1) > tol) {
+                    cand = v(i, j, k - 1, n);
+                    has_cand = true;
+                } else if (f.contains(i, j, k - 2) && f(i, j, k - 2) > tol) {
+                    cand = 0.5_rt * v(i, j, k - 2, n);
+                    has_cand = true;
+                }
+                v(i, j, k, n) = (has_cand && std::abs(cand) > std::abs(gvel[n]))
+                                    ? cand
+                                    : vel_arrs[nbx](i, j, k, n);
             });
     }
     amrex::Gpu::streamSynchronize();
@@ -537,8 +561,8 @@ TEST_F(OceanWavesOpTest, boundary_fill)
     // Check velocity field to confirm not modified
     amrex::Real error_total = bdy_error(vof, ow_vof);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
-    make_target_velocity(ow_velocity, velocity, ow_vof);
-    error_total = bdy_error(velocity, ow_velocity);
+    make_target_velocity(ow_velocity, velocity, ow_vof, gas_vel);
+    error_total = bdy_error(velocity, ow_velocity, AMREX_SPACEDIM);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
     make_target_density(ow_vof, rho1, rho2);
     error_total = bdy_error(density, ow_vof);
@@ -619,7 +643,7 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     auto& ow_velocity = repo.get_field("ow_velocity");
 
     // Check velocity field to confirm not modified
-    make_target_velocity(ow_velocity, velocity, ow_vof);
+    make_target_velocity(ow_velocity, velocity, ow_vof, gas_vel);
     const amrex::Real error_total = uface_bdy_error(u_mac, ow_velocity);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
 }

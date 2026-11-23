@@ -266,7 +266,12 @@ OceanWavesBoundary field boundary applies to all inflow or wave generation bound
 At these boundaries, the vof field is populated according to the target wave profile,
 and the density field is populated according to the vof field and the specified densities of the two phases.
 The velocity field is populated according to the target wave profile as well, but only within the liquid phase.
-Whatever other boundary conditions in the input file remain active in the gas phase.
+Whatever other boundary conditions in the input file remain active in the gas phase, with one exception
+in the two gas cells directly above the target liquid: there, each velocity component is replaced by the
+wave velocity of the liquid cell below (first gas cell) or half of the wave velocity two cells below (second
+gas cell), but only where that is larger in magnitude than the gas-phase boundary value. This lets the air
+just above a rising or advancing crest move with the wave instead of being held at the gas-phase boundary
+value, while leaving stronger gas-phase inflow (e.g., wind) unchanged.
 In single phase simulations, i.e., when the MultiPhase physics class is not active and
 the waves are intended to be represented as moving terrain, there is no vof field and the density field does
 not need to be modified. Therefore, only the velocity within the waves is populated in the boundary condition.
