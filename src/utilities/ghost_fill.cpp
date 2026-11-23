@@ -173,6 +173,10 @@ void fill_transverse_ghosts(
     amrex::BoxList donor_boxes;
     amrex::Vector<int> owners;
     amrex::Vector<int> source_indices;
+    // Per slab: physical extensions over the coarse/fine ghost band of the
+    // other transverse direction(s). These only complete the slab's own grid.
+    amrex::Vector<amrex::Vector<amrex::Box>> own_extensions;
+    amrex::Vector<int> slab_of_grid(mfab.boxArray().size(), -1);
     amrex::BoxList destination_boxes;
     amrex::Vector<int> destination_owners;
     amrex::Vector<int> destination_indices;
@@ -196,9 +200,43 @@ void fill_transverse_ghosts(
         box.enclosedCells();
         box.setRange(dir, face.smallEnd(dir), face.length(dir));
         if (box.ok()) {
+            slab_of_grid[idx] = static_cast<int>(owners.size());
             boxes.push_back(box);
             owners.push_back(mfab.DistributionMap()[idx]);
             source_indices.push_back(idx);
+            // A ghost cell outside the domain in one transverse direction and
+            // in the coarse/fine band of another has no same-level donor. The
+            // slab extends its own in-domain values (face data or this grid's
+            // coarse/fine fallback) there with the physical BC rule, so use
+            // that for this grid only; fallback values are never shared
+            // between grids, and real donors below still take precedence.
+            own_extensions.emplace_back();
+            for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+                if (d == dir || geom.isPeriodic(d)) {
+                    continue;
+                }
+                auto span = box;
+                for (int e = 0; e < AMREX_SPACEDIM; ++e) {
+                    if (e == dir || e == d || geom.isPeriodic(e)) {
+                        continue;
+                    }
+                    span.growLo(e, ng[e]);
+                    span.growHi(e, transverse_ng[e]);
+                }
+                if (span == box) {
+                    continue;
+                }
+                if (box.smallEnd(d) == domain.smallEnd(d)) {
+                    auto ext = span;
+                    ext.setRange(d, domain.smallEnd(d) - ng[d], ng[d]);
+                    own_extensions.back().push_back(ext);
+                }
+                if (box.bigEnd(d) == domain.bigEnd(d) && transverse_ng[d] > 0) {
+                    auto ext = span;
+                    ext.setRange(d, domain.bigEnd(d) + 1, transverse_ng[d]);
+                    own_extensions.back().push_back(ext);
+                }
+            }
             // Only valid face data and its physical extensions may be donors.
             // Internal ghosts can contain stale coarse/fine fallback values.
             for (int d = 0; d < AMREX_SPACEDIM; ++d) {
@@ -287,6 +325,17 @@ void fill_transverse_ghosts(
             mfab.const_array(destination_indices[mfi.index()]));
         completed[mfi].copy<amrex::RunOn::Device>(
             src, box, dcomp, box, 0, ncomp);
+        // The slab and the destination share the grid's owner
+        const int islab = slab_of_grid[destination_indices[mfi.index()]];
+        if (islab >= 0) {
+            for (const auto& ext : own_extensions[islab]) {
+                const auto ebox = ext & box;
+                if (ebox.ok()) {
+                    completed[mfi].copy<amrex::RunOn::Device>(
+                        slab[islab], ebox, 0, ebox, 0, ncomp);
+                }
+            }
+        }
     }
     completed.ParallelCopy(
         donors, 0, 0, ncomp, amrex::IntVect(0), amrex::IntVect(0),

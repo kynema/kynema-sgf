@@ -148,7 +148,9 @@ AMREX_INLINE void extend_boundary_ghost_layers(
  * orientations retain precedence. Normal ghosts must already be filled over
  * valid transverse cell-centered indices. Existing coarse/fine fallback values
  * are preserved wherever no valid same-level face donor or physical extension
- * is available.
+ * is available. Ghost cells outside the domain in one transverse direction and
+ * in the coarse/fine band of another are completed per grid by extending that
+ * grid's adjacent in-domain values with the physical BC rule.
  */
 void fill_transverse_ghosts(
     amrex::MultiFab& mfab,
