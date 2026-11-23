@@ -6,6 +6,7 @@
 #include "test_ext_turbine_utils.H"
 #include "src/actuator/turbine/external/ExtTurbIface.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
+#include "AMReX_ParallelDescriptor.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
@@ -355,6 +356,10 @@ TEST_F(ExtTurbIfaceTest, new_turbine_starts_with_initial_solution)
 
 TEST_F(ExtTurbIfaceTest, fllc_data_follow_blade_count_of_solver)
 {
+    // Serial: the turbine data would make every rank its own root
+    if (amrex::ParallelDescriptor::NProcs() > 1) {
+        GTEST_SKIP();
+    }
     const int num_blades_input = 2;
     const int num_blades_model = 3;
     const int num_pts_blade = 4;

@@ -119,6 +119,9 @@ Example for ``FixedWingLine``::
   than the spacing of the actuator points somewhere along the line: use more
   actuator points or a larger ``epsilon_chord`` in that case. The chord must be
   larger than `0` at every actuator point. FLLC is off by default.
+  Once the correction has started, its state is written into every
+  checkpoint (directory ``actuator`` inside it), and a run that restarts
+  from the checkpoint goes on from that state (see :ref:`alm_fllc`).
 
 .. input_param:: Actuator.FixedWingLine.fllc_type
 
@@ -925,6 +928,11 @@ Example for ``TurbineFastLine``::
    ``epsilon``, ``epsilon_chord`` and ``epsilon_min`` the same value in all
    three directions when the correction is on; the run prints a warning
    when they differ.
+   Once the correction has started, its state is written into every
+   checkpoint (directory ``actuator`` inside it), and a run that restarts
+   from the checkpoint goes on from that state, unless the external solver
+   starts the turbine anew (OpenFAST with ``openfast_sim_mode = init``,
+   Kynema-FMB without ``kynema_fmb_restart_step``).
 
 .. input_param:: Actuator.TurbineFastLine.fllc_relaxation_factor
 
