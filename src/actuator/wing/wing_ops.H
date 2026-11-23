@@ -87,6 +87,7 @@ void write_checkpoint(typename T::DataType& data, const std::string& chkname)
     fllc_write_state(os, *(wdata.fllc));
     restart::write_list(os, "relative_velocity", wdata.component_view.vel_rel);
     restart::write_list(os, "force", wdata.component_view.force);
+    restart::close_file(os, chkname, data.info().label);
 }
 
 /** Read the FLLC state of a wing from the restart checkpoint

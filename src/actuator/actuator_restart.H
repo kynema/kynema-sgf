@@ -59,6 +59,21 @@ inline std::ofstream create_file(
     return os;
 }
 
+/** Close the file of an actuator; abort when a write failed (e.g., full disk)
+ *
+ *  A file cut short would be refused at restart as one that does not fit.
+ */
+inline void close_file(
+    std::ofstream& os, const std::string& chkname, const std::string& label)
+{
+    os.close();
+    if (os.fail()) {
+        amrex::Abort(
+            "Actuator " + label + ": writing " + file_name(chkname, label) +
+            " failed");
+    }
+}
+
 /** Open the file of an actuator and read its header
  *
  *  \return False when there is no file, or it is for another actuator or
