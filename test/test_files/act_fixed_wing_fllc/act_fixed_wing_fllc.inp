@@ -1,3 +1,4 @@
 FILE = ../act_fixed_wing/act_fixed_wing.inp
 Actuator.FixedWingLine.fllc = 1
 Actuator.FixedWingLine.epsilon_chord = 0.25 0.25 0.25
+time.checkpoint_interval = 3
