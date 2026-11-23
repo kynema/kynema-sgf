@@ -1,6 +1,7 @@
 #ifndef TURBINE_EXTERNAL_OPS_H
 #define TURBINE_EXTERNAL_OPS_H
 
+#include <cstddef>
 #include <fstream>
 #include <type_traits>
 #include <vector>
@@ -395,36 +396,45 @@ void share_restored_forces(datatype& data, const bool restored)
         return;
     }
     auto& tdata = data.meta();
+    const auto& info = data.info();
     const int nforce = tdata.num_blades * tdata.num_pts_blade;
-    // Flag, then the blade forces
-    amrex::Vector<amrex::Real> buf(1 + (3 * nforce), 0.0_rt);
-    const int tag = 1002;
-    if (data.info().is_root_proc) {
-        buf[0] = restored ? 1.0_rt : 0.0_rt;
-        for (int ib = 0; ib < tdata.num_blades; ++ib) {
+    const int flag_tag = 1002;
+    const int force_tag = 1003;
+    // Flag first; the forces only when the root restored a state
+    int flag = restored ? 1 : 0;
+    amrex::Vector<amrex::Real> buf(static_cast<std::size_t>(3 * nforce));
+    if (info.is_root_proc) {
+        for (int ib = 0; restored && ib < tdata.num_blades; ++ib) {
             for (int i = 0; i < tdata.num_pts_blade; ++i) {
-                const int k = 1 + (3 * ((ib * tdata.num_pts_blade) + i));
+                const int k = 3 * ((ib * tdata.num_pts_blade) + i);
                 for (int dir = 0; dir < 3; ++dir) {
                     buf[k + dir] = tdata.blades[ib].force[i][dir];
                 }
             }
         }
-        for (const int ip : data.info().procs) {
-            if (ip != data.info().root_proc) {
+        for (const int ip : info.procs) {
+            if (ip == info.root_proc) {
+                continue;
+            }
+            amrex::ParallelDescriptor::Send(
+                &flag, 1, ip, flag_tag, tdata.tcomm);
+            if (restored) {
                 amrex::ParallelDescriptor::Send(
-                    buf.data(), buf.size(), ip, tag, tdata.tcomm);
+                    buf.data(), buf.size(), ip, force_tag, tdata.tcomm);
             }
         }
         return;
     }
     amrex::ParallelDescriptor::Recv(
-        buf.data(), buf.size(), data.info().root_proc, tag, tdata.tcomm);
-    if (buf[0] == 0.0_rt) {
+        &flag, 1, info.root_proc, flag_tag, tdata.tcomm);
+    if (flag == 0) {
         return;
     }
+    amrex::ParallelDescriptor::Recv(
+        buf.data(), buf.size(), info.root_proc, force_tag, tdata.tcomm);
     for (int ib = 0; ib < tdata.num_blades; ++ib) {
         for (int i = 0; i < tdata.num_pts_blade; ++i) {
-            const int k = 1 + (3 * ((ib * tdata.num_pts_blade) + i));
+            const int k = 3 * ((ib * tdata.num_pts_blade) + i);
             for (int dir = 0; dir < 3; ++dir) {
                 tdata.blades[ib].force[i][dir] = buf[k + dir];
             }
