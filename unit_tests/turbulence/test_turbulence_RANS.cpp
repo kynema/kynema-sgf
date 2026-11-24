@@ -61,6 +61,49 @@ void init_temperature_field(kynema_sgf::Field& fld, amrex::Real tgrad)
     amrex::Gpu::streamSynchronize();
 }
 
+// Largest |computed / expected - 1| for mu_t and both production terms
+std::array<amrex::Real, 3> max_production_errors(
+    kynema_sgf::Field& shear_prod,
+    amrex::Real Cmu,
+    amrex::Real lambda,
+    amrex::Real kappa,
+    amrex::Real tke_val,
+    amrex::Real rho0,
+    amrex::Real srate,
+    amrex::Real nsq)
+{
+    const auto& buoy_prod = shear_prod.repo().get_field("buoy_prod");
+    const auto& muturb = shear_prod.repo().get_field("mu_turb");
+    const auto& geom = shear_prod.repo().mesh().Geom(0);
+    const auto& problo = geom.ProbLoArray();
+    const amrex::Real dz = geom.CellSize()[2];
+    const auto& sp_arrs = shear_prod(0).const_arrays();
+    const auto& bp_arrs = buoy_prod(0).const_arrays();
+    const auto& mu_arrs = muturb(0).const_arrays();
+    const auto r = amrex::ParReduce(
+        amrex::TypeList<
+            amrex::ReduceOpMax, amrex::ReduceOpMax, amrex::ReduceOpMax>{},
+        amrex::TypeList<amrex::Real, amrex::Real, amrex::Real>{}, shear_prod(0),
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k)
+            -> amrex::GpuTuple<amrex::Real, amrex::Real, amrex::Real> {
+            const amrex::Real z = problo[2] + ((k + 0.5_rt) * dz);
+            const amrex::Real ls =
+                (lambda * kappa * z) / (lambda + (kappa * z));
+            const amrex::Real nut = Cmu * ls * std::sqrt(tke_val);
+            const amrex::Real mu_ref = rho0 * nut;
+            const amrex::Real sp_ref = srate * srate * nut;
+            const amrex::Real bp_ref = -nut * nsq;
+            return {
+                std::abs((mu_arrs[nbx](i, j, k) - mu_ref) / mu_ref),
+                std::abs((sp_arrs[nbx](i, j, k) - sp_ref) / sp_ref),
+                std::abs((bp_arrs[nbx](i, j, k) - bp_ref) / bp_ref)};
+        });
+    std::array<amrex::Real, 3> out{
+        amrex::get<0>(r), amrex::get<1>(r), amrex::get<2>(r)};
+    amrex::ParallelDescriptor::ReduceRealMax(out.data(), 3);
+    return out;
+}
+
 } // namespace
 
 class TurbRANSTest : public MeshTest
@@ -256,42 +299,7 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
     const amrex::Real kappa = 0.41_rt;
     const amrex::Real tke_val = 0.5_rt;
     const amrex::Real nsq = gravz * Tgz / Tref;
-
-    // Largest |computed / expected - 1| over the domain for mu_t and both
-    // production terms
-    auto max_errors = [&]() {
-        const auto& shear_prod = sim().repo().get_field("shear_prod");
-        const auto& buoy_prod = sim().repo().get_field("buoy_prod");
-        const auto& muturb = sim().repo().get_field("mu_turb");
-        const auto& problo = sim().mesh().Geom(0).ProbLoArray();
-        const amrex::Real dz = sim().mesh().Geom(0).CellSize()[2];
-        const auto& sp_arrs = shear_prod(0).const_arrays();
-        const auto& bp_arrs = buoy_prod(0).const_arrays();
-        const auto& mu_arrs = muturb(0).const_arrays();
-        const auto r = amrex::ParReduce(
-            amrex::TypeList<
-                amrex::ReduceOpMax, amrex::ReduceOpMax, amrex::ReduceOpMax>{},
-            amrex::TypeList<amrex::Real, amrex::Real, amrex::Real>{},
-            shear_prod(0),
-            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k)
-                -> amrex::GpuTuple<amrex::Real, amrex::Real, amrex::Real> {
-                const amrex::Real z = problo[2] + ((k + 0.5_rt) * dz);
-                const amrex::Real ls =
-                    (lambda * kappa * z) / (lambda + (kappa * z));
-                const amrex::Real nut = Cmu * ls * std::sqrt(tke_val);
-                const amrex::Real mu_ref = rho0 * nut;
-                const amrex::Real sp_ref = srate * srate * nut;
-                const amrex::Real bp_ref = -nut * nsq;
-                return {
-                    std::abs((mu_arrs[nbx](i, j, k) - mu_ref) / mu_ref),
-                    std::abs((sp_arrs[nbx](i, j, k) - sp_ref) / sp_ref),
-                    std::abs((bp_arrs[nbx](i, j, k) - bp_ref) / bp_ref)};
-            });
-        std::array<amrex::Real, 3> out{
-            amrex::get<0>(r), amrex::get<1>(r), amrex::get<2>(r)};
-        amrex::ParallelDescriptor::ReduceRealMax(out.data(), 3);
-        return out;
-    };
+    auto& shear_prod = sim().repo().get_field("shear_prod");
 
     const amrex::Real tol =
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt;
@@ -299,7 +307,8 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
     tlscale.setVal(1.0_rt);
     tmodel.update_turbulent_viscosity(
         kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
-    auto err = max_errors();
+    auto err = max_production_errors(
+        shear_prod, Cmu, lambda, kappa, tke_val, rho0, srate, nsq);
     EXPECT_NEAR(err[0], 0.0_rt, tol);
     EXPECT_NEAR(err[1], 0.0_rt, tol);
     EXPECT_NEAR(err[2], 0.0_rt, tol);
@@ -316,7 +325,8 @@ TEST_F(TurbRANSTest, test_1eqKrans_production_per_unit_mass)
     tlscale.setVal(1.0_rt);
     tmodel.update_turbulent_viscosity(
         kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
-    err = max_errors();
+    err = max_production_errors(
+        shear_prod, Cmu, lambda, kappa, tke_val, rho0, srate, nsq);
     EXPECT_NEAR(err[0], 0.0_rt, tol);
     EXPECT_NEAR(err[1], 0.0_rt, tol);
     EXPECT_NEAR(err[2], 0.0_rt, tol);
