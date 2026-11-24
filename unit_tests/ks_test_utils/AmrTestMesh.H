@@ -6,6 +6,7 @@
 #include <utility>
 
 #include "AMReX_AmrCore.H"
+#include "AMReX_BLassert.H"
 #include "src/CFDSim.H"
 #include "src/core/FieldRepo.H"
 #include "src/core/Field.H"
@@ -36,19 +37,19 @@ public:
 
     kynema_sgf::FieldRepo& field_repo() { return m_repo; }
 
-    template <typename T, typename... Args>
-    T& create_momentum_source([[maybe_unused]] Args&&... args)
+    template <typename T>
+    T& own_momentum_source(std::unique_ptr<T> source)
     {
-        auto source = std::make_unique<T>(m_sim, std::forward<Args>(args)...);
+        AMREX_ALWAYS_ASSERT(source != nullptr);
         auto& result = *source;
         m_momentum_sources.push_back(std::move(source));
         return result;
     }
 
-    template <typename T, typename... Args>
-    T& create_temperature_source([[maybe_unused]] Args&&... args)
+    template <typename T>
+    T& own_temperature_source(std::unique_ptr<T> source)
     {
-        auto source = std::make_unique<T>(m_sim, std::forward<Args>(args)...);
+        AMREX_ALWAYS_ASSERT(source != nullptr);
         auto& result = *source;
         m_temperature_sources.push_back(std::move(source));
         return result;

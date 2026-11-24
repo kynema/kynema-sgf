@@ -1,3 +1,4 @@
+#include <memory>
 #include <numbers>
 #include "abl_test_utils.H"
 #include "src/utilities/trig_ops.H"
@@ -84,14 +85,12 @@ TEST_F(ABLMeshTest, registered_forcing_lifetime)
     bool momentum_destroyed = false;
     bool temperature_destroyed = false;
     {
-        mesh()
-            .create_momentum_source<
-                TrackedSource<kynema_sgf::pde::icns::ABLForcing>>(
-                momentum_destroyed);
-        mesh()
-            .create_temperature_source<TrackedSource<
-                kynema_sgf::pde::temperature::HurricaneTempForcing>>(
-                temperature_destroyed);
+        mesh().own_momentum_source(std::make_unique<
+            TrackedSource<kynema_sgf::pde::icns::ABLForcing>>(
+            sim(), momentum_destroyed));
+        mesh().own_temperature_source(std::make_unique<
+            TrackedSource<kynema_sgf::pde::temperature::HurricaneTempForcing>>(
+            sim(), temperature_destroyed));
     }
     EXPECT_FALSE(momentum_destroyed);
     EXPECT_FALSE(temperature_destroyed);
@@ -114,8 +113,8 @@ TEST_F(ABLMeshTest, abl_forcing)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
-    auto& abl_forcing =
-        mesh().create_momentum_source<kynema_sgf::pde::icns::ABLForcing>();
+    auto& abl_forcing = mesh().own_momentum_source(
+        std::make_unique<kynema_sgf::pde::icns::ABLForcing>(sim()));
 
     src_term.setVal(0.0_rt);
     abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
@@ -358,17 +357,15 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     density.setVal(1.0_rt);
 
     // Calculate Hurricane Forcing to the momentum equation
-    auto& hurricane_forcing =
-        mesh()
-            .create_momentum_source<kynema_sgf::pde::icns::HurricaneForcing>();
+    auto& hurricane_forcing = mesh().own_momentum_source(
+        std::make_unique<kynema_sgf::pde::icns::HurricaneForcing>(sim()));
     src_term_icns.setVal(0.0_rt);
     hurricane_forcing(0, kynema_sgf::FieldState::New, src_term_icns(0));
 
     // Calculate Hurricane Forcing to the temperature equation
-    auto& hurricane_temp_forcing =
-        mesh()
-            .create_temperature_source<
-                kynema_sgf::pde::temperature::HurricaneTempForcing>();
+    auto& hurricane_temp_forcing = mesh().own_temperature_source(
+        std::make_unique<kynema_sgf::pde::temperature::HurricaneTempForcing>(
+            sim()));
     src_term_temp.setVal(0.0_rt);
     hurricane_temp_forcing(0, kynema_sgf::FieldState::New, src_term_temp(0));
 

@@ -1,3 +1,4 @@
+#include <memory>
 #include <numbers>
 #include "ks_test_utils/MeshTest.H"
 #include "ks_test_utils/test_utils.H"
@@ -137,8 +138,8 @@ TEST_F(ABLSrcTimeTableTest, abl)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for ABLForcing
-    auto& abl_forcing =
-        mesh().create_momentum_source<kynema_sgf::pde::icns::ABLForcing>();
+    auto& abl_forcing = mesh().own_momentum_source(
+        std::make_unique<kynema_sgf::pde::icns::ABLForcing>(sim()));
     for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
         abl_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
     }
