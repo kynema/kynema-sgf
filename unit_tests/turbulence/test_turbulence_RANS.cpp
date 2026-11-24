@@ -1,6 +1,7 @@
 #include <array>
 #include "gtest/gtest.h"
 #include "ks_test_utils/MeshTest.H"
+#include "src/core/field_ops.H"
 #include "src/turbulence/TurbulenceModel.H"
 #include "ks_test_utils/test_utils.H"
 #include "src/utilities/math_ops.H"
@@ -61,6 +62,82 @@ void init_temperature_field(kynema_sgf::Field& fld, amrex::Real tgrad)
     amrex::Gpu::streamSynchronize();
 }
 
+void init_linear_z(kynema_sgf::Field& fld, amrex::Real base, amrex::Real grad)
+{
+    const auto& mesh = fld.repo().mesh();
+    for (int lev = 0; lev < fld.repo().num_active_levels(); ++lev) {
+        const auto& geom = mesh.Geom(lev);
+        const amrex::Real zlo = geom.ProbLoArray()[2];
+        const amrex::Real dz = geom.CellSizeArray()[2];
+        const auto& arrs = fld(lev).arrays();
+        amrex::ParallelFor(
+            fld(lev), fld.num_grow(),
+            [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
+                arrs[nbx](i, j, k) = base + grad * (zlo + (k + 0.5_rt) * dz);
+            });
+    }
+    amrex::Gpu::streamSynchronize();
+}
+
+std::array<amrex::Real, 5> kw_source_errors(
+    kynema_sgf::Field& shear_prod,
+    amrex::Real srate,
+    bool check_buoyancy,
+    bool check_cross_diffusion)
+{
+    const auto& repo = shear_prod.repo();
+    const auto& rho = repo.get_field("density")(0).const_arrays();
+    const auto& tke = repo.get_field("tke")(0).const_arrays();
+    const auto& sdr = repo.get_field("sdr")(0).const_arrays();
+    const auto& mu = repo.get_field("mu_turb")(0).const_arrays();
+    const auto& f1 = repo.get_field("f1")(0).const_arrays();
+    const auto& shear = shear_prod(0).const_arrays();
+    const auto& buoy = repo.get_field("buoyancy_term")(0).const_arrays();
+    const auto& cross = repo.get_field("sdr_dissipation")(0).const_arrays();
+    const auto result = amrex::ParReduce(
+        amrex::TypeList<
+            amrex::ReduceOpMax, amrex::ReduceOpMax, amrex::ReduceOpMax,
+            amrex::ReduceOpMin, amrex::ReduceOpMax>{},
+        amrex::TypeList<
+            amrex::Real, amrex::Real, amrex::Real, amrex::Real, amrex::Real>{},
+        shear_prod(0),
+        [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k)
+            -> amrex::GpuTuple<
+                amrex::Real, amrex::Real, amrex::Real, amrex::Real,
+                amrex::Real> {
+            const amrex::Real density = rho[nbx](i, j, k);
+            const amrex::Real uncapped =
+                mu[nbx](i, j, k) / density * srate * srate;
+            const amrex::Real limit =
+                0.9_rt * tke[nbx](i, j, k) * sdr[nbx](i, j, k);
+            const amrex::Real expected_buoy = 9.81_rt * 0.0002_rt *
+                                              mu[nbx](i, j, k) /
+                                              (density * density * 0.85_rt);
+            const amrex::Real expected_cross =
+                (1.0_rt - f1[nbx](i, j, k)) * 2.0_rt * 0.856_rt * 0.0001_rt *
+                0.0002_rt /
+                (sdr[nbx](i, j, k) +
+                 std::numeric_limits<amrex::Real>::epsilon() * 1.0e1_rt);
+            return {
+                std::abs(
+                    shear[nbx](i, j, k) -
+                    amrex::min<amrex::Real>(uncapped, limit)),
+                check_buoyancy ? std::abs(buoy[nbx](i, j, k) - expected_buoy)
+                               : 0.0_rt,
+                check_cross_diffusion
+                    ? std::abs(cross[nbx](i, j, k) - expected_cross)
+                    : 0.0_rt,
+                uncapped - limit, uncapped - limit};
+        });
+    std::array<amrex::Real, 5> out{
+        amrex::get<0>(result), amrex::get<1>(result), amrex::get<2>(result),
+        amrex::get<3>(result), amrex::get<4>(result)};
+    amrex::ParallelDescriptor::ReduceRealMax(out.data(), 3);
+    amrex::ParallelDescriptor::ReduceRealMin(out.data() + 3, 1);
+    amrex::ParallelDescriptor::ReduceRealMax(out.data() + 4, 1);
+    return out;
+}
+
 // Largest |computed / expected - 1| for mu_t and both production terms
 std::array<amrex::Real, 3> max_production_errors(
     kynema_sgf::Field& shear_prod,
@@ -109,6 +186,8 @@ std::array<amrex::Real, 3> max_production_errors(
 class TurbRANSTest : public MeshTest
 {
 protected:
+    void check_kw_density_sources(const std::string& model);
+
     void populate_parameters() override
     {
         MeshTest::populate_parameters();
@@ -129,6 +208,150 @@ protected:
         }
     }
 };
+
+void TurbRANSTest::check_kw_density_sources(const std::string& model)
+{
+    {
+        amrex::ParmParse pp("turbulence");
+        pp.add("model", model);
+    }
+    {
+        amrex::ParmParse pp("incflo");
+        pp.add("constant_density", false);
+    }
+    {
+        amrex::ParmParse pp("transport");
+        pp.add("viscosity", 0.0_rt);
+    }
+    {
+        amrex::ParmParse pp(model + "_coeffs");
+        pp.add("tke_amb", 0.1_rt);
+        pp.add("sdr_amb", 0.2_rt);
+    }
+    {
+        amrex::ParmParse pp("SDR");
+        amrex::Vector<std::string> sources{"SDRSrc"};
+        pp.addarr("source_terms", sources);
+    }
+
+    populate_parameters();
+    initialize_mesh();
+    auto& pde_mgr = sim().pde_manager();
+    pde_mgr.register_icns();
+    sim().init_physics();
+    sim().create_turbulence_model();
+    auto& tmodel = sim().turbulence_model();
+    tmodel.post_init_actions();
+    auto& tke_eqn = pde_mgr("TKE-" + pde_mgr.scheme());
+    auto& sdr_eqn = pde_mgr("SDR-" + pde_mgr.scheme());
+    tke_eqn.initialize();
+    sdr_eqn.initialize();
+    time().delta_t() = 0.1_rt;
+
+    auto& repo = sim().repo();
+    auto& rho = repo.get_field("density");
+    auto& rho_nph = rho.state(kynema_sgf::FieldState::NPH);
+    auto& vel = repo.get_field("velocity");
+    init_linear_z(repo.get_field("tke"), 0.5_rt, 0.0001_rt);
+    init_linear_z(repo.get_field("sdr"), 0.5_rt, 0.0002_rt);
+    repo.get_field("wall_dist").setVal(20.0_rt);
+
+    const std::array<std::pair<std::string, amrex::Real>, 9> fields{{
+        {"shear_prod", 1.0_rt},
+        {"dissipation", 1.0_rt},
+        {"buoyancy_term", 1.0_rt},
+        {"omega_src", 1.0_rt},
+        {"sdr_dissipation", 1.0_rt},
+        {"tke_lhs_src_term", 2.5_rt},
+        {"sdr_lhs_src_term", 2.5_rt},
+        {"tke_src_term", 2.5_rt},
+        {"sdr_src_term", 2.5_rt},
+    }};
+    const std::array<DiffusionType, 3> diffusion_types{
+        DiffusionType::Explicit, DiffusionType::Crank_Nicolson,
+        DiffusionType::Implicit};
+
+    for (const auto diff_type : diffusion_types) {
+        for (const amrex::Real srate : {0.2_rt, 2.0_rt}) {
+            SCOPED_TRACE(model);
+            SCOPED_TRACE(static_cast<int>(diff_type));
+            SCOPED_TRACE(srate);
+            init_strain_field(vel, srate);
+            init_linear_z(rho, 1.0_rt, 0.0002_rt);
+            init_linear_z(rho_nph, 1.0_rt, 0.0002_rt);
+            tmodel.update_turbulent_viscosity(
+                kynema_sgf::FieldState::New, diff_type);
+            tke_eqn.compute_source_term(kynema_sgf::FieldState::NPH);
+            sdr_eqn.compute_source_term(kynema_sgf::FieldState::NPH);
+
+            const auto errors = kw_source_errors(
+                repo.get_field("shear_prod"), srate, model == "KOmegaSST",
+                diff_type == DiffusionType::Crank_Nicolson);
+            EXPECT_NEAR(errors[0], 0.0_rt, 1.0e-11_rt);
+            EXPECT_NEAR(errors[1], 0.0_rt, 1.0e-11_rt);
+            EXPECT_NEAR(errors[2], 0.0_rt, 1.0e-11_rt);
+            if (srate < 1.0_rt) {
+                EXPECT_LT(errors[4], 0.0_rt);
+            } else {
+                EXPECT_GT(errors[3], 0.0_rt);
+            }
+            EXPECT_GT(utils::field_max(repo.get_field("shear_prod")), 0.0_rt);
+            EXPECT_GT(utils::field_max(repo.get_field("omega_src")), 0.0_rt);
+            EXPECT_GT(
+                utils::field_max(repo.get_field("sdr_lhs_src_term")), 0.0_rt);
+            if (model == "KOmegaSST") {
+                EXPECT_GT(
+                    std::abs(utils::field_min(repo.get_field("buoyancy_term"))),
+                    0.0_rt);
+            }
+            if (diff_type == DiffusionType::Crank_Nicolson) {
+                EXPECT_GT(
+                    utils::field_max(repo.get_field("sdr_dissipation")),
+                    0.0_rt);
+            }
+
+            std::vector<std::unique_ptr<kynema_sgf::ScratchField>> reference;
+            for (const auto& entry : fields) {
+                reference.emplace_back(repo.create_scratch_field(1, 0));
+                kynema_sgf::field_ops::copy(
+                    *reference.back(), repo.get_field(entry.first), 0, 0, 1, 0);
+            }
+
+            init_linear_z(rho, 2.5_rt, 0.0005_rt);
+            init_linear_z(rho_nph, 2.5_rt, 0.0005_rt);
+            tmodel.update_turbulent_viscosity(
+                kynema_sgf::FieldState::New, diff_type);
+            tke_eqn.compute_source_term(kynema_sgf::FieldState::NPH);
+            sdr_eqn.compute_source_term(kynema_sgf::FieldState::NPH);
+
+            auto error = repo.create_scratch_field(1, 0);
+            for (std::size_t n = 0; n < fields.size(); ++n) {
+                const auto& [name, scale] = fields[n];
+                SCOPED_TRACE(name);
+                kynema_sgf::field_ops::lincomb(
+                    *error, 1.0_rt, repo.get_field(name), 0, -scale,
+                    *reference[n], 0, 0, 1, 0);
+                const amrex::Real magnitude = amrex::max<amrex::Real>(
+                    std::abs(utils::field_min(*reference[n])),
+                    std::abs(utils::field_max(*reference[n])));
+                const amrex::Real tol =
+                    1.0e-9_rt * amrex::max<amrex::Real>(magnitude, 1.0e-6_rt);
+                EXPECT_NEAR(utils::field_min(*error), 0.0_rt, tol);
+                EXPECT_NEAR(utils::field_max(*error), 0.0_rt, tol);
+            }
+        }
+    }
+}
+
+TEST_F(TurbRANSTest, test_kw_sst_density_sources)
+{
+    check_kw_density_sources("KOmegaSST");
+}
+
+TEST_F(TurbRANSTest, test_kw_sst_iddes_density_sources)
+{
+    check_kw_density_sources("KOmegaSSTIDDES");
+}
 
 TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
 {
