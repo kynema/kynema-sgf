@@ -58,7 +58,8 @@ namespace kynema_sgf {
 template <class Base, class... Args>
 struct Factory
 {
-    /* Create an instance of the concrete subclass based on the runtime keyword */
+    /* Create an instance of the concrete subclass based on the runtime keyword
+     */
     static std::unique_ptr<Base> create(const std::string& key, Args... args)
     {
         key_exists_or_error(key);

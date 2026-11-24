@@ -59,7 +59,6 @@ private:
 public:
     static std::string identifier() { return WaveTheoryTrait::identifier(); }
 
-
     OWModel(CFDSim& sim, const std::string& label, const int id)
         : m_data(sim, label, id), m_out_op(m_data)
     {}

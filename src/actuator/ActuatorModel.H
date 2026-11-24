@@ -102,7 +102,6 @@ public:
         return ActTrait::identifier() + SrcTrait::identifier();
     }
 
-
     ActModel(CFDSim& sim, const std::string& label, const int id)
         : m_data(sim, label, id), m_src_op(m_data), m_out_op(m_data)
     {}

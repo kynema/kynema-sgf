@@ -46,7 +46,8 @@ struct IBInfo
     {}
 };
 
-/* Abstract representation of data holder for specific immersed boundary types. */
+/* Abstract representation of data holder for specific immersed boundary types.
+ */
 template <typename IBTrait>
 class IBDataHolder
 {

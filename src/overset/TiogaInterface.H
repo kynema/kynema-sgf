@@ -17,7 +17,6 @@ struct AMROversetInfo
     template <typename T>
     using AType = tioga_iface::AmrDualArray<T>;
 
-
     AMROversetInfo(int nglobal, int nlocal);
 
     // Arrays of size ngrids_global

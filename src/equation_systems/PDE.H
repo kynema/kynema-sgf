@@ -35,7 +35,6 @@ public:
         return PDE::pde_name() + "-" + Scheme::scheme_name();
     }
 
-
     explicit PDESystem(CFDSim& sim)
         : m_sim(sim)
         , m_time(sim.time())

@@ -30,7 +30,6 @@ struct BCOp<PDE, std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
         bc_src();
     }
 
-
     void apply_bcs(const FieldState rho_state)
     {
         amrex::IntVect ng_diff(1);

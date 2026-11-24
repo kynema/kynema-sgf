@@ -66,7 +66,8 @@ public:
         }
     }
 
-    /* Get a vector from the input file, but could be specified uniform instead */
+    /* Get a vector from the input file, but could be specified uniform instead
+     */
     void get_either(const std::string& name, vs::Vector& value) const
     {
         amrex::Vector<vs::Vector::value_type> val;

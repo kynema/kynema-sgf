@@ -26,7 +26,6 @@ template <typename FType>
 class FPlaneAveraging
 {
 public:
-
     FPlaneAveraging(
         const FType& field_in,
         const kynema_sgf::SimTime& time,
@@ -50,7 +49,8 @@ public:
         component */
     [[nodiscard]] amrex::Real
     line_derivative_interpolated(amrex::Real x, int comp) const;
-    /* evaluate derivative of a line average at specific cell for any component */
+    /* evaluate derivative of a line average at specific cell for any component
+     */
     [[nodiscard]] amrex::Real
     line_derivative_of_average_cell(int ind, int comp) const;
 
