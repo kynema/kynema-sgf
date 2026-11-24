@@ -29,6 +29,13 @@ static constexpr amrex::Real LOW_NUM = static_cast<amrex::Real>(
 static constexpr amrex::Real LARGE_NUM = static_cast<amrex::Real>(
     std::numeric_limits<amrex::Real>::max() * 1.0e-10_rt);
 
+//! Tolerance for vof determining presence of liquid
+#if KYNEMA_SGF_PRECISION == DOUBLE
+static constexpr amrex::Real VOF_TOL = 1.0e-12_rt;
+#elif KYNEMA_SGF_PRECISION == SINGLE
+static constexpr amrex::Real VOF_TOL = 1.0e-6_rt;
+#endif
+
 //! Closeness comparison
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool
 is_close(const amrex::Real a, const amrex::Real b)

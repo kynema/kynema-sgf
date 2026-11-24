@@ -38,7 +38,7 @@ Example for ``TurbineKynemaFMBLine``::
    Actuator.TurbineKynemaFMBLine.density = 1.225
    Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff = 1.0
    Actuator.TurbineKynemaFMBLine.nacelle_area = 8.0
-   Actuator.TurbineKynemaFMBLine.output_frequency = 1
+   Actuator.TurbineKynemaFMBLine.output_interval = 1
 
    Actuator.T0.base_position = 0.0 -250.0 -90.0
    Actuator.T1.base_position = 0.0 250.0 -90.0
@@ -188,65 +188,37 @@ Kynema-FMB turbine setup and coupling
 Actuator forcing and output controls
 """"""""""""""""""""""""""""""""""""
 
+Note: the FLLC-related inputs are identical to those used in the OpenFAST ALM with FLLC, as described in the :ref:`alm_fllc` section.
+
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon
 
    **type:** List of 3 real numbers, conditionally required
 
-   Gaussian smearing width for the blade force projection. Kynema-SGF requires at least one of ``epsilon`` or ``epsilon_chord`` for turbine actuator simulations. When FLLC is enabled, both ``epsilon`` and ``epsilon_chord`` are required.
+   Gaussian smearing width for the blade force projection, in the chord,
+   thickness and spanwise directions of each blade point, as for
+   :input_param:`Actuator.TurbineFastLine.epsilon`. With
+   ``TurbineKynemaFMBDisk`` the blade points are spread with a single
+   width, normal to the rotor, taken from the thickness value (the second)
+   of ``epsilon``, ``epsilon_chord`` and ``epsilon_min``, as for
+   ``TurbineFastDisk``. Kynema-SGF requires at least one of ``epsilon`` or ``epsilon_chord`` for turbine actuator simulations. When FLLC is enabled, both ``epsilon`` and ``epsilon_chord`` are required.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_chord
 
    **type:** List of 3 real numbers, optional
 
-   Non-dimensional ``epsilon / chord`` values used to compute a blade-force smearing width from the local chord. Kynema-SGF uses the maximum of the direct ``epsilon`` value and the chord-based value when both are provided.
+   Non-dimensional ``epsilon / chord`` values used to compute a blade-force smearing width from the local chord, in the same order as ``epsilon``. With FLLC, the correction uses the second value. Kynema-SGF uses the maximum of the direct ``epsilon`` value and the chord-based value when both are provided.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_min
 
    **type:** List of 3 real numbers, optional
 
-   Minimum value allowed when chord-based epsilon values are used.
+   Minimum value allowed when chord-based epsilon values are used, in the same order as ``epsilon``. Also the width of the hub (nacelle) point, with its values put on the local axes of that point in the same way as for the blade points.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.epsilon_tower
 
    **type:** List of 3 real numbers, optional
 
-   Gaussian smearing width for tower forces.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc
-
-   **type:** Bool, optional, default = false
-
-   Enables the filtered lifting line correction for the blade loading.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_type
-
-   **type:** String, optional, default = ``variable_chord``
-
-   Selects the FLLC formulation. Supported values are ``constant_chord`` and ``variable_chord``.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_relaxation_factor
-
-   **type:** Real, optional, default = 0.1
-
-   Relaxation factor applied to the FLLC velocity update.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_start_time
-
-   **type:** Real, optional, default = 0
-
-   Simulation time at which the FLLC correction becomes active.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_nonuniform
-
-   **type:** Bool, optional, default = true
-
-   Enables the non-uniform radial point distribution used by the FLLC implementation.
-
-.. input_param:: Actuator.TurbineKynemaFMBLine.fllc_epsilon_dr_ratio
-
-   **type:** Real, optional, default = 1
-
-   Target ratio of epsilon to actuator-point spacing used when building the non-uniform FLLC point distribution.
+   Gaussian smearing width for tower forces, in the same order as ``epsilon``, with its values put on the local axes of the tower points in the same way as for the blade points.
 
 .. input_param:: Actuator.TurbineKynemaFMBLine.nacelle_drag_coeff
 
@@ -260,11 +232,14 @@ Actuator forcing and output controls
 
    Frontal area of the nacelle used together with ``nacelle_drag_coeff``.
 
-.. input_param:: Actuator.TurbineKynemaFMBLine.output_frequency
+.. input_param:: Actuator.TurbineKynemaFMBLine.output_interval
 
    **type:** Int, optional, default = 10
 
-   Frequency, in Kynema-SGF time steps, for writing the actuator NetCDF output produced by Kynema-SGF. Kynema-FMB's own turbine output is written separately every Kynema-SGF time step.
+   Number of Kynema-SGF time steps between actuator NetCDF outputs produced by
+   Kynema-SGF. The legacy input argument ``output_frequency`` is still accepted
+   with a warning; use ``output_interval`` instead. Kynema-FMB's own turbine
+   output is written separately every Kynema-SGF time step.
 
 Restart and controller options
 """"""""""""""""""""""""""""""

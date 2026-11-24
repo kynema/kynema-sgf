@@ -70,18 +70,20 @@ public:
     //! Number of output probe locations (after data reduction etc.)
     [[nodiscard]] long num_output_points() const override { return m_npts; }
 
-private:
+protected:
     const CFDSim& m_sim;
 
     amrex::Vector<amrex::Real> m_hi;
     amrex::Vector<amrex::Real> m_lo;
     amrex::Vector<int> m_npts_dir;
 
+    bool m_snap_to_cell_center{false};
+
+private:
     std::string m_label;
 
     int m_id{-1};
     int m_npts{0};
-    bool m_snap_to_cell_center{false};
 };
 
 } // namespace kynema_sgf::sampling

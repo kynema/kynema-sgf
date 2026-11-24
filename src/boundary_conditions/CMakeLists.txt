@@ -4,7 +4,6 @@ target_sources(${kynema_sgf_lib_name}
       BCInterface.cpp
       FixedGradientBC.cpp
       scalar_bcs.cpp
-      MassInflowOutflowBC.cpp
    )
 
 add_subdirectory(wall_models)

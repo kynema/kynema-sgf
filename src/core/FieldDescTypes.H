@@ -44,6 +44,9 @@ enum class FieldInterpolator : std::uint8_t {
     FaceLinear         ///< Linear face interpolation
 };
 
+//! Input used by the base fill on an inflow face, before field-boundary fills
+enum class InflowValueSource : std::uint8_t { none, constant, profile };
+
 } // namespace kynema_sgf
 
 #endif /* FIELDDESCTYPES_H */

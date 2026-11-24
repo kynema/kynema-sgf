@@ -17,14 +17,20 @@ CylinderRefiner::CylinderRefiner(
 
     // Start of the cylinder
     pp.getarr("start", tmp_vec);
-    AMREX_ALWAYS_ASSERT(tmp_vec.size() == AMREX_SPACEDIM);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        tmp_vec.size() == AMREX_SPACEDIM,
+        "tmp_vec.size() = " + std::to_string(tmp_vec.size()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         m_start[i] = tmp_vec[i];
     }
 
     // End point of cylinder
     pp.getarr("end", tmp_vec);
-    AMREX_ALWAYS_ASSERT(tmp_vec.size() == AMREX_SPACEDIM);
+    AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
+        tmp_vec.size() == AMREX_SPACEDIM,
+        "tmp_vec.size() = " + std::to_string(tmp_vec.size()) +
+            ", AMREX_SPACEDIM = " + std::to_string(AMREX_SPACEDIM));
     for (int i = 0; i < AMREX_SPACEDIM; ++i) {
         m_end[i] = tmp_vec[i];
     }
@@ -56,8 +62,7 @@ CylinderRefiner::CylinderRefiner(
 void CylinderRefiner::operator()(
     const amrex::Box& bx,
     const amrex::Geometry& geom,
-    const amrex::Array4<amrex::TagBox::TagType>& tag,
-    const tagging::TaggingOperator& op) const
+    const amrex::Array4<amrex::TagBox::TagType>& tag) const
 {
     const auto axis = m_end - m_start;
     const auto start = m_start;
@@ -90,9 +95,9 @@ void CylinderRefiner::operator()(
             }
         }
 
-        const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
-
-        tag(i, j, k) = tagging::tag_val(previous_tag, current_tag, op);
+        if (current_tag) {
+            tag(i, j, k) = amrex::TagBox::SET;
+        }
     });
 }
 

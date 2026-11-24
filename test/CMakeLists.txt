@@ -202,6 +202,7 @@ add_test_rd(abl_multiphase_laminar 2544.41)
 add_test_rd(abl_sampling 727.79)
 add_test_rd(abl_specifiedmol_neutral 565.48)
 add_test_rd(act_fixed_wing 334.44)
+add_test_rd(act_drone_refinement 800)
 add_test_rd(boussinesq_bubble_godunov 307.55)
 add_test_rd(channel_builder_single_phase_periodic 357.76)
 add_test_rd(channel_godunov_laminar 19.24)
@@ -212,6 +213,7 @@ add_test_rd(dam_break_godunov 837.87)
 add_test_rd(ekman_spiral 19.04)
 add_test_rd(forest_drag 570.78)
 add_test_rd(forest_drag_point_cloud 581.64)
+add_test_rd(forest_drag_terrain 580.0)
 add_test_rd(freestream_godunov_inout_refine2 36.6)
 add_test_rd(halfchannel_symmetricwall 8.77)
 add_test_rd(halfchannel_zerogradient 8.1)
@@ -225,12 +227,19 @@ add_test_rd(udf_refinement 1125.3)
 add_test_rd(uniform_ct_disk_dynamic_adaptation 891.22)
 add_test_rd(vortex_patch_godunov 154.76)
 
-
 #=============================================================================
 # Regression tests (release CI)
 #=============================================================================
 add_test_r(abl_amd_wenoz 639.03)
 add_test_r(abl_anelastic 190.32)
+add_test_r(abl_mean_boussinesq)
+add_test(NAME abl_mean_boussinesq_missing_profile
+  COMMAND bash -c "\"${CMAKE_BINARY_DIR}/${kynema_sgf_exe_name}\" \"${CMAKE_CURRENT_SOURCE_DIR}/test_files/abl_mean_boussinesq/abl_mean_boussinesq.inp\" ABLMeanBoussinesq.temperature_profile_filename=missing_temperature_profile.dat amrex.throw_exception=1 amrex.signal_handling=0; exit $?")
+set_tests_properties(abl_mean_boussinesq_missing_profile PROPERTIES
+  WILL_FAIL TRUE
+  TIMEOUT 60
+  LABELS "regression"
+  WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test_files/abl_mean_boussinesq")
 add_test_r(abl_bndry_output_amr_native 331.45)
 add_test_r(abl_bndry_output_native 457.36)
 add_test_r(abl_godunov_geostrophic_timetable 505.79)
@@ -280,6 +289,8 @@ add_test_r(inertial_drop 1162.25)
 add_test_r(inflow_godunov_amr 148.06)
 add_test_r(joukowsky_disk_awc 709.76)
 add_test_r(linear_godunov_amr 456.78)
+add_test_r(ow_linear_init_waves 338.87)
+add_test_r(ow_stokes 1097.54)
 add_test_r(scalar_advection_refined 51.86)
 add_test_r(scalar_advection_uniform 10.13)
 add_test_r(sloshing_tank 974.62)
@@ -320,17 +331,12 @@ add_test_re(ib_cylinder_Re_300 994.38)
 add_test_re(ib_sphere_Re_100 1253.34)
 add_test_re(inflow_bds_amr 906.66)
 add_test_re(linear_bds_amr 965.48)
+add_test_re(ow_linear 1282.28)
+add_test_re(rankine 101.32)
+add_test_re(rankine-sym 98.3)
 add_test_re(rayleigh_taylor_godunov 808.09)
 add_test_re(rayleigh_taylor_mol 1186.89)
 add_test_re(tgv_mol 634.63)
-
-if("${KYNEMA_SGF_PRECISION}" STREQUAL "DOUBLE")
-  add_test_re(ow_linear 1282.28)
-  add_test_re(ow_linear_init_waves 338.87)
-  add_test_re(ow_stokes 1097.54)
-  add_test_re(rankine 101.32)
-  add_test_re(rankine-sym 98.3)
-endif()
 
 if(KYNEMA_SGF_ENABLE_NETCDF)
   add_test_re(abl_bndry_output 476.96)
@@ -385,7 +391,9 @@ if(KYNEMA_SGF_ENABLE_W2A)
   endif()
 endif()
 
-if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_OPENFAST_VERSION VERSION_LESS "4")
+# act_uniform_alm has two OpenFAST turbines, which need a process each (FastIface stops at start-up
+# when a process holds two): the tests need MPI.
+if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_ENABLE_MPI AND KYNEMA_SGF_OPENFAST_VERSION VERSION_LESS "4")
   set(ACT_UNIFORM_ALM_TEST_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test_files/act_uniform_alm)
   set(ACT_UNIFORM_ALM_TEST_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_files/act_uniform_alm)
   set(RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR ${ACT_UNIFORM_ALM_TEST_BINARY_DIR}/r-test)
@@ -429,6 +437,76 @@ if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_OPENFAST_VERSION VERSION_LESS "4")
   endif()
 endif()
 
+# OpenFAST 5: same tests with the v5 input files (nrel5mw_of5.fst, custom_openfast_options_of5.patch,
+# act_uniform_alm_restart_of5.inp), copied over the OpenFAST 3 files of the same name in the test binary directories.
+# r-test is cloned from GitHub, or copied from KYNEMA_SGF_OPENFAST_RTEST_DIR when that is set (no network needed).
+# If neither works, the two tests are skipped with a warning instead of failing the configure.
+if(KYNEMA_SGF_ENABLE_OPENFAST AND KYNEMA_SGF_ENABLE_MPI AND KYNEMA_SGF_OPENFAST_VERSION VERSION_GREATER_EQUAL "5")
+  set(KYNEMA_SGF_OPENFAST_RTEST_DIR "" CACHE PATH "Existing OpenFAST r-test directory (tag v5.0.0, or the r-test submodule of the OpenFAST source) to use instead of cloning r-test for the act_uniform_alm tests")
+  set(ACT_UNIFORM_ALM_TEST_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test_files/act_uniform_alm)
+  set(ACT_UNIFORM_ALM_TEST_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_files/act_uniform_alm)
+  set(ACT_UNIFORM_ALM_RESTART_TEST_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test_files/act_uniform_alm_restart)
+  set(ACT_UNIFORM_ALM_RESTART_TEST_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/test_files/act_uniform_alm_restart)
+  set(RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR ${ACT_UNIFORM_ALM_TEST_BINARY_DIR}/r-test)
+  set(RTEST_ACT_UNIFORM_ALM_STAMP ${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}/.kynema_sgf_rtest_ready)
+  set(RTEST_TAG "v5.0.0")
+  set(5MW_BASELINE_DIR glue-codes/openfast/5MW_Baseline)
+  set(5MW_LAND_DIR glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp)
+  set(RTEST_PATCH ${ACT_UNIFORM_ALM_TEST_SOURCE_DIR}/custom_openfast_options_of5.patch)
+  find_package(Git QUIET)
+  file(MAKE_DIRECTORY ${ACT_UNIFORM_ALM_TEST_BINARY_DIR})
+  # The stamp is written once r-test is in place and patched; a directory left by a failed attempt is removed and made again
+  if(NOT EXISTS "${RTEST_ACT_UNIFORM_ALM_STAMP}")
+    file(REMOVE_RECURSE "${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}")
+    set(RTEST_RESULT 1)
+    if(NOT GIT_FOUND)
+      message(WARNING "git was not found: cannot clone or patch OpenFAST r-test for the act_uniform_alm tests")
+    elseif(KYNEMA_SGF_OPENFAST_RTEST_DIR)
+      if(EXISTS "${KYNEMA_SGF_OPENFAST_RTEST_DIR}/${5MW_BASELINE_DIR}" AND EXISTS "${KYNEMA_SGF_OPENFAST_RTEST_DIR}/${5MW_LAND_DIR}")
+        message(STATUS "act_uniform_alm: copying r-test from KYNEMA_SGF_OPENFAST_RTEST_DIR = ${KYNEMA_SGF_OPENFAST_RTEST_DIR}")
+        file(COPY ${KYNEMA_SGF_OPENFAST_RTEST_DIR}/${5MW_BASELINE_DIR} DESTINATION ${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}/glue-codes/openfast)
+        file(COPY ${KYNEMA_SGF_OPENFAST_RTEST_DIR}/${5MW_LAND_DIR} DESTINATION ${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}/glue-codes/openfast-cpp)
+        # git init: inside another git repository (a build directory in the source tree) git apply would skip every file of the patch
+        execute_process(
+          COMMAND bash -c "${GIT_EXECUTABLE} init -q && ${GIT_EXECUTABLE} apply ${RTEST_PATCH}"
+          WORKING_DIRECTORY
+          "${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}"
+          RESULT_VARIABLE RTEST_RESULT)
+      else()
+        message(WARNING "KYNEMA_SGF_OPENFAST_RTEST_DIR = ${KYNEMA_SGF_OPENFAST_RTEST_DIR} does not contain ${5MW_BASELINE_DIR} and ${5MW_LAND_DIR}")
+      endif()
+    else()
+      execute_process(
+        COMMAND bash -c "${GIT_EXECUTABLE} clone -n --depth=1 --filter=tree:0 https://github.com/OpenFAST/r-test.git && cd r-test && ${GIT_EXECUTABLE} fetch --all --tags && ${GIT_EXECUTABLE} sparse-checkout set --no-cone ${5MW_BASELINE_DIR} ${5MW_LAND_DIR} && ${GIT_EXECUTABLE} checkout ${RTEST_TAG} && ${GIT_EXECUTABLE} apply ${RTEST_PATCH}"
+        WORKING_DIRECTORY
+        "${ACT_UNIFORM_ALM_TEST_BINARY_DIR}"
+        TIMEOUT 600
+        RESULT_VARIABLE RTEST_RESULT)
+    endif()
+    if(RTEST_RESULT EQUAL 0)
+      file(TOUCH "${RTEST_ACT_UNIFORM_ALM_STAMP}")
+    else()
+      file(REMOVE_RECURSE "${RTEST_ACT_UNIFORM_ALM_TEST_BINARY_DIR}")
+    endif()
+  endif()
+  if(EXISTS "${RTEST_ACT_UNIFORM_ALM_STAMP}")
+    # These tests take the floating-point traps of the other regression tests. OpenFAST up to 5.0.x then has to be built with its option
+    # FPE_TRAP_ENABLED: without it Set_IEEE_Constants of the NWTC library makes NaN and Inf with SQRT(-1) and 1/0, the first rank stops there
+    # and the others wait. The dev branch of OpenFAST makes them with ieee_value since 2026-09-29 (4e46f62b2) and needs no such option.
+    if(KYNEMA_SGF_ENABLE_FPE_TRAP_FOR_TESTS)
+      message(STATUS "act_uniform_alm: the tests trap floating-point exceptions (KYNEMA_SGF_ENABLE_FPE_TRAP_FOR_TESTS); an OpenFAST of version 5.0.x or older must then be built with FPE_TRAP_ENABLED")
+    endif()
+    add_test_re(act_uniform_alm)
+    configure_file(${ACT_UNIFORM_ALM_TEST_SOURCE_DIR}/nrel5mw_of5.fst ${ACT_UNIFORM_ALM_TEST_BINARY_DIR}/nrel5mw.fst COPYONLY)
+    if(KYNEMA_SGF_ENABLE_NETCDF AND KYNEMA_SGF_TEST_WITH_FCOMPARE)
+      add_test_red(act_uniform_alm_restart act_uniform_alm)
+      configure_file(${ACT_UNIFORM_ALM_RESTART_TEST_SOURCE_DIR}/act_uniform_alm_restart_of5.inp ${ACT_UNIFORM_ALM_RESTART_TEST_BINARY_DIR}/act_uniform_alm_restart.inp COPYONLY)
+    endif()
+  else()
+    message(WARNING "OpenFAST r-test ${RTEST_TAG} could not be cloned from https://github.com/OpenFAST/r-test.git or copied from KYNEMA_SGF_OPENFAST_RTEST_DIR: skipping tests act_uniform_alm and act_uniform_alm_restart. Set KYNEMA_SGF_OPENFAST_RTEST_DIR to an r-test checkout to run them.")
+  endif()
+endif()
+
 if(KYNEMA_SGF_ENABLE_KYNEMA_FMB)
   add_test_re(act_kynema_fmb_alm)
   add_test_re(act_kynema_fmb_adm)
@@ -446,6 +524,7 @@ if(KYNEMA_SGF_TEST_WITH_FCOMPARE)
   add_test_red(abl_bndry_input_native abl_bndry_output_native 116.58)
   add_test_red(abl_bndry_input_native_inout abl_bndry_output_native 182.49)
   add_test_red(abl_godunov_restart abl_godunov 147.85)
+  add_test_red(act_fixed_wing_fllc_restart act_fixed_wing_fllc)
   add_test_red(abl_bndry_input_amr_native abl_bndry_output_native 317.8)
   add_test_red(abl_bndry_input_amr_native_xhi abl_bndry_output_native 315.98)
   add_test_red(abl_bndry_input_amr_native_mlbc abl_bndry_output_amr_native 74.55)

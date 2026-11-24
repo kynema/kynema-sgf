@@ -28,6 +28,10 @@ using namespace amrex::literals;
  */
 
 namespace kynema_sgf {
+class FieldBoundaryMgr;
+
+enum class InflowValidationStage : std::uint8_t { configuration, initialized };
+
 namespace {
 amrex::Vector<std::string> bcnames = {"xlo", "ylo", "zlo", "xhi", "yhi", "zhi"};
 }
@@ -54,6 +58,12 @@ public:
     //! User-defined functions for Dirichlet-type boundaries
     amrex::Array<const std::string, 3> get_dirichlet_udfs();
 
+    //! Validate configuration before meshing, then actual coverage after setup.
+    static void validate_inflow_values(
+        const FieldRepo& repo,
+        const FieldBoundaryMgr& boundaries,
+        InflowValidationStage stage = InflowValidationStage::initialized);
+
 protected:
     //! Setup AMReX mathematical BC types
     virtual void set_bcrec() = 0;
@@ -69,6 +79,13 @@ protected:
 
     //! Set default BC values for the field
     void set_default_value(amrex::Real value);
+
+    virtual amrex::Array<const std::string, 3> inflow_udfs()
+    {
+        return get_dirichlet_udfs();
+    }
+
+    void read_inflow_values();
 
     //! Set AMReX mathematical boundary types for the lower boundaries
     void set_bcrec_lo(int dir, amrex::BCType::mathematicalBndryTypes bcrec)

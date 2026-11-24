@@ -102,7 +102,7 @@ private:
     bool m_write_force_timetable{false};
     //! File name for forcing time table output
     std::string m_force_timetable;
-    //! Output frequency for forces
+    //! Time step interval for force output
     int m_force_outfreq{1};
     //! Output start time for force
     amrex::Real m_force_outstart{0.0_rt};

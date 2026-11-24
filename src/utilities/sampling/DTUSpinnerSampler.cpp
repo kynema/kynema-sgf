@@ -6,10 +6,10 @@
 #include "AMReX_ParmParse.H"
 
 #ifdef KYNEMA_SGF_USE_OPENFAST
-#include "src/wind_energy/actuator/Actuator.H"
-#include "src/wind_energy/actuator/turbine/fast/TurbineFast.H"
-#include "src/wind_energy/actuator/turbine/fast/turbine_fast_ops.H"
-#include "src/wind_energy/actuator/ActuatorModel.H"
+#include "src/actuator/Actuator.H"
+#include "src/actuator/turbine/fast/TurbineFast.H"
+#include "src/actuator/turbine/fast/turbine_fast_ops.H"
+#include "src/actuator/ActuatorModel.H"
 #include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;

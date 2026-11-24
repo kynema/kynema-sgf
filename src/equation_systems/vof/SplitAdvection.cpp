@@ -1,5 +1,6 @@
 #include "src/equation_systems/vof/SplitAdvection.H"
 #include "src/equation_systems/vof/split_advection.H"
+#include "src/utilities/constants.H"
 #include "AMReX_Geometry.H"
 #include "AMReX_MultiFabUtil.H"
 #include "AMReX_REAL.H"
@@ -140,7 +141,7 @@ void multiphase::split_compute_fluxes(
     amrex::Array4<amrex::Real> vofR = makeArray4(p, bxg1, 1);
 
     if (isweep % 3 == 0) {
-        sweep_fluxes(2, bx, dtdz, wmac, volfrac, vofL, vofR);
+        sweep_fluxes(2, bx, dtdz, wmac, volfrac, vofL, vofR, geom[lev]);
         amrex::Box const& zbx = amrex::surroundingNodes(bx, 2);
         amrex::ParallelFor(zbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
             fluxes_bc_save(
@@ -148,7 +149,7 @@ void multiphase::split_compute_fluxes(
                 domlo.z, domhi.z);
         });
     } else if (isweep % 3 == 1) {
-        sweep_fluxes(1, bx, dtdy, vmac, volfrac, vofL, vofR);
+        sweep_fluxes(1, bx, dtdy, vmac, volfrac, vofL, vofR, geom[lev]);
         amrex::Box const& ybx = amrex::surroundingNodes(bx, 1);
         amrex::ParallelFor(ybx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
             fluxes_bc_save(
@@ -156,7 +157,7 @@ void multiphase::split_compute_fluxes(
                 domlo.y, domhi.y);
         });
     } else {
-        sweep_fluxes(0, bx, dtdx, umac, volfrac, vofL, vofR);
+        sweep_fluxes(0, bx, dtdx, umac, volfrac, vofL, vofR, geom[lev]);
         amrex::Box const& xbx = amrex::surroundingNodes(bx, 0);
         amrex::ParallelFor(xbx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
             fluxes_bc_save(
@@ -220,12 +221,16 @@ void multiphase::sweep_fluxes(
     amrex::Array4<amrex::Real const> const& vel_mac,
     amrex::Array4<amrex::Real const> const& volfrac,
     amrex::Array4<amrex::Real> const& vofL,
-    amrex::Array4<amrex::Real> const& vofR)
+    amrex::Array4<amrex::Real> const& vofR,
+    amrex::Geometry const& geom)
 {
 
     BL_PROFILE("kynema-sgf::multiphase::sweep_fluxes");
 
-    amrex::Box const& bxg1 = amrex::grow(bx, 1);
+    amrex::Box const& bxg1 = amrex::grow(bx, dir, 1);
+    const auto domlo = amrex::lbound(geom.Domain());
+    const auto domhi = amrex::ubound(geom.Domain());
+    const auto periodic = geom.isPeriodicArray();
 
     int ii = (dir == 0) ? 1 : 0;
     int jj = (dir == 1) ? 1 : 0;
@@ -234,8 +239,36 @@ void multiphase::sweep_fluxes(
     amrex::ParallelFor(bxg1, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
         amrex::Real velL = vel_mac(i, j, k);
         amrex::Real velR = vel_mac(i + ii, j + jj, k + kk);
+        amrex::Real mx = 0.0_rt, my = 0.0_rt, mz = 0.0_rt, alpha = 0.0_rt;
+        if (volfrac(i, j, k) > constants::VOF_TOL &&
+            std::abs(volfrac(i, j, k) - 1.0_rt) > constants::VOF_TOL) {
+            const bool in_ext_bdy_x =
+                !periodic[0] && (i < domlo.x || i > domhi.x);
+            const bool in_ext_bdy_y =
+                !periodic[1] && (j < domlo.y || j > domhi.y);
+            const bool in_ext_bdy_z =
+                !periodic[2] && (k < domlo.z || k > domhi.z);
+            const bool boundary_ghost =
+                in_ext_bdy_x || in_ext_bdy_y || in_ext_bdy_z;
+            if (boundary_ghost) {
+                const int ibdy =
+                    periodic[0] ? 0
+                                : (i <= domlo.x ? -1 : (i >= domhi.x ? 1 : 0));
+                const int jbdy =
+                    periodic[1] ? 0
+                                : (j <= domlo.y ? -1 : (j >= domhi.y ? 1 : 0));
+                const int kbdy =
+                    periodic[2] ? 0
+                                : (k <= domlo.z ? -1 : (k >= domhi.z ? 1 : 0));
+                multiphase::fit_plane(
+                    i, j, k, ibdy, jbdy, kbdy, volfrac, mx, my, mz, alpha);
+            } else {
+                multiphase::fit_plane(i, j, k, volfrac, mx, my, mz, alpha);
+            }
+        }
         multiphase::eulerian_implicit(
-            i, j, k, dir, dtdx, velL, velR, volfrac, vofL, vofR);
+            i, j, k, dir, dtdx, velL, velR, mx, my, mz, alpha, volfrac, vofL,
+            vofR);
     });
 }
 

@@ -1,0 +1,53 @@
+time.stop_time = 22000.0
+time.max_step = 6
+time.fixed_dt = 0.5
+time.cfl = 0.95
+time.plot_interval = 6
+time.checkpoint_interval = -1
+
+incflo.gravity = 0.0 0.0 -9.81
+incflo.density = 1.0
+incflo.velocity = 7.0 7.0 0.0
+incflo.use_godunov = 1
+incflo.godunov_type = ppm
+incflo.diffusion_type = 2
+incflo.verbose = 0
+
+transport.viscosity = 1.0e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+transport.reference_temperature = 300.0
+turbulence.model = Smagorinsky
+Smagorinsky_coeffs.Cs = 0.135
+
+incflo.physics = ABL
+ICNS.source_terms = BoussinesqBuoyancy CoriolisForcing ABLMeanBoussinesq
+CoriolisForcing.latitude = 41.3
+ABLMeanBoussinesq.read_temperature_profile = true
+ABLMeanBoussinesq.temperature_profile_filename = temperature_profile.dat
+
+ABL.temperature_heights = 650.0 750.0 1500.0
+ABL.temperature_values = 300.0 308.0 310.25
+ABL.kappa = 0.41
+ABL.surface_roughness_z0 = 0.15
+
+amr.n_cell = 16 16 24
+amr.max_level = 0
+geometry.prob_lo = 0.0 0.0 0.0
+geometry.prob_hi = 1000.0 1000.0 1500.0
+geometry.is_periodic = 0 0 0
+
+xlo.type = mass_inflow
+xlo.density = 1.0
+xlo.velocity = 7.0 7.0 0.0
+xlo.temperature = 300.0
+xhi.type = pressure_outflow
+ylo.type = mass_inflow
+ylo.density = 1.0
+ylo.velocity = 7.0 7.0 0.0
+ylo.temperature = 300.0
+yhi.type = pressure_outflow
+zlo.type = wall_model
+zhi.type = slip_wall
+zhi.temperature_type = fixed_gradient
+zhi.temperature = 0.003

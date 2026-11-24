@@ -2,6 +2,7 @@
 #define CONSTTRANSPORT_H
 
 #include "src/transport_models/TransportModel.H"
+#include "src/utilities/constants.H"
 #include "AMReX_ParmParse.H"
 #include "AMReX_REAL.H"
 
@@ -195,7 +196,7 @@ public:
             amrex::ParallelFor(
                 beta_mf, amrex::IntVect(0), 1,
                 [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k, int) {
-                    if (vof_arrs[nbx](i, j, k) > constants::TIGHT_TOL) {
+                    if (vof_arrs[nbx](i, j, k) > constants::VOF_TOL) {
                         beta_arrs[nbx](i, j, k) = 0.0_rt;
                     }
                 });

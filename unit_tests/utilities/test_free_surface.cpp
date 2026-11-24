@@ -399,7 +399,7 @@ protected:
 
         {
             amrex::ParmParse pp("amr");
-            amrex::Vector<int> ncell{{32, 32, 64}};
+            amrex::Vector<int> ncell = m_ncell;
             pp.add("max_level", m_nlev);
             pp.addarr("n_cell", ncell);
         }
@@ -465,7 +465,7 @@ protected:
     const amrex::Real m_water_level1 = 31.5_rt;
     const amrex::Real m_water_level2 = 65.0_rt;
     const amrex::Vector<amrex::Real> m_problo{{0.0_rt, 0.0_rt, -4.0_rt}};
-    const amrex::Vector<amrex::Real> m_probhi{{128.0_rt, 128.0_rt, 124.0_rt}};
+    amrex::Vector<amrex::Real> m_probhi{{128.0_rt, 128.0_rt, 124.0_rt}};
     const amrex::Vector<amrex::Real> m_pt_coord{{63.0_rt, 65.0_rt, 0.0_rt}};
     const amrex::Vector<amrex::Real> m_pl_start{{0.0_rt, 0.0_rt, 0.0_rt}};
     const amrex::Vector<amrex::Real> m_pl_end{{128.0_rt, 128.0_rt, 0.0_rt}};
@@ -474,6 +474,7 @@ protected:
     static constexpr int npts = 3;
     const amrex::Real m_fref_val = 0.5_rt;
     const std::string m_fname = "flag";
+    amrex::Vector<int> m_ncell{{32, 32, 64}};
     int m_nlev = 0;
 };
 
@@ -525,6 +526,34 @@ TEST_F(FreeSurfaceTest, plane)
     // Check output value
     int nout = tool.check_output("~", m_water_level1);
     ASSERT_EQ(nout, npts * npts);
+}
+
+TEST_F(FreeSurfaceTest, sample_points_on_cell_faces_are_owned)
+{
+    m_ncell = {280, 8, 16};
+    m_probhi[0] = 28.0_rt;
+    initialize_mesh();
+    auto& repo = sim().repo();
+    auto& vof = repo.declare_field("vof", 1, 2);
+
+    constexpr int p_npts = 557;
+    amrex::ParmParse pp("freesurface");
+    pp.add("output_interval", 1);
+    pp.add("num_instances", 1);
+    pp.add("max_sample_points_per_cell", 100);
+    pp.addarr("plane_num_points", amrex::Vector<int>{{p_npts, 1}});
+    pp.addarr(
+        "plane_start", amrex::Vector<amrex::Real>{{0.1_rt, 65.0_rt, 0.0_rt}});
+    pp.addarr(
+        "plane_end", amrex::Vector<amrex::Real>{{27.9_rt, 65.0_rt, 0.0_rt}});
+
+    init_vof(vof, m_water_level0);
+    FreeSurfaceImpl tool(sim());
+    tool.initialize("freesurface");
+    tool.update_sampling_locations();
+
+    EXPECT_EQ(tool.num_gridpoints(), p_npts);
+    EXPECT_EQ(tool.check_output("~", m_water_level0), p_npts);
 }
 
 TEST_F(FreeSurfaceTest, multivalued)

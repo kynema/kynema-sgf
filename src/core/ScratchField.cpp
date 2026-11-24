@@ -88,7 +88,10 @@ void ScratchField::fillpatch(
         amrex::FillPatchSingleLevel(
             mfab, nghost, time, {&this->operator()(lev)}, {time}, 0, 0,
             num_comp(), mesh.Geom(lev), physbc, 0);
-    } else {
+    } else if (
+        lev == 1 || amrex::ProperlyNested(
+                        mesh.refRatio(lev - 1), mesh.blockingFactor(lev),
+                        nghost.max(), mfab.ixType(), mapper)) {
         amrex::PhysBCFunct<amrex::GpuBndryFuncFab<SFBCNoOp>> cphysbc(
             mesh.Geom(lev - 1), bcrec, SFBCNoOp{});
 
@@ -100,6 +103,25 @@ void ScratchField::fillpatch(
             {&this->operator()(lev)}, {time}, 0, 0, num_comp(),
             mesh.Geom(lev - 1), mesh.Geom(lev), cphysbc, 0, fphysbc, 0,
             mesh.refRatio(lev - 1), mapper, bcrec, 0);
+    } else {
+        // Legal meshes with tight nesting can need donors from below lev-1.
+        using PhysBC = amrex::PhysBCFunct<amrex::GpuBndryFuncFab<SFBCNoOp>>;
+        amrex::Vector<amrex::Vector<amrex::MultiFab*>> sources(lev + 1);
+        amrex::Vector<amrex::Vector<amrex::Real>> times(lev + 1, {time});
+        amrex::Vector<amrex::Geometry> geometries;
+        amrex::Vector<PhysBC> physbc;
+        amrex::Vector<amrex::IntVect> ratios;
+        for (int ilev = 0; ilev <= lev; ++ilev) {
+            sources[ilev] = {&this->operator()(ilev)};
+            geometries.push_back(mesh.Geom(ilev));
+            physbc.emplace_back(mesh.Geom(ilev), bcrec, SFBCNoOp{});
+            if (ilev < lev) {
+                ratios.push_back(mesh.refRatio(ilev));
+            }
+        }
+        amrex::FillPatchNLevels(
+            mfab, lev, nghost, time, sources, times, 0, 0, num_comp(),
+            geometries, physbc, 0, ratios, mapper, bcrec, 0);
     }
 }
 

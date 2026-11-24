@@ -51,7 +51,7 @@ ABL.surface_roughness_z0 = 0.1
 ABL.surface_temp_rate = -0.25
 ABL.surface_temp_init = 265.0
 ABL.normal_direction = 2
-ABL.stats_output_frequency = 100
+ABL.stats_output_interval = 100
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
 #        ADAPTIVE MESH REFINEMENT       #
 #.......................................#

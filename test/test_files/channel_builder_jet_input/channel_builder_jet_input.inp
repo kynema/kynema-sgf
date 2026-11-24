@@ -69,12 +69,9 @@ geometry.prob_hi        =   400.   400.   100.  # Hi corner coordinates
 geometry.is_periodic    =   0   0   0   # Periodicity x y z (0/1)
 # Boundary conditions
 xlo.type =   "mass_inflow"
-xlo.density = 1.225
-xlo.vof     = 0
 xlo.velocity = 5.0 0.0 0.0
 xhi.type =   "pressure_outflow"
 ylo.type =   "slip_wall"
 yhi.type =   "slip_wall"
 zlo.type =   "slip_wall"
 zhi.type =   "slip_wall"
-

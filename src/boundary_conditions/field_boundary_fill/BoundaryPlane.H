@@ -68,11 +68,13 @@ public:
         const amrex::Vector<amrex::Real>& /*times*/);
 
     void interpolate(amrex::Real /*time*/);
+    void complete_boundary_planes(const amrex::AmrCore& mesh, int nghost);
     [[nodiscard]] bool is_populated(amrex::Orientation /*ori*/) const;
     [[nodiscard]] const amrex::FArrayBox&
     interpolate_data(const amrex::Orientation ori, const int lev) const
     {
-        return (*m_data_interp[ori])[lev];
+        return m_data_complete[ori] != nullptr ? (*m_data_complete[ori])[lev]
+                                               : (*m_data_interp[ori])[lev];
     }
 
     int& component(const int id) { return m_components[id]; }
@@ -95,6 +97,7 @@ private:
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_n;
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_np1;
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_interp;
+    amrex::Vector<std::unique_ptr<PlaneVector>> m_data_complete;
 
     //! Time for plane at n
     amrex::Real m_tn{-1.0_rt};
@@ -133,6 +136,12 @@ public:
     void post_advance_work() override;
 
     void pre_predictor_work() override;
+
+    [[nodiscard]] bool provides_inflow_values(
+        const Field& field, amrex::Orientation ori) const override;
+
+    [[nodiscard]] bool may_provide_inflow_values(
+        const Field& field, amrex::Orientation ori) const override;
 
     void set_velocity(
         int lev,
@@ -206,6 +215,8 @@ public:
     }
 
 private:
+    void complete_input_planes();
+
     const CFDSim& m_sim;
     const kynema_sgf::SimTime& m_time;
     const FieldRepo& m_repo;

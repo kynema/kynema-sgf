@@ -12,6 +12,7 @@
 #include "src/incflo.H"
 #include "src/wind_energy/ABLMesoscaleForcing.H"
 #include "src/wind_energy/ABLMesoscaleInput.H"
+#include "src/utilities/io_utils.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_MultiFab.H"
@@ -54,24 +55,23 @@ ABL::ABL(CFDSim& sim)
 
     amrex::ParmParse pp("ABL");
 
-    if (pp.contains("mesoscale_forcing")) {
+    if (pp.contains("mesoscale_forcing") || pp.contains("WRFforcing")) {
 #ifndef KYNEMA_SGF_USE_NETCDF
-        amrex::Abort("Mesoscale forcing capability requires NetCDF");
+        if (pp.contains("mesoscale_forcing")) {
+            amrex::Abort("Mesoscale forcing capability requires NetCDF");
+        } else {
+            amrex::Abort("WRF forcing capability requires NetCDF");
+        }
 #else
         std::string ncfile;
-        pp.get("mesoscale_forcing", ncfile);
-        m_meso_file = std::make_unique<ABLMesoscaleInput>(ncfile);
-#endif
-
-    } else if (pp.contains("WRFforcing")) {
-#ifndef KYNEMA_SGF_USE_NETCDF
-        amrex::Abort("WRF forcing capability requires NetCDF");
-#else
-        amrex::Print() << "Note: ABL.WRFforcing is deprecated -- "
-                       << "use ABL.mesoscale_forcing instead" << std::endl;
-        std::string ncfile;
-        pp.get("WRFforcing", ncfile);
-        m_meso_file = std::make_unique<ABLMesoscaleInput>(ncfile, "wrf_");
+        ioutils::query_with_legacy_name(
+            pp, "mesoscale_forcing", "WRFforcing", ncfile);
+        const std::string legacy_prefix =
+            (!pp.contains("mesoscale_forcing") && pp.contains("WRFforcing"))
+                ? "wrf_"
+                : "";
+        m_meso_file =
+            std::make_unique<ABLMesoscaleInput>(ncfile, legacy_prefix);
 #endif
     }
 

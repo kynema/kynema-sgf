@@ -66,11 +66,9 @@ RayleighDamping.time_scale                       = 20.0
 # BC
 xlo.type                         = "mass_inflow"
 xlo.density                      = 1.225
-xlo.temperature                          = 300
 xhi.type                         = "pressure_outflow"
 ylo.type                         = "mass_inflow"
 ylo.density                      = 1.225
-ylo.temperature                          = 300
 yhi.type                         = "pressure_outflow"
 zhi.type                         = "slip_wall"
 zhi.temperature_type                     = "fixed_gradient"

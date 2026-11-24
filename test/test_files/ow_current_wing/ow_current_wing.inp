@@ -47,7 +47,7 @@ Actuator.FixedWingLine.airfoil_type = openfast
 Actuator.F1.start = 4.0 -1.5 -0.7
 Actuator.F1.end = 4.0 1.5 -0.7
 Actuator.F1.pitch = 20.0
-Actuator.F1.output_frequency = 10
+Actuator.F1.output_interval = 10
 
 ICNS.source_terms = GravityForcing ActuatorForcing
 ICNS.use_perturb_pressure = true

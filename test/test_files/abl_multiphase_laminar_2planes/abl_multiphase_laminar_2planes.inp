@@ -55,7 +55,7 @@ ABL.deltaU = 1e-5
 ABL.deltaV = 1e-5
 ABL.normal_direction = 2
 # frequency is rapid for the sake of reg test
-ABL.stats_output_frequency = 5
+ABL.stats_output_interval = 5
 OceanWaves.label = Wave1
 OceanWaves.Wave1.type = LinearWaves
 OceanWaves.Wave1.wave_height=2.0
