@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Tracer Tagging physics
- *  \ingroup physics
- */
+/* Tracer Tagging physics */
 class ActuatorSourceTagging : public Physics::Register<ActuatorSourceTagging>
 {
 public:

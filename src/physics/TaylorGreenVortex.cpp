@@ -16,7 +16,7 @@ TaylorGreenVortex::TaylorGreenVortex(const CFDSim& sim)
     pp.query("density", m_rho);
 }
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  */
 void TaylorGreenVortex::initialize_fields(

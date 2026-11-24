@@ -9,9 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Vortex ring physics
- *  \ingroup physics
- */
+/* Vortex ring physics */
 class VortexRing : public Physics::Register<VortexRing>
 {
 public:
@@ -40,7 +38,7 @@ private:
     Field& m_velocity;
     Field& m_density;
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
 
     amrex::Real m_R{1.0_rt};

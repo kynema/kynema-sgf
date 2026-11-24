@@ -9,9 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Field registration operator for Levelset equation system
- *  \ingroup levelset
- */
+/* Field registration operator for Levelset equation system */
 template <typename Scheme>
 struct FieldRegOp<Levelset, Scheme>
 {
@@ -44,9 +42,7 @@ struct FieldRegOp<Levelset, Scheme>
     CFDSim& sim;
 };
 
-/** Right-hand side (RHS) evaluator for Levelset transport equation
- *  \ingroup levelset
- */
+/* Right-hand side (RHS) evaluator for Levelset transport equation */
 template <typename Scheme>
 struct ComputeRHSOp<Levelset, Scheme>
 {
@@ -121,9 +117,7 @@ struct ComputeRHSOp<Levelset, Scheme>
     PDEFields& fields;
 };
 
-/** Implementation of post-processing actions for the levelset equation
- *  \ingroup levelset
- */
+/* Implementation of post-processing actions for the levelset equation */
 template <>
 struct PostSolveOp<Levelset>
 {

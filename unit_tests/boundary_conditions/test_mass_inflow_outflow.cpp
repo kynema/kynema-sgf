@@ -96,7 +96,7 @@ void init_interior(
     amrex::Gpu::streamSynchronize();
 }
 
-/** Max error in the x-boundary ghost layers. On the outflow side the ghost
+/* Max error in the x-boundary ghost layers. On the outflow side the ghost
  *  values must match the adjacent interior cell, on the inflow side they must
  *  match the prescribed Dirichlet values.
  */

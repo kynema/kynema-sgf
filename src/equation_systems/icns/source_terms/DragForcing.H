@@ -11,12 +11,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Adds the forcing term to include the presence of immersed boundary
- *
- *  \ingroup icns_src
- *
- *
- */
+/* Adds the forcing term to include the presence of immersed boundary */
 class DragForcing : public MomentumSource::Register<DragForcing>
 {
 public:

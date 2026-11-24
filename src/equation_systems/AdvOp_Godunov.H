@@ -21,9 +21,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Godunov advection operator for scalar transport equations
- *  \ingroup pdeop
- */
+/* Godunov advection operator for scalar transport equations */
 template <typename PDE>
 struct AdvectionOp<
     PDE,

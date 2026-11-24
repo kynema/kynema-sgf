@@ -44,7 +44,7 @@ protected:
 };
 
 #ifdef KYNEMA_SGF_USE_NETCDF
-//! Velocity file functions of the OpenFAST interface, open to the tests
+// Velocity file functions of the OpenFAST interface, open to the tests
 class FastVelocityFile
     : public ::ext_turb::
           ExtTurbIface<::ext_turb::FastTurbine, ::ext_turb::FastSolverData>
@@ -65,7 +65,7 @@ public:
     }
 };
 
-/** Turbine with its velocity arrays held here, not by OpenFAST
+/* Turbine with its velocity arrays held here, not by OpenFAST
  *
  *  Two OpenFAST steps of 0.25 s per CFD step.
  */
@@ -87,7 +87,7 @@ struct VelocityFileTurbine
         fi.from_cfd.w_Len = npts;
     }
 
-    //! Record of a CFD step, one velocity at all points
+    // Record of a CFD step, one velocity at all points
     void write_step(FastVelocityFile& fast, const int step, const float vel)
     {
         fi.time_index = step * fi.num_substeps;

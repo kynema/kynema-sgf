@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Clone
         uses: actions/checkout@v6
-        with:
-          submodules: true
       - name: Python
         uses: actions/setup-python@v6
         with:
@@ -26,24 +24,14 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends graphviz libenchant-2-dev
+          sudo apt-get install -y --no-install-recommends libenchant-2-dev
           python3 -m pip install --upgrade pip
-          python3 -m pip install "sphinx<9" sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex doxysphinx
-      - name: Doxygen install
-        uses: ssciwr/doxygen-install@v1.6.0
-        with:
-          version: "1.14.0"
-      - name: Configure
-        run: |
-          cmake -B ${{runner.workspace}}/build-docs \
-            -DKYNEMA_SGF_ENABLE_DOCUMENTATION:BOOL=ON \
-            ${{github.workspace}}
+          python3 -m pip install "sphinx<9" sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex
       - name: Build
-        # execute from top-level kynema-sgf directory
         run: |
           echo "::add-matcher::.github/problem-matchers/sphinx.json"
-          cmake --build ${{runner.workspace}}/build-docs -t docs 2>&1 | tee -a build-output.txt
-          mv ${{runner.workspace}}/build-docs/docs/sphinx/html ./documentation
+          sphinx-build -b spelling -W --keep-going -n docs/sphinx "${{runner.temp}}/sphinx-spelling" 2>&1 | tee build-output.txt
+          sphinx-build -b html -W --keep-going -n docs/sphinx ./documentation 2>&1 | tee -a build-output.txt
           touch ./documentation/.nojekyll
       - name: Report
         run: |

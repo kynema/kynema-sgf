@@ -10,7 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Coriolis term for planetary rotation
+/* Coriolis term for planetary rotation
  *
  *  Parameters are read from the `abl` namespace in the input file. The
  *  following parameters are available:

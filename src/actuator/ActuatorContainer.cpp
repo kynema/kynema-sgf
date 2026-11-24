@@ -30,7 +30,7 @@ ActuatorContainer::ActuatorContainer(
     , m_proc_offsets_device(amrex::ParallelDescriptor::NProcs() + 1)
 {}
 
-/** Allocate memory and initialize the particles within the container
+/* Allocate memory and initialize the particles within the container
  *
  *  This method is only called once during the simulation. It allocates the
  *  arrays for holding positions and sampled flow fields on host memory and
@@ -171,7 +171,7 @@ int ActuatorContainer::num_points_outside_domain() const
     return num_out;
 }
 
-/** Update particle positions using data provided by actuator instances.
+/* Update particle positions using data provided by actuator instances.
  *
  *  This method assumes that the particles have been restored to their
  *  originating MPI ranks after any scattering. This happens during
@@ -181,7 +181,6 @@ int ActuatorContainer::num_points_outside_domain() const
  *  After executing this method, the particles have been scattered across the
  *  domain such that each particle is contained within a tile that has the cell
  *  enclosing the particle.
- *
  */
 void ActuatorContainer::update_positions()
 {
@@ -233,7 +232,7 @@ void ActuatorContainer::update_positions()
     m_is_scattered = true;
 }
 
-/** Interpolate velocity and density fields using trilinear interpolation.
+/* Interpolate velocity and density fields using trilinear interpolation.
  *
  *  This method performs three tasks:
  *    - Sample velocity and density and interpolate them onto particle locations
@@ -265,7 +264,7 @@ void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
     m_is_scattered = false;
 }
 
-/** Helper method for ActuatorContainer::sample_fields().
+/* Helper method for ActuatorContainer::sample_fields().
  *
  *  Copies sampled velocity and density from the particle tiles to the
  *  corresponding arrays.
@@ -327,7 +326,7 @@ void ActuatorContainer::populate_field_buffers()
     }
 }
 
-/** Helper method for ActuatorContainer::sample_fields().
+/* Helper method for ActuatorContainer::sample_fields().
  *
  *  Interpolates velocity and density at particle locations, then restores the
  *  particle locations so the next Redistribute call returns them to their
@@ -409,7 +408,7 @@ void ActuatorContainer::interpolate_fields(
     }
 }
 
-/** Determine position vector of a point within each MPI rank
+/* Determine position vector of a point within each MPI rank
  *
  *  Loops over the boxArray and determines the first patch that belongs to the
  *  current MPI rank. Uses that to generate a position vector that is known to

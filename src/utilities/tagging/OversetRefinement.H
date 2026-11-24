@@ -14,7 +14,7 @@ public:
 
     ~OversetRefinement() override = default;
 
-    //! Read input file and initialize boxarray used to refine each level
+    // Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
 
     [[nodiscard]] bool active(int level) const override

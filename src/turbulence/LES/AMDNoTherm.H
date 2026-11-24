@@ -14,9 +14,7 @@
 using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
-/** AMD LES Model
- *  \ingroup turb_model
- */
+/* AMD LES Model */
 template <typename Transport>
 class AMDNoTherm : public TurbModelBase<Transport>
 {
@@ -28,34 +26,34 @@ public:
 
     explicit AMDNoTherm(CFDSim& sim);
 
-    //! Model name for debugging purposes
+    // Model name for debugging purposes
     [[nodiscard]] std::string model_name() const override
     {
         return "AMDNoTherm";
     }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType /*unused*/) override;
 
-    //! Return model coefficients dictionary
+    // Return model coefficients dictionary
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
-    //! Parse turbulence model coefficients for this model
+    // Parse turbulence model coefficients for this model
     void parse_model_coeffs() override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {};
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     void post_init_actions() override;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     void post_regrid_actions() override;
 
 private:
-    //! Poincare coefficient (default value set for 2nd order Kynema-SGF
-    //! discretization)
+    // Poincare coefficient (default value set for 2nd order Kynema-SGF
+    // discretization)
     amrex::Real m_C{0.333333333333333_rt};
     const Field& m_vel;
     const Field& m_rho;

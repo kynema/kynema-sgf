@@ -39,7 +39,7 @@ protected:
         }
     }
 
-    //! Average every step with a given window and number of time steps
+    // Average every step with a given window and number of time steps
     void use_window(const amrex::Real window, const int max_step)
     {
         populate_parameters();
@@ -235,7 +235,7 @@ TEST_F(TimeAveragingTest, mismatch_time_interval)
     EXPECT_NEAR(max_f, avg_val_ideal, m_tol);
 }
 
-//! Before the window is filled the average is the arithmetic time mean
+// Before the window is filled the average is the arithmetic time mean
 TEST_F(TimeAveragingTest, window_not_filled_is_arithmetic_mean)
 {
     const amrex::Real window = 1.0_rt;
@@ -269,8 +269,8 @@ TEST_F(TimeAveragingTest, window_not_filled_is_arithmetic_mean)
     EXPECT_EQ(step_count, nsteps);
 }
 
-//! A constant field must average to that constant before and after the window
-//! is exceeded (i.e., no 1 - exp(-t/W) ramp-up)
+// A constant field must average to that constant before and after the window
+// is exceeded (i.e., no 1 - exp(-t/W) ramp-up)
 TEST_F(TimeAveragingTest, window_constant_field)
 {
     const amrex::Real window = 1.0_rt;
@@ -301,8 +301,8 @@ TEST_F(TimeAveragingTest, window_constant_field)
     EXPECT_EQ(step_count, nsteps);
 }
 
-//! Once the window is exceeded the average is an exponentially weighted
-//! moving average, not an arithmetic mean over the last window
+// Once the window is exceeded the average is an exponentially weighted
+// moving average, not an arithmetic mean over the last window
 TEST_F(TimeAveragingTest, window_step_response_is_exponential)
 {
     const amrex::Real window = 1.0_rt;

@@ -13,17 +13,13 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Implementation of the PDE interface for transport equations
- *  \ingroup eqsys
+/* Implementation of the PDE interface for transport equations
  *
  *  This class takes two traits, one describing the PDE type and the other
  *  describing the numerical scheme (e.g., Godunov, MOL) to generate a family of
  *  PDE systems and its solution process. Each operation is performed by a
  *  separate operator object that can be customized based on the different
  *  traits as necessary.
- *
- *  \tparam PDE The PDE trait (e.g., ICNS, Temperature, etc.)
- *  \tparam Scheme Numerical scheme trait (e.g., Godunov, MOL)
  */
 template <typename PDE, typename Scheme>
 class PDESystem : public PDEBase::Register<PDESystem<PDE, Scheme>>
@@ -32,16 +28,14 @@ public:
     using PDEType = PDE;
     using SchemeType = Scheme;
 
-    //! Unique identifier used to register and create this instance on-demand
-    //! through the factor interface
+    // Unique identifier used to register and create this instance on-demand
+    // through the factor interface
     static std::string identifier()
     {
         return PDE::pde_name() + "-" + Scheme::scheme_name();
     }
 
-    /**
-     *  \param sim A CFDSim instance
-     */
+
     explicit PDESystem(CFDSim& sim)
         : m_sim(sim)
         , m_time(sim.time())
@@ -55,7 +49,7 @@ public:
         m_bc_op.init_bcs();
     }
 
-    //! Perform initialization actions after the mesh is created
+    // Perform initialization actions after the mesh is created
     void initialize() override
     {
         if (PDE::has_diffusion) {
@@ -79,7 +73,7 @@ public:
         m_post_solve_op(m_time.current_time());
     }
 
-    //! Perform update actions after a regrid is performed
+    // Perform update actions after a regrid is performed
     void post_regrid_actions() override
     {
         if (PDE::has_diffusion) {
@@ -101,7 +95,7 @@ public:
         m_post_solve_op(m_time.current_time());
     }
 
-    //! Return the object holding the fields necessary for solving this PDE
+    // Return the object holding the fields necessary for solving this PDE
     PDEFields& fields() override { return m_fields; }
     [[nodiscard]] const PDEFields& fields() const override { return m_fields; }
 
@@ -185,30 +179,30 @@ public:
     }
 
 protected:
-    //! CFD simulation controller instance
+    // CFD simulation controller instance
     CFDSim& m_sim;
 
-    //! Time controls instance
+    // Time controls instance
     const SimTime& m_time;
 
-    //! Field repository
+    // Field repository
     FieldRepo& m_repo;
 
     PDEFields m_fields;
 
-    //! Source term computation operator
+    // Source term computation operator
     SrcTermOp<PDE> m_src_op;
 
-    //! Advection term computation operator
+    // Advection term computation operator
     std::unique_ptr<AdvectionOp<PDE, Scheme>> m_adv_op;
 
-    //! RHS computation operator
+    // RHS computation operator
     ComputeRHSOp<PDE, Scheme> m_rhs_op;
 
-    //! Diffusion term computation operator
+    // Diffusion term computation operator
     std::unique_ptr<DiffusionOp<PDE, Scheme>> m_diff_op;
 
-    //! Turbulence operator
+    // Turbulence operator
     std::unique_ptr<TurbulenceOp<PDE>> m_turb_op;
 
     BCOp<PDE> m_bc_op;

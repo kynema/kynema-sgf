@@ -8,8 +8,7 @@
 
 namespace kynema_sgf::subvolume {
 
-/** Get subvolume defined by 3D rectangle
- *  \ingroup subvolume
+/* Get subvolume defined by 3D rectangle
  *
  *  Defines volume region with origin, number of points in each direction, and
  * target mesh resolution in each direction. Also has an optional parameter
@@ -25,21 +24,18 @@ public:
 
     ~RectangularSubvolume() override;
 
-    /** Read user inputs and initialize the subvolume object
-     *
-     *  \param key Prefix used to parse inputs from file
-     */
+    /* Read user inputs and initialize the subvolume object */
     void initialize(const std::string& key) override;
 
-    //! Check if inputs have a valid correspondence in the mesh and save
-    //! quantities for output steps
+    // Check if inputs have a valid correspondence in the mesh and save
+    // quantities for output steps
     void evaluate_inputs() override;
 
-    //! Name of this subvolume object
+    // Name of this subvolume object
     std::string label() const override { return m_label; }
     std::string& label() override { return m_label; }
 
-    //! Type of this subvolume object
+    // Type of this subvolume object
     std::string subvolumetype() const override { return identifier(); }
 
     int lev() const override { return m_lev_for_sub; }

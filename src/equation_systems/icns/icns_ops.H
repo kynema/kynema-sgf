@@ -15,8 +15,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Specialization of field registration for ICNS
- *  \ingroup icns
+/* Specialization of field registration for ICNS
  *
  *  In addition to the PDEFields, this operator initializes several additional
  *  fields necessary to solve the Navier-Stokes equation system.
@@ -71,9 +70,7 @@ struct FieldRegOp<ICNS, Scheme>
     CFDSim& sim;
 };
 
-/** Specialization of the source term operator for ICNS
- *  \ingroup icns
- */
+/* Specialization of the source term operator for ICNS */
 template <>
 struct SrcTermOp<ICNS> : SrcTermOpBase<ICNS>
 {
@@ -123,9 +120,7 @@ struct SrcTermOp<ICNS> : SrcTermOpBase<ICNS>
     Field& grad_p;
 };
 
-/** Effective turbulent viscosity computation for ICNS
- *  \ingroup icns
- */
+/* Effective turbulent viscosity computation for ICNS */
 template <>
 struct TurbulenceOp<ICNS>
 {

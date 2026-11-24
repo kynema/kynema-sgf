@@ -6,11 +6,9 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Adds the non-linear terms from the Kosovic Model to Momentum Equation..
+/* Adds the non-linear terms from the Kosovic Model to Momentum Equation..
  *
- *  \ingroup icns_src NonLinearSGS
- *
- *  \sa NonLinearSGS
+ *  See NonLinearSGS
  */
 class NonLinearSGSTerm : public MomentumSource::Register<NonLinearSGSTerm>
 {

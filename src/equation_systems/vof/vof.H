@@ -12,9 +12,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** \defgroup vof Volume of fluid
- *
- */
+/* Volume of fluid */
 
 struct VOF : ScalarTransport
 {

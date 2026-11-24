@@ -23,7 +23,6 @@ settings.json
 .ccls-cache/
 build*
 __pycache__/
-docs/sphinx/doxygen
 docs/sphinx/references/auto
 
 # Artifacts the unit test binary writes into the directory it is run from.

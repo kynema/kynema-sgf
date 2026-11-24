@@ -164,7 +164,7 @@ void init_data_op(datatype& data)
     init_epsilon<datatype>(data);
 }
 
-/** \brief Copy velocity points of the external solver
+/* Copy velocity points of the external solver
  *
  *  vel_pos.size() points from index start, shifted by the turbine base
  *  position. Current solver time; valid on the turbine root only.
@@ -267,7 +267,7 @@ void update_fields_op(datatype& data)
     }
 }
 
-/** Write the external solver checkpoint with a CFD checkpoint
+/* Write the external solver checkpoint with a CFD checkpoint
  *
  *  Called on every rank at each CFD checkpoint, at the end of a time step
  *  (turbine at the new time since pre_advance_work). Turbine root only; no
@@ -283,7 +283,7 @@ void external_write_solver_checkpoint(datatype& data)
     tdata.ext_ptr->write_turbine_checkpoint(tdata.ext_data.tid_local);
 }
 
-/** Restart data of an external turbine, with each CFD checkpoint
+/* Restart data of an external turbine, with each CFD checkpoint
  *  (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
  *
  *  External solver checkpoint; once the FLLC has started, per blade its
@@ -325,13 +325,13 @@ void external_write_checkpoint(datatype& data, const std::string& chkname)
     restart::close_file(os, chkname, data.info().label);
 }
 
-/** Read the FLLC state of an external turbine from the restart checkpoint
+/* Read the FLLC state of an external turbine from the restart checkpoint
  *
  *  Turbine root only: fluid velocity to the solver buffers, blade forces to
  *  the grid. Only the root runs the FLLC; scatter_data refreshes the forces
  *  of the other processes before they are used.
  *
- *  \return False, with nothing changed, when there is no state for this
+ *  Returns False, with nothing changed, when there is no state for this
  *  turbine and time, or it is for other blades, points, positions or FLLC
  *  inputs
  */

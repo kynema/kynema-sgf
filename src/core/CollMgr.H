@@ -8,14 +8,10 @@
 
 namespace kynema_sgf {
 
-/** Interface to manage objects of sub-classes based on factory registration
- *  \ingroup core
+/* Interface to manage objects of sub-classes based on factory registration
  *
  *  Provides boiler-plate code to register a collection and then query using
  *  lookup keywords
- *
- *  \tparam Collection Class holding instances of collection (e.g., PhysicsMgr)
- *  \tparam Base class of the collection (e.g., Physics)
  */
 template <typename Collection, typename Type, bool allow_duplicates = false>
 class CollMgr
@@ -33,7 +29,7 @@ public:
     CollMgr(const CollMgr&) = delete;
     CollMgr& operator=(const CollMgr&) = delete;
 
-    /** Create a new object and register it in the vector and setup lookup
+    /* Create a new object and register it in the vector and setup lookup
      * options
      */
     template <class... Args>
@@ -49,18 +45,18 @@ public:
         return *m_obj_vec.back();
     }
 
-    //! Return a vector of the registered objects
+    // Return a vector of the registered objects
     TypeVector& objects() { return m_obj_vec; }
     [[nodiscard]] const TypeVector& objects() const { return m_obj_vec; }
 
-    //! Query if an object exists using the lookup key
+    // Query if an object exists using the lookup key
     [[nodiscard]] bool contains(const std::string& key) const
     {
         auto it = m_obj_map.find(key);
         return (it != m_obj_map.end());
     }
 
-    //! Return the object corresponding to a lookup key
+    // Return the object corresponding to a lookup key
     Type& operator()(const std::string& key)
     {
         return *m_obj_vec[m_obj_map.at(key)];
@@ -71,7 +67,7 @@ public:
         return *m_obj_vec[m_obj_map.at(key)];
     }
 
-    //! Return object for a lookup key cast into its exact class definition
+    // Return object for a lookup key cast into its exact class definition
     template <typename T>
     T& operator()(const std::string& key)
     {
@@ -79,10 +75,10 @@ public:
     }
 
 protected:
-    //! Collection of objects registered so far
+    // Collection of objects registered so far
     TypeVector m_obj_vec;
 
-    //! Key word based lookup
+    // Key word based lookup
     std::unordered_map<std::string, int> m_obj_map;
     friend Collection;
 };

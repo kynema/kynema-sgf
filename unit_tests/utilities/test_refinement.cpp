@@ -90,7 +90,7 @@ private:
 
 } // namespace
 
-//! Custom test fixture for Cartesian Box refinement
+// Custom test fixture for Cartesian Box refinement
 class NestRefineTest : public MeshTest
 {
 protected:

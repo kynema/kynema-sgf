@@ -7,9 +7,7 @@
 
 namespace kynema_sgf::pde {
 
-/** BC operations for VOF
- *  \ingroup vof
- */
+/* BC operations for VOF */
 template <>
 struct BCOp<VOF>
 {

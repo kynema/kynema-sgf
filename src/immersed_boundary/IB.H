@@ -4,7 +4,7 @@
 #include "src/core/Physics.H"
 #include "src/core/FieldRepo.H"
 
-/** \defgroup immersed_boundary Immersed boundary module
+/* Immersed boundary module
  *  Immersed boundary class
  */
 
@@ -16,13 +16,11 @@ namespace ib {
 
 class ImmersedBoundaryModel;
 
-/** Immersed boundary modeling for non-blade wind components and complex terrain
- *
- *  \ingroup immersed_boundary
+/* Immersed boundary modeling for non-blade wind components and complex terrain
  *
  *  This class provides an interface to model
  *
- *  \sa ImmersedBoundaryModel
+ *  See ImmersedBoundaryModel
  */
 class IB : public Physics::Register<IB>
 {
@@ -52,7 +50,7 @@ public:
     void post_pressure_correction_work() override;
 
 protected:
-    //! Total number of immersed boundaries
+    // Total number of immersed boundaries
 
     [[nodiscard]] int num_ibs() const { return static_cast<int>(m_ibs.size()); }
 
@@ -69,10 +67,10 @@ private:
 
     std::vector<std::unique_ptr<ImmersedBoundaryModel>> m_ibs;
 
-    //! Immersed boundary levelset for cell-centers
+    // Immersed boundary levelset for cell-centers
     Field& m_ib_levelset;
 
-    //! Immersed boundary normal vector defined on cell-centers
+    // Immersed boundary normal vector defined on cell-centers
     Field& m_ib_normal;
 };
 

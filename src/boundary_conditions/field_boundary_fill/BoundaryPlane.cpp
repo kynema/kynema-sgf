@@ -17,7 +17,7 @@ namespace kynema_sgf {
 
 namespace {
 
-//! Return offset vector
+// Return offset vector
 AMREX_FORCE_INLINE amrex::IntVect offset(const int face_dir, const int normal)
 {
     amrex::IntVect offset(amrex::IntVect::TheDimensionVector(normal));
@@ -1941,7 +1941,7 @@ int BoundaryPlane::boundary_native_file_levels() const
     return nlevels;
 }
 
-//! True if box intersects the boundary
+// True if box intersects the boundary
 bool BoundaryPlane::box_intersects_boundary(
     const amrex::Box& bx, const int lev, const amrex::Orientation ori) const
 {

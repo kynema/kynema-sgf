@@ -11,7 +11,7 @@
 
 namespace kynema_sgf_tests {
 
-/** Base class for tests that require a valid Mesh
+/* Base class for tests that require a valid Mesh
  *
  *  This class specializes amrex::AmrCore and provides a barebones interface
  *  that can be used within unit test fixtures.
@@ -23,10 +23,10 @@ public:
 
     ~AmrTestMesh() override = default;
 
-    //! Create the initial AMR hierarchy
+    // Create the initial AMR hierarchy
     virtual void initialize_mesh(amrex::Real current_time);
 
-    //! Return the total number of existing levels in AMR hierarchy
+    // Return the total number of existing levels in AMR hierarchy
     int num_levels() const { return finest_level + 1; }
 
     kynema_sgf::CFDSim& sim() { return m_sim; }

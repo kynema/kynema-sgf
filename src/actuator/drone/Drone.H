@@ -12,7 +12,7 @@
 
 namespace kynema_sgf::actuator {
 
-//! One child actuator sector and its fixed offset in the drone body frame
+// One child actuator sector and its fixed offset in the drone body frame
 struct DroneRotor
 {
     using SectorData = ActuatorSector::DataType;
@@ -25,14 +25,14 @@ struct DroneRotor
     vs::Vector body_offset{vs::Vector::zero()};
 };
 
-//! Composite actuator that gives all child rotors one rigid-body motion
+// Composite actuator that gives all child rotors one rigid-body motion
 struct DroneData
 {
     int num_rotors{0};
     RealList arm_lengths;
     RealList arm_angles_degrees;
     amrex::Real arm_phase_degrees{0.0_rt};
-    //! Body center at the load-evaluation midpoint (initial center on input)
+    // Body center at the load-evaluation midpoint (initial center on input)
     vs::Vector center{vs::Vector::zero()};
     vs::Vector translation_velocity{vs::Vector::zero()};
     vs::Vector body_orientation_degrees{vs::Vector::zero()};

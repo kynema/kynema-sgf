@@ -5,8 +5,7 @@
 
 namespace kynema_sgf::pde::tke {
 
-/** Source terms for TKE equation in K-w-SST turbulence model
- *   \ingroup turb_model
+/* Source terms for TKE equation in K-w-SST turbulence model
  *
  *  Works for all TKE equations with production and dissipation terms
  */

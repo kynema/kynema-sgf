@@ -10,13 +10,11 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::ops {
 
-/**
- * \brief  A collection of spreading functions
+/*
+ * A collection of spreading functions
  * This class allows for polymorphic spreading functions.
  * The concept is based on Impossibly Fast C++ Delegates proposed here:
  * https://www.codeproject.com/Articles/11015/The-Impossibly-Fast-C-Delegates
- *
- * @tparam T
  */
 template <typename T>
 class SpreadingFunction

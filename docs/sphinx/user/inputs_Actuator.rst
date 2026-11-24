@@ -1317,7 +1317,7 @@ criteria for mesh adaptation:
 
 where the ``field_error`` is the value above which the cells should be
 tagged for refinement. Here is an example using the
-uniform_ct_disk_dynamic_adaptation regression test:
+``uniform_ct_disk_dynamic_adaptation`` regression test:
 
 .. image:: ./uniform_ct_disk_dynamic_adaptation.gif
    :width: 300pt

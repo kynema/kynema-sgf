@@ -10,8 +10,7 @@
 
 namespace kynema_sgf {
 
-/** Runtime selection of options based on string keyword lookup
- *  \ingroup core
+/* Runtime selection of options based on string keyword lookup
  *
  *  Factory provides an automated way to register subclasses that can be
  *  instantiated during runtime using string based lookups. The facility mimics
@@ -55,19 +54,11 @@ namespace kynema_sgf {
  *  // tmodel is a std::unique_ptr<TurbulenceModel> instance
  *  auto tmodel = TurbulenceModel::create("Smagorinsky", sim);
  *  ```
- *
- *  \tparam Base base class (e.g., Physics)
- *  \tparam Args Arguments types to be passed to the constructor during
- * instantiation
  */
 template <class Base, class... Args>
 struct Factory
 {
-    /** Create an instance of the concrete subclass based on the runtime keyword
-     *
-     *  \param key Unique identifier used to lookup subclass instance
-     *  \param args Arguments to the constructor of the subclass
-     */
+    /* Create an instance of the concrete subclass based on the runtime keyword */
     static std::unique_ptr<Base> create(const std::string& key, Args... args)
     {
         key_exists_or_error(key);
@@ -77,10 +68,7 @@ struct Factory
         return ptr;
     }
 
-    /** Print a list of the valid subclasses registered to this base instance
-     *
-     *  \param os Valid output stream
-     */
+    /* Print a list of the valid subclasses registered to this base instance */
     static void print(std::ostream& os)
     {
         const auto& tbl = table();
@@ -90,7 +78,7 @@ struct Factory
         }
     }
 
-    //! Class to handle registration of subclass for runtime selection
+    // Class to handle registration of subclass for runtime selection
     template <class T>
     struct Register : public Base
     {
@@ -128,8 +116,8 @@ private:
     using CreatorFunc = std::unique_ptr<Base> (*)(Args...);
     using LookupTable = std::unordered_map<std::string, CreatorFunc>;
 
-    //! Check if the keyword exists in table or print diagnostic message and
-    //! abort
+    // Check if the keyword exists in table or print diagnostic message and
+    // abort
     static void key_exists_or_error(const std::string& key)
     {
         const auto& tbl = table();
@@ -145,7 +133,7 @@ private:
         }
     }
 
-    //! Lookup table containing all registered instances
+    // Lookup table containing all registered instances
     static LookupTable& table()
     {
         static LookupTable tbl;

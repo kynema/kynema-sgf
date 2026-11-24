@@ -11,8 +11,7 @@
 
 namespace kynema_sgf {
 
-/** Multi-level vector
- *  \ingroup utilities
+/* Multi-level vector
  *
  *  This class enables multi-level vectors. The primary vector is the
  *  size of the number of levels and it contains host and device

@@ -14,8 +14,7 @@
 
 using namespace amrex::literals;
 
-/** \file actuator_restart.H
- *
+/*
  *  Actuator restart data not held in fields (e.g., FLLC state): one text
  *  file per actuator in a directory of the CFD checkpoint. Written by the
  *  actuator root after the checkpoint fields (Actuator::write_checkpoint);
@@ -23,20 +22,20 @@ using namespace amrex::literals;
  */
 namespace kynema_sgf::actuator::restart {
 
-//! Directory of the actuators inside the checkpoint ``chkname``
+// Directory of the actuators inside the checkpoint ``chkname``
 inline std::string directory(const std::string& chkname)
 {
     return chkname + "/actuator";
 }
 
-//! File of the actuator ``label`` inside the checkpoint ``chkname``
+// File of the actuator ``label`` inside the checkpoint ``chkname``
 inline std::string
 file_name(const std::string& chkname, const std::string& label)
 {
     return directory(chkname) + "/" + label + ".txt";
 }
 
-/** Create the file of an actuator and write its header
+/* Create the file of an actuator and write its header
  *
  *  Header: actuator label and checkpoint time. Numbers written with full
  *  round-trip precision.
@@ -59,7 +58,7 @@ inline std::ofstream create_file(
     return os;
 }
 
-/** Close the file of an actuator; abort when a write failed (e.g., full disk)
+/* Close the file of an actuator; abort when a write failed (e.g., full disk)
  *
  *  A file cut short would be refused at restart as one that does not fit.
  */
@@ -74,9 +73,9 @@ inline void close_file(
     }
 }
 
-/** Open the file of an actuator and read its header
+/* Open the file of an actuator and read its header
  *
- *  \return False when there is no file, or it is for another actuator or
+ *  Returns False when there is no file, or it is for another actuator or
  *  time
  */
 inline bool open_file(
@@ -108,7 +107,7 @@ inline bool open_file(
     return std::abs(time_in - time) <= tol;
 }
 
-/** Whether the checkpoint has a file of this actuator for this time
+/* Whether the checkpoint has a file of this actuator for this time
  *
  *  Written only with a state to hand over (none before the FLLC starts).
  */
@@ -121,16 +120,16 @@ inline bool has_file(
     return open_file(is, chkname, label, time);
 }
 
-//! Write a named integer on a line of its own
+// Write a named integer on a line of its own
 inline void
 write_value(std::ostream& os, const std::string& name, const int value)
 {
     os << name << " " << value << '\n';
 }
 
-/** Read an integer written by write_value
+/* Read an integer written by write_value
  *
- *  \return False when the next entry has another name
+ *  Returns False when the next entry has another name
  */
 inline bool read_value(std::istream& is, const std::string& name, int& value)
 {
@@ -143,7 +142,7 @@ inline bool read_value(std::istream& is, const std::string& name, int& value)
     return true;
 }
 
-//! Write a list of reals: name and count line, then one line per entry
+// Write a list of reals: name and count line, then one line per entry
 template <typename RealContainer>
 void write_reals(
     std::ostream& os, const std::string& name, const RealContainer& values)
@@ -155,15 +154,9 @@ void write_reals(
     }
 }
 
-/** Read a list written by write_reals
+/* Read a list written by write_reals
  *
- *  \param is Stream of the restart data
- *  \param name Name of the list
- *  \param values List read
- *  \param resize True to resize ``values`` to the list read, false to
- *  refuse another size
- *
- *  \return False, with ``values`` unchanged, for another name, another size
+ *  Returns False, with ``values`` unchanged, for another name, another size
  *  (without ``resize``) or a list that ends early
  */
 inline bool read_reals(
@@ -188,7 +181,7 @@ inline bool read_reals(
     return true;
 }
 
-//! Write a list of vectors: name and count line, then one line per entry
+// Write a list of vectors: name and count line, then one line per entry
 template <typename VecContainer>
 void write_list(
     std::ostream& os, const std::string& name, const VecContainer& values)
@@ -201,9 +194,9 @@ void write_list(
     }
 }
 
-/** Read a list written by write_list into a list of the same size
+/* Read a list written by write_list into a list of the same size
  *
- *  \return False, with ``values`` unchanged, for another name, another size
+ *  Returns False, with ``values`` unchanged, for another name, another size
  *  or a list that ends early
  */
 template <typename VecContainer>

@@ -11,7 +11,7 @@
 
 using namespace amrex::literals;
 
-/** Kynema-FMB types are only used in KynemaFMBHost.cpp, which is compiled with
+/* Kynema-FMB types are only used in KynemaFMBHost.cpp, which is compiled with
  *  the same compiler as Kokkos (see CMakeLists.txt), since nvcc and the host
  *  compiler lay out Kokkos::View differently. This header is also compiled by
  *  that file, so it must not include AMReX headers that contain GPU code.
@@ -33,16 +33,14 @@ static std::string checkpoint_filename(int time_index, std::string turbine_name)
 
 namespace ext_turb {
 
-/** Representation of a turbine for exchanging data with Kynema-FMB
- */
+/* Representation of a turbine for exchanging data with Kynema-FMB */
 struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 {
-    //! Aero section frame: x along span (beam axis), y along chord, z normal
-    //! to chord
+    // Aero section frame: x along span (beam axis), y along chord, z normal
+    // to chord
     static constexpr BladeFrame blade_frame{BladeFrame::span_chord_normal};
 
-    /** Variables exclusive to KynemaFMB turbine type
-     */
+    /* Variables exclusive to KynemaFMB turbine type */
     std::unique_ptr<kynema_fmb::interfaces::TurbineInterface> interface;
 
     KynemaFMBTurbine();
@@ -83,12 +81,12 @@ struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 
     void save_and_zero_aerodynamic_loads();
 
-    /** Helper functions for navigating indices */
+    /* Helper functions for navigating indices */
     int body_index(int id) const;
 
     int node_index(int id) const;
 
-    /** Data access functions needed for every turbine type */
+    /* Data access functions needed for every turbine type */
 
     float* position_at_vel(int dir) const override
     {
@@ -181,7 +179,7 @@ struct KynemaFMBSolverData
 
 } // namespace ext_turb
 
-//! Functions that use Kynema-FMB types, defined in KynemaFMBHost.cpp
+// Functions that use Kynema-FMB types, defined in KynemaFMBHost.cpp
 namespace sgf_fmb {
 void init_turbine_interface(
     ext_turb::KynemaFMBTurbine& fi,

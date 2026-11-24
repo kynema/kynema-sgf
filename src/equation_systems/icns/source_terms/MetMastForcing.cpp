@@ -24,7 +24,7 @@ MetMastForcing::MetMastForcing(const CFDSim& sim)
         if (!ransfile.good()) {
             amrex::Abort("Cannot find Met Mast profile file " + m_1d_metmast);
         }
-        //! x y z u v w T
+        // x y z u v w T
         amrex::Real value1, value2, value3, value4, value5, value6, value7;
         while (ransfile >> value1 >> value2 >> value3 >> value4 >> value5 >>
                value6 >> value7) {

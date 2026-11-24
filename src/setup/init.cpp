@@ -43,8 +43,7 @@ void incflo::CheckAndSetUpDryRun()
     }
 }
 
-/** Parse the input file and populate parameters
- */
+/* Parse the input file and populate parameters */
 void incflo::ReadParameters()
 {
 
@@ -95,7 +94,7 @@ void incflo::ReadParameters()
     }
 }
 
-/** Perform initial pressure iterations
+/* Perform initial pressure iterations
  *
  *  Performs a user-defined number of iterations to compute the pressure based
  *  on the initial conditions. This method is only invoked for new simulations
@@ -192,9 +191,9 @@ void incflo::InitialIterations()
     amrex::Print() << "Completed initial pressure iterations" << '\n' << '\n';
 }
 
-/** Ensure initial velocity field is divergence-free.
+/* Ensure initial velocity field is divergence-free.
  *
- *  Performs a \ref incflo::ApplyProjection "projection" step to ensure that the
+ *  Performs a incflo::ApplyProjection "projection" step to ensure that the
  *  user-provided initial velocity field is divergence free. This method is only
  *  invoked for new simulations. For restarted simulations using a checkpoint
  *  file, this is not necessary.

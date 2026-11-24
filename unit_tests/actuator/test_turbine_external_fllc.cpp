@@ -25,7 +25,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-/** Stand-in external solver with bending blades
+/* Stand-in external solver with bending blades
  *
  *  Force and velocity points (AeroDyn nodes) as OpenFAST gives them through
  *  ExternalInflow: hub first, then blades root to tip; both sets on the line
@@ -66,32 +66,32 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
     int length_orientation() const override { return 9 * num_force_pts(); }
     int num_vel_pts_blade() const override { return model_num_vel_pts_blade; }
 
-    //! The hub and the force points of the blades
+    // The hub and the force points of the blades
     int num_force_pts() const
     {
         return 1 + (model_num_blades * model_num_pts_blade);
     }
 
-    //! The hub and the velocity points of the blades
+    // The hub and the velocity points of the blades
     int num_vel_pts() const
     {
         return 1 + (model_num_blades * model_num_vel_pts_blade);
     }
 
-    //! Curvature of the blades at a step of the solver
+    // Curvature of the blades at a step of the solver
     amrex::Real curvature(const int step) const
     {
         return static_cast<amrex::Real>(step) * curvature_per_step;
     }
 
-    //! Arc length from the root of point k of npts evenly spaced points
+    // Arc length from the root of point k of npts evenly spaced points
     amrex::Real arc_length(const int k, const int npts) const
     {
         return blade_length * static_cast<amrex::Real>(k) /
                static_cast<amrex::Real>(npts - 1);
     }
 
-    /** Blade point position at a solver step, relative to the turbine base
+    /* Blade point position at a solver step, relative to the turbine base
      *
      *  Blade ib: in the rotor plane (x = 0) at azimuth 2 pi ib / num_blades,
      *  bent downwind into a circular arc from its root; arc length s is at
@@ -114,7 +114,7 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
             static_cast<float>(hub_height + (radial * std::cos(azimuth)))};
     }
 
-    //! Buffers of a new turbine; points oriented as the global frame
+    // Buffers of a new turbine; points oriented as the global frame
     void allocate()
     {
         for (int dir = 0; dir < 3; ++dir) {
@@ -134,7 +134,7 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
         }
     }
 
-    //! Both point sets at a solver step (identical with equal counts)
+    // Both point sets at a solver step (identical with equal counts)
     void place_points(const int step)
     {
         const std::array<float, 3> hub{
@@ -166,20 +166,20 @@ struct BendingTurbine : public ::ext_turb::ExternalTurbine
         }
     }
 
-    //! Blades of the model of the solver and points on each
+    // Blades of the model of the solver and points on each
     int model_num_blades{3};
     int model_num_pts_blade{5};
     int model_num_vel_pts_blade{5};
 
-    //! Hub height above the base, root distance from the hub, blade length
+    // Hub height above the base, root distance from the hub, blade length
     amrex::Real hub_height{10.0_rt};
     amrex::Real root_radius{1.0_rt};
     amrex::Real blade_length{4.0_rt};
 
-    //! Curvature the blades gain at every step of the solver
+    // Curvature the blades gain at every step of the solver
     amrex::Real curvature_per_step{0.05_rt};
 
-    //! Buffers exchanged with the CFD solver, one list per direction
+    // Buffers exchanged with the CFD solver, one list per direction
     mutable std::array<std::vector<float>, 3> force_pos;
     mutable std::array<std::vector<float>, 3> vel_pos;
     mutable std::array<std::vector<float>, 3> point_force;
@@ -332,8 +332,8 @@ using BendingIface =
 using BendingData = kynema_sgf::actuator::
     TurbineFromExtSolver<BendingTurbine, BendingSolverData>::DataType;
 
-//! Straight-line distance from the root of a point at arc length s along a
-//! blade bent into a circular arc of curvature kappa
+// Straight-line distance from the root of a point at arc length s along a
+// blade bent into a circular arc of curvature kappa
 amrex::Real distance_from_root(const amrex::Real kappa, const amrex::Real s)
 {
     return (kappa > 0.0_rt) ? 2.0_rt * std::sin(0.5_rt * kappa * s) / kappa : s;
@@ -342,19 +342,15 @@ amrex::Real distance_from_root(const amrex::Real kappa, const amrex::Real s)
 class TurbineExternalFLLCTest : public MeshTest
 {
 protected:
-    //! New interface, heap-owned by the fixture (view data point to it)
+    // New interface, heap-owned by the fixture (view data point to it)
     BendingIface& make_iface()
     {
         m_ifaces.push_back(std::make_unique<BendingIface>(sim()));
         return *m_ifaces.back();
     }
 
-    /** Three-blade turbine with the FLLC on the root process, initialized as
+    /* Three-blade turbine with the FLLC on the root process, initialized as
      *  by Actuator::post_init_actions
-     *
-     *  \param num_pts_blade Force points on each blade
-     *  \param num_vel_pts_blade Velocity points on each blade
-     *  \param sim_mode How the solver starts the turbine
      */
     void setup_turbine(
         BendingData& data,
@@ -411,8 +407,8 @@ protected:
         kynema_sgf::actuator::ops::init_data_op(data);
     }
 
-    //! As Actuator::post_init_actions: velocity points from the solver,
-    //! sampled velocity to it, loads, forces back
+    // As Actuator::post_init_actions: velocity points from the solver,
+    // sampled velocity to it, loads, forces back
     static void post_init(BendingData& data)
     {
         kynema_sgf::actuator::ops::update_pos_op(data);
@@ -421,8 +417,8 @@ protected:
         communicate(data);
     }
 
-    //! As Actuator::pre_advance_work: post_init_actions plus a solver step
-    //! before the forces
+    // As Actuator::pre_advance_work: post_init_actions plus a solver step
+    // before the forces
     static void pre_advance(BendingData& data)
     {
         kynema_sgf::actuator::ops::update_pos_op(data);
@@ -440,7 +436,7 @@ protected:
             kynema_sgf::actuator::ActSrcLine>()(data);
     }
 
-    //! A CFD time step, as far as the turbine goes
+    // A CFD time step, as far as the turbine goes
     void time_step(BendingData& data)
     {
         auto& time = sim().time();
@@ -450,7 +446,7 @@ protected:
         pre_advance(data);
     }
 
-    /** Run the turbine up to the FLLC start
+    /* Run the turbine up to the FLLC start
      *
      *  Force calls at init and in step 1 (time 0) precede fllc_start_time; the
      *  FLLC starts in step 2 (time 0.1), with velocity points from solver step
@@ -470,11 +466,9 @@ protected:
         }
     }
 
-    /** Run to the FLLC start, mark each blade's FLLC state and forces
+    /* Run to the FLLC start, mark each blade's FLLC state and forces
      *  (m_force_mark) and write them into checkpoint chkname, as the
      *  end-of-step CFD checkpoint does
-     *
-     *  \param chk_time Time of the checkpoint
      */
     void write_marked_state(
         const std::string& chkname,
@@ -502,8 +496,8 @@ protected:
             kynema_sgf::actuator::restart::has_file(chkname, "T0", chk_time));
     }
 
-    //! Restart settings from checkpoint chkname before the first force call:
-    //! checkpoint name and time
+    // Restart settings from checkpoint chkname before the first force call:
+    // checkpoint name and time
     void restart_flow_from(const std::string& chkname, const amrex::Real time)
     {
         amrex::ParmParse pp("io");
@@ -514,12 +508,12 @@ protected:
 
     const int m_num_blades{3};
 
-    //! Blade force written with the marked state
+    // Blade force written with the marked state
     const kynema_sgf::vs::Vector m_force_mark{-1.5_rt, 0.5_rt, -0.25_rt};
 
     std::vector<std::unique_ptr<BendingIface>> m_ifaces;
 
-    //! Single-precision solver positions: distances off by up to ~5e-7
+    // Single-precision solver positions: distances off by up to ~5e-7
     const amrex::Real m_tol{1.0e-5_rt};
 };
 

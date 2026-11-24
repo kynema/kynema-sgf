@@ -69,7 +69,7 @@ ComponentView make_component_view(typename T::DataType& data)
     return view;
 }
 
-/** Write the FLLC state of a wing into a checkpoint
+/* Write the FLLC state of a wing into a checkpoint
  *
  *  FLLC state, plus relative velocity and force at the actuator points
  *  (inputs to the next lift). Wing root only; nothing before the FLLC starts.
@@ -90,11 +90,11 @@ void write_checkpoint(typename T::DataType& data, const std::string& chkname)
     restart::close_file(os, chkname, data.info().label);
 }
 
-/** Read the FLLC state of a wing from the restart checkpoint
+/* Read the FLLC state of a wing from the restart checkpoint
  *
  *  Read on every process that computes the wing forces.
  *
- *  \return False, with nothing changed, when there is no state for this wing
+ *  Returns False, with nothing changed, when there is no state for this wing
  *  and time, or it is for other points, positions or FLLC inputs
  */
 template <typename T>

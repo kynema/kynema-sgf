@@ -8,16 +8,11 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::fvm {
 
-/** filter operator
- *  \ingroup fvm
- */
+/* filter operator */
 template <typename FTypeIn, typename FTypeOut>
 struct Filter
 {
-    /**
-     *  \param filterphi The filter field \f$\widetilde{ \mathbf{\phi}}\f$
-     *  \param phi The input file \f$\phi\f$
-     */
+
     Filter(FTypeOut& filterphi, const FTypeIn& phi)
         : m_filterphi(filterphi), m_phi(phi)
     {
@@ -75,12 +70,7 @@ struct Filter
     const FTypeIn& m_phi;
 };
 
-/** Compute the filtered value of a given field
- *  \ingroup fvm
- *
- *  \param filterphi [inout] Field where the filtered term is populated
- *  \param phi [in] Field whose filter is computed
- */
+/* Compute the filtered value of a given field */
 template <typename FTypeIn, typename FTypeOut>
 void filter(FTypeOut& filterphi, const FTypeIn& phi)
 {
@@ -89,11 +79,7 @@ void filter(FTypeOut& filterphi, const FTypeIn& phi)
     impl::apply(filtering, phi);
 }
 
-/** Compute the filter of a given field and return it as ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] Field whose filter is computed
- */
+/* Compute the filter of a given field and return it as ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> filter(const FType& phi)
 {

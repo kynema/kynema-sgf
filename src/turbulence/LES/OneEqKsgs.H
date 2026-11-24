@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
 
-/** Base class for 1-Equation subgrid scale TKE turbulence model
- *  \ingroup turb_model
- */
+/* Base class for 1-Equation subgrid scale TKE turbulence model */
 template <typename Transport>
 class OneEqKsgs : public TurbModelBase<Transport>
 {
@@ -32,17 +30,16 @@ protected:
 
     Field* m_tke{nullptr};
 
-    //! Turbulence constant
+    // Turbulence constant
     amrex::Real m_Ce{0.1_rt};
     amrex::Real m_Ceps{0.93_rt};
 };
 
-/** 1-equation subgrid scale TKE turbulence model
- *  \ingroup turb_model we_abl
+/* 1-equation subgrid scale TKE turbulence model
  *
  *  Implements the model described in Moeng 1984 paper
  *
- *  \sa kynema_sgf::pde::tke::KsgsM84Src
+ *  See kynema_sgf::pde::tke::KsgsM84Src
  */
 template <typename Transport>
 class OneEqKsgsM84 : public OneEqKsgs<Transport>
@@ -62,50 +59,49 @@ public:
         return "OneEqKsgsM84";
     }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType /*unused*/) override;
 
-    //! Do any post advance work
+    // Do any post advance work
     void post_advance_work() override;
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     void post_init_actions() override;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     void post_regrid_actions() override;
 
-    //! Update the effective thermal diffusivity field
+    // Update the effective thermal diffusivity field
     void update_alphaeff(Field& alphaeff) override;
 
-    //! Update the effective scalar diffusivity field
+    // Update the effective scalar diffusivity field
     void update_scalar_diff(Field& deff, const std::string& name) override;
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return turbulence model coefficients
+    // Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 private:
     Field& m_temperature;
 
-    //! Gravity vector (m/s^2)
+    // Gravity vector (m/s^2)
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
-    //! Hybrid RANS-LES with Nalu-wind
+    // Hybrid RANS-LES with Nalu-wind
     bool m_hybrid_rl{false};
     Field* m_sdr;
 
     std::unique_ptr<ScratchField> m_gradT;
 };
 
-/** 1-equation subgrid scale TKE turbulence model
- *  \ingroup turb_model we_abl
+/* 1-equation subgrid scale TKE turbulence model
  *
  *  Implements the model described in Sullivan 1994 paper
  *
- *  \sa kynema_sgf::pde::tke::KsgsS94Src
+ *  See kynema_sgf::pde::tke::KsgsS94Src
  */
 template <typename Transport>
 class OneEqKsgsS94 : public OneEqKsgs<Transport>
@@ -125,20 +121,20 @@ public:
         return "OneEqKsgsS94";
     }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType diff_type /*unused*/) override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {}
 
-    //! Update the effective scalar diffusivity field
+    // Update the effective scalar diffusivity field
     void update_scalar_diff(Field& deff, const std::string& name) override;
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return turbulence model coefficients
+    // Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 };
 

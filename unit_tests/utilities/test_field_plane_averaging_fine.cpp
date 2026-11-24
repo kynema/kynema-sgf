@@ -108,8 +108,8 @@ void init_field_linear(
     amrex::Gpu::streamSynchronize();
 }
 
-//! Overwrite the ghost cells outside the domain in direction dir with a value
-//! that would spoil any average that reads them
+// Overwrite the ghost cells outside the domain in direction dir with a value
+// that would spoil any average that reads them
 void spoil_domain_ghosts(
     kynema_sgf::Field& fld, const int dir, const amrex::Real value)
 {

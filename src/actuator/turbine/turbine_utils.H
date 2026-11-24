@@ -7,7 +7,7 @@
 
 namespace kynema_sgf::actuator::utils {
 
-/** Warning for FLLC inputs that differ by direction, empty when none do
+/* Warning for FLLC inputs that differ by direction, empty when none do
  *
  *  The FLLC takes the first value of epsilon and epsilon_min and the second
  *  of epsilon_chord (inputs in the order chord, thickness, span).

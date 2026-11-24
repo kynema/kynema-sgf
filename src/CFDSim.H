@@ -13,7 +13,7 @@
 #include "src/boundary_conditions/field_boundary_fill/ReadERFFunction.H"
 class MultiBlockContainer;
 
-/** Kynema-SGF
+/* Kynema-SGF
  *
  *  All C++ code in Kynema-SGF is organized within the kynema_sgf namespace.
  */
@@ -32,16 +32,15 @@ namespace turbulence {
 class TurbulenceModel;
 }
 
-/**
- *  \defgroup core Kynema-SGF core
+/*
+ *  Kynema-SGF core
  *  Core data structures in Kynema-SGF
  *
  *  This group describes the core data structures implemented in Kynema-SGF that
  *  provide a higher-level abstraction over the classes available in AMReX.
  */
 
-/** Data structures for a CFD simulation
- *  \ingroup core
+/* Data structures for a CFD simulation
  *
  *  CFDSim represents the kynema-sgf execution environment and manages all the
  *  necessary components used to perform a simulation. Each simulation contains
@@ -58,11 +57,11 @@ public:
 
     ~CFDSim();
 
-    //! Return the AMR mesh hierarchy
+    // Return the AMR mesh hierarchy
     amrex::AmrCore& mesh() { return m_mesh; }
     const amrex::AmrCore& mesh() const { return m_mesh; }
 
-    //! Return simulation time control
+    // Return simulation time control
     SimTime& time() { return m_time; }
     const SimTime& time() const { return m_time; }
 
@@ -72,7 +71,7 @@ public:
     void set_read_erf(ReadERFFunction fcn) { m_read_erf = std::move(fcn); }
     ReadERFFunction* get_read_erf() { return &m_read_erf; }
 
-    //! Return the field repository
+    // Return the field repository
     FieldRepo& repo() { return m_repo; }
     FieldRepo& repo() const { return m_repo; }
 
@@ -138,22 +137,22 @@ public:
 
     bool has_overset() const;
 
-    //! Instantiate the transport model based on user inputs
+    // Instantiate the transport model based on user inputs
     void create_transport_model();
 
-    //! Instantiate the turbulence model based on user inputs
+    // Instantiate the turbulence model based on user inputs
     void create_turbulence_model();
 
-    //! Instantiate all physics instances based on user inputs
+    // Instantiate all physics instances based on user inputs
     void init_physics();
 
-    //! Instantiate all field boundaries based on user inputs
+    // Instantiate all field boundaries based on user inputs
     void init_field_boundaries();
 
-    //! Activate overset connectivity
+    // Activate overset connectivity
     void activate_overset();
 
-    //! Activate mesh mapping
+    // Activate mesh mapping
     void activate_mesh_map();
 
     bool has_mesh_mapping() const { return m_mesh_mapping; }

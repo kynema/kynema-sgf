@@ -21,7 +21,7 @@ namespace {
 
 namespace rc = kynema_sgf::rans_convergence;
 
-//! Build an exponentially decaying envelope history
+// Build an exponentially decaying envelope history
 amrex::Vector<amrex::Real> decaying_series(
     const amrex::Vector<amrex::Real>& times,
     const amrex::Real amplitude,
@@ -46,11 +46,11 @@ uniform_times(const int n, const amrex::Real t0, const amrex::Real dt)
     return times;
 }
 
-//! Absolute tolerance for comparing a value against an exact expectation.
-//!
-//! Scaled to the working precision so that these tests mean the same thing in
-//! single and double precision. The fit takes logarithms and an exponential,
-//! so a few thousand epsilon of relative error is expected rather than a few.
+// Absolute tolerance for comparing a value against an exact expectation.
+//
+// Scaled to the working precision so that these tests mean the same thing in
+// single and double precision. The fit takes logarithms and an exponential,
+// so a few thousand epsilon of relative error is expected rather than a few.
 amrex::Real close(const amrex::Real expected)
 {
     constexpr amrex::Real factor = 1.0e4_rt;
@@ -58,8 +58,8 @@ amrex::Real close(const amrex::Real expected)
            std::max(std::abs(expected), 1.0_rt);
 }
 
-//! Tolerance for a value read back from the monitor's ASCII diagnostics,
-//! which are written with ten significant digits
+// Tolerance for a value read back from the monitor's ASCII diagnostics,
+// which are written with ten significant digits
 amrex::Real file_close(const amrex::Real expected)
 {
     return std::max(
@@ -218,9 +218,9 @@ TEST(RANSConvergence, envelope_fit_tolerates_noise_on_a_real_decay)
     EXPECT_GT(fit.rsq, 0.8_rt);
 }
 
-//! Mesh-level fixture: a KLAxell setup that the monitor accepts, with the
-//! velocity and tke fields set directly to scripted values each step so the
-//! monitor sees a history that is known exactly
+// Mesh-level fixture: a KLAxell setup that the monitor accepts, with the
+// velocity and tke fields set directly to scripted values each step so the
+// monitor sees a history that is known exactly
 class RANSConvergenceMeshTest : public MeshTest
 {
 protected:
@@ -306,7 +306,7 @@ protected:
         }
     }
 
-    //! Two points in the fluid, at different heights
+    // Two points in the fluid, at different heights
     void write_probe_file(const amrex::Real z0, const amrex::Real z1) const
     {
         std::ofstream f(m_probe_file);
@@ -315,7 +315,7 @@ protected:
           << "256.0 256.0 " << z1 << "\n";
     }
 
-    //! Build the mesh, the ABL physics and the turbulence model
+    // Build the mesh, the ABL physics and the turbulence model
     void setup_sim()
     {
         populate_parameters();
@@ -325,7 +325,7 @@ protected:
         sim().create_turbulence_model();
     }
 
-    //! Set every cell, ghost cells included, to one value per component
+    // Set every cell, ghost cells included, to one value per component
     void set_fields(
         const amrex::Real u,
         const amrex::Real v,
@@ -359,7 +359,7 @@ protected:
 
 namespace {
 
-//! One row of the monitor's ASCII diagnostics
+// One row of the monitor's ASCII diagnostics
 struct DiagRow
 {
     amrex::Real time{0.0_rt};
@@ -393,16 +393,16 @@ amrex::Vector<DiagRow> read_diagnostics()
     return rows;
 }
 
-//! Scripted field values at time step n (t = 0.5 n)
-//!
-//! The horizontal speed holds one value through step 5, drops at step 6 and
-//! holds the new value from then on. The first plateau fills the window and
-//! passes the test, so the hold starts; the drop must then reset it, and only
-//! the second plateau may complete it. v and tke wobble within their
-//! tolerances, and w swings far outside every tolerance: if the monitor ever
-//! read w in place of a horizontal component or of tke, or included it in the
-//! speed, no point could converge. The tke wobble is outside the tke tolerance
-//! if it were read from v, so a mix-up between the two is caught as well
+// Scripted field values at time step n (t = 0.5 n)
+//
+// The horizontal speed holds one value through step 5, drops at step 6 and
+// holds the new value from then on. The first plateau fills the window and
+// passes the test, so the hold starts; the drop must then reset it, and only
+// the second plateau may complete it. v and tke wobble within their
+// tolerances, and w swings far outside every tolerance: if the monitor ever
+// read w in place of a horizontal component or of tke, or included it in the
+// speed, no point could converge. The tke wobble is outside the tke tolerance
+// if it were read from v, so a mix-up between the two is caught as well
 struct StepValues
 {
     amrex::Real u, v, w, k;
@@ -424,7 +424,7 @@ amrex::Real horizontal_speed(const StepValues& s)
     return std::sqrt((s.u * s.u) + (s.v * s.v));
 }
 
-//! Peak-to-trough horizontal speed spread over steps [n0, n1]
+// Peak-to-trough horizontal speed spread over steps [n0, n1]
 amrex::Real scripted_speed_spread(const int n0, const int n1)
 {
     amrex::Real smin = std::numeric_limits<amrex::Real>::max();

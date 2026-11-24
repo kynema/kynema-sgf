@@ -58,10 +58,10 @@ ZalesakDiskScalarVel::ZalesakDiskScalarVel(CFDSim& sim)
     pinc.add("prescribe_velocity", true);
 }
 
-/** Initialize the velocity and levelset fields at the beginning of the
+/* Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::ZalesakDiskScalarVelFieldInit
+ *  See kynema_sgf::ZalesakDiskScalarVelFieldInit
  */
 void ZalesakDiskScalarVel::initialize_fields(
     int level, const amrex::Geometry& geom)

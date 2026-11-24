@@ -13,8 +13,7 @@
 
 namespace kynema_sgf {
 
-/** Initialize subset of ABL fields using input NetCDF file
- */
+/* Initialize subset of ABL fields using input NetCDF file */
 class ABLFieldInitFile
 {
     static_assert(AMREX_SPACEDIM == 3, "ABL requires 3 dimensional mesh");
@@ -29,7 +28,7 @@ public:
         int lev) const;
 
 private:
-    //! Input file with initial condition (from Machine Learning)
+    // Input file with initial condition (from Machine Learning)
     std::string m_ic_input;
 };
 

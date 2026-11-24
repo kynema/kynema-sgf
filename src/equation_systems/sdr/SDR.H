@@ -10,24 +10,18 @@
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup sdr_eqn Specific Dissipation Rate (SDR) transport equation
+/*
+ *  Specific Dissipation Rate (SDR) transport equation
  *  %SDR transport equation
- *
- *  \ingroup eqsys
  */
 
-/**
- *  \defgroup sdr_src SDR source terms
+/*
+ *  SDR source terms
  *
  *  Source terms used with SDR transport equation
- *
- *  \ingroup sdr_eqn
  */
 
-/** Characteristics of SDR transport equation
- *  \ingroup sdr_eqn
- */
+/* Characteristics of SDR transport equation */
 struct SDR : ScalarTransport
 {
     using MLDiffOp = amrex::MLABecLaplacian;

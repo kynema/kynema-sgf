@@ -7,10 +7,7 @@
 
 using namespace amrex::literals;
 
-/** Multiphase vortex patch physics
- *  \ingroup multiphase_physics
- *
- */
+/* Multiphase vortex patch physics */
 
 namespace kynema_sgf {
 
@@ -26,7 +23,7 @@ public:
 
     ~VortexPatch() override = default;
 
-    //! Initialize the levelset and velocity fields for Vortex Patch simulations
+    // Initialize the levelset and velocity fields for Vortex Patch simulations
 
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
@@ -45,13 +42,13 @@ private:
     Field& m_levelset;
     Field& m_density;
 
-    //! Initial VortexPatch location
+    // Initial VortexPatch location
     amrex::Vector<amrex::Real> m_loc{0.35_rt, 0.35_rt, 0.35_rt};
 
-    //! vortex patch radius value
+    // vortex patch radius value
     amrex::Real m_radius{0.15_rt};
 
-    //! prescribed velocity period
+    // prescribed velocity period
     amrex::Real m_TT{3.0_rt};
 };
 

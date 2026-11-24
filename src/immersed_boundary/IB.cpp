@@ -85,21 +85,21 @@ void IB::post_pressure_correction_work()
     update_velocities();
 }
 
-/** Update immersed boundary positions.
+/* Update immersed boundary positions.
  *
  *  This method loops over all immersed boundaries and updates
  *  their position. Their new location may be prescribed or computed
  *
- *  \sa IB::update_velocities
+ *  See IB::update_velocities
  */
 void IB::update_positions()
 {
     BL_PROFILE("kynema-sgf::ib::IB::update_positions");
 }
 
-/** Provide updated velocities to immersed boundary instances
+/* Provide updated velocities to immersed boundary instances
  *
- *  \sa IB::update_positions
+ *  See IB::update_positions
  */
 void IB::update_velocities()
 {
@@ -109,8 +109,7 @@ void IB::update_velocities()
     }
 }
 
-/** Helper method to compute forces on all immersed boundary components
- */
+/* Helper method to compute forces on all immersed boundary components */
 void IB::compute_forces()
 {
     BL_PROFILE("kynema-sgf::ib::IB::compute_forces");

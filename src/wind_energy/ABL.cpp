@@ -130,10 +130,10 @@ ABL::ABL(CFDSim& sim)
 
 ABL::~ABL() = default;
 
-/** Initialize the velocity and temperature fields at the beginning of the
+/* Initialize the velocity and temperature fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::ABLFieldInit
+ *  See kynema_sgf::ABLFieldInit
  */
 void ABL::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -201,7 +201,7 @@ void ABL::post_init_actions()
 
 void ABL::post_regrid_actions() { m_abl_anelastic->post_regrid_actions(); }
 
-/** Perform tasks at the beginning of a new timestep
+/* Perform tasks at the beginning of a new timestep
  *
  *  For ABL simulations this method invokes the FieldPlaneAveraging class to
  *  compute spatial averages at all z-levels on the coarsest mesh (level 0).
@@ -283,7 +283,7 @@ void ABL::pre_advance_work()
     }
 }
 
-/** Perform tasks at the end of a new timestep
+/* Perform tasks at the end of a new timestep
  *
  *  For ABL simulations, this method writes all plane-averaged profiles and
  *  integrated statistics to output

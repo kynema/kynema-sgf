@@ -28,7 +28,7 @@ SloshingTank::SloshingTank(CFDSim& sim)
     m_gravity = mphase.gravity();
 }
 
-/** Initialize the velocity and levelset fields at the beginning of the
+/* Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  */
 void SloshingTank::initialize_fields(int level, const amrex::Geometry& geom)

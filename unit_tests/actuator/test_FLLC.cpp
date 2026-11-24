@@ -83,7 +83,7 @@ TEST(TestFLLCData, data_initializes_with_cviews_nonuniform)
 
 namespace {
 
-/** Straight blade of a few points for the tests of the correction
+/* Straight blade of a few points for the tests of the correction
  *
  *  Force points one unit apart along y, starting at start, with a unit chord
  *  and a relative velocity along x. The velocity points are given by the
@@ -116,7 +116,7 @@ struct FLLCTestBlade
         view.vel = ::kynema_sgf::utils::slice(vel, 0, npts_vel);
     }
 
-    //! Put velocity point ip at the given distances along the blade
+    // Put velocity point ip at the given distances along the blade
     void set_vel_span(const RealList& span, const vs::Vector& shift)
     {
         for (int ip = 0; ip < static_cast<int>(vel_pos.size()); ++ip) {
@@ -217,7 +217,7 @@ TEST(TestFLLCOp, no_correction_when_force_is_spread_with_optimal_epsilon)
 
 namespace {
 
-//! Force and settings shared by the tests of the mapping between the points
+// Force and settings shared by the tests of the mapping between the points
 void init_mapping_test(FLLCTestBlade& blade, FLLCData& data)
 {
     const RealList force_z{1.0_rt, 2.0_rt, 4.0_rt, 3.0_rt, 1.0_rt};
@@ -231,7 +231,7 @@ void init_mapping_test(FLLCTestBlade& blade, FLLCData& data)
     fllc_init(data, blade.view, 1.0_rt);
 }
 
-//! Correction at a distance along the blade, from the force points
+// Correction at a distance along the blade, from the force points
 amrex::Real
 correction_at(const FLLCData& data, const int npts, const amrex::Real span)
 {
@@ -356,7 +356,7 @@ TEST(TestFLLCOp, correction_follows_span_at_mismatched_points)
 
 namespace {
 
-//! Inputs of an actuator with the correction on, for the tests of fllc_parse
+// Inputs of an actuator with the correction on, for the tests of fllc_parse
 class FLLCParseTest : public ::kynema_sgf_tests::AmrexTest
 {
 protected:
@@ -374,7 +374,7 @@ protected:
     }
 };
 
-//! Message of the abort of fllc_init, empty when it does not abort
+// Message of the abort of fllc_init, empty when it does not abort
 std::string fllc_init_abort_message(
     FLLCData& data, const ComponentView& view, const amrex::Real eps_chord)
 {
@@ -450,7 +450,7 @@ TEST_F(FLLCParseTest, rejects_epsilon_dr_ratio_of_zero)
 
 namespace {
 
-//! Inputs of turbine T1 with the correction on, without the actuator type
+// Inputs of turbine T1 with the correction on, without the actuator type
 void add_turbine_inputs_with_fllc()
 {
     amrex::ParmParse pp("Actuator.T1");
@@ -467,7 +467,7 @@ void add_turbine_inputs_with_fllc()
     pp.add("fllc", true);
 }
 
-//! Message of the abort of the inputs of turbine T1, empty when they are read
+// Message of the abort of the inputs of turbine T1, empty when they are read
 std::string turbine_inputs_abort_message(const std::string& type)
 {
     // The parser that Actuator.cpp builds for an actuator of this type

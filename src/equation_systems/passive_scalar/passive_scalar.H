@@ -12,24 +12,18 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup passive_eqn Passive scalar transport equation
+/*
+ *  Passive scalar transport equation
  *  %Passive scalar transport equation
- *
- *  \ingroup eqsys
  */
 
-/**
- *  \defgroup passive_src Passive Scalar Source terms
+/*
+ *  Passive Scalar Source terms
  *
  *  Source terms used with passive scalar transport equation
- *
- *  \ingroup passive_eqn
  */
 
-/** Characteristics of passive scalar transport equation
- *  \ingroup passive_eqn
- */
+/* Characteristics of passive scalar transport equation */
 struct PassiveScalar : ScalarTransport
 {
     using MLDiffOp = amrex::MLABecLaplacian;

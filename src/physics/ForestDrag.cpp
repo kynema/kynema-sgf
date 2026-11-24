@@ -280,7 +280,7 @@ amrex::Vector<Forest> ForestDrag::read_cylinder_forests(const int level) const
         amrex::Abort("Cannot find file " + m_forest_file);
     }
 
-    //! TreeType xc yc height diameter cd lai laimax
+    // TreeType xc yc height diameter cd lai laimax
     amrex::Vector<Forest> forests;
     const auto& geom = m_sim.repo().mesh().Geom(level);
     const auto& ba = m_sim.repo().mesh().boxArray(level);

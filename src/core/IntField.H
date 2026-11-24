@@ -11,8 +11,7 @@ namespace kynema_sgf {
 
 class FieldRepo;
 
-/** An integer computational field
- *  \ingroup fields
+/* An integer computational field
  *
  *  Used to indicate masking and overset state with IBlanking
  */
@@ -24,25 +23,25 @@ public:
     IntField(const IntField&) = delete;
     IntField& operator=(const IntField&) = delete;
 
-    //! Name of the field
+    // Name of the field
     [[nodiscard]] const std::string& name() const { return m_name; }
 
-    //! Unique integer ID for this field
+    // Unique integer ID for this field
     [[nodiscard]] unsigned id() const { return m_id; }
 
-    //! Number of components for this field
+    // Number of components for this field
     [[nodiscard]] int num_comp() const { return m_ncomp; }
 
-    //! Number of ghost cells
+    // Number of ghost cells
     [[nodiscard]] const amrex::IntVect& num_grow() const { return m_ngrow; }
 
-    //! Location of the field
+    // Location of the field
     [[nodiscard]] FieldLoc field_location() const { return m_floc; }
 
-    //! Reference to the FieldRepo that holds the fabs
+    // Reference to the FieldRepo that holds the fabs
     [[nodiscard]] const FieldRepo& repo() const { return m_repo; }
 
-    //! Access the FAB at a given level
+    // Access the FAB at a given level
     amrex::iMultiFab& operator()(int lev);
     const amrex::iMultiFab& operator()(int lev) const;
 

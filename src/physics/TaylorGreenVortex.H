@@ -9,9 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Taylor Green Vortex physics
- *  \ingroup physics
- */
+/* Taylor Green Vortex physics */
 class TaylorGreenVortex : public Physics::Register<TaylorGreenVortex>
 {
 public:
@@ -20,8 +18,8 @@ public:
     explicit TaylorGreenVortex(const CFDSim& sim);
 
     ~TaylorGreenVortex() override = default;
-    //! Initialize the temperature and velocity fields for BoussinesqBubble
-    //! simulations
+    // Initialize the temperature and velocity fields for BoussinesqBubble
+    // simulations
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
     void post_init_actions() override {}
@@ -36,7 +34,7 @@ private:
     Field& m_velocity;
     Field& m_density;
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
 };
 

@@ -7,7 +7,7 @@
 
 namespace kynema_sgf_tests {
 
-/** Global setup/teardown test environment configuration for Kynema-SGF unit
+/* Global setup/teardown test environment configuration for Kynema-SGF unit
  * tests
  *
  *  This class is registered with GoogleTest infrastructure to perform global
@@ -18,7 +18,6 @@ namespace kynema_sgf_tests {
  *  global instance so that each test can utilize a clean "input file". The user
  *  can disable this feature by passing `utest.keep_parameters=1` at the command
  *  line.
- *
  */
 class AmrexTestEnv : public ::testing::Environment
 {

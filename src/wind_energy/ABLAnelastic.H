@@ -12,11 +12,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Interface for ABL anelastic
- *  \ingroup we_abl
+/* Interface for ABL anelastic
  *
  *  This class performs the necessary operations for anelastic ABL
- *
  */
 class ABLAnelastic
 {
@@ -31,7 +29,7 @@ public:
     [[nodiscard]] bool is_anelastic() const { return m_is_anelastic; }
 
 private:
-    //! Function to calculate the hydrostatic density and pressure
+    // Function to calculate the hydrostatic density and pressure
     void initialize_isentropic_hse();
 
     const CFDSim& m_sim;

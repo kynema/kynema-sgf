@@ -210,13 +210,13 @@ struct ProcessOutputsOp<TurbineKynemaFMB, SrcTrait>
 private:
     typename TurbineKynemaFMB::DataType& m_data;
 
-    //! Path to the output directory (specified by Actuator physics class)
+    // Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
 
-    //! NetCDF output filename for this turbine
+    // NetCDF output filename for this turbine
     std::string m_nc_filename;
 
-    //! Output interval (specified in input file)
+    // Output interval (specified in input file)
     int m_out_freq{10};
 
 public:

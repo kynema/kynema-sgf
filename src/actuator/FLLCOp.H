@@ -12,10 +12,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator {
 
-/** \brief This struct will operate on a blade/wing.
+/* This struct will operate on a blade/wing.
  *  The velocity from the simulation is corrected using the
  *  Filtered Lifting Line Theory Correction from Martinez and Meneveau 2019
- *
  */
 
 struct FLLCOp
@@ -50,7 +49,7 @@ struct FLLCOp
         auto& G = fllc.lift;
         auto& dG = fllc.grad_lift;
 
-        /**
+        /*
          * Step 1
          * Compute the lift force distribution (G)
          * Compute equation 5.3_rt from Martinez-Tossas and Meneveau 2019
@@ -68,7 +67,7 @@ struct FLLCOp
             G[ip] = (force - vel * fv / vmag2) / dr;
         }
 
-        /**
+        /*
          * Step 2
          * Compute gradient of the lift force distribution (\Delta G)
          * Compute equations 5.4_rt and 5.5_rt from Martinez-Tossas and Meneveau
@@ -80,7 +79,7 @@ struct FLLCOp
             dG[ip] = 0.5_rt * (G[ip + 1] - G[ip - 1]);
         }
 
-        /**
+        /*
          * Step 3
          * Compute the induced velocities
          * Compute equations 5.6_rt and 5.7_rt from Martinez-Tossas and Meneveau
@@ -128,7 +127,7 @@ struct FLLCOp
             du[ip] = (1.0_rt - f) * du[ip] + f * (u_opt[ip] - u_les[ip]);
         }
 
-        /**
+        /*
          * Step 4
          * Compute the induced velocity difference
          * Compute equation 5.8_rt from Martinez-Tossas and Meneveau 2019
@@ -140,7 +139,7 @@ struct FLLCOp
         }
     }
 
-    /** Add the correction to the sampled velocity
+    /* Add the correction to the sampled velocity
      *
      *  The correction is known at the force points and the velocity is
      *  sampled at the velocity points. Where the two sets differ, the
@@ -164,15 +163,12 @@ struct FLLCOp
         }
     }
 
-    /** Kernel of the velocity induced by a Gaussian-filtered lifting line
+    /* Kernel of the velocity induced by a Gaussian-filtered lifting line
      *
      *  exp(-r^2 / eps^2) / eps^2 + (exp(-r^2 / eps^2) - 1) / (2 r^2), with
      *  the limit 1 / (2 eps^2) at r = 0. The second term is evaluated with
      *  expm1: written as exp(x) - 1 it loses all its digits when r is much
      *  smaller than epsilon, and the kernel is then twice its limit.
-     *
-     *  \param r_dis2 Square of the distance between the two points
-     *  \param eps2 Square of epsilon
      */
     static amrex::Real kernel(const amrex::Real r_dis2, const amrex::Real eps2)
     {
@@ -196,7 +192,7 @@ struct FLLCOp
         auto& G = fllc.lift;
         auto& nonuniform_G = fllc.nonuniform_lift;
 
-        /**
+        /*
          * Step 1
          * Compute the lift force distribution (G)
          */
@@ -231,7 +227,7 @@ struct FLLCOp
             (fllc.nonuniform) ? fllc.nonuniform_vel_rel : fllc.vel_rel;
         const auto& G_new = (fllc.nonuniform) ? nonuniform_G : G;
 
-        /**
+        /*
          * Step 2
          * Compute the induced velocities
          */
@@ -274,7 +270,7 @@ struct FLLCOp
             du[ip] = (1.0_rt - f) * du[ip] + f * (u_opt[ip] - u_les[ip]);
         }
 
-        /**
+        /*
          * Step 3
          * Compute the induced velocity difference
          */
