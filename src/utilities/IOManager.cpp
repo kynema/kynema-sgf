@@ -217,6 +217,11 @@ void IOManager::write_checkpoint_file(const int start_level, int end_level)
                     lev - start_level, chkname, level_prefix, field.name()));
         }
     }
+
+    // Restart data that is not held in fields
+    for (auto& pp : m_sim.physics()) {
+        pp->write_checkpoint(chkname);
+    }
 }
 
 void IOManager::read_checkpoint_fields(

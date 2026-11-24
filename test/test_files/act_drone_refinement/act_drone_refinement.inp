@@ -78,7 +78,7 @@ Actuator.Drone.airfoil_type = openfast
 
 Actuator.Drone.gaussian_type = table
 Actuator.Drone.gaussian_table_error = 1.0e-4
-Actuator.Drone.output_frequency = -1
+Actuator.Drone.output_interval = -1
 
 # A body-frame plane that exercises actuator-linked translation and sampling
 # particle redistribution together with the moving refinement hierarchy.

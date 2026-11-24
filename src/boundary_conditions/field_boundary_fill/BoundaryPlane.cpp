@@ -1,5 +1,6 @@
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/BoundaryPlane.H"
+#include "src/core/FieldUtils.H"
 #include "src/boundary_conditions/field_boundary_fill/PlaneFillInflow.H"
 #include "AMReX_Gpu.H"
 #include "AMReX_ParmParse.H"
@@ -415,7 +416,8 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
     if (!original_input) {
         pp.get("file", m_filename);
         pp.getarr("var_names", m_var_names);
-        pp.query("write_frequency", m_write_frequency);
+        ioutils::query_with_legacy_name(
+            pp, "write_interval", "write_frequency", m_write_frequency);
         pp.query("output_start_time", m_out_start_time);
         pp.query("output_format", m_out_fmt);
         pp.query("fluid_phase", m_phase_str);
@@ -428,7 +430,9 @@ BoundaryPlane::BoundaryPlane(CFDSim& sim)
     } else {
         pp_abl.get("bndry_file", m_filename);
         pp_abl.getarr("bndry_var_names", m_var_names);
-        pp_abl.query("bndry_write_frequency", m_write_frequency);
+        ioutils::query_with_legacy_name(
+            pp_abl, "bndry_write_interval", "bndry_write_frequency",
+            m_write_frequency);
         pp_abl.query("bndry_output_start_time", m_out_start_time);
         pp_abl.query("bndry_output_format", m_out_fmt);
         pp_abl.query("bndry_fluid_phase", m_phase_str);
@@ -1708,12 +1712,16 @@ void BoundaryPlane::populate_data(
             const auto& src_arr = src.array();
             const int nstart = m_in_data.component(static_cast<int>(fld.id()));
 
-            const auto& vof_arr = m_vof_ptr != nullptr
-                                      ? (*m_vof_ptr)(lev).const_array(mfi)
-                                      : amrex::Array4<const amrex::Real>{};
+            const int source_idx =
+                use_vof_condition || use_terrain_condition
+                    ? field_impl::matching_grid_index(mfi, fld(lev))
+                    : 0;
+            const auto& vof_arr =
+                use_vof_condition ? (*m_vof_ptr)(lev).const_array(source_idx)
+                                  : amrex::Array4<const amrex::Real>{};
             const auto& terrain_blank_flags =
-                m_terrain_blank_ptr != nullptr
-                    ? (*m_terrain_blank_ptr)(lev).const_array(mfi)
+                use_terrain_condition
+                    ? (*m_terrain_blank_ptr)(lev).const_array(source_idx)
                     : amrex::Array4<const int>{};
             amrex::ParallelFor(
                 bx, nc, [=] AMREX_GPU_DEVICE(int i, int j, int k, int n) {

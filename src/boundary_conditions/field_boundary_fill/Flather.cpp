@@ -1,5 +1,6 @@
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/Flather.H"
+#include "src/core/FieldUtils.H"
 #include "src/boundary_conditions/field_boundary_fill/FillFlather.H"
 #include "src/utilities/index_operations.H"
 #include "src/utilities/constants.H"
@@ -445,12 +446,16 @@ void Flather::set_velocity(
             }
 
             const auto& arr = mfab[mfi].array();
-            const auto& ref_arr = fld.state(fstate)(lev)[mfi].const_array();
+            const int source_idx =
+                field_impl::matching_grid_index(mfi, fld(lev));
+            const auto& ref_arr =
+                fld.state(fstate)(lev)[source_idx].const_array();
 
-            const auto vof_arr = m_vof.state(fstate)(lev).const_array(mfi);
+            const auto vof_arr =
+                m_vof.state(fstate)(lev).const_array(source_idx);
             const bool use_terrain = (m_terrain_blank != nullptr);
             const auto terrain_blank_arr =
-                use_terrain ? (*m_terrain_blank)(lev).const_array(mfi)
+                use_terrain ? (*m_terrain_blank)(lev).const_array(source_idx)
                             : amrex::Array4<int const>();
 
             amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {

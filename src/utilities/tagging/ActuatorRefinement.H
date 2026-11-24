@@ -2,7 +2,7 @@
 #define ACTUATORREFINEMENT_H
 
 #include "src/utilities/tagging/RefinementCriteria.H"
-#include "src/wind_energy/actuator/actuator_types.H"
+#include "src/actuator/actuator_types.H"
 
 #include <cstdint>
 #include <string>
@@ -25,6 +25,11 @@ public:
     explicit ActuatorRefinement(CFDSim& sim);
 
     void initialize(const std::string& key) override;
+
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level >= m_min_level && level <= m_max_level;
+    }
 
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)

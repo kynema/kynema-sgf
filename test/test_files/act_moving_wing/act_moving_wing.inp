@@ -47,7 +47,7 @@ Actuator.FixedWingLine.sine_period = 1.0
 Actuator.FixedWingLine.sine_vector = 0.0 0.0 5.0
 Actuator.F1.start = 0.0 -4.0 0.0
 Actuator.F1.end = 0.0 4.0 0.0
-Actuator.F1.output_frequency = 10
+Actuator.F1.output_interval = 10
 
 ICNS.source_terms = ActuatorForcing
 

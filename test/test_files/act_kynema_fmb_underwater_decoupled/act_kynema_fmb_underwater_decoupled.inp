@@ -94,5 +94,5 @@ Actuator.T0.fllc                   = false
 Actuator.T0.density                = 1e3
 Actuator.T0.nacelle_drag_coeff     = 0.0
 Actuator.T0.nacelle_area           = 0.0                 
-Actuator.T0.output_frequency       = 1                   
+Actuator.T0.output_interval        = 1
 Actuator.T0.num_blades             = 2

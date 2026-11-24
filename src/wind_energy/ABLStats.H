@@ -178,7 +178,7 @@ private:
     // This also controls what is considered as the first cell height,
     // which is the default log law height in the wall function
 
-    //! Frequency of data sampling and output
+    //! Time step interval for data sampling and output
     int m_out_freq{100};
 
     //! Acceleration due to gravity magnitude

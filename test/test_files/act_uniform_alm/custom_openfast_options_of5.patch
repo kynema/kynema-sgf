@@ -1,0 +1,63 @@
+diff --git a/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_AeroDyn.dat b/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_AeroDyn.dat
+index 42ab405..52118bd 100644
+--- a/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_AeroDyn.dat
++++ b/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_AeroDyn.dat
+@@ -3,7 +3,7 @@ NREL 5.0 MW offshore baseline aerodynamic input properties.
+ ======  General Options  ============================================================================
+ False                  Echo        - Echo the input to "<rootname>.AD.ech"? (flag)
+ "default"              DTAero      - Time interval for aerodynamic calculations {or "default"} (s)
+-1                      Wake_Mod    - Wake/induction model (switch) {0=none, 1=BEMT, 3=OLAF} [Wake_Mod cannot be 2 or 3 when linearizing]
++0                      Wake_Mod    - Wake/induction model (switch) {0=none, 1=BEMT, 3=OLAF} [Wake_Mod cannot be 2 or 3 when linearizing]
+ 1                      TwrPotent   - Type tower influence on wind based on potential flow around the tower (switch) {0=none, 1=baseline potential flow, 2=potential flow with Bak correction}
+ 0                      TwrShadow   - Calculate tower influence on wind based on downstream tower shadow (switch) {0=none, 1=Powles model, 2=Eames model}
+ True                   TwrAero     - Calculate tower aerodynamic loads? (flag)
+diff --git a/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ElastoDyn.dat b/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ElastoDyn.dat
+index a342990..5b24df2 100644
+--- a/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ElastoDyn.dat
++++ b/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ElastoDyn.dat
+@@ -12,7 +12,7 @@ False         PitchDOF    - Blade pitch DOF (flag)
+ False         TeetDOF     - Rotor-teeter DOF (flag) [unused for 3 blades]
+ True          DrTrDOF     - Drivetrain rotational-flexibility DOF (flag)
+ True          GenDOF      - Generator DOF (flag)
+-True          YawDOF      - Yaw DOF (flag)
++False         YawDOF      - Yaw DOF (flag)
+ True          TwFADOF1    - First fore-aft tower bending-mode DOF (flag)
+ True          TwFADOF2    - Second fore-aft tower bending-mode DOF (flag)
+ True          TwSSDOF1    - First side-to-side tower bending-mode DOF (flag)
+diff --git a/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ServoDyn.dat b/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ServoDyn.dat
+index 9692162..1908402 100644
+--- a/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ServoDyn.dat
++++ b/glue-codes/openfast-cpp/5MW_Land_DLL_WTurb_cpp/NRELOffshrBsline5MW_Onshore_ServoDyn.dat
+@@ -4,7 +4,7 @@ NREL 5.0 MW Baseline Wind Turbine for Use in Offshore Analysis. Properties from
+ False         Echo         - Echo input data to <RootName>.ech (flag)
+ "default"     DT           - Communication interval for controllers (s) (or "default")
+ ---------------------- PITCH CONTROL -------------------------------------------
+-          5   PCMode       - Pitch control mode {0: none, 3: user-defined from routine PitchCntrl, 4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL} (switch)
++          0   PCMode       - Pitch control mode {0: none, 3: user-defined from routine PitchCntrl, 4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL} (switch)
+           0   TPCOn        - Time to enable active pitch control (s) [unused when PCMode=0]
+           0   PitNeut(1)   - Blade 1 neutral pitch position--pitch spring moment is zero at this pitch (degrees)
+           0   PitNeut(2)   - Blade 2 neutral pitch position--pitch spring moment is zero at this pitch (degrees)
+@@ -25,7 +25,7 @@ False         Echo         - Echo input data to <RootName>.ech (flag)
+           0   BlPitchF(2)  - Blade 2 final pitch for pitch maneuvers (degrees)
+           0   BlPitchF(3)  - Blade 3 final pitch for pitch maneuvers (degrees) [unused for 2 blades]
+ ---------------------- GENERATOR AND TORQUE CONTROL ----------------------------
+-          5   VSContrl     - Variable-speed control mode {0: none, 1: simple VS, 3: user-defined from routine UserVSCont, 4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL} (switch)
++          1   VSContrl     - Variable-speed control mode {0: none, 1: simple VS, 3: user-defined from routine UserVSCont, 4: user-defined from Simulink/Labview, 5: user-defined from Bladed-style DLL} (switch)
+           2   GenModel     - Generator model {1: simple, 2: Thevenin, 3: user-defined from routine UserGen} (switch) [used only when VSContrl=0]
+        94.4   GenEff       - Generator efficiency [ignored by the Thevenin and user-defined generator models] (%)
+ True          GenTiStr     - Method to start the generator {T: timed using TimGenOn, F: generator speed using SpdGenOn} (flag)
+@@ -34,10 +34,10 @@ True          GenTiStp     - Method to stop the generator {T: timed using TimGen
+           0   TimGenOn     - Time to turn on the generator for a startup (s) [used only when GenTiStr=True]
+      9999.9   TimGenOf     - Time to turn off the generator (s) [used only when GenTiStp=True]
+ ---------------------- SIMPLE VARIABLE-SPEED TORQUE CONTROL --------------------
+-     9999.9   VS_RtGnSp    - Rated generator speed for simple variable-speed generator control (HSS side) (rpm) [used only when VSContrl=1]
+-     9999.9   VS_RtTq      - Rated generator torque/constant generator torque in Region 3 for simple variable-speed generator control (HSS side) (N-m) [used only when VSContrl=1]
+-     9999.9   VS_Rgn2K     - Generator torque constant in Region 2 for simple variable-speed generator control (HSS side) (N-m/rpm^2) [used only when VSContrl=1]
+-     9999.9   VS_SlPc      - Rated generator slip percentage in Region 2 1/2 for simple variable-speed generator control (%) [used only when VSContrl=1]
++     1161.963   VS_RtGnSp    - Rated generator speed for simple variable-speed generator control (HSS side) (rpm) [used only when VSContrl=1]
++     43093.55   VS_RtTq      - Rated generator torque/constant generator torque in Region 3 for simple variable-speed generator control (HSS side) (N-m) [used only when VSContrl=1]
++     0.0255764   VS_Rgn2K     - Generator torque constant in Region 2 for simple variable-speed generator control (HSS side) (N-m/rpm^2) [used only when VSContrl=1]
++     10.0   VS_SlPc      - Rated generator slip percentage in Region 2 1/2 for simple variable-speed generator control (%) [used only when VSContrl=1]
+ ---------------------- SIMPLE INDUCTION GENERATOR ------------------------------
+      9999.9   SIG_SlPc     - Rated generator slip percentage (%) [used only when VSContrl=0 and GenModel=1]
+      9999.9   SIG_SySp     - Synchronous (zero-torque) generator speed (rpm) [used only when VSContrl=0 and GenModel=1]

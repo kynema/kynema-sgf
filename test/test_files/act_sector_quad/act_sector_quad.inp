@@ -83,7 +83,7 @@ Actuator.ActuatorSector.airfoil_type = openfast
 # Actuator-sector force projection and blade-load output
 Actuator.ActuatorSector.gaussian_type = table
 Actuator.ActuatorSector.gaussian_table_error = 1.0e-4  # max exp(-r^2 / epsilon^2) table error [-]
-Actuator.ActuatorSector.output_frequency = 1           # blade-load output interval [steps]
+Actuator.ActuatorSector.output_interval = 1           # blade-load output interval [steps]
 
 # Boundary conditions: +x inflow, +x pressure outflow, transverse slip walls.
 xlo.type = "mass_inflow"

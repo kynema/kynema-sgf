@@ -5,6 +5,7 @@
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "src/utilities/constants.H"
 #include "src/utilities/trig_ops.H"
+#include "src/utilities/io_utils.H"
 
 #include "AMReX_ParmParse.H"
 #include "AMReX_Gpu.H"
@@ -52,7 +53,9 @@ ABLForcing::ABLForcing(const CFDSim& sim)
     m_write_force_timetable = pp_abl.contains("forcing_timetable_output_file");
     if (m_write_force_timetable) {
         pp_abl.get("forcing_timetable_output_file", m_force_timetable);
-        pp_abl.query("forcing_timetable_frequency", m_force_outfreq);
+        ioutils::query_with_legacy_name(
+            pp_abl, "forcing_timetable_interval", "forcing_timetable_frequency",
+            m_force_outfreq);
         pp_abl.query("forcing_timetable_start_time", m_force_outstart);
         if (amrex::ParallelDescriptor::IOProcessor()) {
             std::ofstream outfile;
