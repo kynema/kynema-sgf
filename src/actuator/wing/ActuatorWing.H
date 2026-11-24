@@ -80,6 +80,10 @@ struct WingBaseData
     //! Data structure required for passing data to the FLLC
     ComponentView component_view;
 
+    //! True until the first force computation (at the checkpoint time on
+    //! restart, when restart data are read)
+    bool at_first_force_call{true};
+
     //! Width of actuator sections
     RealList dx;
 

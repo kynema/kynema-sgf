@@ -32,6 +32,17 @@ std::set<int> determine_influenced_procs(
 void determine_root_proc(
     ActInfo& /*info*/, amrex::Vector<int>& /*act_proc_count*/);
 
+/** Cutoff distance of gaussian3d, in units of epsilon
+ *
+ *  ActInfo::bound_box has to extend this far beyond the actuator points:
+ *  patches outside it receive no force.
+ */
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real
+gaussian3d_cutoff() noexcept
+{
+    return 4.0_rt;
+}
+
 /** Return the Gaussian smearing factor in 3D
  *
  *  \param dist Distance vector of the cell center from the actuator node in
@@ -48,7 +59,7 @@ gaussian3d(const vs::Vector& dist, const vs::Vector& eps)
         dist.x() / eps.x(), dist.y() / eps.y(), dist.z() / eps.z()};
     const amrex::Real rr_sqr = vs::mag_sqr(rr);
 
-    if (rr_sqr < 16.0_rt) {
+    if (rr_sqr < gaussian3d_cutoff() * gaussian3d_cutoff()) {
         constexpr amrex::Real fac = 0.17958712212516656_rt;
         const amrex::Real eps_fac = eps.x() * eps.y() * eps.z();
         return (fac / eps_fac) *

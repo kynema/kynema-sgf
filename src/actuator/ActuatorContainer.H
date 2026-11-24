@@ -83,6 +83,12 @@ public:
         return static_cast<int>(m_data.position.size());
     }
 
+    /** Number of points of this process beyond a non-periodic boundary
+     *
+     *  No velocity can be sampled there; update_positions aborts.
+     */
+    int num_points_outside_domain() const;
+
     // public for CUDA, not safe for general access
 
     void interpolate_fields(const Field& vel, const Field& density);

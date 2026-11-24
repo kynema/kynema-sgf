@@ -19,6 +19,47 @@ enum class SimMode : std::uint8_t {
 template <typename ExtData>
 std::string ext_id();
 
+/** Local axes of the blade points of an external solver: rows of the
+ *  orientation matrix it sends (grid.orientation after scatter_data)
+ */
+enum class BladeFrame : std::uint8_t {
+    //! x normal to chord, y along chord, z along span (OpenFAST: AeroDyn
+    //! airfoil frame)
+    normal_chord_span = 0,
+    //! x along span, y along chord, z normal to chord (Kynema-FMB: aero
+    //! sections)
+    span_chord_normal
+};
+
+/** Blade frame of a solver turbine type: its static member blade_frame,
+ *  else the OpenFAST frame (test stand-ins)
+ */
+template <typename SolverTurbine>
+constexpr BladeFrame blade_frame_of()
+{
+    if constexpr (requires { SolverTurbine::blade_frame; }) {
+        return SolverTurbine::blade_frame;
+    } else {
+        return BladeFrame::normal_chord_span;
+    }
+}
+
+/** Stored epsilon component of input value n
+ *
+ *  Inputs: (chord, thickness, span). Stored: local frame of the point,
+ *  component m along row m of its orientation.
+ */
+constexpr int epsilon_component(const BladeFrame frame, const int n)
+{
+    switch (frame) {
+    case BladeFrame::span_chord_normal:
+        return (n == 0) ? 1 : ((n == 1) ? 2 : 0);
+    case BladeFrame::normal_chord_span:
+    default:
+        return (n == 0) ? 1 : ((n == 1) ? 0 : 2);
+    }
+}
+
 /** Representation of a turbine for exchanging data with external solver
  */
 struct ExternalTurbine
@@ -85,9 +126,6 @@ struct ExternalTurbine
 
     //! Time step index for external
     int time_index{0};
-
-    //! Checkpoint interval for external
-    int chkpt_interval;
 
     //! Data access functions that have to be defined for each type
     [[nodiscard]] virtual float* position_at_vel(int dir) const = 0;

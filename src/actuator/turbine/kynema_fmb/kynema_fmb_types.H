@@ -37,6 +37,10 @@ namespace ext_turb {
  */
 struct KynemaFMBTurbine : public ext_turb::ExternalTurbine
 {
+    //! Aero section frame: x along span (beam axis), y along chord, z normal
+    //! to chord
+    static constexpr BladeFrame blade_frame{BladeFrame::span_chord_normal};
+
     /** Variables exclusive to KynemaFMB turbine type
      */
     std::unique_ptr<kynema_fmb::interfaces::TurbineInterface> interface;

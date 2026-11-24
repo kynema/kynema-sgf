@@ -15,6 +15,9 @@ namespace ext_turb {
  */
 struct FastTurbine : public ext_turb::ExternalTurbine
 {
+    //! Local axes of the blade points: airfoil frame of AeroDyn
+    static constexpr BladeFrame blade_frame{BladeFrame::normal_chord_span};
+
     /** Variables exclusive to OpenFAST turbine type
      */
 

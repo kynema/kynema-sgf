@@ -149,6 +149,28 @@ void ActuatorContainer::reset_container()
     initialize_particles(total_pts);
 }
 
+int ActuatorContainer::num_points_outside_domain() const
+{
+    const auto& geom = m_mesh.Geom(0);
+    const auto* prob_lo = geom.ProbLo();
+    const auto* prob_hi = geom.ProbHi();
+    int num_out = 0;
+    for (const auto& pvec : m_data.position) {
+        bool outside = false;
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            // As for the particles, a point on the high face is outside
+            if (!geom.isPeriodic(n) &&
+                ((pvec[n] < prob_lo[n]) || (pvec[n] >= prob_hi[n]))) {
+                outside = true;
+            }
+        }
+        if (outside) {
+            ++num_out;
+        }
+    }
+    return num_out;
+}
+
 /** Update particle positions using data provided by actuator instances.
  *
  *  This method assumes that the particles have been restored to their
@@ -168,6 +190,21 @@ void ActuatorContainer::update_positions()
         m_container_initialized && !m_is_scattered,
         "m_container_initialized = " + std::to_string(m_container_initialized) +
             ", m_is_scattered = " + std::to_string(m_is_scattered));
+
+    // Redistribute removes the particle of a point outside the domain,
+    // which would then sample a zero velocity
+    const int num_out = num_points_outside_domain();
+    if (num_out > 0) {
+        amrex::Abort(
+            "Actuator: " + std::to_string(num_out) + " of the " +
+            std::to_string(m_data.position.size()) + " points where process " +
+            std::to_string(amrex::ParallelDescriptor::MyProc()) +
+            " samples the velocity for its actuators are outside of the "
+            "domain, where no velocity can be sampled. Check the positions "
+            "of the actuators against geometry.prob_lo and "
+            "geometry.prob_hi; a point on a high boundary that is not "
+            "periodic counts as outside.");
+    }
 
     const auto dpos = gpu::device_view(m_data.position);
     const auto* const dptr = dpos.data();
