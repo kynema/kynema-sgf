@@ -4,6 +4,7 @@
 #include "src/core/field_ops.H"
 #include "src/turbulence/TurbulenceModel.H"
 #include "ks_test_utils/test_utils.H"
+#include "src/utilities/constants.H"
 #include "src/utilities/math_ops.H"
 
 using namespace amrex::literals;
@@ -287,9 +288,20 @@ void TurbRANSTest::check_kw_density_sources(const std::string& model)
             const auto errors = kw_source_errors(
                 repo.get_field("shear_prod"), srate, model == "KOmegaSST",
                 diff_type == DiffusionType::Crank_Nicolson);
-            EXPECT_NEAR(errors[0], 0.0_rt, 1.0e-11_rt);
-            EXPECT_NEAR(errors[1], 0.0_rt, 1.0e-11_rt);
-            EXPECT_NEAR(errors[2], 0.0_rt, 1.0e-11_rt);
+            const amrex::Real reference_tol = kynema_sgf::constants::TIGHT_TOL;
+            EXPECT_NEAR(
+                errors[0], 0.0_rt,
+                reference_tol * utils::field_max(repo.get_field("shear_prod")));
+            EXPECT_NEAR(
+                errors[1], 0.0_rt,
+                reference_tol *
+                    std::abs(
+                        utils::field_max(repo.get_field("buoyancy_term"))));
+            EXPECT_NEAR(
+                errors[2], 0.0_rt,
+                reference_tol *
+                    std::abs(
+                        utils::field_max(repo.get_field("sdr_dissipation"))));
             if (srate < 1.0_rt) {
                 EXPECT_LT(errors[4], 0.0_rt);
             } else {
@@ -334,8 +346,11 @@ void TurbRANSTest::check_kw_density_sources(const std::string& model)
                 const amrex::Real magnitude = amrex::max<amrex::Real>(
                     std::abs(utils::field_min(*reference[n])),
                     std::abs(utils::field_max(*reference[n])));
+                // The cross-diffusion floor also changes the blending
+                // function slightly when density is scaled in single precision.
                 const amrex::Real tol =
-                    1.0e-9_rt * amrex::max<amrex::Real>(magnitude, 1.0e-6_rt);
+                    20.0_rt * kynema_sgf::constants::TIGHT_TOL *
+                    amrex::max<amrex::Real>(magnitude, 1.0e-6_rt);
                 EXPECT_NEAR(utils::field_min(*error), 0.0_rt, tol);
                 EXPECT_NEAR(utils::field_max(*error), 0.0_rt, tol);
             }
