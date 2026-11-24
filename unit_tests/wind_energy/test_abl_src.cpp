@@ -85,12 +85,13 @@ TEST_F(ABLMeshTest, registered_forcing_lifetime)
     bool momentum_destroyed = false;
     bool temperature_destroyed = false;
     {
-        mesh().own_momentum_source(std::make_unique<
-            TrackedSource<kynema_sgf::pde::icns::ABLForcing>>(
-            sim(), momentum_destroyed));
-        mesh().own_temperature_source(std::make_unique<
-            TrackedSource<kynema_sgf::pde::temperature::HurricaneTempForcing>>(
-            sim(), temperature_destroyed));
+        mesh().own_momentum_source(
+            std::make_unique<TrackedSource<kynema_sgf::pde::icns::ABLForcing>>(
+                sim(), momentum_destroyed));
+        mesh().own_temperature_source(
+            std::make_unique<TrackedSource<
+                kynema_sgf::pde::temperature::HurricaneTempForcing>>(
+                sim(), temperature_destroyed));
     }
     EXPECT_FALSE(momentum_destroyed);
     EXPECT_FALSE(temperature_destroyed);
