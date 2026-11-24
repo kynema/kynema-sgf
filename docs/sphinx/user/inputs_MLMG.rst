@@ -153,7 +153,7 @@ temperature, to do that use "temperature_diffusion" as your prefix.
    include: smoother, bicgstab, cg, bicgcg, cgbicg, amg, hypre, and petsc.
    The amg option uses the AMReX algebraic multigrid solver (AlgMG) as the
    bottom solver.
-   The hyper and petsc options will require compiling with those libraries.
+   The hypre and petsc options will require compiling with those libraries.
 
 .. input_param:: diffusion.bottom_verbose
 
