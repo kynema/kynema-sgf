@@ -57,8 +57,8 @@ temperature, to do that use "temperature_diffusion" as your prefix.
      The coarsened geometric levels are not used for level 0, so setting
      :input_param:`diffusion.max_coarsening_level` to ``0`` avoids building
      them. The AlgMG solve of level 0 uses the bottom solver tolerances
-   (:input_param:`diffusion.bottom_rtol` and
-   :input_param:`diffusion.bottom_atol`). The bottom solver type is not
+     (:input_param:`diffusion.bottom_rtol` and
+     :input_param:`diffusion.bottom_atol`). The bottom solver type is not
      used for level 0.
    - ``hybrid``: geometric until the iteration stalls or diverges, then
      algebraic, restarting from the best iterate so far. This requires
