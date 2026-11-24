@@ -24,6 +24,20 @@ using namespace amrex::literals;
 namespace kynema_sgf_tests {
 
 namespace {
+template <typename Source>
+class TrackedSource : public Source
+{
+public:
+    TrackedSource(const kynema_sgf::CFDSim& sim, bool& destroyed)
+        : Source(sim), m_destroyed(destroyed)
+    {}
+
+    ~TrackedSource() override { m_destroyed = true; }
+
+private:
+    bool& m_destroyed;
+};
+
 amrex::Real get_val_at_height(
     kynema_sgf::Field& field,
     const int lev,
@@ -60,6 +74,32 @@ amrex::Real get_val_at_height(
 using ICNSFields = kynema_sgf::pde::
     FieldRegOp<kynema_sgf::pde::ICNS, kynema_sgf::fvm::Godunov>;
 
+TEST_F(ABLMeshTest, registered_forcing_lifetime)
+{
+    populate_parameters();
+    initialize_mesh();
+    sim().pde_manager().register_icns();
+    sim().init_physics();
+
+    bool momentum_destroyed = false;
+    bool temperature_destroyed = false;
+    {
+        mesh()
+            .create_momentum_source<
+                TrackedSource<kynema_sgf::pde::icns::ABLForcing>>(
+                momentum_destroyed);
+        mesh()
+            .create_temperature_source<TrackedSource<
+                kynema_sgf::pde::temperature::HurricaneTempForcing>>(
+                temperature_destroyed);
+    }
+    EXPECT_FALSE(momentum_destroyed);
+    EXPECT_FALSE(temperature_destroyed);
+    m_mesh.reset();
+    EXPECT_TRUE(momentum_destroyed);
+    EXPECT_TRUE(temperature_destroyed);
+}
+
 TEST_F(ABLMeshTest, abl_forcing)
 {
     constexpr amrex::Real tol =
@@ -74,7 +114,8 @@ TEST_F(ABLMeshTest, abl_forcing)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
-    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
+    auto& abl_forcing =
+        mesh().create_momentum_source<kynema_sgf::pde::icns::ABLForcing>();
 
     src_term.setVal(0.0_rt);
     abl_forcing(0, kynema_sgf::FieldState::New, src_term(0));
@@ -317,13 +358,17 @@ TEST_F(ABLMeshTest, hurricane_forcing)
     density.setVal(1.0_rt);
 
     // Calculate Hurricane Forcing to the momentum equation
-    kynema_sgf::pde::icns::HurricaneForcing hurricane_forcing(sim());
+    auto& hurricane_forcing =
+        mesh()
+            .create_momentum_source<kynema_sgf::pde::icns::HurricaneForcing>();
     src_term_icns.setVal(0.0_rt);
     hurricane_forcing(0, kynema_sgf::FieldState::New, src_term_icns(0));
 
     // Calculate Hurricane Forcing to the temperature equation
-    kynema_sgf::pde::temperature::HurricaneTempForcing hurricane_temp_forcing(
-        sim());
+    auto& hurricane_temp_forcing =
+        mesh()
+            .create_temperature_source<
+                kynema_sgf::pde::temperature::HurricaneTempForcing>();
     src_term_temp.setVal(0.0_rt);
     hurricane_temp_forcing(0, kynema_sgf::FieldState::New, src_term_temp(0));
 

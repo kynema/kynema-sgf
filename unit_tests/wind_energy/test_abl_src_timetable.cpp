@@ -137,7 +137,8 @@ TEST_F(ABLSrcTimeTableTest, abl)
     auto& src_term = pde_mgr.icns().fields().src_term;
     src_term.setVal(0.0_rt);
     // Source term object for ABLForcing
-    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
+    auto& abl_forcing =
+        mesh().create_momentum_source<kynema_sgf::pde::icns::ABLForcing>();
     for (int lev = 0; lev < src_term.repo().num_active_levels(); ++lev) {
         abl_forcing(lev, kynema_sgf::FieldState::New, src_term(lev));
     }

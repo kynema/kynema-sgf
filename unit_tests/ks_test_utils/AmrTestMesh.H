@@ -3,11 +3,14 @@
 
 #include <memory>
 #include <unordered_map>
+#include <utility>
 
 #include "AMReX_AmrCore.H"
 #include "src/CFDSim.H"
 #include "src/core/FieldRepo.H"
 #include "src/core/Field.H"
+#include "src/equation_systems/icns/MomentumSource.H"
+#include "src/equation_systems/temperature/TemperatureSource.H"
 
 namespace kynema_sgf_tests {
 
@@ -32,6 +35,24 @@ public:
     kynema_sgf::CFDSim& sim() { return m_sim; }
 
     kynema_sgf::FieldRepo& field_repo() { return m_repo; }
+
+    template <typename T, typename... Args>
+    T& create_momentum_source([[maybe_unused]] Args&&... args)
+    {
+        auto source = std::make_unique<T>(m_sim, std::forward<Args>(args)...);
+        auto& result = *source;
+        m_momentum_sources.push_back(std::move(source));
+        return result;
+    }
+
+    template <typename T, typename... Args>
+    T& create_temperature_source([[maybe_unused]] Args&&... args)
+    {
+        auto source = std::make_unique<T>(m_sim, std::forward<Args>(args)...);
+        auto& result = *source;
+        m_temperature_sources.push_back(std::move(source));
+        return result;
+    }
 
 protected:
     void MakeNewLevelFromScratch(
@@ -58,6 +79,11 @@ protected:
     ErrorEst(int lev, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
         override;
 
+    // Registered sources must outlive the simulation that references them.
+    amrex::Vector<std::unique_ptr<kynema_sgf::pde::MomentumSource>>
+        m_momentum_sources;
+    amrex::Vector<std::unique_ptr<kynema_sgf::pde::TemperatureSource>>
+        m_temperature_sources;
     kynema_sgf::CFDSim m_sim;
     kynema_sgf::FieldRepo& m_repo;
 };
