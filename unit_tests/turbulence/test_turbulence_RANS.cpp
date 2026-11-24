@@ -74,7 +74,7 @@ void init_linear_z(kynema_sgf::Field& fld, amrex::Real base, amrex::Real grad)
         amrex::ParallelFor(
             fld(lev), fld.num_grow(),
             [=] AMREX_GPU_DEVICE(int nbx, int i, int j, int k) {
-                arrs[nbx](i, j, k) = base + grad * (zlo + (k + 0.5_rt) * dz);
+                arrs[nbx](i, j, k) = base + (grad * (zlo + (k + 0.5_rt) * dz));
             });
     }
     amrex::Gpu::streamSynchronize();
