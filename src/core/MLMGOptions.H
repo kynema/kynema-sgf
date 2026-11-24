@@ -107,12 +107,10 @@ private:
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e12_rt};
 
     //! Absolute tolerance for convergence checks
-    amrex::Real m_bottom_abs_tol{
+    amrex::Real m_bottom_abs_tol_default_gmg{
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt};
+    amrex::Real m_bottom_abs_tol{-1.0_rt};
 #endif
-
-    //! True if the user set bottom_atol in any parsed namespace
-    bool m_bottom_abs_tol_set{false};
 
     /** Verbosity of the MLMG and Projector interfaces
      */

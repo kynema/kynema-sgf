@@ -176,10 +176,8 @@ temperature, to do that use "temperature_diffusion" as your prefix.
 
    Set the absolute tolerance for the bottom solve. Setting a negative number
    disables absolute tolerance check. With ``algebraic`` or ``hybrid``, the
-   bottom tolerances also control the AlgMG solve of level 0. A positive
-   absolute tolerance can then stop that solve before the MLMG tolerances are
-   met, and the MLMG iterations stall. So the check is disabled unless this
-   input is set.
+   bottom tolerances also control the AlgMG solve of level 0, which is why
+   the default is different in those cases.
 
 .. input_param:: diffusion.bottom_maxiter
 

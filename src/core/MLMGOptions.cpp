@@ -48,6 +48,9 @@ void MLMGOptions::parse_options(const std::string& prefix)
         }
         m_multigrid_type_prefix = prefix;
     }
+    if (m_multigrid_type == amrex::MLMG::MultigridType::geometric) {
+        m_bottom_abs_tol = m_bottom_abs_tol_default_gmg;
+    }
     pp.query("verbose", m_verbose);
     pp.query("bottom_verbose", m_bottom_verbose);
 
@@ -64,9 +67,7 @@ void MLMGOptions::parse_options(const std::string& prefix)
 
     pp.query("bottom_maxiter", m_bottom_max_iter);
     pp.query("bottom_rtol", m_bottom_rel_tol);
-    if (pp.query("bottom_atol", m_bottom_abs_tol) != 0) {
-        m_bottom_abs_tol_set = true;
-    }
+    pp.query("bottom_atol", m_bottom_abs_tol);
     pp.query("bottom_solver", m_bottom_solver_type);
     pp.query("hypre_namespace", m_hypre_namespace);
     pp.query("hypre_interface", m_hypre_interface);
@@ -115,16 +116,6 @@ void MLMGOptions::operator()(amrex::MLMG& mlmg)
         }
     }
     mlmg.setMultigridType(m_multigrid_type);
-
-    // AlgMG solves AMR level 0 with the bottom tolerances. The default
-    // absolute bottom tolerance can stop it before the MLMG target is met, so
-    // the MLMG iterations stall. Disable it unless the user set it.
-    const amrex::Real bottom_abs_tol =
-        ((m_multigrid_type != amrex::MLMG::MultigridType::geometric) &&
-         !m_bottom_abs_tol_set)
-            ? -1.0_rt
-            : m_bottom_abs_tol;
-
     mlmg.setBottomVerbose(m_bottom_verbose);
     mlmg.setBottomTolerance(m_bottom_rel_tol);
     mlmg.setBottomToleranceAbs(bottom_abs_tol);
