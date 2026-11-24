@@ -9,9 +9,15 @@
 #include "src/equation_systems/icns/icns_advection.H"
 #include "AMReX_REAL.H"
 
+#include <numbers>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
+
+namespace {
+amrex::Real bottom_row_mean_u(kynema_sgf::Field& ow_vel, amrex::Real x_max);
+} // namespace
 
 class OceanWavesOpTest : public MeshTest
 {
@@ -61,6 +67,44 @@ protected:
             pp.addarr("physics", phystr);
             pp.add("use_godunov", 1);
         }
+    }
+    //! Linear-wave targets at t = 0 (generation zone 2 m = 2 wavelengths);
+    //! returns the bottom-row mean of the x target velocity in that zone
+    amrex::Real linear_target_bottom_mean_u(const int zero_mass_transport)
+    {
+        populate_parameters();
+        {
+            amrex::ParmParse pp("OceanWaves");
+            pp.add("label", (std::string) "lin_ow");
+            amrex::ParmParse ppow("OceanWaves.lin_ow");
+            ppow.add("type", (std::string) "LinearWaves");
+            ppow.add("wave_height", 0.05_rt);
+            ppow.add("wave_length", 1.0_rt);
+            ppow.add("water_depth", 1.0_rt);
+            ppow.add("relax_zone_gen_length", 2.0_rt);
+            ppow.add("numerical_beach_length", 4.0_rt);
+            if (zero_mass_transport >= 0) {
+                ppow.add("zero_mass_transport", zero_mass_transport != 0);
+            }
+        }
+        {
+            amrex::ParmParse pp("time");
+            pp.add("fixed_dt", 0.1_rt);
+        }
+        initialize_mesh();
+        auto& pde_mgr = sim().pde_manager();
+        pde_mgr.register_icns();
+        sim().init_physics();
+        sim().init_field_boundaries();
+        auto& oceanwaves =
+            sim().physics_manager().get<kynema_sgf::ocean_waves::OceanWaves>();
+        oceanwaves.pre_init_actions();
+        auto& repo = sim().repo();
+        for (int lev = 0; lev < repo.num_active_levels(); ++lev) {
+            oceanwaves.initialize_fields(lev, mesh().Geom(lev));
+        }
+        oceanwaves.post_init_actions();
+        return bottom_row_mean_u(repo.get_field("ow_velocity"), 2.0_rt);
     }
 };
 
@@ -292,6 +336,52 @@ amrex::Real uface_bdy_error(kynema_sgf::Field& comp, kynema_sgf::Field& targ)
     }
     amrex::ParallelDescriptor::ReduceRealSum(error_total);
     return error_total;
+}
+
+//! Mean of the x target velocity over the bottom row of cells with x < x_max
+//! (valid cells only)
+amrex::Real
+bottom_row_mean_u(kynema_sgf::Field& ow_vel, const amrex::Real x_max)
+{
+    amrex::Real sum = 0.0_rt;
+    amrex::Real count = 0.0_rt;
+    const auto& geom = ow_vel.repo().mesh().Geom();
+    for (int lev = 0; lev < ow_vel.repo().num_active_levels(); ++lev) {
+        const auto problo = geom[lev].ProbLoArray();
+        const auto dx = geom[lev].CellSizeArray();
+        const int klo = geom[lev].Domain().smallEnd(2);
+        sum += amrex::ReduceSum(
+            ow_vel(lev), 0,
+            [=] AMREX_GPU_HOST_DEVICE(
+                amrex::Box const& bx,
+                amrex::Array4<amrex::Real const> const& v) -> amrex::Real {
+                amrex::Real s0 = 0.0_rt;
+                amrex::Loop(bx, [=, &s0](int i, int j, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    if (k == klo && x < x_max) {
+                        s0 += v(i, j, k, 0);
+                    }
+                });
+                return s0;
+            });
+        count += amrex::ReduceSum(
+            ow_vel(lev), 0,
+            [=] AMREX_GPU_HOST_DEVICE(
+                amrex::Box const& bx,
+                amrex::Array4<amrex::Real const> const& /*v*/) -> amrex::Real {
+                amrex::Real n = 0.0_rt;
+                amrex::Loop(bx, [=, &n](int i, int /*j*/, int k) {
+                    const amrex::Real x = problo[0] + ((i + 0.5_rt) * dx[0]);
+                    if (k == klo && x < x_max) {
+                        n += 1.0_rt;
+                    }
+                });
+                return n;
+            });
+    }
+    amrex::ParallelDescriptor::ReduceRealSum(sum);
+    amrex::ParallelDescriptor::ReduceRealSum(count);
+    return sum / count;
 }
 
 } // namespace
@@ -542,6 +632,29 @@ TEST_F(OceanWavesOpTest, set_inflow_sibling)
     make_target_velocity(ow_velocity, velocity, ow_vof);
     const amrex::Real error_total = uface_bdy_error(u_mac, ow_velocity);
     EXPECT_NEAR(error_total, 0.0_rt, tol);
+}
+
+TEST_F(OceanWavesOpTest, linear_zero_mass_transport_default)
+{
+    // By default, linear-wave targets include the uniform return current that
+    // cancels the mass transport; over whole wavelengths of the bottom row the
+    // wave part averages out, leaving the current
+    constexpr amrex::Real g = 9.81_rt;
+    const amrex::Real k = 2.0_rt * std::numbers::pi_v<amrex::Real>;
+    const amrex::Real eps = k * 0.05_rt / 2.0_rt;
+    const amrex::Real expected = -0.5_rt * eps * eps *
+                                 std::sqrt(1.0_rt / std::tanh(k * 1.0_rt)) *
+                                 std::sqrt(g / (k * k * k)) / 1.0_rt;
+    const amrex::Real mean_u = linear_target_bottom_mean_u(-1);
+    EXPECT_LT(expected, -1.0e-3_rt);
+    EXPECT_NEAR(mean_u, expected, 1.0e-10_rt);
+}
+
+TEST_F(OceanWavesOpTest, linear_zero_mass_transport_off)
+{
+    // With zero_mass_transport = false, there is no mean current
+    const amrex::Real mean_u = linear_target_bottom_mean_u(0);
+    EXPECT_NEAR(mean_u, 0.0_rt, 1.0e-10_rt);
 }
 
 } // namespace kynema_sgf_tests

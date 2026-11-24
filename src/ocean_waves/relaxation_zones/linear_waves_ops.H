@@ -8,6 +8,9 @@
 #include "src/equation_systems/vof/volume_fractions.H"
 #include "AMReX_REAL.H"
 
+#include <algorithm>
+#include <string>
+
 using namespace amrex::literals;
 
 namespace kynema_sgf::ocean_waves::ops {
@@ -29,6 +32,36 @@ struct ReadInputsOp<LinearWaves>
 
         pp.get("wave_length", wdata.wave_length);
         pp.get("wave_height", wdata.wave_height);
+        pp.query("zero_mass_transport", wdata.zero_mass_transport);
+        {
+            // Only multiphase simulations have a water mass to conserve; with
+            // waves as terrain (single phase), keep the terrain kinematics
+            amrex::Vector<std::string> physics;
+            pp_incflo.queryarr("physics", physics);
+            if (std::find(physics.begin(), physics.end(), "MultiPhase") ==
+                physics.end()) {
+                wdata.zero_mass_transport = false;
+            }
+        }
+        if (wdata.zero_mass_transport) {
+            // Uniform return current that cancels the (second-order) mass
+            // transport of the waves, u1 = sqrt(g/k^3)/d eps^2 D2 with
+            // D2 = -sqrt(coth(kd))/2 (Fenton 1990, Table 1 and Eq. (10))
+            const amrex::Real k =
+                2.0_rt * std::numbers::pi_v<amrex::Real> / wdata.wave_length;
+            const amrex::Real eps = k * wdata.wave_height / 2.0_rt;
+            const amrex::Real kd = amrex::min<amrex::Real>(
+                k * wdata.water_depth,
+                50.0_rt * std::numbers::pi_v<amrex::Real>);
+            const amrex::Real coth_kd = (1.0_rt + std::exp(-2.0_rt * kd)) /
+                                        (1.0_rt - std::exp(-2.0_rt * kd));
+            wdata.mean_current = -0.5_rt * eps * eps * std::sqrt(coth_kd) *
+                                 std::sqrt(wdata.g / (k * k * k)) /
+                                 wdata.water_depth;
+            amrex::Print() << "Linear waves without mass transport: Eulerian "
+                              "mean current "
+                           << wdata.mean_current << " m/s.\n";
+        }
         pp.query("wave_phase_offset_radians", wdata.wave_phase_offset);
         if (!pp.contains("wave_phase_offset_radians")) {
             pp.query("wave_phase_offset_degrees", wdata.wave_phase_offset);
@@ -82,6 +115,9 @@ struct InitDataOp<LinearWaves>
         const amrex::Real phase_offset = wdata.wave_phase_offset;
         const amrex::Real water_depth = wdata.water_depth;
         const amrex::Real current = wdata.current;
+        // Return current (no mass transport) belongs to the wave solution, so
+        // it is not applied in the quiescent outlet region
+        const amrex::Real mean_current = wdata.mean_current;
 
         amrex::ParallelFor(
             velocity(level), amrex::IntVect(3),
@@ -110,7 +146,8 @@ struct InitDataOp<LinearWaves>
                     std::sinh(
                         wave_number * (z - zero_sea_level + water_depth)) /
                     std::sinh(wave_number * water_depth) * std::sin(phase);
-                const utils::WaveVec wave_sol{u_w, v_w, w_w, eta_w};
+                const utils::WaveVec wave_sol{
+                    u_w + mean_current, v_w, w_w, eta_w};
 
                 // Quiescent profile
                 const utils::WaveVec quiescent{
@@ -169,7 +206,9 @@ struct UpdateTargetFieldsOp<LinearWaves>
             const amrex::Real water_depth = wdata.water_depth;
             const amrex::Real zero_sea_level = wdata.zsl;
             const amrex::Real g = wdata.g;
-            const amrex::Real current = wdata.current;
+            // Uniform current: specified current plus the return current, if
+            // any
+            const amrex::Real current = wdata.current + wdata.mean_current;
 
             amrex::ParallelFor(
                 ow_velocity(lev), amrex::IntVect(3),

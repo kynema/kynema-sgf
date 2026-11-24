@@ -99,6 +99,25 @@ This section is for setting up wave forcing and relaxation zones.
 
 The following input arguments are only valid for the LinearWaves and StokesWave wave types:
 
+.. input_param:: OceanWaves.label.zero_mass_transport
+
+   **type:** Boolean, optional, default = true
+
+   For LinearWaves and StokesWaves. Wave kinematics for zero mean Eulerian current
+   (Stokes' first approximation to the wave speed) carry a net mass transport in the
+   direction of propagation, so wave generation adds water to the domain; in a numerical
+   tank this water has to leave through the outlet or accumulate, which raises the mean
+   water level ahead of the numerical beach and induces a return current that the target
+   wave theory does not include. By default, a uniform return current is added that
+   cancels the mass transport (no depth-averaged mass transport, Stokes' second
+   approximation; Fenton 1990, Eqs. 1, 2, 7, and 10), as in a closed physical wave flume.
+   The current is applied to the fluid velocity and to the wave speed, so for a specified
+   ``wave_period`` the wavelength is computed accordingly, and it is reported in the
+   output; the numerical beach still relaxes to still water. Set to false to use the
+   kinematics for zero mean Eulerian current instead. Comparisons with theory or
+   experiments should use the same definition. Only applies to multiphase simulations;
+   when waves are represented as moving terrain (single phase), it is always off.
+
 .. input_param:: OceanWaves.label.wave_length
 
    **type:** Real, mandatory

@@ -1,3 +1,4 @@
+#include <array>
 #include <numbers>
 #include "ks_test_utils/MeshTest.H"
 #include "ks_test_utils/iter_tools.H"
@@ -413,6 +414,129 @@ TEST_F(WaveTheoriesTest, StokesWaveLength)
     const amrex::Real LHS2 = C0 + (kynema_sgf::utils::powi(eps, 2) * C2);
     EXPECT_NEAR(
         LHS2, RHS2, std::numeric_limits<amrex::Real>::epsilon() * 1.0e8_rt);
+}
+
+namespace {
+//! Period-averaged volume flux per unit span at x = 0, integrated from the bed
+//! to the free surface, for Stokes waves with the given Eulerian mean current
+amrex::Real stokes_mean_volume_flux(
+    const int order,
+    const amrex::Real wavelength,
+    const amrex::Real depth,
+    const amrex::Real height,
+    const amrex::Real g,
+    const amrex::Real mean_current)
+{
+    namespace rz = kynema_sgf::ocean_waves::relaxation_zones;
+    const amrex::Real c = rz::stokes_wave_speed(
+        order, wavelength, depth, height, g, mean_current);
+    const amrex::Real period = wavelength / c;
+    constexpr int nt = 400;
+    constexpr int nz = 4000;
+    amrex::Real flux = 0.0_rt;
+    for (int it = 0; it < nt; ++it) {
+        const amrex::Real t = period * it / nt;
+        amrex::Real eta{0.0_rt}, u{0.0_rt}, v{0.0_rt}, w{0.0_rt};
+        rz::stokes_waves(
+            order, wavelength, depth, height, 0.0_rt, g, 0.0_rt, 0.0_rt, t,
+            0.0_rt, kynema_sgf::constants::LOW_NUM,
+            kynema_sgf::constants::LARGE_NUM, eta, u, v, w, mean_current);
+        // Midpoint rule from the bed (z = -depth) to the surface eta
+        const amrex::Real dz = (eta + depth) / nz;
+        amrex::Real col = 0.0_rt;
+        for (int iz = 0; iz < nz; ++iz) {
+            const amrex::Real z = -depth + ((iz + 0.5_rt) * dz);
+            amrex::Real eta_z{0.0_rt};
+            rz::stokes_waves(
+                order, wavelength, depth, height, 0.0_rt, g, 0.0_rt, z, t,
+                0.0_rt, kynema_sgf::constants::LOW_NUM,
+                kynema_sgf::constants::LARGE_NUM, eta_z, u, v, w, mean_current);
+            col += u * dz;
+        }
+        flux += col / nt;
+    }
+    return flux;
+}
+} // namespace
+
+TEST_F(WaveTheoriesTest, StokesZeroMassTransportLinearLimit)
+{
+    // At second order the return current is the linear mass transport divided
+    // by the depth: -(eps^2 / 2) sqrt(coth(kd)) sqrt(g / k^3) / d
+    namespace rz = kynema_sgf::ocean_waves::relaxation_zones;
+    constexpr amrex::Real g = 9.81_rt;
+    for (const amrex::Real depth : {0.5_rt, 2.0_rt, 4.0_rt}) {
+        const amrex::Real wavelength = 4.0_rt;
+        const amrex::Real height = 0.1_rt;
+        const amrex::Real k =
+            2.0_rt * std::numbers::pi_v<amrex::Real> / wavelength;
+        const amrex::Real eps = k * height / 2.0_rt;
+        const amrex::Real expected = -0.5_rt * eps * eps *
+                                     std::sqrt(1.0_rt / std::tanh(k * depth)) *
+                                     std::sqrt(g / (k * k * k)) / depth;
+        EXPECT_NEAR(
+            rz::stokes_zero_mass_transport_current(
+                2, wavelength, depth, height, g),
+            expected, 1.0e-12_rt);
+        EXPECT_LT(expected, 0.0_rt);
+    }
+}
+
+TEST_F(WaveTheoriesTest, StokesZeroMassTransportFlux)
+{
+    // Without the return current the waves carry a net volume flux equal to
+    // the Stokes transport -d u1; with it, the net flux vanishes up to the
+    // truncation of the fifth-order theory
+    namespace rz = kynema_sgf::ocean_waves::relaxation_zones;
+    constexpr amrex::Real g = 9.81_rt;
+    constexpr int order = 5;
+    // (wavelength, depth, height): steep deep-water wave as in the regular wave
+    // cases, and a moderate intermediate-depth wave
+    const std::array<std::array<amrex::Real, 3>, 2> cases{
+        {{4.0_rt, 4.0_rt, 0.3585_rt}, {4.0_rt, 1.0_rt, 0.15_rt}}};
+    for (const auto& cs : cases) {
+        const amrex::Real u1 = rz::stokes_zero_mass_transport_current(
+            order, cs[0], cs[1], cs[2], g);
+        const amrex::Real q = -u1 * cs[1];
+        const amrex::Real flux0 =
+            stokes_mean_volume_flux(order, cs[0], cs[1], cs[2], g, 0.0_rt);
+        const amrex::Real flux1 =
+            stokes_mean_volume_flux(order, cs[0], cs[1], cs[2], g, u1);
+        EXPECT_GT(q, 0.0_rt);
+        EXPECT_NEAR(flux0, q, 0.03_rt * q);
+        EXPECT_NEAR(flux1, 0.0_rt, 0.03_rt * q);
+    }
+}
+
+TEST_F(WaveTheoriesTest, StokesWaveLengthZeroMassTransport)
+{
+    // Wavelength from the period without mass transport satisfies the
+    // dispersion relation with the return current, and is shorter than the
+    // wavelength for zero mean current (the waves travel against the current)
+    namespace rz = kynema_sgf::ocean_waves::relaxation_zones;
+    constexpr amrex::Real g = 9.81_rt;
+    constexpr amrex::Real tol = 1.0e-10_rt;
+    constexpr int order = 5;
+    const amrex::Real period = 1.6_rt;
+    const amrex::Real depth = 4.0_rt;
+    const amrex::Real height = 0.3585_rt;
+    const amrex::Real L0 =
+        rz::stokes_wave_length(period, depth, height, order, g, tol, 40);
+    const amrex::Real L1 = rz::stokes_wave_length_zero_mass_transport(
+        period, depth, height, order, g, tol, 40);
+    ASSERT_GT(L0, 0.0_rt);
+    ASSERT_GT(L1, 0.0_rt);
+    EXPECT_LT(L1, L0);
+    const amrex::Real u1 =
+        rz::stokes_zero_mass_transport_current(order, L1, depth, height, g);
+    const amrex::Real c1 =
+        rz::stokes_wave_speed(order, L1, depth, height, g, u1);
+    EXPECT_NEAR(L1 / c1, period, 1.0e-8_rt);
+    // Zero-current wave speed from the same function matches the existing
+    // dispersion solution
+    const amrex::Real c0 =
+        rz::stokes_wave_speed(order, L0, depth, height, g, 0.0_rt);
+    EXPECT_NEAR(L0 / c0, period, 1.0e-8_rt);
 }
 
 } // namespace kynema_sgf_tests
