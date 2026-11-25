@@ -26,7 +26,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libenchant-2-dev
           python3 -m pip install --upgrade pip
-          python3 -m pip install "sphinx<9" sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex
+          python3 -m pip install sphinx sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex
       - name: Build
         run: |
           echo "::add-matcher::.github/problem-matchers/sphinx.json"
