@@ -1,0 +1,8 @@
+FILE = ../abl_godunov/abl_godunov.inp
+time.max_step = 6
+amr.n_cell = 32 32 256
+mac_proj.use_fft = 0 # keep the MAC projection on MLMG in FFT builds
+mac_proj.multigrid_type = algebraic
+mac_proj.max_coarsening_level = 0
+nodal_proj.multigrid_type = algebraic
+nodal_proj.max_coarsening_level = 0

@@ -210,9 +210,11 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k)) *
                         (1.0_rt - blank_arrs[nbx](i, j, k));
-                    buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -(muPrime / rho_arrs[nbx](i, j, k)) * stratification;
                     shear_prod_arrs[nbx](i, j, k) *=
-                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                        shear_prod_arrs[nbx](i, j, k) *
+                        (mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k));
                 });
         } else {
             amrex::ParallelFor(
@@ -284,9 +286,11 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k));
-                    buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -(muPrime / rho_arrs[nbx](i, j, k)) * stratification;
                     shear_prod_arrs[nbx](i, j, k) *=
-                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                        shear_prod_arrs[nbx](i, j, k) *
+                        (mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k));
                 });
         }
     }

@@ -68,7 +68,17 @@ private:
 
     // MLMG options
 
-    // Bottom solver type bicgstab, cg, hypre, etc.
+    // Prefix of the last parsed namespace, used in error messages
+    std::string m_prefix;
+
+    // Prefix that set multigrid_type, used in error messages
+    std::string m_multigrid_type_prefix;
+
+    // How MLMG solves AMR level 0: geometric, algebraic, or hybrid
+    amrex::MLMG::MultigridType m_multigrid_type{
+        amrex::MLMG::MultigridType::geometric};
+
+    // Bottom solver type bicgstab, cg, hypre, amg, etc.
     std::string m_bottom_solver_type{"bicgstab"};
 
     // Options namespace for hypre solvers
@@ -83,7 +93,7 @@ private:
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt};
 
     // Absolute tolerance for convergence checks
-    amrex::Real m_bottom_abs_tol{
+    amrex::Real m_bottom_abs_tol_default_gmg{
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt};
 #else
     // Relative tolerance for convergence of MLMG solvers
@@ -91,9 +101,12 @@ private:
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e12_rt};
 
     // Absolute tolerance for convergence checks
-    amrex::Real m_bottom_abs_tol{
+    amrex::Real m_bottom_abs_tol_default_gmg{
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt};
 #endif
+
+    // Default off bottom absolute tolerance for non-geometric multigrid
+    amrex::Real m_bottom_abs_tol{-1.0_rt};
 
     /* Verbosity of the MLMG and Projector interfaces */
     int m_verbose{0};

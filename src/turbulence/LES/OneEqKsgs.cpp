@@ -161,12 +161,13 @@ void OneEqKsgsM84<Transport>::update_turbulent_viscosity(
                                         std::sqrt(tke_arrs[nbx](i, j, k));
 
                 buoy_prod_arrs[nbx](i, j, k) =
-                    -mu_arrs[nbx](i, j, k) *
+                    -(mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k)) *
                     (1.0_rt + (2.0_rt * tlscale_arrs[nbx](i, j, k) / ds)) *
                     stratification;
 
                 shear_prod_arrs[nbx](i, j, k) *=
-                    shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                    shear_prod_arrs[nbx](i, j, k) *
+                    (mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k));
             });
     }
     amrex::Gpu::streamSynchronize();
