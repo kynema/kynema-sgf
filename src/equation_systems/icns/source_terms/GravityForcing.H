@@ -9,9 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Gravity Forcing term
- *  \ingroup icns_src
- */
+/* Gravity Forcing term */
 class GravityForcing : public MomentumSource::Register<GravityForcing>
 {
 public:

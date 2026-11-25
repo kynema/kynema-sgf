@@ -17,12 +17,10 @@ constexpr amrex::Real shear_x{0.5_rt};
 constexpr amrex::Real shear_y{0.3_rt};
 constexpr amrex::Real omega{0.2_rt};
 
-/** Fill velocity, ghosts included, with a field of constant gradients
+/* Fill velocity, ghosts included, with a field of constant gradients
  *
  *  Ghosts beyond the non-periodic z faces hold the face value, which is what
  *  the one-sided wall stencils expect, so derivatives are exact everywhere.
- *
- *  \param vel [in,out] Velocity field
  */
 void init_constant_gradient_velocity(kynema_sgf::Field& vel)
 {
@@ -48,18 +46,14 @@ void init_constant_gradient_velocity(kynema_sgf::Field& vel)
     amrex::Gpu::streamSynchronize();
 }
 
-/** Largest error in the Kosovic divNij on one level, over all ranks
+/* Largest error in the Kosovic divNij on one level, over all ranks
  *
  *  Nij is uniform, so its divergence is zero away from the non-periodic z
  *  faces. In the cells next to those faces the one-sided stencils read a zero
  *  ghost, so the expected value is the difference between Nij = 0 on the face
  *  and the uniform Nij inside.
  *
- *  \param divNij [in] Scaled divergence of Nij computed by the model
- *  \param Nij [in] Non-linear stress tensor computed by the model
- *  \param lev [in] Level index
- *  \param scale [in] Model factor multiplying the raw divergence
- *  \return Maximum error in interior cells and in wall-adjacent cells
+ *  Returns Maximum error in interior cells and in wall-adjacent cells
  */
 amrex::Array<amrex::Real, 2> divnij_errors(
     const kynema_sgf::Field& divNij,
@@ -105,11 +99,9 @@ amrex::Array<amrex::Real, 2> divnij_errors(
     return out;
 }
 
-/** Largest |Nij| in ghost cells beyond the non-periodic z faces, over all ranks
+/* Largest |Nij| in ghost cells beyond the non-periodic z faces, over all ranks
  *
- *  \param Nij [in] Non-linear stress tensor computed by the model
- *  \param lev [in] Level index
- *  \return Maximum magnitude of the wall ghost values
+ *  Returns Maximum magnitude of the wall ghost values
  */
 amrex::Real max_wall_ghost_nij(const kynema_sgf::Field& Nij, const int lev)
 {
@@ -138,8 +130,7 @@ amrex::Real max_wall_ghost_nij(const kynema_sgf::Field& Nij, const int lev)
 
 } // namespace
 
-/** Kosovic model on a mesh split into several boxes, periodic in x and y
- */
+/* Kosovic model on a mesh split into several boxes, periodic in x and y */
 class KosovicNijTest : public MeshTest
 {
 protected:
@@ -202,7 +193,7 @@ protected:
         }
     }
 
-    //! Set up the model, impose the velocity and update the non-linear term
+    // Set up the model, impose the velocity and update the non-linear term
     void update_kosovic()
     {
         initialize_mesh();
@@ -220,7 +211,7 @@ protected:
             kynema_sgf::FieldState::New, DiffusionType::Crank_Nicolson);
     }
 
-    //! Check divNij in the interior and next to the walls on every level
+    // Check divNij in the interior and next to the walls on every level
     void check_divnij()
     {
         const auto& repo = sim().repo();
@@ -269,8 +260,7 @@ protected:
     const amrex::Real m_Sk{0.5_rt};
 };
 
-/** Same setup with a refined patch touching the lower wall
- */
+/* Same setup with a refined patch touching the lower wall */
 class KosovicNijAMRTest : public KosovicNijTest
 {
 protected:

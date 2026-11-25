@@ -14,20 +14,17 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup pdeop PDE Operators
+/*
+ *  PDE Operators
  *  PDE Operators
  *
  *  The different terms in a PDE as well as other actions on a PDE are
  *  implemented within Kynema-SGF using operator classes. These operators can be
  *  specialized for a given PDE or a Scheme based on specific traits that are
  *  passed to the kynema_sgf::pde::PDESystem class.
- *
- *  \ingroup eqsys
  */
 
-/** %Field registration operator
- *  \ingroup pdeop
+/* %Field registration operator
  *
  *  When a PDESystem is created, this operator is called first and is
  *  responsible for creating all the necessary fields that will be accessed by
@@ -38,11 +35,11 @@ struct FieldRegOp
 {
     explicit FieldRegOp(CFDSim& sim_in) : sim(sim_in) {}
 
-    /** Perform initialization activities
+    /* Perform initialization activities
      *
      *  Declares the necessary fields, sets their I/O properties
      *
-     *  \return The collection of fields for this PDE
+     *  Returns The collection of fields for this PDE
      */
     PDEFields operator()(const SimTime& time)
     {
@@ -56,8 +53,7 @@ struct FieldRegOp
     CFDSim& sim;
 };
 
-/** Base implementation of source terms for a PDE
- *  \ingroup pdeop
+/* Base implementation of source terms for a PDE
  *
  *  Holds a collection of source terms that are initialized using at runtime
  *  based on user inputs. The implementation consults the `source_terms` input
@@ -65,7 +61,7 @@ struct FieldRegOp
  *  sources) and initializes them. These source terms are then accumulated into
  *  the PDEFields::src_term during solution process.
  *
- *  \sa MomentumSource, TemperatureSource
+ *  See MomentumSource, TemperatureSource
  */
 template <typename PDE>
 struct SrcTermOpBase
@@ -74,7 +70,7 @@ struct SrcTermOpBase
         : fields(fields_in), m_density(fields_in.repo.get_field("density"))
     {}
 
-    /** Initialize the source terms
+    /* Initialize the source terms
      *
      *  At this stage the mesh has been created
      */
@@ -90,7 +86,7 @@ struct SrcTermOpBase
         }
     }
 
-    //! Helper method to multiply the source terms with density
+    // Helper method to multiply the source terms with density
     void multiply_rho(const FieldState fstate)
     {
         BL_PROFILE("kynema-sgf::" + PDE::pde_name() + "::multiply_rho");
@@ -112,7 +108,7 @@ struct SrcTermOpBase
         amrex::Gpu::streamSynchronize();
     }
 
-    //! Update source terms during time-integration procedure
+    // Update source terms during time-integration procedure
     virtual void
     operator()(const FieldState fstate, const bool /* mesh_mapping */)
     {
@@ -144,9 +140,7 @@ struct SrcTermOpBase
     amrex::Vector<std::unique_ptr<typename PDE::SrcTerm>> sources;
 };
 
-/** Implementation of source terms for scalar transport equations
- *  \ingroup pdeop
- */
+/* Implementation of source terms for scalar transport equations */
 template <typename PDE>
 struct SrcTermOp : SrcTermOpBase<PDE>
 {
@@ -161,9 +155,7 @@ template <typename PDE, typename Scheme, typename = void>
 struct DiffusionOp
 {};
 
-/** Turbulence update operator for scalar transport equations
- *  \ingroup pdeop
- */
+/* Turbulence update operator for scalar transport equations */
 template <typename PDE>
 struct TurbulenceOp
 {
@@ -180,15 +172,11 @@ struct TurbulenceOp
     PDEFields& m_fields;
 };
 
-/** Boundary condition update operator
- *  \ingroup pdeop
- */
+/* Boundary condition update operator */
 template <typename PDE, typename = void>
 struct BCOp;
 
-/** Actions to be performed after a PDE solve
- *  \ingroup pdeop
- */
+/* Actions to be performed after a PDE solve */
 template <typename PDE>
 struct PostSolveOp
 {

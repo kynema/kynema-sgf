@@ -100,7 +100,7 @@ EkmanSpiral::EkmanSpiral(const CFDSim& sim)
     }
 }
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  */
 void EkmanSpiral::initialize_fields(int level, const amrex::Geometry& geom)

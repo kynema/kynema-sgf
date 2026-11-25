@@ -12,9 +12,7 @@ class CFDSim;
 
 namespace ib {
 
-/** Abstract representation of an immersed boundary in the flow field.
- *
- *  \ingroup immersed_boundary
+/* Abstract representation of an immersed boundary in the flow field.
  *
  * This class is intended to represent a single object (e.g., floating
  * platform, tower complex terrain) that exists in the computational domain. A
@@ -53,46 +51,32 @@ public:
     virtual void write_outputs() = 0;
 };
 
-/** Concrete implementation of the IBModel for different geometry types.
- *
- *  \ingroup immersed_boundary
- *
- * \tparam GeomTrait A geometry type trait that defines the behavior of the
- * different actions (initialization, velocity update, force computation)
- * that are executed by the IBModel class through the kynema_sgf::ib physics
- * driver class.
- *
- */
+/* Concrete implementation of the IBModel for different geometry types. */
 template <typename GeomTrait>
 class IBModel : public ImmersedBoundaryModel::Register<IBModel<GeomTrait>>
 {
 private:
-    //! Instance that holds all data related to a particular immersed boundary
-    //! type
+    // Instance that holds all data related to a particular immersed boundary
+    // type
     typename GeomTrait::DataType m_data;
 
-    //! Outputs processor
+    // Outputs processor
     ops::ProcessOutputsOp<GeomTrait> m_out_op;
 
 public:
     static std::string identifier() { return GeomTrait::identifier(); }
 
-    /**
-     *  \param sim CFD simulation environment instance
-     *  \param label Unique string identifier for this instance
-     *  \param id Unique integer tag for this instance
-     */
     IBModel(CFDSim& sim, const std::string& label, const int id)
         : m_data(sim, label, id), m_out_op(m_data)
     {}
 
-    //! Return the unique identifier (name) for this instance
+    // Return the unique identifier (name) for this instance
     [[nodiscard]] const std::string& label() const override
     {
         return m_data.info().label;
     }
 
-    //! Return the unique tag (integer ID) for this instance
+    // Return the unique tag (integer ID) for this instance
     [[nodiscard]] int id() const override { return m_data.info().id; }
 
     void read_inputs(const ::kynema_sgf::utils::MultiParser& pp) override

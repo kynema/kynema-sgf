@@ -6,14 +6,13 @@
 
 namespace kynema_sgf::sampling {
 
-/** Sample data along a line that moves in time
- *  \ingroup sampling
+/* Sample data along a line that moves in time
  *
  *  Defines probes along a line defined by a time history from `m_azimuth_table`
  *  and `m_elevation_table` with a length of `m_length`. This determines the
  * `start` and `end` points at every time-step and divides the line into equal
  * segments as determined by `num_points`. The length of each segment is given
- * by \f[ m_length / (num_points - 1) \f]
+ * by  m_length / (num_points - 1)
  */
 class LidarSampler : public LineSampler
 {
@@ -22,21 +21,15 @@ public:
 
     explicit LidarSampler(const CFDSim& /*sim*/);
 
-    /** Read user inputs and initialize the sampling object
-     *
-     *  \param key Prefix used to parse inputs from file
-     */
+    /* Read user inputs and initialize the sampling object */
     void initialize(const std::string& key) override;
 
-    /** Update the position of the sampling locations in time
-     *
-     *
-     */
+    /* Update the position of the sampling locations in time */
     bool update_sampling_locations() override;
 
     void post_sample_actions() override {};
 
-    //! Type of this sampling object
+    // Type of this sampling object
     [[nodiscard]] std::string sampletype() const override
     {
         return identifier();

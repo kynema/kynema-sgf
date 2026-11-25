@@ -9,9 +9,7 @@
 
 namespace kynema_sgf::pde {
 
-/** Godunov scheme for VOF
- *  \ingroup vof
- */
+/* Godunov scheme for VOF */
 template <>
 struct AdvectionOp<VOF, fvm::Godunov>
 {

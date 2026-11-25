@@ -9,8 +9,7 @@ using namespace amrex::literals;
 namespace kynema_sgf {
 class Field;
 
-/** AMR refinement using Q criterion
- *  \ingroup amr_utils
+/* AMR refinement using Q criterion
  *
  *  ```
  *  tagging.labels = qc1
@@ -30,8 +29,13 @@ public:
 
     ~QCriterionRefinement() override = default;
 
-    //! Read input file and initialize boxarray used to refine each level
+    // Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
+
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level <= m_max_lev_field;
+    }
 
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)

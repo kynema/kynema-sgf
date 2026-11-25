@@ -7,13 +7,12 @@
 
 namespace kynema_sgf {
 
-/** Operations to perform inflow of data from boundary planes
- *  \ingroup we_abl
+/* Operations to perform inflow of data from boundary planes
  *
  *  This class contains the operations necessary to interface with
  *  BoundaryPlane class and populate data at the boundaries
  *
- *  \sa BoundaryPlane
+ *  See BoundaryPlane
  */
 class PlaneFillInflow : public FieldFillPatchOps<FieldBCDirichlet>
 {
@@ -44,7 +43,7 @@ public:
         const amrex::Vector<amrex::BCRec>& /* unused */,
         FieldState fstate = FieldState::New) override;
 
-    //! Implementation that handles filling patches from a coarse to fine level
+    // Implementation that handles filling patches from a coarse to fine level
     void fillpatch_from_coarse(
         int lev,
         amrex::Real time,
@@ -52,7 +51,7 @@ public:
         const amrex::IntVect& nghost,
         FieldState fstate = FieldState::New) override;
 
-    //! Implementation that handles filling physical boundary conditions
+    // Implementation that handles filling physical boundary conditions
     void fillphysbc(
         int lev,
         amrex::Real time,

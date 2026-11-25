@@ -9,7 +9,7 @@ class ActuatorModel;
 
 namespace kynema_sgf::sampling {
 
-/** Plane sampler expressed in and moving with an actuator reference frame. */
+/* Plane sampler expressed in and moving with an actuator reference frame. */
 class MovingPlaneSampler : public PlaneSampler
 {
 public:

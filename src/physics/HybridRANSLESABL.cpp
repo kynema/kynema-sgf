@@ -8,8 +8,7 @@ namespace kynema_sgf::hybrid_rans_les_abl {
 
 HybridRANSLESABL::HybridRANSLESABL(const CFDSim& sim) : m_sim(sim) {}
 
-/** Initialize the sdr field at the beginning of the simulation.
- */
+/* Initialize the sdr field at the beginning of the simulation. */
 void HybridRANSLESABL::initialize_fields(int level, const amrex::Geometry& geom)
 {
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");

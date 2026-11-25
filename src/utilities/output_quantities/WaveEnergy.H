@@ -9,8 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::wave_energy {
 
-/** wave energy object
- *  \ingroup output_quantities
+/* wave energy object
  *
  *  A concrete implementation of the post-processing interface that deals with
  *  integrating total wave energy. This routine calculates the kinetic energy
@@ -38,24 +37,24 @@ public:
 
     ~WaveEnergy() override;
 
-    //! Perform actions before mesh is created
+    // Perform actions before mesh is created
     void pre_init_actions() override {}
 
-    //! Read user inputs and get information needed for calculations
+    // Read user inputs and get information needed for calculations
     void initialize() override;
 
     void post_advance_work() override {};
 
-    //! Integrate energy components and output to file
+    // Integrate energy components and output to file
     void output_actions() override;
 
     void post_regrid_actions() override {}
 
-    //! Calculate the sum of stated energy in liquid phase
+    // Calculate the sum of stated energy in liquid phase
     amrex::Real calculate_kinetic_energy();
     amrex::Real calculate_potential_energy();
 
-    //! Output private variables that store energy measurements
+    // Output private variables that store energy measurements
     void wave_energy(amrex::Real& ke, amrex::Real& pe) const
     {
         ke = m_wave_kinetic_energy;
@@ -63,46 +62,46 @@ public:
     };
 
 private:
-    //! prepare ASCII file and directory
+    // prepare ASCII file and directory
     virtual void prepare_ascii_file();
 
-    //! Output sampled data in ASCII format
+    // Output sampled data in ASCII format
     virtual void write_ascii();
 
-    //! store the total wave energy
+    // store the total wave energy
     amrex::Real m_wave_kinetic_energy{0.0_rt};
     amrex::Real m_wave_potential_energy{0.0_rt};
 
-    //! Reference to the CFD sim
+    // Reference to the CFD sim
     CFDSim& m_sim;
 
-    /** Name of this sampling object.
+    /* Name of this sampling object.
      *
      *  The label is used to read user inputs from file and is also used for
      *  naming files directories depending on the output format.
      */
     const std::string m_label;
 
-    //! reference to velocity
+    // reference to velocity
     const Field& m_velocity;
-    //! reference to vof
+    // reference to vof
     const Field& m_vof;
 
-    //! gravity vector
+    // gravity vector
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
-    //! offset for potential energy calculation
+    // offset for potential energy calculation
     amrex::Real m_pe_off = 0.0_rt;
-    //! volumetric scaling for each energy
+    // volumetric scaling for each energy
     amrex::Real m_escl = 1.0_rt;
 
-    //! filename for ASCII output
+    // filename for ASCII output
     std::string m_out_fname;
 
-    //! width in ASCII output
+    // width in ASCII output
     int m_width{22};
 
-    //! precision in ASCII output
+    // precision in ASCII output
     int m_precision{12};
 };
 

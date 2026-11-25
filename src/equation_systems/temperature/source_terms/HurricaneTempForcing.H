@@ -29,19 +29,19 @@ public:
     void mean_velocity_update(const VelPlaneAveraging& /*vavg*/);
 
 private:
-    //! Mesh
+    // Mesh
     const amrex::AmrCore& m_mesh;
 
     amrex::Gpu::DeviceVector<amrex::Real> m_vel_ht;
     amrex::Gpu::DeviceVector<amrex::Real> m_vel_vals;
 
-    //! Axis over which averages are computed
+    // Axis over which averages are computed
     int m_axis{2};
 
-    //! Temperature radial decay
+    // Temperature radial decay
     amrex::Real m_dTdR{0.001_rt};
 
-    //! Zero Temperature height
+    // Zero Temperature height
     amrex::Real m_dTzh{18000.};
 };
 

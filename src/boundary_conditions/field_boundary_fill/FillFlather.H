@@ -7,7 +7,7 @@
 
 namespace kynema_sgf {
 
-/** Fill patch operator that applies Flather boundary updates. */
+/* Fill patch operator that applies Flather boundary updates. */
 class FillFlather : public FieldFillPatchOps<FieldBCDirichlet>
 {
 public:

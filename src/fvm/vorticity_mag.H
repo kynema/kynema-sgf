@@ -8,9 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::fvm {
 
-/** VorticityMag operator
- *  \ingroup fvm
- */
+/* VorticityMag operator */
 template <typename FTypeIn, typename FTypeOut>
 struct VorticityMag
 {
@@ -82,12 +80,7 @@ struct VorticityMag
     const FTypeIn& m_phi;
 };
 
-/** Compute the magnitude of vorticity
- *  \ingroup fvm
- *
- *  \param vortmagphi [out] Field where the vorticity magnitude is populated
- *  \param phi [in] The velocity vector field
- */
+/* Compute the magnitude of vorticity */
 template <typename FTypeIn, typename FTypeOut>
 void vorticity_mag(FTypeOut& vortmagphi, const FTypeIn& phi)
 {
@@ -96,11 +89,7 @@ void vorticity_mag(FTypeOut& vortmagphi, const FTypeIn& phi)
     impl::apply(vortmag, phi);
 }
 
-/** Compute the magnitude of vorticity return as a ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] The velocity vector field
- */
+/* Compute the magnitude of vorticity return as a ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> vorticity_mag(const FType& phi)
 {

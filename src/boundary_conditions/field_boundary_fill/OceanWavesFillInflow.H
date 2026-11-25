@@ -36,7 +36,7 @@ public:
         const amrex::Vector<amrex::BCRec>& /* unused */,
         FieldState fstate = FieldState::New) override;
 
-    //! Implementation that handles filling patches from a coarse to fine level
+    // Implementation that handles filling patches from a coarse to fine level
     void fillpatch_from_coarse(
         int lev,
         amrex::Real time,
@@ -44,7 +44,7 @@ public:
         const amrex::IntVect& nghost,
         FieldState fstate = FieldState::New) override;
 
-    //! Implementation that handles filling physical boundary conditions
+    // Implementation that handles filling physical boundary conditions
     void fillphysbc(
         int lev,
         amrex::Real time,

@@ -6,7 +6,7 @@
 
 namespace kynema_sgf::actuator::motion {
 
-/** Signed rotor-speed histories and their corresponding azimuths. */
+/* Signed rotor-speed histories and their corresponding azimuths. */
 class RotorMotion
 {
 public:
@@ -27,7 +27,7 @@ private:
     void read_initial_azimuths(const utils::ActParser& pp, int num_rotors);
 
     RealList m_constant_omegas;
-    //! Initial rotor angles stored internally in radians
+    // Initial rotor angles stored internally in radians
     RealList m_initial_azimuths;
     TimeTable m_speed_table;
 };

@@ -7,9 +7,7 @@
 
 namespace kynema_sgf::terraindrag {
 
-/** Terraindrag Flow physics
- *  \ingroup physics
- */
+/* Terraindrag Flow physics */
 
 class TerrainDrag : public Physics::Register<TerrainDrag>
 {
@@ -32,9 +30,13 @@ public:
 
     void post_advance_work() override {}
 
-    //! Terrain Drag for waves
+    // Terrain Drag for waves
 
     void convert_waves_to_terrain_fields();
+
+    // True when the terrain is built from the OceanWaves fields
+    // (single-phase waves) instead of the terrain file
+    [[nodiscard]] bool terrain_is_waves() const { return m_terrain_is_waves; }
 
     [[nodiscard]] std::string wave_velocity_field_name() const
     {
@@ -51,24 +53,24 @@ private:
     const FieldRepo& m_repo;
     const amrex::AmrCore& m_mesh;
 
-    //! Blanking field for terrain or buildings
+    // Blanking field for terrain or buildings
     IntField& m_terrain_blank;
-    //! Terrain drag force term
+    // Terrain drag force term
     IntField& m_terrain_drag;
 
-    //! Terrain file
+    // Terrain file
     std::string m_terrain_file{"terrain.amrwind"};
 
-    //! Roughness file
+    // Roughness file
     std::string m_roughness_file{"terrain.roughness"};
 
-    //! Roughness fields
+    // Roughness fields
     amrex::Real m_uniform_z0{0.1_rt};
     Field& m_terrainz0;
     Field& m_terrain_height;
     Field& m_terrain_damping;
 
-    //! Lateral Damping - X
+    // Lateral Damping - X
     amrex::Real m_damp_east_slope{0.0_rt};
     amrex::Real m_damp_east_full{0.0_rt};
     amrex::Real m_horizontal_tau{20.0_rt};
@@ -76,17 +78,17 @@ private:
     amrex::Real m_horizontal_slope_end{1e30_rt};
     amrex::Real m_vertical_slope{0.0_rt};
     amrex::Real m_vertical_full{1e30_rt};
-    //! Lateral Damping - (-X)
+    // Lateral Damping - (-X)
     amrex::Real m_damp_west_slope{0.0_rt};
     amrex::Real m_damp_west_full{0.0_rt};
-    //! Lateral Damping - (-Y)
+    // Lateral Damping - (-Y)
     amrex::Real m_damp_south_slope{0.0_rt};
     amrex::Real m_damp_south_full{0.0_rt};
-    //! Lateral Damping - Y
+    // Lateral Damping - Y
     amrex::Real m_damp_north_slope{0.0_rt};
     amrex::Real m_damp_north_full{0.0_rt};
 
-    //! Terrain Drag for waves
+    // Terrain Drag for waves
     bool m_terrain_is_waves{false};
     Field* m_wave_volume_fraction{nullptr};
     Field* m_wave_negative_elevation{nullptr};

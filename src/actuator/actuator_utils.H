@@ -16,15 +16,11 @@ struct ActInfo;
 
 namespace utils {
 
-/** Return a set of process IDs (MPI ranks) that contain AMR boxes that interact
+/* Return a set of process IDs (MPI ranks) that contain AMR boxes that interact
  *  with a given actuator body.
  *
  *  The region of influence of the actuator body is determined by checking for
  *  intersections with a bounding box ``rbox``.
- *
- *  \param mesh AMReX mesh instance
- *  \param rbx The bounding box that defines the region of influence of a
- * turbine
  */
 std::set<int> determine_influenced_procs(
     const amrex::AmrCore& mesh, const amrex::RealBox& rbx);
@@ -32,14 +28,20 @@ std::set<int> determine_influenced_procs(
 void determine_root_proc(
     ActInfo& /*info*/, amrex::Vector<int>& /*act_proc_count*/);
 
-/** Return the Gaussian smearing factor in 3D
+/* Cutoff distance of gaussian3d, in units of epsilon
  *
- *  \param dist Distance vector of the cell center from the actuator node in
- *  local frame of reference.
+ *  ActInfo::bound_box has to extend this far beyond the actuator points:
+ *  patches outside it receive no force.
+ */
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE constexpr amrex::Real
+gaussian3d_cutoff() noexcept
+{
+    return 4.0_rt;
+}
+
+/* Return the Gaussian smearing factor in 3D
  *
- *  \param eps Three-dimensional Gaussian scaling factor
- *
- *  \return Gaussian smearing factor in 3D
+ *  Returns Gaussian smearing factor in 3D
  */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 gaussian3d(const vs::Vector& dist, const vs::Vector& eps)
@@ -48,7 +50,7 @@ gaussian3d(const vs::Vector& dist, const vs::Vector& eps)
         dist.x() / eps.x(), dist.y() / eps.y(), dist.z() / eps.z()};
     const amrex::Real rr_sqr = vs::mag_sqr(rr);
 
-    if (rr_sqr < 16.0_rt) {
+    if (rr_sqr < gaussian3d_cutoff() * gaussian3d_cutoff()) {
         constexpr amrex::Real fac = 0.17958712212516656_rt;
         const amrex::Real eps_fac = eps.x() * eps.y() * eps.z();
         return (fac / eps_fac) *
@@ -58,14 +60,9 @@ gaussian3d(const vs::Vector& dist, const vs::Vector& eps)
 
     return 0.0_rt;
 }
-/** Return the Gaussian smearing factor in 1D
+/* Return the Gaussian smearing factor in 1D
  *
- *  \param dist Distance vector of the cell center from the actuator node in
- *  local frame of reference.
- *
- *  \param eps One-dimensional Gaussian scaling factor
- *
- *  \return Gaussian smearing factor in 1D
+ *  Returns Gaussian smearing factor in 1D
  */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 gaussian1d(const amrex::Real& dist, const amrex::Real& eps)
@@ -77,13 +74,9 @@ gaussian1d(const amrex::Real& dist, const amrex::Real& eps)
     return fac / eps * std::exp(-(dist * dist) / (eps * eps));
 }
 
-/** Compute distance between two points
+/* Compute distance between two points
  *
- * \param origin Origin for the cylindrical coordinate system
- * \param normal Normal  relative to origin (defines cylinder orientation)
- * \param point1 location of the first point in Cartesian coordinates
- * \param point2 location of second point in Cartesian coordinates
- * @return distance between points in cylindrical coordinates
+ * Returns distance between points in cylindrical coordinates
  * (angle is in radians)
  */
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE vs::Vector delta_pnts_cyl(
@@ -116,12 +109,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE vs::Vector delta_pnts_cyl(
     return {std::abs(r1 - r2), theta, norm_dist1 - norm_dist2};
 }
 
-/** Compute weighting for a normalized linear interpolant
+/* Compute weighting for a normalized linear interpolant
  *
- *
- * \param distance distance between sample location and the reference points
- * \param dX spacing between reference points
- * @return normalized integration weight at the sample location
+ * Returns normalized integration weight at the sample location
  */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real
 linear_basis_1d(const amrex::Real distance, const amrex::Real dX)

@@ -8,9 +8,7 @@
 
 namespace kynema_sgf::pde {
 
-/** BC operations for all scalar transport equations
- *  \ingroup pdeop
- */
+/* BC operations for all scalar transport equations */
 template <typename PDE>
 struct BCOp<PDE, std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
 {
@@ -18,8 +16,7 @@ struct BCOp<PDE, std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
         : m_fields(fields), m_time(time)
     {}
 
-    /** Initialize the BCs for the PDE variable as well as its source term
-     */
+    /* Initialize the BCs for the PDE variable as well as its source term */
     void init_bcs()
     {
         BCScalar bc(m_fields.field);
@@ -33,8 +30,6 @@ struct BCOp<PDE, std::enable_if_t<std::is_base_of_v<ScalarTransport, PDE>>>
         bc_src();
     }
 
-    /**
-     */
     void apply_bcs(const FieldState rho_state)
     {
         amrex::IntVect ng_diff(1);

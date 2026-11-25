@@ -126,7 +126,7 @@ ConvectingTaylorVortex::ConvectingTaylorVortex(const CFDSim& sim)
     }
 }
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  */
 void ConvectingTaylorVortex::initialize_fields(

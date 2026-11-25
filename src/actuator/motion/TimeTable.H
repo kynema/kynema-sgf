@@ -7,7 +7,7 @@
 
 namespace kynema_sgf::actuator::motion {
 
-/** Piecewise-linear, multi-component time history.
+/* Piecewise-linear, multi-component time history.
  *
  * Values, derivatives, and integrals use the same interpolation intervals so
  * that motion reconstructed from a velocity history remains consistent.
@@ -36,9 +36,9 @@ private:
     std::string m_filename;
     int m_num_values{0};
     RealList m_time;
-    //! Row-major values used directly by interp::linear's ncomp interface
+    // Row-major values used directly by interp::linear's ncomp interface
     RealList m_values;
-    //! Exact trapezoidal integral of each completed interpolation interval
+    // Exact trapezoidal integral of each completed interpolation interval
     amrex::Vector<RealList> m_prefix_integral;
     mutable bool m_warned_below{false};
     mutable bool m_warned_above{false};

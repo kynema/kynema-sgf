@@ -52,8 +52,7 @@ ChannelFlowMap::ChannelFlowMap()
     pp.queryarr("beta", m_beta, 0, AMREX_SPACEDIM);
 }
 
-/** Construct the mesh mapping field
- */
+/* Construct the mesh mapping field */
 void ChannelFlowMap::create_map(int lev, const amrex::Geometry& geom)
 {
     create_cell_node_map(lev, geom);
@@ -61,8 +60,7 @@ void ChannelFlowMap::create_map(int lev, const amrex::Geometry& geom)
     create_non_uniform_mesh(lev, geom);
 }
 
-/** Construct the mesh mapping field on cell centers and nodes
- */
+/* Construct the mesh mapping field on cell centers and nodes */
 void ChannelFlowMap::create_cell_node_map(int lev, const amrex::Geometry& geom)
 {
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> beta{
@@ -141,8 +139,7 @@ void ChannelFlowMap::create_cell_node_map(int lev, const amrex::Geometry& geom)
     // TODO: Call fill patch operators ?
 }
 
-/** Construct the mesh mapping field on cell faces
- */
+/* Construct the mesh mapping field on cell faces */
 void ChannelFlowMap::create_face_map(int lev, const amrex::Geometry& geom)
 {
     amrex::GpuArray<amrex::Real, AMREX_SPACEDIM> beta{
@@ -244,8 +241,7 @@ void ChannelFlowMap::create_face_map(int lev, const amrex::Geometry& geom)
     // TODO: Call fill patch operators ?
 }
 
-/** Construct the non-uniform mesh field
- */
+/* Construct the non-uniform mesh field */
 void ChannelFlowMap::create_non_uniform_mesh(
     int lev, const amrex::Geometry& geom)
 {

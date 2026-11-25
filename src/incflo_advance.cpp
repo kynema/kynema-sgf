@@ -43,10 +43,10 @@ void incflo::prepare_time_step()
     }
 }
 
-/** Advance simulation state by one timestep
+/* Advance simulation state by one timestep
  *
  *  Performs the following actions at a given timestep
- *  - Compute \f$\Delta t\f$
+ *  - Compute \Delta t
  *  - Advance all computational fields to new timestate in preparation for time
  * integration
  *  - Call pre-advance work for all registered physics modules
@@ -57,8 +57,6 @@ void incflo::prepare_time_step()
  *  Much of the heavy-lifting is done by incflo::ApplyPredictor and
  *  incflo::ApplyCorrector. Please refer to the documentation of those methods
  *  for detailed information on the various equations being solved.
- *
- * \callgraph
  */
 void incflo::advance(const int fixed_point_iteration)
 {
@@ -83,10 +81,10 @@ void incflo::advance(const int fixed_point_iteration)
 //  For Godunov, this completes the timestep. For MOL, this is the first part of
 //  the predictor/corrector within a timestep.
 //
-//  <ol>
-//  <li> Use u = vel_old to compute
 //
-//     \code{.cpp}
+//  - Use u = vel_old to compute
+//
+//
 //     conv_u  = - u grad u
 //     conv_r  = - div( u rho  )
 //     conv_t  = - div( u trac )
@@ -99,49 +97,49 @@ void incflo::advance(const int fixed_point_iteration)
 //        rhs = u + dt * conv
 //
 //     eta     = eta at new_time
-//     \endcode
 //
-//  <li> Add explicit forcing term i.e. gravity + lagged pressure gradient
 //
-//     \code{.cpp}
+//  - Add explicit forcing term i.e. gravity + lagged pressure gradient
+//
+//
 //     rhs += dt * ( g - grad(p + p0) / rho^nph )
-//     \endcode
+//
 //
 //  Note that in order to add the pressure gradient terms divided by rho,
 //  we convert the velocity to momentum before adding and then convert them
 //  back.
 //
-//  <li> A. If (m_diff_type == DiffusionType::Implicit)
+//  - A. If (m_diff_type == DiffusionType::Implicit)
 //        solve implicit diffusion equation for u*
 //
-//  \code{.cpp}
+//
 //  ( 1 - dt / rho^nph * div ( eta grad ) ) u* = u^n + dt * conv_u
 //                                               + dt * ( g - grad(p + p0) /
 //                                               rho^nph )
-//  \endcode
+//
 //
 //  B. If (m_diff_type == DiffusionType::Crank-Nicolson)
 //     solve semi-implicit diffusion equation for u*
 //
-//     \code{.cpp}
+//
 //     ( 1 - (dt/2) / rho^nph * div ( eta_old grad ) ) u* = u^n +
 //            dt * conv_u + (dt/2) / rho * div (eta_old grad) u^n
 //          + dt * ( g - grad(p + p0) / rho^nph )
-//     \endcode
 //
-//  <li> Apply projection (see incflo::ApplyProjection)
+//
+//  - Apply projection (see incflo::ApplyProjection)
 //
 //     Add pressure gradient term back to u*:
 //
-//      \code{.cpp}
+//
 //      u** = u* + dt * grad p / rho^nph
-//      \endcode
+//
 //
 //     Solve Poisson equation for phi:
 //
-//     \code{.cpp}
+//
 //     div( grad(phi) / rho^nph ) = div( u** )
-//     \endcode
+//
 //
 //     Update pressure:
 //
@@ -150,38 +148,38 @@ void incflo::advance(const int fixed_point_iteration)
 //     Update velocity, now divergence free
 //
 //     vel = u** - dt * grad p / rho^nph
-//  </ol>
+//
 //
 // It is assumed that the ghost cels of the old data have been filled and
 // the old and new data are the same in valid region.
 //
 
-/** Apply predictor step
+/* Apply predictor step
  *
  *  For Godunov, this completes the timestep. For MOL, this is the first part of
  *  the predictor/corrector within a timestep.
  *
- *  <ol>
- *  <li> Solve transport equation for momentum and scalars
  *
- *  \f{align}
+ *  - Solve transport equation for momentum and scalars
+ *
+ *
  *  \left[1 - \kappa \frac{\Delta t}{\rho^{n+1/2}} \nabla \cdot \left( \mu
  *  \nabla \right)\right] u^{*} &= u^n - \Delta t (u \cdot \nabla) u + (1 -
  * \kappa) \frac{\Delta t}{\rho^n} \nabla \cdot \left( \mu^{n} \nabla\right)
  * u^{n} + \frac{\Delta t}{\rho^{n+1/2}} \left( S_u - \nabla(p + p_0)\right) \\
- *  \f}
+ *
  *
  *  where
- *  \f{align}
+ *
  *  \kappa = \begin{cases}
  *  0 & \text{Explicit} \\
  *  0.5 & \text{Crank-Nicolson} \\
  *  1 & \text{Implicit}
  *  \end{cases}
- *  \f}
  *
- *  <li> \ref incflo::ApplyProjection "Apply projection"
- *  </ol>
+ *
+ *  - incflo::ApplyProjection "Apply projection"
+ *
  */
 void incflo::ApplyPredictor(
     const bool incremental_projection, const int fixed_point_iteration)
@@ -502,28 +500,28 @@ void incflo::ApplyPredictor(
 //     vel = u** - dt * grad p / rho
 //
 
-/** Corrector step for MOL scheme
+/* Corrector step for MOL scheme
  *
- *  <ol>
- *  <li> Solve transport equation for momentum and scalars
  *
- *  \f{align}
+ *  - Solve transport equation for momentum and scalars
+ *
+ *
  *  \left[1 - \kappa \frac{\Delta t}{\rho} \nabla \cdot \left( \mu
  *  \nabla \right)\right] u^{*} &= u^n - \Delta t C_u + (1 - \kappa)
  * \frac{\Delta t}{\rho} \nabla \cdot \left( \mu \nabla\right) u^{n} +
- * \frac{\Delta t}{\rho} \left( S_u - \nabla(p + p_0)\right) \\ \f}
+ * \frac{\Delta t}{\rho} \left( S_u - \nabla(p + p_0)\right) \\
  *
  *  where
- *  \f{align}
+ *
  *  \kappa = \begin{cases}
  *  0 & \text{Explicit} \\
  *  0.5_rt & \text{Crank-Nicolson} \\
  *  1 & \text{Implicit}
  *  \end{cases}
- *  \f}
  *
- *  <li> \ref incflo::ApplyProjection "Apply projection"
- *  </ol>
+ *
+ *  - incflo::ApplyProjection "Apply projection"
+ *
  */
 void incflo::ApplyCorrector()
 {

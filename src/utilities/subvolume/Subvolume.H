@@ -9,8 +9,8 @@
 #include "src/utilities/subvolume/SubvolumeBase.H"
 #include <AMReX_PlotFileUtil.H>
 
-/**
- *  \defgroup subvolume Mesh data subvolume utilities
+/*
+ *  Mesh data subvolume utilities
  *  Mesh data subvolume utilities
  *
  *  Subvolume is a data-retrieval tool designed to obtain partitions (chunks)
@@ -19,8 +19,6 @@
  * confined to the actual cell locations; however, it is another way to sample
  * data from the simulation. In essence, subvolume outputs are like plotfiles
  * but only contain a portion of the domain.
- *
- *  \ingroup utilities
  */
 
 namespace kynema_sgf::subvolume {
@@ -34,19 +32,19 @@ public:
 
     ~Subvolume() override;
 
-    //! Perform actions before mesh is created
+    // Perform actions before mesh is created
     void pre_init_actions() override {}
 
-    //! Read user inputs for chunks, output timing
+    // Read user inputs for chunks, output timing
     void initialize() override;
 
-    //! Do any work that needs to happen after regrid
+    // Do any work that needs to happen after regrid
     void post_regrid_actions() override;
 
-    //! Get chunks and output to disk
+    // Get chunks and output to disk
     void output_actions() override;
 
-    //! Actions to do at end of every time step
+    // Actions to do at end of every time step
     void post_advance_work() override {};
 
     [[nodiscard]] const amrex::Vector<std::string>& var_names() const
@@ -60,26 +58,26 @@ private:
 
     amrex::Vector<std::unique_ptr<SubvolumeBase>> m_subvolumes;
 
-    //! List of variable names for output
+    // List of variable names for output
     amrex::Vector<std::string> m_var_names;
 
-    //! List of fields to be sampled for this collection of probes
+    // List of fields to be sampled for this collection of probes
     amrex::Vector<Field*> m_fields;
 
-    //! List of IntFields to be sampled for this collection of probes
+    // List of IntFields to be sampled for this collection of probes
     amrex::Vector<IntField*> m_int_fields;
 
-    //! List of derived fields to be sampled for this collection of probes
+    // List of derived fields to be sampled for this collection of probes
     std::unique_ptr<DerivedQtyMgr> m_derived_mgr;
 
-    /** Name of this subvolume object.
+    /* Name of this subvolume object.
      *
      *  The label is used to read user inputs from file and is also used for
      *  naming files directories.
      */
     const std::string m_label;
 
-    /** Name of this subvolume object when writing outputs.
+    /* Name of this subvolume object when writing outputs.
      *
      *  This label can be specified to manually override the true label
      *  of this subvolume instance. Intended for unified top-level naming

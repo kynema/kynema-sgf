@@ -6,7 +6,7 @@
 
 namespace kynema_sgf_tests {
 
-/** Base class for Kynema-SGF unit tests
+/* Base class for Kynema-SGF unit tests
  *
  *  Resets the ParmParse global dictionary for each test in this test fixture
  */
@@ -35,8 +35,8 @@ public:
     }
 
 protected:
-    //! Flag indicating whether the ParmParse finalize method is called in
-    //! teardown
+    // Flag indicating whether the ParmParse finalize method is called in
+    // teardown
     bool m_keep_parameters{false};
 };
 

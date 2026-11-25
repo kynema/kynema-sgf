@@ -8,9 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::fvm {
 
-/** Qcriterion operator
- *  \ingroup fvm
- */
+/* Qcriterion operator */
 template <typename FTypeIn, typename FTypeOut>
 struct Qcriterion
 {
@@ -113,13 +111,7 @@ struct Qcriterion
     bool m_nondim;
 };
 
-/** Compute the q-criterion
- *  \ingroup fvm
- *
- *  \param qcritphi [out] Field where the Q-criterion is populated
- *  \param phi [in] The velocity vector field
- *  \param nondim [in] Flag for non-dimensional value
- */
+/* Compute the q-criterion */
 template <typename FTypeIn, typename FTypeOut>
 void q_criterion(
     FTypeOut& qcritphi, const FTypeIn& phi, const bool nondim = false)
@@ -129,11 +121,7 @@ void q_criterion(
     impl::apply(qcriterion, phi);
 }
 
-/** Compute the Q-criterion return as a ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] The velocity vector field
- */
+/* Compute the Q-criterion return as a ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> q_criterion(const FType& phi)
 {

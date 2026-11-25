@@ -26,7 +26,7 @@ VortexDipole::VortexDipole(const CFDSim& sim)
     }
 }
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  */
 void VortexDipole::initialize_fields(int level, const amrex::Geometry& geom)

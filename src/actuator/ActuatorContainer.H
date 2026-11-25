@@ -13,49 +13,44 @@ namespace actuator {
 
 class Actuator;
 
-/** Cloud of actuator points.
- *
- *  \ingroup actuator
+/* Cloud of actuator points.
  *
  *  Holds positions and sampled velocity and density for actuator points
  *  belonging to all actuator instances within a given MPI rank.
  */
 struct ActuatorCloud
 {
-    //! Number of nodes per actuator instance on this MPI rank
+    // Number of nodes per actuator instance on this MPI rank
     amrex::Vector<int> num_pts;
 
-    //! Global IDs of the actuator instances on this MPI rank
+    // Global IDs of the actuator instances on this MPI rank
     amrex::Vector<int> global_id;
 
-    //! Position vectors of all actuator nodes belonging to this MPI rank
+    // Position vectors of all actuator nodes belonging to this MPI rank
     amrex::Vector<vs::Vector> position;
 
-    //! Velocity vectors of all actuator nodes belonging to this MPI rank
+    // Velocity vectors of all actuator nodes belonging to this MPI rank
     amrex::Vector<vs::Vector> velocity;
 
-    //! Density of all actuator nodes belonging to this MPI rank
+    // Density of all actuator nodes belonging to this MPI rank
     amrex::Vector<amrex::Real> density;
 
-    //! Total number of actuator instances on this MPI rank
+    // Total number of actuator instances on this MPI rank
     int num_objects;
 
     explicit ActuatorCloud(int nobjects);
 };
 
-//! Number or real entries in Array of Structs (AOS)
+// Number or real entries in Array of Structs (AOS)
 static constexpr int NumPStructReal = AMREX_SPACEDIM + 1;
-//! Number of integer entries in Array of Structs (AOS)
+// Number of integer entries in Array of Structs (AOS)
 static constexpr int NumPStructInt = 1;
-//! Number of real entries in Struct of Arrays (SOA)
+// Number of real entries in Struct of Arrays (SOA)
 static constexpr int NumPArrayReal = 0;
-//! Number of int entries in Struct of Arrays (SOA)
+// Number of int entries in Struct of Arrays (SOA)
 static constexpr int NumPArrayInt = 0;
 
-/** Specialization of AmrParticleContainer for sampling flow fields.
- *
- *  \ingroup actuator
- */
+/* Specialization of AmrParticleContainer for sampling flow fields. */
 class ActuatorContainer
     : public amrex::AmrParticleContainer<
           NumPStructReal,
@@ -83,6 +78,12 @@ public:
         return static_cast<int>(m_data.position.size());
     }
 
+    /* Number of points of this process beyond a non-periodic boundary
+     *
+     *  No velocity can be sampled there; update_positions aborts.
+     */
+    int num_points_outside_domain() const;
+
     // public for CUDA, not safe for general access
 
     void interpolate_fields(const Field& vel, const Field& density);
@@ -103,21 +104,21 @@ private:
     // Object that holds the position and velocity information
     ActuatorCloud m_data;
 
-    //! Coordinates of points that are contained within boxes assigned to each
-    //! MPI rank
+    // Coordinates of points that are contained within boxes assigned to each
+    // MPI rank
     amrex::Vector<vs::Vector> m_proc_pos;
 
-    //! Device view of the process position vectors
+    // Device view of the process position vectors
     amrex::Gpu::DeviceVector<vs::Vector> m_pos_device;
 
     amrex::Vector<int> m_proc_offsets;
     amrex::Gpu::DeviceVector<int> m_proc_offsets_device;
 
-    //! Flag indicating whether memory has allocated for all data structures
+    // Flag indicating whether memory has allocated for all data structures
     bool m_container_initialized{false};
 
-    //! Flag indicating whether the particles are scattered throughout the
-    //! domain, or if they have been recalled to the original MPI rank
+    // Flag indicating whether the particles are scattered throughout the
+    // domain, or if they have been recalled to the original MPI rank
     bool m_is_scattered{false};
 };
 

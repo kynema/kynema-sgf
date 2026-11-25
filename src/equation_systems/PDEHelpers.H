@@ -12,25 +12,25 @@
 namespace kynema_sgf {
 namespace pde_impl {
 
-//! Field name that holds the convective term
+// Field name that holds the convective term
 AMREX_INLINE std::string conv_term_name(const std::string& var)
 {
     return var + "_conv_term";
 }
 
-//! Field name that holds the diffusion term (divtau and laplacian for scalars)
+// Field name that holds the diffusion term (divtau and laplacian for scalars)
 AMREX_INLINE std::string diff_term_name(const std::string& var)
 {
     return var + "_diff_term";
 }
 
-//! Field name for all the source terms
+// Field name for all the source terms
 AMREX_INLINE std::string src_term_name(const std::string& var)
 {
     return var + "_src_term";
 }
 
-//! Effective viscosity for the transport equation
+// Effective viscosity for the transport equation
 AMREX_INLINE std::string mueff_name(const std::string& var)
 {
     return var + "_mueff";
@@ -40,13 +40,10 @@ AMREX_INLINE std::string mueff_name(const std::string& var)
 
 namespace pde {
 
-/** Declare fields necessary for solving a PDE
+/* Declare fields necessary for solving a PDE
  *
  *  This function defines the boilerplate code to declare all the fields in
  *  PDEFields that are necessary to solve the equation system.
- *
- *  \tparam PDE Trait defining this equation system (e.g., ICNS, Temperature)
- *  \tparam Scheme The numerical scheme (e.g., Godnuov, MOL)
  */
 template <typename PDE, typename Scheme>
 PDEFields create_fields_instance(

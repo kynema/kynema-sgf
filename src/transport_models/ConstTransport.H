@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::transport {
 
-/** Fluid transport model with constant properties
- *  \ingroup transport
- */
+/* Fluid transport model with constant properties */
 class ConstTransport : public TransportModel::Register<ConstTransport>
 {
 public:
@@ -121,7 +119,7 @@ public:
         return turb_schmidt;
     }
 
-    //! Return the dynamic visocity field
+    // Return the dynamic visocity field
     std::unique_ptr<ScratchField> mu() override
     {
         auto mu = m_repo.create_scratch_field(1, m_ngrow);
@@ -131,7 +129,7 @@ public:
         return mu;
     }
 
-    //! Return the thermal diffusivity field
+    // Return the thermal diffusivity field
     std::unique_ptr<ScratchField> alpha() override
     {
         auto alpha = mu();
@@ -156,7 +154,7 @@ public:
         return diff;
     }
 
-    //! Return the thermal expansion coefficient
+    // Return the thermal expansion coefficient
     [[nodiscard]] std::unique_ptr<ScratchField> beta() const override
     {
         auto beta = m_repo.create_scratch_field(1, m_ngrow);
@@ -219,7 +217,7 @@ public:
         }
     }
 
-    //! Return the reference temperature
+    // Return the reference temperature
     [[nodiscard]] std::unique_ptr<ScratchField> ref_theta() const override
     {
         if (m_reference_temperature < 0.0_rt) {
@@ -234,22 +232,22 @@ public:
     }
 
 private:
-    //! Reference to the field repository (for creating scratch fields)
+    // Reference to the field repository (for creating scratch fields)
     FieldRepo& m_repo;
 
-    //! (Laminar) dynamic viscosity
+    // (Laminar) dynamic viscosity
     amrex::Real m_mu{1.0e-5_rt};
 
-    //! Prandtl number
+    // Prandtl number
     amrex::Real m_Pr{1.0_rt};
 
-    //! Turbulent Prandtl number
+    // Turbulent Prandtl number
     amrex::Real m_Prt{1.0_rt};
 
-    //! Constant thermal expansion coefficient
+    // Constant thermal expansion coefficient
     amrex::Real m_constant_beta{0.0_rt};
 
-    //! Reference temperature
+    // Reference temperature
     amrex::Real m_reference_temperature{-1.0_rt};
 };
 

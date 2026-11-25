@@ -131,6 +131,13 @@ void determine_influenced_procs<TurbineKynemaFMB>(
 }
 
 template <>
+void write_checkpoint<TurbineKynemaFMB>(
+    typename TurbineKynemaFMB::DataType& data, const std::string& chkname)
+{
+    external_write_checkpoint<TurbineKynemaFMB::DataType>(data, chkname);
+}
+
+template <>
 void determine_root_proc<TurbineKynemaFMB>(
     typename TurbineKynemaFMB::DataType& data,
     amrex::Vector<int>& act_proc_count)
@@ -147,6 +154,9 @@ struct InitDataOp<TurbineKynemaFMB, SrcTrait>
     {
         BL_PROFILE("kynema-sgf::InitDataOp<TurbineKynemaFMB>");
         init_data_op<TurbineKynemaFMB::DataType>(data);
+        // Bounding box enlarged by init_epsilon: redo the list of ranks with
+        // patches inside it
+        external_determine_influenced_procs<TurbineKynemaFMB::DataType>(data);
     }
 };
 
@@ -200,13 +210,13 @@ struct ProcessOutputsOp<TurbineKynemaFMB, SrcTrait>
 private:
     typename TurbineKynemaFMB::DataType& m_data;
 
-    //! Path to the output directory (specified by Actuator physics class)
+    // Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
 
-    //! NetCDF output filename for this turbine
+    // NetCDF output filename for this turbine
     std::string m_nc_filename;
 
-    //! Output interval (specified in input file)
+    // Output interval (specified in input file)
     int m_out_freq{10};
 
 public:

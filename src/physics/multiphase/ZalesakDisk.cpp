@@ -25,10 +25,10 @@ ZalesakDisk::ZalesakDisk(CFDSim& sim)
     pinc.add("prescribe_velocity", true);
 }
 
-/** Initialize the velocity and levelset fields at the beginning of the
+/* Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::ZalesakDiskFieldInit
+ *  See kynema_sgf::ZalesakDiskFieldInit
  */
 void ZalesakDisk::initialize_fields(int level, const amrex::Geometry& geom)
 {

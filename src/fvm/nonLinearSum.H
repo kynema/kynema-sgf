@@ -5,9 +5,8 @@
 
 namespace kynema_sgf::fvm {
 
-/** Non-linear Term for Kosovic Model
- *  \ingroup fvm
- *  \defgroup NonLinearSGS Non-linear Term for Kosovic Model
+/* Non-linear Term for Kosovic Model
+ *  Non-linear Term for Kosovic Model
  */
 template <typename FTypeIn, typename FTypeOut>
 struct NonLinearSum
@@ -134,12 +133,7 @@ struct NonLinearSum
     const FTypeIn& m_phi;
 };
 
-/** Compute the non-linear term for the Kosovic Sub-grid scale model
- *  \ingroup fvm
- *
- *  \param strphi [out] Field where the non-linear terms is populated
- *  \param phi [in] The stress tensor  field
- */
+/* Compute the non-linear term for the Kosovic Sub-grid scale model */
 template <typename FTypeIn, typename FTypeOut>
 void nonlinearsum(FTypeOut& strphi, const FTypeIn& phi)
 {
@@ -148,11 +142,7 @@ void nonlinearsum(FTypeOut& strphi, const FTypeIn& phi)
     impl::apply(str, phi);
 }
 
-/** Compute the non-linear term as a ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] The stress tensor  field
- */
+/* Compute the non-linear term as a ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> nonlinearsum(const FType& phi)
 {

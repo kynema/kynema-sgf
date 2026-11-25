@@ -23,10 +23,10 @@ DamBreak::DamBreak(CFDSim& sim)
     pp.query("height", m_height);
 }
 
-/** Initialize the velocity and levelset fields at the beginning of the
+/* Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::DamBreakFieldInit
+ *  See kynema_sgf::DamBreakFieldInit
  */
 void DamBreak::initialize_fields(int level, const amrex::Geometry& geom)
 {

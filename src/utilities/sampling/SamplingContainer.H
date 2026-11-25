@@ -23,20 +23,17 @@ static constexpr int SNStructInt = 3;
 static constexpr int SNArrayReal = 0;
 static constexpr int SNArrayInt = 0;
 
-/** Indexing for the integer variables defined on the AMReX particle
- *  \ingroup sampling
- */
+/* Indexing for the integer variables defined on the AMReX particle */
 struct IIx
 {
     enum Indices : std::uint8_t {
-        uid = 0, ///< Unique identifier for this particle
-        sid,     ///< Identifier of the set this particle belongs to
-        nid      ///< Index within the set for this particle
+        uid = 0, // Unique identifier for this particle
+        sid,     // Identifier of the set this particle belongs to
+        nid      // Index within the set for this particle
     };
 };
 
-/** Specialization of the AMReX ParticleContainer object for sampling data
- *  \ingroup sampling
+/* Specialization of the AMReX ParticleContainer object for sampling data
  *
  *  Represents the data probes as a collection of particles that are uniquely
  *  identified by three integer identifiers:
@@ -48,7 +45,6 @@ struct IIx
  *
  *  The quantities of interest are themselves stored as runtime components based
  *  on user-defined inputs.
- *
  *
  *  Notes:
  *
@@ -77,23 +73,21 @@ public:
         , m_mesh(mesh)
     {}
 
-    /** Define the container and allocate memory for runtime components
-     */
+    /* Define the container and allocate memory for runtime components */
     void setup_container(int num_real_components, int num_int_components = 0);
 
-    /** Create particle information for all the sampling locations
-     */
+    /* Create particle information for all the sampling locations */
     void initialize_particles(
         const amrex::Vector<std::unique_ptr<SamplerBase>>& /*samplers*/);
 
-    //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    // Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
     void set_interpolation_order(const int order)
     {
         AMREX_ALWAYS_ASSERT(order == 0 || order == 1);
         m_interpolation_order = order;
     }
 
-    //! Perform field interpolation to sampling locations
+    // Perform field interpolation to sampling locations
     template <typename FType>
     void interpolate_fields(const amrex::Vector<FType>& fields, const int scomp)
     {
@@ -122,30 +116,19 @@ public:
         amrex::Gpu::streamSynchronize();
     }
 
-    //! Perform derived field interpolation to sampling locations
+    // Perform derived field interpolation to sampling locations
     void interpolate_derived_fields(
         const DerivedQtyMgr& derived_mgr, const FieldRepo& repo, int scomp);
 
-    //! Populate the buffer with data for all the particles
+    // Populate the buffer with data for all the particles
     void populate_buffer(std::vector<amrex::Real>& buf);
 
     long num_sampling_particles() const { return m_total_particles; }
 
     long& num_sampling_particles() { return m_total_particles; }
 
-    /** Interpolate a field to the sampling locations
-     *
-     *  \param np Number of particles in the container
-     *  \param ic Component of the field to be interpolated
-     *  \param pvec Vector containing particle info
-     *  \param pavec Array information for the real component data
-     *  \param farr Array of field data for this multifab
-     *  \param problo Problem low values
-     *  \param dxi Inverse cell size array
-     *  \param dx Cell size array
-     *  \param offset Offsets for cell/node/face fields
-     */
-    /** Nearest-neighbor sampling: no interpolation, picks the closest
+    /* Interpolate a field to the sampling locations */
+    /* Nearest-neighbor sampling: no interpolation, picks the closest
      *  data point in the field (cell/face center or node, depending on field
      *  location) for each particle.
      */
@@ -237,7 +220,7 @@ public:
     }
 
 private:
-    //! Interpolate from an array4 onto particles
+    // Interpolate from an array4 onto particles
     template <typename FType>
     void interpolate(
         const ParIterType& pti,
@@ -291,7 +274,7 @@ private:
 
     long m_total_particles{0};
 
-    //! Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
+    // Interpolation order for sampling: 0 = nearest-neighbor, 1 = linear
     int m_interpolation_order{1};
 };
 

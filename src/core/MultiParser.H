@@ -6,13 +6,12 @@
 
 namespace kynema_sgf::utils {
 
-/** Utility to parse inputs from multiple namespaces.
+/* Utility to parse inputs from multiple namespaces.
  *
  *  This class is a thin-wrapper around AMReX ParmParse utility to query user
  *  inputs from two different namespaces (default and specialized). This allows
  *  the user to consolidate common options within a default section and then
  *  override specific values in the specialization section.
- *
  */
 class MultiParser
 {
@@ -21,26 +20,22 @@ public:
         : m_pp_default(default_prefix), m_pp(prefix)
     {}
 
-    //! Return the ParmParse instance for the default namespace
+    // Return the ParmParse instance for the default namespace
     [[nodiscard]] const amrex::ParmParse& default_params() const
     {
         return m_pp_default;
     }
 
-    //! Return the ParmParse instance for the specialized namespace
+    // Return the ParmParse instance for the specialized namespace
     [[nodiscard]] const amrex::ParmParse& params() const { return m_pp; }
 
-    //! Check if the keyword is present in either namespace
+    // Check if the keyword is present in either namespace
     [[nodiscard]] bool contains(const std::string& name) const
     {
         return m_pp.contains(name) || m_pp_default.contains(name);
     }
 
-    /** Get a vector from the input file
-     *
-     *  \param [in] name Keyword to search for
-     *  \param [out] value Vector value
-     */
+    /* Get a vector from the input file */
     void get(const std::string& name, vs::Vector& value) const
     {
         amrex::Vector<vs::Vector::value_type> val;
@@ -54,11 +49,7 @@ public:
         value.z() = val[2];
     }
 
-    /** Query and return if a vector exists in the input file
-     *
-     *  \param [in] name Keyword to search for
-     *  \param [out] value Vector value
-     */
+    /* Query and return if a vector exists in the input file */
     void query(const std::string& name, vs::Vector& value) const
     {
         amrex::Vector<vs::Vector::value_type> val;
@@ -75,10 +66,7 @@ public:
         }
     }
 
-    /** Get a vector from the input file, but could be specified uniform instead
-     *
-     *  \param [in] name Keyword to search for
-     *  \param [out] value Vector value
+    /* Get a vector from the input file, but could be specified uniform instead
      */
     void get_either(const std::string& name, vs::Vector& value) const
     {
@@ -99,11 +87,7 @@ public:
         }
     }
 
-    /** Query and return if a scalar (uniform) or vector exists in input file
-     *
-     *  \param [in] name Keyword to search for
-     *  \param [out] value Vector value
-     */
+    /* Query and return if a scalar (uniform) or vector exists in input file */
     void query_either(const std::string& name, vs::Vector& value) const
     {
         amrex::Vector<vs::Vector::value_type> val;
@@ -126,7 +110,7 @@ public:
         }
     }
 
-    //! Get the value for the keyword entry from either namespace
+    // Get the value for the keyword entry from either namespace
     template <typename T>
     void get(const std::string& name, T& value) const
     {
@@ -137,7 +121,7 @@ public:
         }
     }
 
-    //! Get a vector of values for the given keyword entry from either namespace
+    // Get a vector of values for the given keyword entry from either namespace
     template <typename T>
     void getarr(const std::string& name, T& value) const
     {
@@ -148,7 +132,7 @@ public:
         }
     }
 
-    //! Query the value for the keyword entry from either namespace
+    // Query the value for the keyword entry from either namespace
     template <typename T>
     void query(const std::string& name, T& value) const
     {
@@ -156,8 +140,8 @@ public:
         m_pp.query(name, value);
     }
 
-    //! Query a vector of values for the given keyword entry from either
-    //! namespace
+    // Query a vector of values for the given keyword entry from either
+    // namespace
     template <typename T>
     void queryarr(const std::string& name, T& value) const
     {

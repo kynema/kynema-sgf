@@ -1,3 +1,4 @@
+#include <memory>
 #include <numbers>
 #include "abloffshore_test_utils.H"
 #include "src/utilities/trig_ops.H"
@@ -118,7 +119,8 @@ TEST_F(ABLOffshoreMeshTest, abl_forcing)
 
     auto& src_term = pde_mgr.icns().fields().src_term;
 
-    kynema_sgf::pde::icns::ABLForcing abl_forcing(sim());
+    auto& abl_forcing = mesh().own_momentum_source(
+        std::make_unique<kynema_sgf::pde::icns::ABLForcing>(sim()));
 
     src_term.setVal(0.0_rt);
     // Mimic source term at later timesteps

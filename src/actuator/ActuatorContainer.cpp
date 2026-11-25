@@ -30,7 +30,7 @@ ActuatorContainer::ActuatorContainer(
     , m_proc_offsets_device(amrex::ParallelDescriptor::NProcs() + 1)
 {}
 
-/** Allocate memory and initialize the particles within the container
+/* Allocate memory and initialize the particles within the container
  *
  *  This method is only called once during the simulation. It allocates the
  *  arrays for holding positions and sampled flow fields on host memory and
@@ -149,7 +149,29 @@ void ActuatorContainer::reset_container()
     initialize_particles(total_pts);
 }
 
-/** Update particle positions using data provided by actuator instances.
+int ActuatorContainer::num_points_outside_domain() const
+{
+    const auto& geom = m_mesh.Geom(0);
+    const auto* prob_lo = geom.ProbLo();
+    const auto* prob_hi = geom.ProbHi();
+    int num_out = 0;
+    for (const auto& pvec : m_data.position) {
+        bool outside = false;
+        for (int n = 0; n < AMREX_SPACEDIM; ++n) {
+            // As for the particles, a point on the high face is outside
+            if (!geom.isPeriodic(n) &&
+                ((pvec[n] < prob_lo[n]) || (pvec[n] >= prob_hi[n]))) {
+                outside = true;
+            }
+        }
+        if (outside) {
+            ++num_out;
+        }
+    }
+    return num_out;
+}
+
+/* Update particle positions using data provided by actuator instances.
  *
  *  This method assumes that the particles have been restored to their
  *  originating MPI ranks after any scattering. This happens during
@@ -159,7 +181,6 @@ void ActuatorContainer::reset_container()
  *  After executing this method, the particles have been scattered across the
  *  domain such that each particle is contained within a tile that has the cell
  *  enclosing the particle.
- *
  */
 void ActuatorContainer::update_positions()
 {
@@ -168,6 +189,21 @@ void ActuatorContainer::update_positions()
         m_container_initialized && !m_is_scattered,
         "m_container_initialized = " + std::to_string(m_container_initialized) +
             ", m_is_scattered = " + std::to_string(m_is_scattered));
+
+    // Redistribute removes the particle of a point outside the domain,
+    // which would then sample a zero velocity
+    const int num_out = num_points_outside_domain();
+    if (num_out > 0) {
+        amrex::Abort(
+            "Actuator: " + std::to_string(num_out) + " of the " +
+            std::to_string(m_data.position.size()) + " points where process " +
+            std::to_string(amrex::ParallelDescriptor::MyProc()) +
+            " samples the velocity for its actuators are outside of the "
+            "domain, where no velocity can be sampled. Check the positions "
+            "of the actuators against geometry.prob_lo and "
+            "geometry.prob_hi; a point on a high boundary that is not "
+            "periodic counts as outside.");
+    }
 
     const auto dpos = gpu::device_view(m_data.position);
     const auto* const dptr = dpos.data();
@@ -196,7 +232,7 @@ void ActuatorContainer::update_positions()
     m_is_scattered = true;
 }
 
-/** Interpolate velocity and density fields using trilinear interpolation.
+/* Interpolate velocity and density fields using trilinear interpolation.
  *
  *  This method performs three tasks:
  *    - Sample velocity and density and interpolate them onto particle locations
@@ -228,7 +264,7 @@ void ActuatorContainer::sample_fields(const Field& vel, const Field& density)
     m_is_scattered = false;
 }
 
-/** Helper method for ActuatorContainer::sample_fields().
+/* Helper method for ActuatorContainer::sample_fields().
  *
  *  Copies sampled velocity and density from the particle tiles to the
  *  corresponding arrays.
@@ -290,7 +326,7 @@ void ActuatorContainer::populate_field_buffers()
     }
 }
 
-/** Helper method for ActuatorContainer::sample_fields().
+/* Helper method for ActuatorContainer::sample_fields().
  *
  *  Interpolates velocity and density at particle locations, then restores the
  *  particle locations so the next Redistribute call returns them to their
@@ -372,7 +408,7 @@ void ActuatorContainer::interpolate_fields(
     }
 }
 
-/** Determine position vector of a point within each MPI rank
+/* Determine position vector of a point within each MPI rank
  *
  *  Loops over the boxArray and determines the first patch that belongs to the
  *  current MPI rank. Uses that to generate a position vector that is known to

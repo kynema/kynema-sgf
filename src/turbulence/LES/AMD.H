@@ -15,9 +15,7 @@
 using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
-/** AMD LES Model
- *  \ingroup turb_model
- */
+/* AMD LES Model */
 template <typename Transport>
 class AMD : public TurbModelBase<Transport>
 {
@@ -26,10 +24,10 @@ public:
 
     explicit AMD(CFDSim& sim);
 
-    //! Model name for debugging purposes
+    // Model name for debugging purposes
     [[nodiscard]] std::string model_name() const override { return "AMD"; }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType /*unused*/) override;
 
@@ -37,30 +35,30 @@ public:
     void
     update_turbulent_viscosity(FieldState fstate, const IndexSelector& idxOp);
 
-    //! Update the effective thermal diffusivity field
+    // Update the effective thermal diffusivity field
     void update_alphaeff(Field& alphaeff) override;
 
-    //! Return model coefficients dictionary
+    // Return model coefficients dictionary
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
-    //! Parse turbulence model coefficients for this model
+    // Parse turbulence model coefficients for this model
     void parse_model_coeffs() override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {};
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     void post_init_actions() override;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     void post_regrid_actions() override;
 
 private:
-    //! Poincare coefficient (default value set for 2nd order Kynema-SGF
-    //! discretization)
+    // Poincare coefficient (default value set for 2nd order Kynema-SGF
+    // discretization)
     amrex::Real m_C{0.333333333333333_rt};
 
-    //! Wall-normal direction axis
+    // Wall-normal direction axis
     int m_normal_dir{2};
 
     const Field& m_vel;

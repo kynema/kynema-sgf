@@ -9,10 +9,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Buoyancy term from density variations
- *  \ingroup icns_src
+/* Buoyancy term from density variations
  *
- *  \sa RayleighTaylor
+ *  See RayleighTaylor
  */
 class DensityBuoyancy : public MomentumSource::Register<DensityBuoyancy>
 {

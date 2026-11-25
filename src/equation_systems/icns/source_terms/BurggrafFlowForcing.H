@@ -6,10 +6,7 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Body forcing introduced to represent the Burrgraf cavity flow.
- *
- *  \ingroup icns_src burggraf_flow
- */
+/* Body forcing introduced to represent the Burrgraf cavity flow. */
 class BurggrafFlowForcing : public MomentumSource::Register<BurggrafFlowForcing>
 {
 public:

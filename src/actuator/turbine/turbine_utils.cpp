@@ -8,6 +8,24 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::utils {
 
+std::string fllc_epsilon_warning(
+    const std::string& label,
+    const vs::Vector& eps_inp,
+    const vs::Vector& eps_min,
+    const vs::Vector& eps_chord)
+{
+    const auto differs = [](const vs::Vector& eps) {
+        return (eps.x() != eps.y()) || (eps.x() != eps.z());
+    };
+    if (!differs(eps_inp) && !differs(eps_min) && !differs(eps_chord)) {
+        return "";
+    }
+    return "WARNING: Actuator " + label +
+           ": epsilon, epsilon_min or epsilon_chord differ by direction. The "
+           "FLLC uses only the first value of epsilon and epsilon_min and the "
+           "second value of epsilon_chord.";
+}
+
 void read_inputs(
     TurbineBaseData& tdata, TurbineInfo& tinfo, const utils::ActParser& pp)
 {
@@ -37,15 +55,32 @@ void read_inputs(
     bool use_fllc = false;
     pp.query("fllc", use_fllc);
     if (use_fllc) {
-        std::string type;
-        pp.query("type", type);
-        if (type == "TurbineFastDisk") {
+        // The default namespace of the parser is Actuator.<type>, whether the
+        // type was given for all actuators (Actuator.type) or for this one
+        const std::string& default_prefix = pp.default_params().getPrefix();
+        const std::string type =
+            default_prefix.substr(default_prefix.rfind('.') + 1);
+        if (type.ends_with("Disk")) {
             amrex::Abort(
-                "FLLC is not compatible with TurbineFastDisk turbine type");
+                "Actuator " + tinfo.label +
+                ": the filtered lifting line correction (fllc) is for "
+                "actuator lines and cannot be used with the type " +
+                type);
         }
         for (int i = 0; i < tdata.num_blades; ++i) {
             tdata.fllc.emplace_back();
             fllc_parse(pp, tdata.fllc.back());
+            // The Gaussians of the blade points are not narrower than
+            // epsilon_min (init_epsilon), so neither is the width that the
+            // correction takes as resolved. The first input value, as for
+            // epsilon in fllc_parse: eps_min is in the input order here.
+            tdata.fllc.back().epsilon = amrex::max<amrex::Real>(
+                tdata.fllc.back().epsilon, tdata.eps_min[0]);
+        }
+        const auto msg = fllc_epsilon_warning(
+            tinfo.label, tdata.eps_inp, tdata.eps_min, tdata.eps_chord);
+        if (!msg.empty()) {
+            amrex::Print() << "\n" << msg << "\n";
         }
     }
 

@@ -63,7 +63,7 @@ AMREX_INLINE std::string timestamp()
     return tstamp;
 }
 
-/** Generate field names for multi-component fields
+/* Generate field names for multi-component fields
  *
  *  Function generates variable names based on the number of components in the
  *  field. If the field is a scalar, it just inserts the variable name. For
@@ -109,7 +109,7 @@ AMREX_INLINE void assert_with_message(const bool val, const std::string& msg)
     }
 }
 
-/** Read a flattened 2D grid file
+/* Read a flattened 2D grid file
  *
  *  File is assumed to contain a single column with the following data:
  *  [nx, ny, x values (len = nx), y values (len = ny), z values (len = nx * ny)]

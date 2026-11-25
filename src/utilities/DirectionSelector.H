@@ -4,7 +4,7 @@
 #include "AMReX_Box.H"
 #include "AMReX_Gpu.H"
 
-/** select index based on direction input */
+/* select index based on direction input */
 template <int Index>
 struct DirectionSelector
 {

@@ -13,9 +13,7 @@ class CFDSim;
 
 namespace pde {
 
-/** Base class for all TKE source terms
- *  \ingroup tke_src
- */
+/* Base class for all TKE source terms */
 class TKESource : public Factory<TKESource, const CFDSim&>
 {
 public:

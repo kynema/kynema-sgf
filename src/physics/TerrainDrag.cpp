@@ -83,7 +83,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
 
     BL_PROFILE("kynema-sgf::" + this->identifier() + "::initialize_fields");
 
-    //! Reading the Terrain Coordinates from  file
+    // Reading the Terrain Coordinates from  file
     amrex::Vector<amrex::Real> xterrain;
     amrex::Vector<amrex::Real> yterrain;
     amrex::Vector<amrex::Real> zterrain;
@@ -277,7 +277,7 @@ void TerrainDrag::initialize_fields(int level, const amrex::Geometry& geom)
                 vertical_coeff *
                 (horizontal_coeff_east + horizontal_coeff_north +
                  horizontal_coeff_west + horizontal_coeff_south);
-            //! Add the full vertical
+            // Add the full vertical
             if (z <= vertical_slope) {
                 vertical_coeff = 0.0_rt;
             } else if (z > vertical_full) {

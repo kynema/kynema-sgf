@@ -29,9 +29,8 @@ void RefineCriteriaManager::initialize()
             tagging::string_to_operator(amrex::toLower(op_str));
 
         auto obj = RefinementCriteria::create(stype, m_sim);
-        obj->tag_operator(op);
         obj->initialize(key);
-        m_refiners.emplace_back(std::move(obj));
+        m_refiners.push_back({std::move(obj), op});
     }
 }
 
@@ -39,8 +38,27 @@ void RefineCriteriaManager::tag_cells(
     int lev, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
 {
     BL_PROFILE("kynema-sgf::RefineCriteriaManager::tag_cells");
-    for (const auto& rc : m_refiners) {
-        (*rc)(lev, tags, time, ngrow);
+    if (m_refiners.empty()) {
+        return;
+    }
+    amrex::TagBoxArray current(tags.boxArray(), tags.DistributionMap());
+    for (const auto& step : m_refiners) {
+        if (!step.criterion->active(lev)) {
+            continue;
+        }
+        current.setVal(amrex::TagBox::CLEAR);
+        (*step.criterion)(lev, current, time, ngrow);
+        const auto op = step.op;
+        for (amrex::MFIter mfi(tags); mfi.isValid(); ++mfi) {
+            const auto& previous = tags.array(mfi);
+            const auto& predicate = current.const_array(mfi);
+            amrex::ParallelFor(
+                mfi.validbox(), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                    previous(i, j, k) = tagging::tag_val(
+                        previous(i, j, k) == amrex::TagBox::SET,
+                        predicate(i, j, k) == amrex::TagBox::SET, op);
+                });
+        }
         amrex::Gpu::streamSynchronize();
     }
 }

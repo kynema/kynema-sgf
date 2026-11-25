@@ -12,8 +12,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Wall-function computations for LES simulations of ABL
- *  \ingroup we_abl
+/* Wall-function computations for LES simulations of ABL
  *
  *  This class performs the necessary computations at the beginning of
  *  predictor/corrector steps. The actual BC population in ghost cells is
@@ -29,14 +28,14 @@ public:
     MOData& mo() { return m_mo; }
     [[nodiscard]] const MOData& mo() const { return m_mo; }
 
-    //! Return the plane-averaged computed friction velocity at any given
-    //! instance
+    // Return the plane-averaged computed friction velocity at any given
+    // instance
     [[nodiscard]] amrex::Real utau() const { return m_mo.utau; }
 
-    //! Initialize the log-law height based on user inputs
+    // Initialize the log-law height based on user inputs
     void init_log_law_height(int max_level);
 
-    //! Update the mean velocity at a given timestep
+    // Update the mean velocity at a given timestep
     void
     update_umean(const VelPlaneAveraging& vpa, const FieldPlaneAveraging& tpa);
 
@@ -47,15 +46,15 @@ private:
 
     const amrex::AmrCore& m_mesh;
 
-    //! Monin-Obukhov instance
+    // Monin-Obukhov instance
     MOData m_mo;
 
-    int m_direction{2};             ///< Direction normal to wall
-    bool m_use_fch{true};           ///< Use first cell height?
-    amrex::Real m_wall_pos{0.0_rt}; ///< Position of the wall
+    int m_direction{2};             // Direction normal to wall
+    bool m_use_fch{true};           // Use first cell height?
+    amrex::Real m_wall_pos{0.0_rt}; // Position of the wall
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
 
-    //! Ability to read in a table of surface temperature versus time.
+    // Ability to read in a table of surface temperature versus time.
     std::string m_surf_temp_timetable;
     amrex::Vector<amrex::Real> m_surf_temp_time;
     amrex::Vector<amrex::Real> m_surf_temp_value;
@@ -72,10 +71,9 @@ private:
     amrex::Real m_wf_theta{300.0_rt};
 };
 
-/** Applies a shear-stress value at the domain boundary
- *  \ingroup field_bc we_abl
+/* Applies a shear-stress value at the domain boundary
  *
- *  \sa ABLWallFunction
+ *  See ABLWallFunction
  */
 class ABLVelWallFunc : public FieldBCIface
 {

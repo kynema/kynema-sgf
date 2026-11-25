@@ -28,7 +28,7 @@ ABLFieldInit::ABLFieldInit()
 void ABLFieldInit::initialize_from_inputfile()
 {
     amrex::ParmParse pp_abl("ABL");
-    //! Check for wind profile
+    // Check for wind profile
     pp_abl.query("initial_wind_profile", m_initial_wind_profile);
     pp_abl.query("terrain_aligned_profile", m_terrain_aligned_profile);
     amrex::ParmParse pp_terrain("TerrainDrag");
@@ -380,9 +380,7 @@ void ABLFieldInit::operator()(
 void ABLFieldInit::perturb_temperature(
     const int lev, const amrex::Geometry& geom, Field& temperature) const
 {
-    /** Perturbations for the temperature field
-     *
-     */
+    /* Perturbations for the temperature field */
 
     const auto& dx = geom.CellSizeArray();
     const auto& problo = geom.ProbLoArray();
@@ -413,7 +411,7 @@ void ABLFieldInit::perturb_temperature(
     }
 }
 
-//! Initialize sfs tke field at the beginning of the simulation
+// Initialize sfs tke field at the beginning of the simulation
 void ABLFieldInit::init_tke(
     const amrex::Geometry& geom, amrex::MultiFab& tke_mf) const
 {

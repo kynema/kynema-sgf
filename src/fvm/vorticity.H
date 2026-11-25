@@ -5,9 +5,7 @@
 
 namespace kynema_sgf::fvm {
 
-/** Vorticity operator
- *  \ingroup fvm
- */
+/* Vorticity operator */
 template <typename FTypeIn, typename FTypeOut>
 struct Vorticity
 {
@@ -79,12 +77,7 @@ struct Vorticity
     const FTypeIn& m_phi;
 };
 
-/** Compute the magnitude of vorticity
- *  \ingroup fvm
- *
- *  \param vortphi [out] Field where the vorticity magnitude is populated
- *  \param phi [in] The velocity vector field
- */
+/* Compute the magnitude of vorticity */
 template <typename FTypeIn, typename FTypeOut>
 void vorticity(FTypeOut& vortphi, const FTypeIn& phi)
 {
@@ -93,11 +86,7 @@ void vorticity(FTypeOut& vortphi, const FTypeIn& phi)
     impl::apply(vort, phi);
 }
 
-/** Compute the magnitude of vorticity return as a ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] The velocity vector field
- */
+/* Compute the magnitude of vorticity return as a ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> vorticity(const FType& phi)
 {

@@ -11,10 +11,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::ocean_waves {
 
-/** Base data representation of a regular waves
- *
- *  \ingroup ocean_waves
- */
+/* Base data representation of a regular waves */
 struct RelaxZonesBaseData
 {
     amrex::Real zsl{0.0_rt};

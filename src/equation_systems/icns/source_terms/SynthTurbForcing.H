@@ -5,9 +5,7 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Synthetic turbulence momentum source term
- *  \ingroup icns_src synth_turb
- */
+/* Synthetic turbulence momentum source term */
 class SynthTurbForcing : public MomentumSource::Register<SynthTurbForcing>
 {
 public:

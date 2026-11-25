@@ -9,7 +9,7 @@ class ActuatorModel;
 
 namespace kynema_sgf::sampling {
 
-/** Volume sampler expressed in and moving with an actuator reference frame. */
+/* Volume sampler expressed in and moving with an actuator reference frame. */
 class MovingVolumeSampler : public VolumeSampler
 {
 public:

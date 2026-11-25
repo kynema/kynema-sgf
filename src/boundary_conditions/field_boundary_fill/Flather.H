@@ -14,7 +14,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Flather-style open boundary for velocity
+/* Flather-style open boundary for velocity
  *
  *  This boundary reads current boundary ghost-cell values and adjacent interior
  *  values, computes a blended target, and writes updated boundary values.

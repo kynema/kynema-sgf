@@ -7,10 +7,9 @@
 
 namespace kynema_sgf {
 
-/** Boussinesq Bubble physics
- *  \ingroup physics
+/* Boussinesq Bubble physics
  *
- *  \sa BoussinesqBubbleFieldInit
+ *  See BoussinesqBubbleFieldInit
  */
 class BoussinesqBubble : public Physics::Register<BoussinesqBubble>
 {
@@ -21,8 +20,8 @@ public:
 
     ~BoussinesqBubble() override = default;
 
-    //! Initialize the temperature and velocity fields for BoussinesqBubble
-    //! simulations
+    // Initialize the temperature and velocity fields for BoussinesqBubble
+    // simulations
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
     void post_init_actions() override {}
@@ -37,10 +36,10 @@ private:
     Field& m_velocity;
     Field& m_density;
 
-    //! Temperature field
+    // Temperature field
     Field* m_temperature{nullptr};
 
-    //! BoussinesqBubble field initializer instance
+    // BoussinesqBubble field initializer instance
     std::unique_ptr<BoussinesqBubbleFieldInit> m_field_init;
 };
 

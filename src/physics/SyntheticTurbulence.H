@@ -126,7 +126,7 @@ struct SynthTurbDeviceData
     {}
 };
 
-/** Indices and interpolation weights for a given point located within the
+/* Indices and interpolation weights for a given point located within the
  *  turbulence box
  */
 struct InterpWeights
@@ -135,16 +135,14 @@ struct InterpWeights
     amrex::Real xl, xr, yl, yr, zl, zr;
 };
 
-/**
- *  \defgroup synth_turb Synthetic Turbulence
+/*
+ *  Synthetic Turbulence
  *
  *  SyntheticTurbulence contains functions to inject turbulence into a
  *  CFD simulation. It reads a file to get the turbulent velocity on a
  *  grid and populates a source term for the momentum equation to
  *  achieve the desired turbulence characteristics at a specified
  *  plane in the CFD domain.
- *
- * \ingroup physics
  */
 
 class SyntheticTurbulence : public Physics::Register<SyntheticTurbulence>

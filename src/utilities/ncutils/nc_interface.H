@@ -14,7 +14,7 @@ using namespace amrex::literals;
 
 namespace ncutils {
 
-//! Wrapper around NetCDF data types
+// Wrapper around NetCDF data types
 struct NCDType
 {
     static constexpr nc_type Int = NC_INT;
@@ -25,66 +25,66 @@ struct NCDType
 #endif
 };
 
-//! Representation of NetCDF dimension
+// Representation of NetCDF dimension
 struct NCDim
 {
-    //! File/Group Identifier
+    // File/Group Identifier
     const int ncid;
 
-    //! Dimension ID used with NetCDF API
+    // Dimension ID used with NetCDF API
     const int dimid;
 
-    //! Name of this dimension
+    // Name of this dimension
     std::string name() const;
 
-    //! Length of this dimension
+    // Length of this dimension
     size_t len() const;
 };
 
-//! Representation of a NetCDF variable
+// Representation of a NetCDF variable
 struct NCVar
 {
-    //! File/Group identifier
+    // File/Group identifier
     const int ncid;
 
-    //! Variable ID used with NetCDF API
+    // Variable ID used with NetCDF API
     const int varid;
 
-    //! Name of this variable
+    // Name of this variable
     std::string name() const;
 
-    //! Number of array dimensions for this variable
+    // Number of array dimensions for this variable
     int ndim() const;
 
-    //! Shape of the array (size in each array dimension)
+    // Shape of the array (size in each array dimension)
     std::vector<size_t> shape() const;
 
-    //! Write out the entire variable
+    // Write out the entire variable
     void put(const amrex::Real* /*ptr*/) const;
     void put(const float* /*ptr*/) const;
     void put(const int* /*ptr*/) const;
 
-    //! Write out a slice of data
+    // Write out a slice of data
     void
     put(const amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/) const;
 
-    //! Write out a slice of data with with strides (see hyperslab definition in
-    //! NetCDF)
+    // Write out a slice of data with with strides (see hyperslab definition in
+    // NetCDF)
     void
     put(const amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/,
         const std::vector<ptrdiff_t>& /*stride*/) const;
-    //! Write out a slice of data
+    // Write out a slice of data
     void
     put(const float* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/) const;
 
-    //! Write out a slice of data with with strides (see hyperslab definition in
-    //! NetCDF)
+    // Write out a slice of data with with strides (see hyperslab definition in
+    // NetCDF)
     void
     put(const float* /*dptr*/,
         const std::vector<size_t>& /*start*/,
@@ -100,31 +100,31 @@ struct NCVar
         const std::vector<size_t>& /*count*/,
         const std::vector<ptrdiff_t>& /*stride*/) const;
 
-    //! Read the entire variable from file
+    // Read the entire variable from file
     void get(amrex::Real* /*ptr*/) const;
     void get(float* /*ptr*/) const;
     void get(int* /*ptr*/) const;
 
-    //! Read a chunk of data from the file
+    // Read a chunk of data from the file
     void
     get(amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/) const;
 
-    //! Read a chunk of data with strides
+    // Read a chunk of data with strides
     void
     get(amrex::Real* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/,
         const std::vector<ptrdiff_t>& /*stride*/) const;
 
-    //! Read a chunk of data from the file
+    // Read a chunk of data from the file
     void
     get(float* /*dptr*/,
         const std::vector<size_t>& /*start*/,
         const std::vector<size_t>& /*count*/) const;
 
-    //! Read a chunk of data with strides
+    // Read a chunk of data with strides
     void
     get(float* /*dptr*/,
         const std::vector<size_t>& /*start*/,
@@ -157,83 +157,83 @@ struct NCVar
     void par_access(const int cmode) const;
 };
 
-//! Representation of a NetCDF group
+// Representation of a NetCDF group
 class NCGroup
 {
 public:
-    //! Identifier used with NetCDF API calls
+    // Identifier used with NetCDF API calls
     const int ncid;
 
-    //! Is this the NetCDF file (root group)?
+    // Is this the NetCDF file (root group)?
     bool is_root() const { return (m_parent != nullptr); }
 
-    //! Return parent group, for root it just returns itself
+    // Return parent group, for root it just returns itself
     const NCGroup& parent() const { return (is_root() ? *this : *m_parent); }
 
-    //! Return the root (file instance)
+    // Return the root (file instance)
     const NCGroup& root() const
     {
         return (is_root() ? *this : m_parent->root());
     }
 
-    //! Name of this group
+    // Name of this group
     std::string name() const;
 
-    //! Full name for this group
+    // Full name for this group
     std::string full_name() const;
 
-    //! Number of sub-groups within this group
+    // Number of sub-groups within this group
     int num_groups() const;
 
-    //! Number of dimensions in this group
+    // Number of dimensions in this group
     int num_dimensions() const;
 
-    //! Number of variables within this group
+    // Number of variables within this group
     int num_variables() const;
 
-    //! Number of attributes within this group
+    // Number of attributes within this group
     int num_attributes() const;
 
-    //! Check if a group exists
+    // Check if a group exists
     bool has_group(const std::string& /*name*/) const;
 
-    //! Check if a dimension exists by name
+    // Check if a dimension exists by name
     bool has_dim(const std::string& /*name*/) const;
 
-    //! Check if a variable exists by name
+    // Check if a variable exists by name
     bool has_var(const std::string& /*name*/) const;
 
-    //! Check if an attribute exists
+    // Check if an attribute exists
     bool has_attr(const std::string& /*name*/) const;
 
-    /** Get the group by name
+    /* Get the group by name
      *
      *  Throws error if the group doesn't exist, use `has_group` to check
      */
     NCGroup group(const std::string& /*name*/) const;
 
-    //! Get the dimension instance by name
+    // Get the dimension instance by name
     NCDim dim(const std::string& /*name*/) const;
 
-    //! Get the variable instance by name
+    // Get the variable instance by name
     NCVar var(const std::string& /*name*/) const;
 
-    //! Define new group
+    // Define new group
     NCGroup def_group(const std::string& /*name*/) const;
 
-    //! Define new dimension
+    // Define new dimension
     NCDim def_dim(const std::string& /*name*/, const size_t len) const;
 
-    //! Define a scalar variable, i.e., 0-dimensional array
+    // Define a scalar variable, i.e., 0-dimensional array
     NCVar def_scalar(const std::string& name, const nc_type dtype) const;
 
-    //! Define an array
+    // Define an array
     NCVar def_array(
         const std::string& name,
         const nc_type dtype,
         const std::vector<std::string>& /*dnames*/) const;
 
-    //! Define a variable (wrapper for def_array)
+    // Define a variable (wrapper for def_array)
     NCVar def_var(
         const std::string& name,
         const nc_type dtype,
@@ -255,19 +255,19 @@ public:
     void get_attr(const std::string& name, std::vector<float>& value) const;
     void get_attr(const std::string& name, std::vector<int>& value) const;
 
-    //! Return a list of all groups defined in this group
+    // Return a list of all groups defined in this group
     std::vector<NCGroup> all_groups() const;
 
-    //! Return a list of all dimensions defined in this group
+    // Return a list of all dimensions defined in this group
     std::vector<NCDim> all_dims() const;
 
-    //! Return a list of all variables defined in this group
+    // Return a list of all variables defined in this group
     std::vector<NCVar> all_vars() const;
 
-    //! Enter definition mode (not needed for NetCDF4 format)
+    // Enter definition mode (not needed for NetCDF4 format)
     void enter_def_mode() const;
 
-    //! Exit definition mode
+    // Exit definition mode
     void exit_def_mode() const;
 
 protected:
@@ -277,7 +277,7 @@ protected:
     const NCGroup* m_parent{nullptr};
 };
 
-/** Representation of a NetCDF file
+/* Representation of a NetCDF file
  *
  *  Provide wrappes to create and open file
  */

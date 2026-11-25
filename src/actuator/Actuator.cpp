@@ -78,10 +78,13 @@ void Actuator::pre_init_actions()
         obj->read_inputs(inp);
         m_actuators.emplace_back(std::move(obj));
     }
+    // Necessary condition only; allocate_ext_turbines checks each rank
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         cnt_turbfast <= amrex::ParallelDescriptor::NProcs(),
-        "Number of OpenFAST turbines must match or be lower than the number of "
-        "ranks");
+        "Actuator: " + std::to_string(cnt_turbfast) + " OpenFAST turbines on " +
+            std::to_string(amrex::ParallelDescriptor::NProcs()) +
+            " MPI ranks. Each OpenFAST turbine needs a rank of its own: use "
+            "at least as many ranks as there are actuators.");
 }
 
 void Actuator::post_init_actions()
@@ -108,10 +111,13 @@ void Actuator::post_init_actions()
         act->init_actuator_source();
     }
 
-    // Ensure velocity fills ghost cells prior to sampling
+    // Fill same-level velocity ghost cells before the first sample (initial
+    // solution of a new external turbine). Coarse-fine, non-periodic and
+    // density ghosts come later (fillpatch_state_fields in
+    // incflo::init_kynema_sgf_modules); points within half a cell of those
+    // sample stale values. During stepping: filled after the nodal projection.
     auto& vel = m_sim.repo().get_field("velocity");
     for (int lev = 0; lev < m_sim.repo().num_active_levels(); ++lev) {
-        // Just need the interior velocity ghost cells updated
         vel(lev).FillBoundary(m_sim.mesh().Geom()[lev].periodicity());
     }
 
@@ -215,7 +221,7 @@ void Actuator::communicate_turbine_io()
 #endif
 }
 
-/** Set up the container for sampling fields.
+/* Set up the container for sampling fields.
  *
  *  Allocates memory and initializes the particles corresponding to actuator
  *  nodes for all actuators that influence the current MPI rank. This method is
@@ -246,12 +252,12 @@ void Actuator::setup_particle_container()
     m_container->initialize_container();
 }
 
-/** Update actuator-node positions.
+/* Update actuator-node positions.
  *
  *  This physics-level method asks each relevant ActuatorModel to update its
  *  position vectors, then updates the sampling container positions.
  *
- *  \sa Actuator::update_actuator_and_container_positions
+ *  See Actuator::update_actuator_and_container_positions
  */
 void Actuator::update_actuator_and_container_positions()
 {
@@ -279,12 +285,12 @@ void Actuator::sample_fields()
     m_container->sample_fields(vel, density);
 }
 
-/** Copy sampled fields back into each actuator instance.
+/* Copy sampled fields back into each actuator instance.
  *
  *  ActuatorModel::update_fields passes those fields to the actuator-type
  *  operation that updates its instance data.
  *
- *  \sa Actuator::sample_fields
+ *  See Actuator::sample_fields
  */
 void Actuator::update_actuator_data_from_particles()
 {
@@ -398,6 +404,16 @@ void Actuator::prepare_outputs()
         if (ac->info().root_proc == iproc) {
             ac->prepare_outputs(sname);
         }
+    }
+}
+
+void Actuator::write_checkpoint(const std::string& chkname)
+{
+    BL_PROFILE("kynema-sgf::actuator::Actuator::write_checkpoint");
+
+    // Each actuator writes its own restart data
+    for (auto& ac : m_actuators) {
+        ac->write_checkpoint(chkname);
     }
 }
 

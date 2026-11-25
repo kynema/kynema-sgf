@@ -13,8 +13,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Initialize BoussinesqBubble fields
- */
+/* Initialize BoussinesqBubble fields */
 class BoussinesqBubbleFieldInit
 {
     static_assert(
@@ -31,19 +30,19 @@ public:
         const amrex::Array4<amrex::Real>& tracer) const;
 
 private:
-    //! Initial bubble location
+    // Initial bubble location
     amrex::Vector<amrex::Real> m_loc{0.25_rt, 0.25_rt, 0.5_rt};
 
-    //! Initial density field
+    // Initial density field
     amrex::Real m_rho{1.0_rt};
 
-    //! tracer inner value
+    // tracer inner value
     amrex::Real m_tracer_inner{0.0_rt};
 
-    //! tracer outer value
+    // tracer outer value
     amrex::Real m_tracer_outer{0.01_rt};
 
-    //! tracer bubble radius value
+    // tracer bubble radius value
     amrex::Real m_tracer_radius{0.1_rt};
 };
 

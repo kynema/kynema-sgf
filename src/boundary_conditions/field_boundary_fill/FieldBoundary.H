@@ -11,7 +11,7 @@ namespace kynema_sgf {
 
 class CFDSim;
 
-/** Abstract representation of field-boundary fill models
+/* Abstract representation of field-boundary fill models
  *
  *  This class mirrors the runtime-registration model used by Physics and
  *  provides hook points for boundary-fill specific setup and time-stepping
@@ -24,34 +24,34 @@ public:
 
     ~FieldBoundary() override = default;
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     virtual void post_init_actions() = 0;
 
-    //! Perform tasks necessary before advancing timestep
+    // Perform tasks necessary before advancing timestep
     virtual void pre_advance_work() = 0;
 
-    //! Perform tasks necessary only once per timestep, after pre_advance
+    // Perform tasks necessary only once per timestep, after pre_advance
     virtual void pre_predictor_work() {}
 
-    //! Perform tasks necessary after advancing timestep
+    // Perform tasks necessary after advancing timestep
     virtual void post_advance_work() = 0;
 
-    //! Whether this fill replaces all components over the entire inflow face.
-    //! Phase-limited fills and corrections that use the base fill return false.
+    // Whether this fill replaces all components over the entire inflow face.
+    // Phase-limited fills and corrections that use the base fill return false.
     [[nodiscard]] virtual bool provides_inflow_values(
         const Field& /*field*/, amrex::Orientation /*ori*/) const
     {
         return false;
     }
 
-    //! Conservative coverage estimate before mesh and input data are loaded.
+    // Conservative coverage estimate before mesh and input data are loaded.
     [[nodiscard]] virtual bool
     may_provide_inflow_values(const Field& field, amrex::Orientation ori) const
     {
         return provides_inflow_values(field, ori);
     }
 
-    //! Velocity fill function to be used by nodal projection
+    // Velocity fill function to be used by nodal projection
     virtual void set_velocity(
         int /*lev*/,
         amrex::Real /*time*/,
@@ -61,11 +61,11 @@ public:
         int /*orig_comp*/ = 0) const = 0;
 };
 
-/** A collection of FieldBoundary instances active during a simulation */
+/* A collection of FieldBoundary instances active during a simulation */
 class FieldBoundaryMgr : public CollMgr<FieldBoundaryMgr, FieldBoundary>
 {
 public:
-    //! Return a concrete field-boundary instance
+    // Return a concrete field-boundary instance
     template <typename T>
     T& get()
     {
@@ -73,7 +73,7 @@ public:
         return dynamic_cast<T&>(operator()(T::identifier()));
     }
 
-    //! Return a concrete field-boundary instance
+    // Return a concrete field-boundary instance
     template <typename T>
     [[nodiscard]] const T& get() const
     {

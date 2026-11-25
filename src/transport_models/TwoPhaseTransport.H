@@ -12,9 +12,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::transport {
 
-/** Two-phase fluid transport model with piece-wise constant properties
- *  \ingroup transport
- */
+/* Two-phase fluid transport model with piece-wise constant properties */
 class TwoPhaseTransport : public TransportModel::Register<TwoPhaseTransport>
 {
 public:
@@ -132,7 +130,7 @@ public:
         return turb_schmidt;
     }
 
-    //! Return the dynamic visocity field
+    // Return the dynamic visocity field
     std::unique_ptr<ScratchField> mu() override
     {
         // Select the interface capturing method
@@ -199,7 +197,7 @@ public:
         return mu;
     }
 
-    //! Return the thermal diffusivity field (later divided by density, though)
+    // Return the thermal diffusivity field (later divided by density, though)
     std::unique_ptr<ScratchField> alpha() override
     {
         // Select the interface capturing method
@@ -281,7 +279,7 @@ public:
         return diff;
     }
 
-    //! Return the thermal expansion coefficient
+    // Return the thermal expansion coefficient
     [[nodiscard]] std::unique_ptr<ScratchField> beta() const override
     {
         auto beta = m_repo.create_scratch_field(1, m_ngrow);
@@ -371,7 +369,7 @@ public:
         }
     }
 
-    //! Return the reference temperature
+    // Return the reference temperature
     [[nodiscard]] std::unique_ptr<ScratchField> ref_theta() const override
     {
         if (m_reference_temperature < 0.0_rt) {
@@ -386,31 +384,31 @@ public:
     }
 
 private:
-    //! Reference to the field repository (for creating scratch fields)
+    // Reference to the field repository (for creating scratch fields)
     FieldRepo& m_repo;
 
-    //! Reference to the physics manager
+    // Reference to the physics manager
     const PhysicsMgr& m_physics_mgr;
 
-    //! Phase 1 (liquid) dynamic molecular viscosity
+    // Phase 1 (liquid) dynamic molecular viscosity
     amrex::Real m_mu1{1.0e-3_rt};
 
-    //! Phase 2 (gas) dynamic molecular viscosity
+    // Phase 2 (gas) dynamic molecular viscosity
     amrex::Real m_mu2{1.0e-5_rt};
 
-    //! Phase 1 (liquid) Prandtl number
+    // Phase 1 (liquid) Prandtl number
     amrex::Real m_Pr1{7.2_rt};
 
-    //! Phase 2 (gas) Prandtl number
+    // Phase 2 (gas) Prandtl number
     amrex::Real m_Pr2{0.7_rt};
 
-    //! Turbulent Prandtl number
+    // Turbulent Prandtl number
     amrex::Real m_Prt{1.0_rt};
 
-    //! Constant thermal expansion coefficient
+    // Constant thermal expansion coefficient
     amrex::Real m_constant_beta{0.0_rt};
 
-    //! Reference temperature
+    // Reference temperature
     amrex::Real m_reference_temperature{-1.0_rt};
 
     [[nodiscard]] InterfaceCapturingMethod get_iface_method() const

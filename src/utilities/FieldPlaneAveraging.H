@@ -6,20 +6,17 @@
 #include "src/core/Field.H"
 #include "src/core/SimTime.H"
 
-/**
- *  \defgroup statistics Field statistics
+/*
+ *  Field statistics
  *  Field statistics
  *
  *  This group contains utilities for performing turbulence averaging and
  *  outputting statistics during wind simulations.
- *
- *  \ingroup utilities
  */
 
 namespace kynema_sgf {
 
-/** Output average of a field on planes normal to a given direction
- *  \ingroup statistics we_abl
+/* Output average of a field on planes normal to a given direction
  *
  *  The user can choose a direction (x, y, or z), the default value is the
  *  z-direction. The field is then averaged on planes at the cell-centers at
@@ -29,15 +26,6 @@ template <typename FType>
 class FPlaneAveraging
 {
 public:
-    /**
-     *  \param field_in [in] Field to be averaged
-     *  \param time [in] Time instance to determine output frequencies
-     *  \param axis_in [in] Direction along which planes are computed
-     *  \param max_level [in] Maximum mesh level to consider when calculating
-     * averages
-     *  \param compute_deriv [in] Should the derivative of the averages be
-     * computed
-     */
     FPlaneAveraging(
         const FType& field_in,
         const kynema_sgf::SimTime& time,
@@ -51,17 +39,17 @@ public:
 
     void convert_x_to_ind(amrex::Real x, int& ind, amrex::Real& c) const;
 
-    /** evaluate line average at specific location for any average component */
+    /* evaluate line average at specific location for any average component */
     [[nodiscard]] amrex::Real
     line_average_interpolated(amrex::Real x, int comp) const;
-    /** evaluate line average at specific cell for any average component */
+    /* evaluate line average at specific cell for any average component */
     [[nodiscard]] amrex::Real line_average_cell(int ind, int comp) const;
 
-    /** evaluate line average derivative at specific location for any average
+    /* evaluate line average derivative at specific location for any average
         component */
     [[nodiscard]] amrex::Real
     line_derivative_interpolated(amrex::Real x, int comp) const;
-    /** evaluate derivative of a line average at specific cell for any component
+    /* evaluate derivative of a line average at specific cell for any component
      */
     [[nodiscard]] amrex::Real
     line_derivative_of_average_cell(int ind, int comp) const;
@@ -70,7 +58,7 @@ public:
         const std::string& filename, int step, amrex::Real time);
     void output_line_average_ascii(int step, amrex::Real time);
 
-    /** change precision of text file output */
+    /* change precision of text file output */
     void set_precision(int p) { m_precision = p; };
 
     [[nodiscard]] amrex::Real dx() const { return m_dx; };
@@ -103,26 +91,26 @@ public:
     [[nodiscard]] const FType& field() const { return m_field; };
 
 protected:
-    int m_ncomp; /** number of average components */
+    int m_ncomp; /* number of average components */
 
     amrex::Vector<amrex::Real>
-        m_line_average; /** line storage for the average velocity and tracer
+        m_line_average; /* line storage for the average velocity and tracer
                            variables */
-    //! line storage for the derivative of average field
+    // line storage for the derivative of average field
     amrex::Vector<amrex::Real> m_line_deriv;
 
-    amrex::Vector<amrex::Real> m_line_xcentroid; /** line storage for centroids
-                                                    of each cell along a line*/
+    amrex::Vector<amrex::Real> m_line_xcentroid; /* line storage for centroids
+                                                    of each cell along a line */
 
-    amrex::Real m_dx;  /** mesh spacing in axis direction*/
-    amrex::Real m_xlo; /** bottom of line */
-    amrex::Real m_xhi; /** top of line */
+    amrex::Real m_dx;  /* mesh spacing in axis direction */
+    amrex::Real m_xlo; /* bottom of line */
+    amrex::Real m_xhi; /* top of line */
 
-    int m_ncell_plane; /** number of cells in plane */
-    int m_ncell_line;  /** number of cells along line */
+    int m_ncell_plane; /* number of cells in plane */
+    int m_ncell_line;  /* number of cells along line */
 
-    int m_precision = 4;           /** precision for line plot text file */
-    int m_last_updated_index = -1; /** keep track of the last time index that
+    int m_precision = 4;           /* precision for line plot text file */
+    int m_last_updated_index = -1; /* keep track of the last time index that
                                       the operator was called */
 
     const FType& m_field;
@@ -132,20 +120,18 @@ protected:
     const bool m_comp_deriv;
 
 public: // public for GPU
-    /** fill line storage with averages */
+    /* fill line storage with averages */
     template <typename IndexSelector>
     void compute_averages(const IndexSelector& idxOp);
 
-    /** fill derivatives of line storage */
+    /* fill derivatives of line storage */
     void compute_line_derivatives();
 };
 
 using FieldPlaneAveraging = FPlaneAveraging<Field>;
 using ScratchFieldPlaneAveraging = FPlaneAveraging<ScratchField>;
 
-/** Specific application of FieldPlaneAveraging to the velocity field
- *  \ingroup statistics we_abl
- */
+/* Specific application of FieldPlaneAveraging to the velocity field */
 class VelPlaneAveraging : public FieldPlaneAveraging
 {
 public:
@@ -157,36 +143,36 @@ public:
 
 private:
     amrex::Vector<amrex::Real>
-        m_line_hvelmag_average; /** line storage for the average horizontal
+        m_line_hvelmag_average; /* line storage for the average horizontal
                                    velocity magnitude */
 
     amrex::Vector<amrex::Real>
-        m_line_Su_average; /** line storage for the average horizontal
+        m_line_Su_average; /* line storage for the average horizontal
                                    velocity magnitude time x-velocity */
 
     amrex::Vector<amrex::Real>
-        m_line_Sv_average; /** line storage for the average horizontal
+        m_line_Sv_average; /* line storage for the average horizontal
                                    velocity magnitude time y-velocity */
 
 public: // public for GPU
-    /** fill line storage with horizontal velocity magnitude averages */
+    /* fill line storage with horizontal velocity magnitude averages */
     template <typename IndexSelector>
     void compute_hvelmag_averages(const IndexSelector& idxOp);
 
-    /** return vector containing horizontal velocity magnitude average */
+    /* return vector containing horizontal velocity magnitude average */
     const amrex::Vector<amrex::Real>& line_hvelmag_average()
     {
         return m_line_hvelmag_average;
     };
 
-    /** evaluate line haverage at specific location for horizontal velocity
+    /* evaluate line haverage at specific location for horizontal velocity
      * magnitude */
     [[nodiscard]] amrex::Real
     line_hvelmag_average_interpolated(amrex::Real x) const;
-    /** evaluate line haverage at specific location for horizontal velocity
+    /* evaluate line haverage at specific location for horizontal velocity
      * magnitude times x-velocity */
     [[nodiscard]] amrex::Real line_su_average_interpolated(amrex::Real x) const;
-    /** evaluate line haverage at specific location for horizontal velocity
+    /* evaluate line haverage at specific location for horizontal velocity
      * magnitude times y-velocity */
     [[nodiscard]] amrex::Real line_sv_average_interpolated(amrex::Real x) const;
 };

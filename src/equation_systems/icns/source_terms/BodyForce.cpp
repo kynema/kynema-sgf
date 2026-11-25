@@ -16,8 +16,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Body Force
- */
+/* Body Force */
 BodyForce::BodyForce(const CFDSim& sim) : m_time(sim.time()), m_mesh(sim.mesh())
 {
 
