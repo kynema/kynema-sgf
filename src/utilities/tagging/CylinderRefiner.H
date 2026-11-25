@@ -9,8 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::tagging {
 
-/** Refine region inside a cylinder
- *  \ingroup amr_utils
+/* Refine region inside a cylinder
  *
  *  The axis of the cylinder is defined by two vectors `start` and `end` that
  *  define the beginning and end of the cylinder along its axis. The outer

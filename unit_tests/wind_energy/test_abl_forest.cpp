@@ -15,7 +15,7 @@ namespace {
 void write_forest(const std::string& fname)
 {
     std::ofstream os(fname);
-    //! Write forest
+    // Write forest
     os << "1  512 256 45 200  0.2 6 0.8 \n";
     os << "1  512 512 35 200  0.2 6 0.8 \n";
     os << "1  512 612 75 200  0.2 6 0.8 \n";
@@ -25,7 +25,7 @@ void write_forest(const std::string& fname)
 void write_point_cloud_forest(const std::string& fname)
 {
     std::ofstream os(fname);
-    //! x y z lad
+    // x y z lad
     os << "2.5 2.5 2.5 1.0\n";
     os << "4.5 2.5 2.5 3.0\n";
     // Far point with very large LAD used to confirm nearest-point selection.

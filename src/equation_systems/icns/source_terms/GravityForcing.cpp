@@ -9,7 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Gravity Forcing source term
+/* Gravity Forcing source term
  *
  *  Reads in the following parameters from `incflo` namespace:
  *
@@ -35,12 +35,7 @@ GravityForcing::GravityForcing(const CFDSim& sim)
 
 GravityForcing::~GravityForcing() = default;
 
-/** Add the Gravity source term to the forcing array
- *
- *  \param lev AMR level
- *  \param fstate FieldState field
- *  \param src_term Cumulative forcing array
- */
+/* Add the Gravity source term to the forcing array */
 void GravityForcing::operator()(
     const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {

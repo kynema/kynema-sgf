@@ -11,10 +11,10 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::multiphase {
 
-/** Young's finite-difference gradient scheme.
+/* Young's finite-difference gradient scheme.
  *
  *  The gradient is computed with a multiplicative factor of -32:
- *  \f[ mm = - 32 * \grad (c) \f]
+ *   mm = - 32 * \grad (c)
  *
  *  Known problems: the index (1,1,1), i.e. the central cell in the block, never
  *  occurs: Therefore an isolated droplet will have a normal with all components
@@ -356,7 +356,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real volume_intercept(
     return alpha;
 }
 
-/** Computes the "CUT VOLUME" V0 given r0, dr0 and
+/* Computes the "CUT VOLUME" V0 given r0, dr0 and
  *  m_1*x_1 + m_2*x_2 + m_3*x_3 = alpha
  *  (1) move origin to r0 along r ;
  * (2) reflect parallelepiped;

@@ -19,7 +19,7 @@ namespace kynema_sgf::rans_convergence {
 
 namespace {
 
-//! Offsets of the monitored quantities within one window entry
+// Offsets of the monitored quantities within one window entry
 constexpr int nvals_per_point = 3;
 constexpr int ival_u = 0;
 constexpr int ival_v = 1;

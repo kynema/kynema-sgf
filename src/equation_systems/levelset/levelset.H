@@ -12,21 +12,15 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup levelset Levelset transport equation
- *  \ingroup eqsys
- */
+/* Levelset transport equation */
 
-/**
- *  \defgroup levelset_src Levelset source terms
+/*
+ *  Levelset source terms
  *
  *  Source terms used in Levelset transport equation
- *  \ingroup levelset
  */
 
-/** Characteristics of Levelset transport equation system
- *  \ingroup levelset
- */
+/* Characteristics of Levelset transport equation system */
 struct Levelset : ScalarTransport
 {
     using MLDiffOp = amrex::MLABecLaplacian;

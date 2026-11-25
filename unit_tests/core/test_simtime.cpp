@@ -25,7 +25,7 @@ void build_simtime_params()
 
 } // namespace
 
-//! Create unique namespace for this test fixture
+// Create unique namespace for this test fixture
 class SimTimeTest : public AmrexTest
 {};
 
@@ -54,7 +54,7 @@ TEST_F(SimTimeTest, request_stop_ends_the_run_before_max_step)
 
 namespace {
 
-//! Advance a SimTime through a number of fixed-size steps
+// Advance a SimTime through a number of fixed-size steps
 void advance_steps(kynema_sgf::SimTime& time, const int nsteps)
 {
     for (int i = 0; i < nsteps; ++i) {

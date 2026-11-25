@@ -13,8 +13,7 @@ namespace kynema_sgf {
 
 class Field;
 
-/** Interface to setup up boundary conditions on a field
- *  \ingroup field_bc
+/* Interface to setup up boundary conditions on a field
  *
  *  This is the base class for all non-standard operations that need to be
  *  performed at a domain boundary. Examples include using a wall-function to
@@ -24,7 +23,7 @@ class Field;
  *
  *  Customized BC operators are registered on a field using
  *  Field::register_custom_bc and then called during the linear system solve in
- *  \ref eqsys by calling Field::apply_bc_funcs This operation happens after the
+ *  eqsys by calling Field::apply_bc_funcs This operation happens after the
  *  Field::fillphysbc is called and the default BC values have been populated in
  *  ghost cells.
  */
@@ -36,9 +35,7 @@ public:
     virtual void operator()(Field& field, FieldState rho_state) = 0;
 };
 
-/** A no-op BC
- *  \ingroup field_fillpatch
- */
+/* A no-op BC */
 struct FieldBCNoOp
 {
     using FunctorType = FieldBCNoOp;
@@ -108,9 +105,7 @@ struct ConstDirichlet
     }
 };
 
-/** Sets constant values on specified boundaries
- *  \ingroup field_fillpatch
- */
+/* Sets constant values on specified boundaries */
 template <typename InflowOp, typename WallOp>
 struct DirichletOp
 {

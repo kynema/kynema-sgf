@@ -5,9 +5,7 @@
 
 namespace kynema_sgf {
 
-/** BC interface for VOF
- *  \ingroup vof
- */
+/* BC interface for VOF */
 
 class BCVOF : public BCIface
 {

@@ -14,8 +14,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Boussinesq buoyancy source term for ABL simulations
- */
+/* Boussinesq buoyancy source term for ABL simulations */
 ABLMeanBoussinesq::ABLMeanBoussinesq(const CFDSim& sim)
     : m_mesh(sim.mesh()), m_repo(sim.repo()), m_transport(sim.transport_model())
 

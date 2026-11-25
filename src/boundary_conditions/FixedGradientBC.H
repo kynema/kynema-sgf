@@ -7,8 +7,7 @@
 
 namespace kynema_sgf {
 
-/** Applies a non-zero gradient at the domain boundary
- *  \ingroup field_bc
+/* Applies a non-zero gradient at the domain boundary
  *
  *  Used with the inhomogeneous Neumann linear solver BC to apply a
  *  user-specified fixed gradient at the domain boundary.

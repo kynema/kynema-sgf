@@ -7,8 +7,8 @@ namespace kynema_sgf {
 
 class CFDSim;
 
-/**
- *  \defgroup overset Overset connectivity interface
+/*
+ *  Overset connectivity interface
  *
  *  Overset connectivity interface.
  *
@@ -17,26 +17,23 @@ class CFDSim;
  * meshes.
  */
 
-/** Overset interface manager
- *  \ingroup overset
- */
+/* Overset interface manager */
 class OversetManager : public Factory<OversetManager, CFDSim&>
 {
 public:
     static std::string base_identifier() { return "OversetManager"; }
 
-    /** Perform one-time initialization actions.
+    /* Perform one-time initialization actions.
      *
      *  This method is called after the initial mesh and solution fields have
      *  been created.
      */
     virtual void post_init_actions() = 0;
 
-    /** Perform necessary updates after a regrid.
-     */
+    /* Perform necessary updates after a regrid. */
     virtual void post_regrid_actions() = 0;
 
-    /** Perform actions before initializing connectivity through overset
+    /* Perform actions before initializing connectivity through overset
      * library.
      *
      *  This method is called before performing connectivity. The implementation
@@ -45,14 +42,14 @@ public:
      */
     virtual void pre_overset_conn_work() = 0;
 
-    /** Updates necessary after overset connectivity has been updated.
+    /* Updates necessary after overset connectivity has been updated.
      *
      *  Update dependent fields or data structures as a result of changes in
      *  overset connectivity.
      */
     virtual void post_overset_conn_work() = 0;
 
-    /** Perform actions necessary to register fields for overset exchange.
+    /* Perform actions necessary to register fields for overset exchange.
      *
      *  This method will be called at least once every timestep and, perhaps,
      *  multiple times within a timestep.
@@ -61,8 +58,7 @@ public:
         const std::vector<std::string>& cell_vars,
         const std::vector<std::string>& node_vars) = 0;
 
-    /** Additional work after solution fields have been exchanged.
-     */
+    /* Additional work after solution fields have been exchanged. */
     virtual void update_solution() = 0;
 };
 

@@ -18,7 +18,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::utils {
 
-//! Return closest index (from lower) of value in vector
+// Return closest index (from lower) of value in vector
 AMREX_FORCE_INLINE int closest_index(
     const amrex::Vector<amrex::Real>& vec,
     const amrex::Real value,
@@ -35,7 +35,7 @@ AMREX_FORCE_INLINE int closest_index(
     return amrex::max(idx - 1, 0);
 }
 
-//! Return indices perpendicular to normal
+// Return indices perpendicular to normal
 template <typename T = amrex::GpuArray<int, 2>>
 AMREX_FORCE_INLINE T perpendicular_idx(const int normal)
 {
@@ -52,16 +52,10 @@ AMREX_FORCE_INLINE T perpendicular_idx(const int normal)
     return T{-1, -1};
 }
 
-/** Get the intersection with a boundary box while considering if on face or
+/* Get the intersection with a boundary box while considering if on face or
  * cell. Intended for auxiliary boundary fill calls.
  *
- *  \param shift_to_cc output index vector to shift from output box to
- *  a cell-centered representation.
- *  \param grown_interior_box box grown from domain interior to overlap with
- * boundary
- *  \param domain_boundary_box box representing domain boundary containing data
- *  \param ori orientation of current boundary condition being evaluated
- *  \return The Box instance representing the intersection of the two inputs
+ *  Returns The Box instance representing the intersection of the two inputs
  * with shifts added to consider the location of the field associated with the
  * grown_interior_box
  */
@@ -99,19 +93,12 @@ AMREX_INLINE amrex::Box face_aware_boundary_box_intersection(
         shift_to_cc, grown_interior_box, domain_boundary_box, ori);
 }
 
-/** Replicate the first boundary ghost layer outward through all remaining
+/* Replicate the first boundary ghost layer outward through all remaining
  * ghost layers available in the array along the boundary normal.
  *
  * This matches the AMReX ext_dir convention, where every ghost layer of a
  * Dirichlet boundary holds the boundary value. Intended for auxiliary
  * boundary fill calls that compute only the first ghost layer.
- *
- *  \param bx single-layer box of the first ghost cells (or ghost faces) that
- * have already been filled, in the index space of arr
- *  \param arr array holding the data, including ghost cells
- *  \param ori orientation of the boundary being filled
- *  \param scomp first component to replicate
- *  \param ncomp number of components to replicate
  */
 AMREX_INLINE void extend_boundary_ghost_layers(
     const amrex::Box& bx,
@@ -143,7 +130,7 @@ AMREX_INLINE void extend_boundary_ghost_layers(
         });
 }
 
-/** Extend an auxiliary-filled face across transverse grid, periodic, and
+/* Extend an auxiliary-filled face across transverse grid, periodic, and
  * physical boundaries using component-specific BCRec rules. Later Dirichlet
  * orientations retain precedence. Normal ghosts must already be filled over
  * valid transverse cell-centered indices. Existing coarse/fine fallback values
@@ -161,7 +148,7 @@ void fill_transverse_ghosts(
     int ncomp,
     int orig_comp = 0);
 
-/** Complete a partial fine boundary plane with limited conservative
+/* Complete a partial fine boundary plane with limited conservative
  * interpolation of its coarse plane. Recorded fine values take precedence.
  */
 amrex::FArrayBox interpolate_boundary_plane(
@@ -173,7 +160,7 @@ amrex::FArrayBox interpolate_boundary_plane(
     const amrex::Geometry& fine_geom,
     int nghost);
 
-//! Check if a point is inside a box
+// Check if a point is inside a box
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool contains(
     const amrex::Box& box,
     const amrex::RealVect& pos,
@@ -188,11 +175,9 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE bool contains(
     return box.contains(iv);
 }
 
-/** Convert a bounding box into amrex::Box index space at a given level
+/* Convert a bounding box into amrex::Box index space at a given level
  *
- *  \param rbx Bounding box as defined in global domain coordinates
- *  \param geom AMReX geometry information for a given level
- *  \return The Box instance that defines the index space equivalent to bounding
+ *  Returns The Box instance that defines the index space equivalent to bounding
  * box
  */
 amrex::Box

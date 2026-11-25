@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Implementation of Turbulence operator for TKE equation
- *  \ingroup tke_eqn
- */
+/* Implementation of Turbulence operator for TKE equation */
 template <>
 struct TurbulenceOp<TKE>
 {
@@ -30,9 +28,7 @@ struct TurbulenceOp<TKE>
     PDEFields& m_fields;
 };
 
-/** Implementation of post-processing actions for TKE equation
- *  \ingroup tke_eqn
- */
+/* Implementation of post-processing actions for TKE equation */
 template <>
 struct PostSolveOp<TKE>
 {
@@ -115,9 +111,7 @@ struct FieldRegOp<TKE, Scheme>
     FieldInterpolator m_itype{FieldInterpolator::CellConsLinear};
 };
 
-/** Diffusion operator for scalar transport equations
- *  \ingroup pdeop
- */
+/* Diffusion operator for scalar transport equations */
 template <typename Scheme>
 struct DiffusionOp<TKE, Scheme> : public DiffSolverIface<typename TKE::MLDiffOp>
 {
@@ -150,7 +144,7 @@ struct DiffusionOp<TKE, Scheme> : public DiffSolverIface<typename TKE::MLDiffOp>
         m_lhs_total = fields.repo.create_scratch_field(1, 1);
     }
 
-    //! Computes the diffusion term that goes in the RHS
+    // Computes the diffusion term that goes in the RHS
     void compute_diff_term(const FieldState fstate)
     {
         this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);

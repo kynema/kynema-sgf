@@ -9,9 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Dummy transition model for overset exchange of the gamma variable
- *  \ingroup physics
- */
+/* Dummy transition model for overset exchange of the gamma variable */
 class Intermittency : public Physics::Register<Intermittency>
 {
 public:
@@ -33,7 +31,7 @@ public:
 private:
     Field& m_intermittency;
 
-    //! initial intermittency value
+    // initial intermittency value
     amrex::Real m_gamma{1.0_rt};
 };
 

@@ -13,11 +13,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Interface for ABL modulated power law
- *  \ingroup we_abl
+/* Interface for ABL modulated power law
  *
  *  This class sets velocity and temperature at mass inflow bc's
- *
  */
 class ModulatedPowerLaw : public FieldBoundary::Register<ModulatedPowerLaw>
 {
@@ -73,12 +71,10 @@ private:
     amrex::Real m_stop_time{std::numeric_limits<amrex::Real>::max()};
     amrex::Real m_degrees_per_sec{0.02_rt};
 
-    ///@{
-    //! Lookup table containing temperature variation w.r.t. height above
-    //! terrain
+    // Lookup table containing temperature variation w.r.t. height above
+    // terrain
     amrex::Vector<amrex::Real> m_theta_heights;
     amrex::Vector<amrex::Real> m_theta_values;
-    ///@}
 
     // Device copies of the above arrays
     amrex::Gpu::DeviceVector<amrex::Real> m_thht_d;

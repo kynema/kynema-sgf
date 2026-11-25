@@ -6,11 +6,9 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Body forces introduced by turbines modeled as actuators in flow field.
+/* Body forces introduced by turbines modeled as actuators in flow field.
  *
- *  \ingroup icns_src actuator
- *
- *  \sa Acuator
+ *  See Acuator
  */
 class ActuatorForcing : public MomentumSource::Register<ActuatorForcing>
 {

@@ -9,10 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Account for Coriolis forcing due to earth's rotation
- *  \ingroup icns_src we_abl
- *
- */
+/* Account for Coriolis forcing due to earth's rotation */
 class CoriolisForcing : public MomentumSource::Register<CoriolisForcing>
 {
 public:
@@ -28,25 +25,22 @@ public:
 private:
     const Field& m_velocity;
 
-    ///@{
-    /** Orientation of the grid w.r.t. to planetary coordinate system
-     */
+    /* Orientation of the grid w.r.t. to planetary coordinate system */
     amrex::Vector<amrex::Real> m_east{1.0_rt, 0.0_rt, 0.0_rt};
     amrex::Vector<amrex::Real> m_north{0.0_rt, 1.0_rt, 0.0_rt};
     amrex::Vector<amrex::Real> m_up{0.0_rt, 0.0_rt, 1.0_rt};
-    ///@}
 
-    //! Latitude where the Coriolis forcing is computed (+ve northern
-    //! hemisphere)
+    // Latitude where the Coriolis forcing is computed (+ve northern
+    // hemisphere)
     amrex::Real m_latitude{0.0_rt};
 
     amrex::Real m_sinphi{0.0_rt};
     amrex::Real m_cosphi{0.0_rt};
 
-    //! omega --> Earth’s rotation angular speed
+    // omega --> Earth’s rotation angular speed
     amrex::Real m_omega{7.3e-5_rt};
 
-    //! 2.0_rt * omega
+    // 2.0_rt * omega
     amrex::Real m_coriolis_factor{0.0_rt};
 
     bool m_is_horizontal{false};

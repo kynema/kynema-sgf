@@ -9,8 +9,7 @@ using namespace amrex::literals;
 namespace kynema_sgf {
 class Field;
 
-/** AMR refinement using vorticity
- *  \ingroup amr_utils
+/* AMR refinement using vorticity
  *
  *  ```
  *  tagging.labels = v1
@@ -30,7 +29,7 @@ public:
 
     ~VorticityMagRefinement() override = default;
 
-    //! Read input file and initialize boxarray used to refine each level
+    // Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
 
     [[nodiscard]] bool active(int level) const override

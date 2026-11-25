@@ -15,7 +15,7 @@ Intermittency::Intermittency(const CFDSim& sim)
     gamma_int_fld.set_default_fillpatch_bc(sim.time());
 }
 
-/** Initialize the intermittency field at the beginning of the
+/* Initialize the intermittency field at the beginning of the
  *  simulation.
  */
 void Intermittency::initialize_fields(

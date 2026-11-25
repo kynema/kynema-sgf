@@ -17,14 +17,13 @@ struct PrismParameters
     amrex::Real azimuth{15.2_rt};
 };
 
-/** Sample data along a line that moves in time
- *  \ingroup sampling
+/* Sample data along a line that moves in time
  *
  *  Defines probes along a line defined by a time history from `m_azimuth_table`
  *  and `m_elevation_table` with a length of `m_length`. This determines the
  * `start` and `end` points at every time-step and divides the line into equal
  * segments as determined by `num_points`. The length of each segment is given
- * by \f[ m_length / (num_points - 1) \f]
+ * by  m_length / (num_points - 1)
  */
 class DTUSpinnerSampler : public LidarSampler
 {
@@ -33,20 +32,14 @@ public:
 
     explicit DTUSpinnerSampler(const CFDSim& /*sim*/);
 
-    /** Read user inputs and initialize the sampling object
-     *
-     *  \param key Prefix used to parse inputs from file
-     */
+    /* Read user inputs and initialize the sampling object */
     void initialize(const std::string& key) override;
 
-    /** Update the position of the sampling locations in time
-     *
-     *
-     */
+    /* Update the position of the sampling locations in time */
     void sampling_locations(SampleLocType& /*sample_locs*/) const override;
 
-    //! Populate the vector with coordinates of the sampling locations inside
-    //! a box
+    // Populate the vector with coordinates of the sampling locations inside
+    // a box
     void sampling_locations(
         SampleLocType& /*sample_locs*/,
         const amrex::Box& /*box*/) const override;
@@ -70,9 +63,7 @@ public:
 
 #endif
 
-    /** Determine how the subsampling will be done
-     *
-     */
+    /* Determine how the subsampling will be done */
     bool update_sampling_locations() override;
 
     void post_sample_actions() override {};
@@ -87,7 +78,7 @@ public:
         return (m_beam_points * m_ntotal);
     }
 
-    //! Type of this sampling object
+    // Type of this sampling object
     [[nodiscard]] std::string sampletype() const override
     {
         return identifier();

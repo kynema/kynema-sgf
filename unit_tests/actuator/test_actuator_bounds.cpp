@@ -22,7 +22,7 @@ struct MockBoundsSolverData
 using MockBoundsData =
     ExtTurbineViewData<MockBoundsTurbine, MockBoundsSolverData>;
 
-//! Container with access to the positions and velocities of its points
+// Container with access to the positions and velocities of its points
 class BoundsActContainer : public kynema_sgf::actuator::ActuatorContainer
 {
 public:
@@ -33,7 +33,7 @@ public:
     kynema_sgf::actuator::ActuatorCloud& get_data_obj() { return point_data(); }
 };
 
-//! Domain of 128 in every direction, with walls in z
+// Domain of 128 in every direction, with walls in z
 class ActuatorBoundsTest : public MeshTest
 {
 protected:

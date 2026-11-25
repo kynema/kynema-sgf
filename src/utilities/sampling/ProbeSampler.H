@@ -8,8 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::sampling {
 
-/** Sample data on a cloud of points
- *  \ingroup sampling
+/* Sample data on a cloud of points
  *
  *  Reads a cloud of point locations from a text file and samples data on those
  *  points.
@@ -19,7 +18,7 @@ class ProbeSampler : public SamplerBase::Register<ProbeSampler>
 public:
     static std::string identifier() { return "ProbeSampler"; }
 
-    //! Type of this sampling object
+    // Type of this sampling object
     [[nodiscard]] std::string sampletype() const override
     {
         return identifier();
@@ -31,14 +30,14 @@ public:
 
     void initialize(const std::string& key) override;
 
-    //! Check and fix the bounds of the sampler so the probes are in the domain
+    // Check and fix the bounds of the sampler so the probes are in the domain
     void check_bounds() override;
 
-    //! Populate the vector with coordinates of the sampling locations
+    // Populate the vector with coordinates of the sampling locations
     void sampling_locations(SampleLocType& /*sample_locs*/) const override;
 
-    //! Populate the vector with coordinates of the sampling locations inside
-    //! a box
+    // Populate the vector with coordinates of the sampling locations inside
+    // a box
     void sampling_locations(
         SampleLocType& /*sample_locs*/,
         const amrex::Box& /*box*/) const override;
@@ -60,7 +59,7 @@ public:
 
     [[nodiscard]] long num_points() const override { return m_npts; }
 
-    //! Number of output probe locations (after data reduction etc.)
+    // Number of output probe locations (after data reduction etc.)
     [[nodiscard]] long num_output_points() const override { return m_npts; }
 
 private:

@@ -23,11 +23,20 @@ Kynema-SGF. The `Linear Solvers section
 provides an overview of the multi-level multigrid (MLMG) solvers used to solve
 the various linear systems within Kynema-SGF.
 
+The ``CFDSim`` class holds the simulation's mesh, field repository, time
+control, physics, and equation systems. ``Field`` and ``FieldRepo`` provide
+access to simulation fields, while ``SimTime`` controls time advancement and
+output.
+
+The ``src`` directory contains the C++ implementation, ``unit_tests`` contains
+component tests, and ``test`` contains regression tests. Build configuration
+is in ``cmake``, the manual is in ``docs``, third-party dependencies are in
+``submods``, and post-processing utilities are in ``tools``.
+
 .. toctree::
    :maxdepth: 3
 
    documentation
-   ../doxygen/html/index
    unit_testing
    regression_testing
    verification

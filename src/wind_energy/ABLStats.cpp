@@ -118,7 +118,7 @@ void ABLStats::calc_averages()
     m_pa_mueff();
 }
 
-//! Calculate sfs stress averages
+// Calculate sfs stress averages
 void ABLStats::calc_sfs_stress_avgs(
     ScratchField& sfs_stress, ScratchField& t_sfs_stress)
 {
@@ -165,7 +165,7 @@ void ABLStats::calc_sfs_stress_avgs(
     amrex::Gpu::streamSynchronize();
 }
 
-//! Calculate sfs stress averages
+// Calculate sfs stress averages
 void ABLStats::calc_tke_diffusion(
     ScratchField& diffusion,
     const Field& buoy_prod,

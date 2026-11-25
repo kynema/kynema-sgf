@@ -6,13 +6,14 @@
 #include "test_ext_turbine_utils.H"
 #include "src/actuator/turbine/external/ExtTurbIface.H"
 #include "src/actuator/turbine/external/turbine_external_ops.H"
+#include "AMReX_ParallelDescriptor.H"
 #include "AMReX_REAL.H"
 
 using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-/** Turbine of a stand-in external solver without physics
+/* Turbine of a stand-in external solver without physics
  *
  *  Initial solutions, steps, checkpoints and velocity records are counted.
  */
@@ -35,30 +36,30 @@ struct CountingTurbine : public ::ext_turb::ExternalTurbine
     int length_orientation() const override { return 0; }
     int num_vel_pts_blade() const override { return model_num_pts_blade; }
 
-    //! Hub and blade points of the solver model
+    // Hub and blade points of the solver model
     int num_pts() const { return 1 + (model_num_blades * model_num_pts_blade); }
 
-    //! Blades of the solver model and points per blade; default: hub only
+    // Blades of the solver model and points per blade; default: hub only
     int model_num_blades{0};
     int model_num_pts_blade{0};
 
-    //! Chord at the points of the model, for the tests that set blades
+    // Chord at the points of the model, for the tests that set blades
     mutable std::vector<float> chord;
 
-    //! Solver step count at the CFD restart
+    // Solver step count at the CFD restart
     int time_index_at_restart{0};
 
     int num_initial_solutions{0};
     int num_steps{0};
     int num_checkpoints{0};
 
-    //! CFD time step of each velocity record written
+    // CFD time step of each velocity record written
     mutable std::vector<int> velocity_records;
 
-    //! CFD time step of each checkpoint written
+    // CFD time step of each checkpoint written
     std::vector<int> checkpoint_steps;
 
-    //! Hub velocity and force
+    // Hub velocity and force
     mutable std::array<float, 3> fluid_vel{0.0F, 0.0F, 0.0F};
     mutable std::array<float, 3> hub_force{0.0F, 0.0F, 0.0F};
 };
@@ -218,21 +219,21 @@ using CountingViewData =
 class ExtTurbIfaceTest : public MeshTest
 {
 protected:
-    //! Interface of a test, owned by the fixture: the view data point to it
+    // Interface of a test, owned by the fixture: the view data point to it
     CountingIface& make_iface()
     {
         m_iface = std::make_unique<CountingIface>(sim());
         return *m_iface;
     }
 
-    //! View data of a test, owned by the fixture: the interface points to it
+    // View data of a test, owned by the fixture: the interface points to it
     CountingViewData& make_data()
     {
         m_data = std::make_unique<CountingViewData>();
         return *m_data;
     }
 
-    //! Hub-only turbine, two solver steps per CFD step
+    // Hub-only turbine, two solver steps per CFD step
     void setup_turbine(
         CountingViewData& data,
         CountingIface& iface,
@@ -256,21 +257,21 @@ protected:
         iface.init_turbine(fi.tid_local);
     }
 
-    //! Actuator::post_init_actions: loads at the initial time
+    // Actuator::post_init_actions: loads at the initial time
     static void post_init(CountingViewData& data)
     {
         kynema_sgf::actuator::external::ext_loads(data);
     }
 
-    //! Actuator::pre_advance_work: loads, then advance
+    // Actuator::pre_advance_work: loads, then advance
     static void pre_advance(CountingViewData& data)
     {
         kynema_sgf::actuator::external::ext_loads(data);
         kynema_sgf::actuator::external::ext_step(data);
     }
 
-    //! Run inputs: max_step, fixed dt of the turbine. Tests add checkpoint
-    //! inputs.
+    // Run inputs: max_step, fixed dt of the turbine. Tests add checkpoint
+    // inputs.
     void time_inputs(const int max_step)
     {
         populate_parameters();
@@ -280,7 +281,7 @@ protected:
         pp.add("max_step", max_step);
     }
 
-    //! IOManager::write_checkpoint_file, as far as the turbine goes
+    // IOManager::write_checkpoint_file, as far as the turbine goes
     void write_cfd_checkpoint(
         CountingViewData& data, std::vector<int>& cfd_checkpoint_steps)
     {
@@ -288,7 +289,7 @@ protected:
         kynema_sgf::actuator::ops::external_write_solver_checkpoint(data);
     }
 
-    /** incflo::Evolve, as far as checkpoints go
+    /* incflo::Evolve, as far as checkpoints go
      *
      *  Advance after the new time is set; checkpoint at the end of a step and
      *  after the loop (write_final_checkpoint). stop_step > 0: stop requested
@@ -355,6 +356,10 @@ TEST_F(ExtTurbIfaceTest, new_turbine_starts_with_initial_solution)
 
 TEST_F(ExtTurbIfaceTest, fllc_data_follow_blade_count_of_solver)
 {
+    // Serial: the turbine data would make every rank its own root
+    if (amrex::ParallelDescriptor::NProcs() > 1) {
+        GTEST_SKIP();
+    }
     const int num_blades_input = 2;
     const int num_blades_model = 3;
     const int num_pts_blade = 4;

@@ -14,7 +14,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Geostrophic forcing term for ABL
+/* Geostrophic forcing term for ABL
  *
  *  Parameters are read from the `GeostrophicWind` and `CorolisForcing`
  *  namespace in the input file. The following parameters are available:
@@ -24,7 +24,6 @@ namespace kynema_sgf::pde::icns {
  *
  *  - `geostrophic_wind` Geostrophic wind above capping inversion in the
  *    GeostrophicForcing namespace
- *
  */
 GeostrophicForcing::GeostrophicForcing(const CFDSim& sim)
     : m_time(sim.time()), m_mesh(sim.mesh())

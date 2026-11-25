@@ -41,10 +41,10 @@ MMS::MMS(const CFDSim& sim)
     }
 }
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::MMSFieldInit
+ *  See kynema_sgf::MMSFieldInit
  */
 void MMS::initialize_fields(int level, const amrex::Geometry& geom)
 {
@@ -83,8 +83,7 @@ void MMS::initialize_fields(int level, const amrex::Geometry& geom)
     amrex::htod_memcpy(velocity, h_velocity);
 }
 
-/** Fill the MMS source term.
- */
+/* Fill the MMS source term. */
 void MMS::fill_src()
 {
     m_mms_vel_source.setVal(0.0_rt);

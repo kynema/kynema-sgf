@@ -13,7 +13,7 @@
 namespace kynema_sgf::ib {
 namespace bluff_body {
 
-/** Parse common data for modeling non-blade bluff bodies via an immersed
+/* Parse common data for modeling non-blade bluff bodies via an immersed
  * boundary
  */
 void read_inputs(
@@ -21,16 +21,13 @@ void read_inputs(
     IBInfo& /*unused*/,
     const ::kynema_sgf::utils::MultiParser& /*pp*/);
 
-/** Initialize core data structures when modeling the IB geometry
- */
+/* Initialize core data structures when modeling the IB geometry */
 void init_data_structures(CFDSim&);
 
-/** Set the velocity inside the IB based on a manufactured solution
- */
+/* Set the velocity inside the IB based on a manufactured solution */
 void apply_mms_vel(CFDSim& /*sim*/);
 
-/** Set the velocity inside the IB based on a dirichlet BC
- */
+/* Set the velocity inside the IB based on a dirichlet BC */
 void apply_dirichlet_vel(
     CFDSim& /*sim*/, const amrex::Vector<amrex::Real>& vel_bc);
 

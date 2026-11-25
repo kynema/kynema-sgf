@@ -9,10 +9,9 @@
 
 namespace kynema_sgf {
 
-/** Rayleigh Taylor physics
- *  \ingroup physics
+/* Rayleigh Taylor physics
  *
- *  \sa RayleighTaylorFieldInit
+ *  See RayleighTaylorFieldInit
  */
 class RayleighTaylor : public Physics::Register<RayleighTaylor>
 {
@@ -23,8 +22,8 @@ public:
 
     ~RayleighTaylor() override = default;
 
-    //! Initialize the density and velocity fields for RayleighTaylor
-    //! simulations
+    // Initialize the density and velocity fields for RayleighTaylor
+    // simulations
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
     void post_init_actions() override {}
@@ -39,7 +38,7 @@ private:
     Field& m_velocity;
     Field& m_density;
 
-    //! RayleighTaylor field initializer instance
+    // RayleighTaylor field initializer instance
     std::unique_ptr<RayleighTaylorFieldInit> m_field_init;
 };
 

@@ -11,8 +11,7 @@
 
 namespace kynema_sgf_tests {
 
-/** Base class for test fixtures that require a valid AmrMesh instance
- */
+/* Base class for test fixtures that require a valid AmrMesh instance */
 class MeshTest : public AmrexTest
 {
 public:
@@ -20,12 +19,12 @@ public:
 
     ~MeshTest() override = default;
 
-    /** Populate the ParmParse instance with all the necessary input variables
+    /* Populate the ParmParse instance with all the necessary input variables
      *  for this test fixture
      */
     virtual void populate_parameters();
 
-    //! Create the mesh instance
+    // Create the mesh instance
     virtual void create_mesh_instance();
 
     template <typename T>
@@ -37,10 +36,10 @@ public:
         }
     }
 
-    //! Perform initialization actions
+    // Perform initialization actions
     virtual void initialize_mesh();
 
-    //! Reset the problem domain for this test
+    // Reset the problem domain for this test
     virtual void reset_prob_domain();
 
     kynema_sgf::CFDSim& sim() { return mesh().sim(); }

@@ -8,30 +8,24 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::eos {
 
-/**
- *  \defgroup eos Equation of state models
+/*
+ *  Equation of state models
  *
  *  Kynema-SGF representation of equation of state models. These
  *  expression are adapted from those found in ERF
  *  https://github.com/erf-model/ERF.
- *
  */
 
-/** Gamma law equation of state
- *  \ingroup eos
- */
+/* Gamma law equation of state */
 struct GammaLaw
 {
     using eos_type = GammaLaw;
     static std::string identifier() { return "GammaLaw"; }
 
-    /**
+    /*
      * Return pressure given density and potential temperature
      *
-     * \param [in] rho    density
-     * \param [in] theta  potential temperature
-     * \param [in] qv     water vapor
-     * \return            pressure
+     * Returns pressure
      */
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real p_rth(
         const amrex::Real rho,
@@ -48,13 +42,10 @@ struct GammaLaw
                           m_gamma);
     }
 
-    /**
+    /*
      * Return dP/drho at constant theta
      *
-     * \param [in] rho   density
-     * \param [in] theta potential temperature
-     * \param [in] qv    water vapor
-     * \return           pressure
+     * Returns pressure
      */
     AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real dp_constanttheta(
         const amrex::Real rho,

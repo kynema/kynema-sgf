@@ -7,10 +7,7 @@
 
 using namespace amrex::literals;
 
-/** Multiphase falling raindrop physics
- *  \ingroup multiphase_physics
- *
- */
+/* Multiphase falling raindrop physics */
 
 namespace kynema_sgf {
 
@@ -25,7 +22,7 @@ public:
 
     ~RainDrop() override = default;
 
-    //! Initialize the levelset and velocity fields for Rain Drop simulations
+    // Initialize the levelset and velocity fields for Rain Drop simulations
 
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
@@ -41,16 +38,16 @@ private:
     Field& m_velocity;
     Field& m_levelset;
 
-    //! Not const because calculation of VOF takes place during initialize
+    // Not const because calculation of VOF takes place during initialize
     CFDSim& m_sim;
 
-    //! Initial Rain Drop location
+    // Initial Rain Drop location
     amrex::Vector<amrex::Real> m_loc{0.006_rt, 0.006_rt, 0.006_rt};
 
-    //! Initial Rain Drop velocity
+    // Initial Rain Drop velocity
     amrex::Vector<amrex::Real> m_vel{0.0_rt, 0.0_rt, 0.0_rt};
 
-    //! Raindrop radius value
+    // Raindrop radius value
     amrex::Real m_radius{0.003_rt};
 };
 

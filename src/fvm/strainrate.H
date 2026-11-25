@@ -8,9 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::fvm {
 
-/** Strain rate operator
- *  \ingroup fvm
- */
+/* Strain rate operator */
 template <typename FTypeIn, typename FTypeOut>
 struct StrainRate
 {
@@ -96,12 +94,7 @@ struct StrainRate
     const FTypeIn& m_phi;
 };
 
-/** Compute the magnitude of strain rate
- *  \ingroup fvm
- *
- *  \param strphi [out] Field where the strain rate magnitude is populated
- *  \param phi [in] The velocity vector field
- */
+/* Compute the magnitude of strain rate */
 template <typename FTypeIn, typename FTypeOut>
 void strainrate(FTypeOut& strphi, const FTypeIn& phi)
 {
@@ -110,11 +103,7 @@ void strainrate(FTypeOut& strphi, const FTypeIn& phi)
     impl::apply(str, phi);
 }
 
-/** Compute the magnitude of strain rate return as a ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] The velocity vector field
- */
+/* Compute the magnitude of strain rate return as a ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> strainrate(const FType& phi)
 {

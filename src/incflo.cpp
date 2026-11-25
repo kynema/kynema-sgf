@@ -63,7 +63,7 @@ incflo::incflo()
 
 incflo::~incflo() = default;
 
-/** Initialize AMR mesh data structure.
+/* Initialize AMR mesh data structure.
  *
  *  Calls the AmrMesh/AmrCore functions to initialize the mesh. For restarted
  *  simulations, it loads the checkpoint file.
@@ -131,10 +131,10 @@ void incflo::init_mesh()
     }
 }
 
-/** Initialize Kynema-SGF data structures after mesh has been created.
+/* Initialize Kynema-SGF data structures after mesh has been created.
  *
  *  Modules initialized:
- *    - Registered \ref physics classes
+ *    - Registered physics classes
  *    - Registered PDE systems
  *    - Registered post-processing classes
  */
@@ -175,11 +175,11 @@ void incflo::init_kynema_sgf_modules()
     m_sim.post_manager().post_init_actions();
 }
 
-/** Initialize flow-field before performing time-integration.
+/* Initialize flow-field before performing time-integration.
  *
  *  This method calls the incflo::InitialProjection step to ensure that the
  *  velocity field is divergence free. Then it performs a user-defined number of
- *  initial iterations to compute \f$p^{n - 1/2}\f$ necessary for advancing into
+ *  initial iterations to compute p^{n - 1/2} necessary for advancing into
  *  the first timestep. These actions are only performed when starting a new
  *  simulation, but not for a restarted simulation.
  */
@@ -212,12 +212,10 @@ void incflo::prepare_for_time_integration()
     }
 }
 
-/** Perform all initialization actions for Kynema-SGF.
+/* Perform all initialization actions for Kynema-SGF.
  *
  *  This is a wrapper method that calls the following methods to perform the
  * actual work.
- *
- *  \callgraph
  */
 void incflo::InitData()
 {
@@ -231,9 +229,9 @@ void incflo::InitData()
     prepare_for_time_integration();
 }
 
-/** Perform regrid actions at a given timestep.
+/* Perform regrid actions at a given timestep.
  *
- *  \return Flag indicating if regrid was performed
+ *  Returns Flag indicating if regrid was performed
  */
 bool incflo::regrid_and_update()
 {
@@ -299,7 +297,7 @@ bool incflo::regrid_and_update()
     return m_time.do_regrid();
 }
 
-/** Perform actions after a timestep
+/* Perform actions after a timestep
  *
  *  Performs any necessary I/O before advancing to next timestep
  */
@@ -335,10 +333,7 @@ void incflo::post_advance_work()
     }
 }
 
-/** Perform time-integration for user-defined time or timesteps.
- *
- *  \callgraph
- */
+/* Perform time-integration for user-defined time or timesteps. */
 void incflo::Evolve()
 {
     BL_PROFILE("kynema-sgf::incflo::Evolve()");

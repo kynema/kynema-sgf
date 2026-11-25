@@ -14,23 +14,20 @@
 namespace kynema_sgf::ocean_waves {
 namespace relaxation_zones {
 
-/** Parse common data for modeling relaxation zones
- */
+/* Parse common data for modeling relaxation zones */
 void read_inputs(
     RelaxZonesBaseData& /*wdata*/,
     OceanWavesInfo& /*unused*/,
     const ::kynema_sgf::utils::MultiParser& /*pp*/);
 
-/** Initialize core data structures when modeling the IB geometry
- */
+/* Initialize relaxation-zone data structures. */
 void init_data_structures(CFDSim&);
 
-/** Harmonize the target wave solution with numerical beach */
+/* Harmonize the target wave solution with numerical beach */
 void modify_target_fields_for_beach(
     CFDSim& sim, const RelaxZonesBaseData& wdata);
 
-/** Set the free_surface height inside the relaxation zones
- */
+/* Relax the flow fields toward the target wave solution. */
 void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata);
 
 void update_target_vof(CFDSim& sim);

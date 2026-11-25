@@ -19,7 +19,7 @@ namespace ext_turb {
 template <>
 ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::~ExtTurbIface()
 {
-    //! Do deallocation if necessary
+    // Do deallocation if necessary
 }
 
 // !! This doesn't get used by the actual code, just by unit tests !! //
@@ -30,7 +30,7 @@ void ExtTurbIface<KynemaFMBTurbine, KynemaFMBSolverData>::parse_inputs(
     amrex::ParmParse pp(inp_name);
 
     const auto& time = sim.time();
-    //! Check that the user has not enabled adaptive timestepping
+    // Check that the user has not enabled adaptive timestepping
     AMREX_ALWAYS_ASSERT_WITH_MESSAGE(
         !time.adaptive_timestep(),
         "Adaptive time-stepping not supported when Kynema is enabled");

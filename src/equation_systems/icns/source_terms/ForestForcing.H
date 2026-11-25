@@ -7,12 +7,7 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Adds a forcing term to represent forest terrain
- *
- *  \ingroup icns_src
- *
- *
- */
+/* Adds a forcing term to represent forest terrain */
 class ForestForcing : public MomentumSource::Register<ForestForcing>
 {
 public:

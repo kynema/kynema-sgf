@@ -46,8 +46,8 @@ struct MockSpanFirstTurbine : public MockExtTurbine
 using MockSpanFirstViewData =
     ExtTurbineViewData<MockSpanFirstTurbine, MockExtSolverData>;
 
-//! Inputs (chord, thickness, span) = (1, 2, 3): check every blade and
-//! tower point in the given local frame
+// Inputs (chord, thickness, span) = (1, 2, 3): check every blade and
+// tower point in the given local frame
 template <typename ViewData>
 void check_epsilon_frame(
     ViewData& data,
@@ -272,8 +272,8 @@ TEST(TurbineExternalViews, bound_box_holds_the_gaussians)
     }
 }
 
-//! Disk width normal to the rotor for inputs (chord, thickness, span) =
-//! (1, 2, 3), in the solver frame
+// Disk width normal to the rotor for inputs (chord, thickness, span) =
+// (1, 2, 3), in the solver frame
 template <typename ViewData>
 amrex::Real disk_normal_epsilon()
 {

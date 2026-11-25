@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::hybrid_rans_les_abl {
 
-/** Hybrid RANS/LES with ABL
- *  \ingroup physics
- */
+/* Hybrid RANS/LES with ABL */
 class HybridRANSLESABL : public Physics::Register<HybridRANSLESABL>
 {
 public:
@@ -34,7 +32,7 @@ public:
 
     void post_advance_work() override;
 
-    //! Compute sdr field from sfs ke field
+    // Compute sdr field from sfs ke field
     void compute_sdr_impl();
 
 private:
@@ -43,7 +41,7 @@ private:
     Field* m_tke{nullptr};
     Field* m_sdr{nullptr};
 
-    //! Turbulence model constant
+    // Turbulence model constant
     amrex::Real m_Ce{0.1_rt};
 };
 } // namespace kynema_sgf::hybrid_rans_les_abl

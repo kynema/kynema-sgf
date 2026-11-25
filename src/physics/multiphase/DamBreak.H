@@ -7,10 +7,7 @@
 
 using namespace amrex::literals;
 
-/** Multiphase Dam break physics
- *  \ingroup multiphase_physics
- *
- */
+/* Multiphase Dam break physics */
 
 namespace kynema_sgf {
 
@@ -23,7 +20,7 @@ public:
 
     ~DamBreak() override = default;
 
-    //! Initialize the levelset and velocity fields for Dam Break simulations
+    // Initialize the levelset and velocity fields for Dam Break simulations
 
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
@@ -42,13 +39,13 @@ private:
     Field& m_levelset;
     Field& m_density;
 
-    //! Initial DamBreak location
+    // Initial DamBreak location
     amrex::Vector<amrex::Real> m_loc{0.0_rt, 0.0_rt, 0.0_rt};
 
-    //! dam width value
+    // dam width value
     amrex::Real m_width{0.1_rt};
 
-    //! dam height value
+    // dam height value
     amrex::Real m_height{0.25_rt};
 };
 

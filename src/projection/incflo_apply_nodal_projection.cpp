@@ -96,55 +96,49 @@ void kynema_sgf::nodal_projection::enforce_inout_solvability(
     HydroUtils::enforceInOutSolvability(vel_vec, bc_type, geom, true);
 }
 
-/** Perform nodal projection
+/* Perform nodal projection
  *
  *  Computes the following decomposition:
  *
- *  \f{align}
- *    u + \frac{\Delta t}{\rho} \nabla \phi &= u^{*} & \nabla \cdot u = 0
- *  \f}
  *
- *  where \f$u^{*}\f$ is a non-div-free velocity field, stored
+ *    u + \frac{\Delta t}{\rho} \nabla \phi &= u^{*} & \nabla \cdot u = 0
+ *
+ *
+ *  where u^{*} is a non-div-free velocity field, stored
  *  by components in u, v, and w. The resulting div-free
  *  velocity field, u, overwrites the value of u* in u, v, and w.
  *
- *  \f$\phi\f$ is an auxiliary function related to the pressure \f$p\f$ by the
+ *  \phi is an auxiliary function related to the pressure p by the
  * relation:
  *
- *  \f[ p^{\mathrm{new}} = \phi \f]
+ *   p^{\mathrm{new}} = \phi
  *
  *  except in the initial projection when
  *
- *  \f[ p^{\mathrm{new}} = p^{\mathrm{old}} + \phi \f]
+ *   p^{\mathrm{new}} = p^{\mathrm{old}} + \phi
  *
  *  Velocity is updated using the following relation
  *
- *  \f{align}
+ *
  *   u^{**} &= u^{*} + \frac{\Delta t}{\rho} \nabla p^{\mathrm{old}} \\
  *   \nabla \cdot \left( \frac{\Delta t}{\rho} \nabla \phi \right) &= \nabla
  * \cdot u^{**} \\ u^{\mathrm{new}} &= u^{**} - \frac{\Delta t}{\rho} \nabla
- * p^\mathrm{new} \f}
+ * p^\mathrm{new}
  *
  *  Notes:
- *  - `scaling_factor` equals \f$\Delta t\f$ except when called during initial
+ *  - `scaling_factor` equals \Delta t except when called during initial
  *     projection, when it is 1.0_rt
  *
- *  - \f$\rho\f$ in the above expressions is either at state `n+1` or `n+1/2`
+ *  - \rho in the above expressions is either at state `n+1` or `n+1/2`
  *    depending on whether this method was called from incflo::ApplyPredictor or
  *    incflo::ApplyCorrector.
  *
  *  - If `incremental == true`, then the pressure term is not added to
- *    \f$u^{**}\f$ and the update is in delta-form.
+ *    u^{**} and the update is in delta-form.
  *
  *  Please consult [AMReX Linear
  *  Solvers](https://amrex-codes.github.io/amrex/docs_html/LinearSolvers.html#nodal-projection)
  *  documentation for more information on the nodal projection operator.
- *
- *  \param density Vector of multifabs containing the density field at all
- * levels \param time Current time \param scaling_factor Scaling factor
- * \f$\Delta t\f$ \param incremental Flag indicating if it is an incremental
- * projection.
- *
  */
 void incflo::ApplyProjection(
     amrex::Vector<amrex::MultiFab const*> density,

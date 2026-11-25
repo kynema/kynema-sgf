@@ -10,11 +10,10 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::tke {
 
-/** TKE source term based on Axell 2011 paper
+/* TKE source term based on Axell 2011 paper
  * Axell, L. B., & Liungman, O. (2001). A one-equation turbulence model for
  * geophysical applications: comparison with data and the k− ε model.
  * Environmental Fluid Mechanics, 1, 71-106.
- *  \ingroup tke_src turb_model we_abl
  */
 class KransAxell : public TKESource::Register<KransAxell>
 {
@@ -50,10 +49,10 @@ private:
     amrex::Vector<amrex::Real> m_tke_values;
     amrex::Gpu::DeviceVector<amrex::Real> m_wind_heights_d;
     amrex::Gpu::DeviceVector<amrex::Real> m_tke_values_d;
-    //! Transport model
+    // Transport model
     const transport::TransportModel& m_transport;
 
-    //! Reference temperature
+    // Reference temperature
     std::unique_ptr<ScratchField> m_ref_theta;
     mutable std::unique_ptr<ScratchField> m_ref_theta_scratch;
     bool m_horizontal_sponge{false};

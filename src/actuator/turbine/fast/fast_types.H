@@ -11,17 +11,15 @@ using namespace amrex::literals;
 
 namespace ext_turb {
 
-/** Representation of a turbine for exchanging data with FAST
- */
+/* Representation of a turbine for exchanging data with FAST */
 struct FastTurbine : public ext_turb::ExternalTurbine
 {
-    //! Local axes of the blade points: airfoil frame of AeroDyn
+    // Local axes of the blade points: airfoil frame of AeroDyn
     static constexpr BladeFrame blade_frame{BladeFrame::normal_chord_span};
 
-    /** Variables exclusive to OpenFAST turbine type
-     */
+    /* Variables exclusive to OpenFAST turbine type */
 
-    //! Node cluster type for the chord
+    // Node cluster type for the chord
     int chord_cluster_type{0};
 
     sgf_fast::OfInputType to_cfd;

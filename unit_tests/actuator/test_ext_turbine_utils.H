@@ -19,7 +19,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf_tests {
 
-/** Grid and metadata of an external turbine, without the external solver
+/* Grid and metadata of an external turbine, without the external solver
  *
  *  Holds what make_component_views needs to build the hub, blade and tower
  *  views.
@@ -41,7 +41,7 @@ struct ExtTurbineViewData
     MetaType m_meta;
 };
 
-/** Fill the point lists of a turbine in the order OpenFAST gives them
+/* Fill the point lists of a turbine in the order OpenFAST gives them
  *
  *  Force points: the hub, the nodes of each blade from root to tip, the
  *  tower. Velocity points: the same order, hub first. The position tells
@@ -98,7 +98,7 @@ void init_hub_first_points(
     }
 }
 
-//! Same number of velocity and force nodes on the blades
+// Same number of velocity and force nodes on the blades
 template <typename datatype>
 void init_hub_first_points(
     datatype& data,
@@ -110,7 +110,7 @@ void init_hub_first_points(
         data, num_blades, num_pts_blade, num_pts_blade, num_pts_tower);
 }
 
-/** Check that every blade view pairs force point k with its velocity point
+/* Check that every blade view pairs force point k with its velocity point
  *
  *  Entry k of the velocity views of a blade must be the velocity point of
  *  force point k of that blade. The filtered lifting line correction relies

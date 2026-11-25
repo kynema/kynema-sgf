@@ -9,8 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Monin-Obukhov surface layer profile
- *  \ingroup we_abl
+/* Monin-Obukhov surface layer profile
  *
  * van der Laan, P., Kelly, M. C., & Sørensen, N. N. (2017). A new k-epsilon
  * model consistent with Monin-Obukhov similarity theory. Wind Energy,
@@ -24,26 +23,26 @@ namespace kynema_sgf {
 struct MOData
 {
     enum class ThetaCalcType : std::uint8_t {
-        HEAT_FLUX = 0,      ///< Heat-flux specified
-        SURFACE_TEMPERATURE ///< Surface temperature specified
+        HEAT_FLUX = 0,      // Heat-flux specified
+        SURFACE_TEMPERATURE // Surface temperature specified
     };
 
-    amrex::Real zref{0.0_rt};           ///< Reference height (m)
-    amrex::Real z0{0.1_rt};             ///< Aerodynamic roughness height (m)
-    amrex::Real z0t{z0};                ///< Thermal roughness height (m)
-    amrex::Real utau;                   ///< Friction velocity (m/s)
-    amrex::Real kappa{0.41_rt};         ///< von Karman constant
-    amrex::Real gravity{9.81_rt};       ///< Acceleration due to gravity (m/s^2)
-    amrex::Real obukhov_len{1.0e16_rt}; ///< Non-dimensional Obukhov length
+    amrex::Real zref{0.0_rt};           // Reference height (m)
+    amrex::Real z0{0.1_rt};             // Aerodynamic roughness height (m)
+    amrex::Real z0t{z0};                // Thermal roughness height (m)
+    amrex::Real utau;                   // Friction velocity (m/s)
+    amrex::Real kappa{0.41_rt};         // von Karman constant
+    amrex::Real gravity{9.81_rt};       // Acceleration due to gravity (m/s^2)
+    amrex::Real obukhov_len{1.0e16_rt}; // Non-dimensional Obukhov length
 
-    amrex::RealArray vel_mean; ///< Mean velocity (at zref)
-    amrex::Real vmag_mean;     ///< Mean wind speed (at zref)
-    amrex::Real Su_mean;       ///< Mean wind speed times x-velocity (at zref)
-    amrex::Real Sv_mean;       ///< Mean wind speed times y-velocity (at zref)
-    amrex::Real theta_mean;    ///< Mean potential temperature
+    amrex::RealArray vel_mean; // Mean velocity (at zref)
+    amrex::Real vmag_mean;     // Mean wind speed (at zref)
+    amrex::Real Su_mean;       // Mean wind speed times x-velocity (at zref)
+    amrex::Real Sv_mean;       // Mean wind speed times y-velocity (at zref)
+    amrex::Real theta_mean;    // Mean potential temperature
 
-    amrex::Real surf_temp_flux{0.0_rt}; ///< Heat flux
-    amrex::Real surf_temp;              ///< Instantaneous surface temperature
+    amrex::Real surf_temp_flux{0.0_rt}; // Heat flux
+    amrex::Real surf_temp;              // Instantaneous surface temperature
 
     amrex::Real gamma_m{5.0_rt};
     amrex::Real gamma_h{5.0_rt};

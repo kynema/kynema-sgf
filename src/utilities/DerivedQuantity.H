@@ -41,15 +41,15 @@ public:
 
     void create(const amrex::Vector<std::string>& keys);
 
-    //! Add a derived quantity
+    // Add a derived quantity
     DerivedQty& create(const std::string& key);
 
-    //! Return the total number of components across all derived quantities
+    // Return the total number of components across all derived quantities
     [[nodiscard]] int num_comp() const;
 
     [[nodiscard]] bool contains(const std::string& key) const;
 
-    //! Populate a vector of variable names (for output)
+    // Populate a vector of variable names (for output)
     void var_names(amrex::Vector<std::string>& /*plt_var_names*/) const;
 
     void filter(const std::set<std::string>& /*erase*/);

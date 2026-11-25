@@ -10,7 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Idealized Hurricane forcing source term
+/* Idealized Hurricane forcing source term
  *  Apply mesoscale tendency source term to drive the flow
  * and match the hurricane cyclic/rotational forcing at large
  * distances from the eye-wall. This implements the "Simple"
@@ -38,28 +38,28 @@ public:
     void mean_velocity_update(const VelPlaneAveraging& /*vavg*/);
 
 private:
-    //! Mesh
+    // Mesh
     const amrex::AmrCore& m_mesh;
 
     amrex::Gpu::DeviceVector<amrex::Real> m_vel_ht;
     amrex::Gpu::DeviceVector<amrex::Real> m_vel_vals;
 
-    //! Axis over which averages are computed
+    // Axis over which averages are computed
     int m_axis{2};
 
-    //! Gradient velocity
+    // Gradient velocity
     amrex::Real m_V{40.0_rt}; // V=40 m/s is the default value
 
-    //! Gradient wind radial decay
+    // Gradient wind radial decay
     amrex::Real m_dVdR{-0.0008_rt};
 
-    //! Reference gradient wind zero height in metres
+    // Reference gradient wind zero height in metres
     amrex::Real m_Vzh{18000.};
 
-    //! Eye-wall radial distance
+    // Eye-wall radial distance
     amrex::Real m_R{40000.0_rt}; // 40km is taken as the default value
 
-    //! Coriolis factor
+    // Coriolis factor
     amrex::Real m_coriolis_factor{0.0005_rt};
 };
 

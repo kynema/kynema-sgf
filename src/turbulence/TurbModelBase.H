@@ -79,8 +79,7 @@ void scal_diff_update(
 
 } // namespace turb_base_impl
 
-/** Turbulence model aspects common to both LES and RANS models
- *  \ingroup turb_model
+/* Turbulence model aspects common to both LES and RANS models
  *
  *  This class implements more of the common methods from TurbulenceModel that
  *  are common to most turbulence model. This is different from TurbModel in
@@ -111,10 +110,10 @@ public:
         m_mu_turb.set_default_fillpatch_bc(this->m_sim.time());
     }
 
-    //! Return the turbulent viscosity field
+    // Return the turbulent viscosity field
     Field& mu_turb() override { return m_mu_turb; }
 
-    //! Return the turbulent thermal diffusivity field
+    // Return the turbulent thermal diffusivity field
     Field& alpha_turb() override
     {
         AMREX_ASSERT(m_alpha_turb != nullptr);
@@ -123,29 +122,25 @@ public:
 
     // clang-format off
 
-    /** Update the effective viscosity field
+    /* Update the effective viscosity field
      *
-     *  \f$\mu_\mathrm{eff} = \mu + \mu_t\f$
-     *
-     *  \param mueff Effective viscosity field
+     *  \mu_\mathrm{eff} = \mu + \mu_t
      */
     void update_mueff(Field& mueff) override
     {
         turb_base_impl::visc_update(mueff, this->m_mu_turb, this->m_transport);
     }
 
-    /** Update the effective thermal diffusivity field
+    /* Update the effective thermal diffusivity field
      *
-     *  \f$\alpha_\mathrm{eff} = \alpha + \alpha_t\f$
-     *
-     *  \param alphaeff Effective diffusivity field
+     *  \alpha_\mathrm{eff} = \alpha + \alpha_t
      */
     void update_alphaeff(Field& alphaeff) override
     {
         turb_base_impl::alpha_update(alphaeff, this->m_mu_turb, this->m_transport);
     }
 
-    //! Interface to update scalar diffusivity based on Schmidt number
+    // Interface to update scalar diffusivity based on Schmidt number
     void update_scalar_diff(Field& deff, const std::string& name) override
     {
         turb_base_impl::scal_diff_update(deff, this->m_mu_turb, this->m_transport, name);
@@ -154,10 +149,10 @@ public:
     // clang-format on
 
 protected:
-    //! Reference to the turbulent viscosity field
+    // Reference to the turbulent viscosity field
     Field& m_mu_turb;
 
-    //! Reference to thermal diffusivity field
+    // Reference to thermal diffusivity field
     Field* m_alpha_turb{nullptr};
 };
 

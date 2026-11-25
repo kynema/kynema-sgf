@@ -9,7 +9,7 @@ using namespace amrex::literals;
 namespace kynema_sgf_tests {
 namespace {
 
-//! Time steps of an external solver in a CFD time step
+// Time steps of an external solver in a CFD time step
 class ExtTimeStepsTest : public AmrexTest
 {
 protected:

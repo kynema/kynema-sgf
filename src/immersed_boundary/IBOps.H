@@ -7,9 +7,7 @@
 
 namespace kynema_sgf::ib::ops {
 
-/** Read user inputs from an input file for a given immersed boundary object.
- *
- *  \ingroup immersed_boundary
+/* Read user inputs from an input file for a given immersed boundary object.
  *
  *  This operator is called within Physics::pre_init_actions() and, therefore,
  *  does not have access to mesh data. Actions that require mesh information for
@@ -18,22 +16,17 @@ namespace kynema_sgf::ib::ops {
 template <typename GeomTrait, typename = void>
 struct ReadInputsOp;
 
-/** Perform one-time initialization of the immersed boundary object.
- *
- *  \ingroup immersed_boundary
+/* Perform one-time initialization of the immersed boundary object.
  *
  *  This operator is responsible for allocating memory ensuring that the
  *  immersed boundary instance has been initialized and ready to be used by the
  * immersed boundary physics instance. This function is called once during
  * IB::post_init_actions
- *
  */
 template <typename GeomTrait, typename = void>
 struct InitDataOp;
 
-/** Update the positions of the immersed boundary nodes.
- *
- *  \ingroup immersed_boundary
+/* Update the positions of the immersed boundary nodes.
  *
  *  After this call, the interface expects updated position vectors in the
  *  vel_pos array of the immersed boundary grid instance. These positions will
@@ -42,9 +35,7 @@ struct InitDataOp;
 template <typename GeomTrait, typename = void>
 struct UpdatePosOp;
 
-/** Process updated velocities from CFD flow field.
- *
- *  \ingroup immersed_boundary
+/* Process updated velocities from CFD flow field.
  *
  *  The immersed boundary physics interface will populate the `vel` array of the
  *  immersed boundary grid instance before calling this function. The updated
@@ -53,10 +44,8 @@ struct UpdatePosOp;
 template <typename GeomTrait, typename = void>
 struct UpdateVelOp;
 
-/** Compute aerodynamic forces at the immersed boundary grid points during a
+/* Compute aerodynamic forces at the immersed boundary grid points during a
  * simulation.
- *
- *  \ingroup immersed_boundary
  */
 template <typename GeomTrait, typename = void>
 struct ComputeForceOp;

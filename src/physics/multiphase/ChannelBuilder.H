@@ -24,7 +24,7 @@ enum class ChannelVelocityProfile : std::uint8_t { Uniform, Linear, Parabolic };
     const amrex::Real& hcoord,
     const amrex::Real& vcoord);
 
-/** Check if a point is within the bounding planes of a segment
+/* Check if a point is within the bounding planes of a segment
  *  defined by start and end points.
  */
 [[nodiscard]] AMREX_GPU_HOST_DEVICE bool is_point_within_planes(
@@ -38,7 +38,7 @@ enum class ChannelVelocityProfile : std::uint8_t { Uniform, Linear, Parabolic };
     const amrex::Real& end_y,
     const amrex::Real& end_z);
 
-/** Calculate local shape dimensions according to linear interpolation between
+/* Calculate local shape dimensions according to linear interpolation between
  * start and end dimensions using length along segment.
  */
 [[nodiscard]] AMREX_GPU_HOST_DEVICE amrex::GpuArray<amrex::Real, 3>
@@ -59,7 +59,7 @@ get_local_dimensions(
     const amrex::Real& dim1_e,
     const amrex::Real& dim2_e);
 
-/** Transform global coordinates to local segment coordinates.
+/* Transform global coordinates to local segment coordinates.
  *  Returns [xloc, yloc, zloc] where xloc is along segment,
  *  yloc is lateral/horizontal, zloc is vertical to segment.
  */
@@ -77,9 +77,7 @@ transform_to_local_coordinates(
     const amrex::Real& end_y,
     const amrex::Real& end_z);
 
-/** Channel segment geometry and velocity initialization physics.
- *  \ingroup physics
- */
+/* Channel segment geometry and velocity initialization physics. */
 
 class ChannelBuilder : public Physics::Register<ChannelBuilder>
 {
@@ -117,7 +115,7 @@ private:
     amrex::Real m_water_level{0.0_rt};
     amrex::Real m_land_level{0.0_rt};
 
-    //! Quantities for constructing channels
+    // Quantities for constructing channels
     amrex::Gpu::DeviceVector<ChannelSegmentType> m_type;
     amrex::Gpu::DeviceVector<amrex::Real> m_dim0_s;
     amrex::Gpu::DeviceVector<amrex::Real> m_dim1_s;
@@ -128,7 +126,7 @@ private:
     amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 3>> m_segment_start;
     amrex::Gpu::DeviceVector<amrex::Array<amrex::Real, 3>> m_segment_end;
 
-    //! Quantities for setting velocity in channels
+    // Quantities for setting velocity in channels
     amrex::Gpu::DeviceVector<ChannelVelocityProfile> m_velocity_profile;
     amrex::Gpu::DeviceVector<amrex::Real> m_flow_speed;
 };

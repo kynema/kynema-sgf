@@ -7,13 +7,13 @@
 
 using namespace amrex::literals;
 
-/** Estimate the new timestep for adaptive timestepping algorithm
+/* Estimate the new timestep for adaptive timestepping algorithm
  *
- * Compute new \f$\Delta t\f$ by using the formula derived in "A Boundary
+ * Compute new \Delta t by using the formula derived in "A Boundary
  * Condition Capturing Method for Multiphase Incompressible Flow" by Kang et al.
  * (JCP).
  *
- *  \f{align}
+ *
  *  \text{CFL} &= \frac{\Delta t}{2}  \left[\left(C+V \right) +
  * \sqrt{\left(C+V\right)^2 + 4 \left(\frac{|F_x|}{\Delta x} +
  * \frac{|F_y|}{\Delta y} + \frac{|F_z|}{\Delta
@@ -21,14 +21,13 @@ using namespace amrex::literals;
  *  C &= \text{max} \left(\frac{|U_x|}{\Delta x} ,\ \frac{|U_y|}{\Delta y} ,\
  * \frac{|U_z|}{\Delta z}\right) && \text{Convection} \\ V &= 2
  * \left(\frac{\mu}{\rho}\right)_\mathrm{max} \left[\frac{1}{\Delta x^2} +
- * \frac{1}{\Delta y^2} + \frac{1}{\Delta z^2} \right] && \text{Diffusion} \f}
+ * \frac{1}{\Delta y^2} + \frac{1}{\Delta z^2} \right] && \text{Diffusion}
  *
- *  \f$F_x, F_y, F_z\f$ are acceleration due to forcing terms. By default,
- *  \f$C\f$ is always used for computing CFL. The term \f$V\f$ is only used when
+ *  F_x, F_y, F_z are acceleration due to forcing terms. By default,
+ *  C is always used for computing CFL. The term V is only used when
  *  the user has chosen implicit or Crank-Nicolson scheme for diffusion, and
  *  contributions from forcing term when `time.use_force_cfl` is `true` (default
  *  is `true`).
- *
  */
 void incflo::compute_dt()
 {

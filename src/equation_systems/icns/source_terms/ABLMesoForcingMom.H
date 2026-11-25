@@ -14,10 +14,9 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Forcing term for meso-micro scale coupled ABL simulations
- *  \ingroup icns_src we_abl
+/* Forcing term for meso-micro scale coupled ABL simulations
  *
- *  \sa ABL
+ *  See ABL
  */
 
 class ABLMesoForcingMom

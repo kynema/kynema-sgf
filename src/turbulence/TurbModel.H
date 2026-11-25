@@ -6,10 +6,9 @@
 
 namespace kynema_sgf::turbulence {
 
-/** Turbulence model with a specific transport model
- *  \ingroup turb_model
+/* Turbulence model with a specific transport model
  *
- *  This templated class allows turbulence model to be specialised based on \ref
+ *  This templated class allows turbulence model to be specialised based on
  *  transport models. All turbulence model implementations inherit from this
  * class.
  */
@@ -28,16 +27,16 @@ public:
         m_alphaeff = &alphaeff;
     }
 
-    //! Return the dynamic viscosity field
+    // Return the dynamic viscosity field
     std::unique_ptr<ScratchField> mu() override { return m_transport.mu(); }
 
-    //! Return the thermal diffusivity field
+    // Return the thermal diffusivity field
     std::unique_ptr<ScratchField> alpha() override
     {
         return m_transport.alpha();
     }
 
-    //! Return the scalar diffusivity field
+    // Return the scalar diffusivity field
     std::unique_ptr<ScratchField>
     scalar_diffusivity(const std::string& name) override
     {
@@ -59,13 +58,13 @@ public:
 protected:
     CFDSim& m_sim;
 
-    //! Transport properties instance
+    // Transport properties instance
     Transport m_transport;
 
-    //! Reference to the effective viscosity field
+    // Reference to the effective viscosity field
     Field* m_mueff{nullptr};
 
-    //! Reference to the thermal diffusivity field
+    // Reference to the thermal diffusivity field
     Field* m_alphaeff{nullptr};
 };
 

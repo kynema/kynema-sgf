@@ -41,10 +41,10 @@ protected:
 
     void convert_aoa_to_radians();
 
-    //! Angle of attack
+    // Angle of attack
     RealList m_aoa;
 
-    //! Airfoil polars (Cl, Cd, Cm)
+    // Airfoil polars (Cl, Cd, Cm)
     VecList m_polar;
 };
 

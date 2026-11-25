@@ -5,9 +5,7 @@
 
 namespace kynema_sgf::fvm {
 
-/** Laplacian operator
- *  \ingroup fvm
- */
+/* Laplacian operator */
 template <typename FTypeIn, typename FTypeOut>
 struct Laplacian
 {
@@ -70,12 +68,7 @@ struct Laplacian
     const FTypeIn& m_phi;
 };
 
-/** Compute the laplacian of a given field
- *  \ingroup fvm
- *
- *  \param lapphi [inout] Field where the laplacian term is populated
- *  \param phi [in] Field whose gradient is computed
- */
+/* Compute the laplacian of a given field */
 template <typename FTypeIn, typename FTypeOut>
 void laplacian(FTypeOut& lapphi, const FTypeIn& phi)
 {
@@ -84,11 +77,7 @@ void laplacian(FTypeOut& lapphi, const FTypeIn& phi)
     impl::apply(lap, phi);
 }
 
-/** Compute the laplacian of a given field and return as ScratchField
- *  \ingroup fvm
- *
- *  \param phi [in] Field whose gradient is computed
- */
+/* Compute the laplacian of a given field and return as ScratchField */
 template <typename FType>
 std::unique_ptr<ScratchField> laplacian(const FType& phi)
 {

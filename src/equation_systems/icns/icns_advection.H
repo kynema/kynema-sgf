@@ -72,9 +72,7 @@ private:
     amrex::Real m_rho_0{1.0_rt};
 };
 
-/** Godunov scheme for ICNS
- *  \ingroup icns
- */
+/* Godunov scheme for ICNS */
 template <>
 struct AdvectionOp<ICNS, fvm::Godunov>
 {
@@ -469,9 +467,7 @@ struct AdvectionOp<ICNS, fvm::Godunov>
     std::string postmac_advection_type{"Godunov"};
 };
 
-/** MOL scheme for ICNS
- *  \ingroup icns
- */
+/* MOL scheme for ICNS */
 template <>
 struct AdvectionOp<ICNS, fvm::MOL>
 {

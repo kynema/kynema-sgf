@@ -17,8 +17,8 @@
 
 namespace kynema_sgf {
 
-/**
- *  \defgroup fields Field management
+/*
+ *  Field management
  *  Field management infrastructure
  *
  *  Field is at the core of Kynema-SGF implementation that handles all the data
@@ -26,28 +26,24 @@ namespace kynema_sgf {
  *  responsible for all memory allocation and reinitialization during regrid
  *  process. Field provides a higher-level interface than MultiFabs and also
  *  provides a unified interface to manage boundary conditions and states.
- *
- *  \ingroup core
  */
 
-/** Object that holds the MultiFab instances at all levels for a given field
- */
+/* Object that holds the MultiFab instances at all levels for a given field */
 struct LevelDataHolder
 {
     LevelDataHolder();
 
-    //! real multifabs for all the known fields at this level
+    // real multifabs for all the known fields at this level
     amrex::Vector<amrex::MultiFab> m_mfabs;
-    //! Factory for creating new FABs
+    // Factory for creating new FABs
     std::unique_ptr<amrex::FabFactory<amrex::FArrayBox>> m_factory;
 
-    //! int fabs for all known fields at this level
+    // int fabs for all known fields at this level
     amrex::Vector<amrex::iMultiFab> m_int_fabs;
     std::unique_ptr<amrex::FabFactory<amrex::IArrayBox>> m_int_fact;
 };
 
-/** Field Repository
- *  \ingroup fields
+/* Field Repository
  *
  *  FieldRepo is a database that manages handling of fields used during a
  *  simulation. It provides an interface to automatically handle the
@@ -96,15 +92,15 @@ public:
     FieldRepo& operator=(const FieldRepo&) = delete;
     ~FieldRepo() = default;
 
-    //! Perform field data management tasks when
-    //! amrex::AmrCore::MakeNewLevelFromScratch is called
+    // Perform field data management tasks when
+    // amrex::AmrCore::MakeNewLevelFromScratch is called
     void make_new_level_from_scratch(
         int lev,
         amrex::Real time,
         const amrex::BoxArray& ba,
         const amrex::DistributionMapping& dm);
 
-    /** Allocate and initialize data on a finer level from the next coarser
+    /* Allocate and initialize data on a finer level from the next coarser
      * level
      *
      *  This is called by the AmrCore automatically during regrid process
@@ -115,7 +111,7 @@ public:
         const amrex::BoxArray& ba,
         const amrex::DistributionMapping& dm);
 
-    /** Allocate and initialize data on an existing level during regrid
+    /* Allocate and initialize data on an existing level during regrid
      *
      *  This is called by the AmrCore automatically during regrid process
      */
@@ -125,17 +121,10 @@ public:
         const amrex::BoxArray& ba,
         const amrex::DistributionMapping& dm);
 
-    //! Remove a level during regrid
+    // Remove a level during regrid
     void clear_level(int lev);
 
-    /** Create a new field instance
-     *
-     *  \param name Unique identifier for this field
-     *  \param ncomp Number of components in this field (default: 1)
-     *  \param ngrow Number of ghost cells/nodes for this field (default: 1)
-     *  \param nstates Number of time states for this field (default: 1)
-     *  \param floc Field location (default: cell-centered)
-     */
+    /* Create a new field instance */
     Field& declare_field(
         const std::string& name,
         int ncomp = 1,
@@ -143,11 +132,11 @@ public:
         int nstates = 1,
         FieldLoc floc = FieldLoc::CELL);
 
-    /** Declare a cell-centered field
+    /* Declare a cell-centered field
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa kynema_sgf::FieldRepo::declare_field
+     *  See kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_cc_field(
         const std::string& name,
@@ -158,11 +147,11 @@ public:
         return declare_field(name, ncomp, ngrow, nstates, FieldLoc::CELL);
     }
 
-    /** Declare a node-centered field
+    /* Declare a node-centered field
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa kynema_sgf::FieldRepo::declare_field
+     *  See kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_nd_field(
         const std::string& name,
@@ -173,11 +162,11 @@ public:
         return declare_field(name, ncomp, ngrow, nstates, FieldLoc::NODE);
     }
 
-    /** Declare a face field on the faces with normal in x-direction
+    /* Declare a face field on the faces with normal in x-direction
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa kynema_sgf::FieldRepo::declare_field
+     *  See kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_xf_field(
         const std::string& name,
@@ -188,11 +177,11 @@ public:
         return declare_field(name, ncomp, ngrow, nstates, FieldLoc::XFACE);
     }
 
-    /** Declare a face field on the faces with normal in y-direction
+    /* Declare a face field on the faces with normal in y-direction
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa kynema_sgf::FieldRepo::declare_field
+     *  See kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_yf_field(
         const std::string& name,
@@ -203,11 +192,11 @@ public:
         return declare_field(name, ncomp, ngrow, nstates, FieldLoc::YFACE);
     }
 
-    /** Declare a face field on the faces with normal in z-direction
+    /* Declare a face field on the faces with normal in z-direction
      *
      *  This is a convenience wrapper around `declare_field`
      *
-     *  \sa kynema_sgf::FieldRepo::declare_field
+     *  See kynema_sgf::FieldRepo::declare_field
      */
     Field& declare_zf_field(
         const std::string& name,
@@ -218,7 +207,7 @@ public:
         return declare_field(name, ncomp, ngrow, nstates, FieldLoc::ZFACE);
     }
 
-    /** Declare a vector field with components in the x,y,z faces
+    /* Declare a vector field with components in the x,y,z faces
      *
      *  This is a convenience function around `declare_field`
      */
@@ -236,40 +225,30 @@ public:
         };
     }
 
-    /** Return a previously created field identified by name and time state
-     */
+    /* Return a previously created field identified by name and time state */
     Field& get_field(
         const std::string& name, FieldState fstate = FieldState::New) const;
 
-    /** Return a previously created field using a unique identifier
-     */
+    /* Return a previously created field using a unique identifier */
     Field& get_field(const int field_id) const
     {
         return *m_field_vec.at(field_id);
     }
 
-    /** Return a previously created mesh mapping field using field location
-     */
+    /* Return a previously created mesh mapping field using field location */
     Field& get_mesh_mapping_field(FieldLoc floc) const;
 
-    /** Return a previously created mesh mapping detJ using field location
-     */
+    /* Return a previously created mesh mapping detJ using field location */
     Field& get_mesh_mapping_det_j(FieldLoc floc) const;
 
-    //! Query if field uniquely identified by name and time state exists in
-    //! repository
+    // Query if field uniquely identified by name and time state exists in
+    // repository
     bool field_exists(
         const std::string& name, FieldState fstate = FieldState::New) const;
 
-    /** Declare an integer field
+    /* Declare an integer field
      *
      *  Integer fields are used for masks and iblanking with overset meshes
-     *
-     *  \param name [in] Unique identifier for the field
-     *  \param ncomp Number of components in this field (default: 1)
-     *  \param ngrow Number of ghost cells/nodes for this field (default: 1)
-     *  \param nstates Number of time states for this field (default: 1)
-     *  \param floc Field location (default: cell-centered)
      */
     IntField& declare_int_field(
         const std::string& name,
@@ -278,11 +257,11 @@ public:
         int nstates = 1,
         FieldLoc floc = FieldLoc::CELL);
 
-    //! Return a reference to an integer field
+    // Return a reference to an integer field
     IntField& get_int_field(
         const std::string& name, FieldState fstate = FieldState::New) const;
 
-    /** Return a reference to a previously created integer field using unique
+    /* Return a reference to a previously created integer field using unique
      * identifier
      */
     IntField& get_int_field(const int field_id) const
@@ -290,11 +269,11 @@ public:
         return *m_int_field_vec.at(field_id);
     }
 
-    //! Query if an integer field exists
+    // Query if an integer field exists
     bool int_field_exists(
         const std::string& name, FieldState fstate = FieldState::New) const;
 
-    /** Create a scratch field
+    /* Create a scratch field
      *
      *  ScratchField is a temporary field used to compute and store intermediate
      *  quantities that are needed within a timestep. Scratch fields provide an
@@ -310,7 +289,7 @@ public:
         int nghost = 0,
         FieldLoc floc = FieldLoc::CELL) const;
 
-    /** Create a scratch field
+    /* Create a scratch field
      *
      *  ScratchField is a temporary field used to compute and store intermediate
      *  quantities that are needed within a timestep. Scratch fields provide an
@@ -341,67 +320,59 @@ public:
     std::unique_ptr<IntScratchField> create_int_scratch_field_on_host(
         int ncomp = 1, int nghost = 0, FieldLoc floc = FieldLoc::CELL) const;
 
-    //! Advance all fields with more than one timestate to the new timestep
+    // Advance all fields with more than one timestate to the new timestep
     void advance_states();
 
-    //! Return a reference to the underlying AMR mesh instance
+    // Return a reference to the underlying AMR mesh instance
     const amrex::AmrCore& mesh() const { return m_mesh; }
 
-    //! Total number of levels currently active in the AMR mesh
+    // Total number of levels currently active in the AMR mesh
     int num_active_levels() const { return m_mesh.finestLevel() + 1; }
 
-    //! Number of fields registered in the database
+    // Number of fields registered in the database
     int num_fields() const { return static_cast<int>(m_field_vec.size()); }
 
-    //! Return list of registered fields and their states
+    // Return list of registered fields and their states
     const amrex::Vector<std::unique_ptr<Field>>& fields() const
     {
         return m_field_vec;
     }
 
-    //! Return factory instance at a given level
+    // Return factory instance at a given level
     const amrex::FabFactory<amrex::FArrayBox>& factory(int lev) const
     {
         return *m_leveldata[lev]->m_factory;
     }
 
 protected:
-    /** Return the amrex::MultiFab instance for a field at a given level
-     *
-     *  \param fid Unique integer field identifier for this field
-     *  \param lev AMR level
-     */
+    /* Return the amrex::MultiFab instance for a field at a given level */
     amrex::MultiFab& get_multifab(const unsigned fid, const int lev)
     {
         BL_ASSERT(lev <= m_mesh.finestLevel());
         return m_leveldata[lev]->m_mfabs[fid];
     }
 
-    /** Return the integer fab instance for a field at a given level
-     *
-     *  \param fid Unique integer field identifier for this field
-     *  \param lev AMR level
-     */
+    /* Return the integer fab instance for a field at a given level */
     amrex::iMultiFab& get_int_fab(const unsigned fid, const int lev)
     {
         BL_ASSERT(lev <= m_mesh.finestLevel());
         return m_leveldata[lev]->m_int_fabs[fid];
     }
 
-    //! Create a new state for a field
+    // Create a new state for a field
     Field& create_state(Field& field, FieldState fstate);
 
-    //! Allocate field data for a single level outside of regrid
+    // Allocate field data for a single level outside of regrid
     void allocate_field_data(
         int lev,
         const Field& field,
         LevelDataHolder& level_data,
         const amrex::FabFactory<amrex::FArrayBox>& factory);
 
-    //! Allocate field data at all levels
+    // Allocate field data at all levels
     void allocate_field_data(Field& field);
 
-    //! Allocate data at a level during regrid
+    // Allocate data at a level during regrid
     void allocate_field_data(
         const amrex::BoxArray& ba,
         const amrex::DistributionMapping& dm,
@@ -419,26 +390,26 @@ protected:
         LevelDataHolder& level_data,
         const amrex::FabFactory<amrex::IArrayBox>& factory);
 
-    //! Reference to the mesh instance
+    // Reference to the mesh instance
     const amrex::AmrCore& m_mesh;
 
-    //! Array (size: nlevels) of data holder that contains another array of
-    //! MultiFabs for all fields at that level.
+    // Array (size: nlevels) of data holder that contains another array of
+    // MultiFabs for all fields at that level.
     amrex::Vector<std::unique_ptr<LevelDataHolder>> m_leveldata;
 
-    //! References to field instances identified by unique integer
+    // References to field instances identified by unique integer
     mutable amrex::Vector<std::unique_ptr<Field>> m_field_vec;
 
-    //! Reference to integer field instances identified by unique integer
+    // Reference to integer field instances identified by unique integer
     mutable amrex::Vector<std::unique_ptr<IntField>> m_int_field_vec;
 
-    //! Map of field name to unique integer ID for lookups
+    // Map of field name to unique integer ID for lookups
     std::unordered_map<std::string, size_t> m_fid_map;
 
-    //! Map of integer field name to unique integer ID for lookups
+    // Map of integer field name to unique integer ID for lookups
     std::unordered_map<std::string, size_t> m_int_fid_map;
 
-    //! Flag indicating if mesh is available to allocate field data
+    // Flag indicating if mesh is available to allocate field data
     bool m_is_initialized{false};
 };
 

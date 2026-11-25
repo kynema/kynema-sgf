@@ -5,7 +5,7 @@
 #include "src/core/FieldRepo.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 
-/** \defgroup ocean_waves Ocean Waves module
+/* Ocean Waves module
  *  Ocean Waves class
  */
 
@@ -17,13 +17,11 @@ namespace ocean_waves {
 
 class OceanWavesModel;
 
-/** ocean waves modeling
- *
- *  \ingroup ocean_waves
+/* ocean waves modeling
  *
  *  This class provides an interface to model
  *
- *  \sa WaveModel
+ *  See WaveModel
  */
 class OceanWaves : public Physics::Register<OceanWaves>
 {
@@ -55,21 +53,21 @@ protected:
 private:
     CFDSim& m_sim;
 
-    //! Unique pointer to the ocean waves model
+    // Unique pointer to the ocean waves model
     std::unique_ptr<OceanWavesModel> m_owm;
 
-    //! Ocean waves target free surface levelset function
+    // Ocean waves target free surface levelset function
     Field& m_ow_levelset;
 
-    //! Ocean waves target volume-of-fluid
+    // Ocean waves target volume-of-fluid
     Field& m_ow_vof;
 
-    //! Ocean waves target velocity
+    // Ocean waves target velocity
     Field& m_ow_velocity;
 
-    //! Multiphase mode forces the velocity and vof in the domain
-    //! When off, single-phase mode simply provides the target variables, and
-    //! forcing is handled in other parts of the code
+    // Multiphase mode forces the velocity and vof in the domain
+    // When off, single-phase mode simply provides the target variables, and
+    // forcing is handled in other parts of the code
     bool m_multiphase_mode{true};
 };
 

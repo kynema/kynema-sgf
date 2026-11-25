@@ -6,8 +6,7 @@
 
 namespace kynema_sgf_tests {
 
-/** Class to handle output capture
- */
+/* Class to handle output capture */
 class CaptureOutput
 {
 public:
