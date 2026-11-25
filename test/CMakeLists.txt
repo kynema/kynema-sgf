@@ -195,6 +195,7 @@ add_test_u(unit_tests 122.19)
 #=============================================================================
 add_test_rd(abl_godunov 483.65)
 add_test_rd(abl_godunov_amg 480)
+add_test_rd(abl_godunov_algebraic 480)
 add_test_rd(abl_godunov_timetable 488.01)
 add_test_rd(abl_godunov_static_refinement 568.44)
 add_test_rd(abl_multiphase_laminar 2544.41)
