@@ -99,7 +99,7 @@ private:
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e3_rt};
 
     //! Absolute tolerance for convergence checks
-    amrex::Real m_bottom_abs_tol{
+    amrex::Real m_bottom_abs_tol_default_gmg{
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e2_rt};
 #else
     //! Relative tolerance for convergence of MLMG solvers
@@ -109,8 +109,10 @@ private:
     //! Absolute tolerance for convergence checks
     amrex::Real m_bottom_abs_tol_default_gmg{
         std::numeric_limits<amrex::Real>::epsilon() * 1.0e4_rt};
-    amrex::Real m_bottom_abs_tol{-1.0_rt};
 #endif
+
+    // Default off bottom absolute tolerance for non-geometric multigrid
+    amrex::Real m_bottom_abs_tol{-1.0_rt};
 
     /** Verbosity of the MLMG and Projector interfaces
      */
