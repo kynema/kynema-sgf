@@ -43,7 +43,7 @@ amrex::Geometry make_geom()
         amrex::IntVect(0), amrex::IntVect(ncell - 1), amrex::IntVect(0));
     const amrex::RealBox rb({0.0_rt, 0.0_rt, 0.0_rt}, {1.0_rt, 1.0_rt, height});
     const amrex::Array<int, AMREX_SPACEDIM> is_periodic{1, 1, 0};
-    return amrex::Geometry(domain, rb, amrex::CoordSys::cartesian, is_periodic);
+    return {domain, rb, amrex::CoordSys::cartesian, is_periodic};
 }
 
 amrex::BoxArray make_ba(const amrex::Geometry& geom)
@@ -58,7 +58,7 @@ amrex::BoxArray make_ba(const amrex::Geometry& geom)
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
 exact_phi(const amrex::Real x, const amrex::Real y, const amrex::Real z)
 {
-    constexpr amrex::Real pi = amrex::Math::pi<amrex::Real>();
+    constexpr auto pi = amrex::Math::pi<amrex::Real>();
     return std::sin(2.0_rt * pi * x) * std::sin(2.0_rt * pi * y) *
            std::sin(pi * z / height);
 }
@@ -66,8 +66,8 @@ exact_phi(const amrex::Real x, const amrex::Real y, const amrex::Real z)
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
 exact_lap(const amrex::Real x, const amrex::Real y, const amrex::Real z)
 {
-    constexpr amrex::Real pi = amrex::Math::pi<amrex::Real>();
-    return -(8.0_rt * pi * pi + pi * pi / (height * height)) *
+    constexpr auto pi = amrex::Math::pi<amrex::Real>();
+    return -((8.0_rt * pi * pi) + (pi * pi / (height * height))) *
            exact_phi(x, y, z);
 }
 
@@ -150,8 +150,9 @@ cell_solve(const std::string& prefix, const amrex::Real scale = 1.0_rt)
     mlmg.solve({&phi}, {&rhs}, options.rel_tol, options.abs_tol);
 
     return {
-        max_error(phi, geom, 0.5_rt, scale), mlmg.getNumIters(),
-        mlmg.usedAlgMG()};
+        .error = max_error(phi, geom, 0.5_rt, scale),
+        .num_iters = mlmg.getNumIters(),
+        .used_algmg = mlmg.usedAlgMG()};
 }
 
 // Nodal Poisson solve, as used by the nodal projection
@@ -183,7 +184,10 @@ SolveResult nodal_solve(const std::string& prefix)
     options(mlmg);
     mlmg.solve({&phi}, {&rhs}, options.rel_tol, options.abs_tol);
 
-    return {max_error(phi, geom, 0.0_rt), mlmg.getNumIters(), mlmg.usedAlgMG()};
+    return {
+        .error = max_error(phi, geom, 0.0_rt),
+        .num_iters = mlmg.getNumIters(),
+        .used_algmg = mlmg.usedAlgMG()};
 }
 
 void add_solver_inputs(
