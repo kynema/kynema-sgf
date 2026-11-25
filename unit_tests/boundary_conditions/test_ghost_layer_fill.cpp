@@ -109,6 +109,112 @@ amrex::Long count_outflow_edge_mismatches(
     return errors;
 }
 
+// Two grids touch the face and span the domain in the first transverse
+// direction, but only part of it in the second, leaving a coarse/fine gap.
+// Ghost cells outside the domain in the first transverse direction and inside
+// a grid's coarse/fine band in the second have no same-level donor; they must
+// receive the physical extension of that grid's own fallback, not keep the
+// base value, and fallbacks must not be shared between grids.
+amrex::Long physical_corner_fill_errors(const amrex::Orientation ori)
+{
+    constexpr int ng = 2;
+    constexpr amrex::Real base = -999.0_rt;
+    const amrex::Box domain(amrex::IntVect(0), amrex::IntVect(15));
+    const amrex::RealBox physical_box(
+        {0.0_rt, 0.0_rt, 0.0_rt}, {1.0_rt, 1.0_rt, 1.0_rt});
+    const amrex::Geometry geom(
+        domain, physical_box, 0, amrex::Array<int, 3>{0, 0, 0});
+    const int dir = ori.coordDir();
+    const int t1 = (dir + 1) % AMREX_SPACEDIM;
+    const int t2 = (dir + 2) % AMREX_SPACEDIM;
+    amrex::BoxList boxes;
+    for (const auto& range :
+         {amrex::IntVect(0, 7, 0), amrex::IntVect(12, 15, 0)}) {
+        auto box = domain;
+        box.setRange(dir, ori.isLow() ? 0 : 12, 4);
+        box.setSmall(t2, range[0]);
+        box.setBig(t2, range[1]);
+        boxes.push_back(box);
+    }
+    const amrex::BoxArray ba(std::move(boxes));
+    amrex::MultiFab mfab(ba, amrex::DistributionMapping(ba), 1, ng);
+    const int boundary = ori.isLow() ? -1 : 16;
+    // Face data on valid transverse cells; each grid's own coarse/fine
+    // fallback on its in-domain gap cells; the base value elsewhere.
+    const auto face_value = [=] AMREX_GPU_DEVICE(int a, int b) {
+        return 10.0_rt + (2.0_rt * boundary) + (3.0_rt * a) + (5.0_rt * b);
+    };
+    const auto fallback_value = [=] AMREX_GPU_DEVICE(int grid, int a, int b) {
+        return -100.0_rt - (10.0_rt * grid) - (0.5_rt * a) - (0.25_rt * b);
+    };
+    for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
+        const auto arr = mfab.array(mfi);
+        const auto valid = mfi.validbox();
+        const int grid = mfi.index();
+        amrex::ParallelFor(
+            mfab[mfi].box(), [=] AMREX_GPU_DEVICE(int i, int j, int k) {
+                const amrex::IntVect iv(i, j, k);
+                const bool normal_ghost =
+                    ori.isLow() ? iv[dir] < 0 : iv[dir] > 15;
+                const bool in_t1 = iv[t1] >= 0 && iv[t1] <= 15;
+                const bool in_t2 = iv[t2] >= 0 && iv[t2] <= 15;
+                const bool own_t2 =
+                    iv[t2] >= valid.smallEnd(t2) && iv[t2] <= valid.bigEnd(t2);
+                arr(iv) = base;
+                if (normal_ghost && in_t1 && own_t2) {
+                    arr(iv) = face_value(iv[t1], iv[t2]);
+                } else if (normal_ghost && in_t1 && in_t2) {
+                    arr(iv) = fallback_value(grid, iv[t1], iv[t2]);
+                }
+            });
+    }
+    amrex::Vector<amrex::BCRec> bcrec(1);
+    for (int d = 0; d < AMREX_SPACEDIM; ++d) {
+        bcrec[0].setLo(d, amrex::BCType::foextrap);
+        bcrec[0].setHi(d, amrex::BCType::foextrap);
+    }
+    bcrec[0].set(ori, amrex::BCType::ext_dir);
+    kynema_sgf::utils::fill_transverse_ghosts(mfab, geom, bcrec, ori, 0, 1);
+
+    amrex::ReduceOps<amrex::ReduceOpSum> reduce_op;
+    amrex::ReduceData<amrex::Long> reduce_data(reduce_op);
+    using ReduceTuple = typename decltype(reduce_data)::Type;
+    for (amrex::MFIter mfi(mfab); mfi.isValid(); ++mfi) {
+        const auto arr = mfab.const_array(mfi);
+        const auto valid = mfi.validbox();
+        const int grid = mfi.index();
+        reduce_op.eval(
+            mfab[mfi].box(), reduce_data,
+            [=] AMREX_GPU_DEVICE(int i, int j, int k) -> ReduceTuple {
+                const amrex::IntVect iv(i, j, k);
+                const bool normal_ghost =
+                    ori.isLow() ? iv[dir] < 0 : iv[dir] > 15;
+                if (!normal_ghost) {
+                    return {0};
+                }
+                const int a = amrex::min(15, amrex::max(0, iv[t1]));
+                const int b = amrex::min(15, amrex::max(0, iv[t2]));
+                const bool own_t2 =
+                    b >= valid.smallEnd(t2) && b <= valid.bigEnd(t2);
+                const bool in_t2 = iv[t2] >= 0 && iv[t2] <= 15;
+                amrex::Real expected = base;
+                if (own_t2) {
+                    // Face data and its physical extensions (unchanged)
+                    expected = face_value(a, b);
+                } else if (in_t2) {
+                    // In-domain coarse/fine band: own fallback, and its
+                    // physical extension outside the domain in t1
+                    expected = fallback_value(grid, a, iv[t2]);
+                }
+                return {static_cast<amrex::Long>(
+                    !(std::abs(arr(iv) - expected) <= tolerance))};
+            });
+    }
+    auto errors = amrex::get<0>(reduce_data.value());
+    amrex::ParallelDescriptor::ReduceLongSum(errors);
+    return errors;
+}
+
 amrex::Long partial_transverse_fill_errors(
     const amrex::Orientation ori,
     const amrex::IntVect& nodal,
@@ -778,6 +884,16 @@ TEST_F(GhostLayerFillTest, transverse_partial_refinement_preserves_fallback)
                     partial_transverse_fill_errors(ori, nodal, periodic), 0);
             }
         }
+    }
+}
+
+TEST_F(
+    GhostLayerFillTest, transverse_partial_refinement_extends_physical_corners)
+{
+    for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
+        const auto ori = oit();
+        SCOPED_TRACE(::testing::Message() << "face " << int(ori));
+        EXPECT_EQ(physical_corner_fill_errors(ori), 0);
     }
 }
 

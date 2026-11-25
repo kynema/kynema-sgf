@@ -145,7 +145,13 @@ low-side scratch cells are excluded from physical fills and donor regions.
 Only valid same-level face data and its physical-boundary extensions are copied
 between grids. At partial refined boundaries, locations without such a donor
 retain their existing auxiliary or coarse/fine fallback values; scratch ghosts
-are not used as donors.
+are not used as donors. A ghost cell that lies outside the domain in one
+transverse direction and in the coarse/fine band of another (e.g., the edge
+between a boundary-plane face and a slip wall, next to the end of a refined
+patch) has no same-level donor. Each grid fills such cells from its own scratch
+slab, which extends the grid's adjacent in-domain value with that physical BC
+rule, instead of retaining the base inflow constant. These values are not
+shared with other grids, and same-level donors still take precedence.
 
 At intersections of prescribed-value faces (=ext_dir= or =direction_dependent=),
 the existing Dirichlet orientation precedence is retained: the later face in
