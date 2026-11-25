@@ -118,7 +118,7 @@ void MLMGOptions::operator()(amrex::MLMG& mlmg)
     mlmg.setMultigridType(m_multigrid_type);
     mlmg.setBottomVerbose(m_bottom_verbose);
     mlmg.setBottomTolerance(m_bottom_rel_tol);
-    mlmg.setBottomToleranceAbs(bottom_abs_tol);
+    mlmg.setBottomToleranceAbs(m_bottom_abs_tol);
 
     if (m_bottom_solver_type == "smoother") {
         mlmg.setBottomSolver(amrex::MLMG::BottomSolver::smoother);
