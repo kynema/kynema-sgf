@@ -12,24 +12,18 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup temp_eqn Temperature transport equation
+/*
+ *  Temperature transport equation
  *  %Temperature transport equation
- *
- *  \ingroup eqsys
  */
 
-/**
- *  \defgroup temp_src Temperature Source terms
+/*
+ *  Temperature Source terms
  *
  *  Source terms used with temperature transport equation
- *
- *  \ingroup temp_eqn
  */
 
-/** Characteristics of temperature transport equation
- *  \ingroup temp_eqn
- */
+/* Characteristics of temperature transport equation */
 struct Temperature : ScalarTransport
 {
     using MLDiffOp = amrex::MLABecLaplacian;
@@ -46,9 +40,7 @@ struct Temperature : ScalarTransport
     static constexpr bool need_nph_state = true;
 };
 
-/** Effective thermal diffusivity update operator
- *  \ingroup temp_eqn
- */
+/* Effective thermal diffusivity update operator */
 template <>
 struct TurbulenceOp<Temperature>
 {

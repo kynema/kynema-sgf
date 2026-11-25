@@ -6,26 +6,23 @@
 
 #include "src/core/Factory.H"
 
-/**
- *  \defgroup amr_utils Mesh refinement
+/*
+ *  Mesh refinement
  *  Mesh refinement
  *
  *  This group contains utilities used for static or adaptive refinement during
  *  a simulation.
- *
- *  \ingroup utilities
  */
 
 namespace kynema_sgf {
 
 namespace tagging {
 
-/** Enumeration for tagging operation types */
+/* Enumeration for tagging operation types */
 enum class TaggingOperator : std::uint8_t { AND, OR, AND_NOT, OR_NOT };
 
-/** Convert string to TaggingOperator enum
- *  \param op The operator string (case-sensitive), needs lowercase
- *  \return The corresponding TaggingOperator enum value
+/* Convert string to TaggingOperator enum
+ *  Returns The corresponding TaggingOperator enum value
  *  \throw Calls amrex::Abort if the string is invalid
  */
 AMREX_FORCE_INLINE TaggingOperator string_to_operator(const std::string& op)
@@ -74,8 +71,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::TagBox::TagVal tag_val(
 
 class CFDSim;
 
-/** Abstract interface for tagging cells for refinement
- *  \ingroup amr_utils
+/* Abstract interface for tagging cells for refinement
  *
  *  This class provides an API that can be used by concrete implementations to
  *  tag cells that must be refined based on a pre-defined criteria. The criteria
@@ -92,14 +88,14 @@ public:
 
     ~RefinementCriteria() override = default;
 
-    //! Perform initialization tasks (e.g., read from file etc.). Called before
-    //! mesh is initialized
+    // Perform initialization tasks (e.g., read from file etc.). Called before
+    // mesh is initialized
     virtual void initialize(const std::string& key) = 0;
 
-    //! Inactive criteria are skipped rather than combined as false predicates.
+    // Inactive criteria are skipped rather than combined as false predicates.
     [[nodiscard]] virtual bool active(int /*level*/) const { return true; }
 
-    /** Accumulate matching cells into a predicate mask using TagBox::SET.
+    /* Accumulate matching cells into a predicate mask using TagBox::SET.
      *
      *  The manager supplies a cleared mask and combines it with existing tags.
      *  Multiple matches within one criterion form a union.
@@ -108,8 +104,8 @@ public:
         int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow) = 0;
 };
 
-/** A collection of refinement criteria instances that are active during a
- * simulation \ingroup amr_utils
+/* A collection of refinement criteria instances that are active during a
+ * simulation
  */
 class RefineCriteriaManager
 {

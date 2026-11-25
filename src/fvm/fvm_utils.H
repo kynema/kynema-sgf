@@ -7,7 +7,7 @@
 
 namespace kynema_sgf::fvm::impl {
 
-/** Apply a finite volume operator for a given field.
+/* Apply a finite volume operator for a given field.
  *
  *  For each level, dispatches one fused kernel per stencil type over all FABs
  *  in the MultiFab, replacing the previous per-FAB MFIter loop.  The interior

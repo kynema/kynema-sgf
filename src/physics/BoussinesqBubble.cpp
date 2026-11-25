@@ -21,10 +21,10 @@ BoussinesqBubble::BoussinesqBubble(CFDSim& sim)
     m_field_init = std::make_unique<BoussinesqBubbleFieldInit>();
 }
 
-/** Initialize the velocity and temperature fields at the beginning of the
+/* Initialize the velocity and temperature fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::BoussinesqBubbleFieldInit
+ *  See kynema_sgf::BoussinesqBubbleFieldInit
  */
 void BoussinesqBubble::initialize_fields(int level, const amrex::Geometry& geom)
 {

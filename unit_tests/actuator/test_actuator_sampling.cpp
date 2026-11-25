@@ -14,8 +14,7 @@ using namespace amrex::literals;
 namespace kynema_sgf_tests {
 namespace {
 
-/** Mock test object to allow access to the data struct
- */
+/* Mock test object to allow access to the data struct */
 class TestActContainer : public kynema_sgf::actuator::ActuatorContainer
 {
 public:
@@ -52,7 +51,7 @@ protected:
     }
 };
 
-//! The same domain with walls in z
+// The same domain with walls in z
 class ActuatorWallTest : public ActuatorTest
 {
 protected:

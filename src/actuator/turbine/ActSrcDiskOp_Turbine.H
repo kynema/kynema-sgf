@@ -15,7 +15,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::actuator::ops {
 
-/** Component of the blade-point epsilon used as the disk width normal to
+/* Component of the blade-point epsilon used as the disk width normal to
  *  the rotor: the thickness input, placed by the solver frame
  *  (ext_turb::epsilon_component)
  */
@@ -49,7 +49,7 @@ private:
     DeviceVecList m_epsilon;
     DeviceTensorList m_orientation;
 
-    //! Index of the first point of each component in the actuator grid
+    // Index of the first point of each component in the actuator grid
     int m_hub_start{0};
     int m_blade_start{0};
     int m_tower_start{0};

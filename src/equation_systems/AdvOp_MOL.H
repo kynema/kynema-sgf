@@ -13,9 +13,7 @@
 
 namespace kynema_sgf::pde {
 
-/** MOL advection operator for scalar transport equations
- *  \ingroup pdeop
- */
+/* MOL advection operator for scalar transport equations */
 template <typename PDE>
 struct AdvectionOp<
     PDE,

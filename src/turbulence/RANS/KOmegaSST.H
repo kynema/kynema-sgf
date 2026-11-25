@@ -10,7 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
 
-/** K-Omega-SST RANS turbulence model
+/* K-Omega-SST RANS turbulence model
  *
  * This also serves as the base class for all k-omega type RANS models
  *
@@ -31,7 +31,6 @@ namespace kynema_sgf::turbulence {
  * Also see
  *
  * http://turbmodels.larc.nasa.gov/sst.html
- *
  */
 template <typename Transport>
 class KOmegaSST : public TurbModelBase<Transport>
@@ -51,26 +50,26 @@ public:
         return "KOmegaSST";
     }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType diff_type) override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {}
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     void post_init_actions() override;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     void post_regrid_actions() override;
 
-    //! Update the effective scalar diffusivity field
+    // Update the effective scalar diffusivity field
     void update_scalar_diff(Field& deff, const std::string& name) override;
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return turbulence model coefficients
+    // Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 protected:
@@ -88,7 +87,7 @@ protected:
     Field* m_tke;
     Field* m_sdr;
 
-    //! Turbulence constants
+    // Turbulence constants
     amrex::Real m_beta_star{0.09_rt};
     amrex::Real m_alpha1{0.5555555555555556_rt};
     amrex::Real m_alpha2{0.44_rt};
@@ -102,7 +101,7 @@ protected:
     amrex::Real m_tke_amb{0.0_rt};
     amrex::Real m_sdr_amb{0.0_rt};
 
-    //! Buoyancy modified constants
+    // Buoyancy modified constants
     bool m_include_buoyancy{false};
     amrex::Real m_buoyancy_factor = 0.0_rt;
     amrex::Real m_sigma_t{0.85_rt};

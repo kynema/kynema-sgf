@@ -221,7 +221,7 @@ void Actuator::communicate_turbine_io()
 #endif
 }
 
-/** Set up the container for sampling fields.
+/* Set up the container for sampling fields.
  *
  *  Allocates memory and initializes the particles corresponding to actuator
  *  nodes for all actuators that influence the current MPI rank. This method is
@@ -252,12 +252,12 @@ void Actuator::setup_particle_container()
     m_container->initialize_container();
 }
 
-/** Update actuator-node positions.
+/* Update actuator-node positions.
  *
  *  This physics-level method asks each relevant ActuatorModel to update its
  *  position vectors, then updates the sampling container positions.
  *
- *  \sa Actuator::update_actuator_and_container_positions
+ *  See Actuator::update_actuator_and_container_positions
  */
 void Actuator::update_actuator_and_container_positions()
 {
@@ -285,12 +285,12 @@ void Actuator::sample_fields()
     m_container->sample_fields(vel, density);
 }
 
-/** Copy sampled fields back into each actuator instance.
+/* Copy sampled fields back into each actuator instance.
  *
  *  ActuatorModel::update_fields passes those fields to the actuator-type
  *  operation that updates its instance data.
  *
- *  \sa Actuator::sample_fields
+ *  See Actuator::sample_fields
  */
 void Actuator::update_actuator_data_from_particles()
 {

@@ -10,21 +10,20 @@
 
 using namespace amrex::literals;
 
-/** Multiphase physics
+/* Multiphase physics
  *
- *  \defgroup multiphase_physics Multiphase physics
+ *  Multiphase physics
  *
  * This class implements the necessary code to simulate multiphase
  * (air-water interaction) problems with Kynema-SGF. It reads the
  * namespace `MultiPhase' from the input file to determine how the
  * initial conditions are generated.
- *
  */
 namespace kynema_sgf {
 
 enum class InterfaceCapturingMethod : std::uint8_t {
-    VOF, ///< Volume of fluid
-    LS   ///< Levelset
+    VOF, // Volume of fluid
+    LS   // Levelset
 };
 
 class MultiPhase : public Physics::Register<MultiPhase>

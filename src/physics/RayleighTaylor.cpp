@@ -15,10 +15,10 @@ RayleighTaylor::RayleighTaylor(const CFDSim& sim)
     , m_field_init(std::make_unique<RayleighTaylorFieldInit>())
 {}
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::RayleighTaylorFieldInit
+ *  See kynema_sgf::RayleighTaylorFieldInit
  */
 void RayleighTaylor::initialize_fields(int level, const amrex::Geometry& geom)
 {

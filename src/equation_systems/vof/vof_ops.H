@@ -6,9 +6,7 @@
 
 namespace kynema_sgf::pde {
 
-/** Field registration operator for VOF equation system
- *  \ingroup vof
- */
+/* Field registration operator for VOF equation system */
 template <typename Scheme>
 struct FieldRegOp<VOF, Scheme>
 {
@@ -35,8 +33,7 @@ struct FieldRegOp<VOF, Scheme>
     CFDSim& sim;
 };
 
-/** Right-hand side (RHS) evaluator for VOF transport equation
- */
+/* Right-hand side (RHS) evaluator for VOF transport equation */
 template <typename Scheme>
 struct ComputeRHSOp<VOF, Scheme>
 {
@@ -60,9 +57,7 @@ struct ComputeRHSOp<VOF, Scheme>
     PDEFields& fields;
 };
 
-/** Implementation of post-processing actions for the VOF equation
- *  \ingroup vof
- */
+/* Implementation of post-processing actions for the VOF equation */
 
 template <>
 struct PostSolveOp<VOF>

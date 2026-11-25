@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** BC operations for incompressible Navier-Stokes
- *  \ingroup icns
- */
+/* BC operations for incompressible Navier-Stokes */
 template <>
 struct BCOp<ICNS>
 {
@@ -20,8 +18,7 @@ struct BCOp<ICNS>
         : m_fields(fields), m_time(time)
     {}
 
-    /** Initialize the BCs for the PDE variable as well as its source term
-     */
+    /* Initialize the BCs for the PDE variable as well as its source term */
     void init_bcs()
     {
         BCVelocity bc(m_fields.field);
@@ -48,8 +45,7 @@ struct BCOp<ICNS>
         gradp.set_default_fillpatch_bc(m_time);
     }
 
-    /** Apply boundary conditions before a linear solve or compute_diff_term
-     */
+    /* Apply boundary conditions before a linear solve or compute_diff_term */
     void apply_bcs(const FieldState rho_state)
     {
         amrex::IntVect ng_diff(1);

@@ -129,7 +129,7 @@ void AMD<Transport>::update_turbulent_viscosity(
     mu_turb.fillpatch(this->m_sim.time().current_time());
 }
 
-//! Update the effective thermal diffusivity field
+// Update the effective thermal diffusivity field
 template <typename Transport>
 void AMD<Transport>::update_alphaeff(Field& alphaeff)
 {

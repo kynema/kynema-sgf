@@ -35,9 +35,8 @@ struct WExact
 
 } // namespace
 
-/** Burggraf Flow physics
- *  \defgroup burggraf_flow Burggraf flow
- *  \ingroup physics
+/* Burggraf Flow physics
+ *  Burggraf flow
  */
 
 class BurggrafFlow : public Physics::Register<BurggrafFlow>
@@ -75,13 +74,13 @@ private:
 
     void output_error();
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
 
-    //! output precision
+    // output precision
     const int m_w{18};
 
-    //! error log file
+    // error log file
     std::string m_output_fname{"burggraf.log"};
 };
 } // namespace kynema_sgf::burggraf

@@ -19,14 +19,10 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Base class for all diffusion operators
- *  \ingroup pdeop
+/* Base class for all diffusion operators
  *
  *  This class provides the common operations for an implicit solution of a
  *  convection-diffusion equation within Kynema-SGF.
- *
- *  \tparam LinOp The linear operator (see [AMREeX
- * docs](https://amrex-codes.github.io/amrex/docs_html/LinearSolvers.html))
  */
 template <typename LinOp>
 class DiffSolverIface
@@ -40,10 +36,7 @@ public:
 
     virtual ~DiffSolverIface() = default;
 
-    /** Implicit solve and update of a linear system
-     *
-     *  \param dt timestep size
-     */
+    /* Implicit solve and update of a linear system */
     virtual void linsys_solve(amrex::Real dt);
 
     virtual void linsys_solve_impl();
@@ -91,7 +84,7 @@ public:
     }
 
 protected:
-    //! Sets up the linear operator (e.g., setup BCs, etc.)
+    // Sets up the linear operator (e.g., setup BCs, etc.)
     virtual void setup_operator(
         LinOp& linop, amrex::Real alpha, amrex::Real beta, FieldState fstate);
 
@@ -108,9 +101,7 @@ protected:
     std::unique_ptr<LinOp> m_applier;
 };
 
-/** Diffusion operator for scalar transport equations
- *  \ingroup pdeop
- */
+/* Diffusion operator for scalar transport equations */
 template <typename PDE, typename Scheme>
 struct DiffusionOp<
     PDE,
@@ -141,7 +132,7 @@ struct DiffusionOp<
                 this->m_pdefields.field, amrex::Orientation::high));
     }
 
-    //! Computes the diffusion term that goes in the RHS
+    // Computes the diffusion term that goes in the RHS
     void compute_diff_term(const FieldState fstate)
     {
         this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);

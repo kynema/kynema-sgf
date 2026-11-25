@@ -12,8 +12,8 @@ namespace kynema_sgf {
 
 class CFDSim;
 
-/**
- *  \defgroup mesh_map Mesh mapping models
+/*
+ *  Mesh mapping models
  *
  *  Kynema-SGF representation of different mesh mapping models
  *
@@ -21,7 +21,7 @@ class CFDSim;
  * class.
  */
 
-/** Abstract representation of different mesh mapping models
+/* Abstract representation of different mesh mapping models
  *
  *  This class defines an abstract API that represents the notion of some
  *  mesh mapping that will be used to scale the mesh. The most common use-case
@@ -34,10 +34,10 @@ public:
 
     ~MeshMap() override = default;
 
-    //! declare mesh mapping fields
+    // declare mesh mapping fields
     void declare_mapping_fields(const CFDSim& /*sim*/, int /*nghost*/);
 
-    //! Construct mesh scaling field
+    // Construct mesh scaling field
     virtual void create_map(int, const amrex::Geometry&) = 0;
 
 protected:

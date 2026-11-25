@@ -85,9 +85,7 @@ struct GpzExact
 
 } // namespace
 
-/** Convecting Taylor Vortex physics
- *  \ingroup physics
- */
+/* Convecting Taylor Vortex physics */
 class ConvectingTaylorVortex : public Physics::Register<ConvectingTaylorVortex>
 {
 public:
@@ -128,22 +126,22 @@ private:
 
     void output_error();
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
 
-    //! mean x-velocity value
+    // mean x-velocity value
     amrex::Real m_u0{1.0_rt};
 
-    //! mean y-velocity value
+    // mean y-velocity value
     amrex::Real m_v0{1.0_rt};
 
-    //! damping
+    // damping
     amrex::Real m_omega;
 
-    //! output precision
+    // output precision
     const int m_w{18};
 
-    //! error log file
+    // error log file
     std::string m_output_fname{"ctv.log"};
 
     bool m_activate_pressure{false};

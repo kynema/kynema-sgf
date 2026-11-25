@@ -30,7 +30,7 @@ import sys
 extensions = [ 'sphinx.ext.mathjax', 'sphinx_toolbox.collapse', 'sphinx_copybutton', 'sphinxcontrib.spelling', 'sphinxcontrib.bibtex']
 
 spelling_word_list_filename = "spelling-wordlist.txt"
-spelling_exclude_patterns = ["doxygen/html/*", "bibrefs.rst"]
+spelling_exclude_patterns = ["bibrefs.rst"]
 spelling_show_suggestions = True
 spelling_warning = True
 spelling_ignore_contributor_names = False

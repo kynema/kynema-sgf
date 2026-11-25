@@ -14,10 +14,7 @@ class CFDSim;
 
 namespace ocean_waves {
 
-/** Abstract representation of an ocean wave type.
- *
- *  \ingroup immersed_boundary
- */
+/* Abstract representation of an ocean wave type. */
 struct OceanWavesType
 {};
 
@@ -27,21 +24,18 @@ using TensorList = amrex::Vector<kynema_sgf::vs::Tensor>;
 using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
 using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
 
-/** Basic information that is common to all wave models
- *
- *  \ingroup ocean_waves
- */
+/* Basic information that is common to all wave models */
 struct OceanWavesInfo
 {
-    //! Unique string identifier for the ocean waves body (wing, turbine)
+    // Unique string identifier for the ocean waves body (wing, turbine)
     std::string label;
 
-    //! Bounding box used to determine processes where this ocean waves
+    // Bounding box used to determine processes where this ocean waves
     amrex::RealBox generation_region;
 
     amrex::RealBox absorption_refion;
 
-    //! Unique integer identifier for the ocean waves
+    // Unique integer identifier for the ocean waves
     int id{-1};
 
     OceanWavesInfo(std::string label_in, const int id_in)
@@ -49,33 +43,23 @@ struct OceanWavesInfo
     {}
 };
 
-/** Abstract representation of data holder for specific ocean waves types.
- *
- *  \ingroup ocean_waves
- *
- */
+/* Abstract representation of data holder for specific ocean waves types. */
 template <typename OceanWavesTrait>
 class OceanWavesDataHolder
 {
 private:
-    //! Instance of the CFD simulation environment
+    // Instance of the CFD simulation environment
     CFDSim& m_sim;
 
-    //! Basic information about this ocean waves component in relation to
-    //! the simulation (usually IBInfo)
+    // Basic information about this ocean waves component in relation to
+    // the simulation (usually IBInfo)
     typename OceanWavesTrait::InfoType m_info;
 
-    //! Additional data necessary for a given wavem type
+    // Additional data necessary for a given wavem type
     typename OceanWavesTrait::MetaType m_meta;
 
 public:
-    /** Initialize the data structures
-     *
-     *  \param sim Instance of the CFD simulation environment
-     *  \param label Unique string identifier for this immersed boundary
-     * component \param id Unique global integer identifier for this immersed
-     * boundary component
-     */
+    /* Initialize the data structures */
     OceanWavesDataHolder(CFDSim& sim, const std::string& label, const int id)
         : m_sim(sim), m_info(label, id), m_meta()
     {}

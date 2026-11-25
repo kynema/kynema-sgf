@@ -12,7 +12,7 @@ namespace kynema_sgf::vs {
 
 using namespace amrex::literals;
 
-/** Scalar-first unit quaternion used to interpolate and compose rotations. */
+/* Scalar-first unit quaternion used to interpolate and compose rotations. */
 struct Quaternion
 {
     amrex::Real w{1.0_rt};
@@ -20,19 +20,19 @@ struct Quaternion
     amrex::Real y{0.0_rt};
     amrex::Real z{0.0_rt};
 
-    //! Normalize this quaternion in place
+    // Normalize this quaternion in place
     Quaternion& normalize();
 
-    //! Return a normalized copy without modifying this quaternion
+    // Return a normalized copy without modifying this quaternion
     [[nodiscard]] Quaternion normalized() const;
 
-    //! Return the quaternion conjugate
+    // Return the quaternion conjugate
     [[nodiscard]] Quaternion conjugate() const;
 };
 
 amrex::Real dot(const Quaternion& a, const Quaternion& b);
 
-//! Rotation composition: apply rhs first, followed by lhs
+// Rotation composition: apply rhs first, followed by lhs
 Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs);
 
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE Tensor tensor_unit(const Quaternion& q)
@@ -64,7 +64,7 @@ from_axis_angle(const Vector& axis, const amrex::Real angle_degrees)
         .z = scale * axis.z()};
 }
 
-//! Compatibility interface for existing axis-angle tensor rotations
+// Compatibility interface for existing axis-angle tensor rotations
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE Tensor
 quaternion(const Vector& axis, const amrex::Real angle_degrees)
 {
@@ -97,7 +97,7 @@ quaternion(const Vector& axis, const amrex::Real angle_degrees)
     return result;
 }
 
-/** Construct Rz(yaw) Ry(pitch) Rx(roll), with angles in degrees. */
+/* Construct Rz(yaw) Ry(pitch) Rx(roll), with angles in degrees. */
 Quaternion from_roll_pitch_yaw(const Vector& angles);
 
 Quaternion slerp(Quaternion a, Quaternion b, amrex::Real fraction);

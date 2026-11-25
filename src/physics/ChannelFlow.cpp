@@ -102,7 +102,7 @@ ChannelFlow::ChannelFlow(CFDSim& sim)
     }
 }
 
-/** Initialize the velocity, density, tke and sdr fields at the beginning of the
+/* Initialize the velocity, density, tke and sdr fields at the beginning of the
  *  simulation.
  */
 void ChannelFlow::initialize_fields(int level, const amrex::Geometry& geom)

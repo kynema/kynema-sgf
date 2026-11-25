@@ -9,7 +9,7 @@ namespace kynema_sgf {
 
 namespace {
 
-/** Read refinement bounding box boxes for a single level from a text file
+/* Read refinement bounding box boxes for a single level from a text file
  *
  *  The file must contain entries per line. The first entry is the total number
  *  of refinement boxes at the current level. This is followed by one entry per
@@ -25,8 +25,7 @@ namespace {
  *  -10.0 10.0 0.0 10.0 20.0 250.0  // T004
  *  ```
  *
- *  \param is Valid open input stream
- *  @return Vector containing RealBox instances for each bounding box
+ *  Returns Vector containing RealBox instances for each bounding box
  */
 amrex::Vector<amrex::RealBox> read_real_boxes(std::istream& is)
 {

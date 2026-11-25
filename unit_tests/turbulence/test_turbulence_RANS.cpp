@@ -424,9 +424,6 @@ TEST_F(TurbRANSTest, test_1eqKrans_setup_calc)
     // Get turbulence model
     auto& tmodel = sim().turbulence_model();
 
-    // Get coefficients
-    auto model_dict = tmodel.model_coeffs();
-
     // Constants for fields
     const amrex::Real srate = 20.0_rt;
     const amrex::Real Tgz = 0.0_rt;

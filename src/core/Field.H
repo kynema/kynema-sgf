@@ -22,12 +22,10 @@ class FieldFillPatchOpsBase;
 class FieldBCIface;
 class SimTime;
 
-/** Information common to a field that has multiple states
- *  \ingroup fields
- */
+/* Information common to a field that has multiple states */
 struct FieldInfo
 {
-    //! Maximum number of states allowed for a field
+    // Maximum number of states allowed for a field
     static constexpr int max_field_states = 5;
 
     FieldInfo(
@@ -35,32 +33,31 @@ struct FieldInfo
 
     ~FieldInfo();
 
-    //! Check indicating whether BCs are being set to sane values
+    // Check indicating whether BCs are being set to sane values
     bool bc_initialized();
 
-    //! Copy the BC information to device data structures
+    // Copy the BC information to device data structures
     void copy_bc_to_device();
 
-    //! Field name without state information
+    // Field name without state information
     std::string m_basename;
 
-    //! Number of components (Scalar = 1, Vector = 2, etc.)
+    // Number of components (Scalar = 1, Vector = 2, etc.)
     int m_ncomp;
 
-    //! Ghost cells
+    // Ghost cells
     amrex::IntVect m_ngrow;
 
-    //! Number of states available for this field
+    // Number of states available for this field
     int m_nstates;
 
-    //! Cell, node, face centered field type
+    // Cell, node, face centered field type
     FieldLoc m_floc;
 
-    ///@{
-    //! Boundary condition data
+    // Boundary condition data
     amrex::GpuArray<BC, AMREX_SPACEDIM * 2> m_bc_type;
     amrex::Vector<amrex::Vector<amrex::Real>> m_bc_values;
-    //! Parsed policy, including BC specializations that do not support UDFs.
+    // Parsed policy, including BC specializations that do not support UDFs.
     amrex::GpuArray<InflowValueSource, AMREX_SPACEDIM * 2>
         m_inflow_value_source{};
     amrex::GpuArray<const amrex::Real*, AMREX_SPACEDIM * 2> m_bc_values_d;
@@ -68,23 +65,21 @@ struct FieldInfo
 
     amrex::Vector<amrex::BCRec> m_bcrec;
     amrex::Gpu::DeviceVector<amrex::BCRec> m_bcrec_d;
-    ///@}
 
-    //! Vector holding references to available states for this field
+    // Vector holding references to available states for this field
     amrex::Vector<Field*> m_states;
 
-    //! Function that handles filling patch and physics BC data for this field
+    // Function that handles filling patch and physics BC data for this field
     amrex::Vector<std::unique_ptr<FieldFillPatchOpsBase>> m_fillpatch_ops;
 
-    //! Custom boundary condition actions for this field
+    // Custom boundary condition actions for this field
     amrex::Vector<std::unique_ptr<FieldBCIface>> m_bc_func;
 
-    //! Flag indicating whether BCs have been initialized and copied to device
+    // Flag indicating whether BCs have been initialized and copied to device
     bool m_bc_copied_to_device{false};
 };
 
-/** Computational field
- *  \ingroup fields
+/* Computational field
  *
  *  This is an abstraction of a collection of MultiFabs over multiple levels,
  *  and allows operations on the field as a whole. The Field cannot be
@@ -120,31 +115,31 @@ public:
     Field& operator=(const Field&) = delete;
     ~Field();
 
-    //! Name of this field (including state information)
+    // Name of this field (including state information)
     [[nodiscard]] const std::string& name() const { return m_name; }
 
-    //! Base name (without state information)
+    // Base name (without state information)
     [[nodiscard]] const std::string& base_name() const
     {
         return m_info->m_basename;
     }
 
-    //! Unique integer identifier for this field
+    // Unique integer identifier for this field
     [[nodiscard]] unsigned id() const { return m_id; }
 
-    //! Number of components for this field
+    // Number of components for this field
     [[nodiscard]] int num_comp() const { return m_info->m_ncomp; }
 
-    //! Ghost cells
+    // Ghost cells
     [[nodiscard]] const amrex::IntVect& num_grow() const
     {
         return m_info->m_ngrow;
     }
 
-    //! Number of exact time states available for this field
+    // Number of exact time states available for this field
     [[nodiscard]] int num_time_states() const { return m_info->m_nstates; }
 
-    //! Number of states available for this field
+    // Number of states available for this field
     [[nodiscard]] int num_states() const
     {
         int ns = static_cast<int>(std::count_if(
@@ -154,13 +149,13 @@ public:
         return ns;
     }
 
-    //! Cell, node, or face centered field
+    // Cell, node, or face centered field
     [[nodiscard]] FieldLoc field_location() const { return m_info->m_floc; }
 
-    //! State of this field instance
+    // State of this field instance
     [[nodiscard]] FieldState field_state() const { return m_state; }
 
-    //! FieldRepo instance that manages this field
+    // FieldRepo instance that manages this field
     [[nodiscard]] FieldRepo& repo() const { return m_repo; }
 
     bool& fillpatch_on_regrid() { return m_fillpatch_on_regrid; }
@@ -169,7 +164,7 @@ public:
         return m_fillpatch_on_regrid;
     }
 
-    //! Return true if the requested state exists for this field
+    // Return true if the requested state exists for this field
     [[nodiscard]] bool query_state(const FieldState fstate) const
     {
         const int fid = static_cast<int>(fstate);
@@ -186,7 +181,7 @@ public:
         return m_info->m_bc_type;
     }
 
-    //! Return reference to the host view of BC values array
+    // Return reference to the host view of BC values array
     amrex::Vector<amrex::Vector<amrex::Real>>& bc_values()
     {
         return m_info->m_bc_values;
@@ -198,7 +193,7 @@ public:
         return m_info->m_inflow_value_source;
     }
 
-    //! Return reference to host view of BCRec array
+    // Return reference to host view of BCRec array
     [[nodiscard]] amrex::Vector<amrex::BCRec>& bcrec() const
     {
         return m_info->m_bcrec;
@@ -216,25 +211,25 @@ public:
         return m_info->m_bcrec_d;
     }
 
-    //! Copy BC data from host to device
-    //!
-    //! The data must have been created on host using the host arrays
-    //!
+    // Copy BC data from host to device
+    //
+    // The data must have been created on host using the host arrays
+    //
     void copy_bc_to_device() { m_info->copy_bc_to_device(); }
 
-    //! Return flag indicating whether BCs have been initialized
+    // Return flag indicating whether BCs have been initialized
     [[nodiscard]] bool bc_initialized() const
     {
         return m_info->m_bc_copied_to_device;
     }
 
-    //! Return a flag indicating whether a fillpatch Op has been registered
+    // Return a flag indicating whether a fillpatch Op has been registered
     [[nodiscard]] bool has_fillpatch_op() const
     {
         return !m_info->m_fillpatch_ops.empty();
     }
 
-    /** Setup default BC conditions for fillpatch operations
+    /* Setup default BC conditions for fillpatch operations
      *
      *  This method initializes the necessary BC data on the field so that a
      *  fillpatch call will interpolations on periodic faces and extrapolation
@@ -245,7 +240,7 @@ public:
         const SimTime& time,
         amrex::BCType::mathematicalBndryTypes bctype = amrex::BCType::hoextrap);
 
-    /** Map field to the uniform mesh
+    /* Map field to the uniform mesh
      *
      *  This method transforms the field to the uniform mesh based on
      *  the fields mesh_scaling_factor_cc or mesh_scaling_factor_nd
@@ -254,7 +249,7 @@ public:
      */
     void to_uniform_space();
 
-    /** Map field to the stretched mesh
+    /* Map field to the stretched mesh
      *
      *  This method transforms the field to the stretched mesh based on
      *  the fields mesh_scaling_factor_cc or mesh_scaling_factor_nd
@@ -263,58 +258,49 @@ public:
      */
     void to_stretched_space();
 
-    //! Return field at a different time state
+    // Return field at a different time state
     Field& state(FieldState fstate);
     [[nodiscard]] const Field& state(FieldState fstate) const;
 
-    //! Return MultiFab instance for a given level
+    // Return MultiFab instance for a given level
     amrex::MultiFab& operator()(int lev);
     const amrex::MultiFab& operator()(int lev) const;
 
-    //! Return a vector of MultiFab pointers for all levels
+    // Return a vector of MultiFab pointers for all levels
     amrex::Vector<amrex::MultiFab*> vec_ptrs();
 
-    //! Return vector of `const MultiFab*` for all levels
+    // Return vector of `const MultiFab*` for all levels
     [[nodiscard]] amrex::Vector<const amrex::MultiFab*> vec_const_ptrs() const;
 
-    //! Advance timestep for fields with multiple states
+    // Advance timestep for fields with multiple states
     void advance_states();
 
-    //! Copy a user-specified "from_state" to "to_state"
+    // Copy a user-specified "from_state" to "to_state"
     void copy_state(FieldState to_state, FieldState from_state);
 
-    //! Create a new time state after the field has been created
+    // Create a new time state after the field has been created
     Field& create_state(FieldState fstate);
 
     // NOTE: We break naming rules for methods here to provide 1-1 mapping with
     // the underlying MultiFab method names.
 
-    //! Set the field to a constant value at all levels
+    // Set the field to a constant value at all levels
     void setVal(amrex::Real value);
 
-    /** Set specific components of a multi-component field to a given value
-     *
-     *  \param value Constant value for initialization
-     *  \param start_comp Starting component index (0-based)
-     *  \param num_comp Number of components from starting component to
-     * initialize
-     *  \param nghost Number of ghost cells to include
-     */
+    /* Set specific components of a multi-component field to a given value */
     void
     setVal(amrex::Real value, int start_comp, int num_comp = 1, int nghost = 0);
 
-    /** Set components to those in the vector for a multi-component field
-     */
+    /* Set components to those in the vector for a multi-component field */
     void setVal(const amrex::Vector<amrex::Real>& values, int nghost = 0);
 
-    /** Return a sub-view of the Field instance
-     */
+    /* Return a sub-view of the Field instance */
     ViewField<Field> subview(const int scomp = 0, const int ncomp = 1)
     {
         return {*this, scomp, ncomp};
     }
 
-    /** Register a custom fillpatch class instance for this field
+    /* Register a custom fillpatch class instance for this field
      *
      *  The class must be a subclass of kynema_sgf::FieldFillPatchOpsBase
      */
@@ -342,8 +328,7 @@ public:
             new T(*this, std::forward<Args>(args)...));
     }
 
-    /** Register a custom boundary conditions class
-     */
+    /* Register a custom boundary conditions class */
     template <typename T, class... Args>
     void register_custom_bc(Args&&... args)
     {
@@ -434,10 +419,10 @@ public:
     bool& in_uniform_space() { return m_mesh_mapped; }
     [[nodiscard]] bool in_uniform_space() const { return m_mesh_mapped; }
 
-    //! Check if any of the boundaries is a mass-inflow-outflow
+    // Check if any of the boundaries is a mass-inflow-outflow
     [[nodiscard]] bool has_inout_bndry() const;
 
-    /** Overwrite ghost cells at mass-inflow-outflow boundaries where the flow
+    /* Overwrite ghost cells at mass-inflow-outflow boundaries where the flow
      *  leaves the domain
      *
      *  Mass-inflow-outflow boundaries are direction_dependent boundaries
@@ -462,26 +447,26 @@ protected:
         unsigned fid,
         FieldState state);
 
-    //! Reference to the FieldRepository instance
+    // Reference to the FieldRepository instance
     FieldRepo& m_repo;
 
-    //! Name of the field
+    // Name of the field
     const std::string m_name;
 
-    //! Common data for all field states
+    // Common data for all field states
     std::shared_ptr<FieldInfo> m_info;
 
-    //! Unique ID for this field
+    // Unique ID for this field
     const unsigned m_id;
 
-    //! State for this field
+    // State for this field
     const FieldState m_state;
 
-    //! Flag indicating whether fill patch operation must be performed for this
-    //! field during regrid
+    // Flag indicating whether fill patch operation must be performed for this
+    // field during regrid
     bool m_fillpatch_on_regrid{false};
 
-    //! Flag to track mesh mapping (to uniform space) of field
+    // Flag to track mesh mapping (to uniform space) of field
     bool m_mesh_mapped{false};
 };
 

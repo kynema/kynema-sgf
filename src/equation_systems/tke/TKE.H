@@ -13,25 +13,18 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup tke_eqn Turbulent Kinetic Energy (TKE) transport equation
+/*
+ *  Turbulent Kinetic Energy (TKE) transport equation
  *  %TKE transport equation
- *
- *  \ingroup eqsys
  */
 
-/**
- *  \defgroup tke_src TKE Source terms
+/*
+ *  TKE Source terms
  *
  *  Source terms used with TKE transport equation
- *
- *  \ingroup tke_eqn
  */
 
-/** Characteristics of TKE transport equation
- *
- *  \ingroup tke_eqn
- */
+/* Characteristics of TKE transport equation */
 struct TKE : ScalarTransport
 {
     using MLDiffOp = amrex::MLABecLaplacian;

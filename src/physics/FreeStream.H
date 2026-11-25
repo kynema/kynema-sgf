@@ -10,8 +10,7 @@
 
 namespace kynema_sgf {
 
-/** Freestream physics
- *  \ingroup physics
+/* Freestream physics
  *
  *  Initializes the velocity, density and any specified scalar fields to
  *  user-defined constant values throughout the domain.
@@ -25,7 +24,7 @@ public:
 
     ~FreeStream() override = default;
 
-    //! Initialize the fields
+    // Initialize the fields
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
     void pre_init_actions() override;

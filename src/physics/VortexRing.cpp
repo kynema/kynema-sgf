@@ -101,7 +101,7 @@ VortexRing::VortexRing(const CFDSim& sim)
     }
 }
 
-/** Initialize the velocity and density fields at the beginning of the
+/* Initialize the velocity and density fields at the beginning of the
  *  simulation.
  */
 void VortexRing::initialize_fields(int level, const amrex::Geometry& /*geom*/)

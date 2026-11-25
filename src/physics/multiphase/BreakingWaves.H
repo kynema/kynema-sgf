@@ -7,29 +7,22 @@
 
 using namespace amrex::literals;
 
-/**
- *  \defgroup breaking_waves Breaking Waves modeling
+/*
+ *  Breaking Waves modeling
  *  Breaking Waves modeling
  *
  *  This group documents all the wave mechanics related physics models available
  * in Kynema-SGF
- *
- *  \ingroup physics
  */
 
-/**
- *  \defgroup we_nwb NWB
+/*
+ *  NWB
  *  Numerical Wave Basin (NWB) modeling
- *
- *  \ingroup breaking_waves
  */
 
 namespace kynema_sgf {
 
-/** Numerical Wave Basin physics
- *  \ingroup we_abl
- *
- */
+/* Numerical Wave Basin physics */
 class BreakingWaves : public Physics::Register<BreakingWaves>
 {
 public:
@@ -56,21 +49,21 @@ private:
     Field& m_levelset;
     Field& m_density;
 
-    //! initial tke value
+    // initial tke value
     amrex::Real m_tke0{0.000001_rt};
 
-    //! initial sdr value
+    // initial sdr value
     amrex::Real m_sdr0{1.0_rt};
 
-    //! Initial free surface amplitude magnitude
+    // Initial free surface amplitude magnitude
     amrex::Real m_amplitude{0.1_rt};
 
     amrex::Real m_air_vel_shear_rate{0.1_rt};
 
-    //! Initial free surface wavelength
+    // Initial free surface wavelength
     amrex::Real m_wavelength{2.0_rt};
 
-    //! Initial zero-level free-surface water depth
+    // Initial zero-level free-surface water depth
     amrex::Real m_waterlevel{0.0_rt};
 
     bool m_laminar{false};

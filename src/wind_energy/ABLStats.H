@@ -26,13 +26,11 @@ namespace pde::temperature {
 class ABLMesoForcingTemp;
 }
 
-/**
- *  \defgroup abl_istats ABL Statistics
+/*
+ *  ABL Statistics
  *
  *  ABLStats contains functions to compute and statistics for ABL
  *  simulations. It supports output in ascii format as well as NetCDF format.
- *
- * \ingroup we_abl
  */
 class ABLStats : public ABLStatsBase::Register<ABLStats>
 {
@@ -54,34 +52,34 @@ public:
     // Perform initialization actions after the mesh has been created
     void post_init_actions() override;
 
-    //! Perform actions before a new timestep
+    // Perform actions before a new timestep
     void pre_advance_work() override {}
 
-    //! Process fields given timestep and output to disk
+    // Process fields given timestep and output to disk
     void post_advance_work() override;
 
-    //! Compute height of capping inversion
+    // Compute height of capping inversion
     void compute_zi();
 
-    //! Return vel plane averaging instance
+    // Return vel plane averaging instance
     const VelPlaneAveraging& vel_profile() const override
     {
         return m_pa_vel_fine;
     };
 
-    //! Return vel plane averaging instance
+    // Return vel plane averaging instance
     const VelPlaneAveraging& vel_profile_coarse() const override
     {
         return m_pa_vel;
     };
 
-    //! Return instance that handles temperature statistics
+    // Return instance that handles temperature statistics
     const FieldPlaneAveraging& theta_profile() const override
     {
         return m_pa_temp;
     }
 
-    //! Return instance that handles temperature statistics
+    // Return instance that handles temperature statistics
     const FieldPlaneAveraging& theta_profile_fine() const override
     {
         return m_pa_temp_fine;
@@ -104,11 +102,11 @@ public:
         m_abl_meso_temp_forcing = forcing;
     }
 
-    //! Calculate sfs stress averages
+    // Calculate sfs stress averages
     void
     calc_sfs_stress_avgs(ScratchField& sfs_stress, ScratchField& t_sfs_stress);
 
-    //! Calculate tke diffusion term by eliminating other terms
+    // Calculate tke diffusion term by eliminating other terms
     void calc_tke_diffusion(
         ScratchField& diffusion,
         const Field& buoy_prod,
@@ -117,24 +115,24 @@ public:
         amrex::Real dt);
 
 protected:
-    //! Read user inputs and create the necessary files
+    // Read user inputs and create the necessary files
     void initialize();
 
-    //! Calculate plane average profiles
+    // Calculate plane average profiles
     void calc_averages();
 
-    //! Output data based on user-defined format
+    // Output data based on user-defined format
     virtual void process_output();
 
-    //! Prepare ASCII file
+    // Prepare ASCII file
     virtual void prepare_ascii_file();
-    //! Prepare NetCDF metadata
+    // Prepare NetCDF metadata
     virtual void prepare_netcdf_file();
 
-    //! Write sampled data into a NetCDF file
+    // Write sampled data into a NetCDF file
     void write_netcdf();
 
-    /** Output sampled data in ASCII format
+    /* Output sampled data in ASCII format
      *
      *  Note that this should be used for debugging only and not in production
      *  runs as it can have significant impacts on code performance.
@@ -157,14 +155,14 @@ private:
     SecondMomentAveraging m_pa_uu;
     ThirdMomentAveraging m_pa_uuu;
 
-    //! Reference to ABL forcing term if present
+    // Reference to ABL forcing term if present
     mutable pde::icns::ABLForcing* m_abl_forcing{nullptr};
 
     mutable pde::icns::ABLMesoForcingMom* m_abl_meso_mom_forcing{nullptr};
     mutable pde::temperature::ABLMesoForcingTemp* m_abl_meso_temp_forcing{
         nullptr};
 
-    //! Format of the data output (ascii, netcdf, etc.)
+    // Format of the data output (ascii, netcdf, etc.)
 #ifdef KYNEMA_SGF_USE_NETCDF
     std::string m_out_fmt{"netcdf"};
     std::string m_ncfile_name;
@@ -173,34 +171,34 @@ private:
 #endif
     std::string m_ascii_file_name;
 
-    //! Maximum level to consider in planar averages: -1 means no limit
+    // Maximum level to consider in planar averages: -1 means no limit
     int m_max_level{-1};
     // This also controls what is considered as the first cell height,
     // which is the default log law height in the wall function
 
-    //! Time step interval for data sampling and output
+    // Time step interval for data sampling and output
     int m_out_freq{100};
 
-    //! Acceleration due to gravity magnitude
+    // Acceleration due to gravity magnitude
     amrex::Real m_gravity{9.81_rt};
 
-    //! Von-Karman constant
+    // Von-Karman constant
     amrex::Real m_kappa{0.41_rt};
 
-    //! Variable to store capping inversion height
+    // Variable to store capping inversion height
     amrex::Real m_zi{0.0_rt};
 
-    //! Wall-normal direction axis
+    // Wall-normal direction axis
     int m_normal_dir{2};
 
-    //! Cell spacing at the coarsest level
+    // Cell spacing at the coarsest level
     amrex::Real m_dn{0.0_rt};
 
-    //! Number of cells in the horizontal direction
+    // Number of cells in the horizontal direction
     size_t m_ncells_h1{0};
     size_t m_ncells_h2{0};
 
-    //! Do energy budget
+    // Do energy budget
     bool m_do_energy_budget{false};
 };
 

@@ -164,14 +164,9 @@ struct ForestPoint
     amrex::Real m_lad;
 };
 
-/** LAD of a legacy cylindrical forest at a point
+/* LAD of a legacy cylindrical forest at a point
  *
- *  \param fst Forest descriptor (m_drag_mode == 0)
- *  \param x Point x coordinate
- *  \param y Point y coordinate
- *  \param zagl Point height above the local ground
- *  \param lad Leaf area density at the point (output)
- *  \return true when the point lies inside the forest cylinder
+ *  Returns true when the point lies inside the forest cylinder
  */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool cylinder_lad(
     const Forest& fst,
@@ -192,18 +187,9 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool cylinder_lad(
     return false;
 }
 
-/** LAD of a point-cloud forest at a point by inverse-distance weighting
+/* LAD of a point-cloud forest at a point by inverse-distance weighting
  *
- *  \param fst Forest descriptor (m_drag_mode == 1)
- *  \param points Flattened point-cloud samples of all forests
- *  \param hull_edges Flattened convex hull edges of all forests
- *  \param x Point x coordinate
- *  \param y Point y coordinate
- *  \param z Point height, in the same frame as the sample heights
- *  \param half_dz Half the cell height, for the canopy-top cutoff
- *  \param num_neighbors Number of nearest samples to weight (at most 8)
- *  \param interp_eps Regularization length of the weights
- *  \return Interpolated LAD, zero outside the hull or above the canopy
+ *  Returns Interpolated LAD, zero outside the hull or above the canopy
  */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real point_cloud_lad(
     const Forest& fst,
@@ -284,9 +270,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real point_cloud_lad(
     return lad_interp;
 }
 
-/** Forestdrag Flow physics
- *  \ingroup physics
- */
+/* Forestdrag Flow physics */
 
 class ForestDrag : public Physics::Register<ForestDrag>
 {

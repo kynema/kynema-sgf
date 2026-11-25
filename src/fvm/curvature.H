@@ -8,9 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::fvm {
 
-/** Curvature operator
- *  \ingroup fvm
- */
+/* Curvature operator */
 template <typename FTypeIn, typename FTypeOut>
 struct Curvature
 {
@@ -142,9 +140,7 @@ struct Curvature
     const FTypeIn& m_phi;
 };
 
-/** Compute curvature
- *  \ingroup fvm
- */
+/* Compute curvature */
 template <typename FTypeIn, typename FTypeOut>
 void curvature(FTypeOut& curphi, const FTypeIn& phi)
 {
@@ -153,9 +149,7 @@ void curvature(FTypeOut& curphi, const FTypeIn& phi)
     impl::apply(cur, phi);
 }
 
-/** Compute curvature
- *  \ingroup fvm
- */
+/* Compute curvature */
 template <typename FType>
 std::unique_ptr<ScratchField> curvature(const FType& phi)
 {

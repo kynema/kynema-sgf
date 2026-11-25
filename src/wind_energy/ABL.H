@@ -18,21 +18,17 @@
 
 using namespace amrex::literals;
 
-/**
- *  \defgroup wind Wind energy modeling
+/*
+ *  Wind energy modeling
  *  Wind energy modeling
  *
  *  This group documents all the wind-energy related physics models available in
  *  Kynema-SGF
- *
- *  \ingroup physics
  */
 
-/**
- *  \defgroup we_abl ABL
+/*
+ *  ABL
  *  Atmospheric boundary layer (ABL) modeling
- *
- *  \ingroup wind
  */
 
 class incflo;
@@ -53,8 +49,7 @@ class ABLMesoForcingTemp;
 class HurricaneTempForcing;
 } // namespace pde::temperature
 
-/** Atmospheric Boundary Layer physics
- *  \ingroup we_abl
+/* Atmospheric Boundary Layer physics
  *
  *  This class implements the necessary code to simulation atmospheric boundary
  *  layers with Kynema-SGF. It reads the namespace `ABL` from the input file to
@@ -63,7 +58,7 @@ class HurricaneTempForcing;
  *  data to be used by wall models as well as any ABLForcing terms that might be
  *  active.
  *
- *  \sa ABLFieldInit, ABLWallFunction, FieldPlaneAveraging, BoundaryPlane
+ *  See ABLFieldInit, ABLWallFunction, FieldPlaneAveraging, BoundaryPlane
  */
 class ABL : public Physics::Register<ABL>
 {
@@ -116,7 +111,7 @@ public:
         m_hurricane_temp_forcing = forcing;
     }
 
-    //! Return the ABL statistics calculator
+    // Return the ABL statistics calculator
     const ABLStatsBase& abl_statistics() const { return *m_stats; }
 
     const ABLMesoscaleInput& abl_meso_file() const { return *m_meso_file; }
@@ -135,16 +130,16 @@ private:
 
     ABLWallFunction m_abl_wall_func;
 
-    //! ABL field initializer instance
+    // ABL field initializer instance
     std::unique_ptr<ABLFieldInit> m_field_init;
 
-    //! Reference to ABL forcing term if present
+    // Reference to ABL forcing term if present
     mutable pde::icns::ABLForcing* m_abl_forcing{nullptr};
 
-    //! ABL integrated statistics object
+    // ABL integrated statistics object
     std::unique_ptr<ABLStatsBase> m_stats;
 
-    //! ABL anelastic instance
+    // ABL anelastic instance
     std::unique_ptr<ABLAnelastic> m_abl_anelastic;
 
     mutable pde::icns::ABLMeanBoussinesq* m_abl_mean_bous{nullptr};
@@ -158,15 +153,15 @@ private:
     mutable pde::icns::HurricaneForcing* m_hurricane_forcing{nullptr};
     mutable pde::temperature::HurricaneTempForcing* m_hurricane_temp_forcing{
         nullptr};
-    //! Default value set based on https://turbmodels.larc.nasa.gov/sst.html
+    // Default value set based on https://turbmodels.larc.nasa.gov/sst.html
     amrex::Real m_init_sdr{25.0_rt};
 
-    //! Hybrid RANS-LES with Nalu-wind
+    // Hybrid RANS-LES with Nalu-wind
     bool m_hybrid_rl{false};
 
-    //! File input flag
+    // File input flag
     bool m_file_input{false};
-    //! File input initializer
+    // File input initializer
     std::unique_ptr<ABLFieldInitFile> m_field_init_file;
 };
 

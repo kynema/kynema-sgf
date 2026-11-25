@@ -8,9 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::tke {
 
-/** TKE source term based on Moeng 1984 paper
- *  \ingroup tke_src turb_model we_abl
- */
+/* TKE source term based on Moeng 1984 paper */
 class KsgsM84Src : public TKESource::Register<KsgsM84Src>
 {
 public:

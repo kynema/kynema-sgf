@@ -25,18 +25,12 @@ class NCFile;
 
 namespace ext_turb {
 
-/** Number of time steps in an interval that has to hold a whole number of
+/* Number of time steps in an interval that has to hold a whole number of
  *  them
  *
  *  Nearest integer to interval / dt. Aborts when the ratio is further from it
  *  than rel_tol (relative, round-off of the division) or step_tol (in steps)
  *  allows.
- *
- *  \param interval Length of the interval
- *  \param dt Time step
- *  \param interval_name Input that sets the interval, start of the message
- *  \param dt_name Input that sets the time step
- *  \param step_tol Accepted distance from a whole number of steps
  */
 inline int num_whole_steps(
     const amrex::Real interval,
@@ -127,7 +121,7 @@ protected:
         const ncutils::NCFile& /*unused*/,
         size_t tid);
 
-    //! Global to local index lookup map
+    // Global to local index lookup map
     std::map<int, int> m_turbine_map;
 
     std::vector<SolverTurbine*> m_turbine_data;

@@ -9,8 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Apply Rayleigh damping as a source terms
- * \ingroup icns_src
+/* Apply Rayleigh damping as a source terms
  *
  * The implementation is based on a private communication I (G. Deskos)
  * had with Matt Churchfield
@@ -33,19 +32,19 @@ private:
 
     const Field& m_velocity;
 
-    //! Reference velocity defined as an input
+    // Reference velocity defined as an input
     amrex::Vector<amrex::Real> m_ref_vel{15.0_rt, 0.0_rt, 0.0_rt};
 
-    //! Full length of the damping layer
+    // Full length of the damping layer
     amrex::Real m_dRD{500.};
 
-    //! Damping length
+    // Damping length
     amrex::Real m_dFull{300.};
 
-    //! Time scale defined by the user
+    // Time scale defined by the user
     amrex::Real m_tau{5.0_rt};
 
-    //! Which coordinate directions are forced
+    // Which coordinate directions are forced
     amrex::Vector<int> m_fcoord{1, 1, 1};
 };
 

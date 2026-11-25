@@ -11,10 +11,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::ib {
 
-/** Base data representation of an IB geometry.
- *
- *  \ingroup immersed_boundary
- */
+/* Base data representation of an IB geometry. */
 struct BluffBodyBaseData
 {
     bool is_moving{false};
@@ -25,7 +22,7 @@ struct BluffBodyBaseData
 
     amrex::Vector<amrex::Real> vel_bc{0.0_rt, 0.0_rt, 0.0_rt};
 
-    //! Total integrated forces on the immersed body
+    // Total integrated forces on the immersed body
     amrex::Vector<amrex::Real> frc{0.0_rt, 0.0_rt, 0.0_rt};
 };
 

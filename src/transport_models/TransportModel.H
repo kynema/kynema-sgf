@@ -9,8 +9,8 @@
 
 namespace kynema_sgf::transport {
 
-/**
- *  \defgroup transport Transport models
+/*
+ *  Transport models
  *
  *  Kynema-SGF representation of fluid transport models.
  *
@@ -22,12 +22,9 @@ namespace kynema_sgf::transport {
  *  The turbulence models are templated on transport model to provide different
  *  behavior depending on fluid transport model chosen by the user. For more
  *  details see kynema_sgf::turbulence::TurbModel implementation.
- *
  */
 
-/** Abstract representation of a transport model
- *  \ingroup transport
- */
+/* Abstract representation of a transport model */
 class TransportModel : public Factory<TransportModel, const CFDSim&>
 {
 public:
@@ -35,29 +32,29 @@ public:
 
     ~TransportModel() override = default;
 
-    //! Dynamic laminar viscosity (kg/m/s)
+    // Dynamic laminar viscosity (kg/m/s)
     virtual std::unique_ptr<ScratchField> mu() = 0;
 
-    //! Thermal diffusivity
+    // Thermal diffusivity
     virtual std::unique_ptr<ScratchField> alpha() = 0;
 
-    //! Scalar diffusivity based on Schmidt number
+    // Scalar diffusivity based on Schmidt number
     virtual std::unique_ptr<ScratchField>
     scalar_diffusivity(const std::string& scalar_name) = 0;
 
-    //! Thermal expansion coefficient
+    // Thermal expansion coefficient
     [[nodiscard]] virtual std::unique_ptr<ScratchField> beta() const = 0;
 
-    //! Reference temperature
+    // Reference temperature
     [[nodiscard]] virtual amrex::Real reference_temperature() const = 0;
 
-    //! Reference temperature
+    // Reference temperature
     [[nodiscard]] virtual std::unique_ptr<ScratchField> ref_theta() const = 0;
 
-    //! Fill an entire MultiFab with thermal expansion coefficient (level-wide)
+    // Fill an entire MultiFab with thermal expansion coefficient (level-wide)
     virtual void beta_fill(int lev, amrex::MultiFab& beta_mf) const = 0;
 
-    //! Fill an entire MultiFab with reference temperature (level-wide)
+    // Fill an entire MultiFab with reference temperature (level-wide)
     virtual void
     ref_theta_fill(int lev, amrex::MultiFab& ref_theta_mf) const = 0;
 

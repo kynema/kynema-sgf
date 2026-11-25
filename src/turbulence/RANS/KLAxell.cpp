@@ -127,7 +127,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
         const auto& shear_prod_arrs = (this->m_shear_prod)(lev).arrays();
         const auto& beta_arrs = (*beta)(lev).const_arrays();
 
-        //! Add terrain components
+        // Add terrain components
         const bool has_terrain =
             this->m_sim.repo().int_field_exists("terrain_blank");
         if (has_terrain) {

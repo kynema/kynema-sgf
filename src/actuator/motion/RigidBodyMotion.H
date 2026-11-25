@@ -10,7 +10,7 @@
 
 namespace kynema_sgf::actuator::motion {
 
-/** Prescribed translation and orientation of a rigid body.
+/* Prescribed translation and orientation of a rigid body.
  *
  * Positions and velocities are in the global CFD frame. The orientation is
  * the active rotation that maps body-frame vectors into that frame.

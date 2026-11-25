@@ -28,7 +28,7 @@ namespace act = kynema_sgf::actuator;
 namespace vs = kynema_sgf::vs;
 namespace utils = kynema_sgf::utils;
 
-//! Turbine actuator without an external solver, to drive the disk source op
+// Turbine actuator without an external solver, to drive the disk source op
 struct DiskTurbine : public act::TurbineType
 {
     using InfoType = act::TurbineInfo;

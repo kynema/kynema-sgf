@@ -13,8 +13,7 @@ class CFDSim;
 
 namespace pde {
 
-/** Representation of a momentum source term
- *  \ingroup icns_src
+/* Representation of a momentum source term
  *
  *  All momentum source terms must inherit from this class
  */

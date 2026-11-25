@@ -5,9 +5,7 @@
 
 namespace kynema_sgf::fvm {
 
-/** Divergence operator
- *  \ingroup fvm
- */
+/* Divergence operator */
 template <typename FTypeIn, typename FTypeOut>
 struct Divergence
 {
@@ -82,9 +80,7 @@ struct Divergence
     const FTypeIn& m_phi;
 };
 
-/** Compute the divergence of a vector field
- *  \ingroup fvm
- */
+/* Compute the divergence of a vector field */
 template <typename FTypeIn, typename FTypeOut>
 void divergence(FTypeOut& divphi, const FTypeIn& phi)
 {
@@ -93,9 +89,7 @@ void divergence(FTypeOut& divphi, const FTypeIn& phi)
     impl::apply(grad, phi);
 }
 
-/** Compute the divergence of a vector field
- *  \ingroup fvm
- */
+/* Compute the divergence of a vector field */
 template <typename FType>
 std::unique_ptr<ScratchField> divergence(const FType& phi)
 {

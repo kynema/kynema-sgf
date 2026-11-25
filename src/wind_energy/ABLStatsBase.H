@@ -16,8 +16,8 @@ class ABLMesoForcingTemp;
 }
 
 enum class ABLStatsMode : std::uint8_t {
-    computed = 0, ///! Computed using planar averages
-    prescribed    ///! Prescribed as user inputs
+    computed = 0, //! Computed using planar averages
+    prescribed    //! Prescribed as user inputs
 };
 
 class ABLStatsBase
@@ -30,29 +30,29 @@ public:
 
     ~ABLStatsBase() override = default;
 
-    //! Flag indicating ABL simulation mode
+    // Flag indicating ABL simulation mode
     [[nodiscard]] virtual ABLStatsMode abl_mode() const = 0;
 
-    //! Maximum level considered for "coarse" planar averages
+    // Maximum level considered for "coarse" planar averages
     [[nodiscard]] virtual const int& max_level() const = 0;
 
-    //! Interpolating object for vertical velocity profile
+    // Interpolating object for vertical velocity profile
     [[nodiscard]] virtual const VelPlaneAveraging&
     vel_profile_coarse() const = 0;
     [[nodiscard]] virtual const VelPlaneAveraging& vel_profile() const = 0;
 
-    //! Interpolating object for vertical temperature profile
+    // Interpolating object for vertical temperature profile
     [[nodiscard]] virtual const FieldPlaneAveraging& theta_profile() const = 0;
     [[nodiscard]] virtual const FieldPlaneAveraging&
     theta_profile_fine() const = 0;
 
-    //! Perform initialization actions after the mesh has been created
+    // Perform initialization actions after the mesh has been created
     virtual void post_init_actions() = 0;
 
-    //! Perform actions at the beginning of a timestep
+    // Perform actions at the beginning of a timestep
     virtual void pre_advance_work() = 0;
 
-    //! Perform actions at the end of a timestep
+    // Perform actions at the end of a timestep
     virtual void post_advance_work() = 0;
 
     virtual void

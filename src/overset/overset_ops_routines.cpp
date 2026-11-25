@@ -5,14 +5,14 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::overset_ops {
 
-/** Convert iblanks to AMReX mask
+/* Convert iblanks to AMReX mask
  *
- *  \f{align}
+ *
  *  \mathrm{mask}_{i,j,k} = \begin{cases}
  *  1 & \mathrm{IBLANK}_{i, j, k} = 1 \\
  *  0 & \mathrm{IBLANK}_{i, j, k} \leq 0
  *  \end{cases}
- *  \f}
+ *
  */
 void iblank_to_mask(const IntField& iblank, IntField& maskf)
 {
@@ -33,7 +33,7 @@ void iblank_to_mask(const IntField& iblank, IntField& maskf)
     amrex::Gpu::streamSynchronize();
 }
 
-/** VOF-sensitive conversion of iblank to mask at nodes
+/* VOF-sensitive conversion of iblank to mask at nodes
  *
  * Masks most of the domain, including a layer around solid bodies, but avoids
  * masking cells near the interface
@@ -95,7 +95,7 @@ void iblank_node_to_mask_vof(
     amrex::Gpu::streamSynchronize();
 }
 
-/** VOF-sensitive conversion of iblank to mask at cells
+/* VOF-sensitive conversion of iblank to mask at cells
  *
  * Same concept as iblank_node_to_mask_vof, but for MAC projection
  */
@@ -156,7 +156,7 @@ void prepare_mask_cell_for_mac(FieldRepo& repo)
     }
 }
 
-/** Convert iblank to mask using ordinary method
+/* Convert iblank to mask using ordinary method
  *
  * Intended to return mask_cell back to original values following
  * prepare_mask_cell_for_mac because mask_cell is used in other parts of the

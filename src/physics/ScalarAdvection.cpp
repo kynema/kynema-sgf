@@ -163,7 +163,7 @@ ScalarAdvection::ScalarAdvection(CFDSim& sim)
     pp_incflo.query("density", m_rho);
 }
 
-/** Initialize the velocity and passive scalar fields at the beginning of the
+/* Initialize the velocity and passive scalar fields at the beginning of the
  *  simulation.
  */
 void ScalarAdvection::initialize_fields(

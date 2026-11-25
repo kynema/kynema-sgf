@@ -7,8 +7,7 @@
 
 namespace kynema_sgf::vs {
 
-/** Tensor in 3D vector space
- */
+/* Tensor in 3D vector space */
 template <typename T>
 struct TensorT
 {

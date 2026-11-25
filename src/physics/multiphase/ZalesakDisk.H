@@ -7,10 +7,7 @@
 
 using namespace amrex::literals;
 
-/** Multiphase Zalesak disk physics
- *  \ingroup multiphase_physics
- *
- */
+/* Multiphase Zalesak disk physics */
 
 namespace kynema_sgf {
 
@@ -27,7 +24,7 @@ public:
 
     ~ZalesakDisk() override = default;
 
-    //! Initialize the levelset and velocity fields for Vortex Patch simulations
+    // Initialize the levelset and velocity fields for Vortex Patch simulations
 
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
@@ -46,19 +43,19 @@ private:
     Field& m_levelset;
     Field& m_density;
 
-    //! Initial ZalesakDisk location
+    // Initial ZalesakDisk location
     amrex::Vector<amrex::Real> m_loc{0.5_rt, 0.72_rt, 0.24_rt};
 
-    //! sphere radius value
+    // sphere radius value
     amrex::Real m_radius{0.16_rt};
 
-    //! slot half width value
+    // slot half width value
     amrex::Real m_halfwidth{0.04_rt};
 
-    //! slot depth
+    // slot depth
     amrex::Real m_depth{0.2_rt};
 
-    //! prescribed velocity period
+    // prescribed velocity period
     amrex::Real m_TT{6.0_rt};
 };
 

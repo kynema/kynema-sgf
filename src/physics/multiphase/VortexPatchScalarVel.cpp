@@ -24,10 +24,10 @@ VortexPatchScalarVel::VortexPatchScalarVel(CFDSim& sim)
     pinc.add("prescribe_velocity", true);
 }
 
-/** Initialize the velocity and levelset fields at the beginning of the
+/* Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::VortexPatchScalarVelFieldInit
+ *  See kynema_sgf::VortexPatchScalarVelFieldInit
  */
 void VortexPatchScalarVel::initialize_fields(
     int level, const amrex::Geometry& geom)

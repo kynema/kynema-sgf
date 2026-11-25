@@ -6,15 +6,13 @@
 
 using namespace amrex::literals;
 
-/**
- *  \defgroup shear_stress Shear Stress Wall Models
+/*
+ *  Shear Stress Wall Models
  *
  *   ShearStress contains functions to compute velocity and temperature shear
  * stress wall models the default is the Moeng wall model specifying the wall
  * model is done through the input file using ABL.wall_shear_stress_type options
  * include "constant", "local", "Schumann", and "Moeng"
- *
- * \ingroup we_abl
  */
 
 namespace kynema_sgf {

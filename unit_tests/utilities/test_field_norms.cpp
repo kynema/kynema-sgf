@@ -60,7 +60,7 @@ void init_velocity(
     amrex::Gpu::streamSynchronize();
 }
 
-//! Custom mesh class to be able to refine like a simulation would
+// Custom mesh class to be able to refine like a simulation would
 //  - combination of AmrTestMesh and incflo classes
 //  - with ability to initialize the refiner and regrid
 class FNRefinemesh : public AmrTestMesh

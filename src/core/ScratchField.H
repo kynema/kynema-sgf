@@ -14,8 +14,7 @@ namespace kynema_sgf {
 
 class FieldRepo;
 
-/** A temporary computational field
- *  \ingroup fields
+/* A temporary computational field
  *
  *  A ScratchField is similar to a Field in usage, but is temporary in nature.
  *  It is used as a scratch buffer to compute intermediate quantities. However,
@@ -34,19 +33,19 @@ public:
     ScratchField(const ScratchField&) = delete;
     ScratchField& operator=(const ScratchField&) = delete;
 
-    //! Name if available for this scratch field
+    // Name if available for this scratch field
     [[nodiscard]] const std::string& name() const { return m_name; }
 
-    //! Number of components for this field
+    // Number of components for this field
     [[nodiscard]] int num_comp() const { return m_ncomp; }
 
-    //! Ghost cells
+    // Ghost cells
     [[nodiscard]] const amrex::IntVect& num_grow() const { return m_ngrow; }
 
-    //! Cell, node, face where the field is stored
+    // Cell, node, face where the field is stored
     [[nodiscard]] FieldLoc field_location() const { return m_floc; }
 
-    //! Return the field data for a given level
+    // Return the field data for a given level
     amrex::MultiFab& operator()(int lev) { return m_data[lev]; }
     const amrex::MultiFab& operator()(int lev) const { return m_data[lev]; }
 
@@ -60,18 +59,17 @@ public:
         return amrex::GetVecOfConstPtrs(m_data);
     }
 
-    //! Return a reference to the field repository that created this field
+    // Return a reference to the field repository that created this field
     [[nodiscard]] const FieldRepo& repo() const { return m_repo; }
 
-    /** Return a sub-view of the ScratchField instance
-     */
+    /* Return a sub-view of the ScratchField instance */
     ViewField<ScratchField> subview(const int scomp = 0, const int ncomp = 1)
     {
         return {*this, scomp, ncomp};
     }
 
-    //! Fill ghosts, using additional coarse levels when two-level nesting
-    //! cannot guarantee all interpolation donors are valid.
+    // Fill ghosts, using additional coarse levels when two-level nesting
+    // cannot guarantee all interpolation donors are valid.
     void fillpatch(amrex::Real time);
     void fillpatch(amrex::Real time, const amrex::IntVect& ng);
 

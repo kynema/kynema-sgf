@@ -13,8 +13,7 @@ class CFDSim;
 
 namespace pde {
 
-/** Representation of a temperature source term
- *  \ingroup temp_src
+/* Representation of a temperature source term
  *
  *  All temperature source terms must inherit from this class
  */

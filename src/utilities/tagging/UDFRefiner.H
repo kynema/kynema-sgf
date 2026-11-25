@@ -7,10 +7,7 @@
 
 namespace kynema_sgf::tagging {
 
-/** AMR refinement using a user defined expression
- *  \ingroup amr_utils
- *
- */
+/* AMR refinement using a user defined expression */
 class UDFRefiner : public GeometryType::Register<UDFRefiner>
 {
 public:

@@ -55,8 +55,7 @@ void FreeStream::pre_init_actions()
     }
 }
 
-/** Initialize the fields at the start of simulation.
- */
+/* Initialize the fields at the start of simulation. */
 void FreeStream::initialize_fields(int level, const amrex::Geometry& geom)
 {
     for (const auto& ff : m_field_funcs) {

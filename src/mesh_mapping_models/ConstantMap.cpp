@@ -13,8 +13,7 @@ ConstantMap::ConstantMap()
     pp.queryarr("scaling_factor", m_fac, 0, AMREX_SPACEDIM);
 }
 
-/** Construct the mesh mapping field
- */
+/* Construct the mesh mapping field */
 void ConstantMap::create_map(int lev, const amrex::Geometry& geom)
 {
     create_cell_node_map(lev);
@@ -22,8 +21,7 @@ void ConstantMap::create_map(int lev, const amrex::Geometry& geom)
     create_non_uniform_mesh(lev, geom);
 }
 
-/** Construct the mesh mapping field on cell centers and nodes
- */
+/* Construct the mesh mapping field on cell centers and nodes */
 void ConstantMap::create_cell_node_map(int lev)
 {
     const amrex::Real fac_x = m_fac[0];
@@ -65,8 +63,7 @@ void ConstantMap::create_cell_node_map(int lev)
     }
 }
 
-/** Construct the mesh mapping field on cell faces
- */
+/* Construct the mesh mapping field on cell faces */
 void ConstantMap::create_face_map(int lev)
 {
     const amrex::Real fac_x = m_fac[0];
@@ -118,8 +115,7 @@ void ConstantMap::create_face_map(int lev)
     amrex::Gpu::streamSynchronize();
 }
 
-/** Construct the non-uniform mesh field
- */
+/* Construct the non-uniform mesh field */
 void ConstantMap::create_non_uniform_mesh(int lev, const amrex::Geometry& geom)
 {
 

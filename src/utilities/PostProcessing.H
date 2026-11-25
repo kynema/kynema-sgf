@@ -9,8 +9,8 @@
 
 using namespace amrex::literals;
 
-/**
- *  \defgroup utilities Utilities
+/*
+ *  Utilities
  *  Utilities
  *
  *  This group documents various utilities available in Kynema-SGF for
@@ -21,8 +21,7 @@ namespace kynema_sgf {
 
 class CFDSim;
 
-/** Abstract representation of a post-processing utility
- *  \ingroup utilities
+/* Abstract representation of a post-processing utility
  *
  *  Provides an interface for a runtime-selectable post-processing action (e.g.,
  *  data sampling, volume/surface integration, etc.) with the main solver.
@@ -39,22 +38,20 @@ public:
 
     virtual void pre_init_actions() = 0;
 
-    /** Initialize the post-processing utility
+    /* Initialize the post-processing utility
      *
      *  When this method is called, the mesh and the solution fields are fully
      *  initialized
      */
     virtual void initialize() = 0;
 
-    /** Perform actions at the end of each timestep
-     */
+    /* Perform actions at the end of each timestep */
     virtual void post_advance_work() = 0;
 
-    /** Perform output routine
-     */
+    /* Perform output routine */
     virtual void output_actions() = 0;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     virtual void post_regrid_actions() = 0;
 
     void populate_output_parameters(amrex::ParmParse& pp)
@@ -124,7 +121,7 @@ public:
         }
     }
 
-    //! Determine if output will happen this time step
+    // Determine if output will happen this time step
     [[nodiscard]] bool do_output_now(
         const int ntime,
         const int ntime0_in,
@@ -173,38 +170,36 @@ public:
     [[nodiscard]] bool do_final_output() const { return m_do_final_output; }
 
 protected:
-    //! Time step interval for output
+    // Time step interval for output
     int m_out_interval{10};
-    //! Time interval for output
+    // Time interval for output
     amrex::Real m_out_time_interval{-1.0_rt};
-    //! Time step delay for output
+    // Time step delay for output
     int m_out_delay{0};
-    //! Time delay for output
+    // Time delay for output
     amrex::Real m_out_time_delay{0.0_rt};
-    //! Always consider restart time for calculating output
+    // Always consider restart time for calculating output
     bool m_out_from_restart{false};
-    //! Time step start for calculating step interval (restarts)
+    // Time step start for calculating step interval (restarts)
     int m_out_start_index{-1};
-    //! Time start for calculating time interval (restarts)
+    // Time start for calculating time interval (restarts)
     amrex::Real m_out_start_time{-1.0_rt};
-    //! Relative (to dt) tolerance for time interval output
+    // Relative (to dt) tolerance for time interval output
     amrex::Real m_out_time_tol{1.0e-2_rt};
-    //! Relative (to m_out_time_interval) tolerance for enforcing dt
+    // Relative (to m_out_time_interval) tolerance for enforcing dt
     amrex::Real m_enforce_dt_tol{1.0e-3_rt};
-    //! Flag for enforcing time step based on output time
+    // Flag for enforcing time step based on output time
     bool m_enforce_dt{false};
-    //! Flag for output at simulation end - off by default
+    // Flag for output at simulation end - off by default
     bool m_do_final_output{false};
 };
 
-/** A collection of post-processing instances that are active during a
+/* A collection of post-processing instances that are active during a
  *  simulation
  *
  *  Upon initialization, the class reads the ``incflo.post_processing``
  *  parameter to determine the utilities that must be activated and uses runtime
  *  selection to initialize them
- *
- *  \ingroup utilities
  */
 class PostProcessManager
 {
@@ -215,7 +210,7 @@ public:
 
     void pre_init_actions();
 
-    /** Initialize post-processing utilities
+    /* Initialize post-processing utilities
      *
      *  Reads user inputs and instantiates all the registered post-processing
      *  utilities. Executes the registered utilities once before starting the
@@ -223,10 +218,10 @@ public:
      */
     void post_init_actions();
 
-    //! Call all registered utilities to perform actions after a timestep
+    // Call all registered utilities to perform actions after a timestep
     void post_advance_work();
 
-    //! Call all registered utilities to output at final time
+    // Call all registered utilities to output at final time
     void final_output();
 
     void post_regrid_actions();

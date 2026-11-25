@@ -11,8 +11,8 @@
 #include "src/fvm/qcriterion.H"
 #include "src/fvm/filter.H"
 
-/**
- *  \defgroup fvm Finite-Volume Operators
+/*
+ *  Finite-Volume Operators
  *
  *  Finite-Volume Operators
  *

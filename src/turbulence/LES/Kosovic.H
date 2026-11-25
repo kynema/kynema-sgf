@@ -11,9 +11,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
 
-/** Kosovic LES Model
- *  \ingroup turb_model
- */
+/* Kosovic LES Model */
 template <typename Transport>
 class Kosovic : public TurbModelBase<Transport>
 {
@@ -25,27 +23,27 @@ public:
 
     explicit Kosovic(CFDSim& sim);
 
-    //! Model name for debugging purposes
+    // Model name for debugging purposes
     [[nodiscard]] std::string model_name() const override { return "Kosovic"; }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType /*unused*/) override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {}
 
-    //! Update the effective thermal diffusivity field
+    // Update the effective thermal diffusivity field
     void update_alphaeff(Field& alphaeff) override;
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return model coefficients dictionary
+    // Return model coefficients dictionary
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 private:
-    //! Kosovic coefficient (default value set for ABL simulations)
+    // Kosovic coefficient (default value set for ABL simulations)
     // Ref: Mirocha et. al "Implementation of a Nonlinear Subfilter Turbulence
     //  Stress Model for Large-Eddy Simulation in the Advanced Research WRF
     //  Model"

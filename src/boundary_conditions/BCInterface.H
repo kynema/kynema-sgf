@@ -11,8 +11,8 @@
 
 using namespace amrex::literals;
 
-/**
- *  \defgroup field_bc Boundary conditions management
+/*
+ *  Boundary conditions management
  *  Boundary conditions management
  *
  *  This group documents the boundary condition management interface within
@@ -23,8 +23,6 @@ using namespace amrex::literals;
  *  them to the device so that they are ready for use during the solution
  *  process, and fill the ghost cells with appropriate values that require
  *  custom computations and not simple extrapolations.
- *
- *  \ingroup fields
  */
 
 namespace kynema_sgf {
@@ -36,8 +34,7 @@ namespace {
 amrex::Vector<std::string> bcnames = {"xlo", "ylo", "zlo", "xhi", "yhi", "zhi"};
 }
 
-/** Abstract class that defines the interface for processing BCs
- *  \ingroup field_bc
+/* Abstract class that defines the interface for processing BCs
  *
  *  This class defines the infrastructure to read and initialize the boundary
  *  condition information from the input file and populate the necessary data in
@@ -52,32 +49,32 @@ public:
 
     virtual ~BCIface() = default;
 
-    //! Operator that performs init actions and syncs the BC data to device
+    // Operator that performs init actions and syncs the BC data to device
     virtual void operator()(amrex::Real value = 0.0_rt);
 
-    //! User-defined functions for Dirichlet-type boundaries
+    // User-defined functions for Dirichlet-type boundaries
     amrex::Array<const std::string, 3> get_dirichlet_udfs();
 
-    //! Validate configuration before meshing, then actual coverage after setup.
+    // Validate configuration before meshing, then actual coverage after setup.
     static void validate_inflow_values(
         const FieldRepo& repo,
         const FieldBoundaryMgr& boundaries,
         InflowValidationStage stage = InflowValidationStage::initialized);
 
 protected:
-    //! Setup AMReX mathematical BC types
+    // Setup AMReX mathematical BC types
     virtual void set_bcrec() = 0;
 
-    //! Read input data for specific fields based on BC types
+    // Read input data for specific fields based on BC types
     virtual void read_values() = 0;
 
-    //! Parse custom BCs specified for this field
+    // Parse custom BCs specified for this field
     virtual void read_bctype();
 
-    //! BC functions for Neumann type boundaries
+    // BC functions for Neumann type boundaries
     virtual void set_bcfuncs();
 
-    //! Set default BC values for the field
+    // Set default BC values for the field
     void set_default_value(amrex::Real value);
 
     virtual amrex::Array<const std::string, 3> inflow_udfs()
@@ -87,7 +84,7 @@ protected:
 
     void read_inflow_values();
 
-    //! Set AMReX mathematical boundary types for the lower boundaries
+    // Set AMReX mathematical boundary types for the lower boundaries
     void set_bcrec_lo(int dir, amrex::BCType::mathematicalBndryTypes bcrec)
     {
         auto& fbcrec = m_field.bcrec();
@@ -96,7 +93,7 @@ protected:
         }
     }
 
-    //! Set AMReX mathematical boundary types for the upper boundaries
+    // Set AMReX mathematical boundary types for the upper boundaries
     void set_bcrec_hi(int dir, amrex::BCType::mathematicalBndryTypes bcrec)
     {
         auto& fbcrec = m_field.bcrec();
@@ -105,13 +102,11 @@ protected:
         }
     }
 
-    //! Field instance where BC is being set
+    // Field instance where BC is being set
     Field& m_field;
 };
 
-/** Boundary condition initialization for velocity (ICNS momentum) field
- *  \ingroup field_bc
- */
+/* Boundary condition initialization for velocity (ICNS momentum) field */
 class BCVelocity : public BCIface
 {
 public:
@@ -122,9 +117,7 @@ protected:
     void read_values() override;
 };
 
-/** Boundary condition initialization for scalar transport variables
- *  \ingroup field_bc
- */
+/* Boundary condition initialization for scalar transport variables */
 class BCScalar : public BCIface
 {
 public:
@@ -135,7 +128,7 @@ protected:
     void read_values() override;
 };
 
-/** Specialization of BC initialization for pressure
+/* Specialization of BC initialization for pressure
  *
  *  For pressure there is no user value read from file. The values are assumed
  *  to be zero.
@@ -149,8 +142,7 @@ protected:
     void read_values() override;
 };
 
-/** Specialization for source terms
- *  \ingroup field_bc
+/* Specialization for source terms
  *
  *  Sets a default first-order extrapolation for non-periodic BCs and a no-op
  *  for fillpatch operations.
@@ -169,8 +161,7 @@ protected:
     }
 };
 
-/** Default BC that can be applied on any field
- *  \ingroup field_bc
+/* Default BC that can be applied on any field
  *
  *  This operator is used to initialize defaults for any field that might
  *  require valid BC data. It sets higher-order extrapolation for mathematical

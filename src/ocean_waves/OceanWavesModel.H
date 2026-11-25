@@ -12,9 +12,7 @@ class CFDSim;
 
 namespace ocean_waves {
 
-/** Abstract representation of a wave model used for wave generation
- *
- *  \ingroup ocean_waves
+/* Abstract representation of a wave model used for wave generation
  *
  * This class is intended to represent a single wave model
  */
@@ -47,45 +45,31 @@ public:
     virtual void reset_regrid_flag() = 0;
 };
 
-/** Concrete implementation of the WaveModel for different wave theories.
- *
- *  \ingroup ocean_waves
- *
- * \tparam WaveTheoryTrait A wave theory trait that defines the behavior of the
- * different actions (initialization, velocity update, free surface update)
- * that are executed by the WaveModel class through the kynema_sgf::ocean_waves
- * physics driver class.
- *
- */
+/* Concrete implementation of the WaveModel for different wave theories. */
 template <typename WaveTheoryTrait>
 class OWModel : public OceanWavesModel::Register<OWModel<WaveTheoryTrait>>
 {
 private:
-    //! Instance that holds all data related to a particular wave type
+    // Instance that holds all data related to a particular wave type
     typename WaveTheoryTrait::DataType m_data;
 
-    //! Outputs processor
+    // Outputs processor
     ops::ProcessOutputsOp<WaveTheoryTrait> m_out_op;
 
 public:
     static std::string identifier() { return WaveTheoryTrait::identifier(); }
 
-    /**
-     *  \param sim CFD simulation environment instance
-     *  \param label Unique string identifier for this instance
-     *  \param id Unique integer tag for this instance
-     */
     OWModel(CFDSim& sim, const std::string& label, const int id)
         : m_data(sim, label, id), m_out_op(m_data)
     {}
 
-    //! Return the unique identifier (name) for this instance
+    // Return the unique identifier (name) for this instance
     [[nodiscard]] const std::string& label() const override
     {
         return m_data.info().label;
     }
 
-    //! Return the unique tag (integer ID) for this instance
+    // Return the unique tag (integer ID) for this instance
     [[nodiscard]] int id() const override { return m_data.info().id; }
 
     void read_inputs(const ::kynema_sgf::utils::MultiParser& pp) override

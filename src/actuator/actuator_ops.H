@@ -11,9 +11,7 @@
 
 namespace kynema_sgf::actuator::ops {
 
-/** Read user inputs from an input file for a given actuator object.
- *
- *  \ingroup actuator
+/* Read user inputs from an input file for a given actuator object.
  *
  *  This operator is called within Physics::pre_init_actions() and, therefore,
  *  does not have access to mesh data. Actions that require mesh information for
@@ -22,22 +20,17 @@ namespace kynema_sgf::actuator::ops {
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct ReadInputsOp;
 
-/** Perform one-time initialization of the actuator object.
- *
- *  \ingroup actuator
+/* Perform one-time initialization of the actuator object.
  *
  *  This operator is responsible for allocating memory ensuring that the
  *  actuator instance has been initialized and ready to be used by the Actuator
  *  physics instance. This function is called once during
  *  Actuator::post_init_actions().
- *
  */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct InitDataOp;
 
-/** Update the positions of the actuator nodes.
- *
- *  \ingroup actuator
+/* Update the positions of the actuator nodes.
  *
  *  After this call, the actuator grid's vel_pos array contains the updated
  *  position vectors. The Actuator physics-level method coordinates this
@@ -46,9 +39,7 @@ struct InitDataOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdatePosOp;
 
-/** Update actuator fields from sampled flow data.
- *
- *  \ingroup actuator
+/* Update actuator fields from sampled flow data.
  *
  *  ActuatorModel::update_fields() copies sampled velocity and density into the
  *  actuator grid, then dispatches to this actuator-type operation to update
@@ -57,51 +48,36 @@ struct UpdatePosOp;
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct UpdateFieldsOp;
 
-/** Update the model motion if it is prescribed (as opposed to being solved)
- *
- *  \ingroup actuator
- */
+/* Update the model motion if it is prescribed (as opposed to being solved) */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct PrescribeModelMotionOp
 {
     void operator()(typename ActTrait::DataType& /*data*/) {}
 };
 
-/** Compute actuator loads.
- *
- *  \ingroup actuator
- */
+/* Compute actuator loads. */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct ComputeLoadsOp;
 
-/** Advance the actuator model by one CFD time step.
- *
- *  \ingroup actuator
- */
+/* Advance the actuator model by one CFD time step. */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct AdvanceModelOp;
 
-/** Communicate actuator model data to the relevant processes.
- *
- *  \ingroup actuator
- */
+/* Communicate actuator model data to the relevant processes. */
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct CommunicateModelDataOp
 {
     void operator()(typename ActTrait::DataType& /*data*/) {}
 };
 
-/** Compute source term for the momentum equation.
- *
- *  \ingroup actuator
- */
+/* Compute source term for the momentum equation. */
 template <typename ActTrait, typename SrcTrait, typename = void>
 class ActSrcOp;
 
 template <typename ActTrait, typename SrcTrait, typename = void>
 struct ProcessOutputsOp;
 
-/** Return rotor geometries used by actuator-following mesh refinement.
+/* Return rotor geometries used by actuator-following mesh refinement.
  *
  * The default implementation returns no geometries. Actuator types that
  * support actuator-following refinement specialize this operation.
@@ -116,7 +92,7 @@ struct RefinementGeometryOp
     }
 };
 
-/** Return the rigid reference frame for actuator-attached utilities.
+/* Return the rigid reference frame for actuator-attached utilities.
  *
  * The default implementation reports that an actuator does not provide a
  * reference frame. Actuator types with a meaningful rigid-body frame
@@ -132,7 +108,7 @@ struct ReferenceFrameOp
     }
 };
 
-/** Determine the list of processes (MPI ranks) that is expected to be
+/* Determine the list of processes (MPI ranks) that is expected to be
  *  influenced by this actuator source.
  *
  *  The list of processes determines where sampled fields are gathered and
@@ -141,25 +117,16 @@ struct ReferenceFrameOp
 template <typename T>
 void determine_influenced_procs(typename T::DataType& /*data*/);
 
-/** During initialization determine the influenced processes and elect a root
+/* During initialization determine the influenced processes and elect a root
  *  process to manage I/O and external solver interfaces for this turbine.
- *
- *  \tparam T An actuator traits type
- *  \param  data Data object for the specific actuator instance
- *
- *  \param act_proc_count A map of the number of turbines managed by each proc
  */
 template <typename T>
 void determine_root_proc(
     typename T::DataType& /*data*/, amrex::Vector<int>& /*act_proc_count*/);
 
-/** Write restart data not held in fields, with each CFD checkpoint
+/* Write restart data not held in fields, with each CFD checkpoint
  *
- *  Called on every rank. Default: nothing. \sa actuator_restart.H
- *
- *  \tparam T An actuator traits type
- *  \param  data Data object for the specific actuator instance
- *  \param  chkname Directory of the checkpoint
+ *  Called on every rank. Default: nothing. See actuator_restart.H
  */
 template <typename T>
 void write_checkpoint(typename T::DataType& data, const std::string& chkname);

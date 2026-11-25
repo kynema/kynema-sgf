@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
 
-/** Smagorinsky LES Model
- *  \ingroup turb_model
- */
+/* Smagorinsky LES Model */
 template <typename Transport>
 class Smagorinsky : public TurbModelBase<Transport>
 {
@@ -24,27 +22,27 @@ public:
 
     explicit Smagorinsky(CFDSim& sim);
 
-    //! Model name for debugging purposes
+    // Model name for debugging purposes
     [[nodiscard]] std::string model_name() const override
     {
         return "Smagorinsky";
     }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType /*unused*/) override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {}
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return model coefficients dictionary
+    // Return model coefficients dictionary
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 private:
-    //! Smagorinsky coefficient (default value set for ABL simulations)
+    // Smagorinsky coefficient (default value set for ABL simulations)
     amrex::Real m_Cs{0.135_rt};
 
     const Field& m_vel;

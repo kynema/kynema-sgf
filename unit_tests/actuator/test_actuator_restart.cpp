@@ -15,7 +15,7 @@ using namespace amrex::literals;
 namespace kynema_sgf_tests {
 namespace {
 
-//! Values that need all their digits to be read back as they were
+// Values that need all their digits to be read back as they were
 kynema_sgf::actuator::VecList awkward_values()
 {
     namespace vs = kynema_sgf::vs;
@@ -26,7 +26,7 @@ kynema_sgf::actuator::VecList awkward_values()
     return values;
 }
 
-/** FLLC data as fllc_init leaves them: ``npts`` force, ``npts_vel``
+/* FLLC data as fllc_init leaves them: ``npts`` force, ``npts_vel``
  *  velocity and ``npts_n`` non-uniform points; values depend on ``seed``
  */
 kynema_sgf::actuator::FLLCData make_fllc_data(

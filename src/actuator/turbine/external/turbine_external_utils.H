@@ -18,7 +18,7 @@ namespace kynema_sgf::actuator::external {
 
 using ::ext_turb::epsilon_component;
 
-//! Input order (chord, thickness, span) to the local frame of a solver
+// Input order (chord, thickness, span) to the local frame of a solver
 inline void
 epsilon_to_frame(vs::Vector& eps, const ::ext_turb::BladeFrame frame)
 {
@@ -89,7 +89,7 @@ void make_component_views(datatype& data)
     }
 }
 
-/** Abort when a point of a blade or of the tower has no width to spread its
+/* Abort when a point of a blade or of the tower has no width to spread its
  *  force with
  *
  *  The Gaussian of a point with an epsilon of 0 is 0 everywhere on the mesh:
@@ -212,14 +212,14 @@ void init_epsilon(datatype& data)
     }
 }
 
-/** Warn once when the Gaussian of a point reaches beyond the bounding box
+/* Warn once when the Gaussian of a point reaches beyond the bounding box
  *
  *  Fixed box from base_position, hub_height, rotor_diameter and the largest
  *  epsilon; patches outside it get no force. A point leaves it when the
  *  solver rotor is not where the inputs put it, or when the turbine moves by
  *  more than a quarter of the rotor radius (floating platform).
  *
- *  \return Number of points with a Gaussian that leaves the box
+ *  Returns Number of points with a Gaussian that leaves the box
  */
 template <typename datatype>
 int check_bound_box(datatype& data)

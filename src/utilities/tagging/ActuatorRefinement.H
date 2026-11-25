@@ -15,7 +15,7 @@ namespace actuator {
 class ActuatorModel;
 }
 
-/** AMR refinement in moving cylinders surrounding actuator rotors. */
+/* AMR refinement in moving cylinders surrounding actuator rotors. */
 class ActuatorRefinement
     : public RefinementCriteria::Register<ActuatorRefinement>
 {
