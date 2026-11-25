@@ -19,6 +19,12 @@ namespace kynema_sgf {
 class SGFTiogaIface
 {
 public:
+    // Modular coupling TODO: let the SGF-owned module interface own this
+    // optional bridge and its registered field lists. Export these hooks for
+    // driver-coordinated connectivity/interpolation; do not perform a second
+    // exchange inside advance_states(). Keep JSON inputs/outputs independent
+    // of Tioga and usable in standalone mode. The bridge borrows CFDSim and
+    // Tioga, so their lifetimes must outlast it.
     SGFTiogaIface(kynema_sgf::CFDSim&, TIOGA::tioga& tg);
     ~SGFTiogaIface();
 

@@ -14,6 +14,8 @@ using namespace amrex::literals;
 
 void incflo::pre_advance_stage1()
 {
+    // Modular coupling: this is first-iteration predict_inputs() work. A retry
+    // must not advance the clock again; stage 2 still follows connectivity.
     BL_PROFILE("kynema-sgf::incflo::pre_advance_stage1");
     advance_time();
 }
@@ -33,6 +35,10 @@ void incflo::pre_advance_stage2()
 
 void incflo::prepare_time_step()
 {
+    // Modular coupling: advance_states() below rotates field history, not a
+    // solver step. Snapshot retry state at the correct side of this rotation;
+    // reset_states() must restore solve state without rotating history again
+    // or overwriting freshly received boundary/source inputs.
     m_sim.pde_manager().advance_states();
     m_sim.pde_manager().prepare_boundaries();
     for (auto& pp : m_sim.physics()) {
@@ -60,6 +66,8 @@ void incflo::prepare_time_step()
  */
 void incflo::advance(const int fixed_point_iteration)
 {
+    // Modular coupling: preserve the iteration-zero preparation and existing
+    // Godunov/MOL restrictions when exposed through advance_states(iteration).
     BL_PROFILE("kynema-sgf::incflo::advance");
     if (fixed_point_iteration == 0) {
         prepare_time_step();
