@@ -129,7 +129,8 @@ void ActSrcOp<ActTrait, ActSrcLine>::operator()(
             constexpr amrex::Real wt = 0.5_rt;
             const auto pos_ip = wt * pos[ip] + (1.0_rt - wt) * opos[ip];
             const auto dist = cc - pos_ip;
-            // Convert to local (chord, span, thickness) coords
+            // Local frame of eps[ip]: rows of the orientation matrix
+            // (wings: chord, span, thickness; external turbines: init_epsilon)
             const auto dist_local_3D = tmat[ip] & dist;
             // In local coords, zero disabled distances (e.g., for 2D)
             const auto dist_local = dist_local_3D * dcoord_flags;

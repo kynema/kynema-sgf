@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
 
-/** Base class for 1-Equation RANS TKE turbulence model
- *  \ingroup turb_model
- */
+/* Base class for 1-Equation RANS TKE turbulence model */
 template <typename Transport>
 class KLAxell : public TurbModelBase<Transport>
 {
@@ -26,29 +24,29 @@ public:
 
     [[nodiscard]] std::string model_name() const override { return "KLAxell"; }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType /*unused*/) override;
 
-    //! Do any post advance work
+    // Do any post advance work
     void post_advance_work() override;
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     void post_init_actions() override;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     void post_regrid_actions() override;
 
-    //! Update the effective thermal diffusivity field
+    // Update the effective thermal diffusivity field
     void update_alphaeff(Field& alphaeff) override;
 
-    //! Update the effective scalar diffusivity field
+    // Update the effective scalar diffusivity field
     void update_scalar_diff(Field& deff, const std::string& name) override;
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return turbulence model coefficients
+    // Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 private:
@@ -59,14 +57,14 @@ private:
     Field& m_dissip;
     Field& m_rho;
     Field* m_tke{nullptr};
-    //! Turbulence constant
+    // Turbulence constant
     amrex::Real m_Cmu{0.556_rt};
     amrex::Real m_Cmu_prime{0.556_rt};
     amrex::Real m_Cb_stable{0.25_rt};
     amrex::Real m_Cb_unstable{0.35_rt};
     amrex::Real m_prandtl{1.0_rt};
     Field& m_temperature;
-    //! Gravity vector (m/s^2)
+    // Gravity vector (m/s^2)
     amrex::Vector<amrex::Real> m_gravity{0.0_rt, 0.0_rt, -9.81_rt};
     amrex::Real m_surf_flux{0};
     amrex::Real m_meso_sponge_start{2000};

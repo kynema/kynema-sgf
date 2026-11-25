@@ -15,7 +15,7 @@ namespace actuator {
 class ActuatorModel;
 }
 
-/** AMR refinement in moving cylinders surrounding actuator rotors. */
+/* AMR refinement in moving cylinders surrounding actuator rotors. */
 class ActuatorRefinement
     : public RefinementCriteria::Register<ActuatorRefinement>
 {
@@ -25,6 +25,11 @@ public:
     explicit ActuatorRefinement(CFDSim& sim);
 
     void initialize(const std::string& key) override;
+
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level >= m_min_level && level <= m_max_level;
+    }
 
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)

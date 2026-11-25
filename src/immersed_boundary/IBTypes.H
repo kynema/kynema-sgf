@@ -15,10 +15,7 @@ class CFDSim;
 
 namespace ib {
 
-/** Abstract representation of an immersed boundary type.
- *
- *  \ingroup immersed_boundary
- */
+/* Abstract representation of an immersed boundary type. */
 struct IBType
 {};
 
@@ -31,20 +28,17 @@ using TensorSlice = ::kynema_sgf::utils::Slice<kynema_sgf::vs::Tensor>;
 using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
 using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
 
-/** Basic information that is common to all immersed boundary types.
- *
- *  \ingroup immersed_boundary
- */
+/* Basic information that is common to all immersed boundary types. */
 struct IBInfo
 {
-    //! Unique string identifier for the immersed boundary body (wing, turbine)
+    // Unique string identifier for the immersed boundary body (wing, turbine)
     std::string label;
 
-    //! Bounding box used to determine processes where this immersed boundary
-    //! has influence
+    // Bounding box used to determine processes where this immersed boundary
+    // has influence
     amrex::RealBox bound_box;
 
-    //! Unique integer identifier for the immersed boundary
+    // Unique integer identifier for the immersed boundary
     int id{-1};
 
     IBInfo(std::string label_in, const int id_in)
@@ -52,33 +46,24 @@ struct IBInfo
     {}
 };
 
-/** Abstract representation of data holder for specific immersed boundary types.
- *
- *  \ingroup immersed_boundary
- *
+/* Abstract representation of data holder for specific immersed boundary types.
  */
 template <typename IBTrait>
 class IBDataHolder
 {
 private:
-    //! Instance of the CFD simulation environment
+    // Instance of the CFD simulation environment
     CFDSim& m_sim;
 
-    //! Basic information about this immersed boundary component in relation to
-    //! the simulation (usually IBInfo)
+    // Basic information about this immersed boundary component in relation to
+    // the simulation (usually IBInfo)
     typename IBTrait::InfoType m_info;
 
-    //! Additional data necessary for a given actuator type
+    // Additional data necessary for a given actuator type
     typename IBTrait::MetaType m_meta;
 
 public:
-    /** Initialize the data structures
-     *
-     *  \param sim Instance of the CFD simulation environment
-     *  \param label Unique string identifier for this immersed boundary
-     * component \param id Unique global integer identifier for this immersed
-     * boundary component
-     */
+    /* Initialize the data structures */
     IBDataHolder(CFDSim& sim, const std::string& label, const int id)
         : m_sim(sim), m_info(label, id), m_meta()
     {}

@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde {
 
-/** Implementation of Turbulence operator for SDR equation
- *  \ingroup sdr_eqn
- */
+/* Implementation of Turbulence operator for SDR equation */
 template <>
 struct TurbulenceOp<SDR>
 {
@@ -30,9 +28,7 @@ struct TurbulenceOp<SDR>
     PDEFields& m_fields;
 };
 
-/** Implementation of post-processing actions for SDR equation
- *  \ingroup sdr_eqn
- */
+/* Implementation of post-processing actions for SDR equation */
 template <>
 struct PostSolveOp<SDR>
 {
@@ -69,9 +65,7 @@ struct FieldRegOp<SDR, Scheme>
     CFDSim& sim;
 };
 
-/** Diffusion operator for SDR equation
- *  \ingroup sdr_eqn
- */
+/* Diffusion operator for SDR equation */
 template <typename Scheme>
 struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
 {
@@ -104,7 +98,7 @@ struct DiffusionOp<SDR, Scheme> : public DiffSolverIface<typename SDR::MLDiffOp>
         m_lhs_total = fields.repo.create_scratch_field(1, 1);
     }
 
-    //! Computes the diffusion term that goes in the RHS
+    // Computes the diffusion term that goes in the RHS
     void compute_diff_term(const FieldState fstate)
     {
         this->setup_operator(*this->m_applier, 0.0_rt, -1.0_rt, fstate);

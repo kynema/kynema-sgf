@@ -19,7 +19,7 @@ TemperatureFreeAtmosphereForcing::TemperatureFreeAtmosphereForcing(
     , m_sim(sim)
 {
     amrex::ParmParse pp_abl("ABL");
-    //! Temperature variation as a function of height
+    // Temperature variation as a function of height
     pp_abl.query("meso_sponge_start", m_meso_start);
     pp_abl.query("temp_sponge_start", m_meso_start);
     pp_abl.query("meso_timescale", m_meso_timescale);

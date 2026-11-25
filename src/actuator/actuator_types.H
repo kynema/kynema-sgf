@@ -19,42 +19,30 @@ class CFDSim;
 
 namespace actuator {
 
-/** Abstract representation of an actuator type.
- *
- *  \ingroup actuator
- */
+/* Abstract representation of an actuator type. */
 struct ActuatorType
 {};
 
-/** Abstract representation of a source type.
- *
- *  \ingroup actuator
- */
+/* Abstract representation of a source type. */
 struct ActSrcType
 {};
 
-/** Actuator line representation.
- *
- *  \ingroup actuator
- */
+/* Actuator line representation. */
 struct ActSrcLine : ActSrcType
 {
     static std::string identifier() { return "Line"; }
 
-    //! Flag indicating if this is a line type
+    // Flag indicating if this is a line type
     static constexpr bool is_line = true;
 
-    //! Flag indicating if this is a disk type
+    // Flag indicating if this is a disk type
     static constexpr bool is_disk = false;
 
-    //! Flag indicating if this is a sector type
+    // Flag indicating if this is a sector type
     static constexpr bool is_sector = false;
 };
 
-/** Acutator disk representation.
- *
- *  \ingroup actuator
- */
+/* Acutator disk representation. */
 struct ActSrcDisk : ActSrcType
 {
     static std::string identifier() { return "Disk"; }
@@ -64,7 +52,7 @@ struct ActSrcDisk : ActSrcType
     static constexpr bool is_sector = false;
 };
 
-/** Actuator sector representation.
+/* Actuator sector representation.
  *
  *  Sector models sweep blade-section loads through the timestep before
  *  spreading them to the flow.
@@ -78,7 +66,7 @@ struct ActSrcSector : ActSrcType
     static constexpr bool is_sector = true;
 };
 
-/** Composite source representation used by a drone containing sector rotors. */
+/* Composite source representation used by a drone containing sector rotors. */
 struct ActSrcDrone : ActSrcType
 {
     static std::string identifier() { return ""; }
@@ -97,7 +85,7 @@ using TensorSlice = ::kynema_sgf::utils::Slice<kynema_sgf::vs::Tensor>;
 using DeviceVecList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Vector>;
 using DeviceTensorList = amrex::Gpu::DeviceVector<kynema_sgf::vs::Tensor>;
 
-/** Rotor geometry exposed to actuator-following mesh refinement. */
+/* Rotor geometry exposed to actuator-following mesh refinement. */
 struct ActuatorRefinementGeometry
 {
     std::string label;
@@ -107,41 +95,34 @@ struct ActuatorRefinementGeometry
     amrex::Real epsilon_max{0.0_rt};
 };
 
-/** Actuator data at each node for an actuator component.
- *
- *  \ingroup actuator
- */
+/* Actuator data at each node for an actuator component. */
 struct ActGrid
 {
-    //! Position vectors of the actuator forcing points on the grid
+    // Position vectors of the actuator forcing points on the grid
     VecList pos;
 
-    //! Force vector at the forcing points
+    // Force vector at the forcing points
     VecList force;
 
-    //! Gaussian smearing parameter
+    // Gaussian smearing parameter
     VecList epsilon;
 
-    //! Transformation matrix at the forcing points
+    // Transformation matrix at the forcing points
     TensorList orientation;
 
-    //! Position vectors for the points where velocity is sampled
+    // Position vectors for the points where velocity is sampled
     VecList vel_pos;
 
-    //! Velocity vector at the sampled locations
+    // Velocity vector at the sampled locations
     VecList vel;
 
-    //! Density at the sampled locations
+    // Density at the sampled locations
     RealList density;
 
-    //! Switch for turning off distance components in Gaussian calculation
+    // Switch for turning off distance components in Gaussian calculation
     vs::Vector dcoord_flags{1.0_rt, 1.0_rt, 1.0_rt};
 
-    /** Helper method to resize the data arrays defined on the grid
-     *
-     *  \param num_force_pts Number of nodes that contain forcing data
-     *  \param num_vel_pts Number of nodes where velocity field is sampled
-     */
+    /* Helper method to resize the data arrays defined on the grid */
     void resize(int num_force_pts, int num_vel_pts)
     {
         pos.resize(num_force_pts);
@@ -153,16 +134,13 @@ struct ActGrid
         density.resize(num_vel_pts);
     }
 
-    /** Convenience function to resize both force/velocity data to same
+    /* Convenience function to resize both force/velocity data to same
      * locations
      */
     void resize(int num_pts) { resize(num_pts, num_pts); }
 };
 
-/** Slice of actutator data for components (tower, blade, etc)
- *
- *  \ingroup actuator
- */
+/* Slice of actutator data for components (tower, blade, etc) */
 struct ComponentView
 {
     VecSlice pos;
@@ -177,37 +155,34 @@ struct ComponentView
     RealSlice chord;
 };
 
-/** Basic information that is common to all actuator types.
- *
- *  \ingroup actuator
- */
+/* Basic information that is common to all actuator types. */
 struct ActInfo
 {
-    //! Unique string identifier for the actuator body (wing, turbine)
+    // Unique string identifier for the actuator body (wing, turbine)
     std::string label;
 
-    //! Set of MPI ranks where this actuator source is active
+    // Set of MPI ranks where this actuator source is active
     std::set<int> procs;
 
-    //! Bounding box used to determine processes where this turbine has
-    //! influence
+    // Bounding box used to determine processes where this turbine has
+    // influence
     amrex::RealBox bound_box;
 
-    //! Unique integer identifier for the turbine
+    // Unique integer identifier for the turbine
     int id{-1};
 
-    //! Root process where this turbine is active
+    // Root process where this turbine is active
     int root_proc{-1};
 
-    //! Flag indicating whether this is root proc
+    // Flag indicating whether this is root proc
     bool is_root_proc{false};
 
-    //! Flag indicating whether this actuator component is active in the current
-    //! MPI rank
+    // Flag indicating whether this actuator component is active in the current
+    // MPI rank
     bool actuator_in_proc{false};
 
-    //! Flag indicating whether this process requires velocities sampled at
-    //! actuator point
+    // Flag indicating whether this process requires velocities sampled at
+    // actuator point
     bool sample_vel_in_proc{false};
 
     ActInfo(std::string label_in, const int id_in)
@@ -215,36 +190,27 @@ struct ActInfo
     {}
 };
 
-/** Abstract representation of data holder for specific actuator types.
- *
- *  \ingroup actuator
- *
- */
+/* Abstract representation of data holder for specific actuator types. */
 template <typename ActTrait>
 class ActDataHolder
 {
 private:
-    //! Instance of the CFD simulation environment
+    // Instance of the CFD simulation environment
     CFDSim& m_sim;
 
-    //! Basic information about this actuator component in relation to the
-    //! simulation (usually ActInfo)
+    // Basic information about this actuator component in relation to the
+    // simulation (usually ActInfo)
     typename ActTrait::InfoType m_info;
 
-    //! Nodal data on the actuator grid defined for this component (usually
-    //! ActGrid)
+    // Nodal data on the actuator grid defined for this component (usually
+    // ActGrid)
     typename ActTrait::GridType m_grid;
 
-    //! Additional data necessary for a given actuator type
+    // Additional data necessary for a given actuator type
     typename ActTrait::MetaType m_meta;
 
 public:
-    /** Initialize the data structures
-     *
-     *  \param sim Instance of the CFD simulation environment
-     *  \param label Unique string identifier for this actuator component
-     *  \param id Unique global integer identifier for this actuator component
-     */
+    /* Initialize the data structures */
     ActDataHolder(CFDSim& sim, const std::string& label, const int id)
         : m_sim(sim), m_info(label, id), m_grid(), m_meta()
     {}

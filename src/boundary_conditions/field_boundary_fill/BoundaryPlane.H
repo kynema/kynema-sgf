@@ -27,8 +27,7 @@ struct BufferData
     amrex::Vector<size_t> count{0, 0, 0, 0};
 };
 
-/** Collection of data structures and operations for reading data
- *  \ingroup we_abl
+/* Collection of data structures and operations for reading data
  *
  *  This class contains the inlet data structures and operations to
  *  read and interpolate inflow data.
@@ -99,26 +98,25 @@ private:
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_interp;
     amrex::Vector<std::unique_ptr<PlaneVector>> m_data_complete;
 
-    //! Time for plane at n
+    // Time for plane at n
     amrex::Real m_tn{-1.0_rt};
 
-    //! Time for plane at n + 1
+    // Time for plane at n + 1
     amrex::Real m_tnp1{-1.0_rt};
 
-    //! Time for plane at interpolation
+    // Time for plane at interpolation
     amrex::Real m_tinterp{-1.0_rt};
 
-    //! Map of `{variableId : component}`
+    // Map of `{variableId : component}`
     std::unordered_map<int, int> m_components;
 };
 
-/** Interface for ABL boundary plane I/O
- *  \ingroup we_abl
+/* Interface for ABL boundary plane I/O
  *
  *  This class performs the necessary file operations to read and
  *  write boundary planes.
  *
- *  \sa PlaneFillInflow
+ *  See PlaneFillInflow
  */
 class BoundaryPlane : public kynema_sgf::FieldBoundary::Register<BoundaryPlane>
 {
@@ -239,77 +237,77 @@ private:
 
     std::string m_title{"ABL boundary planes"};
 
-    //! Normal direction for the boundary plane
+    // Normal direction for the boundary plane
     int m_write_frequency{1};
 
-    //! Plane names
+    // Plane names
     amrex::Vector<std::string> m_plane_names{"xlo", "ylo", "zlo",
                                              "xhi", "yhi", "zhi"};
 
-    //! IO boundary planes
+    // IO boundary planes
     amrex::Vector<std::string> m_planes;
 
-    //! Start outputting after this time
+    // Start outputting after this time
     amrex::Real m_out_start_time{0.0_rt};
 
 #ifdef KYNEMA_SGF_USE_NETCDF
-    //! NetCDF time output counter
+    // NetCDF time output counter
     size_t m_out_counter{0};
 #endif
 
-    //! File name for IO
+    // File name for IO
     std::string m_filename;
 
-    //! File name for Native time file
+    // File name for Native time file
     std::string m_time_file;
 
-    //! Variables for IO
+    // Variables for IO
     amrex::Vector<std::string> m_var_names;
 
-    //! List of fields for IO
+    // List of fields for IO
     amrex::Vector<Field*> m_fields;
 
-    //! NetCDF input level time
+    // NetCDF input level time
     amrex::Vector<amrex::Real> m_in_times;
     amrex::Vector<int> m_in_timesteps;
 
-    //! Inlet data
+    // Inlet data
     InletData m_in_data;
 
-    //! IO mode
+    // IO mode
     io_mode m_io_mode{io_mode::undefined};
 
-    //! User-selected fluid phase gate for boundary field population
+    // User-selected fluid phase gate for boundary field population
     phase m_phase{phase::both};
 
-    //! Default string for collecting user input for phase condition
+    // Default string for collecting user input for phase condition
     std::string m_phase_str{"both"};
 
-    //! Pointer to vof field for boundary field population based on vof values
+    // Pointer to vof field for boundary field population based on vof values
     Field* m_vof_ptr{nullptr};
 
-    //! Pointer to terrain_blank field for velocity population based on terrain
+    // Pointer to terrain_blank field for velocity population based on terrain
     IntField* m_terrain_blank_ptr{nullptr};
 
-    //! Flag indicating if terrain can move (i.e. if representing waves)
+    // Flag indicating if terrain can move (i.e. if representing waves)
     bool m_has_moving_terrain{false};
 
-    //! Flag indicating that the inflow is static, i.e., there is only a single
-    //! boundary plane to read in during the simulation
+    // Flag indicating that the inflow is static, i.e., there is only a single
+    // boundary plane to read in during the simulation
     bool m_is_static{false};
     bool m_static_plane_is_read{false};
 
-    //! Flag indicating that initial condition should be written out at
-    //! beginning of simulation to create static boundary plane for current sim.
-    //! This can be used as a generic boundary condition.
+    // Flag indicating that initial condition should be written out at
+    // beginning of simulation to create static boundary plane for current sim.
+    // This can be used as a generic boundary condition.
     bool m_output_init{false};
 
-    //! controls extents on native bndry output
+    // controls extents on native bndry output
     const int m_in_rad = 1;
     const int m_out_rad = 1;
     const int m_extent_rad = 0;
 
-    //! output format for bndry output
+    // output format for bndry output
     std::string m_out_fmt{"native"};
 };
 

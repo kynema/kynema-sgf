@@ -470,9 +470,7 @@ protected:
         m_applier_scalar;
 };
 
-/** Specialization of diffusion operator for ICNS
- *  \ingroup icns
- */
+/* Specialization of diffusion operator for ICNS */
 template <typename Scheme>
 struct DiffusionOp<ICNS, Scheme>
 {

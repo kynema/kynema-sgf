@@ -9,8 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::turbulence {
 
-/** K-Omega-SST-IDDES Hybrid RANS/LES turbulence model
- *
+/* K-Omega-SST-IDDES Hybrid RANS/LES turbulence model
  *
  * Turbulence model described in
  *
@@ -21,7 +20,6 @@ namespace kynema_sgf::turbulence {
  *
  * Implementation contains the simplified version where f_e = 0 as in eq. 12 in
  * the paper
- *
  */
 template <typename Transport>
 class KOmegaSSTIDDES : public KOmegaSST<Transport>
@@ -41,29 +39,29 @@ public:
         return "KOmegaSSTIDDES";
     }
 
-    //! Update the turbulent viscosity field
+    // Update the turbulent viscosity field
     void update_turbulent_viscosity(
         FieldState fstate, DiffusionType diff_type) override;
 
-    //! No post advance work for this model
+    // No post advance work for this model
     void post_advance_work() override {}
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     void post_init_actions() override;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     void post_regrid_actions() override;
 
-    //! Parse turbulence model coefficients
+    // Parse turbulence model coefficients
     void parse_model_coeffs() override;
 
-    //! Return turbulence model coefficients
+    // Return turbulence model coefficients
     [[nodiscard]] TurbulenceModel::CoeffsDictType model_coeffs() const override;
 
 protected:
     Field& m_rans_ind;
 
-    //! Turbulence constants
+    // Turbulence constants
     amrex::Real m_Cdes1{0.78_rt};
     amrex::Real m_Cdes2{0.61_rt};
     amrex::Real m_Cdt1{20.0_rt};

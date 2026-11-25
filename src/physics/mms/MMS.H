@@ -12,10 +12,7 @@ namespace kynema_sgf::mms {
 
 using FuncDef = amrex::Real (*)(amrex::Real, amrex::Real, amrex::Real);
 
-/** Method of manufactured solutions physics
- *  \ingroup physics
- *
- */
+/* Method of manufactured solutions physics */
 class MMS : public Physics::Register<MMS>
 {
 public:

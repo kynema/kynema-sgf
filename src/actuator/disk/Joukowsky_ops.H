@@ -123,8 +123,7 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
     }
 };
 
-/**
-  \brief Compute Forces following procedures of Sorenson 2020
+/*  Compute Forces following procedures of Sorenson 2020
 
   Follow the procedure for computing body forces and applying tip/root
   corrections using a Joukowsky disk as outlined in:
@@ -137,7 +136,7 @@ struct InitDataOp<Joukowsky, ActSrcDisk>
   disc computations of wind turbines,
   Wind Energ. Sci. Discuss. [preprint], https://doi.org/10.5194/wes-2022-108
   https://wes.copernicus.org/preprints/wes-2022-108/
- */
+*/
 template <>
 struct ComputeLoadsOp<Joukowsky, ActSrcDisk>
 {
@@ -365,13 +364,13 @@ struct ProcessOutputsOp<Joukowsky, ActSrcDisk>
 {
 private:
     const Joukowsky::DataType& m_data;
-    //! Path to the output directory (specified by Actuator physics class)
+    // Path to the output directory (specified by Actuator physics class)
     std::string m_out_dir;
 
-    //! NetCDF output filename for this turbine
+    // NetCDF output filename for this turbine
     std::string m_nc_filename;
 
-    //! Output interval (specified in input file)
+    // Output interval (specified in input file)
     int m_out_freq{10};
 
 public:

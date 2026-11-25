@@ -1,6 +1,7 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
+#include <string>
 #include "src/core/Factory.H"
 #include "src/core/CollMgr.H"
 #include "AMReX_MultiFab.H"
@@ -17,14 +18,14 @@ public:
 
     [[nodiscard]] virtual std::string physics_name() const = 0;
 
-    //! Initialize the fields for the physics/problem
+    // Initialize the fields for the physics/problem
     virtual void
     initialize_fields(int level, const amrex::Geometry& geom) const = 0;
 
-    //! Perform tasks necessary before advancing timestep
+    // Perform tasks necessary before advancing timestep
     virtual void pre_advance_work() = 0;
 
-    //! Add momentum source terms
+    // Add momentum source terms
     virtual void add_momentum_sources(
         const amrex::Geometry& geom,
         const amrex::MultiFab& density,
@@ -33,8 +34,8 @@ public:
         amrex::MultiFab& vel_forces) const = 0;
 };
 
-/**
- *  \defgroup physics Physics models
+/*
+ *  Physics models
  *
  *  Kynema-SGF representation of different physics
  *
@@ -47,8 +48,7 @@ public:
  *  from an input file based on user inputs.
  */
 
-/** Abstract representation of different physics
- *  \ingroup physics
+/* Abstract representation of different physics
  *
  *  This class defines an abstract API that represents the notion of some
  *  physics that will be used during the simulation. The most common use-case
@@ -63,43 +63,44 @@ public:
 
     ~Physics() override = default;
 
-    //! Initialize the fields for a given level during init/regrid
+    // Initialize the fields for a given level during init/regrid
     virtual void initialize_fields(int level, const amrex::Geometry& geom) = 0;
 
-    //! Actions to perform after PDEs and turbulence models have been created,
-    //! but before mesh creation
+    // Actions to perform after PDEs and turbulence models have been created,
+    // but before mesh creation
     virtual void pre_init_actions() {}
 
-    //! Actions to perform post initialization
+    // Actions to perform post initialization
     virtual void post_init_actions() = 0;
 
-    //! Actions to perform post regrid
+    // Actions to perform post regrid
     virtual void post_regrid_actions() = 0;
 
-    //! Perform tasks necessary before advancing timestep
+    // Perform tasks necessary before advancing timestep
     virtual void pre_advance_work() = 0;
 
-    //! Perform tasks necessary only once per timestep, after pre_advance
+    // Perform tasks necessary only once per timestep, after pre_advance
     virtual void pre_predictor_work() {}
 
-    //! Perform tasks necessary after advancing timestep
+    // Perform tasks necessary after advancing timestep
     virtual void post_advance_work() = 0;
 
-    //! Perform tasks necessary before applying the pressure correction
+    // Perform tasks necessary before applying the pressure correction
     virtual void pre_pressure_correction_work() {}
 
-    //! Perform tasks necessary after applying the pressure correction
+    // Perform tasks necessary after applying the pressure correction
     virtual void post_pressure_correction_work() {}
+
+    // Write restart data not held in fields, after the fields of each
+    // checkpoint; called on every rank
+    virtual void write_checkpoint(const std::string& /*chkname*/) {}
 };
 
-/** A collection of \ref physics instances that are active during a simulation
- *
- *  \ingroup physics
- */
+/* A collection of physics instances that are active during a simulation */
 class PhysicsMgr : public CollMgr<PhysicsMgr, Physics>
 {
 public:
-    //! Return a concrete physics instance
+    // Return a concrete physics instance
     template <typename T>
     T& get()
     {
@@ -107,7 +108,7 @@ public:
         return dynamic_cast<T&>(operator()(T::identifier()));
     }
 
-    //! Return a concrete physics instance
+    // Return a concrete physics instance
     template <typename T>
     [[nodiscard]] const T& get() const
     {

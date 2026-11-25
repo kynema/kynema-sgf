@@ -346,6 +346,14 @@ void KOmegaSSTIDDES<Transport>::update_turbulent_viscosity(
                         0.5_rt * rho_arrs[nbx](i, j, k) * beta *
                         sdr_arrs[nbx](i, j, k) * delta_t;
                 }
+
+                // RHS source fields are per unit mass; the PDE multiplies by
+                // density. The implicit LHS coefficients remain volumetric.
+                const amrex::Real rhoinv = 1.0_rt / rho_arrs[nbx](i, j, k);
+                shear_prod_arrs[nbx](i, j, k) *= rhoinv;
+                diss_arrs[nbx](i, j, k) *= rhoinv;
+                sdr_src_arrs[nbx](i, j, k) *= rhoinv;
+                sdr_diss_arrs[nbx](i, j, k) *= rhoinv;
             });
     }
     amrex::Gpu::streamSynchronize();

@@ -9,8 +9,7 @@ using namespace amrex::literals;
 namespace kynema_sgf {
 class Field;
 
-/** AMR refinement using a given field (e.g., density)
- *  \ingroup amr_utils
+/* AMR refinement using a given field (e.g., density)
  *
  *  ```
  *  tagging.labels = t1
@@ -30,8 +29,13 @@ public:
 
     ~CurvatureRefinement() override = default;
 
-    //! Read input file and initialize boxarray used to refine each level
+    // Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
+
+    [[nodiscard]] bool active(int level) const override
+    {
+        return level <= m_max_lev_field;
+    }
 
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)

@@ -1,7 +1,4 @@
-/** \file test_config.cpp
- *
- *  Tests various configurations for GPU builds
- */
+/* Tests various configurations for GPU builds */
 
 #include "gtest/gtest.h"
 #include "src/KynemaSGFVersion.H"

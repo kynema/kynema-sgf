@@ -48,7 +48,7 @@ void blade_basis(
 
 void update_midpoint_sample_points(ActuatorSector::DataType& data);
 
-//! Set the initial placement and prescribed translation of a mounted rotor.
+// Set the initial placement and prescribed translation of a mounted rotor.
 void set_placement(
     ActuatorSector::DataType& data,
     const vs::Vector& center,

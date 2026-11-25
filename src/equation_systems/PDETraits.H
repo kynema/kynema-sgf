@@ -3,9 +3,7 @@
 
 namespace kynema_sgf::pde {
 
-/** Characteristics of a vector transport equation
- *  \ingroup eqsys
- */
+/* Characteristics of a vector transport equation */
 struct VectorTransport
 {
     // Linear operator for the diffusion solve
@@ -25,8 +23,7 @@ struct VectorTransport
     // static constexpr bool has_diffusion = true;
 };
 
-/** Characteristics of a scalar transport equation
- *  \ingroup eqsys
+/* Characteristics of a scalar transport equation
  *
  *  This class defines common characteristics of a scalar transport equation
  *  that concrete traits can override. For example, compare with Density trait

@@ -32,6 +32,25 @@ void MLMGOptions::parse_options(const std::string& prefix)
     pp.query("max_order", max_order);
 
     // MLMG options
+    m_prefix = prefix;
+    std::string multigrid_type;
+    if (pp.query("multigrid_type", multigrid_type) != 0) {
+        if (multigrid_type == "geometric") {
+            m_multigrid_type = amrex::MLMG::MultigridType::geometric;
+        } else if (multigrid_type == "algebraic") {
+            m_multigrid_type = amrex::MLMG::MultigridType::algebraic;
+        } else if (multigrid_type == "hybrid") {
+            m_multigrid_type = amrex::MLMG::MultigridType::hybrid;
+        } else {
+            amrex::Abort(
+                "MLMGOptions: invalid " + prefix + ".multigrid_type = " +
+                multigrid_type + ". Valid options: geometric algebraic hybrid");
+        }
+        m_multigrid_type_prefix = prefix;
+    }
+    if (m_multigrid_type == amrex::MLMG::MultigridType::geometric) {
+        m_bottom_abs_tol = m_bottom_abs_tol_default_gmg;
+    }
     pp.query("verbose", m_verbose);
     pp.query("bottom_verbose", m_bottom_verbose);
 
@@ -73,6 +92,30 @@ void MLMGOptions::operator()(amrex::MLMG& mlmg)
     mlmg.setFinalSmooth(m_num_final_smooth);
     mlmg.setBottomSmooth(m_num_bottom_smooth);
 
+    if (m_multigrid_type != amrex::MLMG::MultigridType::geometric) {
+        const std::string key = m_multigrid_type_prefix + ".multigrid_type";
+        const auto& linop = mlmg.getLinOp();
+        if (!linop.supportsAlgMG() || (linop.getNComp() != 1)) {
+            amrex::Abort(
+                "MLMGOptions: " + key +
+                " = algebraic or hybrid requires a single-component operator "
+                "that supports AlgMG, which the " +
+                m_prefix + " solve does not have. Set " + m_prefix +
+                ".multigrid_type = geometric");
+        }
+        if (m_do_nsolve) {
+            amrex::Abort(
+                "MLMGOptions: " + key + " = algebraic or hybrid requires " +
+                m_prefix + ".do_nsolve = false");
+        }
+        if ((m_multigrid_type == amrex::MLMG::MultigridType::hybrid) &&
+            m_do_fixed_iters) {
+            amrex::Abort(
+                "MLMGOptions: " + key + " = hybrid requires " + m_prefix +
+                ".do_fixed_iters = false");
+        }
+    }
+    mlmg.setMultigridType(m_multigrid_type);
     mlmg.setBottomVerbose(m_bottom_verbose);
     mlmg.setBottomTolerance(m_bottom_rel_tol);
     mlmg.setBottomToleranceAbs(m_bottom_abs_tol);

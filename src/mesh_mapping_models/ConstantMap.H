@@ -8,9 +8,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::const_map {
 
-/** Coonstant scaling mesh map
- *  \ingroup mesh_map
- */
+/* Coonstant scaling mesh map */
 class ConstantMap : public MeshMap::Register<ConstantMap>
 {
 public:
@@ -20,20 +18,20 @@ public:
 
     ~ConstantMap() override = default;
 
-    //! Construct the mesh scaling field
+    // Construct the mesh scaling field
     void create_map(int /*lev*/, const amrex::Geometry& /*geom*/) override;
 
-    //! Construct mesh scaling field on cell centers and nodes
+    // Construct mesh scaling field on cell centers and nodes
     void create_cell_node_map(int /*lev*/);
 
-    //! Construct mesh scaling field on cell faces
+    // Construct mesh scaling field on cell faces
     void create_face_map(int /*lev*/);
 
-    //! Construct the non-uniform mesh field
+    // Construct the non-uniform mesh field
     void create_non_uniform_mesh(int /*lev*/, const amrex::Geometry& /*geom*/);
 
 private:
-    //! Factor to scale the mesh by
+    // Factor to scale the mesh by
     amrex::Vector<amrex::Real> m_fac{1.0_rt, 1.0_rt, 1.0_rt};
 };
 

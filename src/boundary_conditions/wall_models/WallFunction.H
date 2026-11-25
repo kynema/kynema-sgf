@@ -9,8 +9,7 @@
 
 namespace kynema_sgf {
 
-/** Wall-function computations for LES simulations
- *  \ingroup utilities
+/* Wall-function computations for LES simulations
  *
  *  This class performs the necessary computations at the beginning of
  *  predictor/corrector steps. The actual BC population in ghost cells is
@@ -25,7 +24,7 @@ public:
     [[nodiscard]] LogLaw log_law() const { return m_log_law; }
     [[nodiscard]] MOSD mosd() const { return m_mosd; }
 
-    //! Update the mean velocity at a given timestep
+    // Update the mean velocity at a given timestep
     void update_umean();
     void update_utau_mean();
     void update_time();
@@ -37,18 +36,17 @@ private:
 
     const amrex::AmrCore& m_mesh;
 
-    //! LogLaw instance
+    // LogLaw instance
     LogLaw m_log_law;
-    int m_direction{2}; ///< Direction normal to wall, hardcoded to z
+    int m_direction{2}; // Direction normal to wall, hardcoded to z
     VelPlaneAveraging m_pa_vel;
 
     MOSD m_mosd;
 };
 
-/** Applies a shear-stress value at the domain boundary
- *  \ingroup field_bc utilities
+/* Applies a shear-stress value at the domain boundary
  *
- *  \sa WallFunction
+ *  See WallFunction
  */
 class VelWallFunc : public FieldBCIface
 {

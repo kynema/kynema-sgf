@@ -24,13 +24,13 @@ void set_default(
     }
 }
 
-//! Default inputs for kynema_sgf::SimTime
+// Default inputs for kynema_sgf::SimTime
 void default_time_inputs();
 
-//! Default inputs for amrex::AmrCore
+// Default inputs for amrex::AmrCore
 void default_mesh_inputs();
 
-//! Flag indicating whether managed memory is enabled
+// Flag indicating whether managed memory is enabled
 bool has_managed_memory();
 
 } // namespace kynema_sgf_tests::pp_utils

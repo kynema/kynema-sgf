@@ -3,13 +3,9 @@
 Documentation
 =============
 
-Kynema-SGF comes with two different types of documentation:
-
-- The manual, i.e., the document you are reading now, that is
-  written using `Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_, and
-
-- Inline documentation within C++ source code that are written in a format that can be
-  processed automatically by `Doxygen <http://www.doxygen.nl/manual/index.html>`_
+Kynema-SGF provides a manual written using
+`Sphinx <https://www.sphinx-doc.org/en/master/index.html>`_ and comments in
+the C++ source code.
 
 Manual
 ------
@@ -34,14 +30,8 @@ provides an overview of this format and how to write documentation using this fo
 Source code documentation
 -------------------------
 
-Source code (C++ files) are commented using a special format that
-allows Doxygen to extract the annotated comments and create source
-code documentation as well as inheritance diagrams. The
-:doc:`../doxygen/html/index` documentation for the latest snapshot of
-the codebase can be browsed in this manual. The `Doxygen manual
-<http://www.doxygen.nl/manual/index.html>`_ provides an overview of
-the syntax that must be used. Please follow the Doxygen style of
-commenting code when commenting Kynema-SGF sources.
+Use concise, ordinary C++ comments to describe the purpose of functions and
+other code where useful. Avoid repeating function arguments in lists.
 
 When commenting code, try to use self-documenting code, i.e., descriptive names
 for variables and functions that eliminate the need to describe what is going on
@@ -56,26 +46,26 @@ Building documentation
 Dependencies
 ````````````
 
-To generate the Kynema-SGF manual on a local machine, `doxygen`,
-`graphviz`, `doxysphinx`, `enchant`, and `sphinx` are required.
+To generate and spell-check the Kynema-SGF manual locally, install
+`enchant` and the Sphinx packages below.
 
 To install the required packages on Linux:
 
 .. code-block:: console
 
-    sudo apt-get install -y --no-install-recommends graphviz libenchant-2-dev
+    sudo apt-get install -y --no-install-recommends libenchant-2-dev
 
 and on OSX with homebrew:
 
 .. code-block:: console
 
-    brew install doxygen graphviz enchant
+    brew install enchant
 
 To install the required python packages:
 
 .. code-block:: console
 
-    pip install sphinx sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling doxysphinx
+    python3 -m pip install "sphinx<9" sphinx_rtd_theme sphinx_toolbox sphinx_copybutton pyenchant sphinxcontrib-spelling sphinxcontrib-bibtex
 
 Build
 `````
@@ -84,13 +74,14 @@ Run the following command to build the documentation:
 
 .. code-block:: console
 
-    cd build && cmake -DKYNEMA_SGF_ENABLE_DOCUMENTATION:BOOL=ON .. && cmake --build . -t docs
+    sphinx-build -b spelling -W --keep-going -n docs/sphinx build-docs/spelling
+    sphinx-build -b html -W --keep-going -n docs/sphinx build-docs/html
 
 .. tip::
 
-   On OSX, before running the cmake, you may need to :code:`export PYENCHANT_LIBRARY_PATH=/opt/homebrew/lib/libenchant-2.dylib`
+   On OSX, you may need to :code:`export PYENCHANT_LIBRARY_PATH=/opt/homebrew/lib/libenchant-2.dylib`
 
-The resulting documentation is in `docs/spinx/html`
+The resulting documentation is in ``build-docs/html``
 directory. Documentation can also be generated in other formats,
 consult `Sphinx docs
 <https://www.sphinx-doc.org/en/master/usage/builders/index.html>`_ for

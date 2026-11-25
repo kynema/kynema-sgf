@@ -37,9 +37,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE amrex::Real analytical_smagorinsky_profile(
 
 namespace kynema_sgf::channel_flow {
 
-/** Channel Flow physics
- *  \ingroup physics
- */
+/* Channel Flow physics */
 class ChannelFlow : public Physics::Register<ChannelFlow>
 {
 public:
@@ -51,7 +49,7 @@ public:
 
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
-    //! Use Reichardt function to initialize velocity profile
+    // Use Reichardt function to initialize velocity profile
     template <typename IndexSelector>
     void initialize_fields(
         int level,
@@ -75,7 +73,7 @@ public:
     void post_advance_work() override;
 
 private:
-    //! CFD simulation controller instance
+    // CFD simulation controller instance
     CFDSim& m_sim;
 
     const kynema_sgf::SimTime& m_time;
@@ -84,46 +82,46 @@ private:
 
     WallFunction m_wall_func;
 
-    //! Wall normal direction - Default y direction
+    // Wall normal direction - Default y direction
     int m_norm_dir{1};
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
 
-    //! viscosity
+    // viscosity
     amrex::Real m_mu{1.0_rt};
 
-    //! Re_tau
+    // Re_tau
     amrex::Real m_re_tau{1000.0_rt};
 
-    //! u_tau
+    // u_tau
     amrex::Real m_utau{0.01_rt};
 
-    //! y_tau
+    // y_tau
     amrex::Real m_ytau{0.001_rt};
 
-    //! initial tke value
+    // initial tke value
     amrex::Real m_tke0{0.0_rt};
 
-    //! initial sdr value
+    // initial sdr value
     amrex::Real m_sdr0{1000.0_rt};
 
-    //! flag for perturbations of the initial condition
+    // flag for perturbations of the initial condition
     bool m_perturb_vel{false};
 
-    //! perturbation period (y-direction)
+    // perturbation period (y-direction)
     amrex::Real m_perturb_y_period{1.0_rt};
 
-    //! perturbation period (z-direction)
+    // perturbation period (z-direction)
     amrex::Real m_perturb_z_period{1.0_rt};
 
-    //! perturbation factor (fraction of utau)
+    // perturbation factor (fraction of utau)
     amrex::Real m_perturb_fac{0.1_rt};
 
-    //! Von-Karman constant
+    // Von-Karman constant
     amrex::Real m_kappa{0.41_rt};
 
-    //! Turbulence model
+    // Turbulence model
     std::string m_turbulence_model;
 
     bool m_laminar{false};
@@ -134,25 +132,25 @@ private:
 
     bool m_half{false};
 
-    //! flag for analytical smagorinsky test
+    // flag for analytical smagorinsky test
     bool m_analytical_smagorinsky_test{false};
 
-    //! Analytical Smagorinsky first coefficient
+    // Analytical Smagorinsky first coefficient
     amrex::Real m_C0{0.0_rt};
 
-    //! Analytical Smagorinsky second coefficient
+    // Analytical Smagorinsky second coefficient
     amrex::Real m_C1{0.0_rt};
 
-    //! Body forcing (x direction)
+    // Body forcing (x direction)
     amrex::Real m_dpdx{0.0_rt};
 
-    //! direction of mean velocity
+    // direction of mean velocity
     int m_mean_vel_dir{0};
 
-    //! output precision
+    // output precision
     const int m_w{18};
 
-    //! error log file
+    // error log file
     std::string m_output_fname{"channel_flow.log"};
 };
 } // namespace kynema_sgf::channel_flow

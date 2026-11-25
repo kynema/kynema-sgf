@@ -9,8 +9,8 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Apply source term equivalent to drive the flow to match given geostrophic
- * wind \ingroup icns_src we_abl
+/* Apply source term equivalent to drive the flow to match given geostrophic
+ * wind
  */
 class GeostrophicForcing : public MomentumSource::Register<GeostrophicForcing>
 {
@@ -28,44 +28,44 @@ private:
     const SimTime& m_time;
     const amrex::AmrCore& m_mesh;
 
-    //! File name for target velocity time table
+    // File name for target velocity time table
     std::string m_vel_timetable;
 
-    //! Velocity forcing time table
+    // Velocity forcing time table
     amrex::Vector<amrex::Real> m_time_table;
 
-    //! Velocity forcing speed table
+    // Velocity forcing speed table
     amrex::Vector<amrex::Real> m_speed_table;
 
-    //! Velocity forcing direction table
+    // Velocity forcing direction table
     amrex::Vector<amrex::Real> m_direction_table;
 
-    //! Coriolis factor
+    // Coriolis factor
     amrex::Real m_coriolis_factor;
 
-    //! Activated when water is present in domain
+    // Activated when water is present in domain
     bool m_use_phase_ramp{false};
 
-    //! Number of cells in band to prevent forcing near liquid
+    // Number of cells in band to prevent forcing near liquid
     int m_n_band{2};
 
-    //! Target velocity
+    // Target velocity
     amrex::Vector<amrex::Real> m_target_vel{0.0_rt, 0.0_rt, 0.0_rt};
 
-    //! Forcing source term (pressure gradient)
+    // Forcing source term (pressure gradient)
     amrex::Vector<amrex::Real> m_g_forcing{0.0_rt, 0.0_rt, 0.0_rt};
 
     bool m_is_horizontal{false};
 
-    //! Height from water interface where force is off
+    // Height from water interface where force is off
     amrex::Real m_forcing_mphase0;
-    //! Height from water interface over which force is ramped
+    // Height from water interface over which force is ramped
     amrex::Real m_forcing_mphase1;
 
-    //! Local storage of interface location
+    // Local storage of interface location
     amrex::Real m_water_level;
 
-    //! VOF field, to avoid forcing on liquid above force-off height
+    // VOF field, to avoid forcing on liquid above force-off height
     const Field* m_vof;
 };
 

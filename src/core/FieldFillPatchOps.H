@@ -15,8 +15,8 @@
 #include "AMReX_PhysBCFunct.H"
 #include "AMReX_FillPatchUtil.H"
 
-/**
- *  \defgroup field_fillpatch Fillpatch operators
+/*
+ *  Fillpatch operators
  *  Field fillpatch operators
  *
  *  This group documents classes and functions available for performing
@@ -26,16 +26,12 @@
  * Kynema-SGF has two components: 1. the fill patch operators themselves that
  * perform the fill operation, and 2. operator classes that define what happens
  * during a fillpatch operation at the domain boundaries.
- *
- *  \ingroup fields
  */
 
 namespace kynema_sgf {
 
-/** Abstract interface for classes that handle fill patch and physical boundary
+/* Abstract interface for classes that handle fill patch and physical boundary
  *  condition operations for multi-level AMR meshes.
- *
- *  \ingroup field_fillpatch
  */
 class FieldFillPatchOpsBase
 {
@@ -44,8 +40,8 @@ public:
 
     virtual ~FieldFillPatchOpsBase() = default;
 
-    //! Implementation that handles filling patches on a single level as well as
-    //! across a coarse-fine interface.
+    // Implementation that handles filling patches on a single level as well as
+    // across a coarse-fine interface.
     virtual void fillpatch(
         int lev,
         amrex::Real time,
@@ -53,8 +49,8 @@ public:
         const amrex::IntVect& nghost,
         FieldState fstate = FieldState::New) = 0;
 
-    //! Implementation that handles filling patches on a single level as well as
-    //! across a coarse-fine interface, for an array of different fields
+    // Implementation that handles filling patches on a single level as well as
+    // across a coarse-fine interface, for an array of different fields
     virtual void fillpatch_sibling_fields(
         int lev,
         amrex::Real time,
@@ -66,7 +62,7 @@ public:
         const amrex::Vector<amrex::BCRec>& physbc_bcrec,
         FieldState fstate = FieldState::New) = 0;
 
-    //! Implementation that handles filling patches from a coarse to fine level
+    // Implementation that handles filling patches from a coarse to fine level
     virtual void fillpatch_from_coarse(
         int lev,
         amrex::Real time,
@@ -74,7 +70,7 @@ public:
         const amrex::IntVect& nghost,
         FieldState fstate = FieldState::New) = 0;
 
-    //! Implementation that handles filling physical boundary conditions
+    // Implementation that handles filling physical boundary conditions
     virtual void fillphysbc(
         int lev,
         amrex::Real time,
@@ -103,10 +99,7 @@ public:
         amrex::Array<amrex::MultiFab*, AMREX_SPACEDIM> mfabs) = 0;
 };
 
-/** Implementation that just fills a constant value on newly created grids
- *
- *  \ingroup field_fillpatch
- */
+/* Implementation that just fills a constant value on newly created grids */
 class FieldFillConstScalar : public FieldFillPatchOpsBase
 {
 public:
@@ -174,24 +167,15 @@ private:
     amrex::Real m_fill_val;
 };
 
-/** Concrete implementation of filling patches and boundary conditions on
+/* Concrete implementation of filling patches and boundary conditions on
  *  multi-level AMR meshes.
- *
- *  \ingroup field_fillpatch
  */
 template <typename BCOpCreator>
 class FieldFillPatchOps : public FieldFillPatchOpsBase
 {
 public:
     using Functor = typename BCOpCreator::FunctorType;
-    /**
-     *  \param field Field whose patches are filled by this instance
-     *  \param mesh  The mesh instance to determine amrex::Geometry at a level
-     *  \param time  Time instance
-     *  \param itype Interpolation type (default: conservative cell linear)
-     *  \param face_itype Face interpolation type (default: face divergence
-     * free)
-     */
+
     FieldFillPatchOps(
         Field& field,
         const amrex::AmrCore& mesh,
@@ -225,7 +209,7 @@ public:
         check_face_mapper();
     }
 
-    /** Utility function to get a vector of multifabs for over states
+    /* Utility function to get a vector of multifabs for over states
      *
      *  Returns one or two multifabs at a given level depending on whether the
      *  field was registered with states. When two states are returned the first
@@ -531,10 +515,10 @@ protected:
 
     const BCOpCreator m_op;
 
-    //! Function that handles interpolation from coarse to fine level
+    // Function that handles interpolation from coarse to fine level
     amrex::Interpolater* m_mapper;
 
-    //! Function that handles interpolation from coarse to fine level for faces
+    // Function that handles interpolation from coarse to fine level for faces
     amrex::Interpolater* m_face_mapper;
 };
 

@@ -13,8 +13,7 @@ class CFDSim;
 
 namespace pde {
 
-/** Base class for SDR source terms.
- *  \ingroup sdr_src
+/* Base class for SDR source terms.
  *
  *  All concrete implementations of SDR source terms must subclass this class.
  */

@@ -105,12 +105,11 @@ void main_main()
 
     if (out_format == csv) {
         // create Header
-        /**
+        /*
          * Header Data in CSV
          *
          * Will follow
          * https://www.w3.org/TR/tabular-data-model/#embedded-metadata
-         *
          */
         // Output csv-formatted data
         std::ofstream output_stream;

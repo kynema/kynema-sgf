@@ -10,8 +10,7 @@ class Field;
 
 namespace pde {
 
-/** Collection of fields related to a PDE
- *  \ingroup eqsys
+/* Collection of fields related to a PDE
  *
  *  Every PDE requires a common set of fields, e.g., the transported variable
  *  (scalar or vector), advection, diffusion, source, and effective viscosity
@@ -27,19 +26,19 @@ struct PDEFields
 {
     PDEFields(FieldRepo& repo_in, const std::string& var_name);
 
-    //! Reference to the field repository instance
+    // Reference to the field repository instance
     FieldRepo& repo;
 
-    //! Solution variable (e.g., velocity, temperature)
+    // Solution variable (e.g., velocity, temperature)
     Field& field;
-    //! Effective visocity field (e.g., velocity_mueff)
+    // Effective visocity field (e.g., velocity_mueff)
     Field& mueff;
 
-    //! Source term for this PDE
+    // Source term for this PDE
     Field& src_term;
-    //! Diffusion term for this PDE
+    // Diffusion term for this PDE
     Field& diff_term;
-    //! Convective term for this PDE
+    // Convective term for this PDE
     Field& conv_term;
 };
 

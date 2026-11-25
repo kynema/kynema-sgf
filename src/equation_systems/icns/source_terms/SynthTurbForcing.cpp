@@ -5,11 +5,7 @@
 
 namespace kynema_sgf::pde::icns {
 
-/** Synthetic Turbulence forcing term
- *
- *
- *
- */
+/* Synthetic Turbulence forcing term */
 SynthTurbForcing::SynthTurbForcing(const CFDSim& sim)
     : m_turb_force(sim.repo().get_field("synth_turb_forcing"))
 {

@@ -9,8 +9,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::tagging {
 
-/** Refine region inside a cylinder
- *  \ingroup amr_utils
+/* Refine region inside a cylinder
  *
  *  The axis of the cylinder is defined by two vectors `start` and `end` that
  *  define the beginning and end of the cylinder along its axis. The outer
@@ -29,8 +28,7 @@ public:
     void operator()(
         const amrex::Box& /*bx*/,
         const amrex::Geometry& geom,
-        const amrex::Array4<amrex::TagBox::TagType>& tags,
-        const tagging::TaggingOperator& op) const override;
+        const amrex::Array4<amrex::TagBox::TagType>& tags) const override;
 
     [[nodiscard]] const amrex::RealBox& bound_box() const override
     {

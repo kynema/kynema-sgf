@@ -6,15 +6,14 @@
 
 namespace kynema_sgf::tagging {
 
-/** AMR inside an arbitrarily oriented hexahedral box
- *  \ingroup amr_utils
+/* AMR inside an arbitrarily oriented hexahedral box
  *
  *  The hexahedral box is defined by three vectors `xaxis`, `yaxis`, and `zaxis`
  *  that specify the direction and lengths of the box with respect to `origin`.
  *  If the axes are aligned with Cartesian coordinates, it is better to use the
  *  CartBoxRefinement class for faster tagging.
  *
- *  \sa CartBoxRefinement
+ *  See CartBoxRefinement
  */
 class BoxRefiner : public GeometryType::Register<BoxRefiner>
 {
@@ -28,8 +27,7 @@ public:
     void operator()(
         const amrex::Box& /*bx*/,
         const amrex::Geometry& geom,
-        const amrex::Array4<amrex::TagBox::TagType>& tags,
-        const tagging::TaggingOperator& op) const override;
+        const amrex::Array4<amrex::TagBox::TagType>& tags) const override;
 
     [[nodiscard]] const amrex::RealBox& bound_box() const override
     {

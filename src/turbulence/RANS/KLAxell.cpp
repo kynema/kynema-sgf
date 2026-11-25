@@ -127,7 +127,7 @@ void KLAxell<Transport>::update_turbulent_viscosity(
         const auto& shear_prod_arrs = (this->m_shear_prod)(lev).arrays();
         const auto& beta_arrs = (*beta)(lev).const_arrays();
 
-        //! Add terrain components
+        // Add terrain components
         const bool has_terrain =
             this->m_sim.repo().int_field_exists("terrain_blank");
         if (has_terrain) {
@@ -210,9 +210,11 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k)) *
                         (1.0_rt - blank_arrs[nbx](i, j, k));
-                    buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -(muPrime / rho_arrs[nbx](i, j, k)) * stratification;
                     shear_prod_arrs[nbx](i, j, k) *=
-                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                        shear_prod_arrs[nbx](i, j, k) *
+                        (mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k));
                 });
         } else {
             amrex::ParallelFor(
@@ -284,9 +286,11 @@ void KLAxell<Transport>::update_turbulent_viscosity(
                         rho_arrs[nbx](i, j, k) * Cmu_prime_Rt *
                         tlscale_arrs[nbx](i, j, k) *
                         std::sqrt(tke_arrs[nbx](i, j, k));
-                    buoy_prod_arrs[nbx](i, j, k) = -muPrime * stratification;
+                    buoy_prod_arrs[nbx](i, j, k) =
+                        -(muPrime / rho_arrs[nbx](i, j, k)) * stratification;
                     shear_prod_arrs[nbx](i, j, k) *=
-                        shear_prod_arrs[nbx](i, j, k) * mu_arrs[nbx](i, j, k);
+                        shear_prod_arrs[nbx](i, j, k) *
+                        (mu_arrs[nbx](i, j, k) / rho_arrs[nbx](i, j, k));
                 });
         }
     }

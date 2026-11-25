@@ -23,8 +23,8 @@ class RefinementCriteria;
 class RefineCriteriaManager;
 } // namespace kynema_sgf
 
-/**
- *  \defgroup driver Kynema-SGF driver code
+/*
+ *  Kynema-SGF driver code
  *
  *  Code that implements initialization and time-stepping logic.
  *
@@ -33,21 +33,18 @@ class RefineCriteriaManager;
  *  from the executable. Currently there are two phases during Kynema-SGF
  * execution:
  *
- *  <ol>
  *
- *  <li> **Initialization** \ref incflo::ReadParameters "Read input parameters",
- *  \ref incflo::InitData "initialize mesh, physics modules, etc.".
  *
- *  <li> **Time loop** Run user-defined number of timesteps \ref incflo::Evolve
- *  "in a loop" that \ref incflo::advance "advances" the flow-field.
+ *  - **Initialization** incflo::ReadParameters "Read input parameters",
+ *  incflo::InitData "initialize mesh, physics modules, etc.".
  *
- *  </ol>
+ *  - **Time loop** Run user-defined number of timesteps incflo::Evolve
+ *  "in a loop" that incflo::advance "advances" the flow-field.
+ *
+ *
  */
 
-/** Kynema-SGF driver class
- *  \ingroup driver
- *
- */
+/* Kynema-SGF driver class */
 class incflo : public amrex::AmrCore
 {
 public:
@@ -147,7 +144,7 @@ public:
         amrex::Real scaling_factor,
         bool incremental);
 
-    //! Initialize Physics instances as well as PDEs (include turbulence models)
+    // Initialize Physics instances as well as PDEs (include turbulence models)
     void init_physics_and_pde();
 
     void ReadCheckpointFile();
@@ -188,12 +185,12 @@ private:
     // Fixed point iterations every timestep
     int m_fixed_point_iterations{1};
 
-    //! number of cells on all levels including covered cells
+    // number of cells on all levels including covered cells
     amrex::Long m_cell_count{-1};
 
     DiffusionType m_diff_type = DiffusionType::Crank_Nicolson;
 
-    //! reconstruct true pressure
+    // reconstruct true pressure
     bool m_reconstruct_true_pressure{false};
 
     //

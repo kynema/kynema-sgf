@@ -5,8 +5,7 @@
 
 namespace kynema_sgf::pde::tke {
 
-/** Source terms for SDR equation
- *   \ingroup turb_model
+/* Source terms for SDR equation
  *
  *  Works for all SDR equations with source term
  */

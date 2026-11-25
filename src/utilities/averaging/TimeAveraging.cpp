@@ -17,7 +17,7 @@ TimeAveraging::~TimeAveraging() = default;
 
 void TimeAveraging::pre_init_actions()
 {
-    //! Different averaging types
+    // Different averaging types
     amrex::Vector<std::string> labels;
     {
         amrex::ParmParse pp(m_label);
@@ -34,7 +34,7 @@ void TimeAveraging::pre_init_actions()
     amrex::Print() << "TimeAveraging: Initializing " << m_label << '\n';
 
     for (const auto& lbl : labels) {
-        //! Fields to be averaged
+        // Fields to be averaged
         amrex::Vector<std::string> fnames;
         std::string avg_type;
         const std::string pp_key = m_label + "." + lbl;

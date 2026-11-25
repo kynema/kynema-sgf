@@ -49,8 +49,7 @@ struct SampleLocType
     IdType m_ids;
 };
 
-/** Abstract representation of data probes to sample flow data
- *  \ingroup sampling
+/* Abstract representation of data probes to sample flow data
  *
  *  This class defines the interface by which the positions of the data-probes
  *  are defined and access from the Sampling class. All data probe definitions
@@ -65,52 +64,52 @@ public:
 
     ~SamplerBase() override = default;
 
-    //! Name used to refer to this sampler (e.g., myline1)
+    // Name used to refer to this sampler (e.g., myline1)
     [[nodiscard]] virtual std::string label() const = 0;
     virtual std::string& label() = 0;
 
-    //! Class name of this sampler (e.g., LineSampler)
+    // Class name of this sampler (e.g., LineSampler)
     [[nodiscard]] virtual std::string sampletype() const = 0;
 
-    //! Unique numeric identifier used to track particles belonging to this
-    //! instance
+    // Unique numeric identifier used to track particles belonging to this
+    // instance
     [[nodiscard]] virtual int id() const = 0;
     virtual int& id() = 0;
 
-    //! Total number of probes that belong to this sampling instance
+    // Total number of probes that belong to this sampling instance
     [[nodiscard]] virtual long num_points() const = 0;
 
-    //! Total number of probes to be output
-    //! Note: Same as num_points() for sampling without data reduction
+    // Total number of probes to be output
+    // Note: Same as num_points() for sampling without data reduction
     [[nodiscard]] virtual long num_output_points() const = 0;
 
-    //! Read inputs and perform initialization actions
+    // Read inputs and perform initialization actions
     virtual void initialize(const std::string& key) = 0;
 
-    //! Populate the vector with coordinates of the sampling locations
+    // Populate the vector with coordinates of the sampling locations
     virtual void sampling_locations(SampleLocType&) const = 0;
 
-    //! Populate the vector with coordinates of the sampling locations inside
-    //! a box
+    // Populate the vector with coordinates of the sampling locations inside
+    // a box
     virtual void
     sampling_locations(SampleLocType&, const amrex::Box&) const = 0;
 
-    //! Check and fix the bounds of the sampler so the probes are in the domain
+    // Check and fix the bounds of the sampler so the probes are in the domain
     virtual void check_bounds() = 0;
 
-    //! Populate the vector with coordinates of the output locations
+    // Populate the vector with coordinates of the output locations
     virtual void output_locations(SampleLocType&) const = 0;
 
-    //! Update the sampling locations
+    // Update the sampling locations
     virtual bool update_sampling_locations() { return false; }
 
-    //! Run actions after sample (useful in interpolated subsampling)
+    // Run actions after sample (useful in interpolated subsampling)
     virtual void post_sample_actions() {}
 
-    //! Run actions after regrid (important when using field-based quantities)
+    // Run actions after regrid (important when using field-based quantities)
     virtual void post_regrid_actions() {}
 
-    //! Run specific output for the sampler
+    // Run specific output for the sampler
     virtual bool output_netcdf_field(
         const std::vector<amrex::Real>& /*unused*/,
         ncutils::NCGroup& /*unused*/,
@@ -119,12 +118,12 @@ public:
         return true;
     }
 
-    //! Run data modification for specific sampler?
+    // Run data modification for specific sampler?
     virtual bool do_data_modification() { return false; }
     virtual bool do_convert_velocity_los() { return false; }
     virtual bool do_subsampling_interp() { return false; }
 
-    //! Sample buffer modification instructions
+    // Sample buffer modification instructions
     virtual std::vector<amrex::Real> modify_sample_data(
         const std::vector<amrex::Real>& sampledata,
         const std::string& /*unused*/)
@@ -137,7 +136,7 @@ public:
         const int /*unused*/)
     {}
 
-    //! Populate metadata in the NetCDF file
+    // Populate metadata in the NetCDF file
     virtual void
     define_netcdf_metadata(const ncutils::NCGroup& /*unused*/) const
     {}
@@ -148,7 +147,7 @@ public:
         const ncutils::NCGroup& /*unused*/, const size_t /*unused*/) const
     {}
 
-    //! Populate sampler-specific YAML keys to the native/ascii info file.
+    // Populate sampler-specific YAML keys to the native/ascii info file.
     virtual void populate_info_file(std::ostream& /*unused*/) const {}
 };
 

@@ -11,8 +11,7 @@ namespace kynema_sgf {
 
 class FieldRepo;
 
-/** Subview of a Field or a ScratchField
- *  \ingroup fields
+/* Subview of a Field or a ScratchField
  *
  *  A ViewField instance holds MultiFab corresponding to a subview of a Field or
  *  a ScratchField. As the data is managed by the source Field or ScratchField,
@@ -33,7 +32,7 @@ public:
 
     [[nodiscard]] std::string name() const { return m_src.name() + "view"; }
 
-    //! Number of components in this subview
+    // Number of components in this subview
     [[nodiscard]] int num_comp() const { return m_ncomp; }
 
     [[nodiscard]] const amrex::IntVect& num_grow() const
@@ -46,7 +45,7 @@ public:
         return m_src.field_location();
     }
 
-    //! Return the field data for a given level
+    // Return the field data for a given level
     amrex::MultiFab& operator()(int lev) { return m_data[lev]; }
     const amrex::MultiFab& operator()(int lev) const { return m_data[lev]; }
 
@@ -60,26 +59,26 @@ public:
         return amrex::GetVecOfConstPtrs(m_data);
     }
 
-    //! Return a reference to the field repository that created this field
+    // Return a reference to the field repository that created this field
     [[nodiscard]] const FieldRepo& repo() const { return m_src.repo(); }
 
-    //! Return a reference to the source field from which this view is derived
+    // Return a reference to the source field from which this view is derived
     T& source_field() { return m_src; }
     [[nodiscard]] const T& source_field() const { return m_src; }
 
 private:
     ViewField(T& src, int scomp = 0, int ncomp = 1);
 
-    //! The base field
+    // The base field
     T& m_src;
 
-    //! Index of the starting component
+    // Index of the starting component
     int m_scomp;
 
-    //! Number of sub-components in this view
+    // Number of sub-components in this view
     int m_ncomp;
 
-    //! MultiFabs holding the alias views
+    // MultiFabs holding the alias views
     amrex::Vector<amrex::MultiFab> m_data;
 };
 

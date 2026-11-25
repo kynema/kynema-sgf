@@ -5,7 +5,7 @@
 
 namespace kynema_sgf::actuator::motion {
 
-/** Position and orientation mapping body-frame coordinates to the CFD frame. */
+/* Position and orientation mapping body-frame coordinates to the CFD frame. */
 struct RigidTransform
 {
     vs::Vector position{vs::Vector::zero()};

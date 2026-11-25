@@ -11,25 +11,19 @@
 
 namespace kynema_sgf::pde {
 
-/**
- *  \defgroup icns Incompressible Navier-Stokes
+/*
+ *  Incompressible Navier-Stokes
  *
  *  Incompressible Navier-Stokes equation system
- *
- *  \ingroup eqsys
  */
 
-/**
- *  \defgroup icns_src ICNS Source terms
+/*
+ *  ICNS Source terms
  *
  *  Source terms used with incompressible Navier-Stokes momentum equation
- *
- *  \ingroup icns
  */
 
-/** Characteristics of ICNS equation system
- *  \ingroup icns
- */
+/* Characteristics of ICNS equation system */
 struct ICNS : VectorTransport
 {
     using SrcTerm = MomentumSource;

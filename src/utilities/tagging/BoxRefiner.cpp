@@ -10,7 +10,7 @@ namespace kynema_sgf::tagging {
 
 namespace {
 
-//! Utility function to parse inputs and return a vector instance
+// Utility function to parse inputs and return a vector instance
 vs::Vector parse_vector(amrex::ParmParse& pp, const std::string& key)
 {
     amrex::Vector<amrex::Real> tmp;
@@ -21,9 +21,9 @@ vs::Vector parse_vector(amrex::ParmParse& pp, const std::string& key)
     return vs::Vector{tmp[0], tmp[1], tmp[2]};
 }
 
-/** Compute the corners that make up the hexahedral box
+/* Compute the corners that make up the hexahedral box
  *
- *  \return Position vectors of the 8 vertices that make up the box
+ *  Returns Position vectors of the 8 vertices that make up the box
  */
 amrex::Vector<vs::Vector> compute_hex_corners(
     const vs::Vector& origin,
@@ -45,10 +45,9 @@ amrex::Vector<vs::Vector> compute_hex_corners(
     return hex_nodes;
 }
 
-/** Compute the outward facing normals for the hexahedral box
+/* Compute the outward facing normals for the hexahedral box
  *
- *  \param hex_nodes Coordinates of the 8 vertices that make up the box
- *  \return Face normals for the six faces that make up the hexahedral box
+ *  Returns Face normals for the six faces that make up the hexahedral box
  */
 amrex::Vector<vs::Vector>
 compute_face_normals(const amrex::Vector<vs::Vector>& hex_nodes)
@@ -145,8 +144,7 @@ BoxRefiner::BoxRefiner(const CFDSim& /*unused*/, const std::string& key)
 void BoxRefiner::operator()(
     const amrex::Box& bx,
     const amrex::Geometry& geom,
-    const amrex::Array4<amrex::TagBox::TagType>& tag,
-    const tagging::TaggingOperator& op) const
+    const amrex::Array4<amrex::TagBox::TagType>& tag) const
 {
     const auto* hex_corners = m_hex_corners.data();
     const auto* face_normals = m_face_normals.data();
@@ -176,10 +174,9 @@ void BoxRefiner::operator()(
             }
         }
 
-        const auto previous_tag = (tag(i, j, k) == amrex::TagBox::SET);
-        const auto current_tag = inside;
-
-        tag(i, j, k) = tagging::tag_val(previous_tag, current_tag, op);
+        if (inside) {
+            tag(i, j, k) = amrex::TagBox::SET;
+        }
     });
 }
 

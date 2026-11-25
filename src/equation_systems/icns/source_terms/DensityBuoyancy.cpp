@@ -14,7 +14,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Density based buoyancy source term
+/* Density based buoyancy source term
  *
  *  Reads in the following parameters from `incflo` namespace:
  *
@@ -34,12 +34,7 @@ DensityBuoyancy::DensityBuoyancy(const CFDSim& sim)
 
 DensityBuoyancy::~DensityBuoyancy() = default;
 
-/** Add the Boussinesq source term to the forcing array
- *
- *  \param lev AMR level
- *  \param fstate field state
- *  \param src_term Cumulative forcing array
- */
+/* Add the Boussinesq source term to the forcing array */
 void DensityBuoyancy::operator()(
     const int lev, const FieldState fstate, amrex::MultiFab& src_term) const
 {

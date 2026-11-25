@@ -1,9 +1,13 @@
 #ifndef TURBINE_EXTERNAL_OPS_H
 #define TURBINE_EXTERNAL_OPS_H
 
+#include <fstream>
+#include <type_traits>
+#include <vector>
 #include "src/actuator/turbine/turbine_utils.H"
 #include "src/actuator/actuator_ops.H"
 #include "src/actuator/actuator_utils.H"
+#include "src/actuator/actuator_restart.H"
 #include "src/actuator/FLLCOp.H"
 #include "src/utilities/IOManager.H"
 #include "src/actuator/turbine/external/turbine_external_utils.H"
@@ -15,8 +19,10 @@ namespace kynema_sgf::actuator::ops {
 template <typename datatype>
 void read_ops(datatype& data, const utils::ActParser& pp)
 {
-    // Tell reading utility the name of the solver
-    data.meta().solver_name = data.meta().ext_ptr->identifier();
+    // Solver name for the reading utility; via the type, since ext_ptr is
+    // set later (external_determine_root_proc, root only)
+    data.meta().solver_name =
+        std::remove_pointer_t<decltype(data.meta().ext_ptr)>::identifier();
     // Data common to any turbine actuator simulation
     utils::read_inputs(data.meta(), data.info(), pp);
 
@@ -24,6 +30,13 @@ void read_ops(datatype& data, const utils::ActParser& pp)
 
     // Get density value for normalization
     pp.get("density", tdata.density);
+    // The forces of the external solver are divided by it
+    if (!(tdata.density > 0.0_rt)) {
+        amrex::Abort(
+            "Actuator " + data.info().label +
+            ": density must be larger than 0. Value read: " +
+            std::to_string(tdata.density));
+    }
 
     // Copy data to external data holder
     const auto& tinfo = data.info();
@@ -37,9 +50,7 @@ void read_ops(datatype& data, const utils::ActParser& pp)
     tf.num_blades = tdata.num_blades;
     tf.num_pts_blade = tdata.num_pts_blade;
     tf.num_pts_tower = tdata.num_pts_tower;
-    const auto& time = data.sim().time();
-    tf.dt_cfd = time.delta_t();
-    tf.chkpt_interval = time.chkpt_interval();
+    tf.dt_cfd = data.sim().time().delta_t();
 }
 
 template <typename datatype>
@@ -104,7 +115,7 @@ void init_data_op(datatype& data)
     amrex::ParallelDescriptor::Comm_dup(
         amrex::ParallelDescriptor::Communicator(), tdata.tcomm);
 
-    amrex::Array<int, 6> sz_info = {0, 0, 0, 0, 0, 0};
+    amrex::Array<int, 5> sz_info = {0, 0, 0, 0, 0};
     if (info.is_root_proc) {
         tdata.ext_ptr->init_turbine(tdata.ext_data.tid_local);
 
@@ -114,7 +125,6 @@ void init_data_op(datatype& data)
         sz_info[2] = tf.length_fluid_velocity(0);
         sz_info[3] = tf.num_pts_tower;
         sz_info[4] = tf.num_vel_pts_blade();
-        sz_info[5] = tdata.ext_ptr->offset_velocity_points();
     }
 
     // Broadcast data to everyone
@@ -123,13 +133,17 @@ void init_data_op(datatype& data)
 
     {
         tdata.num_blades = sz_info[0];
+        // FLLC data sized from the num_blades input: one per blade of the
+        // external solver
+        if (!tdata.fllc.empty()) {
+            tdata.fllc.resize(tdata.num_blades, tdata.fllc.front());
+        }
         // back calculate what the value per blade for number of points in
         // the openfast data structure
         tdata.num_vel_pts_blade = sz_info[4];
         data.grid().resize(sz_info[1], sz_info[2]);
         tdata.chord.resize(sz_info[1]);
         tdata.num_pts_tower = sz_info[3];
-        tdata.velocity_points_offset = sz_info[5];
     }
 
     tdata.vel_rel.assign(sz_info[1], vs::Vector::zero());
@@ -150,6 +164,26 @@ void init_data_op(datatype& data)
     init_epsilon<datatype>(data);
 }
 
+/* Copy velocity points of the external solver
+ *
+ *  vel_pos.size() points from index start, shifted by the turbine base
+ *  position. Current solver time; valid on the turbine root only.
+ */
+template <typename datatype, typename VecType>
+void copy_ext_vel_pos(const datatype& data, VecType& vel_pos, const int start)
+{
+    const auto& tdata = data.meta();
+    const auto& bp = data.info().base_pos;
+    const auto& pxvel = tdata.ext_data.position_at_vel(0);
+    const auto& pyvel = tdata.ext_data.position_at_vel(1);
+    const auto& pzvel = tdata.ext_data.position_at_vel(2);
+    for (int i = 0; i < static_cast<int>(vel_pos.size()); ++i) {
+        vel_pos[i].x() = static_cast<amrex::Real>(pxvel[start + i]) + bp.x();
+        vel_pos[i].y() = static_cast<amrex::Real>(pyvel[start + i]) + bp.y();
+        vel_pos[i].z() = static_cast<amrex::Real>(pzvel[start + i]) + bp.z();
+    }
+}
+
 template <typename datatype>
 void update_pos_op(datatype& data)
 {
@@ -161,17 +195,7 @@ void update_pos_op(datatype& data)
         return;
     }
 
-    const auto& tdata = data.meta();
-    const auto& bp = data.info().base_pos;
-    const auto& pxvel = tdata.ext_data.position_at_vel(0);
-    const auto& pyvel = tdata.ext_data.position_at_vel(1);
-    const auto& pzvel = tdata.ext_data.position_at_vel(2);
-    auto& vel_pos = data.grid().vel_pos;
-    for (int i = 0; i < vel_pos.size(); ++i) {
-        vel_pos[i].x() = static_cast<amrex::Real>(pxvel[i]) + bp.x();
-        vel_pos[i].y() = static_cast<amrex::Real>(pyvel[i]) + bp.y();
-        vel_pos[i].z() = static_cast<amrex::Real>(pzvel[i]) + bp.z();
-    }
+    copy_ext_vel_pos(data, data.grid().vel_pos, 0);
 }
 
 template <typename datatype>
@@ -192,18 +216,47 @@ void update_fields_op(datatype& data)
     const auto& vel = data.grid().vel;
 
     if (!tdata.fllc.empty()) {
-        // Compute the relative velocity needed for the FLLC
+        namespace interp = ::kynema_sgf::interp;
+
+        // The relative velocity needed for the FLLC is the fluid velocity
+        // last sent to the external solver minus the velocity of the blade.
+        // The first is known at the velocity points and the second at the
+        // force points, each with its own numbering: the hub first, then
+        // the points of every blade.
         const auto& xdot = tdata.ext_data.solid_velocity(0);
         const auto& ydot = tdata.ext_data.solid_velocity(1);
         const auto& zdot = tdata.ext_data.solid_velocity(2);
-        for (int i = 0; i < tdata.vel_rel.size(); ++i) {
-            tdata.vel_rel[i][0] = uvel[i] - static_cast<amrex::Real>(xdot[i]);
-            tdata.vel_rel[i][1] = vvel[i] - static_cast<amrex::Real>(ydot[i]);
-            tdata.vel_rel[i][2] = wvel[i] - static_cast<amrex::Real>(zdot[i]);
-        }
+        VecList fluid_vel(tdata.num_vel_pts_blade);
         // Loop through each blade and apply the FLLC
-        for (int i = 0; i < tdata.num_blades; ++i) {
-            FLLCOp()(tdata.blades[i], tdata.fllc[i]);
+        for (int ib = 0; ib < tdata.num_blades; ++ib) {
+            auto& blade = tdata.blades[ib];
+            auto& fllc = tdata.fllc[ib];
+            if (!fllc.initialized) {
+                continue;
+            }
+            // Same first points as the blade views (make_component_views)
+            const int start = (ib * tdata.num_pts_blade) + 1;
+            const int start_vel = (ib * tdata.num_vel_pts_blade) + 1;
+            for (int i = 0; i < tdata.num_vel_pts_blade; ++i) {
+                fluid_vel[i][0] = uvel[start_vel + i];
+                fluid_vel[i][1] = vvel[start_vel + i];
+                fluid_vel[i][2] = wvel[start_vel + i];
+            }
+            for (int i = 0; i < tdata.num_pts_blade; ++i) {
+                const vs::Vector solid_vel{
+                    static_cast<amrex::Real>(xdot[start + i]),
+                    static_cast<amrex::Real>(ydot[start + i]),
+                    static_cast<amrex::Real>(zdot[start + i])};
+                if (fllc.mismatched_points) {
+                    blade.vel_rel[i] = interp::linear(
+                                           fllc.span_distance_vel, fluid_vel,
+                                           fllc.span_distance_force[i]) -
+                                       solid_vel;
+                } else {
+                    blade.vel_rel[i] = fluid_vel[i] - solid_vel;
+                }
+            }
+            FLLCOp()(blade, fllc);
         }
     }
 
@@ -212,6 +265,123 @@ void update_fields_op(datatype& data)
         vvel[i] = static_cast<float>(vel[i].y());
         wvel[i] = static_cast<float>(vel[i].z());
     }
+}
+
+/* Write the external solver checkpoint with a CFD checkpoint
+ *
+ *  Called on every rank at each CFD checkpoint, at the end of a time step
+ *  (turbine at the new time since pre_advance_work). Turbine root only; no
+ *  collectives.
+ */
+template <typename datatype>
+void external_write_solver_checkpoint(datatype& data)
+{
+    if (!data.info().is_root_proc) {
+        return;
+    }
+    auto& tdata = data.meta();
+    tdata.ext_ptr->write_turbine_checkpoint(tdata.ext_data.tid_local);
+}
+
+/* Restart data of an external turbine, with each CFD checkpoint
+ *  (ops::write_checkpoint of TurbineFast and TurbineKynemaFMB)
+ *
+ *  External solver checkpoint; once the FLLC has started, per blade its
+ *  state, the fluid velocity last sent to the external solver and the forces
+ *  the solver returned for it (the pair the next FLLC update uses). Turbine
+ *  root only.
+ */
+template <typename datatype>
+void external_write_checkpoint(datatype& data, const std::string& chkname)
+{
+    external_write_solver_checkpoint(data);
+
+    auto& tdata = data.meta();
+    if (!data.info().is_root_proc || tdata.fllc.empty() ||
+        !tdata.fllc.front().initialized) {
+        return;
+    }
+
+    auto os = restart::create_file(
+        chkname, data.info().label, data.sim().time().new_time());
+    restart::write_value(os, "num_blades", tdata.num_blades);
+
+    const auto& uvel = tdata.ext_data.fluid_velocity(0);
+    const auto& vvel = tdata.ext_data.fluid_velocity(1);
+    const auto& wvel = tdata.ext_data.fluid_velocity(2);
+    VecList fluid_vel(tdata.num_vel_pts_blade);
+    for (int ib = 0; ib < tdata.num_blades; ++ib) {
+        fllc_write_state(os, tdata.fllc[ib]);
+        // Same first point as the blade views (make_component_views)
+        const int start_vel = (ib * tdata.num_vel_pts_blade) + 1;
+        for (int i = 0; i < tdata.num_vel_pts_blade; ++i) {
+            fluid_vel[i][0] = uvel[start_vel + i];
+            fluid_vel[i][1] = vvel[start_vel + i];
+            fluid_vel[i][2] = wvel[start_vel + i];
+        }
+        restart::write_list(os, "fluid_velocity", fluid_vel);
+        restart::write_list(os, "force", tdata.blades[ib].force);
+    }
+    restart::close_file(os, chkname, data.info().label);
+}
+
+/* Read the FLLC state of an external turbine from the restart checkpoint
+ *
+ *  Turbine root only: fluid velocity to the solver buffers, blade forces to
+ *  the grid. Only the root runs the FLLC; scatter_data refreshes the forces
+ *  of the other processes before they are used.
+ *
+ *  Returns False, with nothing changed, when there is no state for this
+ *  turbine and time, or it is for other blades, points, positions or FLLC
+ *  inputs
+ */
+template <typename datatype>
+bool external_read_checkpoint(datatype& data, const std::string& chkname)
+{
+    auto& tdata = data.meta();
+    std::ifstream is;
+    if (!restart::open_file(
+            is, chkname, data.info().label, data.sim().time().current_time())) {
+        return false;
+    }
+    int num_blades = 0;
+    if (!restart::read_value(is, "num_blades", num_blades) ||
+        (num_blades != tdata.num_blades)) {
+        return false;
+    }
+
+    // Read into copies; nothing changes unless every blade fits
+    std::vector<FLLCData> fllc(tdata.fllc);
+    std::vector<VecList> fluid_vel(num_blades);
+    std::vector<VecList> force(num_blades);
+    for (int ib = 0; ib < num_blades; ++ib) {
+        fluid_vel[ib].resize(tdata.num_vel_pts_blade);
+        force[ib].resize(tdata.num_pts_blade);
+        if (!fllc_read_state(is, fllc[ib]) ||
+            !restart::read_list(is, "fluid_velocity", fluid_vel[ib]) ||
+            !restart::read_list(is, "force", force[ib])) {
+            return false;
+        }
+    }
+
+    tdata.fllc = fllc;
+    for (int ib = 0; ib < num_blades; ++ib) {
+        for (int i = 0; i < tdata.num_pts_blade; ++i) {
+            tdata.blades[ib].force[i] = force[ib][i];
+        }
+    }
+    const auto& uvel = tdata.ext_data.fluid_velocity(0);
+    const auto& vvel = tdata.ext_data.fluid_velocity(1);
+    const auto& wvel = tdata.ext_data.fluid_velocity(2);
+    for (int ib = 0; ib < num_blades; ++ib) {
+        const int start_vel = (ib * tdata.num_vel_pts_blade) + 1;
+        for (int i = 0; i < tdata.num_vel_pts_blade; ++i) {
+            uvel[start_vel + i] = static_cast<float>(fluid_vel[ib][i][0]);
+            vvel[start_vel + i] = static_cast<float>(fluid_vel[ib][i][1]);
+            wvel[start_vel + i] = static_cast<float>(fluid_vel[ib][i][2]);
+        }
+    }
+    return true;
 }
 
 template <typename datatype>
@@ -244,16 +414,95 @@ struct CommunicateModelDataOp<
         scatter_data<DataType>(data);
 
         const auto& time = data.sim().time();
+
         auto& tdata = data.meta();
         if (!tdata.fllc.empty()) {
+            // Restart: continue from the checkpoint state (else the correction
+            // restarts from zero and takes many steps to recover). Without a
+            // state, skip the first force call (at the checkpoint time, absent
+            // in an unrestarted run) and start at the first step's call. Unused
+            // when the external solver starts the turbine anew (init).
+            auto& io = data.sim().io_manager();
+            const bool restart_call =
+                tdata.at_first_force_call && io.is_restart();
+            const bool solver_starts_over =
+                tdata.ext_data.sim_mode == ::ext_turb::SimMode::init;
+            bool state_in_checkpoint = false;
+            if (restart_call) {
+                state_in_checkpoint = restart::has_file(
+                    io.restart_file(), data.info().label, time.current_time());
+            }
+            const bool has_state = state_in_checkpoint && !solver_starts_over;
+
+            bool started = false;
+            bool waits = false;
             for (int i = 0; i < tdata.num_blades; ++i) {
                 if (!(tdata.fllc[i].initialized) &&
                     (time.current_time() > tdata.fllc[i].fllc_start_time)) {
+                    if (restart_call && !has_state) {
+                        waits = true;
+                        continue;
+                    }
+                    // fllc_init keeps point distances from the first point,
+                    // so both point sets must be of one instant. After an
+                    // external step the grid has new force points but old
+                    // velocity points (update_pos_op ran before the step):
+                    // take the new velocity points from the solver. Root only.
+                    ComponentView view = tdata.blades[i];
+                    VecList vel_pos_now(tdata.num_vel_pts_blade);
+                    if (data.info().is_root_proc) {
+                        copy_ext_vel_pos(
+                            data, vel_pos_now,
+                            (i * tdata.num_vel_pts_blade) + 1);
+                        view.vel_pos = ::kynema_sgf::utils::slice(
+                            vel_pos_now, 0, tdata.num_vel_pts_blade);
+                    }
+                    // Second input value of epsilon_chord, in the solver frame
+                    constexpr int ic = epsilon_component(
+                        ::ext_turb::blade_frame_of<SolverTurbine>(), 1);
                     fllc_init(
-                        tdata.fllc[i], tdata.blades[i], tdata.eps_chord[0]);
+                        tdata.fllc[i], view, tdata.eps_chord[ic],
+                        data.info().label + " blade " + std::to_string(i),
+                        data.info().is_root_proc);
+                    started = true;
                 }
             }
+
+            if (started && restart_call && data.info().is_root_proc &&
+                !external_read_checkpoint<DataType>(data, io.restart_file())) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the state of the filtered lifting line "
+                       "correction "
+                    << "in the checkpoint " << io.restart_file()
+                    << " does not fit this turbine: it is for other "
+                       "numbers "
+                    << "of blades or points, for other positions of the "
+                    << "points or for other epsilon, epsilon_chord, chord or "
+                    << "fllc_epsilon_dr_ratio values. The "
+                    << "correction starts from zero." << std::endl;
+            }
+            if (waits && state_in_checkpoint && data.info().is_root_proc) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the external solver starts this turbine anew, so the "
+                    << "state of the filtered lifting line correction in the "
+                    << "checkpoint " << io.restart_file()
+                    << " is not used. The correction starts from zero in the "
+                    << "first time step." << std::endl;
+            } else if (waits && data.info().is_root_proc) {
+                amrex::OutStream()
+                    << "\nWARNING: Actuator " << data.info().label
+                    << ": the checkpoint " << io.restart_file()
+                    << " has no state of the filtered lifting line correction "
+                    << "for this time. If the correction had not started when "
+                    << "the checkpoint was written, nothing is lost. If it had "
+                    << "(a checkpoint written without the state), the restart "
+                    << "loses it. The correction starts from zero in the first "
+                    << "time step." << std::endl;
+            }
         }
+        tdata.at_first_force_call = false;
     }
 };
 

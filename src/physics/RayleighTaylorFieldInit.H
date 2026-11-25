@@ -13,8 +13,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Initialize RayleighTaylor fields
- */
+/* Initialize RayleighTaylor fields */
 class RayleighTaylorFieldInit
 {
     static_assert(
@@ -29,9 +28,9 @@ public:
         const amrex::Array4<amrex::Real>& density) const;
 
 private:
-    //! density value for lower layer
+    // density value for lower layer
     amrex::Real m_rho_lo{0.5_rt};
-    //! density value for upper layer
+    // density value for upper layer
     amrex::Real m_rho_hi{2.0_rt};
 };
 

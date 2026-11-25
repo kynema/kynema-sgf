@@ -11,12 +11,10 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::pde::icns {
 
-/** Boussinesq buoyancy source term
- *  \ingroup icns_src we_abl
+/* Boussinesq buoyancy source term
  *
- *  \f[
+ *
  *    S = \beta g \left( T_\mathrm{mean} - T_\mathrm{ref} \right)
- *  \f]
  */
 class ABLMeanBoussinesq : public MomentumSource::Register<ABLMeanBoussinesq>
 {
@@ -43,7 +41,7 @@ private:
     amrex::Gpu::DeviceVector<amrex::Real> m_theta_ht;
     amrex::Gpu::DeviceVector<amrex::Real> m_theta_vals;
 
-    //! Transport model
+    // Transport model
     const transport::TransportModel& m_transport;
 
     int m_axis{2};
@@ -53,7 +51,7 @@ private:
     mutable std::unique_ptr<ScratchField> m_beta_scratch;
     mutable std::unique_ptr<ScratchField> m_ref_theta_scratch;
 
-    //! Read a temperature profile from a text file
+    // Read a temperature profile from a text file
     void read_temperature_profile(const std::string& profile_file_name);
 };
 } // namespace kynema_sgf::pde::icns

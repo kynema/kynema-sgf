@@ -11,6 +11,10 @@ designed for cases with :math:`y+ > 30` while the latter requires :math:`y+ < 5`
 model available in Kynema-SGF is based on the work of `Axell and Liungman (EFM 2001 ) <https://link.springer.com/article/10.1023/A:1011560202388>`_.
 The code also includes Menter's K-Omega SST model with IDDES support. 
 
+For both SST variants, the TKE and specific dissipation rate source fields are
+per unit mass. The PDE source operator multiplies them by density; implicit
+source coefficients retain their density factors in the linear system.
+
 Axell One-Equation RANS Model 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -23,15 +27,18 @@ The transport equation for TKE is given by:
 Here :math:`P_s` is the shear production term, :math:`P_b` is the buoyancy production/destruction term, :math:`\epsilon` is the turbulent dissipation 
 rate and :math:`D` is the turbulent diffusion term. These terms are computed as follows 
 
-.. math:: P_s= \nu_t S^2
+.. math:: P_s= \rho \nu_t S^2
 
-.. math:: P_b= -{\nu_t}^{'} N^2 
+.. math:: P_b= -\rho {\nu_t}^{'} N^2
 
-.. math:: \epsilon= C_0 \frac{k^3/2}{L}
+.. math:: \epsilon= \rho C_\mu^3 \frac{k^{3/2}}{L}
 
-.. math:: D = \frac{\partial}{\partial x_j} [(\nu+\nu_t)\frac{\partial U_j}{\partial x_i}]
+.. math:: D = \frac{\partial}{\partial x_j} \left[2 \rho \nu_t \frac{\partial k}{\partial x_j}\right]
 
-Here :math:`P_s` is the strain rate, :math:`P_b` is the buoyancy frequency and :math:`L` is the length scale computed algebraically.
+The source-term fields supplied to the TKE equation contain the corresponding
+per-unit-mass terms; the PDE source operator multiplies them by density.
+
+Here :math:`S` is the strain rate, :math:`N` is the buoyancy frequency and :math:`L` is the length scale computed algebraically.
 The strain rate and buoyancy frequency are computed using the same method used in the literature and are not repeated here. The 
 length scale is computed as follows: 
 

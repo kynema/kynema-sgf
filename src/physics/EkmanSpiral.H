@@ -10,9 +10,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Ekman Spiral physics
- *  \ingroup physics
- */
+/* Ekman Spiral physics */
 class EkmanSpiral : public Physics::Register<EkmanSpiral>
 {
 public:
@@ -44,17 +42,17 @@ private:
 
     void output_error();
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
-    //! Ekman depth
+    // Ekman depth
     amrex::Real m_DE{0.0_rt};
-    //! velocity magnitude x-direction only
+    // velocity magnitude x-direction only
     amrex::Real m_vel{15.0_rt};
 
-    //! output precision
+    // output precision
     const int m_w{18};
 
-    //! error log file
+    // error log file
     const std::string m_output_fname{"ekman_spiral.log"};
 };
 } // namespace kynema_sgf

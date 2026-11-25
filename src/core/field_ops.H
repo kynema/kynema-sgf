@@ -7,8 +7,8 @@
 
 using namespace amrex::literals;
 
-/**
- *  \defgroup field_ops Field operations
+/*
+ *  Field operations
  *
  *  Operators for manipulating fields and computing derived quantities.
  *
@@ -16,25 +16,11 @@ using namespace amrex::literals;
  *  the field. These operations can be grouped into two major categories: simple
  *  linear algebra operations (e.g., saxpy), and discretization operators such
  *  as gradient, laplacian computations.
- *
- *  \ingroup fields
  */
 
 namespace kynema_sgf::field_ops {
 
-/** Add two fields \f$y = x + y\f$
- *  \ingroup field_ops
- *
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Add two fields y = x + y */
 template <typename T1, typename T2>
 void add(
     T1& dst,
@@ -51,18 +37,7 @@ void add(
     }
 }
 
-/** Add two fields \f$y = x + y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Add two fields y = x + y */
 template <typename T1, typename T2>
 void add(
     T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
@@ -70,19 +45,7 @@ void add(
     add(dst, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));
 }
 
-/** Divide two fields \f$y = y / x\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] src Field to be divisor
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] ncomp_src Number of components to divide by
- *  \param [in] ncomp_dst Number of components to be divided
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Divide two fields y = y / x */
 template <typename T1, typename T2>
 void divide(
     T1& dst,
@@ -113,19 +76,7 @@ void divide(
     }
 }
 
-/** Divide two fields \f$y = y / x\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] src Field to be divisor
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] ncomp_src Number of components to divide by
- *  \param [in] ncomp_dst Number of components to be divided
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Divide two fields y = y / x */
 template <typename T1, typename T2>
 void divide(
     T1& dst,
@@ -141,18 +92,7 @@ void divide(
         amrex::IntVect(nghost));
 }
 
-/** Copy source field to destination field
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Copy source field to destination field */
 template <typename T1, typename T2>
 void copy(
     T1& dst,
@@ -169,18 +109,7 @@ void copy(
     }
 }
 
-/** Copy source field to destination field
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Copy source field to destination field */
 template <typename T1, typename T2>
 void copy(
     T1& dst, const T2& src, int srccomp, int dstcomp, int numcomp, int nghost)
@@ -188,19 +117,7 @@ void copy(
     copy(dst, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));
 }
 
-/** Perform operation \f$y = a x + y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] a  Coefficient
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Perform operation y = a x + y */
 template <typename T1, typename T2>
 void saxpy(
     T1& dst,
@@ -218,19 +135,7 @@ void saxpy(
     }
 }
 
-/** Perform operation \f$y = a x + y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] a  Coefficient
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Perform operation y = a x + y */
 template <typename T1, typename T2>
 void saxpy(
     T1& dst,
@@ -244,19 +149,7 @@ void saxpy(
     saxpy(dst, a, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));
 }
 
-/** Perform operation \f$y = x + a y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] a  Coefficient
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Perform operation y = x + a y */
 template <typename T1, typename T2>
 void xpay(
     T1& dst,
@@ -274,19 +167,7 @@ void xpay(
     }
 }
 
-/** Perform operation \f$y = x + a y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] a  Coefficient
- *  \param [in] src Field to be added
- *  \param [in] srccomp Starting component index of source field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Perform operation y = x + a y */
 template <typename T1, typename T2>
 void xpay(
     T1& dst,
@@ -300,22 +181,7 @@ void xpay(
     xpay(dst, a, src, srccomp, dstcomp, numcomp, amrex::IntVect(nghost));
 }
 
-/** Perform operation \f$z = a x + b y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] a  Coefficient
- *  \param [in] x Field to be added
- *  \param [in] xcomp Starting component index of `x` field
- *  \param [in] b  Coefficient
- *  \param [in] y Field to be added
- *  \param [in] ycomp Starting component index of `y` field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Perform operation z = a x + b y */
 template <typename T1, typename T2, typename T3>
 void lincomb(
     T1& dst,
@@ -337,22 +203,7 @@ void lincomb(
     }
 }
 
-/** Perform operation \f$z = a x + b y\f$
- *  \ingroup field_ops
- *
- *  \tparam T1 Field or ScratchField
- *  \tparam T2 Field or ScratchField
- *  \param [out] dst Field that is updated
- *  \param [in] a  Coefficient
- *  \param [in] x Field to be added
- *  \param [in] xcomp Starting component index of `x` field
- *  \param [in] b  Coefficient
- *  \param [in] y Field to be added
- *  \param [in] ycomp Starting component index of `y` field
- *  \param [in] dstcomp Starting component index of destination field
- *  \param [in] numcomp Number of components to be updated
- *  \param [in] nghost Number of ghost cells to be updated
- */
+/* Perform operation z = a x + b y */
 template <typename T1, typename T2, typename T3>
 void lincomb(
     T1& dst,
@@ -371,13 +222,7 @@ void lincomb(
         amrex::IntVect(nghost));
 }
 
-/** Set the lower bound for a given scalar field
- * \ingroup field_ops
- *
- * \param [in] field Field that will be clipped
- * \param [in] min_value Minimum value for a given field
- * \param [in] icomp Component to set the minimum bound
- */
+/* Set the lower bound for a given scalar field */
 template <typename FType>
 void lower_bound(FType& field, const amrex::Real min_value, const int icomp = 0)
 {
@@ -394,11 +239,7 @@ void lower_bound(FType& field, const amrex::Real min_value, const int icomp = 0)
     amrex::Gpu::streamSynchronize();
 }
 
-/** Computes the global maximum of a field from all levels
- * \ingroup field_ops
- *
- * \param [in] field Field for global maximum magnitude
- */
+/* Computes the global maximum of a field from all levels */
 template <typename FType>
 amrex::Real global_max_magnitude(FType& field)
 {
@@ -434,11 +275,7 @@ amrex::Real global_max_magnitude(FType& field)
     return maxglobal;
 }
 
-/** Normalizes a field using its magnitude
- * \ingroup field_ops
- *
- * \param [in] field Field that needs to be normalized
- */
+/* Normalizes a field using its magnitude */
 template <typename FType>
 void normalize(FType& field)
 {

@@ -8,9 +8,7 @@
 using namespace amrex::literals;
 
 namespace kynema_sgf {
-/** Vortex dipole Physics
- *   \ingroup physics
- */
+/* Vortex dipole Physics */
 
 class VortexDipole : public Physics::Register<VortexDipole>
 {
@@ -35,22 +33,22 @@ private:
     Field& m_velocity;
     Field& m_density;
 
-    //! initial density value
+    // initial density value
     amrex::Real m_rho{1.0_rt};
 
-    //! Initial location of the left vortex
+    // Initial location of the left vortex
     amrex::Vector<amrex::Real> m_loc_left{-0.1_rt, 0., 0.};
 
-    //! Initial location of the right vortex
+    // Initial location of the right vortex
     amrex::Vector<amrex::Real> m_loc_right{0.1_rt, 0., 0.};
 
-    //! Background velocity
+    // Background velocity
     amrex::Vector<amrex::Real> m_bvel{0., 0., 0.};
 
-    //! Initial vorticity
+    // Initial vorticity
     amrex::Real m_omegaEmag{299.5283853752_rt};
 
-    //! Vortex
+    // Vortex
     amrex::Real m_r0{0.1_rt};
 };
 

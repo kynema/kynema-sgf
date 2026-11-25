@@ -189,7 +189,7 @@ int KynemaFMBTurbine::length_force(int /*dir*/) const
 namespace sgf_fmb {
 
 namespace {
-//! Linear interpolation, constant beyond the end points
+// Linear interpolation, constant beyond the end points
 amrex::Real interp_linear(
     const std::vector<amrex::Real>& xinp,
     const std::vector<amrex::Real>& yinp,

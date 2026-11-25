@@ -4,8 +4,7 @@
 
 namespace kynema_sgf::pde::icns::mms {
 
-/** MMS forcing term
- */
+/* MMS forcing term */
 MMSForcing::MMSForcing(const CFDSim& sim)
     : m_mms_vel_source(sim.repo().get_field("mms_vel_source"))
 {

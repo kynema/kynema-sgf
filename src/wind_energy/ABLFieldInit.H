@@ -15,8 +15,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Initialize ABL fields
- */
+/* Initialize ABL fields */
 class ABLFieldInit
 {
     static_assert(AMREX_SPACEDIM == 3, "ABL requires 3 dimensional mesh");
@@ -34,7 +33,7 @@ public:
         const amrex::Array4<amrex::Real>& density,
         const amrex::Array4<amrex::Real>& temperature) const;
 
-    /** Add temperature perturbations
+    /* Add temperature perturbations
      *
      *  This uses amrex::Random and, therefore, executes the loop on CPU and
      *  pushes the field to device.
@@ -42,49 +41,47 @@ public:
     void perturb_temperature(
         int lev, const amrex::Geometry& geom, Field& temperature) const;
 
-    //! Flag indicating whether temperature field needs perturbations
+    // Flag indicating whether temperature field needs perturbations
     [[nodiscard]] bool add_temperature_perturbations() const
     {
         return m_perturb_theta;
     }
 
-    //! Initialize TKE field
+    // Initialize TKE field
     void init_tke(const amrex::Geometry& geom, amrex::MultiFab& tke) const;
 
 private:
-    //! Initial velocity components
+    // Initial velocity components
     amrex::Vector<amrex::Real> m_vel;
 
-    //! File name for velocity forcing time table
+    // File name for velocity forcing time table
     std::string m_vel_timetable;
 
-    //! Initial wind speed
+    // Initial wind speed
     amrex::Real m_vel_speed;
 
-    //! Initial wind direction (rad)
+    // Initial wind direction (rad)
     amrex::Real m_vel_dir;
 
-    ///@{
-    //! Lookup table containing temperature variation w.r.t. height above
-    //! terrain
+    // Lookup table containing temperature variation w.r.t. height above
+    // terrain
     amrex::Vector<amrex::Real> m_theta_heights;
     amrex::Vector<amrex::Real> m_theta_values;
 
-    //! Adding option for wind heights similar to temperature heights
-    //! Speed-up RANS calculation using 1-D profile for flat surface
+    // Adding option for wind heights similar to temperature heights
+    // Speed-up RANS calculation using 1-D profile for flat surface
     bool m_initial_wind_profile{false};
     bool m_terrain_aligned_profile{false};
     std::string m_terrain_file{"terrain.amrwind"};
     amrex::Gpu::DeviceVector<amrex::Real> m_xterrain;
     amrex::Gpu::DeviceVector<amrex::Real> m_yterrain;
     amrex::Gpu::DeviceVector<amrex::Real> m_zterrain;
-    //! File name for 1-D data file
+    // File name for 1-D data file
     std::string m_1d_rans;
     amrex::Vector<amrex::Real> m_wind_heights;
     amrex::Vector<amrex::Real> m_u_values;
     amrex::Vector<amrex::Real> m_v_values;
     amrex::Vector<amrex::Real> m_tke_values;
-    ///@}
 
     // Device copies of the above arrays
     amrex::Gpu::DeviceVector<amrex::Real> m_thht_d;
@@ -94,70 +91,70 @@ private:
     amrex::Gpu::DeviceVector<amrex::Real> m_prof_u_d;
     amrex::Gpu::DeviceVector<amrex::Real> m_prof_v_d;
     amrex::Gpu::DeviceVector<amrex::Real> m_prof_tke_d;
-    //! Initial density field
+    // Initial density field
     amrex::Real m_rho;
 
-    //! Amplitude of fluctuations in x-direction
+    // Amplitude of fluctuations in x-direction
     amrex::Real m_deltaU{1.0_rt};
 
-    //! Amplitude of fluctuations in y-direction
+    // Amplitude of fluctuations in y-direction
     amrex::Real m_deltaV{1.0_rt};
 
-    //! Number of sinusoidal waves in x-direction
+    // Number of sinusoidal waves in x-direction
     amrex::Real m_Uperiods{4.0_rt};
 
-    //! Number of sinusoidal waves in y-direction
+    // Number of sinusoidal waves in y-direction
     amrex::Real m_Vperiods{4.0_rt};
 
-    //! Reference height for velocity perturbations
+    // Reference height for velocity perturbations
     amrex::Real m_ref_height{50.0_rt};
 
-    //! Reference IB height
+    // Reference IB height
     amrex::Real m_ib_height{0.0_rt};
 
-    //! Amplitude of temperature perturbations
+    // Amplitude of temperature perturbations
     amrex::Real m_delta_t{0.8_rt};
 
-    //! Mean for Gaussian number generator
+    // Mean for Gaussian number generator
     amrex::Real m_theta_gauss_mean{0.0_rt};
 
-    //! Variance for Gaussian number generator
+    // Variance for Gaussian number generator
     amrex::Real m_theta_gauss_var{1.0_rt};
 
-    //! Cutoff height for temperature fluctuations
+    // Cutoff height for temperature fluctuations
     amrex::Real m_theta_cutoff_height{1.0e16_rt};
 
-    //! Initial value for tke field
+    // Initial value for tke field
     amrex::Real m_tke_init{0.1_rt};
 
-    //! Multiplicative factor for init tke profile
+    // Multiplicative factor for init tke profile
     amrex::Real m_tke_init_factor{0.4_rt};
 
-    //! Cutoff height for init tke profile
+    // Cutoff height for init tke profile
     amrex::Real m_tke_cutoff_height{250.0_rt};
 
-    //! Minimum vertical position
+    // Minimum vertical position
     amrex::Real m_min_z{0.1_rt};
 
-    //! Top velocity
+    // Top velocity
     amrex::RealArray m_top_vel{20.0_rt};
 
-    //! Bottom velocity
+    // Bottom velocity
     amrex::RealArray m_bottom_vel{4.0_rt};
 
-    //! Initial linear velocity profile boolean
+    // Initial linear velocity profile boolean
     bool m_linear_profile{false};
 
-    //! Perturb initial velocity field with sinusoidal fluctuations
+    // Perturb initial velocity field with sinusoidal fluctuations
     bool m_perturb_vel{true};
 
-    //! Perturb temperature field with random fluctuations
+    // Perturb temperature field with random fluctuations
     bool m_perturb_theta{false};
 
-    //! Initialize tke profile non-constant
+    // Initialize tke profile non-constant
     bool m_tke_init_profile{false};
 
-    //! Profiles of u, v, and theta are read in from a NetCDF File
+    // Profiles of u, v, and theta are read in from a NetCDF File
     bool m_init_uvtheta_profile{false};
 };
 

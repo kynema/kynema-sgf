@@ -15,9 +15,7 @@ class CFDSim;
 
 namespace actuator {
 
-/** Abstract representation of an actuator source in the flow field.
- *
- *  \ingroup actuator
+/* Abstract representation of an actuator source in the flow field.
  *
  *  This class is intended to represent a single object (e.g., turbine, fixed
  *  wing) that exists in the computational domain. A collection of source
@@ -80,34 +78,22 @@ public:
 
     [[nodiscard]] virtual std::optional<motion::RigidTransform>
     reference_frame(amrex::Real time) const = 0;
+
+    virtual void write_checkpoint(const std::string&) = 0;
 };
 
-/** Concrete implementation of the ActuatorModel for different actuator types.
- *
- *  \ingroup actuator
- *
- *  \tparam ActTrait An actuator type trait that defines the behavior of the
- *  different actions (initialization, field sampling, load computation and
- *  state updates, and momentum source term computations) that are executed by
- *  the ActuatorModel class through the kynema_sgf::Actuator physics driver
- *  class.
- *
- *  \tparam SrcTrait A source type trait that defines how the forcing term is
- *  computed, e.g., if the turbine rotor is represented as a line or a disk. For
- *  most cases, like the fixed wing case, this will just be line, therefore, it
- *  is set as default for convenience.
- */
+/* Concrete implementation of the ActuatorModel for different actuator types. */
 template <typename ActTrait, typename SrcTrait = ActSrcLine>
 class ActModel : public ActuatorModel::Register<ActModel<ActTrait, SrcTrait>>
 {
 private:
-    //! Instance that holds all data related to a particular actuator type
+    // Instance that holds all data related to a particular actuator type
     typename ActTrait::DataType m_data;
 
-    //! Source computation operator
+    // Source computation operator
     ops::ActSrcOp<ActTrait, SrcTrait> m_src_op;
 
-    //! Outputs processor
+    // Outputs processor
     ops::ProcessOutputsOp<ActTrait, SrcTrait> m_out_op;
 
 public:
@@ -116,34 +102,29 @@ public:
         return ActTrait::identifier() + SrcTrait::identifier();
     }
 
-    /**
-     *  \param sim CFD simulation environment instance
-     *  \param label Unique string identifier for this instance
-     *  \param id Unique integer tag for this instance
-     */
     ActModel(CFDSim& sim, const std::string& label, const int id)
         : m_data(sim, label, id), m_src_op(m_data), m_out_op(m_data)
     {}
 
-    //! Return the unique identifier (name) for this instance
+    // Return the unique identifier (name) for this instance
     [[nodiscard]] const std::string& label() const override
     {
         return m_data.info().label;
     }
 
-    //! Return the unique tag (integer ID) for this instance
+    // Return the unique tag (integer ID) for this instance
     [[nodiscard]] int id() const override { return m_data.info().id; }
 
-    //! Return the core info object for this actuator instance
+    // Return the core info object for this actuator instance
     [[nodiscard]] const ActInfo& info() const override { return m_data.info(); }
 
-    //! Return the core info object for this actuator instance
+    // Return the core info object for this actuator instance
     ActInfo& info() override { return m_data.info(); }
 
-    //! Return the meta info object for this actuator instance
+    // Return the meta info object for this actuator instance
     [[nodiscard]] const auto& meta() const { return m_data.meta(); }
 
-    //! Return the actuator grid for inspection and diagnostics
+    // Return the actuator grid for inspection and diagnostics
     [[nodiscard]] const auto& grid() const { return m_data.grid(); }
 
     void read_inputs(const utils::ActParser& pp) override
@@ -223,6 +204,11 @@ public:
     reference_frame(const amrex::Real time) const override
     {
         return ops::ReferenceFrameOp<ActTrait, SrcTrait>()(m_data, time);
+    }
+
+    void write_checkpoint(const std::string& chkname) override
+    {
+        ops::write_checkpoint<ActTrait>(m_data, chkname);
     }
 
     void init_actuator_source() override

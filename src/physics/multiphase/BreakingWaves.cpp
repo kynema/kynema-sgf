@@ -44,7 +44,7 @@ BreakingWaves::BreakingWaves(CFDSim& sim)
 
 BreakingWaves::~BreakingWaves() = default;
 
-/** Initialize the velocity and vof fields at the beginning of the
+/* Initialize the velocity and vof fields at the beginning of the
  *  simulation.
  */
 void BreakingWaves::initialize_fields(int level, const amrex::Geometry& geom)

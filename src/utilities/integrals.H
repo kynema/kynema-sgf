@@ -6,7 +6,7 @@ using namespace amrex::literals;
 
 namespace kynema_sgf::utils {
 
-/** Trapezoid integration
+/* Trapezoid integration
  *
  *  Prefer exact evaluation of the integral over using this function
  */

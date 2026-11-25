@@ -7,9 +7,7 @@
 namespace kynema_sgf {
 namespace tagging {
 
-/** Abstract definition of shapes for AMR
- *  \ingroup amr_utils
- */
+/* Abstract definition of shapes for AMR */
 class GeometryType
     : public Factory<GeometryType, const CFDSim&, const std::string&>
 {
@@ -23,17 +21,14 @@ public:
     virtual void operator()(
         const amrex::Box&,
         const amrex::Geometry& geom,
-        const amrex::Array4<amrex::TagBox::TagType>& tags,
-        const tagging::TaggingOperator& op) const = 0;
+        const amrex::Array4<amrex::TagBox::TagType>& tags) const = 0;
 
     [[nodiscard]] virtual const amrex::RealBox& bound_box() const = 0;
 };
 
 } // namespace tagging
 
-/** AMR based on geometric shapes
- *  \ingroup amr_utils
- */
+/* AMR based on geometric shapes */
 class GeometryRefinement
     : public RefinementCriteria::Register<GeometryRefinement>
 {
@@ -44,8 +39,14 @@ public:
 
     ~GeometryRefinement() override = default;
 
-    //! Read input file and initialize boxarray used to refine each level
+    // Read input file and initialize boxarray used to refine each level
     void initialize(const std::string& key) override;
+
+    [[nodiscard]] bool active(int level) const override
+    {
+        return (m_set_level < 0 || level == m_set_level) &&
+               level >= m_min_level && level <= m_max_level;
+    }
 
     void
     operator()(int level, amrex::TagBoxArray& tags, amrex::Real time, int ngrow)
@@ -56,7 +57,7 @@ private:
 
     amrex::Vector<std::unique_ptr<tagging::GeometryType>> m_geom_refiners;
 
-    /** Option to refine a specific level
+    /* Option to refine a specific level
      *  If set greater than -1, then only that level is acted on
      */
     int m_set_level{-1};

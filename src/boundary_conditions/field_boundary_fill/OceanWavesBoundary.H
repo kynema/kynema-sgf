@@ -13,11 +13,10 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Interface for Ocean Waves boundary data
+/* Interface for Ocean Waves boundary data
  *
  *  This class performs the necessary field operations to provide
  *  available wave data at the boundaries
- *
  */
 class OceanWavesBoundary : public FieldBoundary::Register<OceanWavesBoundary>
 {

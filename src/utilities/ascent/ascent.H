@@ -3,9 +3,7 @@
 
 #include "src/utilities/PostProcessing.H"
 
-/**
- * Ascent In-situ Integration
- */
+/* Ascent In-situ Integration */
 
 namespace kynema_sgf {
 
@@ -22,17 +20,17 @@ public:
 
     virtual ~AscentPostProcess();
 
-    //! Perform actions before mesh is created
+    // Perform actions before mesh is created
     void pre_init_actions() override;
 
-    //! Read user inputs and create the different data probe instances
+    // Read user inputs and create the different data probe instances
     void initialize() override;
 
     void post_advance_work() override {};
 
     void output_actions() override;
 
-    //! Actions to perform post regrid e.g. redistribute particles
+    // Actions to perform post regrid e.g. redistribute particles
     void post_regrid_actions() override;
 
 protected:

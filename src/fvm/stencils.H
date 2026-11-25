@@ -1,8 +1,8 @@
 #ifndef STENCILS_H
 #define STENCILS_H
 
-/** \file stencils.H
- *  \brief Second-order finite volume discretization stencil coefficients
+/*
+ *  Second-order finite volume discretization stencil coefficients
  *
  *  The stencils are defined using 9 coefficients corresponding to `i+1`, `i`
  *  and `i-1` respectively in each of the three directions (see table below).
@@ -46,18 +46,13 @@ namespace kynema_sgf::fvm::stencil {
 
 namespace impl {
 
-/** Return a layer of cells adjacent to a non-periodic lower boundary
+/* Return a layer of cells adjacent to a non-periodic lower boundary
  *
  *  Given a box, this function returns a new box that contains the first layer
  *  of cells immediately adjacent to the lower boundary in the given direction
  *  (`idir`).
  *
- *  \param [in] bx The box whose layers are being considered
- *  \param [in] geom The amrex::Geometry object
- *  \param [in] idir Direction in which the first cell adjacent to the boundary
- * is desired
- *
- *  \return A box with a single layer of cells adjacent to the boundary or empty
+ *  Returns A box with a single layer of cells adjacent to the boundary or empty
  */
 AMREX_INLINE amrex::Box
 box_lo(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
@@ -77,18 +72,13 @@ box_lo(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
     return {low, hi};
 }
 
-/** Return a layer of cells adjacent to a non-periodic upper boundary
+/* Return a layer of cells adjacent to a non-periodic upper boundary
  *
  *  Given a box, this function returns a new box that contains the first layer
  *  of cells immediately adjacent to the lower boundary in the given direction
  *  (`idir`).
  *
- *  \param [in] bx The box whose layers are being considered
- *  \param [in] geom The amrex::Geometry object
- *  \param [in] idir Direction in which the first cell adjacent to the boundary
- * is desired
- *
- *  \return A box with a single layer of cells adjacent to the boundary or empty
+ *  Returns A box with a single layer of cells adjacent to the boundary or empty
  */
 AMREX_INLINE amrex::Box
 box_hi(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
@@ -109,8 +99,7 @@ box_hi(const amrex::Box& bx, const amrex::Geometry& geom, const int idir)
 }
 } // namespace impl
 
-/** Second-order FVM stencils for interior cells
- */
+/* Second-order FVM stencils for interior cells */
 struct StencilInterior
 {
     // First derivatives

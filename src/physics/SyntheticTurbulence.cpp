@@ -110,14 +110,11 @@ private:
 
 namespace {
 
-/** Parse the NetCDF turbulence database and determine details of the turbulence
+/* Parse the NetCDF turbulence database and determine details of the turbulence
  *box.
  *
  *. Initializes the dimensions and grid length, sizes in SynthTurbData. Also
  *  allocates the necessary memory for the perturbation velocities.
- *
- *. \param turbFile Information regarding NetCDF data identifiers
- *. \param turbGrid Turbulence data
  */
 void process_nc_file(const std::string& turb_filename, SynthTurbData& turb_grid)
 {
@@ -156,7 +153,7 @@ void process_nc_file(const std::string& turb_filename, SynthTurbData& turb_grid)
 #endif
 }
 
-/** Load two planes of data that bound the current timestep
+/* Load two planes of data that bound the current timestep
  *
  *  The data for the y and z directions are loaded for the entire grid at the
  * two planes
@@ -221,15 +218,8 @@ void load_turb_plane_data(
 #endif
 }
 
-/** Determine the left/right indices for a given point along a particular
+/* Determine the left/right indices for a given point along a particular
  * direction
- *
- *  \param turb_grid Turbulence box data
- *  \param dir Direction of search (0 = x, 1 = y, 2 = z)
- *  \param xin Coordinate value in local coordinate frame corresponding to
- * direction provided
- *  \param il Index of the lower bound (populated by this function)
- *  \param ir Index of the upper bound (populated by this function)
  */
 void get_lr_indices(
     const SynthTurbData& turb_grid,
@@ -248,18 +238,11 @@ void get_lr_indices(
     }
 }
 
-/** Determine the left/right indices for a given point along a particular
+/* Determine the left/right indices for a given point along a particular
  * direction
  *
  *  This overload also populates the fractions of left/right states to be used
  *  for interpolations.
- *
- *  \param turb_grid Turbulence box data
- *  \param dir Direction of search (0 = x, 1 = y, 2 = z)
- *  \param xin Coordinate value in local coordinate frame corresponding to
- *  direction provided
- *  \param il Index of the lower bound (populated by this function)
- *  \param ir Index of the upper bound (populated by this function)
  */
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void get_lr_indices(
     const SynthTurbDeviceData& turb_grid,
@@ -284,12 +267,12 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void get_lr_indices(
     rxl = (1.0_rt - rxr);
 }
 
-/** Determine if a given point (in local frame) is within the turbulence box
+/* Determine if a given point (in local frame) is within the turbulence box
  *
  *  If the point is found within the box, also determine the indices and
  *  interpolation weights for the y and z directions.
  *
- *  @return True if the point is inside the 2-D box
+ *  Returns True if the point is inside the 2-D box
  */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool find_point_in_box(
     const SynthTurbDeviceData& t_grid, const vs::Vector& pt, InterpWeights& wt)
@@ -309,8 +292,7 @@ AMREX_GPU_DEVICE AMREX_FORCE_INLINE bool find_point_in_box(
     return inBox;
 }
 
-/** Interpolate the perturbation velocity to a given point from the grid data
- */
+/* Interpolate the perturbation velocity to a given point from the grid data */
 AMREX_GPU_DEVICE AMREX_FORCE_INLINE void interp_perturb_vel(
     const SynthTurbDeviceData& t_grid, const InterpWeights& wt, vs::Vector& vel)
 {

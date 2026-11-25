@@ -20,10 +20,10 @@ RainDrop::RainDrop(CFDSim& sim)
     pp.queryarr("droplet_velocity", m_vel, 0, AMREX_SPACEDIM);
 }
 
-/** Initialize the velocity and levelset fields at the beginning of the
+/* Initialize the velocity and levelset fields at the beginning of the
  *  simulation.
  *
- *  \sa kynema_sgf::RainDropFieldInit
+ *  See kynema_sgf::RainDropFieldInit
  */
 void RainDrop::initialize_fields(int level, const amrex::Geometry& geom)
 {

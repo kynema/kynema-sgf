@@ -11,10 +11,9 @@ using namespace amrex::literals;
 
 namespace kynema_sgf {
 
-/** Scalar Advection physics
- *  \ingroup physics
+/* Scalar Advection physics
  *
- *  \sa ScalarAdvectionFieldInit
+ *  See ScalarAdvectionFieldInit
  */
 class ScalarAdvection : public Physics::Register<ScalarAdvection>
 {
@@ -25,7 +24,7 @@ public:
 
     ~ScalarAdvection() override = default;
 
-    //! Initialize the fields for ScalarAdvection simulations
+    // Initialize the fields for ScalarAdvection simulations
     void initialize_fields(int level, const amrex::Geometry& geom) override;
 
     template <typename Shape>
@@ -50,33 +49,33 @@ private:
     std::string m_output_fname = "error.log";
     const int m_w = 20;
 
-    //! Scalar field
+    // Scalar field
     Field* m_scalar{nullptr};
 
-    //! Flow velocity in x-direction
+    // Flow velocity in x-direction
     amrex::Real m_u{1.0_rt};
     amrex::Real m_v{0.0_rt};
 
-    //! Initial wave/pulse packet location
+    // Initial wave/pulse packet location
     amrex::Real m_x0{0.1_rt};
     amrex::Real m_y0{0.1_rt};
 
-    //! Initial wave/pulse amplitude
+    // Initial wave/pulse amplitude
     amrex::Real m_amplitude{1.0_rt};
 
-    //! Initial wave/pulse width (standard deviation for GaussianPulse and
-    //! GaussianWavePacket)
+    // Initial wave/pulse width (standard deviation for GaussianPulse and
+    // GaussianWavePacket)
     amrex::Real m_x_width{0.01_rt};
     amrex::Real m_y_width{0.01_rt};
 
-    //! Wave numbers
+    // Wave numbers
     amrex::Real m_x_wavenumber{16.0_rt * std::numbers::pi_v<amrex::Real>};
     amrex::Real m_y_wavenumber{16.0_rt * std::numbers::pi_v<amrex::Real>};
 
-    //! Initial wave/pulse shape
+    // Initial wave/pulse shape
     std::string m_shape{"gaussian"};
 
-    //! Density
+    // Density
     amrex::Real m_rho{1.0_rt};
 };
 
