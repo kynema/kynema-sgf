@@ -92,6 +92,33 @@ public:
     void init_mesh();
     void init_kynema_sgf_modules();
     void prepare_for_time_integration();
+    // Modular coupling TODO: export an SGF-owned interface around incflo so
+    // kynema-driver's ModuleAdapter only forwards calls, as it does for FMB.
+    // Keep the interface independent of driver headers and PreparationContext.
+    // Expose native preparation stages, time/dt/index accessors, identifier,
+    // and runtime ownership rather than letting the driver reach through sim().
+    //
+    // set_inputs(iteration): stage received coupling data on every iteration;
+    // call new_timestep(), regrid_and_update(), and compute_dt() only at zero.
+    // predict_inputs(iteration): retain pre_advance_stage1() at zero, then
+    // finish stage 2 after connectivity via prepare_solution_exchange(), even
+    // without Tioga. Do not advance time or rotate field history on retries.
+    // advance_states(iteration): wrap do_advance(iteration), not the PDE
+    // manager's similarly named field-history rotation.
+    // calculate_outputs(iteration): refresh coupling quantities after a solve,
+    // separately from the once-per-step post_advance_work()/finalize_time_step().
+    //
+    // Add initialization_data()/receive_initialization_data() and
+    // receive_inputs()/outputs() for JSON coupling, independent of overset.
+    // Describe field layout, units, frame, and time/version in the payload;
+    // validate incoming data and synchronize host/device fields before use.
+    // Modules without data may return null; do not silently ignore non-null
+    // payloads once an exchange contract is supported.
+    //
+    // reset_states() needs an explicit snapshot/restore contract for retries;
+    // preserve the newly staged inputs and overset masks/interpolation data.
+    // Keep the current no-op reset and additional_picard_iterations() behavior
+    // until rollback is implemented and validated against coupled regressions.
     bool regrid_and_update();
     void pre_advance_stage1();
     void pre_advance_stage2();

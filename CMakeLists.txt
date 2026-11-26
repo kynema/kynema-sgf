@@ -47,6 +47,7 @@ option(KYNEMA_SGF_ENABLE_HELICS "Enable HELICS library" OFF)
 option(KYNEMA_SGF_ENABLE_HYPRE "Enable HYPRE integration" OFF)
 option(KYNEMA_SGF_ENABLE_OPENFAST "Enable OpenFAST integration" OFF)
 option(KYNEMA_SGF_ENABLE_KYNEMA_FMB "Enable Kynema integration" OFF)
+option(KYNEMA_SGF_ENABLE_TIOGA "Enable the external Tioga bridge for coupled runs" OFF)
 option(KYNEMA_SGF_ENABLE_ASCENT "Enable Ascent visualization library" OFF)
 option(KYNEMA_SGF_ENABLE_UMPIRE "Enable Umpire GPU memory pools" OFF)
 option(KYNEMA_SGF_ENABLE_W2A "Enable Waves2AMR library" OFF)
@@ -88,6 +89,10 @@ endif()
 
 if(KYNEMA_SGF_ENABLE_KYNEMA_FMB AND (NOT KYNEMA_SGF_ENABLE_MPI))
   message(FATAL_ERROR "Enabling Kynema-FMB currently requires MPI to be enabled.")
+endif()
+
+if(KYNEMA_SGF_ENABLE_TIOGA AND NOT KYNEMA_SGF_ENABLE_MPI)
+  message(FATAL_ERROR "Enabling the Tioga bridge requires KYNEMA_SGF_ENABLE_MPI=ON.")
 endif()
 
 if(KYNEMA_SGF_ENABLE_OPENFAST)

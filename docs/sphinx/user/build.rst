@@ -106,6 +106,13 @@ Dependencies
 
    Enable OpenFAST coupling. Default: OFF
 
+.. cmakeval:: KYNEMA_SGF_ENABLE_TIOGA
+
+   Build the external Tioga bridge required by Kynema Driver. Standalone SGF
+   does not need it. Requires ``KYNEMA_SGF_ENABLE_MPI=ON``. Set ``TIOGA_DIR``
+   to Tioga's installed CMake package directory if it is not on
+   ``CMAKE_PREFIX_PATH``. Default: OFF
+
 .. cmakeval:: KYNEMA_SGF_OPENFAST_VERSION
 
    OpenFAST version. Default: 3

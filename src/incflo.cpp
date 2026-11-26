@@ -303,6 +303,9 @@ bool incflo::regrid_and_update()
  */
 void incflo::post_advance_work()
 {
+    // Modular coupling: expose this as once-per-step finalize_time_step().
+    // calculate_outputs() must refresh exchangeable fields after each solve
+    // without repeating post-advance side effects, plot output, or checkpoints.
     BL_PROFILE("kynema-sgf::incflo::post_advance_work");
 
     m_sim.turbulence_model().post_advance_work();
