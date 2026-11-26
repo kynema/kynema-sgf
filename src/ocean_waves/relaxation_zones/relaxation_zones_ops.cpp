@@ -39,6 +39,8 @@ void read_inputs(
 
     pp.query("current", wdata.current);
 
+    pp.query("numerical_beach_disable_vof_term", wdata.disable_beach_vof_term);
+
     wdata.has_ramp = pp.contains("timeramp_period");
     if (wdata.has_ramp) {
         pp.get("timeramp_period", wdata.ramp_period);
@@ -182,6 +184,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
         const amrex::Real zone_length_y = wdata.zone_length_y;
         const bool has_zone_y = zone_length_y > constants::EPS;
         const bool has_beach = wdata.has_beach;
+        const bool disable_beach_vof_term = wdata.disable_beach_vof_term;
 
         amrex::ParallelFor(
             velocity(lev), amrex::IntVect(0),
@@ -256,7 +259,24 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                         (new_vof > 1.0_rt - constants::VOF_TOL)
                             ? 1.0_rt
                             : (new_vof < constants::VOF_TOL ? 0.0_rt : new_vof);
-                    const amrex::Real dvf = new_vof - volfrac(i, j, k);
+                    // If liquid is added, ensure it is not added on top of gas
+                    // If liquid is removed, ensure it is not from under liquid
+                    // (This is to avoid the formation of bubbles - unstable)
+                    const auto gas_cell_above =
+                        volfrac(i, j, k + 1) < constants::VOF_TOL;
+                    const auto cell_has_liq =
+                        volfrac(i, j, k) >= constants::VOF_TOL;
+                    const auto liq_cell_below =
+                        volfrac(i, j, k - 1) > 1.0_rt - constants::VOF_TOL;
+                    const auto cell_has_gas =
+                        volfrac(i, j, k) <= 1.0_rt - constants::VOF_TOL;
+                    amrex::Real dvf = new_vof - volfrac(i, j, k);
+                    const auto allow_mod =
+                        (dvf > 0.0_rt) ? (liq_cell_below && cell_has_gas)
+                                       : (gas_cell_above && cell_has_liq);
+                    const auto prevent_mod =
+                        !allow_mod || disable_beach_vof_term;
+                    dvf = (in_beach && prevent_mod) ? 0.0_rt : dvf;
                     volfrac(i, j, k) += rampf * dvf;
                     // Liquid velocity forced only where velocity is known
                     //  - in most of domain, that is where target vof is nonzero
@@ -281,7 +301,7 @@ void apply_relaxation_zones(CFDSim& sim, const RelaxZonesBaseData& wdata)
                         integrated_vel_liq +=
                             rampf * fvel_liq *
                             amrex::max<amrex::Real>(0.0_rt, dvf) *
-                            (target_profile[n] - vel(i, j, k, n));
+                            (target_profile[n] - vel_liq);
                         // Update overall velocity using momentum
                         vel(i, j, k, n) = ((rho1 * integrated_vel_liq) +
                                            (rho2 * (1.0_rt - volfrac(i, j, k)) *
