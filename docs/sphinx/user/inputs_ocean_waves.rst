@@ -5,6 +5,13 @@ Section: Ocean Waves
 
 This section is for setting up wave forcing and relaxation zones.
 
+For ``LinearWaves`` and ``StokesWaves`` in multiphase simulations, the target velocity (``ow_velocity``)
+and the initial velocity are the liquid velocity. In cells near the free surface, the free-surface
+elevation ``eta`` is known at each cell's horizontal position, so the wave kinematics are evaluated at
+``0.5 * (z_bottom + min(max(eta, z_bottom), z_top))``, the midpoint of the liquid column under a locally
+horizontal surface. This is the cell center for full cells and never lies above the free surface, so the
+kinematics are not extrapolated above the surface.
+
 .. input_param:: OceanWaves.label
 
    **type:** String

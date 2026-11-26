@@ -96,39 +96,52 @@ struct InitDataOp<LinearWaves>
                     0.5_rt);
                 const amrex::Real phase = (wave_number * x) - phase_offset;
 
-                // Wave profile
+                // Wave profile, with velocity evaluated at height zv
                 const amrex::Real eta_w =
                     (wave_height / 2.0_rt * std::cos(phase)) + zero_sea_level;
-                const amrex::Real u_w =
-                    omega * wave_height / 2.0_rt *
-                    std::cosh(
-                        wave_number * (z - zero_sea_level + water_depth)) /
-                    std::sinh(wave_number * water_depth) * std::cos(phase);
-                const amrex::Real v_w = 0.0_rt;
-                const amrex::Real w_w =
-                    omega * wave_height / 2.0_rt *
-                    std::sinh(
-                        wave_number * (z - zero_sea_level + water_depth)) /
-                    std::sinh(wave_number * water_depth) * std::sin(phase);
-                const utils::WaveVec wave_sol{u_w, v_w, w_w, eta_w};
+                const auto wave_profile = [=](const amrex::Real zv) {
+                    const amrex::Real u_w =
+                        omega * wave_height / 2.0_rt *
+                        std::cosh(
+                            wave_number * (zv - zero_sea_level + water_depth)) /
+                        std::sinh(wave_number * water_depth) * std::cos(phase);
+                    const amrex::Real w_w =
+                        omega * wave_height / 2.0_rt *
+                        std::sinh(
+                            wave_number * (zv - zero_sea_level + water_depth)) /
+                        std::sinh(wave_number * water_depth) * std::sin(phase);
+                    return utils::WaveVec{u_w, 0.0_rt, w_w, eta_w};
+                };
 
                 // Quiescent profile
                 const utils::WaveVec quiescent{
                     0.0_rt, 0.0_rt, 0.0_rt, zero_sea_level};
 
                 // Specify initial state for each region of domain
-                const auto bulk = init_wave_field ? wave_sol : quiescent;
-                const auto outlet = has_beach ? quiescent : wave_sol;
+                const auto local_profile_at = [=](const amrex::Real zv) {
+                    const auto wave_sol = wave_profile(zv);
+                    const auto bulk = init_wave_field ? wave_sol : quiescent;
+                    const auto outlet = has_beach ? quiescent : wave_sol;
+                    return utils::harmonize_profiles_1d(
+                        x, problo[0], gen_length, probhi[0], beach_length,
+                        wave_sol, bulk, outlet);
+                };
 
-                const auto local_profile = utils::harmonize_profiles_1d(
-                    x, problo[0], gen_length, probhi[0], beach_length, wave_sol,
-                    bulk, outlet);
+                auto local_profile = local_profile_at(z);
 
                 const amrex::Real phi = local_profile[3] - z;
                 const amrex::Real cell_length_2D =
                     std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
 
                 if (phi + cell_length_2D >= 0) {
+                    if (multiphase_mode && utils::surface_below_cell_top(
+                                               local_profile[3], z, dx[2])) {
+                        // Liquid velocity at the approx. liquid centroid
+                        // height of the local free surface, as for targets
+                        local_profile = local_profile_at(
+                            utils::liquid_centroid_z(
+                                local_profile[3], z, dx[2]));
+                    }
                     vel[nbx](i, j, k, 0) = current + local_profile[0];
                     vel[nbx](i, j, k, 1) = local_profile[1];
                     vel[nbx](i, j, k, 2) = local_profile[2];
@@ -170,6 +183,9 @@ struct UpdateTargetFieldsOp<LinearWaves>
             const amrex::Real zero_sea_level = wdata.zsl;
             const amrex::Real g = wdata.g;
             const amrex::Real current = wdata.current;
+            // Single-phase (waves as terrain): targets stay at cell centers
+            const bool multiphase_mode =
+                sim.physics_manager().contains("MultiPhase");
 
             amrex::ParallelFor(
                 ow_velocity(lev), amrex::IntVect(3),
@@ -196,11 +212,17 @@ struct UpdateTargetFieldsOp<LinearWaves>
                     const amrex::Real cell_length_2D =
                         std::sqrt((dx[0] * dx[0]) + (dx[2] * dx[2]));
                     if (phi[nbx](i, j, k) + cell_length_2D >= 0) {
+                        // Liquid velocity at the approx. liquid centroid
+                        // height, from the known surface elevation
+                        const amrex::Real z_liq =
+                            multiphase_mode
+                                ? utils::liquid_centroid_z(eta, z, dx[2])
+                                : z;
                         vel[nbx](i, j, k, 0) =
                             (omega * wave_height / 2.0_rt *
                              std::cosh(
                                  wave_number *
-                                 (z - zero_sea_level + water_depth)) /
+                                 (z_liq - zero_sea_level + water_depth)) /
                              std::sinh(wave_number * water_depth) *
                              std::cos(phase)) +
                             current;
@@ -209,7 +231,7 @@ struct UpdateTargetFieldsOp<LinearWaves>
                             omega * wave_height / 2.0_rt *
                             std::sinh(
                                 wave_number *
-                                (z - zero_sea_level + water_depth)) /
+                                (z_liq - zero_sea_level + water_depth)) /
                             std::sinh(wave_number * water_depth) *
                             std::sin(phase);
                     } else {

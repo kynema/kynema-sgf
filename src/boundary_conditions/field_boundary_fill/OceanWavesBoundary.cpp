@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "src/CFDSim.H"
 #include "src/boundary_conditions/field_boundary_fill/OceanWavesBoundary.H"
 #include "src/core/FieldUtils.H"
@@ -99,6 +101,9 @@ void OceanWavesBoundary::set_velocity(
     const auto& domain = geom.growPeriodicDomain(nghost);
 
     const bool terrain_and_vof_exist = m_terrain_exists && m_vof_exists;
+    // The gas-cell wave velocity extension applies only in multiphase
+    // simulations; with waves as terrain, the boundary values are kept
+    const bool extend_into_gas = m_vof_exists;
 
     for (amrex::OrientationIter oit; oit != nullptr; ++oit) {
         auto ori = oit();
@@ -137,11 +142,35 @@ void OceanWavesBoundary::set_velocity(
                     ? (*m_terrain_blank_ptr)(lev).const_array(source_idx)
                     : amrex::Array4<int const>();
 
+            const amrex::IntVect below = -amrex::IntVect::TheDimensionVector(2);
             amrex::ParallelFor(bx, [=] AMREX_GPU_DEVICE(int i, int j, int k) {
                 const amrex::IntVect iv{i, j, k};
                 for (int n = 0; n < numcomp; n++) {
                     if (targ_vof(iv) > constants::VOF_TOL) {
                         arr(iv, dcomp + n) = targ_arr(iv, orig_comp + n);
+                    } else if (extend_into_gas) {
+                        // Gas-only cells above target liquid: candidate is the
+                        // wave velocity of the liquid cell below (first gas
+                        // cell) or half of it from two cells below (second gas
+                        // cell). It replaces the existing (gas) value only
+                        // where its magnitude is larger.
+                        bool has_cand = false;
+                        amrex::Real cand = 0.0_rt;
+                        if (targ_vof.contains(iv + below) &&
+                            targ_vof(iv + below) > constants::VOF_TOL) {
+                            cand = targ_arr(iv + below, orig_comp + n);
+                            has_cand = true;
+                        } else if (
+                            targ_vof.contains(i, j, k - 2) &&
+                            targ_vof(i, j, k - 2) > constants::VOF_TOL) {
+                            cand =
+                                0.5_rt * targ_arr(i, j, k - 2, orig_comp + n);
+                            has_cand = true;
+                        }
+                        if (has_cand &&
+                            std::abs(cand) > std::abs(arr(iv, dcomp + n))) {
+                            arr(iv, dcomp + n) = cand;
+                        }
                     }
                     if (terrain_and_vof_exist) {
                         // Terrain-blanked adjacent cell means 0 velocity
@@ -266,6 +295,9 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
     BL_PROFILE("kynema-sgf::OceanWavesBoundary::set_inflow_sibling_velocity");
 
     const bool terrain_and_vof_exist = m_terrain_exists && m_vof_exists;
+    // The gas-cell wave velocity extension applies only in multiphase
+    // simulations; with waves as terrain, the boundary values are kept
+    const bool extend_into_gas = m_vof_exists;
     const auto& bctype = fld.bc_type();
     const auto& geom = fld.repo().mesh().Geom(lev);
 
@@ -323,9 +355,37 @@ void OceanWavesBoundary::set_inflow_sibling_velocity(
                             const int i, const int j, const int k) {
                         amrex::IntVect cc_iv = {i, j, k};
                         cc_iv += shift_to_cc;
+                        const amrex::IntVect cc_below =
+                            cc_iv - amrex::IntVect::TheDimensionVector(2);
 
                         if (targ_vof(cc_iv) > constants::VOF_TOL) {
                             marr(i, j, k, 0) = targ_arr(cc_iv, fdir);
+                        } else if (extend_into_gas) {
+                            // Gas-only cells above target liquid: wave
+                            // velocity of the liquid cell below (first gas
+                            // cell) or half of it from two cells below
+                            // (second), used only where its magnitude exceeds
+                            // the existing (gas) face velocity
+                            bool has_cand = false;
+                            amrex::Real cand = 0.0_rt;
+                            if (targ_vof.contains(cc_below) &&
+                                targ_vof(cc_below) > constants::VOF_TOL) {
+                                cand = targ_arr(cc_below, fdir);
+                                has_cand = true;
+                            } else if (
+                                targ_vof.contains(
+                                    cc_iv[0], cc_iv[1], cc_iv[2] - 2) &&
+                                targ_vof(cc_iv[0], cc_iv[1], cc_iv[2] - 2) >
+                                    constants::VOF_TOL) {
+                                cand = 0.5_rt * targ_arr(
+                                                    cc_iv[0], cc_iv[1],
+                                                    cc_iv[2] - 2, fdir);
+                                has_cand = true;
+                            }
+                            if (has_cand &&
+                                std::abs(cand) > std::abs(marr(i, j, k, 0))) {
+                                marr(i, j, k, 0) = cand;
+                            }
                         }
                         if (terrain_and_vof_exist) {
                             // Terrain-blanked boundary-adjacent cell should set
