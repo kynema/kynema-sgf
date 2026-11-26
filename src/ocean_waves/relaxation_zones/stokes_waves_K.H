@@ -279,6 +279,127 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_coefficients(
     }
 }
 
+// Eulerian mean current (Fenton's u1-bar) for which there is no mass transport
+// (Fenton's u2-bar = 0, Stokes' second approximation to the wave speed). From
+// Fenton (1990) Eqs. (1), (2), (7), and (10): u1 = c - ubar and u2 = c - Q/d,
+// so u2 = 0 gives u1 = Q/d - ubar = sqrt(g/k^3)/d (eps^2 D2 + eps^4 D4), with
+// D2 and D4 from Table 1. It is negative: the return current that cancels the
+// mass transport of the waves. D4 is included for orders 4 and 5.
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real
+stokes_zero_mass_transport_current(
+    const int stokes_order,
+    const amrex::Real wavelength,
+    const amrex::Real water_depth,
+    const amrex::Real wave_height,
+    const amrex::Real g)
+{
+    const amrex::Real k = 2.0_rt * std::numbers::pi_v<amrex::Real> / wavelength;
+    amrex::Real kd = k * water_depth;
+    kd = amrex::min<amrex::Real>(kd, 50.0_rt * std::numbers::pi_v<amrex::Real>);
+    // Exponential definitions of S = sech(2kd) and coth(kd)
+    const amrex::Real S =
+        2.0_rt * std::exp(2.0_rt * kd) / (std::exp(4.0_rt * kd) + 1.0_rt);
+    const amrex::Real CTh =
+        (1.0_rt + std::exp(-2.0_rt * kd)) / (1.0_rt - std::exp(-2.0_rt * kd));
+    const amrex::Real eps = k * wave_height / 2.0_rt;
+    const amrex::Real D2 = -std::sqrt(CTh) / 2.0_rt;
+    amrex::Real sum = utils::powi(eps, 2) * D2;
+    if (stokes_order >= 4) {
+        const amrex::Real D4 = std::sqrt(CTh) *
+                               (2.0_rt + (4.0_rt * S) + utils::powi(S, 2) +
+                                (2.0_rt * utils::powi(S, 3))) /
+                               (8.0_rt * utils::powi(1.0_rt - S, 3));
+        sum += utils::powi(eps, 4) * D4;
+    }
+    return std::sqrt(g / utils::powi(k, 3)) / water_depth * sum;
+}
+
+// Wave speed in the fixed frame for a given mean current u1 (Fenton 1990 Eqs.
+// (1) and (7)): c = u1 + ubar, ubar = sqrt(g/k) (C0 + eps^2 C2 + eps^4 C4)
+AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE amrex::Real stokes_wave_speed(
+    const int stokes_order,
+    const amrex::Real wavelength,
+    const amrex::Real water_depth,
+    const amrex::Real wave_height,
+    const amrex::Real g,
+    const amrex::Real mean_current)
+{
+    const amrex::Real k = 2.0_rt * std::numbers::pi_v<amrex::Real> / wavelength;
+    amrex::Real kd = k * water_depth;
+    kd = amrex::min<amrex::Real>(kd, 50.0_rt * std::numbers::pi_v<amrex::Real>);
+    const amrex::Real S =
+        2.0_rt * std::exp(2.0_rt * kd) / (std::exp(4.0_rt * kd) + 1.0_rt);
+    const amrex::Real C = 1.0_rt - S;
+    const amrex::Real eps = k * wave_height / 2.0_rt;
+    const amrex::Real C0 = std::sqrt(std::tanh(kd));
+    amrex::Real ubar = C0;
+    if (stokes_order >= 2) {
+        ubar += utils::powi(eps, 2) * C0 *
+                (2.0_rt + (7.0_rt * utils::powi(S, 2))) /
+                (4.0_rt * utils::powi(C, 2));
+    }
+    if (stokes_order >= 4) {
+        ubar +=
+            utils::powi(eps, 4) * C0 *
+            (4.0_rt + (32.0_rt * S) - (116.0_rt * utils::powi(S, 2)) -
+             (400.0_rt * utils::powi(S, 3)) - (71.0_rt * utils::powi(S, 4)) +
+             (146.0_rt * utils::powi(S, 5))) /
+            (32.0_rt * utils::powi(C, 5));
+    }
+    return mean_current + (ubar * std::sqrt(g / k));
+}
+
+// Wavelength for a given period with no mass transport (Fenton 1990 Eq. (11)),
+// by secant iterations on k c(k) - omega = 0 starting from the wavelength for
+// zero mean current. Returns a negative value on failure (as
+// stokes_wave_length).
+AMREX_FORCE_INLINE amrex::Real stokes_wave_length_zero_mass_transport(
+    const amrex::Real T,
+    const amrex::Real d,
+    const amrex::Real H,
+    const int order,
+    const amrex::Real g,
+    const amrex::Real tol,
+    const int iter_max)
+{
+    const amrex::Real lambda0 =
+        stokes_wave_length(T, d, H, order, g, tol, iter_max);
+    if (lambda0 < 0.0_rt) {
+        return lambda0;
+    }
+    const amrex::Real omega = 2.0_rt * std::numbers::pi_v<amrex::Real> / T;
+    const amrex::Real twopi = 2.0_rt * std::numbers::pi_v<amrex::Real>;
+    auto f = [&](const amrex::Real k) {
+        const amrex::Real L = twopi / k;
+        const amrex::Real u1 =
+            stokes_zero_mass_transport_current(order, L, d, H, g);
+        return (k * stokes_wave_speed(order, L, d, H, g, u1)) - omega;
+    };
+    amrex::Real k0 = twopi / lambda0;
+    amrex::Real k1 = 1.001_rt * k0;
+    amrex::Real f0 = f(k0);
+    amrex::Real f1 = f(k1);
+    int iter = 0;
+    while (std::abs(f1) > tol && iter < iter_max) {
+        const amrex::Real k2 = k1 - (f1 * (k1 - k0) / (f1 - f0));
+        k0 = k1;
+        f0 = f1;
+        k1 = k2;
+        f1 = f(k1);
+        ++iter;
+    }
+    if (k1 < tol) {
+        return -1;
+    }
+    if (std::isnan(k1)) {
+        return -2;
+    }
+    if (iter == iter_max) {
+        return -3;
+    }
+    return twopi / k1;
+}
+
 // Based on Fenton 1985
 AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     int stokes_order,
@@ -296,7 +417,8 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
     amrex::Real& eta,
     amrex::Real& u_w,
     amrex::Real& v_w,
-    amrex::Real& w_w)
+    amrex::Real& w_w,
+    const amrex::Real mean_current = 0.0_rt)
 {
     const amrex::Real wavenumber =
         2.0_rt * std::numbers::pi_v<amrex::Real> / wavelength;
@@ -313,9 +435,12 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
         b31, a42, a44, b42, b44, c4, a51, a53, a55, b53, b55);
 
     const amrex::Real eps = wavenumber * wave_height / 2.0_rt; // Steepness (ka)
+    // Wave speed in the fixed frame: Eulerian mean current plus the mean
+    // fluid speed in the frame of the wave (Fenton 1990 Eqs. (1) and (7))
     const amrex::Real c =
-        (c0 + (utils::powi(eps, 2) * c2) + (utils::powi(eps, 4) * c4)) *
-        std::sqrt(g / wavenumber);
+        mean_current +
+        ((c0 + (utils::powi(eps, 2) * c2) + (utils::powi(eps, 4) * c4)) *
+         std::sqrt(g / wavenumber));
 
     const amrex::Real omega = c * wavenumber;
     const amrex::Real phase = (wavenumber * x) - (omega * time) - phase_offset;
@@ -381,6 +506,7 @@ AMREX_GPU_HOST_DEVICE AMREX_FORCE_INLINE void stokes_waves(
                sinh_nkdz * std::sin(static_cast<amrex::Real>(n) * phase);
     }
     u_w *= (c0 * std::sqrt(g / wavenumber));
+    u_w += mean_current;
     w_w *= (c0 * std::sqrt(g / wavenumber));
 }
 
